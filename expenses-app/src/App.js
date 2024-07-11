@@ -22,7 +22,7 @@ export default function App() {
   const [ExpenseList, setExpenseList] = useState(staticexpenses);
 
   const getExpenseDataFromChild = (getExpenseData) => {
-    console.log(getExpenseData);
+    //console.log(getExpenseData);
     setExpenseList((prevExpenses) => {
       return [getExpenseData, ...prevExpenses];
     });
@@ -47,8 +47,8 @@ export default function App() {
       <NewExpense onsendDataToParent={getExpenseDataFromChild} />
       <ExpensesFilter selected={filterYear} selectYearToParent={getFilterYear} />
 
-      {filterYear === '' && <ExpensesFullChart expensesData={ExpenseList} /> }
-      {filterYear !== '' || FilteredExpenseList.length !== 0 ? <ExpensesFullChart expensesData={FilteredExpenseList} /> : '' }
+      {filterYear === '' && <ExpensesFullChart selected={filterYear} expensesData={ExpenseList} /> }
+      {filterYear !== '' || FilteredExpenseList.length !== 0 ? <ExpensesFullChart selected={filterYear} expensesData={FilteredExpenseList} /> : '' }
 
       <CardHolders className="all_expanses_card_wrap">
 

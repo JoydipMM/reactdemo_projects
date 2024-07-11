@@ -30,7 +30,7 @@ const ExpensesFullChart = (props) => {
 
     return(
         <div className="expenses_chart_fullsection">
-            <ExpensesChart datapoints={chartDataPoints} />
+            <ExpensesChart selectedYear={props.selected} expensesdata={getExpensesData} datapoints={chartDataPoints} />
         </div>
     );
 }
