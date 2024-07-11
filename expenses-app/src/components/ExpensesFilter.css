@@ -1,0 +1,13 @@
+.expense_filter_card {
+    width: 100%;
+    padding: 10px;
+    position: relative;
+    border: #747ffa solid 1px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    background-color: #d1e8ff;
+    margin-bottom: 16px;
+  }

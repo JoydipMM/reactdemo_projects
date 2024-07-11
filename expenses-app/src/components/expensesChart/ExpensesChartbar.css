@@ -1,0 +1,25 @@
+.ExpensesChartBar_wrap{
+    width: auto;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 12px;
+    align-items: center;
+}
+.ExpensesChartBar{
+    width: 20px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #fff;
+    border: blue solid 1px;
+}
+.ExpensesChartBar span{
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    transition: all ease-in-out 0.4s;
+    background-color: blue;
+}

@@ -1,0 +1,9 @@
+.card_holder {
+  width: 100%;
+  padding: 10px;
+  position: relative;
+  border: #747ffa solid 1px;
+  border-radius: 10px;
+  background-color: #d1e8ff;
+  box-shadow: #03245a 0px 0px 5px;
+}

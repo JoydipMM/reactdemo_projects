@@ -1,0 +1,17 @@
+.ExpensesChart_wrap{
+    width: 100%;
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    position: relative;
+}
+.ExpensesChart_wrap_title{
+    width: 100%;
+    display: inline-flex;
+    font-size: 16px;
+    font-weight: 500;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: #000 solid 1px;
+}
