@@ -44,3 +44,12 @@
     font-weight: 700;
     cursor: pointer;
   }
+  input.error{
+    border: #fa5a5a solid 1px;
+    color: #fa5a5a;
+    background-color: #fdb8b8;
+  }
+  .errortext{
+    color: #fa5a5a;
+    font-size: 12px;
+  }

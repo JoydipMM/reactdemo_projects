@@ -62,7 +62,7 @@ export default function App() {
 
         {/* with filter function */}
         {filterYear === '' && ExpenseList.map((item) => <ExpenseItem data={item} key={item.id} />)}
-        {FilteredExpenseList.length === 0 ? `No Data Found for the year of ${filterYear}` : FilteredExpenseList.map((item) => <ExpenseItem data={item} key={item.id} />)}
+        {filterYear !== '' && FilteredExpenseList.length === 0 ? `No Data Found for the year of ${filterYear}` : FilteredExpenseList.map((item) => <ExpenseItem data={item} key={item.id} />)}
         
         
 
