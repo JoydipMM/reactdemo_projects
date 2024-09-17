@@ -1,0 +1,5 @@
+.cat-frame .active{ border: #ff0000 solid 3px; border-radius: 100%; }
+.cat-wrap{ display: inline-flex; gap: 10px; }
+.cat-frame{ display: inline-flex; flex-direction: column; align-items: center; }
+.cat-frame> img{ width: 100px; }
+.cat-frame> .active+span{ color: #ff0000; }
