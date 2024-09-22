@@ -16,6 +16,7 @@ connectDB();
 
 // api endpoint for foodRouter
 app.use("/api/food", foodRouter);
+app.use("/images", express.static("uploads") );
 
 // create route
 // get() is a http method which can use for request data from server

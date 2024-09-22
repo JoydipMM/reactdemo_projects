@@ -4,7 +4,7 @@ import fs from "fs";
 // add food
 const addFood = async (req, res) => {
     // we will create route for endpoint
-    let image_filename = `${ req.file.filename }`;
+    let image_filename = `${ req.file?.filename }`;
 
     const food = new foodModel({
         name: req.body.name,
@@ -22,4 +22,26 @@ const addFood = async (req, res) => {
     }
 }
 
-export { addFood }
+const listFood = async (req, res) => {
+    try {
+        const foods = await foodModel.find({});
+        res.json({ success:true, data:foods })
+    } catch (error) {
+        console.log(error);
+        res.json({ success:false, message:"error on fetch list" })
+    }
+}
+
+const removeFood = async (req, res) => {
+    try {
+        const food = await foodModel.findById(req.body.id);
+        fs.unlink(`uploads/${food.image}`, ()=>{});
+        await foodModel.findByIdAndDelete(req.body.id);
+        res.json({ success:true, message:"remove successfully" })
+    } catch (error) {
+        console.log(error);
+        res.json({ success:false, message:"error on delete" })
+    }
+}
+
+export { addFood, listFood, removeFood }
