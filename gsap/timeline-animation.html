@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="page">
+
+
+        <h1 class="h1text">Welcome</h1>
+
+
+
+    </div>
+
+
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+        /*
+        var tl = gsap.timeline();
+
+        tl.to(".menuicon", {
+            opacity:0,
+            duration:1,
+        });
+        tl.from(".sidenav", {
+            left: "-100%",
+            opacity:0,
+            duration:1,
+        });
+        tl.from(".navmenu li",{
+            left:-30,
+            opacity:0,
+            duration:0.3,
+            stagger:0.3,
+        })
+        tl.from(".menucloseicon",{
+            opacity:0,
+            duration:0.5,
+        })
+        tl.pause();
+
+        var openMenuButton = document.querySelector(".menuicon");
+        var closeMenuButton = document.querySelector(".menucloseicon");
+
+        openMenuButton.addEventListener("click", function(){
+            tl.play();
+        })
+        closeMenuButton.addEventListener("click", function(){
+            tl.reverse();
+        })
+            */
+
+            var headingText = document.querySelector(".h1text");
+            var headingTextcontent = headingText.textContent;
+            var splittedHeadingText = headingTextcontent.split("");
+            console.log(splittedHeadingText);
+            var clutter = ""
+
+            splittedHeadingText.forEach(function(e, i){
+                //console.log(e);
+                //clutter = clutter + e;
+                var halfcount = Math.floor((splittedHeadingText.length) / 2);
+                //console.log(halfcount);
+                if(i < 3){
+                    clutter += `<span class="half-1">${e}</span>`; 
+                }else{
+                    clutter += `<span class="half-2">${e}</span>`;
+                }
+                
+            });
+
+            headingText.innerHTML = clutter;
+
+            gsap.from(".h1text .half-1", {
+                y:50,
+                opacity:0,
+                duration:0.6,
+                delay:0.5,
+                stagger:0.15,
+            });
+            gsap.from(".h1text .half-2", {
+                y:50,
+                opacity:0,
+                duration:0.6,
+                delay:0.5,
+                stagger:-0.15,
+            });
+    </script>
+   
+</body>
+</html>

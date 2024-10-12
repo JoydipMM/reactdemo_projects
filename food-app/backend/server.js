@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import { connectDB } from "./config/db.js";
 import foodRouter from "./routes/foodroute.js";
+import userRouter from "./routes/userRouter.js";
+import 'dotenv/config';
 
 // app config
 const app = express();
@@ -17,6 +19,8 @@ connectDB();
 // api endpoint for foodRouter
 app.use("/api/food", foodRouter);
 app.use("/images", express.static("uploads") );
+
+app.use("/api/user", userRouter);
 
 // create route
 // get() is a http method which can use for request data from server

@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+
+
+
+
+    <div id="string">
+        <svg width="1600" height="360" xmlns="http://www.w3.org/2000/svg">
+
+            <path d="M 10 150 Q 800 150 1590 150" stroke="white" fill="transparent"/>
+          
+          </svg>
+    </div>
+
+
+
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+        var actualpath = `M 10 150 Q 800 150 1590 150`;
+        var newpath = `M 10 150 Q 800 150 1590 150`;
+
+        var pathstring = document.querySelector("#string");
+
+        pathstring.addEventListener("mousemove", function(event){
+            console.log(event.y);
+            path = `M 10 150 Q ${event.x} ${event.y} 1590 150`;
+            gsap.to("#string svg path", {
+                attr: { d:path }
+            })
+        })
+
+        pathstring.addEventListener("mouseleave", function(event){
+            console.log(event.y);
+            gsap.to("#string svg path", {
+                duration: 1.5,
+                ease: "elastic.out(1,0.3)",
+                attr: { d:actualpath }
+            })
+        })
+
+    </script>
+
+    <!-- https://gsap.com/resources/getting-started/Easing -->
+</body>
+</html>
