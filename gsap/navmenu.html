@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body style="background: url(https://images.unsplash.com/photo-1515019915774-f4887104b715?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) no-repeat center center; background-size: cover;">
+
+
+    <i class="ri-menu-line menuicon"></i>
+
+    <nav class="sidenav">
+        <i class="ri-close-fill menucloseicon"></i>
+        <ul class="navmenu">
+            <li><a href="javascript:void(0);">Home</a></li>
+            <li><a href="javascript:void(0);">About Us</a></li>
+            <li><a href="javascript:void(0);">Services</a></li>
+            <li><a href="javascript:void(0);">FAQ</a></li>
+            <li><a href="javascript:void(0);">Contact Us</a></li>
+        </ul>
+    </nav>
+
+
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+        var tl = gsap.timeline();
+
+        tl.to(".menuicon", {
+            opacity:0,
+            duration:1,
+        });
+        tl.from(".sidenav", {
+            left: "-100%",
+            opacity:0,
+            duration:1,
+        });
+        tl.from(".navmenu li",{
+            left:-30,
+            opacity:0,
+            duration:0.3,
+            stagger:0.3,
+        })
+        tl.from(".menucloseicon",{
+            opacity:0,
+            duration:0.5,
+        })
+        tl.pause();
+
+        var openMenuButton = document.querySelector(".menuicon");
+        var closeMenuButton = document.querySelector(".menucloseicon");
+
+        openMenuButton.addEventListener("click", function(){
+            tl.play();
+        })
+        closeMenuButton.addEventListener("click", function(){
+            tl.reverse();
+        })
+    </script>
+   
+</body>
+</html>

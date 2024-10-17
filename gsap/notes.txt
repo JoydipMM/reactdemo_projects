@@ -1,0 +1,10 @@
+
+https://cdnjs.com/libraries/gsap
+https://gsap.com/resources/getting-started/Easing
+
+
+https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
+
+
+https://remixicon.com/
+https://github.com/Remix-Design/RemixIcon
