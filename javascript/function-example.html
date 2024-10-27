@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Examples</title>
+    <style>body{ background-color: #2a2a2a;}</style>
+</head>
+<body>
+    
+
+    <script>
+
+        console.log(checkNumber(1343433));
+        console.log(tempConvert(13));
+        
+
+
+        function checkNumber(number){
+
+            if(number === undefined){
+                return "please enter a number in function parameter"
+            }
+
+            let remainder = number % 2;
+            if(remainder === 0){
+                return `${number} is a even number`
+            }else{
+                return `${number} is a odd number`
+            }
+        }
+
+
+        function tempConvert(c){
+            if(c === undefined){
+                return "please enter a number!!!!"
+            }
+            let F = (9/5) * c + 32;
+            return `Celsius is ${c}° and Fahrenheit is ${F}°F`;
+        }
+
+    </script>
+</body>
+</html>
