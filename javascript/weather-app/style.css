@@ -1,0 +1,5 @@
+*{ margin: 0px; padding: 0px;}
+body{ background-color: #2a2a2a; }
+.weather-box{ width: 300px; height: 400px; border-radius: 20px; background-color: cornflowerblue; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); border:#fff solid 2px; }
+.weather{ width: 100%; display: inline-block; position: relative; }
+.cityname-error{ display: none; }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="weather-box">
+        <div class="searchbox">
+            <input type="text" /><button type="button">Search</button>
+        </div>
+        <div class="cityname-error">Invalid City Name</div>
+        <div class="weather">
+            <div class="temp"></div>
+            <div class="city"></div>
+            <div class="humidity"></div>
+            <div class="wind"></div>
+            <img src="" width="100px" height="100px" class="weather-icon" alt="" />
+        </div>
+    </div>
+
+
+    <script>
+        const apiKey = "43547ed6a62473de86f47d1f2a3bbe9c";
+        // const apiURL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=kolkata"; // normal
+        const apiURL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+        const searchbox = document.querySelector(".searchbox input")
+        const searchbutton = document.querySelector(".searchbox button")
+        const weathericon = document.querySelector(".weather-icon")
+        const citynameError = document.querySelector(".cityname-error")
+        const weatherBox = document.querySelector(".weather")
+
+        async function checkWeather(city) {
+            const weatherResponse = await fetch(apiURL+city+`&appid=${apiKey}`);
+
+
+            if(weatherResponse.status == 404){
+                citynameError.style.display = "block"
+                weatherBox.style.display = "none"
+            }else{
+                citynameError.style.display = "none"
+                weatherBox.style.display = "block"
+
+                var data = await weatherResponse.json();
+
+                document.querySelector(".city").innerHTML = data.name;
+                document.querySelector(".temp").innerHTML = Math.round(data.main.temp) +`°C`;
+                document.querySelector(".humidity").innerHTML = data.main.humidity+`%`;
+                document.querySelector(".wind").innerHTML = data.wind.speed+` km/h`;
+
+                if(data.weather[0].main=== "Haze"){
+                    weathericon.src="images/haze.png"
+                }
+                else if(data.weather[0].main=== "Rain"){
+                    weathericon.src="images/rain.png"
+                }
+                else if(data.weather[0].main=== "Clouds"){
+                    weathericon.src="images/clouds.png"
+                }
+                else if(data.weather[0].main=== "Drizzle"){
+                    weathericon.src="images/drizzle.png"
+                }
+                else if(data.weather[0].main=== "Mist"){
+                    weathericon.src="images/mist.png"
+                }
+                else if(data.weather[0].main=== "Snow"){
+                    weathericon.src="images/snow.png"
+                }
+                else if(data.weather[0].main=== "Clear"){
+                    weathericon.src="images/clear.png"
+                }
+            }
+
+
+            
+
+            console.log(data);
+        }
+
+        checkWeather("kolkata")
+
+        searchbutton.addEventListener("click", ()=>{
+            checkWeather(searchbox.value)
+        })
+
+        
+    </script>
+    
+</body>
+</html>
