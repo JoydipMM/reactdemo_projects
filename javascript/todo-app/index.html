@@ -15,13 +15,13 @@
         </div>
 
         <ul class="todo-list" id="todo_List_UL">
-            <li class="checked">Todo title 01<span>x</span></li>
+            <!-- <li class="checked">Todo title 01<span>x</span></li>
             <li>Todo title 02<span>x</span></li>
             <li>Todo title 03<span>x</span></li>
-            <li>Todo title 04<span>x</span></li>
+            <li>Todo title 04<span>x</span></li> -->
         </ul>
 
-        <button class="todo-next-button" id="todo_next_btn">NEXT</button>
+        <!-- <button class="todo-next-button" id="todo_next_btn">NEXT</button> -->
 
     </div>
 
@@ -63,6 +63,12 @@
         function savedata(){
             localStorage.setItem("udata", todo_List_UL.innerHTML)
         }
+
+        function showTask(){
+            todolistContainer.innerHTML = localStorage.getItem("udata");
+        }
+
+        showTask()
     </script>
     
 </body>
