@@ -1,2 +1,20 @@
-*{ margin:0px; padding: 0px; color: #fff }
+*{ margin:0px; padding: 0px; color: #fff; background: transparent; border: none; box-sizing: border-box; }
 body{ background-color: #000 ; }
+
+.todo-box{ width: 450px; min-height: 350px; border-radius: 10px; padding: 15px; border:#fff solid 1px; margin: 0px auto; display: inline-flex; flex-direction: column; align-items: center; margin: 50px; }
+.todo-field{ border: #fff solid 1px; padding: 10px 14px; }
+.todo-add-form-row{ width:100%; display: flex; gap: 10px; padding-bottom: 15px; border-bottom: #fff solid 1px; margin-bottom: 15px; }
+.todo-add-form-row>input{ flex: 1; }
+.todo-add-form-row>.add-button{ padding: 5px 14px; cursor: pointer; border: #fff solid 1px; }
+
+.todo-list{ width: 100%; display: inline-flex; flex-direction: column; row-gap: 10px; list-style-type: none; margin-bottom: 20px; }
+.todo-list>li{ width: 100%; position: relative; padding: 6px 14px; border: #fff solid 1px; border-radius: 5px; transition: all ease-in-out 0.4s; }
+.todo-list>li button{ cursor: pointer; }
+.todo-list>li span{ width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0px; border-radius: 4px; color: #fff; position: absolute; right: 0px; top: 0px; cursor: pointer; }
+.todo-list>li:hover{ background: #fff; color: #000 !important; }
+.todo-list>li:hover button{ color: #000; }
+.todo-list>li:hover span{ color: #000; }
+.todo-next-button{ width: 100%; padding: 10px 16px; border: #fff solid 1px; border-radius: 5px; cursor: pointer; transition: all ease-in-out 0.4s; }
+.todo-next-button:hover{ background-color: #fff; color: #000; }
+.todo-list>li.checked{ text-decoration: line-through; }
+/* .todo-list>li .searchbox */

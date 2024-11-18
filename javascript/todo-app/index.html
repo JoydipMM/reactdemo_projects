@@ -7,6 +7,63 @@
     <title>Todo App</title>
 </head>
 <body>
+
+    <div class="todo-box">
+        <div class="todo-add-form-row">
+            <input type="text" class="todo-field" id="searchbox" />
+            <button class="add-button" onclick="addTask()">Save</button>
+        </div>
+
+        <ul class="todo-list" id="todo_List_UL">
+            <li class="checked">Todo title 01<span>x</span></li>
+            <li>Todo title 02<span>x</span></li>
+            <li>Todo title 03<span>x</span></li>
+            <li>Todo title 04<span>x</span></li>
+        </ul>
+
+        <button class="todo-next-button" id="todo_next_btn">NEXT</button>
+
+    </div>
+
+
+
+    <script>
+        const searchbox = document.getElementById("searchbox");
+        const todolistContainer = document.getElementById("todo_List_UL");
+
+        function addTask(){
+            console.log("clicked");
+
+            if(searchbox.value === ''){
+                alert("Error");
+            }else{
+                let li = document.createElement("li");
+                li.innerHTML = searchbox.value;
+                todolistContainer.appendChild(li);
+                let deletebtn = document.createElement("span");
+                deletebtn.innerHTML = "\u00d7";
+                li.appendChild(deletebtn);
+            }
+            searchbox.value = "";
+            savedata()
+        }
+
+
+        todolistContainer.addEventListener("click", function(e){
+            if(e.target.tagName === "LI"){
+                e.target.classList.toggle("checked")
+                savedata()
+            }
+            else if(e.target.tagName === "SPAN"){
+                e.target.parentElement.remove();
+                savedata()
+            }
+        } );
+
+        function savedata(){
+            localStorage.setItem("udata", todo_List_UL.innerHTML)
+        }
+    </script>
     
 </body>
 </html>
