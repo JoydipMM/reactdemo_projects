@@ -83,6 +83,10 @@
                 button.innerHTML = answer.text;
                 button.classList.add("quiz-answer-button");
                 answerButtonList.appendChild(button);
+                if(answer.correct){
+                    button.dataset.correct = answer.correct;
+                }
+                quizNextButton.addEventListener("click", selectAnswer)
             })
         }
 
@@ -90,6 +94,16 @@
             quizNextButton.style.display = "none";
             while(answerButtonList.firstChild){
                 answerButtonList.removeChild(answerButtonList.firstChild)
+            }
+        }
+
+        function selectAnswer(e){
+            const selectedButton = e.target;
+            const isCorrect = selectedButton.dataset.correct == true;
+            if(isCorrect){
+                selectedButton.classList.add("correct")
+            }else{
+                selectedButton.classList.add("wrong")
             }
         }
 
