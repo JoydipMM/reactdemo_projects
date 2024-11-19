@@ -12,16 +12,90 @@
     <div class="quizbox">
         <div class="quizbox-hdng">Simple Quiz</div>
         <div class="quiz-qustn-wrap">
-            <h4 class="quiz-question">1. dfjhdsfj gfgsdf gjsdf gkfjgsdf</h4>
-            <div class="quiz-answer-list">
+            <h4 class="quiz-question" id="question_element">1. dfjhdsfj gfgsdf gjsdf gkfjgsdf</h4>
+            <div class="quiz-answer-list" id="answer_button_list">
                 <button class="quiz-answer-button">sdfsf sdfsdfsdf</button>
                 <button class="quiz-answer-button">sdfsf sdfsdfsdf</button>
                 <button class="quiz-answer-button">sdfsf sdfsdfsdf</button>
                 <button class="quiz-answer-button">sdfsf sdfsdfsdf</button>
             </div>
         </div>
-        <button class="quiz-next-button" id="quiz_next_btn">NEXT</button>
+        <button class="quiz-next-button" id="quiz_next_btn"></button>
     </div>
+
+
+    <script>
+        const questions = [
+            {
+                question: "question 1?",
+                anwsers:[
+                    { text:"answer 1 01", correct: false, },
+                    { text:"answer 1 02", correct: true, },
+                    { text:"answer 1 03", correct: false, },
+                    { text:"answer 1 04", correct: false, },
+                ]
+
+            },
+            {
+                question: "question 2?",
+                anwsers:[
+                    { text:"answer 2 01", correct: true, },
+                    { text:"answer 2 02", correct: false, },
+                    { text:"answer 2 03", correct: false, },
+                    { text:"answer 2 04", correct: false, },
+                ]
+
+            },
+            {
+                question: "question 3?",
+                anwsers:[
+                    { text:"answer 3 01", correct: false, },
+                    { text:"answer 3 02", correct: false, },
+                    { text:"answer 3 03", correct: true, },
+                    { text:"answer 3 04", correct: false, },
+                ]
+
+            },
+        ];
+
+        const questionElement = document.getElementById("question_element");
+        const answerButtonList = document.getElementById("answer_button_list");
+        const quizNextButton = document.getElementById("quiz_next_btn");
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+
+        function startQuiz(){
+            currentQuestionIndex = 0;
+            score = 0;
+            quizNextButton.innerHTML = "NEXT";
+            showQuestion();
+        }
+
+        function showQuestion(){
+            resetState();
+            let currentQuestion = questions[currentQuestionIndex];
+            let questionNo = currentQuestionIndex+1;
+            questionElement.innerHTML = questionNo+ ". "+currentQuestion.question;
+
+            currentQuestion.anwsers.forEach(answer =>{
+                const button = document.createElement("button");
+                button.innerHTML = answer.text;
+                button.classList.add("quiz-answer-button");
+                answerButtonList.appendChild(button);
+            })
+        }
+
+        function resetState(){
+            quizNextButton.style.display = "none";
+            while(answerButtonList.firstChild){
+                answerButtonList.removeChild(answerButtonList.firstChild)
+            }
+        }
+
+        startQuiz();
+
+    </script>
     
 </body>
 </html>
