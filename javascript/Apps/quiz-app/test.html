@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" />
+    <title>QUIZ APP</title>
+</head>
+<body>
+
+
+    <div class="quizbox">
+        <div class="quizbox-hdng">Simple Quiz (<span id="scoreDisplay"></span>)</div>
+        <div class="quiz-qustn-wrap">
+            <h4 class="quiz-question" id="question">1. dfjhdsfj gfgsdf gjsdf gkfjgsdf</h4>
+            <div class="quiz-answer-list" id="answer_button_list">
+                <button class="quiz-answer-button">sdfsf sdfsdfsdf</button>
+                <button class="quiz-answer-button">sdfsf sdfsdfsdf</button>
+                <button class="quiz-answer-button">sdfsf sdfsdfsdf</button>
+                <button class="quiz-answer-button">sdfsf sdfsdfsdf</button>
+            </div>
+        </div>
+        <button class="quiz-next-button" id="quiz_next_btn"></button>
+    </div>
+
+
+    <script>
+        const questions = [
+            {
+                question: "question 1?",
+                anwsers:[
+                    { text:"answer 1 01", correct: false, },
+                    { text:"answer 1 02", correct: true, },
+                    { text:"answer 1 03", correct: false, },
+                    { text:"answer 1 04", correct: false, },
+                ]
+
+            },
+            {
+                question: "question 2?",
+                anwsers:[
+                    { text:"answer 2 01", correct: true, },
+                    { text:"answer 2 02", correct: false, },
+                    { text:"answer 2 03", correct: false, },
+                    { text:"answer 2 04", correct: false, },
+                ]
+
+            },
+            {
+                question: "question 3?",
+                anwsers:[
+                    { text:"answer 3 01", correct: false, },
+                    { text:"answer 3 02", correct: false, },
+                    { text:"answer 3 03", correct: true, },
+                    { text:"answer 3 04", correct: false, },
+                ]
+
+            },
+        ];
+
+        const question_element = document.getElementById("question");
+        const answers_list = document.getElementById("answer_button_list");
+        const next_button = document.getElementById("quiz_next_btn");
+        let question_index = 0;
+        let score = 0;
+
+        function startQuiz(){
+            question_index = 0;
+            score = 0;
+            next_button.innerHTML="NEXT"
+            showQuestion();
+            scoreUpdate(score)
+        }
+
+        function scoreUpdate(score){
+            scoreDisplay.innerHTML = `Your Score is ${score} / ${questions.length}`
+        }
+
+        function showQuestion(){
+            resetQuestion();
+            
+            let current_question = questions[question_index];
+            let question_number = question_index+1;
+            //console.log("Current Question: ", current_question);
+
+            question_element.innerHTML = question_number+". "+current_question.question;
+            //return false;
+            current_question.anwsers.forEach((answer_button)=>{
+                let button_element = document.createElement("button");
+                button_element.classList.add("quiz-answer-button");
+                button_element.innerHTML = answer_button.text;
+                answers_list.appendChild(button_element);
+                if(answer_button.correct){
+                    button_element.dataset.correct = answer_button.correct;
+                }
+                button_element.addEventListener("click", selectAnswer);
+            });
+        }
+
+        function resetQuestion(){
+            next_button.style.display = "none";
+            // while(answers_list.firstChild){
+            //     answers_list.removeChild(answers_list.firstChild);
+            // }
+            Array.from(answers_list.children).forEach(button=>{
+                answers_list.removeChild(button);
+            });
+        }
+
+        function selectAnswer(e){
+            const selected_answer = e.target;
+            //console.log(selected_answer);
+            const isCorrect = selected_answer.dataset.correct === "true"
+            if(isCorrect){
+                selected_answer.classList.add("correct");
+                score++;
+                scoreUpdate(score)
+            }else{
+                selected_answer.classList.add("wrong");
+            }
+            Array.from(answers_list.children).forEach(button=>{
+                if(button.dataset.correct === "true"){
+                    button.classList.add("correct");
+                }
+                button.disabled = true;
+            })
+            next_button.style.display = "block"
+        }
+
+        function showScore(){
+            resetQuestion();
+            question_element.innerHTML = `Your Final Score is ${score} out of ${questions.length}`;
+            next_button.innerHTML = "Play Again"
+            next_button.style.display = "block"
+            scoreUpdate(score)
+        }
+
+        function nextButtonEvent(){
+            question_index = question_index+1;
+            //console.log(question_index);
+            if(question_index < questions.length){
+                showQuestion();
+                scoreUpdate(score)
+            }else{
+                showScore();
+            }
+        }
+
+        next_button.addEventListener("click", ()=>{
+            if(question_index < questions.length){
+                nextButtonEvent()
+            }else{
+                startQuiz() 
+            }
+
+        });
+
+        startQuiz()
+
+    </script>
+    
+</body>
+</html>

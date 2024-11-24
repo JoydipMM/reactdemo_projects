@@ -1,0 +1,3 @@
+.card-img-box{ width:100%; height: 300px; overflow: hidden; }
+.card-img-box>img{ width: 100%; height: 100%; object-fit: cover; }
+.hide{ display: none; }

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" />
+    <title>Todo 2 App</title>
+</head>
+<body>
+
+    <div class="todo-box">
+        <div class="todo-add-form-row">
+            <input type="text" class="todo-field" id="todo_Input" />
+            <button class="add-button" onclick="AddTask()">Save</button>
+        </div>
+
+        <div class="error" id="error">Text field not be blank</div>
+
+        <div>You have <span class="count_value">0</span> task(s) to complete.</div>
+
+        <ul class="todo-list" id="todo_List_UL">
+            <!-- <li class="checked">Todo title 01<span>x</span></li>
+            <li>Todo title 02<span>x</span></li>
+            <li>Todo title 03<span>x</span></li>
+            <li>Todo title 04<span>x</span></li> -->
+        </ul>
+
+    </div>
+
+
+
+    <script>
+        const todoInput = document.getElementById("todo_Input");
+        const todolistContainer = document.getElementById("todo_List_UL");
+        const countValue = document.querySelector(".count_value");
+        const errorElement = document.getElementById("error");
+        let taskCount = 0;
+        const displayCount = (taskCount) => {
+            countValue.innerText = taskCount;
+        };
+
+
+        const AddTask = () => {
+            errorElement.style.display="none";
+            let inputValue = todoInput.value.trim();
+
+            if (!inputValue) {
+                setTimeout(() => {
+                    errorElement.style.display = "block";
+                }, 200);
+                setTimeout(() => {
+                    errorElement.style.display = "none";
+                }, 1000);
+                return;
+            }
+
+
+
+            let todorow = document.createElement("li");
+            todorow.innerHTML = `
+                <input type="checkbox" class="task_check">
+                <div class="todo_text">${inputValue}</div>
+                <button class="todo_edit">Edit</button>
+                <button class="todo_delete">delete</button>
+                <button class="todo_edit_delete">edit delete</button>
+            `;
+            todolistContainer.appendChild(todorow);
+            console.log(inputValue);
+            todoInput.value = "";
+            taskCount++;
+            displayCount(taskCount);
+
+
+            // const deleteButtons = document.querySelectorAll(".todo_delete");
+            // deleteButtons.forEach((button)=>{
+            //     button.onclick = () => {
+            //         button.parentNode.remove();
+            //     }
+            // });
+
+        }
+
+        todolistContainer.addEventListener("click", function(e){
+            //console.log(e.target)
+            if(e.target.classList.contains("todo_delete")){
+                e.target.parentElement.remove();
+                taskCount--;
+                displayCount(taskCount);
+            }
+
+            if(e.target.classList.contains("todo_edit")){
+                //console.log("edit");
+                let targetElement = e.target;
+                todoInput.value = targetElement.previousElementSibling?.innerText;
+                targetElement.parentElement.remove();
+                taskCount--;
+                displayCount(taskCount);
+            }
+
+            if(e.target.classList.contains("task_check")){
+                e.target.nextElementSibling.classList.toggle("completed");
+                if(e.target.checked){
+                    taskCount--;
+                    displayCount(taskCount);
+                }else{
+                    taskCount++;
+                    displayCount(taskCount);
+                }
+            }
+        });
+
+
+
+        
+
+
+        
+        
+    </script>
+    
+</body>
+</html>
