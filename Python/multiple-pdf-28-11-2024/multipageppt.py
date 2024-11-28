@@ -393,7 +393,7 @@ for pdf_page in pdf_pages:
 app = Flask(__name__)
 @app.route('/')
 def graph():
-    return render_template('template22.html')
+    return render_template('template18.html')
 
 
 
