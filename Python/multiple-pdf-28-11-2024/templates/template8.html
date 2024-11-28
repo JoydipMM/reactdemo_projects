@@ -1,0 +1,65 @@
+{% extends "pdfbase.html" %}
+{% block content %}
+
+<div class="pagewrap page-08">
+
+    <!-- <h1 class="page-08-title">{{ title }}</h1>
+    <p>{{ content }}</p>
+    <img src="{{ image_path }}" alt="" /> -->
+
+    <div class="pgname-number pgname-numberalgn">
+        <div class="pgname-number-box">4</div>
+        <div class="pgname-number-title">Recomendación
+            <span class="pgname-sub-title">Definición eNPS</span>
+        </div>
+    </div>
+
+    <div class="pg-08-row">
+        <div class="pg-08-col">
+            <div class="pg-08-sctn justify-end">
+                <div class="pg-08-lft-purple-box">Dato: Basado en datos de más de 700.000 empresas de diferentes sectores y tamaños.</div>
+            </div>
+            <div class="pg-08-sctn">
+                <img class="pg-08-lft-img" src="static/images/Co-Workers-avater.png" />
+            </div>
+        </div>
+        <div class="pg-08-col">
+            <div class="pg-08-counter-row">
+
+                <div class="pg-08-counter-box">
+                    <div class="pg-08-big-counter">-62</div>
+                    <div class="pg-08-box-cntr">
+                        <div class="pg-08-box-cntr-text">10% Promotores</div>
+                        <div class="pg-08-box-cntr-text">72% Detractores</div>
+                    </div>
+                    <div class="pg-08-box-ftr">Más bajo</div>
+                </div>
+                <div class="pg-08-counter-box yellow">
+                    <div class="pg-08-big-counter">14</div>
+                    <div class="pg-08-box-cntr">
+                        <div class="pg-08-box-cntr-text">42% Promotores</div>
+                        <div class="pg-08-box-cntr-text">28% Detractores</div>
+                    </div>
+                    <div class="pg-08-box-ftr">Medio</div>
+                </div>
+                <div class="pg-08-counter-box green">
+                    <div class="pg-08-big-counter">83</div>
+                    <div class="pg-08-box-cntr">
+                        <div class="pg-08-box-cntr-text">83% Promotores</div>
+                        <div class="pg-08-box-cntr-text">0% Detractores</div>
+                    </div>
+                    <div class="pg-08-box-ftr">Más alto</div>
+                </div>
+
+            </div>
+            <div class="pg-08-purple-box">
+                El índice eNPS puede ser tan bajo como -100 (todo el mundo es un detractor) o tan alto como 100 (todo el mundo es un promotor). Un eNPS superior a 0 se percibe como bueno y un NPS de 50 es excelente.
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock %}
+

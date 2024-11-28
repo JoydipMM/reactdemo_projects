@@ -1,0 +1,107 @@
+{% extends "pdfbase.html" %}
+{% block content %}
+
+<div class="pagewrap page-18">
+    <!-- <h1 class="page-18-title">{{ title }}</h1>
+    <p>{{ content }}</p>
+    <img src="{{ image_path }}" alt="" /> -->
+
+    <div class="pgname-number pgname-numberalgn">
+        <div class="pgname-number-box">7</div>
+        <div class="pgname-number-title">Matriz importancia satisfacción
+            <span class="pgname-sub-title">Esquema</span>
+        </div>
+    </div>
+
+    <div class="priorid_mwrp">
+
+        <div class="priorid_midbox">
+
+            <div class="priorid_contcont">
+                
+                <div class="priorid_arrowbox">
+                    <div class="impoticatextcont">
+                        <h2 class="impoticatext">IMPORTANCIA</h2>
+                    </div>
+                    <div class="importica_arrow"><img src="static/images/longarrow_vert.svg" alt=""></div>
+                    <div class="impoticatextcont1">
+                        <p class="impoticatext1">Asociación con la recomendación</p>
+                    </div>
+                </div>
+                
+                <div class="priorrid_arrboxwrp">
+                    
+                    <div class="priorid_midboxinercont">
+
+                        <div class="priorid_fortbox">
+                            <div class="priorid_fortbox_title pririd_red">Prioridades de mejora</div>
+                            <p class="priorid_fortbox_text"><strong>Menor satisfacción - alta importancia</strong></p>
+                            <p class="priorid_fortbox_text">En este cuadrante están los aspectos con <strong>menor</strong>
+                                porcentaje de <strong> acuerdos y más asociados</strong> a la recomendación (más importantes a la hora de
+                                recomendar).
+                            </p>
+                            <p class="priorid_fortbox_text"><strong>Por lo tanto, los aspectos en este cuadrante serán nuestros puntos principales de mejora.</strong> </p>
+                        </div>
+
+                        <div class="priorid_fortbox">
+                            <div class="priorid_fortbox_title pririd_gren">Fortalezas</div>
+                            <p class="priorid_fortbox_text"><strong> Mayor satisfacción - alta importancia</strong></p>
+                            <p class="priorid_fortbox_text">En este cuadrante están los aspectos con mayor porcentaje de <strong> acuerdos y más asociados</strong> a la recomendación (más importantes a la hora de recomendar).
+                            </p>
+                            <p class="priorid_fortbox_text"> <strong> Por lo tanto, los aspectos en este cuadrante serán
+                                nuestropuntos fuertes.</strong></p>
+                        </div>
+
+                        <div class="priorid_fortbox">
+                            <div class="priorid_fortbox_title pririd_redlight">Oportunidades de mejora</div>
+                            <p class="priorid_fortbox_text"><strong> Menor satisfacción - baja importancia</strong></p>
+                            <p class="priorid_fortbox_text">En este cuadrante están los aspectos con <strong> menor</strong> porcentaje de <strong> acuerdos y menos asociados</strong> a la recomendación (menos importantes a la hora de recomendar).</p>
+                                <p class="priorid_fortbox_text"><strong> Por lo tanto, los aspectos en este cuadrante serán puntos en los que tenemos una oportunidad para mejorar.</strong></p>
+                        </div>
+
+                        <div class="priorid_fortbox">
+                            <div class="priorid_fortbox_title pririd_grenlight">Puntos a mantener</div>
+                            <p class="priorid_fortbox_text"><strong> Mayor satisfacción - baja importancia</strong></p>
+                            <p class="priorid_fortbox_text">En este cuadrante están los aspectos con <strong> mayor</strong> porcentaje de <strong>acuerdos y menos asociados</strong>  a la recomendación (menos importantes a la hora de recomendar).</p>
+                            <p class="priorid_fortbox_text"><strong> Por lo tanto, los aspectos en este cuadrante serán puntos positivos a mantener.</strong></p>
+                        </div>
+
+                    </div>
+                    
+                    <div class="priorid_arrowboxhoriz">
+                        <div class="impoticatextconthoriz">
+                            <h2 class="impoticatexthoriz">SATISFACCIÓN</h2>
+                        </div>
+                        <div class="importica_arrowhoriz"><img src="static/images/longarrow_hori.svg" alt="">
+                        </div>
+                        <div class="impoticatextcont1horiz">
+                            <p class="impoticatext1horiz">% de acuerdos</p>
+                        </div>
+                    </div>
+              
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="nota_greywrp">
+            <h3 class="notatitle">NOTA metodológica: </h3>
+            <p class="notatext">
+                En esta matriz se ubican todos los aspectos evaluados según su satisfacción e importancia para los
+                empleados.</p>
+            <p class="notatext">Importancia: Se calcula el Coeficiente de correlación de Pearson entre todos los
+                ítems de Clima y la Recomendación. Que haya correlación significa que a más satisfacción con el
+                ítem, mayor recomendación de la empresa y viceversa.</p>
+            <p class="notatext">En las siguientes diapositivas se representa con estrellas. A mayor número de
+                estrellas, mayor correlación entre el aspecto y la recomendación.
+            </p>
+        </div>
+        
+
+    </div>
+
+
+
+</div>
+{% endblock %}
+
