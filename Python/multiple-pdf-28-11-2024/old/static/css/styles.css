@@ -1,0 +1,19 @@
+body{ font-family: "Playfair Display", serif; }
+
+#plotly-graph{ width: 45% !important; float: left; margin: 20px; position: relative; }
+#plotly-graph svg{ width: 100% !important; }
+
+#plotly-graph2{ width: 45% !important; float: left; margin: 20px; position: relative; }
+#plotly-graph2 svg{ width: 100% !important; }
+
+#plotly-graph3{ width: 45% !important; float: left; margin: 20px; position: relative; }
+#plotly-graph3 svg{ width: 100% !important; }
+#plotly-graph3.js-plotly-plot .plotly .modebar { position: relative !important; width: calc(100% - 245px) !important; display: inline-flex !important; justify-content: flex-end !important; }
+
+#plotly-graph4{ width: 90% !important; float: left; margin: 20px; position: relative; }
+#plotly-graph4 svg{ width: 100% !important; }
+
+#plotly-graph4.js-plotly-plot .plotly .modebar { position: relative !important; width: calc(100% - 245px) !important; display: inline-flex !important; justify-content: flex-end !important; }
+#myChart{ background: #1c0a4e; border-radius: 10px; }
+
+footer{ width: 100%; position: relative; display: inline-block; }
