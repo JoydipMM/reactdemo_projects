@@ -1,0 +1,5 @@
+what is node js
+
+node js is not a language.
+this is a Server Environment
+Node js can connect 
