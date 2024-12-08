@@ -1,0 +1,99 @@
+{% extends "pdfbase.html" %}
+{% block content %}
+
+<div class="pagewrap page-15">
+    <!-- <h1 class="page-15-title">{{ title }}</h1>
+    <p>{{ content }}</p>
+    <img src="{{ image_path }}" alt="" /> -->
+    <div class="pgname-number pgname-numberalgn">
+        <div class="pgname-number-box">6</div>
+        <div class="pgname-number-title">Aspectos evaluados: detalle
+            <span class="pgname-sub-title">Mi superior</span>
+        </div>
+    </div>
+
+    <div class="pg-15-row">
+        <div class="pg-15-left-col">
+            <div class="prgress-table-wrap">
+                <ul class="prgress-row-list">
+                    <li>
+                        <div class="prgress-row-box">
+                            <div class="prgress-row-title-col">El Grupo implanta medidas preventivas que garantizan condiciones de trabajo seguras</div>
+                            <div class="prgress-total">8,03</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="prgress-row-box">
+                            <div class="prgress-row-title-col">Dispongo de los materiales y recursos necesarios para realizar mi trabajo</div>
+                            <div class="prgress-total">7,95</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="prgress-row-box">
+                            <div class="prgress-row-title-col">Las condiciones del lugar de trabajo son adecuadas (luz, espacio, comodidad…)</div>
+                            <div class="prgress-total">7,41</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="prgress-row-box">
+                            <div class="prgress-row-title-col">Existe un adecuado mantenimiento de los equipos o herramientas de trabajo</div>
+                            <div class="prgress-total">7,28</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="prgress-row-box">
+                            <div class="prgress-row-title-col">Este es un lugar psicológica y emocionalmente saludable en el que trabajar</div>
+                            <div class="prgress-total">7,08</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="prgress-row-box">
+                            <div class="prgress-row-title-col">Este es un lugar psicológica y emocionalmente saludable en el que trabajar</div>
+                            <div class="prgress-total">7,08</div>
+                        </div>
+                    </li>
+                </ul>
+                <img src="static/Informe_Clima/graphs/tamplate15-graph-01.png" class="tamplate15-graph" />
+            </div>
+            <div class="bargraph-legend">
+                <div class="bargraph-col"><div class="bargraph-box green"></div><span>Totalmente de acuerdo</span></div>
+                <div class="bargraph-col"><div class="bargraph-box lightgreen"></div><span>De acuerdo</span></div>
+                <div class="bargraph-col"><div class="bargraph-box yellow"></div><span>Ni de acuerdo ni el desacuerdo</span></div>
+                <div class="bargraph-col"><div class="bargraph-box red"></div><span>Desacuerdo</span></div>
+                <div class="bargraph-col"><div class="bargraph-box lightred"></div><span>Totalmente en desacuerdo</span></div>
+                <div class="bargraph-col"><div class="bargraph-box"></div><span>N/A</span></div>
+            </div>
+        </div>
+        <div class="pg-15-right-col">
+            <div class="superior-hdng">MI SUPERIOR</div>
+            <div class="promedio-box2">
+                <div class="promedio-box2-lft-col">
+                    <div class="promedio-hero-text-row2">
+                        <div class="promedio-hero-text2">7,26</div>
+                    </div>
+                    <div class="promedio-sm-count-row2">Media del bloque</div>
+                </div>
+                <img class="promedio-avater2" src="static/Informe_Clima/images/promedio-avater.svg" />
+            </div>
+            <ul class="page-ul-list pg-13">
+                <li>
+                    <span class="s-dot"></span>
+                    <span>Las condiciones del lugar de trabajo son <b>valoradas positivamente</b> por la mayoría de empleados.</span>
+                </li>
+                <li>
+                    <span class="s-dot"></span>
+                    <span>El aspecto que registra <b>más acuerdos</b> (totalmente de acuerdo + de acuerdo) entre los empleados es que el <b>Grupo implanta medidas preventivas</b> con garantía.</span>
+                </li>
+                <li>
+                    <span class="s-dot"></span>
+                    <span>En cambio, existe una <b>peor valoración</b> respecto a que es un <b>lugar psicológica y emocionalmente saludable</b>. Algo menos de la mitad se muestran de acuerdo o totalmente de acuerdo.</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock %}
+

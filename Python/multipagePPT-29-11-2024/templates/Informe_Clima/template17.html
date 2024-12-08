@@ -1,0 +1,65 @@
+{% extends "pdfbase.html" %}
+{% block content %}
+
+<div class="pagewrap page-17">
+    <!-- <h1 class="page-17-title">{{ title }}</h1>
+    <p>{{ content }}</p>
+    <img src="{{ image_path }}" alt="" /> -->
+
+    <div class="pgname-number pgname-numberalgn">
+        <div class="pgname-number-box">7</div>
+        <div class="pgname-number-title">Matriz importancia satisfacción
+            <span class="pgname-sub-title">Principales drivers de la Recomendación</span>
+        </div>
+    </div>
+
+    <div class="pg-17-row">
+
+        <div class="pg-17-left-col">
+            <div class="pg-17-heading">Los 5 aspectos que más influyen en la recomendación</div>
+            <div class="pg-17-avater-row">
+                <div class="pg-17-avater-col">
+                    <div class="pg-17-avater-pop">
+                        Este es un lugar psicológica y emocionalmente saludable en el que trabajar
+                        <img class="pg-17-avater-pop-arrow" src="static/Informe_Clima/images/pop-right-arrow.svg" />
+                    </div>
+                    <div class="pg-17-avater-pop">
+                        Me gusta venir a trabajar aquí
+                        <img class="pg-17-avater-pop-arrow" src="static/Informe_Clima/images/pop-right-arrow.svg" />
+                    </div>
+                </div>
+                <img src="static/Informe_Clima/images/matriz-avater.svg" class="pg-17-mid-avater" />
+                <div class="pg-17-avater-col">
+                    <div class="pg-17-avater-pop right">
+                        Confío en las decisiones que toma la dirección
+                        <img class="pg-17-avater-pop-arrow" src="static/Informe_Clima/images/pop-left-arrow.svg" />
+                    </div>
+                    <div class="pg-17-avater-pop right">
+                        Desde mi entrada, pienso que el Grupo se ha ido transformando en un lugar mejor para trabajar
+                        <img class="pg-17-avater-pop-arrow" src="static/Informe_Clima/images/pop-left-arrow.svg" />
+                    </div>
+                </div>
+            </div>
+            <div class="pg-17-avater-bottom-row">
+                <div class="pg-17-avater-pop bottom">
+                    Estoy orgulloso de trabajar en este Grupo
+                    <img class="pg-17-avater-pop-arrow" src="static/Informe_Clima/images/pop-up-arrow.svg" />
+                </div>
+            </div>
+        </div>
+
+        <div class="nota_greywrp">
+            <div class="note-white-box">
+                Si los empleados están contentos con estos aspectos, la recomendación crecerá. Si están insatisfechos, no recomendarán la compañía.
+            </div>
+            <h3 class="notatitle">NOTA metodológica:</h3>
+            <p class="notatext"><b>Importancia/Influencia:</b> Se calcula el Coeficiente de correlación de Pearson entre todos los ítems de Clima y la Recomendación. Que haya correlación significa que a más satisfacción con el ítem, mayor recomendación de la empresa y viceversa.
+            </p>
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock %}
+
