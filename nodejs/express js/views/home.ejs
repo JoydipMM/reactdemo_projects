@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home EJS Page</title>
+</head>
+<body>
+
+    <%- include("common/header")  %>
+    <h1>Home EJS Page</h1>
+    <h2> Welcome, <%= data.name %> </h2>
+    <ul>
+        <% data.skills.forEach((item)=>{ %>
+            <li><%= item %></li>
+        <% }) %>
+    </ul>
+</body>
+</html>

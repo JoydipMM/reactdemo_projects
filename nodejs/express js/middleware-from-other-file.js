@@ -3,15 +3,11 @@ const app = express();
 const routeMiddleware = require('./middleware')
 const path = require("path");
 const publicPath = path.join(__dirname,"public");
-const route = express.Router();
-
 
 // Set EJS as the template engine
 app.set('view engine','ejs')
 
-route.use(routeMiddleware);
-
-route.get('', (req,resp)=>{
+app.get('', (req,resp)=>{
     const data = {
         name: 'Rahul Roy',
         email: 'rahul@gmail.com',
@@ -20,14 +16,17 @@ route.get('', (req,resp)=>{
     resp.render('home', {data});
 });
 
-route.get('/aboutus', (req,resp)=>{
+app.get('/aboutus', routeMiddleware, (req,resp)=>{
     resp.render('about');
 });
 
-app.get('/contact', (req,resp)=>{
+app.get('/contact-us', (req,resp)=>{
     resp.render('contact');
 });
 
-app.use('/', route);
+app.get('*', (req,resp)=>{
+    resp.render('404');
+});
+
 
 app.listen(5000);
