@@ -1,0 +1,2 @@
+Text content for Async file
+New Async content append
