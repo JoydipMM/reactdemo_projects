@@ -10,11 +10,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function StickyAnimationSection(){
 
-    const [scrollPosition, setScrollPosition] = useState(0);
+    let gsapMedia = gsap.matchMedia();
 
-    let mm = gsap.matchMedia();
-
-    mm.add("(min-width: 800px)", () => {
+    gsapMedia.add("(min-width: 800px)", () => {
         useGSAP(()=>{
 
           gsap.to(".section_03", {
@@ -27,7 +25,7 @@ export default function StickyAnimationSection(){
               end: "top -250%",
               pin: true,
               scrub: true,
-              markers: true,
+              markers: false,
             },
           });
 
@@ -50,8 +48,8 @@ export default function StickyAnimationSection(){
               targets: ".accro_row_01", // Element where class will be toggled
               className: "collaps", // Class to be toggled
             },
-            scrub: true, // Link animation to scroll position (for smooth transitions)
-            markers: true, // Enable markers to visualize the scroll trigger points
+            scrub: 3, // Link animation to scroll position (for smooth transitions)
+            markers: false, // Enable markers to visualize the scroll trigger points
           });
 
         ScrollTrigger.create({
@@ -62,8 +60,8 @@ export default function StickyAnimationSection(){
             targets: ".accro_row_02", // Element where class will be toggled
             className: "active", // Class to be toggled
           },
-          scrub: true, // Link animation to scroll position (for smooth transitions)
-          markers: true, // Enable markers to visualize the scroll trigger points
+          scrub: 3, // Link animation to scroll position (for smooth transitions)
+          markers: false, // Enable markers to visualize the scroll trigger points
         });
 
         ScrollTrigger.create({
@@ -74,8 +72,8 @@ export default function StickyAnimationSection(){
               targets: ".accro_row_03", // Element where class will be toggled
               className: "active", // Class to be toggled
             },
-            scrub: true, // Link animation to scroll position (for smooth transitions)
-            markers: true, // Enable markers to visualize the scroll trigger points
+            scrub: 3, // Link animation to scroll position (for smooth transitions)
+            markers: false, // Enable markers to visualize the scroll trigger points
           });
 
         return () => {
