@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt box</title>
+    <style>body{ background-color: #000000; color: #fff; }</style>
+</head>
+<body>
+
+    <script>
+
+    //prompt("What is your name ?")
+
+    //var a = prompt("What is your name ?")
+    //alert(a)
+    //document.write(a);
+
+    // promt with condition
+    var a = prompt("What is your name ?");
+    if(a){
+        var age = prompt("Enter your age: "); 
+        switch(true){
+            case (age >= 20 && age <= 30 ):
+                document.write(a + ", Your are Eligible");
+                break;
+            case (age > 30 && age <= 40 ):
+                document.write(a + ", Your are not eligible");
+                break;
+            default: 
+            document.write(a + ", Enter valid age");
+        }
+    }else{
+        alert("Sorry invalid input");
+    }
+
+    
+    
+
+        
+    </script>
+    
+</body>
+</html>

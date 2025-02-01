@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+    <style>body{ background-color: #000000; color: #fff; }</style>
+</head>
+<body>
+
+    <script>
+
+        function functionName(){
+            document.write("this is a function <br><br><br><br>")
+        }
+        //functionName();
+
+
+        // function with parameters
+        function sum(a,b){ // function sum(patameter_1, parameter_2){}
+            document.write(a+b);
+        }
+        //sum(10,45); // sum(argument_1, argument_2);
+
+
+        // function with parameter default value
+        function defaltValue(a = 0, b = 0){ // function sum(patameter_1, parameter_2){}
+            document.write(a+b);
+        }
+        //defaltValue();
+
+
+        // function with return value
+        function returnValue(a = 0, b = 0){ // function sum(patameter_1, parameter_2){}
+            return(a+b);
+        }
+        var rv = returnValue(20,30);
+        document.write("Showing the return value "+ rv);
+
+
+
+
+
+        
+    </script>
+    
+</body>
+</html>

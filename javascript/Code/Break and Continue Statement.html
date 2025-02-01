@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break and Continue Statement</title>
+    <style>body{ background-color: #000000; color: #fff; }</style>
+</head>
+<body>
+
+<h4>Continue Statement</h4>
+<xmp style="margin-top: -25px;">
+for(a =1; a <=10; a++){
+    if(a == 3){
+        document.write("Loop Statement Continue after count of " + a + "<br>");
+        continue;
+    }
+    document.write("'a' value increased to "+ a + "<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(a =1; a <=10; a++){
+    if(a == 3){
+        document.write("Loop Statement Continue after count of " + a + "<br>");
+        continue;
+    }
+    document.write("'a' value increased to "+ a + "<br>");
+}
+</script>
+<h4>Continue Statement: Example 2:</h4>
+<xmp style="margin-top: -25px;">
+for(a =1; a <=10; a++){
+    if(a >= 3 && a <=5){
+        document.write("Loop Statement Continue after count of " + a + "<br>");
+        continue;
+    }
+    document.write("'a' value increased to "+ a + "<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(a =1; a <=10; a++){
+    if(a >= 3 && a <=5){
+        document.write("Loop Statement break on count of " + a + "<br>");
+        continue;
+    }
+    document.write("'a' value increased to "+ a + "<br>");
+}
+</script>
+
+<br><br>
+
+<h4>Break Statement</h4>
+<xmp style="margin-top: -25px;">
+for(a =1; a <=10; a++){
+    if(a == 3){
+        document.write("Loop Statement break on count of " + a + "<br>");
+        break;
+    }
+    document.write("'a' value increased to "+ a + "<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(a =1; a <=10; a++){
+    if(a == 3){
+        document.write("Loop Statement break on count of " + a + "<br>");
+        break;
+    }
+    document.write("'a' value increased to "+ a + "<br>");
+}
+</script>   
+</body>
+</html>

@@ -1,0 +1,312 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop</title>
+    <style>body{ background-color: #000000; color: #fff; }</style>
+</head>
+<body>
+
+<h2>Loop is divided in 3 parts</h2>
+<ol>
+    <li>initialization [ initialize a variable ]</li>
+    <li>Condition [ condition has two value True or False, if False then it will out of loop or value is True then loop will continue ] </li>
+    <li>Increase / Decrease [ it will base on condition's situation and after it will goes to condition ]</li>
+</ol>
+
+<h2>Type of Loop</h2>
+<ol>
+    <li>while loop</li>
+    <li>do/while loop</li>
+    <li>for loop</li>
+    <li>for/in loop [work with object]</li>
+    <li>forEach [work with array]</li>
+</ol>
+
+<br>
+
+<h2>While Loop</h2>
+<xmp style="margin-top: -25px;">
+var a = 0;
+while(a < 10){
+    a = a+1;
+    document.write("'a' value increased to "+ a + "<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+var a = 0;
+while(a < 10){
+    a = a+1;
+    document.write("'a' value increased to "+ a + "<br>");
+} 
+</script>
+
+<br><br>
+
+<h2>While Loop in reverse</h2>
+<xmp style="margin-top: -25px;">
+var b = 10;
+while(b >= 1){
+    document.write("'b' value decreced to "+ b + "<br>");
+    b = b-1;
+} 
+</xmp>
+<p>Result:</p>
+<script>
+var b = 10;
+while(b >= 1){
+    document.write("'b' value decreced to "+ b + "<br>");
+    b = b-1;
+} 
+</script>
+
+<br><br>
+
+<h2>do/while loop</h2>
+<ol>
+    <li>initialization [ initialize a variable ]</li>
+    <li>Increase / Decrease [ it will base on condition's situation it will increase or decrease ]</li>
+    <li>Condition [ after Increase / Decrease it will check that condition has True or False, if False then it will out of loop or value is True then loop will continue ] </li>
+</ol>
+<xmp style="margin-top: -25px;">
+var c = 0;
+do{
+    c = c+1;
+    document.write("'c' value increased to "+ c + "<br>");
+} while(c < 10)
+</xmp>
+<p>Result:</p>
+<script>
+var c = 0;
+do{
+    c = c+1;
+    document.write("'c' value increased to "+ c + "<br>");
+} while(c < 10)
+</script>
+
+<br><br>
+
+<h2>For loop</h2>
+<xmp style="margin-top: -25px;">
+for(d =1; d <=10; d++){
+    document.write("'d' value increased to "+ d + "<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(d =1; d <=10; d++){
+    document.write("'d' value increased to "+ d + "<br>");
+}
+</script>  
+
+<br><br>
+
+<h2>Odd / Even numbers with loop</h2>
+<xmp style="margin-top: -25px;">
+for(e =1; e <=10; e++){
+    if(e % 2 == 0){
+        document.write("even value of 'e' is "+ e + "<br>");
+    }
+}
+
+for(e =1; e <=10; e++){
+    if(e % 2 != 0){
+        document.write("odd value of 'e' is "+ e + "<br>");
+    }
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(e =1; e <=10; e++){
+    if(e % 2 == 0){
+        document.write("even value of 'e' is "+ e + "<br>");
+    }
+}
+
+for(e =1; e <=10; e++){
+    if(e % 2 != 0){
+        document.write("odd value of 'e' is "+ e + "<br>");
+    }
+}
+</script> 
+
+<br><br>
+
+<h2>Nested Loop</h2>
+<xmp style="margin-top: -25px;">
+for(row = 1; row <=100; row = row+10){
+    document.write("row "+row+ ": ");
+    for(col = row; col < row + 10; col++){
+        document.write("col -- "+col+ " ");
+    }
+    document.write("<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(row = 1; row <=100; row = row+10){
+    document.write("row "+row+ ": ");
+    for(col = row; col < row + 10; col++){
+        document.write("col -- "+col+ " ");
+    }
+    document.write("<br>");
+}
+</script>
+
+<br><br>
+
+<h2>Nested Loop in table format</h2>
+<xmp style="margin-top: -25px;">
+document.write("<table style='border:1px solid #fff;'>");   
+for(row = 1; row <=100; row = row+10){
+    document.write("<tr>");
+    document.write("<td style='border:1px solid #fff; padding:10px;'>Row " + row + "</td>");
+    for(col = row; col < row + 10; col++){
+        document.write("<td style='border:1px solid #fff; padding:10px;'>");
+        document.write("col -- "+col+ " ");
+        document.write("</td>");
+    }
+    document.write("</tr>");
+}
+document.write("</table>");
+</xmp>
+<p>Result:</p>
+<script>
+document.write("<table style='border:1px solid #fff;'>");   
+for(row = 1; row <=100; row = row+10){
+    document.write("<tr>");
+    document.write("<td style='border:1px solid #fff; padding:10px;'>Row " + row + "</td>");
+    for(col = row; col < row + 10; col++){
+        document.write("<td style='border:1px solid #fff; padding:10px;'>");
+        document.write("col -- "+col+ " ");
+        document.write("</td>");
+    }
+    document.write("</tr>");
+}
+document.write("</table>");
+</script>
+
+<br><br>
+
+<h2>Nested Loop in Tree View</h2>
+<xmp style="margin-top: -25px;">
+for(row_1 = 1; row_1 <= 5; row_1++){
+    for(col_1 = 1; col_1 <= row_1; col_1++){
+        document.write(col_1);
+    }
+    document.write("<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(row_1 = 1; row_1 <= 5; row_1++){
+    for(col_1 = 1; col_1 <= row_1; col_1++){
+        document.write(col_1);
+    }
+    document.write("<br>");
+}
+</script>
+
+<br><br>
+
+<h2>Nested Loop in Tree View with decoration</h2>
+<xmp style="margin-top: -25px;">
+for(row_1 = 1; row_1 <= 5; row_1++){
+    //document.write("row: "+row_1+ " | ");
+    for(col_1 = 1; col_1 <= row_1; col_1++){
+        if(col_1 != row_1){
+            document.write(col_1+ " | ");
+        }else{
+            document.write(col_1);
+        }
+    }
+    document.write("<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(row_1 = 1; row_1 <= 5; row_1++){
+    //document.write("row: "+row_1+ " | ");
+    for(col_1 = 1; col_1 <= row_1; col_1++){
+        if(col_1 != row_1){
+            document.write(col_1+ " | ");
+        }else{
+            document.write(col_1);
+        }
+    }
+    document.write("<br>");
+}
+</script>
+
+<br><br>
+
+<h2>Nested Loop in Tree View Example 2</h2>
+<xmp style="margin-top: -25px;">
+for(row_2 = 1; row_2 <= 5; row_2++){
+    //document.write("row: "+row_2+ " | ");
+    for(col_2 = 1; col_2 <= row_2; col_2++){
+        document.write(row_2);
+    }
+    document.write("<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(row_2 = 1; row_2 <= 5; row_2++){
+    //document.write("row: "+row_2+ " | ");
+    for(col_2 = 1; col_2 <= row_2; col_2++){
+        document.write(row_2+ " ");
+    }
+    document.write("<br>");
+}
+</script>
+
+<br><br>
+
+<h2>Nested Loop in Tree View in reverse</h2>
+<xmp style="margin-top: -25px;">
+for(row_3 = 5; row_3 > 0; row_3--){
+   //document.write("row: "+row_3+ " | ");
+    for(col_3 = 1; col_3 <= row_3; col_3++){
+        document.write(row_3+ " ");
+    }
+    document.write("<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(row_3 = 5; row_3 > 0; row_3--){
+    //document.write("row: "+row_3+ " | ");
+    for(col_3 = 1; col_3 <= row_3; col_3++){
+        document.write(row_3+ " ");
+    }
+    document.write("<br>");
+}
+</script>
+
+<br><br>
+
+<h2>Nested Loop in Tree View in reverse example 2</h2>
+<xmp style="margin-top: -25px;">
+for(row_4 = 5; row_4 >= 1; row_4--){
+    //document.write("row: "+row_4+ " | ");
+    for(col_4 = row_4; col_4 >= 1; col_4--){
+        document.write(col_4);
+    }
+    document.write("<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(row_4 = 5; row_4 >= 1; row_4--){
+    //document.write("row: "+row_4+ " | ");
+    for(col_4 = row_4; col_4 >= 1; col_4--){
+        document.write(col_4);
+    }
+    document.write("<br>");
+}
+</script>
+
+</body>
+</html>

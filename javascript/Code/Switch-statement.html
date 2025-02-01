@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch Statement</title>
+    <style>body{ background-color: #000000; color: #fff; }</style>
+</head>
+<body>
+
+    <script>
+
+    // format od Switch Statement
+    /*
+    switch(expression){
+        case condition 1: statement(s)
+        break;
+
+        case condition 2: statement(s)
+        break;
+
+        case condition 3: statement(s)
+        break;
+
+        default: statement(s)
+
+    }
+    */
+
+    var day = 2;
+    // switch(day){
+    //     case 0:
+    //         document.write("Sunday");
+    //         break;
+    //     case 1:
+    //         document.write("Monday");
+    //         break;
+    //     case 2:
+    //         document.write("Tuesday");
+    //         break;
+    //     case 3:
+    //         document.write("Wednesday");
+    //         break;
+    //     case 4:
+    //         document.write("Thursday");
+    //         break;
+    //     default: 
+    //     document.write("put a valid number for day");
+    // }
+
+    // multiple switch statement
+    // switch(day){
+    //     case 0: case 1: case 2:
+    //         document.write("Tuesday");
+    //         break;
+    //     case 3:
+    //         document.write("Wednesday");
+    //         break;
+    //     case 4:
+    //         document.write("Thursday");
+    //         break;
+    //     default: 
+    //     document.write("put a valid number for day");
+    // }
+
+    // switch statement with condition
+    var age = 30; 
+    switch(true){
+        case (age >= 20 && age <= 30 ):
+            document.write("Eligible");
+            break;
+        case (age > 30 && age <= 40 ):
+            document.write("not eligible");
+            break;
+        default: 
+        document.write("enter valid age");
+    }
+
+
+
+
+        
+    </script>
+    
+</body>
+</html>
