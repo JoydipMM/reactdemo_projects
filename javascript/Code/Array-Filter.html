@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Filter Method</title>
+    <style>body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }</style>
+</head>
+<body>
+<h2>Array Filter</h2>
+<p>The filter() method creates a new array containing all elements that satisfy a given condition. Unlike find(), which returns only the first matching element, filter() returns all matching elements.</p>
+<xmp style="margin-top: -25px;">
+var age = [10, 18, 23, 8, 11];
+document.write("Actual Data: "+ age+"<br>");
+var filterAge = age.filter( age => age >=18 );
+document.write("Filter Data: "+ filterAge+"<br>");
+</xmp>
+<p>Result:</p>
+<script>
+var age = [10, 18, 23, 8, 11];
+document.write("Actual Data: "+ age+"<br>");
+var filterAge = age.filter( age => age >=18 );
+document.write("Filter Data: "+ filterAge+"<br>");
+</script>
+
+<br><br>
+
+
+    
+</body>
+</html>

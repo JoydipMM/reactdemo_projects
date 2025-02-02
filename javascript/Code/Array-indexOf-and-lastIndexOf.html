@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array indexOf & lastIndexOf Method</title>
+    <style>body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }</style>
+</head>
+<body>
+<h2>indexOf</h2>
+<p>indexOf = indexOf("Search item", Start)<br>
+Note: if data not found then result will print -1
+</p>
+<xmp style="margin-top: -25px;">
+var a = ["Sanjay", "Aman", "Raman", "Karan", "Aman"];
+document.write("Actual Array: "+ a + "<br>");
+var b = a.indexOf("Aman");
+document.write('a.indexOf("Aman"):' + b + "<br>");
+var b = a.indexOf("Aman", 3);
+document.write('a.indexOf("Aman", 3) : '+ b + "<br>");
+</xmp>
+<p>Result:</p>
+<script>
+var a = ["Sanjay", "Aman", "Raman", "Karan", "Aman"];
+document.write("Actual Array: "+ a + "<br>");
+var b = a.indexOf("Aman");
+document.write('a.indexOf("Aman"):' + b + "<br>");
+var b = a.indexOf("Aman", 3);
+document.write('a.indexOf("Aman", 3) : '+ b + "<br>");
+</script>
+
+<br><br>
+
+<h2>lastIndexOf</h2>
+<p>lastIndexOf = lastIndexOf("Search item", Start) it start from last index<br>
+Note: if data not found then result will print -1
+</p>
+<xmp style="margin-top: -25px;">
+var c = ["Sanjay", "Aman", "Raman", "Karan", "Aman"];
+document.write("Actual Array: "+ c + "<br>");
+var d = c.lastIndexOf("Aman");
+document.write('a.lastIndexOf("Aman"):' + d + "<br>");
+var d = c.lastIndexOf("Aman", 3);
+document.write('a.lastIndexOf("Aman", 3) : '+ d + "<br>");
+</xmp>
+<p>Result:</p>
+<script>
+var c = ["Sanjay", "Aman", "Raman", "Karan", "Aman"];
+document.write("Actual Array: "+ c + "<br>");
+var d = c.lastIndexOf("Aman");
+document.write('a.lastIndexOf("Aman"):' + d + "<br>");
+var d = c.lastIndexOf("Aman", 3);
+document.write('a.lastIndexOf("Aman", 3) : '+ d + "<br>");
+</script>
+
+    
+</body>
+</html>

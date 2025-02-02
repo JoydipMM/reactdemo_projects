@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Some & Every Method</title>
+    <style>body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }</style>
+</head>
+<body>
+<h2>Some Method</h2>
+<p>The some() method in JavaScript is used to check if at least one element in an array satisfies a given condition. It returns true if any element meets the condition; otherwise, it returns false.</p>
+<ul>
+    <li>Purpose: Checks if at least one element meets the condition.</li>
+    <li>Return Value: Returns true if at least one element matches, otherwise false.</li>
+    <li>Stops Searching? Yes, stops after finding the first match.</li>
+    <li>Use Case: When you only need to know if a match exists.</li>
+</ul>
+<xmp style="margin-top: -25px;">
+var age = [10, 18, 8, 11];
+document.write("Actual Array: "+ age + "<br>");
+
+function varifyAge(age){
+    return age >= 18;
+}
+
+var b = age.some( varifyAge )
+document.write("Some Data: "+ b + "<br>");
+</xmp>
+<p>Result:</p>
+<script>
+var age = [10, 18, 8, 11];
+document.write("Actual Array: "+ age + "<br>");
+
+function varifyAge(age){
+    return age >= 18;
+}
+
+var b = age.some(varifyAge)
+document.write("Some Data: "+ b + "<br>");
+</script>
+
+<br><br>
+
+<h2>Every Method</h2>
+<p>The every() method in JavaScript checks if all elements in an array satisfy a given condition. It returns true only if every element passes the test; otherwise, it returns false.</p>
+<xmp style="margin-top: -25px;">
+var age_1 = [10, 18, 8, 11];
+document.write("Actual Array: "+ age_1 + "<br>");
+
+function varifyEveryAge(age){
+    return age >= 18;
+}
+
+var vage = age_1.every(varifyEveryAge)
+document.write("Some Data: "+ vage + "<br>");
+</xmp>
+<p>Result:</p>
+<script>
+var age_1 = [10, 18, 8, 11];
+document.write("Actual Array: "+ age_1 + "<br>");
+
+function varifyEveryAge(age){
+    return age >= 18;
+}
+
+var vage = age_1.every(varifyEveryAge)
+document.write("Some Data: "+ vage + "<br>");
+</script>
+
+<br><br>
+
+    
+</body>
+</html>

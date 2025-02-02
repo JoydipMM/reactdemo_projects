@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array forEach Loop Method</title>
+    <style>body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }</style>
+</head>
+<body>
+<h2>Array forEach Loop</h2>
+<p>The forEach() method is used to iterate over an array and execute a provided function once for each element.</p>
+<xmp style="margin-top: -25px;">
+
+</xmp>
+<p>Result:</p>
+<script>
+var arrayData = ["Sanjay", "Aman", "Raman", "Karan"];
+document.write("Actual Array: "+arrayData+ "<br>");
+arrayData.forEach(function(item, index){
+    document.write("Index- "+index+": "+item+ "<br>");
+})
+document.write("<br><br>");
+arrayData.forEach( item => document.write(item+ "<br>") );
+document.write("<br><br>");
+arrayData.forEach( (item, index) => document.write("Index- "+index+": "+item+ "<br>") );
+
+
+</script>
+
+<br><br>
+    
+</body>
+</html>

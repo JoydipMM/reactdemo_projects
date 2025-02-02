@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Shift & Unshift Method</title>
+    <style>body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }</style>
+</head>
+<body>
+<h2>Array Shift & Unshift</h2>
+<p>Shift Method: Always remove/delete the value of first index of an array</p>
+<p>Unshift Method: Always add a new value at the first index inside a array</p>
+<xmp style="margin-top: -25px;">
+var arrayData = ["Sanjay", "Aman", "Raman", "Karan"];
+document.write("Actual Array: "+arrayData+ "<br>");
+
+arrayData.shift();
+document.write("After pop method: "+arrayData+ "<br>"); // "Sanjay" removed
+
+arrayData.unshift("Rahul");
+document.write("After push method: "+arrayData+ "<br>"); // "Rahul" added at the first
+</xmp>
+<p>Result:</p>
+<script>
+var arrayData = ["Sanjay", "Aman", "Raman", "Karan"];
+document.write("Actual Array: "+arrayData+ "<br>");
+
+arrayData.shift();
+document.write("After shift method: "+arrayData+ "<br>"); // "Sanjay" removed
+
+arrayData.unshift("Rahul");
+document.write("After unshift method: "+arrayData+ "<br>"); // "Rahul" added at the first
+</script>
+
+<br><br>
+    
+</body>
+</html>

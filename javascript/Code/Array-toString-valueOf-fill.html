@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array toString, valueOf & fill Method</title>
+    <style>body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }</style>
+</head>
+<body>
+
+<h2>Array toString</h2>
+<p>The toString() method in JavaScript converts an array or object into a string representation.</p>
+<xmp style="margin-top: -25px;">
+var age = [10, 18, 23, 8, 11];
+document.write("Actual Data: "+ age+"<br>");
+var dataToString = age.toString();
+document.write("toString Data: "+ dataToString+"<br>");
+</xmp>
+<p>Result:</p>
+<script>
+var age = [10, 18, 23, 8, 11];
+document.write("Actual Data: "+ age+"<br>");
+var dataToString = age.toString();
+document.write("toString Data: "+ dataToString+"<br>");
+</script>
+
+<br><br>
+<h2>Array valueOf</h2>
+<p>TThe valueOf() method in JavaScript returns the primitive value of an object. It is automatically called by JavaScript when a built-in object is used in a context where a primitive value is expected.</p>
+<xmp style="margin-top: -25px;">
+
+</xmp>
+<p>Result:</p>
+<script>
+
+</script>
+
+<br><br>
+
+<h2>Array fill</h2>
+<p>The fill() method modifies an existing array by filling all or a specified portion of it with a static value.</p>
+<xmp style="margin-top: -25px;">
+var array = [10, 18, 23, 8, 11];
+document.write("Actual Data: "+ array+"<br>");
+array.fill("number");
+document.write("fill Data: "+ array+"<br>");
+</xmp>
+<p>Result:</p>
+<script>
+var array = [10, 18, 23, 8, 11];
+document.write("Actual Data: "+ array+"<br>");
+array.fill("number");
+document.write("fill Data: "+ array+"<br>");
+</script>
+
+<br><br>
+
+
+    
+</body>
+</html>

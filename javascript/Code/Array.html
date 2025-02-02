@@ -1,0 +1,268 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+    <style>body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }</style>
+</head>
+<body>
+<h2>Array</h2>
+<xmp style="margin-top: -25px;">
+var a = [10,20,30,40];
+document.write(a);
+</xmp>
+<p>Result:</p>
+<script>
+ var a = [10,20,30,40];
+ document.write(a);
+</script>
+
+<br><br>
+
+<h2>Array with index</h2>
+<xmp style="margin-top: -25px;">
+var b = [10,20,30,40];
+document.write(b[1]);
+</xmp>
+<p>Result:</p>
+<script>
+ var b = [10,20,30,40];
+ document.write(b[1]);
+</script>
+
+<br><br>
+
+<h2>Array with index: Example 1</h2>
+<xmp style="margin-top: -25px;">
+var c = [10,20,30,40,50];
+for(d = 0; d <= 4; d++){
+    document.write(c[d]+"<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+var c = [10,20,30,40,50];
+for(d = 0; d <= 4; d++){
+    document.write(c[d]+"<br>")
+}
+</script>
+
+<br><br>
+
+<h2>Array with index: Example 2</h2>
+<xmp style="margin-top: -25px;">
+var arrayData = [10,20,30,40,50];
+var sum = 0;
+document.write("<ul>");
+for(var f = 0; f <= 4; f++){
+    document.write("<li>"+arrayData[f]+"</li>");
+    sum = sum + arrayData[f];
+}
+document.write("</ul>");
+document.write("Total Sum: "+ sum);
+</xmp>
+<p>Result:</p>
+<script>
+var arrayData = [10,20,30,40,50];
+var sum = 0;
+document.write("<ul>");
+for(var f = 0; f <= 4; f++){
+    document.write("<li>"+arrayData[f]+"</li>");
+    sum = sum + arrayData[f];
+}
+document.write("</ul>");
+document.write("Total Sum: "+ sum);
+</script>
+
+<br><br>
+
+<h2>Array with multiple Datatype</h2>
+<xmp style="margin-top: -25px;">
+var mixArray = [10,"Sanjoy",true,null];
+document.write("<ul>");
+for(var f = 0; f <= 4; f++){
+    document.write("<li>"+mixArray[f]+"</li>");
+}
+document.write("</ul>");
+</xmp>
+<p>Result:</p>
+<script>
+var mixArray = [10,"Sanjoy",true,null];
+document.write("<ul>");
+for(var f = 0; f <= 3; f++){
+    document.write("<li>"+mixArray[f]+"</li>");
+}
+document.write("</ul>");
+</script>
+
+<br><br>
+
+<h2>Create Arrays Method</h2>
+<xmp style="margin-top: -25px;">
+var arry = new Array(10, "Rahul", null, true);
+document.write(arry);
+</xmp>
+<p>Result:</p>
+<script>
+var arry = new Array(10, "Rahul", null, true);
+document.write(arry);
+</script>
+
+<br><br>
+
+<h2>Create Arrays Method: example 2</h2>
+<xmp style="margin-top: -25px;">
+
+</xmp>
+<p>Result:</p>
+<script>
+var arry2 = new Array();
+arry2[0] = 10;
+arry2[2] = 20;
+arry2[3] = "Raja";
+document.write("<ul>");
+for(var ary = 0; ary <= 3; ary++){
+    document.write("<li>"+arry2[ary]+"</li>");
+}
+document.write("</ul>");
+</script>
+
+<br><br>
+
+<h2>Create Arrays Method with prompt: example 3</h2>
+<xmp style="margin-top: -25px;">
+var arry3 = new Array(3); // if the () is blank it's mean we can assign unlimited array. but if we add any number then array entry will be limited
+
+for( var g = 0; g <= 3; g++ ){
+    arry3[g] = prompt("Enter data");
+}
+
+document.write("<ul>");
+for(var ary1 = 0; ary1 <= 3; ary1++){
+    document.write("<li>"+arry3[ary1]+"</li>");
+}
+document.write("</ul>");
+</xmp>
+<p>Result:</p>
+<script>
+var arry3 = new Array(3); // if the () is blank it's mean we can assign unlimited array. but if we add any number then array entry will be limited
+
+for( var g = 0; g <= 3; g++ ){
+    //arry3[g] = prompt("Enter data");
+}
+
+document.write("<ul>");
+for(var ary1 = 0; ary1 <= 3; ary1++){
+    document.write("<li>"+arry3[ary1]+"</li>");
+}
+document.write("</ul>");
+</script>
+
+
+
+<br><br>
+
+<h2>Multidimensional Arrays</h2>
+<xmp style="margin-top: -25px;">
+var stuData = [
+    ["Harry", 18, "Male", "B.Com"],
+    ["Sunny", 20, "Male", "BCA"],
+    ["Sara", 26, "Female", "MCA"],
+]
+
+document.write(stuData[1][1]+"<br><br>");
+
+for(multi_a = 0; multi_a < 3; multi_a++ ){
+    //document.write(stuData[multi_a]+ " ");
+    for(multi_b = 0; multi_b < 4; multi_b++ ){
+        document.write(stuData[multi_a][multi_b]+ " ");
+    }
+    document.write("<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+var stuData = [
+    ["Harry", 18, "Male", "B.Com"],
+    ["Sunny", 20, "Male", "BCA"],
+    ["Sara", 26, "Female", "MCA"],
+]
+
+document.write(stuData[1][1]+"<br><br>");
+
+for(multi_a = 0; multi_a < 3; multi_a++ ){
+    //document.write(stuData[multi_a]+ " ");
+    for(multi_b = 0; multi_b < 4; multi_b++ ){
+        document.write(stuData[multi_a][multi_b]+ " ");
+    }
+    document.write("<br>");
+}
+</script>
+
+<br><br>
+
+<h2>Multidimensional Arrays with length() Method</h2>
+<xmp style="margin-top: -25px;">
+var stuData_1 = [
+    ["Harry", 10, "Male", "B.Com"],
+    ["Sunny", 20, "Male", "BCA"],
+    ["Sara", 26, "Female", "MCA"],
+]
+
+for(multi_a1 = 0; multi_a1 < stuData_1.length; multi_a1++ ){
+    //document.write(stuData_1[multi_a1]+ " ");
+    for(multi_b1 = 0; multi_b1 < stuData_1[multi_a1].length; multi_b1++ ){
+        document.write(stuData_1[multi_a1][multi_b1]+ " ");
+    }
+    document.write("<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+var stuData_1 = [
+    ["Harry", 10, "Male", "B.Com"],
+    ["Sunny", 20, "Male", "BCA"],
+    ["Sara", 26, "Female", "MCA"],
+    ["Sara", 26, "Female", "MCA"]
+]
+
+for(multi_a1 = 0; multi_a1 < stuData_1.length; multi_a1++ ){
+    //document.write(stuData_1[multi_a1]+ " ");
+    for(multi_b1 = 0; multi_b1 < stuData_1[multi_a1].length; multi_b1++ ){
+        document.write(stuData_1[multi_a1][multi_b1]+ " ");
+    }
+    document.write("<br>");
+}
+</script>
+
+<br><br>
+
+<h2>Modify and Delete</h2>
+<xmp style="margin-top: -25px;">
+// modify array
+var modifyArray_1 = ["Harry", 10, "Male", "B.Com"];
+document.write("Actual Array: "+ modifyArray_1+ "<br>");
+modifyArray_1[0] = "Sania";
+modifyArray_1[1] = 35;
+document.write("Modify Array: "+ modifyArray_1+ "<br>");
+
+// delete array
+delete modifyArray_1[1]; // delete only remove the data but index will blank and undefined
+document.write("Deleted Array: "+ modifyArray_1+ "<br>");
+</xmp>
+<p>Result:</p>
+<script>
+// modify array
+var modifyArray_1 = ["Harry", 10, "Male", "B.Com"];
+document.write("Actual Array: "+ modifyArray_1+ "<br>");
+modifyArray_1[0] = "Sania";
+modifyArray_1[1] = 35;
+document.write("Modify Array: "+ modifyArray_1+ "<br>");
+
+// delete array
+delete modifyArray_1[1]; // delete only remove the data but index will blank and undefined
+document.write("Deleted Array: "+ modifyArray_1+ "<br>");
+</script>
+    
+</body>
+</html>

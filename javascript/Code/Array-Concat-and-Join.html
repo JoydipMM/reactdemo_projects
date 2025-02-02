@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Concat & Join Method</title>
+    <style>body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }</style>
+</head>
+<body>
+<h2>Array Concat</h2>
+<p>Concat Method: merge two array data</p>
+<xmp style="margin-top: -25px;">
+var arrayData = ["Sanjay", "Aman", "Raman", "Karan"];
+var arrayData_2 = arrayData.concat("Rahul", "Arjun");
+document.write("Actual Array Data 1: "+arrayData+ "<br>");
+document.write("After concat: "+arrayData_2+ "<br>");
+
+var arrayData_3 = ["Suman", "Jatin"];
+var concatArray = arrayData.concat(arrayData_3);
+document.write("After concat: "+concatArray+ "<br>");
+</xmp>
+<p>Result:</p>
+<script>
+var arrayData = ["Sanjay", "Aman", "Raman", "Karan"];
+var arrayData_2 = arrayData.concat("Rahul", "Arjun");
+document.write("Actual Array Data 1: "+arrayData+ "<br>");
+document.write("After concat: "+arrayData_2+ "<br>");
+
+var arrayData_3 = ["Suman", "Jatin"];
+var concatArray = arrayData.concat(arrayData_3);
+document.write("After concat: "+concatArray+ "<br>");
+
+var arrayData_4 = ["Neha", "Sayan"];
+var multiConcatArray = arrayData.concat(arrayData_3, arrayData_4);
+document.write("After concat: "+multiConcatArray+ "<br>");
+</script>
+
+<br><br>
+
+<h2>Array Join</h2>
+<p>Join Method: maerge all array create a single data</p>
+<xmp style="margin-top: -25px;">
+var arrayActualData = ["Sanjay", "Aman", "Raman", "Karan"];
+document.write("Actual Array Data: "+arrayActualData+ "<br>");
+var joinArray = arrayActualData.join("-")
+document.write("After join: "+joinArray+ "<br>");
+</xmp>
+<p>Result:</p>
+<script>
+var arrayActualData = ["Sanjay", "Aman", "Raman", "Karan"];
+document.write("Actual Array Data: "+arrayActualData+ "<br>");
+var joinArray = arrayActualData.join("-")
+document.write("After join: "+joinArray+ "<br>");
+</script>
+    
+</body>
+</html>

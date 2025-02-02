@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array find & findIndex Method</title>
+    <style>
+    body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }
+    table, table th, table td{ border: 1px solid #fff; }
+    table td{ padding: 10px; }
+    </style>
+</head>
+<body>
+<h2>find & findIndex Method</h2>
+<p>The find() method in JavaScript returns the first element in an array that satisfies a given condition. If no element matches, it returns undefined.</p>
+<ul>
+    <li>Purpose: Finds the first element that meets the condition.</li>
+    <li>Return Value: Returns the first matching element or undefined if none match.</li>
+    <li>Stops Searching? yes, stops after finding the first match.</li>
+    <li>Use Case: When you need the actual element.</li>
+</ul>
+<xmp style="margin-top: -25px;">
+var age = [10, 18, 23, 8, 11];
+document.write("Actual Array: "+ age + "<br>");
+
+function varifyAge(age){
+    return age >= 18;
+}
+
+var b = age.find(varifyAge)
+document.write("Find Data: "+ b + "<br>");
+
+var b2 = age.find(age => age >=18)
+document.write("Find Data with arrow function: "+ b2 + "<br>");
+
+var b = age.findIndex(varifyAge)
+document.write("findIndex: "+ b + "<br>");
+</xmp>
+<p>Result:</p>
+<script>
+var age = [10, 18, 23, 8, 11];
+document.write("Actual Array: "+ age + "<br>");
+
+function varifyAge(age){
+    return age >= 18;
+}
+
+var b = age.find(varifyAge)
+document.write("Find Data: "+ b + "<br>");
+
+var b2 = age.find(age => age >=18)
+document.write("Find Data with arrow function: "+ b2 + "<br>");
+
+var b = age.findIndex(varifyAge)
+document.write("findIndex: "+ b + "<br>");
+</script>
+
+<br><br>
+
+
+<table><thead><tr><th>Feature</th><th><code>find()</code></th><th><code>some()</code></th></tr></thead><tbody><tr><td><strong>Purpose</strong></td><td>Finds the <strong>first</strong> element that meets the condition.</td><td>Checks if <strong>at least one</strong> element meets the condition.</td></tr><tr><td><strong>Return Value</strong></td><td>Returns the first matching element or <code>undefined</code> if none match.</td><td>Returns <code>true</code> if at least one element matches, otherwise <code>false</code>.</td></tr><tr><td><strong>Stops Searching?</strong></td><td>Yes, stops after finding the first match.</td><td>Yes, stops after finding the first match.</td></tr><tr><td><strong>Use Case</strong></td><td>When you need the actual element.</td><td>When you only need to know if a match exists.</td></tr></tbody></table>
+
+
+    
+</body>
+</html>

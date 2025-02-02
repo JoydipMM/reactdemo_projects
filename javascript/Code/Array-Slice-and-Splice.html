@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Slice & Splice Method</title>
+    <style>body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }</style>
+</head>
+<body>
+<h2>Array Slice</h2>
+<p>Slice Method: slice a specific index data from array. slice(start,end)</p>
+<xmp style="margin-top: -25px;">
+// Slice(start, end)
+var arrayData = ["Sanjay", "Aman", "Raman", "Karan", "Sanjit", "Rajesh"];
+document.write("Actual Array: "+arrayData+ "<br>");
+var sliceData = arrayData.slice(1,3);
+document.write("After slice: "+sliceData+ "<br><br>");
+
+// Slice(start)
+var arrayData_2 = ["Sanjay", "Aman", "Raman", "Karan", "Sanjit", "Rajesh", "Arjun"];
+document.write("Actual Array: "+arrayData_2+ "<br>");
+var sliceData_4 = arrayData_2.slice(2); // here it cuts the all data from what index value is given 
+document.write("After slice: "+sliceData_2+ "<br>");
+
+// Slice(-start)
+var arrayData_3 = ["Sanjay", "Aman", "Raman", "Karan", "Sanjit", "Rajesh", "Arjun"];
+document.write("Actual Array: "+arrayData_3+ "<br>");
+var sliceData_4 = arrayData_3.slice(-2); // it will reverse the index and cut data accordingly 
+document.write("After slice in reverse: "+sliceData_4+ "<br>");
+</xmp>
+<p>Result:</p>
+<script>
+var arrayData = ["Sanjay", "Aman", "Raman", "Karan", "Sanjit", "Rajesh"];
+document.write("Actual Array: "+arrayData+ "<br>");
+var sliceData = arrayData.slice(1,3);
+document.write("After slice: "+sliceData+ "<br><br>");
+
+var arrayData_2 = ["Sanjay", "Aman", "Raman", "Karan", "Sanjit", "Rajesh", "Arjun"];
+document.write("Actual Array: "+arrayData_2+ "<br>");
+var sliceData_2 = arrayData_2.slice(2); // here it cuts the all data from what index value is given 
+document.write("After slice: "+sliceData_2+ "<br><br>");
+
+var arrayData_3 = ["Sanjay", "Aman", "Raman", "Karan", "Sanjit", "Rajesh", "Arjun"];
+document.write("Actual Array: "+arrayData_3+ "<br>");
+var sliceData_4 = arrayData_3.slice(-2); // it will reverse the index and cut data accordingly 
+document.write("After slice in reverse: "+sliceData_4+ "<br>");
+</script>
+
+<br><br>
+
+<h2>Array Splice</h2>
+<p>Splice Method: With slice we can add new data inside a array on the bas eof index number<br>
+splice(index/start, howmany step shift/delete [this is optional], new value)<br>
+Note: we can also remove data from array, also it will work on existing array
+</p>
+<br>
+<xmp style="margin-top: -25px;">
+var arraySpliceData = ["Sanjay", "Aman", "Raman", "Karan"];
+document.write("Actual Array: "+arraySpliceData+ "<br>");
+arraySpliceData.splice(1,0,"Sanjit", "Rajesh"); // 0 = not delete, add new data
+document.write("Splice Array: "+arraySpliceData+ "<br>");
+
+arraySpliceData.splice(1,1,"Sam", "Raju"); // 1 = remove that index value and add data from that index value
+document.write("Splice Array after remove 'Sanjit': "+arraySpliceData+ "<br>");
+
+arraySpliceData.splice(-2,1,"Sam", "Raju"); //-2 = from last, 1 = remove that index value and add data from that index value
+document.write("Splice Array with reverse: "+arraySpliceData+ "<br>");
+
+arraySpliceData.splice(2,1); //don't want to add any data only remove
+document.write("Splice Array: "+arraySpliceData+ "<br>");
+</xmp>
+<p>Result:</p>
+<script>
+var arraySpliceData = ["Sanjay", "Aman", "Raman", "Karan"];
+document.write("Actual Array: "+arraySpliceData+ "<br>");
+arraySpliceData.splice(1,0,"Sanjit", "Rajesh"); // 0 = not delete, add new data
+document.write("Splice Array: "+arraySpliceData+ "<br>");
+
+//arraySpliceData.splice(1,1,"Sam", "Raju"); // 1 = remove that index value and add data from that index value
+//document.write("Splice Array after remove 'Sanjit': "+arraySpliceData+ "<br>");
+
+//arraySpliceData.splice(-2,1,"Sam", "Raju"); //-2 = from last, 1 = remove that index value and add data from that index value
+//document.write("Splice Array with reverse: "+arraySpliceData+ "<br>");
+
+arraySpliceData.splice(2,1); //don't want to add any data only remove
+document.write("Splice Array: "+arraySpliceData+ "<br>");
+</script>
+    
+</body>
+</html>
