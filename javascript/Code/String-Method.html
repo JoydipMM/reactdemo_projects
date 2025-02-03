@@ -1,0 +1,115 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Method</title>
+    <style>
+    body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }
+    table, table th, table td{ border: 1px solid #fff; }
+    table td{ padding: 10px; }
+    </style>
+</head>
+<body>
+<h2>String Method</h2>
+<p></p>
+<xmp style="margin-top: -25px;">
+var str = "Javascript is a Programming Language";
+
+var a = str.length;
+document.write("length() of '"+str+"' : "+a);
+
+var a = str.toLowerCase();
+
+var a = str.toUpperCase();
+
+
+</xmp>
+<p>Result:</p>
+<script>
+var str = "Javascript is a Programming Language, it is also a famous language";
+
+var a = str.length;
+document.write("length() of '"+str+"' : "+a+"<br><br>");
+
+var a = str.toLowerCase();
+document.write("toLowerCase() of '"+str+"' : "+a+"<br><br>");
+
+var a = str.toUpperCase();
+document.write("toUpperCase() of '"+str+"' : "+a+"<br><br>");
+
+var a = str.includes("Javascript");
+document.write("includes() find string and if match it will show True else show False. Also it is case sencetive <br>");
+document.write("includes('Javascript') of '"+str+"' : "+a+"<br><br>");
+
+var a = str.startsWith("Javascript");
+document.write("startsWith() find string from start of the string and if match it will show True else show False. Also it is case sencetive <br>");
+document.write("startsWith('Javascript') of '"+str+"' : "+a+"<br><br>");
+
+var a = str.endsWith("Language");
+document.write("endsWith() find string from end of the string and if match it will show True else show False. Also it is case sencetive <br>");
+document.write("endsWith('Language') of '"+str+"' : "+a+"<br><br>");
+
+var a = str.search("Language");
+document.write("search() work same as includes() but here it will show position the this index else show -1 if not found. Also it is case sencetive <br>");
+document.write("search('Language') of '"+str+"' : "+a+"<br><br>");
+
+var a = str.match(/is/g);
+document.write("match() use to find exact string from full string and if get any matches then it will create a array from that strings else show null if not found. Also it is case sencetive <br>");
+document.write("match(/is/g) of '"+str+"' : "+a+"<br><br>");
+
+var a = str.indexOf("is");
+document.write("indexOf() use to find the index position of the string from full string and if get any matches from first then it will show the the index and stop finding from that strings else show -1 if not found. Also it is case sencetive <br>");
+document.write("match(/is/g) of '"+str+"' : "+a+"<br><br>");
+
+var a = str.lastIndexOf("is");
+document.write("opporsite of indexOf() use to find the index position of the string from full string and if get any matches from last then it will show the the index and stop finding from that strings else show -1 if not found. Also it is case sencetive <br><br>");
+
+var rstr = "Javascript is a Programming Language, Javascript is also a famous language";
+document.write("Actual String >>>> "+rstr+"<br>")
+var replaceStr = rstr.replace("Javascript", "PHP");
+document.write('replace("which to replace", "what to replace") <br>');
+document.write("replace('Javascript', 'PHP') : "+replaceStr+"<br><br>");
+document.write("Actual String >>>> "+rstr+"<br>");
+var replaceStr = rstr.replace(/Javascript/g, "PHP");
+document.write("replace(/Javascript/g', 'PHP') : "+replaceStr+"<br>");
+document.write("Note: /Javascript/g = g means global, it helps to find every places of the string<br><br>");
+
+var tstr = "    JavaScript    ";
+document.write("Actual String >>>> "+tstr+"<br>")
+var trimdata = tstr.trim();
+//alert(trimdata)
+document.write("trim Removes spaces from both sides of a string<br><br>");
+
+var a = str.charAt(5);
+document.write("Actual String >>>> "+str+"<br>");
+document.write("charAt() show the charecter of given index number <br>");
+document.write("str.charAt(5) "+a+"<br><br>");
+
+var ascii = str.charCodeAt(1);
+document.write("Actual String >>>> "+str+"<br>");
+document.write("charCodeAt(1) display the ascii value of the charecter from the string as per index number given in<br>");
+document.write("str.charAt(1) "+ascii+"<br><br>");
+
+var ascii2 = String.fromCharCode(65);
+document.write("String.fromCharCode() is a javascript inbuild string method <br>");
+document.write("String.fromCharCode(65) >>> "+ascii2+"<br><br>");
+
+var concat_1 = "Hello, ";
+var concat_2 = "Welcome to javascript. ";
+var concat_3 = "Javascript is a language";
+var concatFinal = concat_1.concat(concat_2);
+var multipleConcatFinal = concat_1.concat(concat_2,concat_3);
+document.write("concat() use for merge 2 string. Example: concat_1.concat(concat_2) <br>");
+document.write('"Hello, ".concat("Welcome to javascript")  Result >>> '+concatFinal+'<br>');
+document.write('concat_1.concat(concat_2,concat_3)  Result >>> '+multipleConcatFinal+'<br><br>');
+
+
+</script>
+
+<br><br>
+
+<table><thead><tr><th>Method</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>.length</code></td><td>Returns string length</td><td><code>"Hello".length</code> → <code>5</code></td></tr><tr><td><code>.toUpperCase()</code></td><td>Converts to uppercase</td><td><code>"hi".toUpperCase()</code> → <code>"HI"</code></td></tr><tr><td><code>.toLowerCase()</code></td><td>Converts to lowercase</td><td><code>"HI".toLowerCase()</code> → <code>"hi"</code></td></tr><tr><td><code>.slice(start, end)</code></td><td>Extracts part of a string</td><td><code>"Hello".slice(0,3)</code> → <code>"Hel"</code></td></tr><tr><td><code>.replace("old", "new")</code></td><td>Replaces part of a string</td><td><code>"Hello".replace("l", "p")</code> → <code>"Heplo"</code></td></tr><tr><td><code>.trim()</code></td><td>Removes spaces from both sides</td><td><code>" hi ".trim()</code> → <code>"hi"</code></td></tr><tr><td><code>.split("separator")</code></td><td>Splits into an array</td><td><code>"a,b,c".split(",")</code> → <code>["a", "b", "c"]</code></td></tr><tr><td><code>.includes("text")</code></td><td>Checks if text exists</td><td><code>"Hello".includes("lo")</code> → <code>true</code></td></tr><tr><td><code>.indexOf("text")</code></td><td>Finds first occurrence</td><td><code>"Hello".indexOf("l")</code> → <code>2</code></td></tr><tr><td><code>.repeat(n)</code></td><td>Repeats the string</td><td><code>"Hi".repeat(3)</code> → <code>"HiHiHi"</code></td></tr></tbody></table>
+
+    
+</body>
+</html>

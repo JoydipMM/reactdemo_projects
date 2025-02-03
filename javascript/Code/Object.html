@@ -1,0 +1,180 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+    <style>body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }</style>
+</head>
+<body>
+<h2>Object</h2>
+<p></p>
+<xmp style="margin-top: -25px;">
+var a = {
+    firstName : "Ram",
+    lastName : "Kumar",
+    age : 24,
+    country:"india",
+    skills: ["Wordpress", "Javascript", "React JS"],
+    living: {
+        state:"West Bengal",
+        city: "Kolkata"
+    },
+    salary: function(){
+        return 25000;
+    },
+    fullName: function(){
+        return this.firstName+" "+this.lastName; // here "this" refers to the property of the same object who is the owner of that properties.
+    }
+}
+console.log(a);
+document.write("Object Data view ( a.firstName ) : "+ a.firstName+ "<br>")
+document.write("Object array data view ( a.skills ) : "+ a.skills+ "<br>")
+document.write("Object Method view ( a.salary() ) : "+ a.salary()+ "<br>")
+document.write("Object Method view ( a.fullName() ) : "+ a.fullName()+ "<br>")
+document.write("Object of object view ( a.living.city ) : "+ a.living.city+ "<br>")
+</xmp>
+<p>Result:</p>
+<script>
+var a = {
+    firstName : "Ram",
+    lastName : "Kumar",
+    age : 24,
+    country:"india",
+    skills: ["Wordpress", "Javascript", "React JS"],
+    living: {
+        state:"West Bengal",
+        city: "Kolkata"
+    },
+    salary: function(){
+        return 25000;
+    },
+    fullName: function(){
+        return this.firstName+" "+this.lastName; // here "this" refers to the property of the same object who is the owner of that properties.
+    }
+}
+console.log(a);
+document.write("Object Data view ( a.firstName ) : "+ a.firstName+ "<br>")
+document.write("Object array data view ( a.skills ) : "+ a.skills+ "<br>")
+document.write("Object Method view ( a.salary() ) : "+ a.salary()+ "<br>")
+document.write("Object Method view ( a.fullName() ) : "+ a.fullName()+ "<br>")
+document.write("Object of object view ( a.living.city ) : "+ a.living.city+ "<br>")
+</script>
+
+<br><br>
+
+<h2>Object render view process 2:</h2>
+<xmp style="margin-top: -25px;">
+var person = new Object();
+person.firstName = "Rahul";
+person.lastName = "Bose";
+person.age = 45;
+person.fullName = function(){ return this.firstName+" "+this.lastName }
+
+console.log("person: ");
+console.log(person);
+
+document.write("Object Data view ( person.firstName ) : "+ person.firstName+ "<br>")
+document.write("Object Data view ( person.fullName() ) : "+ person.fullName()+ "<br>")
+document.write("Object Data view ( person['age'] ) : "+ person['age']+ "<br>")
+</xmp>
+<p>Result:</p>
+<script>
+var person = new Object();
+person.firstName = "Rahul";
+person.lastName = "Bose";
+person.age = 45;
+person.fullName = function(){ return this.firstName+" "+this.lastName }
+console.log("person: ");
+console.log(person);
+document.write("Object Data view ( person.firstName ) : "+ person.firstName+ "<br>")
+document.write("Object Data view ( person.fullName() ) : "+ person.fullName()+ "<br>")
+document.write("Object Data view ( person['age'] ) : "+ person['age']+ "<br>")
+</script>
+
+<br><br>
+
+<h2>Array Of Object:</h2>
+<xmp style="margin-top: -25px;">
+var students = [
+    { name: "Ram", age: 15},
+    { name: "Samir", age: 17},
+    { name: "Karan", age: 19},
+];
+
+console.log("Array of Object of student: ")
+console.log(students);
+
+for(var student = 0; student < students.length; student++){
+    document.write(students[student].name+" "+students[student].age+"<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+var students = [
+    { name: "Ram", age: 15},
+    { name: "Samir", age: 17},
+    { name: "Karan", age: 19},
+];
+
+console.log("Array of Object of student: ")
+console.log(students);
+
+for(var student = 0; student < students.length; student++){
+    document.write(students[student].name+" "+students[student].age+"<br>")
+}
+</script>
+<br><br>
+
+<h2>Const Object:</h2>
+<p>const array or object can not be modify the hole data of it. We can change data by it's index (for array) or key name (for object)</p>
+<xmp style="margin-top: -25px;">
+const employee = { 
+    name: "Ram", 
+    age: 35
+};
+
+document.write("Actual object name keyvalue is: "+employee.name+"<br>");
+
+employee.name = "Rahul";
+document.write("Updated object name keyvalue is: "+employee.name+"<br>");
+document.write("Note: But we can not change the full data, also we can not use the same variable name with const datatype, it will show error<br>");
+</xmp>
+<p>Result:</p>
+<script>
+const employee = { 
+    name: "Ram", 
+    age: 35
+};
+
+document.write("Actual object name keyvalue is: "+employee.name+"<br>");
+
+employee.name = "Rahul";
+document.write("Updated object name keyvalue is: "+employee.name+"<br>");
+document.write("Note: But we can not change the full data, also we can not use the same variable name with const datatype, it will show error<br>");
+</script>
+
+<br><br>
+
+<h2>For/in Loop:</h2>
+<xmp style="margin-top: -25px;">
+var obj = { 
+    name: "Ram", 
+    age: 15
+};
+for(var key in obj){
+    document.write(key+": "+obj[key]+"<br>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+var obj = { 
+    name: "Ram", 
+    age: 15
+};
+for(var key in obj){
+    document.write(key+": "+obj[key]+"<br>");
+}
+</script>
+    
+</body>
+</html>

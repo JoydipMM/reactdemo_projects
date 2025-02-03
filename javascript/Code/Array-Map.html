@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Map Method</title>
+    <style>body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }</style>
+</head>
+<body>
+<h2>Array Map</h2>
+<p>The .map() method is used to create a new array by applying a function with to each element of an existing array, we can also modify each element. It does not modify the original array.</p>
+<xmp style="margin-top: -25px;">
+var arrayData = [10, 20, 24, 56, 67];
+document.write("Actual array: "+arrayData+"<br>");
+var arrayMapData = arrayData.map( number => number*10);
+document.write("with map(): "+arrayMapData);
+</xmp>
+<p>Result:</p>
+<script>
+var arrayData = [10, 20, 24, 56, 67];
+document.write("Actual array: "+arrayData+"<br>");
+var arrayMapData = arrayData.map( number => number*10);
+document.write("with map(): "+arrayMapData);
+</script>
+
+<br><br>
+
+<h2>Array Map</h2>
+<xmp style="margin-top: -25px;">
+var students = [
+    { name: "Ram", age: 15},
+    { name: "Samir", age: 17},
+    { name: "Karan", age: 19},
+];
+var studentMapData = students.map( student => student.name);
+document.write("created new array: "+studentMapData);
+</xmp>
+<p>Result:</p>
+<script>
+var students = [
+    { name: "Ram", age: 15},
+    { name: "Samir", age: 17},
+    { name: "Karan", age: 19},
+];
+var studentMapData = students.map( student => student.name);
+document.write("created new array: "+studentMapData);
+</script>
+
+<br><br>
+    
+</body>
+</html>
