@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Method</title>
+    <style>
+    body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }
+    table, table th, table td{ border: 1px solid #fff; }
+    table td{ padding: 10px; }
+    </style>
+</head>
+<body>
+<h2>Number Method</h2>
+<p></p>
+<xmp style="margin-top: -25px;">
+</xmp>
+<p>Result:</p>
+<script>
+var str = "99";
+document.write("Actual String >>>> "+str+" and datatype: "+typeof(str)+"<br>")
+document.write("The Number() function in JavaScript is used to convert a value into a number. <br>");
+var num = Number(str);
+document.write("Number(a) >>> "+num+" and datatype: "+typeof(num)+"<br><br>");
+
+document.write("The parseInt() function converts a string into an integer (whole number). <br><br>");
+var str2 = "75 88 77";
+document.write("Actual String >>>> "+str2+" and datatype: "+typeof(str2)+"<br>")
+var num = parseInt(str2);
+document.write("parseInt(str2) >>> "+num+" and datatype: "+typeof(num)+"<br><br>");
+
+var str3 = "45.78";
+document.write("Actual String >>>> "+str3+" and datatype: "+typeof(str3)+"<br>")
+var num3 = parseInt(str3);
+document.write("parseInt(str3) >>> "+num3+" and datatype: "+typeof(num3)+"<br><br>");
+
+
+document.write("The parseFloat() function converts a string into a floating-point (decimal) number. <br>");
+var prdata = "45.78 percent";
+document.write("Actual String >>>> '"+prdata+"' and datatype: "+typeof(prdata)+"<br>")
+var prsflt = parseFloat(prdata);
+document.write("parseInt(prsflt) >>> "+prsflt+" and datatype: "+typeof(prsflt)+"<br><br>");
+
+
+</script>
+
+<br><br>
+
+</body>
+</html>

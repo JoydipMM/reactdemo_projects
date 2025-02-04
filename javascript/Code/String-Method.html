@@ -13,16 +13,6 @@
 <h2>String Method</h2>
 <p></p>
 <xmp style="margin-top: -25px;">
-var str = "Javascript is a Programming Language";
-
-var a = str.length;
-document.write("length() of '"+str+"' : "+a);
-
-var a = str.toLowerCase();
-
-var a = str.toUpperCase();
-
-
 </xmp>
 <p>Result:</p>
 <script>
@@ -103,6 +93,52 @@ document.write("concat() use for merge 2 string. Example: concat_1.concat(concat
 document.write('"Hello, ".concat("Welcome to javascript")  Result >>> '+concatFinal+'<br>');
 document.write('concat_1.concat(concat_2,concat_3)  Result >>> '+multipleConcatFinal+'<br><br>');
 
+var spldata = "Java Script";
+document.write("Actual String >>>> "+spldata+"<br>");
+document.write("The .split() method in JavaScript is used to split a string into an array based on a specified separator. <br>");
+var spldata2 = spldata.split(' ');
+var spldata3 = spldata.split('');
+document.write("spldata.split(' ') >>> "+spldata2+"<br>");
+document.write("spldata.split('') >>> "+spldata3+"<br><br>");
+document.write(`<table><thead><tr><th>Use Case</th><th>Example</th><th>Output</th></tr></thead><tbody><tr><td>Split by space</td><td><code>"Hello World".split(" ")</code></td><td><code>["Hello", "World"]</code></td></tr><tr><td>Split by comma</td><td><code>"a,b,c".split(",")</code></td><td><code>["a", "b", "c"]</code></td></tr><tr><td>Split every character</td><td><code>"Hi".split("")</code></td><td><code>["H", "i"]</code></td></tr><tr><td>Limit the splits</td><td><code>"A B C D".split(" ", 2)</code></td><td><code>["A", "B"]</code></td></tr><tr><td>No separator</td><td><code>"Hi there".split()</code></td><td><code>["Hi there"]</code></td></tr></tbody></table>`);
+document.write("<br><br>");
+
+var rpdata = "Java Script";
+document.write("Actual String >>>> "+rpdata+"<br>");
+document.write("The .repeat() method is used to create a new string by repeating the original string a specified number of times. <br>");
+var rpdata2 = rpdata.repeat(5);
+document.write("rpdata.repeat(5) >>> "+rpdata2+"<br><br>");
+
+var sldata = "Java Script";
+document.write("Actual String >>>> "+sldata+"<br>");
+document.write("The .slice() method in JavaScript is used to extract a portion of a string and return it as a new string without modifying the original string. <br>");
+document.write("slice(start,end) <br>");
+var sldata_1 = sldata.slice(0,2);
+document.write("sldata.slice(0,2) >>> "+sldata_1+"<br>");
+var sldata_2 = sldata.slice(2,5);
+document.write("sldata.slice(2,5) >>> "+sldata_2+"<br>");
+var sldata_3 = sldata.slice(0);
+document.write("sldata.slice(0) >>> "+sldata_3+"<br>");
+var sldata_4 = sldata.slice(-1);
+document.write("sldata.slice(-1) >>> "+sldata_4+"<br>");
+var sldata_5 = sldata.slice(-4);
+document.write("sldata.slice(-4) >>> "+sldata_5+"<br><br>");
+
+var subsdata = "Java Script";
+document.write("Actual String >>>> "+subsdata+"<br>");
+document.write("The .substr() method is used to extract a specific number of characters from a string, starting at a given index. <br>");
+document.write("substr(start,end) <br>");
+var subsdata_1 = subsdata.substr(2,6);
+document.write("subsdata.substr(2,6) >>> "+subsdata_1+"<br>");
+document.write(`<table><thead><tr><th>Example</th><th>Output</th><th>Description</th></tr></thead><tbody><tr><td><code>"Hello".substr(1, 3)</code></td><td><code>"ell"</code></td><td>Extracts <strong>3 characters</strong> from index <strong>1</strong></td></tr><tr><td><code>"Hello".substr(2)</code></td><td><code>"llo"</code></td><td>Extracts from index <strong>2 to end</strong></td></tr><tr><td><code>"Hello".substr(-3, 2)</code></td><td><code>"ll"</code></td><td>Extracts <strong>2 characters from the 3rd last position</strong></td></tr><tr><td><code>"Hello".substr(-4)</code></td><td><code>"ello"</code></td><td>Extracts <strong>last 4 characters</strong></td></tr></tbody></table>`)
+document.write("<br><br>");
+document.write("Actual String >>>> "+subsdata+"<br>");
+document.write("The .substring() method in JavaScript is used to extract a portion of a string and return it as a new string. <br>");
+document.write("substr(start,end) <br>");
+var strData_1 = subsdata.substring(0,3);
+document.write("subsdata.substring(0,3) >>> "+strData_1+"<br>");
+var strData_2 = subsdata.substring(6);
+document.write("subsdata.substring(6) >>> "+strData_2+"<br>");
 
 </script>
 
