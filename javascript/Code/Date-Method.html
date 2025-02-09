@@ -1,0 +1,421 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Method</title>
+    <style>
+    body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }
+    table, table th, table td{ border: 1px solid #fff; }
+    table td{ padding: 10px; }
+    </style>
+</head>
+<body>
+<h2>Date Method</h2>
+<hr>
+<xmp style="margin-top: -25px;">
+</xmp>
+<h3>Date()</h3>
+<script>
+document.write(`JavaScript provides the Date object to work with dates and times.<br>
+You can create a date object using the new Date() constructor.<br>`);
+let currentDate = new Date();
+//console.log(currentDate); // Outputs the current date and time
+</script>
+<xmp style="margin-top: -5px;">
+    let currentDate = new Date();
+    console.log(currentDate); // Outputs the current date and time
+</xmp>
+<script>
+document.write("Result >>> "+currentDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>Date.now()</h3>
+<p></p>
+<xmp style="margin-top: -15px;">
+    let currentDate = new Date();
+    console.log(currentDate); // Outputs the current date and time
+</xmp>
+<script>
+    var nowDate = Date.now();
+    document.write("Result >>> "+nowDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>toDateString()</h3>
+<p>Get a readable date string (e.g., "Sun Feb 4 2024")</p>
+<xmp style="margin-top: -15px;">
+    let currentDate = new Date();
+    console.log(currentDate); // Outputs the current date and time
+</xmp>
+<script>
+    var formatedDate = currentDate.toDateString();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>getDate()</h3>
+<p>Get the day of the month (1-31)</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.getDate();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.getDate();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>getDay() <small>[ Get day of the week ]</small></h3>
+<p>Get the day of the week (0 = Sunday, 6 = Saturday)</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.getDay();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.getDay();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>getMonth()</h3>
+<p>Get the month (0-11) (e.g., 1 for February)</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.getMonth();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.getMonth();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>getFullYear()</h3>
+<p>Get the year (e.g., 2024)</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.getFullYear();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.getFullYear();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>getHours()</h3>
+<p>Get the hour (0-23)</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.getHours();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.getHours();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>getMinutes()</h3>
+<p>Get the minutes (0-59)</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.getMinutes();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.getMinutes();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>getSeconds()</h3>
+<p>Get the seconds (0-59)</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.getSeconds();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.getSeconds();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>getMilliseconds()</h3>
+<p>Get the milliseconds (0-999)</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.getMilliseconds();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.getMilliseconds();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>getMilliseconds()</h3>
+<p>Get the milliseconds (0-999)</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.getMilliseconds();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.getMilliseconds();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>getTime()</h3>
+<p>Get timestamp (milliseconds since Jan 1, 1970)</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.getTime();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.getTime();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>toISOString()</h3>
+<p>Convert to ISO string (YYYY-MM-DDTHH:mm:ss.sssZ)</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.toISOString();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.toISOString();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>toDateString()</h3>
+<p>Get a readable date string (e.g., "Sun Feb 4 2024")</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.toDateString();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.toDateString();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>toTimeString()</h3>
+<p>Get a readable time string</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.toTimeString();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.toTimeString();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+<h3>toUTCString()</h3>
+<p>Convert to UTC time format</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.toUTCString();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.toUTCString();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+<h3>toLocaleDateString()</h3>
+<p>Format date based on locale</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.toLocaleDateString();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.toLocaleDateString();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+<h3>toLocaleTimeString()</h3>
+<p>Format time based on locale</p>
+<xmp style="margin-top: -15px;">
+    var formatedDate = currentDate.toLocaleTimeString();
+    document.write("Result >>> "+formatedDate+"<br>")
+</xmp>
+<script>
+    var formatedDate = currentDate.toLocaleTimeString();
+    document.write("Result >>> "+formatedDate+"<br>")
+</script>
+<br><br>
+<hr>
+
+
+<h3>Getting a Timestamp (Milliseconds Since 1970) & Convert a timestamp back to a date</h3>
+<xmp style="margin-top: -15px;">
+    let timestamp = Date.now();
+    document.write("milliseconds since Jan 1, 1970: ");
+    document.write(timestamp);
+    document.write("<br>");
+    let dateFromTimestamp = new Date(timestamp);
+    document.write("timestamp back to a date: ");
+    document.write(dateFromTimestamp.toString());
+</xmp>
+<p>Result</p>
+<script>
+    let timestamp = Date.now();
+    document.write("milliseconds since Jan 1, 1970: ");
+    document.write(timestamp);
+    document.write("<br>");
+    let dateFromTimestamp = new Date(timestamp);
+    document.write("timestamp back to a date: ");
+    document.write(dateFromTimestamp.toString());
+</script>
+<br><br>
+<hr>
+
+
+<h3>Checking If a Year Is a Leap Year</h3>
+<xmp style="margin-top: -15px;">
+    function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    }
+    
+    document.write("2025 Is a Leap Year? ");
+    document.write(isLeapYear(2025)); // False
+    document.write("<br>");
+    document.write("2024 Is a Leap Year? ");
+    document.write(isLeapYear(2024)); // true
+    document.write("<br>");
+    document.write("2023 Is a Leap Year? ");
+    document.write(isLeapYear(2023)); // false 
+    document.write("<br>");
+</xmp>
+<p>Result</p>
+<script>
+function isLeapYear(year) {
+    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+}
+
+document.write("2025 Is a Leap Year? ");
+document.write(isLeapYear(2025)); // False
+document.write("<br>");
+document.write("2024 Is a Leap Year? ");
+document.write(isLeapYear(2024)); // true
+document.write("<br>");
+document.write("2023 Is a Leap Year? ");
+document.write(isLeapYear(2023)); // false 
+document.write("<br>");
+</script>
+<br><br>
+<hr>
+
+
+<h3>setDate()</h3>
+<p>The setDate() method is used to set the day of the month for a Date object.</p>
+<xmp style="margin-top: -15px;">
+    var now = new Date();
+    now.setDate(20); // use to set future date
+    document.write("Future Date >>> "+now+"<br>");
+
+    var now2 = new Date();
+    now2.setFullYear(2026); // use to set future year and it will show the Time and day of the week based on current month
+    document.write("Future Year >>> "+now2+"<br>");
+    document.write("Month of the Future Year >>> "+now.getMonth()+"<br>");
+
+    var now3 = new Date();
+    now3.setMonth(4); // Result: It will show us the future day of the week base on current year and Date
+    document.write("Get future day of the week using setMonth() >>> "+now3+"<br>");
+
+    var now4 = new Date();
+    now4.setHours(17); // Result: It will set time with current date
+    document.write("set hour  using setHours() >>> "+now4+"<br>");
+</xmp>
+<script>
+    var now = new Date();
+    now.setDate(20); // use to set future date
+    document.write("Future Date >>> "+now+"<br>");
+
+    var now2 = new Date();
+    now2.setFullYear(2026); // use to set future year and it will show the Time and day of the week based on current month
+    document.write("Future Year >>> "+now2+"<br>");
+    document.write("Month of the Future Year >>> "+now.getMonth()+"<br>");
+
+    var now3 = new Date();
+    now3.setMonth(4); // Result: It will show us the future day of the week base on current year and Date
+    document.write("Get future day of the week using setMonth() >>> "+now3+"<br>");
+
+    var now4 = new Date();
+    now4.setHours(17); // Result: It will set time with current date
+    document.write("set hour  using setHours() >>> "+now4+"<br>");
+</script>
+<br><br>
+<hr>
+
+
+<h3>Show current Date in Easy format</h3>
+<p></p>
+<xmp style="margin-top: -15px;">
+    var today = new Date();
+    document.write(`${today.getDate()} / ${getMonthName(today.getMonth())} / ${today.getFullYear()}`)
+    document.write("<br>");
+
+    function getMonthName() {
+        let months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        return months[today.getMonth()]; // Get month name
+    } 
+</xmp>
+<script>
+    var today = new Date();
+    document.write("Result: ");
+    document.write(`${today.getDate()} / ${getMonthName(today.getMonth())} / ${today.getFullYear()}`)
+    document.write("<br>");
+
+    function getMonthName() {
+        let months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        return months[today.getMonth()]; // Get month name
+    } 
+</script>
+<br><br>
+<hr>
+
+
+
+</body>
+</html>

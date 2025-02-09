@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM addEventListener Method</title>
+    <style>
+    body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }
+    table, table th, table td{ border: 1px solid #fff; }
+    table td{ padding: 10px; }
+    </style>
+</head>
+<body>
+<h2>DOM addEventListener Method</h2>
+<hr>
+<ul class="list" id="ullist">
+    <li>id = document.getElementById(id)</li>
+    <li>class = document.getElementsByClassName(classname)</li>
+    <li>Tag name = document.getElementsByTagName(name)</li>
+</ul>
+
+<div id="div_button" style="padding: 50px; border: #fff solid 1px;">
+    <button id="submit_button">SUBMIT</button>
+</div>
+
+<xmp style="margin-top: -25px;">
+    
+</xmp>
+
+<script>
+
+
+document.getElementById("submit_button").addEventListener("click", function(){
+    console.log("submin button clicked");
+    this.style.backgroundColor = "blue";
+    this.style.color = "white";
+})
+
+document.getElementById("div_button").addEventListener("click", function(){
+    console.log("div button clicked");
+    this.style.backgroundColor = "yellow";
+    this.style.color = "white";
+})
+
+
+</script>
+
+
+</body>
+</html>

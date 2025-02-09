@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+    body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }
+    table, table th, table td{ border: 1px solid #fff; }
+    table td{ padding: 10px; }
+    </style>
+</head>
+<body>
+<h3>1. Countdown Timer</h3>
+<hr>
+<script>
+    let nextNewYearDate = new Date("2025-12-31");
+    document.write("The upcoming New Year date in readable format: "+nextNewYearDate+"<br>"); // set the upcoming New Year date in readable format
+    let nextNewYearDateTimeStamp = nextNewYearDate.getTime()
+    document.write("Convert the upcoming New Year date to milliseconds format: "+nextNewYearDateTimeStamp+"<br>"); // convert the upcoming New Year date to milliseconds format
+
+    let countdown = setInterval(() => {
+        let now = Date.now();
+        let timeLeft = nextNewYearDateTimeStamp - now;
+
+        let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        console.log(`Time left: ${days}d ${hours}h ${minutes}m ${seconds}s`);
+
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            console.log("🎉 Happy New Year!");
+        }
+    }, 1000);
+</script>
+
+
+</body>
+</html>

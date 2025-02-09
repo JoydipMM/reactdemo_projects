@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversal Method</title>
+    <style>
+    body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }
+    table, table th, table td{ border: 1px solid #fff; }
+    table td{ padding: 10px; }
+    </style>
+</head>
+<body>
+<h2>DOM Traversal Method</h2>
+<hr>
+
+<div id="outer" style="padding: 30px; background-color: #c2fcc2; border: #00ff00 solid 1px;">
+    <div id="inner" style="padding: 30px; background-color: #ffd4ff; border: #ff00ff solid 1px; color: #571c57;">
+        <div id="button_box1" style="padding: 50px; background-color: antiquewhite; border: #fff solid 1px; margin: 10px 0px;">
+            <ul class="list" id="ullist">
+                <li>Box 01 list 01</li>
+                <li>Box 01 list 02</li>
+                <li>Box 01 list 03</li>
+            </ul>
+        </div>
+        <div id="button_box2" style="padding: 50px; background-color: antiquewhite; border: #fff solid 1px; margin: 10px 0px;">
+            <ul class="list" id="ullist">
+                <li>Box 02 list 01</li>
+                <li>Box 02 list 02</li>
+                <li>Box 02 list 03</li>
+            </ul>
+        </div>
+        <div id="button_box3" style="padding: 50px; background-color: antiquewhite; border: #fff solid 1px; margin: 10px 0px;">
+            <button id="submit_button">SUBMIT</button>
+        </div>
+    </div>
+</div>
+
+
+<xmp style="margin-top: -25px;">
+    
+</xmp>
+
+<script>
+var getOuterBox = document.querySelector("#inner").parentElement; // if parent element not found it return null
+//var getOuterBox = document.querySelector("html").parentNode;
+//console.log(getOuterBox);
+
+var getInnerBox = document.querySelector("#inner").children;
+//var getInnerBox = document.querySelector("#inner").childNodes;
+//console.log(getInnerBox);
+// console.log(getInnerBox[2]);
+// console.log(getInnerBox[0].innerHTML);
+
+var firstChildElement = document.querySelector("#inner").firstElementChild;
+//var firstChildElement = document.querySelector("#inner").firstChild; // it will take enter / space as a first textchild
+//console.log(firstChildElement)
+
+var lastChildElement = document.querySelector("#inner").lastElementChild;
+//console.log(lastChildElement)
+
+var nextSiblingElement = document.querySelector("#button_box1").nextElementSibling;
+//console.log(nextSiblingElement)
+
+var previousSiblingElement = document.querySelector("#button_box3").previousElementSibling;
+//console.log(previousSiblingElement)
+</script>
+
+
+</body>
+</html>

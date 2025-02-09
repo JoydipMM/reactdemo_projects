@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM target Method</title>
+    <style>
+    body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }
+    table, table th, table td{ border: 1px solid #fff; }
+    table td{ padding: 10px; }
+    </style>
+</head>
+<body>
+<h2>DOM target Method</h2>
+<hr>
+
+<img src="images/DOM-nodes.jpg" style="width: 100%; max-width: 500px; margin: 20px;" />
+<h2>headingTag </h2>
+<h3>Target DOM object by: </h3>
+<h3>lorem ipsum </h3>
+<ul class="list" id="ullist">
+    <li>id = document.getElementById(id)</li>
+    <li>class = document.getElementsByClassName(classname)</li>
+    <li>Tag name = document.getElementsByTagName(name)</li>
+</ul>
+
+<xmp style="margin-top: -25px;">
+    var element = document;
+    console.log(element);
+    console.log(element.body);
+    var headingTag = document.getElementsByTagName("h3");
+    console.log(headingTag[0].innerHTML)
+    headingTag[0].innerHTML ="dsfsdfsdfsdf";
+    var ulElement = document.getElementsByClassName("list");
+    console.log(ulElement);
+    console.log(ulElement[0].innerText);
+    console.log(ulElement[0].innerHTML);
+    console.log(ulElement[0].attributes);
+    console.log(ulElement[0].attributes[1].value);
+    console.log(ulElement[0].getAttribute("id"));
+    console.log(ulElement[0].getAttributeNode("id"));
+    console.log(ulElement[0].getAttributeNames()[0]);
+    var ulElement2 = document.getElementById("ullist");
+    ulElement2.setAttribute("data-user-id", "12345");
+    console.log(document.querySelector("h3"));
+    console.log(document.querySelectorAll("h3")[1]);
+    console.log(document.querySelector("h2").style.color = "red");
+    console.log(document.querySelector("h2").style.backgroundColor = "yellow");
+    document.querySelector("h2").className = "heading-h2 for-about";
+    console.log(document.querySelector("h2").attributes);
+    console.log(document.querySelector("h2").attributes[0].nodeValue);
+    console.log(document.querySelector("h2").classList);
+    console.log(document.querySelector("h2").classList[0]);
+    document.querySelector("h2").classList.add("new-h2-class", "new-h2-class-2");
+    console.log(document.querySelector("h2").classList);
+    document.querySelector("h2").classList.remove("new-h2-class");
+    console.log(document.querySelector("h2").classList);
+    document.querySelector("h2").classList.replace("new-h2-class-2", "new-h2-class-new");
+    console.log(document.querySelector("h2").classList);
+    console.log(document.querySelector("h2").classList.length);
+    console.log(document.querySelector("h2").classList.item(3));
+    console.log(document.querySelector("h2").classList.contains("new-h2-class"));
+</xmp>
+
+<script>
+
+var element = document;
+//console.log(element);
+//console.log(element.body);
+//var headingTag = document.getElementsByTagName("h3");
+//console.log(headingTag[0].innerHTML)
+//headingTag[0].innerHTML ="dsfsdfsdfsdf";
+var ulElement = document.getElementsByClassName("list");
+//console.log(ulElement);
+//console.log(ulElement[0].innerText);
+//console.log(ulElement[0].innerHTML);
+//console.log(ulElement[0].attributes);
+//console.log(ulElement[0].attributes[1].value);
+//console.log(ulElement[0].getAttribute("id"));
+//console.log(ulElement[0].getAttributeNode("id"));
+//console.log(ulElement[0].getAttributeNames()[0]);
+//var ulElement2 = document.getElementById("ullist");
+//ulElement2.setAttribute("data-user-id", "12345");
+//console.log(document.querySelector("h3"));
+//console.log(document.querySelectorAll("h3")[1]);
+// console.log(document.querySelector("h2").style.color = "red");
+// console.log(document.querySelector("h2").style.backgroundColor = "yellow");
+document.querySelector("h2").className = "heading-h2 for-about";
+//console.log(document.querySelector("h2").attributes);
+//console.log(document.querySelector("h2").attributes[0].nodeValue);
+// console.log(document.querySelector("h2").classList);
+// console.log(document.querySelector("h2").classList[0]);
+document.querySelector("h2").classList.add("new-h2-class", "new-h2-class-2");
+// console.log(document.querySelector("h2").classList);
+// document.querySelector("h2").classList.remove("new-h2-class");
+// console.log(document.querySelector("h2").classList);
+// document.querySelector("h2").classList.replace("new-h2-class-2", "new-h2-class-new");
+console.log(document.querySelector("h2").classList);
+console.log(document.querySelector("h2").classList.length);
+console.log(document.querySelector("h2").classList.item(3));
+console.log(document.querySelector("h2").classList.contains("new-h2-class"));
+
+</script>
+
+
+</body>
+</html>
