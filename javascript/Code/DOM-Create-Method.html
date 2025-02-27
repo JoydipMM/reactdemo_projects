@@ -1,0 +1,118 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Create Method</title>
+    <style>
+    body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }
+    table, table th, table td{ border: 1px solid #fff; }
+    table td{ padding: 10px; }
+    li{ margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<h2>DOM Create Method</h2>
+<ul class="list" id="ullist">
+    <li><b>createElement: [append only]</b> The createElement() method allows you to dynamically create HTML elements in JavaScript.</li>
+    <li><b>CreateTextNode: [append only] </b> The createTextNode() method creates a text node that can be added to an HTML element. It's useful when you want to add plain text without using innerHTML (which can be unsafe for user input).</li>
+    <li><b>createComment: [append only] </b> The createComment() method creates a comment node that can be added to the DOM. This is useful for adding developer notes dynamically without affecting the visible content of the webpage.</li>
+    <li><b>insertAdjacentElement: [create and append] </b> insertAdjacentElement is a JavaScript method that allows you to insert an element into the DOM at a specified position relative to another element. It is a method of the Element interface. 
+        <br/><br/><i>
+        targetElement.insertAdjacentElement(position, newElement);</i>
+        <h3>position (string) – Specifies where to insert the element. Acceptable values:</h3>
+        <ul>
+            <li><b>"beforebegin"</b> – Before the target element itself.</li>
+            <li><b>"afterbegin"</b> – Inside the target element, before its first child.</li>
+            <li><b>"beforeend"</b> – Inside the target element, after its last child.</li>
+            <li><b>"afterend"</b> – After the target element itself.</li>
+            <li><b>newElement (Node)</b> – The element to insert.</li>
+        </ul>
+            
+
+
+
+
+
+    
+    </li>
+</ul>
+<hr>
+
+<div id="outer" style="padding: 30px; background-color: #c2fcc2; border: #00ff00 solid 1px; color: #333232;">
+    <p>i have searched  many  video regrading wed development, paid and non paid and i can say that you are the best one , the way you make video is really  awesome, i am not student and i am  just learning website for my own knowledge and interest .  you are really doing a great job not only in making video but for those poor student who can not afford tuition, coaching or extra classes . you are covering every topic which we need to understand for web development one by one in every series of video.  this will help many student all over the world and for professional who want to add extra skills. god bless you for your hard work and life.</p>
+    <p>i have searched  many  video regrading wed development, paid and non paid and i can say that you are the best one , the way you make video is really  awesome, i am not student and i am  just learning website for my own knowledge and interest .  you are really doing a great job not only in making video but for those poor student who can not afford tuition, coaching or extra classes . you are covering every topic which we need to understand for web development one by one in every series of video.  this will help many student all over the world and for professional who want to add extra skills. god bless you for your hard work and life.</p>
+</div>
+
+
+<xmp style="margin-top: -25px;">
+    
+</xmp>
+
+<script>
+// Target Element
+var targetElement = document.querySelector("#outer");
+
+// Create tag element
+var newElement = document.createElement("h3");
+// create text element
+var textElement = document.createTextNode("Box H3 Heading");
+
+// append text element to tag element
+newElement.appendChild(textElement);
+// append tag element to target element
+targetElement.appendChild(newElement);
+
+// create text and tag element after append tag element to target element
+var newHeadingElement = document.createElement("h2");
+var newHeadingText = document.createTextNode("This is H2 Heading");
+newHeadingElement.appendChild(newHeadingText);
+console.log(newHeadingElement);
+
+// insertBefore method
+targetElement.insertBefore(newHeadingElement, targetElement.childNodes[1])
+
+// insertAdjacentElement beforebegin Method
+insertAdjacentHeading = document.createElement("h3");
+insertAdjacentHeadingText =  document.createTextNode("insertAdjacentElement beforebegin");
+insertAdjacentHeading.appendChild(insertAdjacentHeadingText);
+targetElement.insertAdjacentElement("beforebegin", insertAdjacentHeading);
+
+// insertAdjacentElement afterbegin Method
+insertAdjacentHeading = document.createElement("h3");
+insertAdjacentHeadingAfterbeginText =  document.createTextNode("insertAdjacentElement afterbegin");
+insertAdjacentHeading.appendChild(insertAdjacentHeadingAfterbeginText);
+targetElement.insertAdjacentElement("afterbegin", insertAdjacentHeading);
+
+// insertAdjacentElement beforeend Method
+insertAdjacentHeading = document.createElement("h3");
+insertAdjacentHeadingBeforeendText =  document.createTextNode("insertAdjacentElement beforeend");
+insertAdjacentHeading.appendChild(insertAdjacentHeadingBeforeendText);
+targetElement.insertAdjacentElement("beforeend", insertAdjacentHeading);
+
+// insertAdjacentElement afterend Method
+insertAdjacentHeading = document.createElement("h3");
+insertAdjacentHeadingAfterendText =  document.createTextNode("insertAdjacentElement afterend");
+insertAdjacentHeading.appendChild(insertAdjacentHeadingAfterendText);
+targetElement.insertAdjacentElement("afterend", insertAdjacentHeading);
+
+// insertAdjacentHTML beforebegin Method
+insertAdjacentTextElement = "<h4>insertAdjacentTextElement beforebegin</h4>";
+targetElement.insertAdjacentHTML("beforebegin", insertAdjacentTextElement);
+
+// insertAdjacentHTML afterbegin Method
+insertAdjacentTextElement = "<h4>insertAdjacentTextElement afterbegin</h4>";
+targetElement.insertAdjacentHTML("afterbegin", insertAdjacentTextElement);
+
+// insertAdjacentHTML beforeend Method
+insertAdjacentTextElement = "<h4>insertAdjacentTextElement beforeend</h4>";
+targetElement.insertAdjacentHTML("beforeend", insertAdjacentTextElement);
+
+// insertAdjacentHTML afterend Method
+insertAdjacentTextElement = "<h4>insertAdjacentTextElement afterend</h4>";
+targetElement.insertAdjacentHTML("afterend", insertAdjacentTextElement);
+
+</script>
+
+
+</body>
+</html>

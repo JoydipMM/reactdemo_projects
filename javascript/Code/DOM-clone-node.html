@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM cloneNode Method</title>
+    <style>
+    body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }
+    table, table th, table td{ border: 1px solid #fff; }
+    table td{ padding: 10px; }
+    li{ margin-bottom: 10px; }
+    ul{ width: 20%; display: inline-block; vertical-align: top; }
+    </style>
+</head>
+<body>
+<h2>DOM cloneNode Method</h2>
+<p>cloneNode(false)</p>
+<p>false > copy only tag and attributes(class. id etc)</p>
+<p>true > copy tag attributes and tag inner element also</p>
+<hr>
+<ul class="list" id="ullist">
+    <li>Apple</li>
+    <li>Banana</li>
+    <li>Orenge</li>
+    <li>Grapes [item of fruit list]</li>
+</ul>
+<ul class="list" id="ullist2">
+    <li>Carrot</li>
+    <li>Reddish</li>
+</ul>
+<hr>
+
+
+
+<xmp style="margin-top: -25px;">
+    
+</xmp>
+
+<script>
+    var targetElement = document.getElementById("ullist").children[3];
+    var copyElement = targetElement.cloneNode(true);
+    console.log(copyElement)
+
+    document.getElementById("ullist2").appendChild(copyElement);
+
+</script>
+
+
+</body>
+</html>

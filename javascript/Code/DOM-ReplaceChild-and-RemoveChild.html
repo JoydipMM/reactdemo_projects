@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM replaceChild & removeChild Method</title>
+    <style>
+    body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }
+    table, table th, table td{ border: 1px solid #fff; }
+    table td{ padding: 10px; }
+    li{ margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<h2>DOM replaceChild Method</h2>
+<hr>
+<ul class="list" id="ullist">
+    <li>Text 01</li>
+    <li>Text 02</li>
+    <li>Text 03</li>
+    <li>Text 04</li>
+</ul>
+<hr>
+
+
+<h2>DOM removeChild Method</h2>
+<hr>
+<ul class="list" id="ullist2">
+    <li>Text 01</li>
+    <li>Text 02</li>
+    <li>Text 03</li>
+    <li>Text 04</li>
+</ul>
+<hr>
+
+
+<xmp style="margin-top: -25px;">
+    
+</xmp>
+
+<script>
+    var newListItemElement = document.createElement("li");
+    var newListItemText = document.createTextNode("Replaced Text Element of 04");
+    newListItemElement.appendChild(newListItemText);
+    //console.log(newListItemElement);
+
+    // target element
+    var targetElement = document.getElementById("ullist");
+    // old element
+    var oldElement = targetElement.children[3];
+    //console.log(oldElement);
+
+    // Replace Child targetElement.replaceChild(replace element, old element)
+    targetElement.replaceChild(newListItemElement, oldElement);
+
+    // target element
+    var targetElement = document.getElementById("ullist2");
+    var removeElement = targetElement.children[3];
+    // remove element
+    targetElement.removeChild(removeElement);
+
+
+</script>
+
+
+</body>
+</html>
