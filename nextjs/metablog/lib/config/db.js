@@ -1,7 +1,7 @@
 import mongoose, { connect } from "mongoose";
 
 const connectDB = async () => {
-    await mongoose.connect("mongodb+srv://joydipsarkar01:jKHwAqP2oFeecomc@cluster0.cgkaa.mongodb.net/metablogDB");
+    await mongoose.connect("");
     console.log("DB connected");
 }
 
