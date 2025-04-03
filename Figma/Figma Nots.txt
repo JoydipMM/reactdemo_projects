@@ -1,0 +1,2 @@
+Auto Layout > [Select frame] shift + A
+Remove Auto Layout > [Select Frame] Alt + Shift + A
