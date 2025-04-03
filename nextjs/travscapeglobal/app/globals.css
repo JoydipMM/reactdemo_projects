@@ -1175,6 +1175,11 @@
      float: left;
      position: relative;
 }
+.inner_page_menu_holder{
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+}
  .inner_banner {
      width: 100%;
      height: 400px;
