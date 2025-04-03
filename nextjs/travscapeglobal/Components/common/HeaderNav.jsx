@@ -6,13 +6,13 @@ export default function HeaderNav (){
     <div className="wrapper">
     <div id="cssmenu">
         <ul>
-            <li className="mnactv"><Link href="index.php"><i className="icon-home"></i></Link></li>
-            <li><a href="#">About</a>
+            <li className="mnactv"><Link href="/"><i className="icon-home"></i></Link></li>
+            <li><Link href="#">About</Link>
                 <ul>
-                <li><Link href="the-company.php">&nbsp;The Company</Link></li>
+                <li><Link href="/about-company">&nbsp;The Company</Link></li>
                 </ul>
             </li>
-            <li><Link href="#">Team</Link></li>
+            <li><Link href="/team">Team</Link></li>
             <li><Link href="#">Program Dates</Link></li>
             <li><Link href="#">Services</Link></li>
             <li><Link href="#">Gallery</Link>

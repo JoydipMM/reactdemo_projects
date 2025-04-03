@@ -1,8 +1,8 @@
 import { Lato } from "next/font/google";
-import "./globals.css"; // Ensure global styles are imported
-import Header from "./Components/common/Header";
-import Footer from "./Components/common/Footer";
-import HeaderNav from "./Components/common/HeaderNav";
+import "../assets/globals.css"; // Ensure global styles are imported
+import Header from "../Components/common/Header";
+import Footer from "../Components/common/Footer";
+import HeaderNav from "../Components/common/HeaderNav";
 
 const lato = Lato({
   variable: "--font-lato", // Ensure this matches usage

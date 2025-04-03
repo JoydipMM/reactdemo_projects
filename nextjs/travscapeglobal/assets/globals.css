@@ -1,5 +1,5 @@
-@import url("./assets/css/fonts.css");
- @import url("./assets/css/font-awesome.css");
+@import url("./css/fonts.css");
+ @import url("./css/font-awesome.css");
  :root {
      --font-lato: "Lato", sans-serif;
 }
@@ -4265,3 +4265,15 @@
 
 
 .yr_plnr{ width: 100%; overflow: hidden; }
+
+
+.loading{
+
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9991;
+    background: #0044b5;
+    top: 0px;
+    left: 0px;
+}

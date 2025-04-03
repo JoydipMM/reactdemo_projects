@@ -1,20 +1,19 @@
 import Image from "next/image";
-import styles from "./page.module.css";
 
-import HomeBanner from "./Components/home/HomeBanner";
-import HomeWelcome from "./Components/home/HomeWelcome";
-import HomeMemory from "./Components/home/HomeMemory";
-import HomeShowcase from "./Components/home/HomeShowcase";
-import HomeFeedback from "./Components/home/HomeFeedback";
-import HomeFacilities from "./Components/home/HomeFacilities";
-import HomeTopDestination from "./Components/home/HomeTopDestination";
-import HomeShortDuration from "./Components/home/HomeShortDuration";
-import HomeYearPlanner from "./Components/home/HomeYearPlanner";
-import HomeAd from "./Components/home/HomeAd";
+import HomeBanner from "../Components/home/HomeBanner";
+import HomeWelcome from "../Components/home/HomeWelcome";
+import HomeMemory from "../Components/home/HomeMemory";
+import HomeShowcase from "../Components/home/HomeShowcase";
+import HomeFeedback from "../Components/home/HomeFeedback";
+import HomeFacilities from "../Components/home/HomeFacilities";
+import HomeTopDestination from "../Components/home/HomeTopDestination";
+import HomeShortDuration from "../Components/home/HomeShortDuration";
+import HomeYearPlanner from "../Components/home/HomeYearPlanner";
+import HomeAd from "../Components/home/HomeAd";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <>
 
         <HomeBanner/>
 
@@ -43,6 +42,6 @@ export default function Home() {
 
 
 
-    </div>
+    </>
   );
 }
