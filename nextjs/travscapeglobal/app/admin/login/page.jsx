@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const page = () => {
+  console.log(process.env.SERVER_PASSWORD)
   return (
     <div>
       login page
