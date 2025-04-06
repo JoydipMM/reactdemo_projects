@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+document.write("<table style='border:1px solid #fff;'>");   
+for(row = 1; row <=100; row = row+10){
+    document.write("<tr>");
+    document.write("<td style='border:1px solid #fff; padding:10px;'>Row " + row + "</td>");
+    for(col = row; col < row + 10; col++){
+        document.write("<td style='border:1px solid #fff; padding:10px;'>");
+        document.write("col -- "+col+ " ");
+        document.write("</td>");
+    }
+    document.write("</tr>");
+}
+document.write("</table>");
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
