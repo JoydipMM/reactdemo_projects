@@ -20,6 +20,7 @@ export { default as InnerPage } from "./common/InnerPage";
 
 
 // home page components
+export { default as HomeLayout } from "../Components/common/homeLayout";
 export { default as HomeBanner } from "./home/HomeBanner";
 export { default as  HomeWelcome } from "./home/HomeWelcome";
 export { default as  HomeMemory } from "./home/HomeMemory";

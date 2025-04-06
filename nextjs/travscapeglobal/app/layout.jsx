@@ -17,14 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={lato.variable}>
-          <HeaderNav/>
-        <div className="menu_slider_ara">
-          <Header/>
-        </div>
-        <div className="body_content_area"> 
-          {children}
-        </div>
-        <Footer/>
+      {children}
         </body>
     </html>
   );
