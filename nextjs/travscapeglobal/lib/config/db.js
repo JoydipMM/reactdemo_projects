@@ -6,7 +6,7 @@ export const connectDB = async () =>{
     // 1 = connected
     // 2 = connecting
     // 3 = disconnecting
-    if (mongoose.connection.readyState === 1) {
+    /*if (mongoose.connection.readyState === 1) {
         console.log("✅ Already connected to the database");
         return;
       }
@@ -21,5 +21,8 @@ export const connectDB = async () =>{
       } catch (error) {
         console.error("❌ MongoDB connection error:", error);
         throw new Error("Failed to connect to MongoDB");
-      }
+      }*/
+
+        await mongoose.connect(process.env.MONGODB_CONNECTION);
+        console.log("DB connected");
 }
