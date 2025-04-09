@@ -13,13 +13,14 @@ const tourSchema = mongoose.Schema({
         type:String,
         required:true,
     },
-    data:{
+    date:{
         type:Date,
-        default:Date.now()
+        default:Date.now() 
     }
 })
 
-const TourModel =  mongoose.models.tour || mongoose.model("tour", tourSchema) ;
 
-export default TourModel;
+const ToursModel = mongoose.models.tour ||  mongoose.model("tour", tourSchema);
+
+export default ToursModel;
 
