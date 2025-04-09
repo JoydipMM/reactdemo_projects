@@ -9,10 +9,6 @@ const tourSchema = mongoose.Schema({
         type:String,
         required:true,
     },
-    thumbimage:{
-        type:String,
-        required:true,
-    },
     date:{
         type:Date,
         default:Date.now() 
