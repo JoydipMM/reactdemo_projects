@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const Schema = mongoose.Schema({
+const tourSchema = mongoose.Schema({
     title:{
         type:String,
         required:true,
@@ -8,6 +8,15 @@ const Schema = mongoose.Schema({
     description:{
         type:String,
         required:true,
+    },
+    date:{
+        type:Date,
+        default:Date.now() 
     }
 })
+
+
+const ToursModel = mongoose.models.tour ||  mongoose.model("tour", tourSchema);
+
+export default ToursModel;
 
