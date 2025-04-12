@@ -37,7 +37,7 @@ export default function Footer (){
 
         <div className="footer_nav_ara_3">
             <div className="foot_head">Flickr  Gallery</div>
-            <Image src="/images/footer/flick_img.png" width={264} height={164} border="0" alt="image" /> 
+            <Image src="/images/footer/flick_img.png" width={264} height={164}  alt="image" /> 
         </div>
 
 

@@ -26,8 +26,8 @@ export default function HomeShowcase() {
             
             <div className="slideshow_wrap"> 
                 <Slider className="_slideshow" {...settings}>
-                <div className="slide"><Image width={249} height={180} src="/images/showcase-1.jpg" alt="" border="0"/><p>Travscape on top of Bhagirathi II.</p></div> 
-                <div className="slide"><Image width={249} height={180} src="/images/showcase-2.jpg" alt="" border="0"/><p>Bhagirathi II conquered by Travscape.</p></div> 
+                <div className="slide"><Image width={249} height={180} src="/images/showcase-1.jpg" alt="" /><p>Travscape on top of Bhagirathi II.</p></div> 
+                <div className="slide"><Image width={249} height={180} src="/images/showcase-2.jpg" alt="" /><p>Bhagirathi II conquered by Travscape.</p></div> 
               </Slider>
             </div>
             

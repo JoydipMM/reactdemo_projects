@@ -3,8 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 // import HeaderNav from "./HeaderNav";
-
-export default function InnerPage({pageTitle, pageDescription, bannerImage, className, children}){
+// pageTitle, pageDescription, bannerImage, className,
+export default function InnerPage({
+    children,
+  }: Readonly<{
+    children: React.ReactNode;
+  }>){
     return(<>
     
     <div className="banner_area_with_menu">
@@ -12,7 +16,7 @@ export default function InnerPage({pageTitle, pageDescription, bannerImage, clas
             <HeaderNav/>
         </div> */}
         <div className="inner_banner">
-            <Image src="/images/inner_banner.png" fill="true" alt="" title="" border="0" />
+            <Image src="/images/inner_banner.png" fill={true} alt="" title="" />
         </div>
 
     </div>

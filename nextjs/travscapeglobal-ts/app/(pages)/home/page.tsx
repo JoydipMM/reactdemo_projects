@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeLayout, HomeBanner, HomeWelcome, HomeMemory, HomeShowcase, HomeFeedback, HomeFacilities, HomeTopDestination, HomeShortDuration, HomeYearPlanner, HomeAd } from "./../../../Components";
+import { HomeLayout, HomeBanner, HomeWelcome, HomeMemory, HomeShowcase, HomeFeedback, HomeFacilities, HomeTopDestination, HomeShortDuration, HomeYearPlanner, HomeAd } from "@/Components";
 
 
 const page = () => {

@@ -10,7 +10,7 @@ export default function HomeShortDuration(){
 
             <div className="best_pack_box">
                 <div className="best_pack_pic_area">
-                    <div className="image_ara"><Image src="/images/best_pack_1.png" width={100} height={100} border="0" alt="" title="" /></div>
+                    <div className="image_ara"><Image src="/images/best_pack_1.png" width={100} height={100}  alt="" title="" /></div>
                     <div className="textarea">
                         <h6>Kutch - Gujrat</h6>
                         <span>3 days 2Nights</span>
@@ -21,9 +21,9 @@ export default function HomeShortDuration(){
             </div>
 
             <div className="best_pack_box">
-                <div className="best_pack_tag"><Image src="/images/upcoming-tag-2.png" alt="" border="0" width={100} height={15} /></div>
+                <div className="best_pack_tag"><Image src="/images/upcoming-tag-2.png" alt=""  width={100} height={15} /></div>
                 <div className="best_pack_pic_area">
-                    <div className="image_ara"><Image src="/images/best_pack_1.png" width={100} height={100} border="0" alt="" title="" /></div>
+                    <div className="image_ara"><Image src="/images/best_pack_1.png" width={100} height={100}  alt="" title="" /></div>
                     <div className="textarea">
                         <h6>Kutch - Gujrat</h6>
                         <span>3 days 2Nights</span>

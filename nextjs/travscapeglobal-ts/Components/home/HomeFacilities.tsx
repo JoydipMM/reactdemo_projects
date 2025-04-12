@@ -16,7 +16,7 @@ export default function HomeFacilities() {
 
 
             <Link href="#" className="facility_box">
-                <div className="facility_icon_area"><Image width={21} height={74} src="/images/facilities_images/facility_icon_2.png" border="0" alt="" title="" /></div>
+                <div className="facility_icon_area"><Image width={21} height={74} src="/images/facilities_images/facility_icon_2.png"  alt="" title="" /></div>
                     <div className="facility_txtara">
                     <h3 className="fc_hdtxtxt">facility title</h3>
                     <p className="fc_subtxt">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
@@ -24,7 +24,7 @@ export default function HomeFacilities() {
             </Link>
 
             <Link href="#" className="facility_box">
-                <div className="facility_icon_area"><Image width={21} height={74} src="/images/facilities_images/facility_icon_3.png" border="0" alt="" title="" /></div>
+                <div className="facility_icon_area"><Image width={21} height={74} src="/images/facilities_images/facility_icon_3.png"  alt="" title="" /></div>
                     <div className="facility_txtara">
                     <h3 className="fc_hdtxtxt">facility title</h3>
                     <p className="fc_subtxt">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
@@ -32,7 +32,7 @@ export default function HomeFacilities() {
             </Link>
 
             <Link href="#" className="facility_box">
-                <div className="facility_icon_area"><Image width={21} height={74} src="/images/facilities_images/facility_icon_5.png" border="0" alt="" title="" /></div>
+                <div className="facility_icon_area"><Image width={21} height={74} src="/images/facilities_images/facility_icon_5.png"  alt="" title="" /></div>
                     <div className="facility_txtara">
                     <h3 className="fc_hdtxtxt">facility title</h3>
                     <p className="fc_subtxt">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
@@ -40,7 +40,7 @@ export default function HomeFacilities() {
             </Link>
 
             <Link href="#" className="facility_box">
-                <div className="facility_icon_area"><Image width={21} height={74} src="/images/facilities_images/facility_icon_5.png" border="0" alt="" title="" /></div>
+                <div className="facility_icon_area"><Image width={21} height={74} src="/images/facilities_images/facility_icon_5.png"  alt="" title="" /></div>
                     <div className="facility_txtara">
                     <h3 className="fc_hdtxtxt">facility title</h3>
                     <p className="fc_subtxt">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>

@@ -1,6 +1,10 @@
-import { Header, Footer, HeaderNav } from "../../Components";
+import { Header, Footer, HeaderNav } from "@/Components";
 
-export default function Layout({ children }) {
+export default function Layout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
     return (
 
         <>

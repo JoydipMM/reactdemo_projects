@@ -1,11 +1,15 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Header, Footer, HeaderNav } from "../../Components";
+import { Header, Footer, HeaderNav } from "@/Components";
 
 // import HeaderNav from "./HeaderNav";
 
-export default function HomeLayout({children}){
+export default function HomeLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>){
     return(<>
     
     <HeaderNav/>

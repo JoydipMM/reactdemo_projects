@@ -21,7 +21,7 @@ export default function page() {
                                 <div className="item">
                                     <Link href="#" className="html5lightbox photo_box">
                                     Photo
-                                        {/* <Image src="adminpanel/image_gallery/<?php echo $img_glry_rows2['img_glry_img_path']; ?>" border="0"/> */}
+                                        {/* <Image src="adminpanel/image_gallery/<?php echo $img_glry_rows2['img_glry_img_path']; ?>" /> */}
                                         {/* <span className="photo_over"><i className="icon-search"></i></span> */}
                                     </Link>
                                 </div>
@@ -36,7 +36,7 @@ export default function page() {
                                 <div className="item">
                                     <Link href="#" className="html5lightbox photo_box">
                                     Photo
-                                        {/* <Image src="adminpanel/image_gallery/<?php echo $img_glry_rows2['img_glry_img_path']; ?>" border="0"/> */}
+                                        {/* <Image src="adminpanel/image_gallery/<?php echo $img_glry_rows2['img_glry_img_path']; ?>" /> */}
                                         {/* <span className="photo_over"><i className="icon-search"></i></span> */}
                                     </Link>
                                 </div>
