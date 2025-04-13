@@ -11,13 +11,15 @@ const page = () => {
     isDone,
     error,
     thumbImage,
+    fileInputRef,
     setThumbImage,
     formDataEvent,
     createEvent,
   } = useTourForm();
+  
   return (
     <div>
-      <ToastContainer />
+      <ToastContainer theme="dark" />
       <h2>Add Tours</h2>
       <div>
 
@@ -34,7 +36,7 @@ const page = () => {
               onChange={
                 (e)=>formDataEvent('title', e.target.value)
               }
-              value={data?.title}
+              value={data?.title || ""}
               required
               />
             </div>
@@ -46,7 +48,7 @@ const page = () => {
               onChange={
                 (e)=>formDataEvent('description', e.target.value)
               }
-              value={data?.description}
+              value={data?.description || ""}
               required
               />
             </div>
@@ -56,6 +58,7 @@ const page = () => {
               <input
               type="file"
               accept="image/*"
+              ref={fileInputRef}
               onChange={
                 (e)=>{ 
                   e.preventDefault(); 

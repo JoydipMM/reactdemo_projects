@@ -3,7 +3,7 @@
 import { storage } from "@/lib/firebase/firebaseSetup";
 import axios from "axios";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from "react";
+import { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction, useRef } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 interface TourFormContextType {
@@ -15,6 +15,7 @@ interface TourFormContextType {
   setThumbImage: Dispatch<SetStateAction<string | null>>;
   formDataEvent: (key: string, value: any) => void;
   createEvent: () => Promise<void>;
+  fileInputRef : any;
 }
 
 const TourFormContext = createContext<TourFormContextType | undefined>(undefined);
@@ -29,6 +30,7 @@ export default function TourFormContextProvider({ children }: TourFormProviderPr
   const [isDone, setIsDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [thumbImage, setThumbImage] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const formDataEvent = (key: string, value: any) => {
     setData({
@@ -52,12 +54,12 @@ export default function TourFormContextProvider({ children }: TourFormProviderPr
         if(!data?.thumbImage){
             throw new Error("Thumb Image is required")
         }
-      console.log("Form data ---- ", data);
+      //console.log("Form data ---- ", data);
       const imageRef = ref(storage, `uploads/${thumbImage}`);
       await uploadBytes(imageRef, data?.thumbImage);
       const thumbURL = getDownloadURL(imageRef);
 
-      console.log("firebase Image URL ---- ", await thumbURL);
+      //console.log("firebase Image URL ---- ", await thumbURL);
 
       setIsDone(true);
 
@@ -66,20 +68,27 @@ export default function TourFormContextProvider({ children }: TourFormProviderPr
       formData.append('description', data.description);
       formData.append('thumbimage', await thumbURL);
 
-      console.log(formData);
-        const  respons = await axios.post("http://localhost:3000/api/tour", formData);
-        if(respons.data.success){
-            toast.success(respons.data.msg);
-        }else{
-            toast.error("Error");
-        }
+      //console.log(formData);
+      const  respons = await axios.post("http://localhost:3000/api/tour", formData);
+      if(respons.data.success){
+          toast.success(respons.data.msg);
+          setData({});
+          setThumbImage(null);
+          if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+          }
+      }else{
+          toast.error("Error");
+      }
 
 
     } catch (error: any) {
         setError(error?.message || "An error occurred");
-    } finally {
-      setIsLoading(false);
-    }
+    } 
+    // finally {
+    //   setIsLoading(false);
+      
+    // }
   };
 
   return (
@@ -90,6 +99,7 @@ export default function TourFormContextProvider({ children }: TourFormProviderPr
         isDone,
         error,
         thumbImage,
+        fileInputRef,
         setThumbImage,
         formDataEvent,
         createEvent,

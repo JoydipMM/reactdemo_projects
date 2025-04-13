@@ -9,11 +9,6 @@ export async function POST(request: any) {
       await connectDB();
   
       const formData = await request.formData();
-      // get image from image field
-      const thumbimage = formData.get("thumbimage");
-      const timeStamp = Date.now();
-      
-
 
       const tourData = {
         title:`${formData.get("title")}`,
@@ -34,6 +29,10 @@ export async function POST(request: any) {
 
 
 export async function GET(request:any){
-    return NextResponse.json({ msg: "Tour test api working" })
+    // test api route
+    //return NextResponse.json({ msg: "Tour test api working" })
+
+    const tourlist = await ToursModel.find();
+    return NextResponse.json({ tours: tourlist, success:true }, { status: 200 })
 }
 
