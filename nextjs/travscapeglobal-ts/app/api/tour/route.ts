@@ -12,24 +12,13 @@ export async function POST(request: any) {
       // get image from image field
       const thumbimage = formData.get("thumbimage");
       const timeStamp = Date.now();
-      // for store image in public folder
-      //-----------------------------------------------------------
-      // 1st convert the image in byte data
-      const imageByteData = await thumbimage.arrayBuffer();
-      // 2nd extract the buffer
-      const buffer = Buffer.from(imageByteData);
-      // 3rd define the path for store image
-      const thumbPath = `./public/upload/${timeStamp}_${thumbimage.name}`;
-      // 4th write above buffer in thumbpath
-      await writeFile(thumbPath, buffer);
-      // create image path for frontend
-      const thumbImgUrl = `/${timeStamp}_${thumbimage.name}`;
+      
 
 
       const tourData = {
         title:`${formData.get("title")}`,
         description:`${formData.get("description")}`,
-        thumbimage: `${thumbImgUrl}`
+        thumbimage: `${formData.get("thumbimage")}`
       };
   
       await ToursModel.create(tourData);
