@@ -1,28 +1,29 @@
 "use client";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useTours } from "../../crud/tour/read";
 
 const page = () => {
 
-  const [ blogList, setBlogList ] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [tours, setTours] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchBlogs = async () => {
-    setIsLoading(true);
-    try {
-      const fetchData = await axios.get("http://localhost:3000/api/tour");
-      setBlogList(fetchData.data.tours);
-    } catch (error: any) {
-      setError(error?.message || "An error occurred");
-    }
-    setIsLoading(false);
-  }
+  const fetchTours = async () => {
+    const { data, isLoading, error } = await useTours();
+    setTours(data || []);
+    setLoading(isLoading);
+    setError(error);
+  };
 
-  useEffect(()=>{
-    fetchBlogs();
-  },[])
+  useEffect(() => {
+    fetchTours();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
@@ -30,14 +31,14 @@ const page = () => {
       <div>
 
       tour list<br/>
-
-      {isLoading && <h2>Tours Loading....</h2>}
-      {error && <h2>{error}</h2>}
-      {blogList.map((tour:any, index:number)=> 
+      
+      {tours.map((tour:any, index:number)=> 
       <div key={index}>
       <Image src={tour.thumbimage} alt="" width={100} height={100} />
       {tour.title}<br/>
-      {tour.description}<hr/>
+      {tour.description}
+      <Link href={`/admin/tours/form?id=${tour._id}`} >Update</Link>
+      <hr/>
       </div>
       )}
 

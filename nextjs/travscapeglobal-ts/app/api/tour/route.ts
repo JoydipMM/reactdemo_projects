@@ -32,7 +32,28 @@ export async function GET(request:any){
     // test api route
     //return NextResponse.json({ msg: "Tour test api working" })
 
-    const tourlist = await ToursModel.find();
-    return NextResponse.json({ tours: tourlist, success:true }, { status: 200 })
+    try {
+
+    await connectDB();
+
+    const { searchParams } = new URL(request.url);
+    const tourId = searchParams.get("id");
+
+    if(tourId){
+      const tour = await ToursModel.findById(tourId);
+      return NextResponse.json({ tour: tour, success:true }, { status: 200 })
+    }else{
+      const tourlist = await ToursModel.find();
+      return NextResponse.json({ tours: tourlist, success:true }, { status: 200 })
+    }
+  } catch (error) {
+    console.error("API Error:", error);
+    return NextResponse.json(
+      { message: "Something went wrong", success: false },
+      { status: 500 }
+    );
+  }
+
+
 }
 

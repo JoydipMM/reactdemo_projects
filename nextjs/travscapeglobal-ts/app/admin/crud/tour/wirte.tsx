@@ -5,7 +5,6 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 interface TourData {
     data:any,
     thumbImage: string | null;
-    //respons: string | null;
   }
 
 export const createNewTour = async ({ data, thumbImage }: TourData) => {

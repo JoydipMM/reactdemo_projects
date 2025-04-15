@@ -2,8 +2,13 @@
 import Image from "next/image";
 import { useTourForm } from "../../../contexts/TourFormContext";
 import { toast, ToastContainer } from "react-toastify";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 const page = () => {
+
+  const searchParam = useSearchParams();
+  const paramsTourId = searchParam.get("id");
 
   const {
     data,
@@ -12,15 +17,23 @@ const page = () => {
     error,
     thumbImage,
     fileInputRef,
+    fetchSingleTourData,
     setThumbImage,
     formDataEvent,
     createEvent,
   } = useTourForm();
+
+  useEffect(()=>{
+    if(paramsTourId){
+      fetchSingleTourData(paramsTourId);
+    }
+  },[paramsTourId])
   
   return (
     <div>
       <ToastContainer theme="dark" />
-      <h2>Add Tours</h2>
+      <h2>{paramsTourId ? `Update Tour` : `Add Tours`}</h2>
+      {paramsTourId}
       <div>
 
         <form onSubmit={(e)=>{
@@ -84,7 +97,7 @@ const page = () => {
               <button 
               disabled={isLoading}
               type="submit"
-              >{isLoading ? "...Loading": "Create"}</button>
+              >{isLoading ? "...Loading": `${paramsTourId ? "Update":"Create"}`}</button>
             </div>
 
             {error &&<div style={{color:"red", fontSize:"14px", fontWeight:"500"}}>{error}</div> }

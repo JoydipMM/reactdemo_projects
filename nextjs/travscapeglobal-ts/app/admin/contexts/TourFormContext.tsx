@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction, useRef } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { createNewTour } from "../crud/tour/wirte";
+import { singleTour } from "../crud/tour/read";
 
 interface TourFormContextType {
   data: Record<string, any>;
@@ -13,6 +14,7 @@ interface TourFormContextType {
   setThumbImage: Dispatch<SetStateAction<string | null>>;
   formDataEvent: (key: string, value: any) => void;
   createEvent: () => Promise<void>;
+  fetchSingleTourData: (id: string) => Promise<void>;
   fileInputRef : any;
 }
 
@@ -23,6 +25,9 @@ interface TourFormProviderProps {
 }
 
 export default function TourFormContextProvider({ children }: TourFormProviderProps) {
+
+  const TOAST_SUCCESS_ID = "tour-fetch-toast";
+  const TOAST_ERROR_ID = "tour-error-fetch-toast";
   const [data, setData] = useState<Record<string, any>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [isDone, setIsDone] = useState(false);
@@ -63,6 +68,34 @@ export default function TourFormContextProvider({ children }: TourFormProviderPr
     }
   };
 
+  const fetchSingleTourData = async (id:string) =>{
+    setError(null);
+    setIsLoading(true);
+    setIsDone(false);
+    try {
+      const respons = await singleTour(id);
+      //console.log(respons.data);
+
+      if(respons.data){
+        setData(respons.data);
+        setThumbImage(respons.data.thumbimage);
+          toast.success("tour data fetched for update", {
+            toastId: TOAST_SUCCESS_ID,
+          });
+      }else{
+          toast.error("Unable to fetch tour data for update", {
+            toastId: TOAST_ERROR_ID,
+          });
+      }
+
+      setIsLoading(false);
+
+
+    } catch (error: any) {
+        setError(error?.message || "An error occurred");
+    }
+  }
+
   return (
     <TourFormContext.Provider
       value={{
@@ -75,6 +108,7 @@ export default function TourFormContextProvider({ children }: TourFormProviderPr
         setThumbImage,
         formDataEvent,
         createEvent,
+        fetchSingleTourData,
       }}
     >
       {children}
