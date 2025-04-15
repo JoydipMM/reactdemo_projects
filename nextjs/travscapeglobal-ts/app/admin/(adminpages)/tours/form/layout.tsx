@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import TourFormContextProvider from "./contexts/TourFormContext";
+import TourFormContextProvider from "../../../contexts/TourFormContext";
 
 interface LayoutProps{
     children: ReactNode;

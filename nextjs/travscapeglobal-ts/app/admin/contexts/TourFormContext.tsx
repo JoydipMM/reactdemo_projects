@@ -1,10 +1,8 @@
 "use client";
 
-import { storage } from "@/lib/firebase/firebaseSetup";
-import axios from "axios";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction, useRef } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { createNewTour } from "../crud/tour/wirte";
 
 interface TourFormContextType {
   data: Record<string, any>;
@@ -44,32 +42,8 @@ export default function TourFormContextProvider({ children }: TourFormProviderPr
     setIsLoading(true);
     setIsDone(false);
     try {
-
-        if(!data?.title){
-            throw new Error("Title is required")
-        }
-        if(!data?.description){
-            throw new Error("description is required")
-        }
-        if(!data?.thumbImage){
-            throw new Error("Thumb Image is required")
-        }
-      //console.log("Form data ---- ", data);
-      const imageRef = ref(storage, `uploads/${thumbImage}`);
-      await uploadBytes(imageRef, data?.thumbImage);
-      const thumbURL = getDownloadURL(imageRef);
-
-      //console.log("firebase Image URL ---- ", await thumbURL);
-
+      const respons = await createNewTour({data:data, thumbImage:thumbImage});
       setIsDone(true);
-
-      const formData = new FormData();
-      formData.append('title', data.title);
-      formData.append('description', data.description);
-      formData.append('thumbimage', await thumbURL);
-
-      //console.log(formData);
-      const  respons = await axios.post("http://localhost:3000/api/tour", formData);
       if(respons.data.success){
           toast.success(respons.data.msg);
           setData({});
@@ -81,14 +55,12 @@ export default function TourFormContextProvider({ children }: TourFormProviderPr
           toast.error("Error");
       }
 
+      setIsLoading(false);
+
 
     } catch (error: any) {
         setError(error?.message || "An error occurred");
-    } 
-    // finally {
-    //   setIsLoading(false);
-      
-    // }
+    }
   };
 
   return (

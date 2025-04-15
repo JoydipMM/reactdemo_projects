@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useTourForm } from "./contexts/TourFormContext";
+import { useTourForm } from "../../../contexts/TourFormContext";
 import { toast, ToastContainer } from "react-toastify";
 
 const page = () => {
@@ -81,12 +81,14 @@ const page = () => {
             }
 
             <div>
-              <button type="submit">Create</button>
+              <button 
+              disabled={isLoading}
+              type="submit"
+              >{isLoading ? "...Loading": "Create"}</button>
             </div>
 
-            {error}
-
-
+            {error &&<div style={{color:"red", fontSize:"14px", fontWeight:"500"}}>{error}</div> }
+            {/* {isDone &&<div style={{color:"green", fontSize:"14px", fontWeight:"500"}}>New Tour Added</div> } */}
           </div>
         </form>
 
