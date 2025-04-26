@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction, useRef } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { createNewTour } from "../crud/tour/wirte";
+import { createNewTour, updateTour } from "../crud/tour/wirte";
 import { singleTour } from "../crud/tour/read";
 
 interface TourFormContextType {
@@ -14,6 +14,7 @@ interface TourFormContextType {
   setThumbImage: Dispatch<SetStateAction<string | null>>;
   formDataEvent: (key: string, value: any) => void;
   createEvent: () => Promise<void>;
+  updateEvent: (id: string) => Promise<void>;
   fetchSingleTourData: (id: string) => Promise<void>;
   fileInputRef : any;
 }
@@ -48,6 +49,33 @@ export default function TourFormContextProvider({ children }: TourFormProviderPr
     setIsDone(false);
     try {
       const respons = await createNewTour({data:data, thumbImage:thumbImage});
+      setIsDone(true);
+      if(respons.data.success){
+          toast.success(respons.data.msg);
+          setData({});
+          setThumbImage(null);
+          if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+          }
+      }else{
+          toast.error("Error");
+      }
+
+      setIsLoading(false);
+
+
+    } catch (error: any) {
+        setError(error?.message || "An error occurred");
+    }
+  };
+
+
+  const updateEvent = async (id:string) => {
+    setError(null);
+    setIsLoading(true);
+    setIsDone(false);
+    try {
+      const respons = await updateTour({data:data, thumbImage:thumbImage, id:id});
       setIsDone(true);
       if(respons.data.success){
           toast.success(respons.data.msg);
@@ -108,6 +136,7 @@ export default function TourFormContextProvider({ children }: TourFormProviderPr
         setThumbImage,
         formDataEvent,
         createEvent,
+        updateEvent,
         fetchSingleTourData,
       }}
     >

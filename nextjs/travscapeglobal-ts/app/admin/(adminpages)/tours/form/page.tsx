@@ -21,6 +21,7 @@ const page = () => {
     setThumbImage,
     formDataEvent,
     createEvent,
+    updateEvent,
   } = useTourForm();
 
   useEffect(()=>{
@@ -38,7 +39,11 @@ const page = () => {
 
         <form onSubmit={(e)=>{
           e.preventDefault();
+          if(!paramsTourId){
           createEvent();
+          }else{
+            updateEvent(paramsTourId);
+          }
           }}>
           <div>
 
@@ -83,7 +88,7 @@ const page = () => {
                   formDataEvent('thumbImage', file);
                 }
               }
-              required
+              required = {!paramsTourId}
                />
             </div>
 

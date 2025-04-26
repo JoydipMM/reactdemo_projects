@@ -26,7 +26,7 @@ export const singleTour = async (id:string) => {
   try {
     const fetchData = await axios.get(`http://localhost:3000/api/tour?id=${id}`);
     const data = fetchData.data.tour;
-    //console.log(data);
+    console.log(data);
 
     return {
       data,
