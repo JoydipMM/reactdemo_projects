@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'; // Corrected import
 
 const continents = [
   { name: 'Africa', lat: 1.65, lon: 17.34 },
@@ -22,30 +22,20 @@ export default function App() {
   const [selectedContinent, setSelectedContinent] = useState(null);
 
   useEffect(() => {
-    let scene, camera, renderer, controls;
-  let markerObjects = [];
-  let earth;
-
-  const initialize = () => {
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 3;
 
-    renderer = new THREE.WebGLRenderer({ antialias: true });
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    const markerObjects = [];
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    mountRef.current.appendChild(renderer.domElement);
 
-    if (mountRef.current) {
-      mountRef.current.innerHTML = ''; // ✅ Clear any previous canvas
-      mountRef.current.appendChild(renderer.domElement);
-    }
-
-    controls = new OrbitControls(camera, renderer.domElement);
+    const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.enableZoom = false;
-
-    // Disable vertical rotation
-    //controls.minPolarAngle = Math.PI / 3;
-    //controls.maxPolarAngle = Math.PI / 3;
 
     const radius = 1;
     const earthGeometry = new THREE.SphereGeometry(radius, 64, 64);
@@ -54,11 +44,11 @@ export default function App() {
         'https://threejs.org/examples/textures/land_ocean_ice_cloud_2048.jpg'
       )
     });
-    earth = new THREE.Mesh(earthGeometry, earthMaterial);
+    const earth = new THREE.Mesh(earthGeometry, earthMaterial);
 
     const earthGroup = new THREE.Group();
     earthGroup.add(earth);
-    earthGroup.rotation.x = THREE.MathUtils.degToRad(23.5);
+    earthGroup.rotation.x = THREE.MathUtils.degToRad(23.5); // tilt
     scene.add(earthGroup);
     earthGroupRef.current = earthGroup;
 
@@ -91,126 +81,99 @@ export default function App() {
     });
 
     const onMouseMove = (event) => {
-      if (!renderer || !renderer.domElement) return;
       const bounds = renderer.domElement.getBoundingClientRect();
-      const mouse = new THREE.Vector2();
       mouse.x = ((event.clientX - bounds.left) / bounds.width) * 2 - 1;
       mouse.y = -((event.clientY - bounds.top) / bounds.height) * 2 + 1;
 
-      const raycaster = new THREE.Raycaster();
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObjects(markerObjects);
 
       if (intersects.length > 0) {
         const { name } = intersects[0].object.userData;
-        if (tooltipRef.current) {
-          tooltipRef.current.style.display = 'block';
-          tooltipRef.current.style.left = `${event.clientX + 10}px`;
-          tooltipRef.current.style.top = `${event.clientY + 10}px`;
-          tooltipRef.current.textContent = name;
-        }
+        tooltipRef.current.style.display = 'block';
+        tooltipRef.current.style.left = `${event.clientX + 10}px`;
+        tooltipRef.current.style.top = `${event.clientY + 10}px`;
+        tooltipRef.current.textContent = name;
       } else {
-        if (tooltipRef.current) {
-          tooltipRef.current.style.display = 'none';
-        }
+        tooltipRef.current.style.display = 'none';
       }
     };
 
-    if (renderer && renderer.domElement) {
-      renderer.domElement.addEventListener('mousemove', onMouseMove);
-    }
+    renderer.domElement.addEventListener('mousemove', onMouseMove);
 
     const handleResize = () => {
-      if (camera) {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-      }
-      if (renderer) {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      }
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
     };
     window.addEventListener('resize', handleResize);
 
     const animate = () => {
       requestAnimationFrame(animate);
-      if (earth) {
-        earth.rotation.y += 0.0005;
-      }
-      controls?.update();
+      earth.rotation.y += 0.0005;
+      controls.update();
       renderer.render(scene, camera);
     };
     animate();
 
-    // Cleanup function
     return () => {
       window.removeEventListener('resize', handleResize);
-      if (renderer?.domElement) {
-        renderer.domElement.removeEventListener('mousemove', onMouseMove);
-      }
-      if (mountRef.current && renderer?.domElement) {
-        mountRef.current.removeChild(renderer.domElement);
-      }
-      controls?.dispose();
-      renderer?.dispose();
-      markerObjects = [];
-      scene?.clear();
-      markerMapRef.current.clear();
-      earthGroupRef.current = null;
+      renderer.dispose();
     };
-  };
-
-  const cleanup = initialize();
-  return cleanup;
   }, []);
 
   // 🌍 Rotate globe to selected continent
   useEffect(() => {
     if (!selectedContinent || !earthGroupRef.current) return;
 
-  const earthGroup = earthGroupRef.current;
-  const { lat, lon } = selectedContinent;
-  const radius = 1;
+    const earthGroup = earthGroupRef.current;
+    const { lat, lon } = selectedContinent;
+  
+    const radius = 1;
+  
+    // Convert lat/lon to 3D position on sphere
+    const phi = (90 - lat) * (Math.PI / 180);
+    const theta = (lon + 180) * (Math.PI / 180);
+    const targetPos = new THREE.Vector3(
+      -radius * Math.sin(phi) * Math.cos(theta),
+      radius * Math.cos(phi),
+      radius * Math.sin(phi) * Math.sin(theta)
+    );
+  
+    // Create a dummy object at the target position
+    const dummy = new THREE.Object3D();
+    dummy.position.set(0, 0, 0); // globe center
+    dummy.lookAt(targetPos);     // this aligns the object to point to that marker
+  
+    const startQuat = earthGroup.quaternion.clone();
+    dummy.lookAt(targetPos);
+    const targetQuat = dummy.quaternion.clone();
 
-  const phi = (90 - lat) * (Math.PI / 180);
-  const theta = (lon + 180) * (Math.PI / 180);
-  const targetPos = new THREE.Vector3(
-    -radius * Math.sin(phi) * Math.cos(theta),
-    radius * Math.cos(phi),
-    radius * Math.sin(phi) * Math.sin(theta)
-  );
+    let frame = 0;
+    const duration = 60;
 
-  // Calculate quaternion that rotates that position to face the camera (0, 0, 1)
-  const dummy = new THREE.Object3D();
-  dummy.position.set(0, 0, 0);
-  dummy.lookAt(targetPos);
+    const animateRotation = () => {
+      frame++;
+      const t = frame / duration;
+      const easedT = t * (2 - t); // ease-out easing
 
-  const startQuat = earthGroup.quaternion.clone();
-  const targetQuat = dummy.quaternion.clone();
+      // Use slerp instance method
+      earthGroup.quaternion.copy(startQuat).slerp(targetQuat, easedT);
 
-  let frame = 0;
-  const duration = 60;
-
-  const animateRotation = () => {
-    frame++;
-    const t = frame / duration;
-    const easedT = t * (2 - t); // ease-out easing
-
-    earthGroup.quaternion.copy(startQuat).slerp(targetQuat, easedT);
-
-    if (frame < duration) {
-      requestAnimationFrame(animateRotation);
-    }
-  };
-
-  animateRotation();
+      if (frame < duration) {
+        requestAnimationFrame(animateRotation);
+      }
+    };
+  
+    animateRotation();
   }, [selectedContinent]);
 
   return (
     <>
       <div style={{ display: 'flex', width: '100%' }}>
-        <div style={{ width: '300px', padding: '10px', position: 'fixed', top: '0px', left: '0px', zIndex: 2, pointerEvents: 'auto' }}>
+        <div style={{ width: '300px', padding: '10px', position: 'absolute', top: '0px', left: '0px', zIndex: 2, pointerEvents: 'auto' }}>
           <h4 style={{ color: 'white' }}>
-            Continents {selectedContinent?.name ? `- ${selectedContinent.name}` : ''}
+          Continents {selectedContinent?.name ? `- ${selectedContinent.name}` : ''}
           </h4>
           <ul>
             {continents.map((continent) => (
@@ -266,4 +229,3 @@ export default function App() {
     </>
   );
 }
-

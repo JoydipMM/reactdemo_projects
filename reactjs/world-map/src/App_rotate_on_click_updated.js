@@ -43,10 +43,6 @@ export default function App() {
     controls.enableDamping = true;
     controls.enableZoom = false;
 
-    // Disable vertical rotation
-    //controls.minPolarAngle = Math.PI / 3;
-    //controls.maxPolarAngle = Math.PI / 3;
-
     const radius = 1;
     const earthGeometry = new THREE.SphereGeometry(radius, 64, 64);
     const earthMaterial = new THREE.MeshPhongMaterial({
@@ -167,42 +163,49 @@ export default function App() {
   useEffect(() => {
     if (!selectedContinent || !earthGroupRef.current) return;
 
-  const earthGroup = earthGroupRef.current;
-  const { lat, lon } = selectedContinent;
-  const radius = 1;
+    const earthGroup = earthGroupRef.current;
+    const { lat, lon } = selectedContinent;
 
-  const phi = (90 - lat) * (Math.PI / 180);
-  const theta = (lon + 180) * (Math.PI / 180);
-  const targetPos = new THREE.Vector3(
-    -radius * Math.sin(phi) * Math.cos(theta),
-    radius * Math.cos(phi),
-    radius * Math.sin(phi) * Math.sin(theta)
-  );
+    const radius = 1;
 
-  // Calculate quaternion that rotates that position to face the camera (0, 0, 1)
-  const dummy = new THREE.Object3D();
-  dummy.position.set(0, 0, 0);
-  dummy.lookAt(targetPos);
+    // Convert lat/lon to 3D position on sphere
+    const phi = (90 - lat) * (Math.PI / 180);
+    const theta = (lon + 180) * (Math.PI / 180);
+    const targetPos = new THREE.Vector3(
+      -radius * Math.sin(phi) * Math.cos(theta),
+      radius * Math.cos(phi),
+      radius * Math.sin(phi) * Math.sin(theta)
+    );
 
-  const startQuat = earthGroup.quaternion.clone();
-  const targetQuat = dummy.quaternion.clone();
+    // Create a dummy object at the target position
+    const dummy = new THREE.Object3D();
+    dummy.position.set(0, 0, 0); // globe center
+    dummy.lookAt(targetPos);     // this aligns the object to point to that marker
 
-  let frame = 0;
-  const duration = 60;
+    const startQuat = earthGroup.quaternion.clone();
+    dummy.lookAt(targetPos);
+    const targetQuat = dummy.quaternion.clone();
 
-  const animateRotation = () => {
-    frame++;
-    const t = frame / duration;
-    const easedT = t * (2 - t); // ease-out easing
+    let frame = 0;
+    const duration = 60;
 
-    earthGroup.quaternion.copy(startQuat).slerp(targetQuat, easedT);
+    const animateRotation = () => {
+      frame++;
+      const t = frame / duration;
+      const easedT = t * (2 - t); // ease-out easing
 
-    if (frame < duration) {
-      requestAnimationFrame(animateRotation);
-    }
-  };
+      // Use slerp instance method
+      if (earthGroupRef.current) {
+        earthGroupRef.current.quaternion.copy(startQuat).slerp(targetQuat, easedT);
+      }
 
-  animateRotation();
+
+      if (frame < duration) {
+        requestAnimationFrame(animateRotation);
+      }
+    };
+
+    animateRotation();
   }, [selectedContinent]);
 
   return (
