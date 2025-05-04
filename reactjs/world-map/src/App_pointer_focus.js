@@ -41,7 +41,6 @@ export default function App() {
       controls.enableDamping = true;
       controls.enableZoom = false;
 
-
       const radius = 1;
       const earthGeometry = new THREE.SphereGeometry(radius, 64, 64);
       const earthMaterial = new THREE.MeshPhongMaterial({

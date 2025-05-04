@@ -267,3 +267,188 @@ efgh
 // console.log(colors); // ["red", "green", "blue"]
 
 // "Hello".split(""); // ["H", "e", "l", "l", "o"]
+
+
+// const score = 400;
+// console.log(score); // 400
+
+// const scoreNumber = new Number(score);
+// console.log(scoreNumber); // [Number: 400]
+
+// let num = 5.6789;
+
+// num.toFixed(2);      // "5.68" (returns string with 2 decimal places)
+// num.toString();      // "5.6789" (string format)
+// Number.isInteger(num); // false
+// let num = 5.6789;
+// console.log(num.toFixed(3))
+
+// Number("123");     // 123
+// parseInt("123px"); // 123
+// parseFloat("3.14"); // 3.14
+// +"5.5";            // 5.5 (unary plus)
+
+// console.log(parseInt("123px"));
+//console.log(typeof +"5.5");
+
+
+// let x = 10;
+// let y = 3;
+
+// x + y;  // 13
+// x - y;  // 7
+// x * y;  // 30
+// x / y;  // 3.333...
+// x % y;  // 1 (remainder)
+// x ** y; // 1000 (exponentiation)
+
+
+// parseInt("123");        // 123
+// parseInt("123abc");     // 123 (stops at "a")
+// parseInt("abc123");     // NaN (starts with non-digit)
+
+// parseInt("10", 10);     // 10 (decimal)
+// parseInt("10", 2);      // 2  (binary)
+// parseInt("F0", 16);     // 255 (hex)
+
+// parseInt("08");    // 8 (OK in modern JS, but older versions treated this as octal!)
+// parseInt("08", 10); // 8
+// console.log(parseInt("08", 10));
+
+// let price = "99 dollars";
+// parseInt(price);   // 99
+// parseInt("99 dollars"); // 99
+// parseInt("$99"); // NaN
+// console.log(parseInt("$99"));
+
+// let price = "$99.99";
+// let digits = price.match(/\d+/); // extracts "99"
+// let number = parseInt(digits[0]);
+// console.log(number); // 99
+
+// let price = "$99.99";
+// let stringReplace = price.replace("$", ""); // 99.99 [type string]
+// let toNumber = Number(stringReplace); // [Number: 99.99]
+// console.log(toNumber); // 99.99
+// let onlyNumber = parseInt(stringReplace);
+// console.log(onlyNumber); // 99
+
+// let price = "$99.99";
+// let number = parseInt(price.replace(/[^\d.]/g, ""));
+// console.log(number); // 99
+
+// function parsePrice(priceString) {
+//     if (typeof priceString !== "string") return NaN;
+
+//     // Remove everything except digits and decimal point
+//     let cleaned = priceString.replace(/[^\d.]/g, "");
+
+//     // Convert to float or integer as needed
+//     return cleaned.includes('.') ? parseFloat(cleaned) : parseInt(cleaned);
+// }
+
+// console.log(parsePrice("$5.99"));      // 5.99
+// console.log(parsePrice("Rs. 1200"));   // 1200
+// console.log(parsePrice("€49.95"));     // 49.95
+// console.log(parsePrice("Free!"));      // NaN
+// console.log(parsePrice(123));          // NaN (not a string)
+
+
+// parseFloat("3.14");      // 3.14
+// parseFloat("99.9abc");   // 99.9
+// parseFloat("abc123");    // NaN
+// parseFloat("-10.5");     // -10.5
+
+// let price = "$45.75";
+// let cleaned = price.replace(/[^0-9.]/g, "");  // "45.75"
+// let number = parseFloat(cleaned);            // 45.75
+
+
+// let num = 1234567.89;
+// console.log(num.toLocaleString()); // "12,34,567.89" (default locale)
+
+// let num = "1234567.89";
+// num.toLocaleString("de-DE"); // "1.234.567,89" (German format)
+// num.toLocaleString("hi-IN"); // "12,34,567.89" (Indian format)
+
+// let num = "1234567.89";
+// num.toLocaleString("de-DE") // 1234567.89
+
+//let num = 1234567.89;
+// num.toLocaleString("en-US", { style: "currency", currency: "USD" }); // "$1,234,567.89"
+// num.toLocaleString("ja-JP", { style: "currency", currency: "JPY" }); // "￥1,234,568"
+// console.log(num.toLocaleString("hi-IN", { style: "currency", currency: "INR" })); // ₹12,34,567.89
+
+// num.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) // 1,234,567.89
+// num.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) // 1,234,567.9
+// console.log(num.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })) // 1,234,567.89
+// console.log(num.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })) // 1,234,567.9
+
+
+// let now = new Date();
+// console.log(now.toLocaleString()); // "2/5/2025, 10:52:53 pm" (in en-US)
+
+// let date = new Date();
+// console.log(date.toLocaleString("hi-IN")); // "2/5/2025, 10:52:54 pm"
+// console.log(date.toLocaleString("en-US")); // "5/2/2025, 10:52:54 PM"
+// console.log(date.toLocaleString("fr-FR")); // "02/05/2025 22:52:54"
+// console.log(date.toLocaleString("ja-JP")); // "2025/5/2 22:52:54"
+
+// let date = new Date();
+// console.log(date.toLocaleDateString("en-GB")); // "01/05/2025"
+
+// let date = new Date();
+// console.log(date.toLocaleTimeString("en-US")); // "10:30:45 AM"
+
+// let date = new Date();
+// let detailTime = date.toLocaleString("en-US", {
+//     weekday: "long",    // "Thursday"
+//     year: "numeric",    // "2025"
+//     month: "long",      // "May"
+//     day: "numeric",     // "1"
+//     hour: "2-digit",
+//     minute: "2-digit",
+//     second: "2-digit"
+//   });
+// console.log(detailTime); // "Thursday, May 1, 2025, 10:30:45 AM"
+
+// let num = 1234455;
+// console.log(typeof num.toString())
+
+// let num = 123;
+// console.log(num.toString()); // "123"
+
+// let num = 255;
+// num.toString(2);   // "11111111" (binary)
+// num.toString(8);   // "377"      (octal)
+// num.toString(16);  // "ff"       (hexadecimal)
+// [1, 2, 3].toString(); // "1,2,3"
+
+// console.log(new Date()); // 2025-05-02T17:35:28.488Z
+// console.log(new Date().toString()); // Fri May 02 2025 23:05:28 GMT+0530 (India Standard Time)
+
+// let userId = 1001;
+// let idAsString = "User_" + userId.toString();
+// console.log(idAsString); // "User_1001"
+
+// let num = 42;
+// console.log(num.valueOf()); // 42 (same as num)
+
+// let str = new String("hello");
+// console.log(str.valueOf()); // "hello"
+
+// let date = new Date("2025-01-01");
+// console.log(date.valueOf()); // 1735689600000 (timestamp in ms)
+
+// let user = {
+//     points: 100,
+//     valueOf() {
+//         return this.points;
+//     }   
+// };
+  
+// console.log(user + 50); // 150
+
+let num = 42;
+console.log(num.toFixed(2));
+
