@@ -449,6 +449,24 @@ efgh
   
 // console.log(user + 50); // 150
 
-let num = 42;
-console.log(num.toFixed(2));
+// let num = 42;
+// console.log(num.toFixed(2));
+
+//console.log(Math.random()) // 0.5150337012024668
+//Math.random() // 0.5150337012024668
+
+// let random0to10 = Math.random() * 10;
+// console.log(random0to10) // 6.255676552516052
+
+
+// let randomInt0to9 = Math.floor(Math.random() * 10);
+// console.log(randomInt0to9)// 0 // 8 // 5
+
+
+// function getRandomInt(min, max) {
+//     return Math.floor(Math.random() * (max - min + 1)) + min;
+//   }
+  
+// let randomInt = getRandomInt(5, 15); // e.g., between 5 and 15
+// console.log(randomInt)
 
