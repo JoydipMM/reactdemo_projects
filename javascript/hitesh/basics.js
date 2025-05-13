@@ -508,8 +508,14 @@ efgh
 // console.log(fruits); // ["apple", "kiwi"]
 // console.log(removed); // ["banana", "mango"]
 
-let fruits = ["apple", "banana", "mango"];
-fruits.splice(1, 2, "grape", "peach"); // replace 2 items
+// let fruits = ["apple", "banana", "mango"];
+// fruits.splice(1, 2, "grape", "peach"); // replace 2 items
 
-console.log(fruits); // ["apple", "grape", "peach"]
+// console.log(fruits); // ["apple", "grape", "peach"]
+
+const arry01 = ["name01", "name02", "name03",];
+const arry02 = ["name04", "name05", "name06"];
+
+//arry01.push(arry02);
+console.log(arry01.push(arry01))
 
