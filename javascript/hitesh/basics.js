@@ -470,3 +470,46 @@ efgh
 // let randomInt = getRandomInt(5, 15); // e.g., between 5 and 15
 // console.log(randomInt)
 
+
+// let ary = ["name01", "name02", "name03", "name04", "name05", "name06"];
+
+// let arySlice = ary.slice(1,4) 
+// console.log("Slice Array", arySlice) // ["name02", "name03", "name04"]
+// console.log("Actual Array", ary) // ["name01", "name02", "name03", "name04", "name05", "name06"]
+
+// let arySplice = ary.splice(1,4);
+// console.log("Splice Array", arySplice) // ["name02", "name03", "name04"]
+// console.log("Actual Array", ary) // [ 'name01', 'name06' ]
+
+// console.log(ary.join()); // name01,name02,name03,name04,name05,name06
+
+// console.log(typeof ary.join()); // string
+
+// console.log(ary.slice(1,3)); //[ 'name02', 'name03' ]
+
+// console.log(ary.slice(3)); //[ 'name04', 'name05', 'name06' ]
+
+// console.log(ary.slice(-2)); // [ 'name05', 'name06' ]
+
+// console.log(ary.slice(-5, -2)); // [ 'name02', 'name03', 'name04' ]
+
+// console.log(ary.slice(-5, -3)); // [ 'name02', 'name03' ]
+
+// console.log(ary.slice(-5, -1)); // [ 'name02', 'name03', 'name04', 'name05' ]
+
+
+// let fruits = ["apple", "banana", "mango"];
+// fruits.splice(1, 0, "orange", "kiwi");
+// console.log(fruits); // ["apple", "orange", "kiwi", "banana", "mango"]
+
+// let fruits = ["apple", "banana", "mango", "kiwi"];
+// let removed = fruits.splice(1, 2); // remove 2 items from index 1
+
+// console.log(fruits); // ["apple", "kiwi"]
+// console.log(removed); // ["banana", "mango"]
+
+let fruits = ["apple", "banana", "mango"];
+fruits.splice(1, 2, "grape", "peach"); // replace 2 items
+
+console.log(fruits); // ["apple", "grape", "peach"]
+
