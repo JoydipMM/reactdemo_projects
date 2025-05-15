@@ -513,9 +513,38 @@ efgh
 
 // console.log(fruits); // ["apple", "grape", "peach"]
 
-const arry01 = ["name01", "name02", "name03",];
-const arry02 = ["name04", "name05", "name06"];
+// const arry01 = ["name01", "name02", "name03",];
+// const arry02 = ["name04", "name05", "name06"];
+// const arry03 = ["name07", "name08", "name09"];
 
-//arry01.push(arry02);
-console.log(arry01.push(arry01))
+// arry01.push(arry02)
+// console.log(arry01) // [ 'name01', 'name02', 'name03', [ 'name04', 'name05', 'name06' ] ]
+
+// arry01.concat(arry02)
+// console.log(arry01) // [ 'name01', 'name02', 'name03', [ 'name04', 'name05', 'name06' ] ]
+
+// const ary4 = arry01.concat(arry02, arry03)
+// console.log(ary4) // [ 'name01', 'name02', 'name03', 'name04', 'name05', 'name06', 'name07', 'name08','name09' ]
+// option 2
+// const ary5 = [...arry01, ...arry02, ...arry03];
+// console.log(ary5) // [ 'name01', 'name02', 'name03', 'name04', 'name05', 'name06', 'name07', 'name08','name09' ]
+
+
+// const arry01 = ["name01", "name02", "name03",];
+// const arry02 = ["name04", "name05", "name06"];
+// const arry03 = ["name07", "name08", "name09"];
+
+//check is array or not
+// console.log(Array.isArray(arry01)); // true
+// console.log(Array.isArray("javascript")); // false
+
+// convert to array
+// console.log(Array.from("javascript")); // [ 'j', 'a', 'v', 'a','s', 'c', 'r', 'i','p', 't' ]
+// console.log(Array.from({ name: "java" })); // []
+
+// const score1 = 100;
+// const score2 = 200;
+// const score3 = 300;
+
+// console.log(Array.of(score1, score2, score3)); // [ 100, 200, 300 ]
 
