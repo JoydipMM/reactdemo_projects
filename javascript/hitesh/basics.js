@@ -548,3 +548,310 @@ efgh
 
 // console.log(Array.of(score1, score2, score3)); // [ 100, 200, 300 ]
 
+// 1.Object Literal
+// const person = {
+//   name: "Alice",
+//   "full name": "Alice Gomes",
+//   age: 30,
+//   isStudent: false
+// };
+// // 1.Object Literal access
+// console.log(person.name); // Alice
+// console.log(person["name"]); // Alice
+// console.log(person["full name"]); // Alice Gomes
+
+//const newSymbol = Symbol("sym_001");
+
+// const person = {
+//   name: "Alice",
+//   "full name": "Alice Gomes",
+//   age: 30,
+//   [newSymbol]: "symbol 0001",
+//   isStudent: false
+// };
+
+// 1.Object Literal access
+/*console.log(person)
+{
+  name: 'Alice',
+  'full name': 'Alice Gomes',
+  age: 30,
+  isStudent: false,
+  [Symbol(sym_001)]: 'symbol 0001'
+}
+*/
+// console.log(person.name); // Alice
+// console.log(person["name"]); // Alice
+// console.log(person["full name"]); // Alice Gomes
+// console.log(person[newSymbol]); // symbol 0001
+// console.log(Object.keys(person)); // [ 'name', 'full name', 'age', 'isStudent' ] note symbol key name will not show here
+
+
+// update object key value
+// person.name = "joy";
+// console.log(person.name); // joy
+
+
+// const person = {
+//   name: "Alice",
+//   "full name": "Alice Gomes",
+//   age: 30,
+//   isStudent: false
+// };
+
+// person.greeting = function(){
+//   console.log("greeting function called"); 
+//   return("greeting function return value");
+// }
+
+
+//console.log(person.greeting());
+// without return
+// greeting function called
+//undefined
+
+// with return
+// greeting function called
+//greeting function return value
+
+// person.nameShow = function(){
+//   return(`Hello, ${this.name}`);
+// }
+// console.log(person.nameShow()); // Hello, Alice
+
+
+// person.nameChange = function(nameparameter){
+//   person.name = nameparameter;
+//   return(`Hello, ${this.name}`);
+// }
+// console.log(person.nameChange("Andrew Symon")); // Hello, Andrew Symon
+
+// singleton object declaration
+//const singletonObject = new Object();
+
+// const person = {
+//   firstName: "Alice",
+//   "full name": "Alice Gomes",
+//   age: 30,
+//   isStudent: false
+// };
+
+// const user = {
+//   email: "email@gmail.com",
+//   fullname: {
+//     firstname: "Rahul",
+//     lastName: "Bose",
+//   }
+// }
+
+// console.log(user);
+// /*
+// {
+//   email: 'email@gmail.com',
+//   fullname: { firstname: 'Rahul', lastName: 'Bose' }
+// }
+// */
+// console.log(user.fullname); // { firstname: 'Rahul', lastName: 'Bose' }
+
+// user.fullname.firstname = person.firstName;
+
+// console.log(user.fullname) // { firstname: 'Alice', lastName: 'Bose' }
+
+// const person = {
+//   firstName: "Alice",
+//   "full name": "Alice Gomes",
+//   age: 30,
+//   isStudent: false
+// };
+
+// const user = {
+//   email: "email@gmail.com",
+//   fullname: {
+//     firstname: "Rahul",
+//     lastName: "Bose",
+//   }
+// }
+// combine Multiple Object
+//const combinedObjectData = Object.assign({}, person, user);
+// Object.assign(target, remaining are source);
+
+//console.log(combinedObjectData);
+/*
+{
+  firstName: 'Alice',
+  'full name': 'Alice Gomes',
+  age: 30,
+  isStudent: false,
+  email: 'email@gmail.com',
+  fullname: { firstname: 'Rahul', lastName: 'Bose' }
+}
+*/
+
+//console.log(person);
+
+// combined objects with spread oparator
+// const combinedObjectDatatype2 = { ...user, ...person };
+// console.log(combinedObjectDatatype2);
+/*/
+{
+  email: 'email@gmail.com',
+  fullname: { firstname: 'Rahul', lastName: 'Bose' },
+  firstName: 'Alice',
+  'full name': 'Alice Gomes',
+  age: 30,
+  isStudent: false
+}
+*/
+
+
+// const users = [
+//   { id:1, name:"A" },
+//   { id:2, name:"B" },
+//   { id:3, name:"c" },
+// ]
+
+// console.log(users[1].name); // B
+
+// const person = {
+//   firstName: "Alice",
+//   "full name": "Alice Gomes",
+//   age: 30,
+//   isStudent: false
+// };
+// console.log( person.hasOwnProperty("firstName")); // true
+// console.log( person.hasOwnProperty("email")); // false
+
+// const person = {
+//   firstName: "Alice",
+//   "full name": "Alice Gomes",
+//   age: 30,
+//   isStudent: false
+// };
+// const {firstName, age, isStudent:studenAccess, "full name": fullName } = person;
+// console.log(fullName); // Alice Gomes
+// console.log(studenAccess); // false
+
+
+// const singletonObject = new Object();
+
+// singletonObject.firstName = "Rana";
+// singletonObject.lastName = "Roy";
+// singletonObject.email = "rroy@gmail.com";
+
+// console.log(singletonObject); // { firstName: 'Rana', lastName: 'Roy', email: 'rroy@gmail.com' }
+
+
+// function Person(name, age, isStudent) {
+//   this.name = name;
+//   this.age = age;
+//   this.isStudent = isStudent;
+// }
+
+// const person = new Person("Alice", 30, false);
+// console.log(person); // Person { name: 'Alice', age: 30, isStudent: false }
+// console.log(typeof person); // object
+
+// class Person {
+//   constructor(name, age, isStudent) {
+//     this.name = name;
+//     this.age = age;
+//     this.isStudent = isStudent;
+//   }
+// }
+
+// const person = new Person("Alice", 30, false);
+// console.log(person); // Person { name: 'Alice', age: 30, isStudent: false }
+// console.log(typeof person); // object
+
+
+// function greet() {
+//   console.log("Hello!");
+// }
+
+// greet(); // Output: Hello!
+
+// function greet(name) {
+//   console.log("Hello, " + name + "!");
+// }
+
+// greet("Alice"); // Output: Hello, Alice!
+
+// function add(a, b) {
+//   return a + b;
+// }
+
+// const sum = add(3, 4);
+// console.log(sum); // Output: 7
+
+// const multiply = function(x, y) {
+//   return x * y;
+// };
+
+// console.log(multiply(2, 5)); // Output: 10
+
+// const multiply = function(x, y) {
+//   return x * y;
+// };
+
+// console.log(multiply(2, 5)); // Output: 10
+
+
+// const subtract = (a, b) => a - b;
+// console.log(subtract(10, 4)); // Output: 6
+
+// setTimeout(function() {
+//   console.log("This runs after 1 second");
+// }, 1000);
+
+
+// function cartItem (...items) {
+//   console.log(items);
+// }
+// cartItem(50,100,200,400,500) // [ 50, 100, 200, 400, 500 ]
+
+// function cartItemTwo (item1, item2, ...items) {
+//   console.log(items);
+// }
+// cartItemTwo(50,100,200,400,500) // [ 200, 400, 500 ]
+
+
+
+const person = {
+  firstName: "Alice",
+  "full name": "Alice Gomes",
+  age: 30,
+  isStudent: false
+};
+
+function presonFunction(anyData){
+  console.log(anyData)
+}
+
+presonFunction(person)
+/* result: 
+{
+  firstName: 'Alice',
+  'full name': 'Alice Gomes',
+  age: 30,
+  isStudent: false
+}
+*/
+
+
+presonFunction({
+  username: "sdfsdfsdfs",
+  email:"dfsdfsdfsd#fgdfgdfg"
+})
+
+presonFunction()
+/*
+result: ------------
+{ username: 'sdfsdfsdfs', email: 'dfsdfsdfsd#fgdfgdfg' }
+undefined
+*/
+
+
+
+
+
+ 
