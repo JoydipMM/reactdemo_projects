@@ -816,18 +816,18 @@ efgh
 
 
 
-const person = {
-  firstName: "Alice",
-  "full name": "Alice Gomes",
-  age: 30,
-  isStudent: false
-};
+// const person = {
+//   firstName: "Alice",
+//   "full name": "Alice Gomes",
+//   age: 30,
+//   isStudent: false
+// };
 
-function presonFunction(anyData){
-  console.log(anyData)
-}
+// function presonFunction(anyData){
+//   console.log(anyData)
+// }
 
-presonFunction(person)
+// presonFunction(person)
 /* result: 
 {
   firstName: 'Alice',
@@ -838,17 +838,80 @@ presonFunction(person)
 */
 
 
-presonFunction({
-  username: "sdfsdfsdfs",
-  email:"dfsdfsdfsd#fgdfgdfg"
-})
+// presonFunction({
+//   username: "sdfsdfsdfs",
+//   email:"dfsdfsdfsd#fgdfgdfg"
+// })
 
-presonFunction()
+// presonFunction()
 /*
 result: ------------
 { username: 'sdfsdfsdfs', email: 'dfsdfsdfsd#fgdfgdfg' }
 undefined
 */
+
+// funcOne() // function 01
+// function funcOne(){
+//   console.log("function 01");
+// }
+
+// funcTwo() // ReferenceError: Cannot access 'funcTwo' before initialization
+// const funcTwo = function (){
+//   console.log("function 02");
+// }
+
+
+// const obj01 = {
+//   name: "Jatin",
+//   obj01fnc: function (){
+//     return (`obj01fnc function called ${this.name}`);
+//   }
+// }
+
+// console.log(obj01.obj01fnc());
+
+// (function(){})()
+
+// (function() {
+//   console.log("This runs immediately!");
+// })();
+
+// (() => {
+//   console.log("Arrow function IIFE");
+// })();
+
+// (function(name) {
+//   console.log("Hello, " + name);
+// })("Alice"); // Hello, Alice
+
+// (function() {
+//   const secret = "hidden";
+//   console.log(secret); // hidden
+// })();
+
+// console.log(secret); // ❌ Error: secret is not defined
+
+
+const counter = (function() {
+  let count = 0;
+
+  return {
+    increment() {
+      count++;
+      return count;
+    },
+    reset() {
+      count = 0;
+    }
+  };
+})();
+
+console.log(counter.increment()); // 1
+console.log(counter.increment()); // 2
+counter.reset();
+console.log(counter.increment()); // 1
+
+
 
 
 
