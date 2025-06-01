@@ -892,26 +892,102 @@ undefined
 // console.log(secret); // ❌ Error: secret is not defined
 
 
-const counter = (function() {
-  let count = 0;
+// const counter = (function() {
+//   let count = 0;
 
-  return {
-    increment() {
-      count++;
-      return count;
-    },
-    reset() {
-      count = 0;
-    }
-  };
-})();
+//   return {
+//     increment() {
+//       count++;
+//       return count;
+//     },
+//     reset() {
+//       count = 0;
+//     }
+//   };
+// })();
 
-console.log(counter.increment()); // 1
-console.log(counter.increment()); // 2
-counter.reset();
-console.log(counter.increment()); // 1
+// console.log(counter.increment()); // 1
+// console.log(counter.increment()); // 2
+// counter.reset();
+// console.log(counter.increment()); // 1
 
 
+// for of loop
+// const arr = [1,2,3,4,5,6]
+// for (const ar of arr) {
+//   console.log(ar);
+// }
+/*
+1
+2
+3
+4
+5
+6
+*/
+
+// const text = "javascript";
+// for (const element of text) {
+//   console.log(element);
+// }
+/*
+j
+a
+v
+a
+s
+c
+r
+i
+p
+t
+*/
+
+const maploop = new Map()
+maploop.set("name", "Raju")
+maploop.set("email", "raju@gmail.com")
+maploop.set("email", "raju@gmail.com")
+
+//console.log(maploop); // Map(2) { 'name' => 'Raju', 'email' => 'raju@gmail.com' }
+
+for (const element of maploop) {
+  //console.log(element); 
+}
+/*
+[ 'name', 'Raju' ]
+[ 'email', 'raju@gmail.com' ]
+*/
+
+for (const [key, value] of maploop) {
+  //console.log(key); 
+}
+// name
+// email
+
+for (const [key, value] of maploop) {
+  //console.log(value); 
+}
+// Raju
+// raju@gmail.com
+
+// const ob1 = {
+//   'name': 'Raju',
+//   'email': 'raju@gmail.com'
+// }
+
+// for (const [key, value] of ob1) {
+//   console.log(key + "->" +value); // TypeError: ob1 is not iterable
+// }
+
+
+const ob2 = {
+  'name': 'Raju',
+  'email': 'raju@gmail.com'
+}
+
+for (const key in ob2) {
+  console.log(key)
+}
 
 
 
