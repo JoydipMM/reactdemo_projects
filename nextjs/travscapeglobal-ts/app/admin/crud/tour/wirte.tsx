@@ -51,9 +51,9 @@ export const updateTour = async ({ data, thumbImage, id }: UpdateTourData) => {
         throw new Error("description is required")
     }
     console.log(data);
-    const imageRef = ref(storage, `uploads/${thumbImage}`);
-    await uploadBytes(imageRef, data?.thumbImage);
-    const thumbURL = getDownloadURL(imageRef);
+    //const imageRef = ref(storage, `uploads/${thumbImage}`);
+    //await uploadBytes(imageRef, data?.thumbImage);
+    //const thumbURL = getDownloadURL(imageRef);
 
     //console.log("firebase Image URL ---- ", await thumbURL);
 
@@ -61,10 +61,11 @@ export const updateTour = async ({ data, thumbImage, id }: UpdateTourData) => {
     formData.append("_id", data._id);
     formData.append('title', data.title);
     formData.append('description', data.description);
-    formData.append('thumbimage', await thumbURL);
+    //formData.append('thumbimage', await thumbURL);
 
-    //console.log(formData);
+    console.log(formData);
     const  respons = await axios.put(`http://localhost:3000/api/tour?id=${data._id}`, formData);
+    console.log(respons);
 
     return respons;
 
