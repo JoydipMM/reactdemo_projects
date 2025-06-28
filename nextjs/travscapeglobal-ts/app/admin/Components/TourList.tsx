@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import TourDeleteButton from "./TourDeleteButton";
 
 const getData = async () =>{
     try {
@@ -18,10 +19,16 @@ const getData = async () =>{
     }
 }
 
-const TourList = async () => {
 
+
+const TourList = async () => {
     const {tours} = await getData();
     //console.log("data -------", tours);
+
+
+    const deleteTour = (id: string) => {
+        console.log(id);
+    }
   return (
     <div>
         {tours.map((tour:any, index:any)=>
@@ -30,6 +37,7 @@ const TourList = async () => {
             <p>{tour.description}</p>
             {typeof tour.thumbimage === "string" && tour.thumbimage.trim() !== "" && (<Image src={tour.thumbimage} width={100} height={100} alt="image" />)}
             <Link href={`/admin/tournew/${tour._id}`}>Update</Link>
+            <TourDeleteButton id={tour._id}/>
             </div>
             
         )}

@@ -7,8 +7,8 @@ export async function POST(req: Request, res: Response) {
         console.log("demo post test");
         await connectDB();
 
-        const { title, description, thumbimage } = await req.json();
-        await ToursModel.create({ title, description, thumbimage })
+        const { title, slug, description, thumbimage } = await req.json();
+        await ToursModel.create({ title, slug, description, thumbimage })
 
         return NextResponse.json({ message: "Data saved", success:true }, {status: 201}); 
         

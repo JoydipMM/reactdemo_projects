@@ -1,6 +1,5 @@
 "use client"
-
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "@/lib/firebase/firebaseSetup";
 import { toast, ToastContainer } from "react-toastify";
@@ -10,6 +9,7 @@ import Image from "next/image";
 
 const page = () => {
     const [data, setData] = useState<Record<string, any>>({});
+    const [slugtitle, setSlug] = useState<string>("");
     const router = useRouter();
     const [thumbImage, setThumbImage] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -28,6 +28,8 @@ const page = () => {
             toast.error("Title is required", {
                 toastId: TOAST_ERROR_ID,
             });
+            const slugTitle = data.title.trim().toLowerCase().replace(/\s+/g, '-');
+            console.log(slugTitle);
             return;
             //throw new Error("Title is required");
             
@@ -43,6 +45,9 @@ const page = () => {
         return;
         }
 
+        
+
+
         setIsLoading(true);
         const imageRef = ref(storage, `uploads/${thumbImage}`);
         await uploadBytes(imageRef, data?.thumbImage);
@@ -57,7 +62,7 @@ const page = () => {
                 headers:{
                     "Content-type": "application/json",
                 },
-                body:JSON.stringify({title:data.title , description:data.description, thumbimage:thumbURL }),
+                body:JSON.stringify({title:data.title, slug:slugtitle, description:data.description, thumbimage:thumbURL }),
             })
 
             if(createNewTour.ok){
@@ -86,6 +91,21 @@ const page = () => {
             });
         }
     }
+
+
+    useEffect(() => {
+  if (data.title) {
+    const generatedSlug = data.title
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9\-]/g, ''); // optional: remove special characters
+    setSlug(generatedSlug);
+    formDataEvent('slug', generatedSlug)
+  } else {
+    setSlug("");
+  }
+}, [data.title]);
   return (
     <div>
         <ToastContainer theme="dark" />
@@ -103,6 +123,13 @@ const page = () => {
             onChange={
                 (e)=>formDataEvent('title', e.target.value)
               }/>
+        </div>
+        <div>
+            <label>Slug</label>
+            <input type="text" 
+            value={slugtitle || ""}
+            disabled={true}
+            />
         </div>
         
         <div>
