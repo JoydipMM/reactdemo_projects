@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "@/lib/firebase/firebaseSetup";
 import { toast, ToastContainer } from "react-toastify";
@@ -13,8 +13,7 @@ const page = () => {
     const router = useRouter();
     const [thumbImage, setThumbImage] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-
-    // const {title, description} = data;
+    const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     const TOAST_SUCCESS_ID = "tour-fetch-toast";
     const TOAST_ERROR_ID = "tour-error-fetch-toast";
@@ -63,12 +62,17 @@ const page = () => {
 
             if(createNewTour.ok){
                 setIsLoading(false);
-
-
-
                 toast.success("Created", {
                     toastId: TOAST_SUCCESS_ID,
                 });
+
+                // ✅ Reset form fields
+                setData({});
+                setThumbImage(null);
+                if (fileInputRef.current) {
+                    fileInputRef.current.value = "";
+                }
+                
                 //router.push("/admin/tournew");
             }else{
                 toast.error("Error on create", {
@@ -94,20 +98,25 @@ const page = () => {
         }>
         <div>
             <label>Title</label>
-            <input type="text" onChange={
+            <input type="text" 
+            value={data.title || ""}
+            onChange={
                 (e)=>formDataEvent('title', e.target.value)
               }/>
         </div>
         
         <div>
             <label>Description</label>
-            <textarea onChange={
+            <textarea 
+            value={data.description || ""}
+            onChange={
                 (e)=>formDataEvent('description', e.target.value)
               }></textarea>
         </div>
         <div>
             <label>Image</label>
             <input
+            ref={fileInputRef}
             type="file"
             accept="image/*"
             onChange={
