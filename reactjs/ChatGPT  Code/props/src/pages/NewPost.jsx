@@ -25,7 +25,7 @@ const NewPost = ({ setPosts }) => {
       {
         id: Date.now(),
         title,
-        slug: generatedSlug,  // ✅ Add slug so routing to `/post/:slug` works
+        slug: generatedSlug,
         content,
       }
     ]);

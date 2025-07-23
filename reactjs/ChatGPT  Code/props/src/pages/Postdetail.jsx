@@ -10,10 +10,9 @@ const Postdetail = ({posts}) => {
   const post = posts.find((p) => p.slug === slug );
   return (
     <div>
-      Post Details
-      <br/>
-      <br/>
-      {post.title}
+      <h2>Post Details <small style={{ fontSize: "12px" }}>Slug: {slug}</small></h2>
+      <h3>{post.title}</h3>
+      <p>{post.content}</p>
     </div>
   )
 }
