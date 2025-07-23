@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
-const NewPost = () => {
+const NewPost = ({ setPosts }) => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [content, setContent] = useState("");
@@ -16,9 +18,16 @@ const NewPost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const generatedSlug = slugTitle(title);
+
     setPosts(prev => [
       ...prev,
-      { id: Date.now(), title, content,  }
+      {
+        id: Date.now(),
+        title,
+        slug: generatedSlug,  // ✅ Add slug so routing to `/post/:slug` works
+        content,
+      }
     ]);
 
     navigate("/");
