@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const useTours = async () => {
   try {
+    // const fetchData = await axios.get("http://localhost:3000/api/tour");
     const fetchData = await axios.get("http://localhost:3000/api/tour");
     const data = fetchData.data.tours;
     //console.log(data);
