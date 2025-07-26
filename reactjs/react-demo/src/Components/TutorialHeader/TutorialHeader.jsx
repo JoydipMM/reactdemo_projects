@@ -1,13 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const TutorialHeader = () => {
+const TutorialHeader = ({currentpath}) => {
   return (
     <>
       Tutorial Header
       <hr/>
-      <Link to='' >All Tutorials</Link>
-      <Link to='simple-counter' >Simple Counter</Link>
+      <Link to='' >All Tutorials</Link> {currentpath !==""? currentpath : null }
       <hr/>
     </>
   )

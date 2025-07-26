@@ -1,17 +1,23 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import NotFound from '../Pages/NotFound';
-import Tutorials from '../Tutorials/Tutorials'
-import TutorialLayout from '../Layout/TutorialLayout'
+import Home from "../Pages/Home";
+import Tutorials from '../Tutorials/Tutorials';
+import TutorialLayout from '../Layout/TutorialLayout';
 import SimpleCounter from '../Tutorials/SimpleCounter/SimpleCounter';
 
 const AppRoutes = () => {
   return (
     <>
       <Routes>
+        <Route path="/" element={<Home/>} />
         <Route path="/tutorials" element={<TutorialLayout/>}>
           <Route index element={<Tutorials/>} />
-          <Route path="simple-counter" element={<SimpleCounter/>} />
+          {/* <Route path="simple-counter" element={<SimpleCounter/>} /> */}
+          <Route path="simple-counter" element={<SimpleCounter />}>
+            {/* <Route path="cc" element={<Count />} />
+            <Route path="cc2" element={<Count2 />} /> */}
+          </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
