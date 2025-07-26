@@ -22,7 +22,7 @@ const TourDeleteButton = ({ id }: { id: string }) => {
         //alert("Tour deleted successfully");
         //if (onDeleted) onDeleted(); // notify parent if provided
         toast.success("Tour deleted successfully", {
-            toastId: TOAST_ERROR_ID,
+            toastId: TOAST_SUCCESS_ID,
         });
         route.refresh()
       } else {
@@ -40,10 +40,12 @@ const TourDeleteButton = ({ id }: { id: string }) => {
     }
   };
 
-  return (
+  return (<>
+  <ToastContainer theme="dark" />
     <button onClick={handleDelete} className="text-red-500">
       Delete
     </button>
+  </>
   );
 };
 
