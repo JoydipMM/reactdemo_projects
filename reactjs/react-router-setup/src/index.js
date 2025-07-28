@@ -11,6 +11,7 @@ import MainLayout from './Layout/MainLayout';
 import Loader, {loaderData} from './pages/Loader/Loader';
 import Product from './pages/Product/Product';
 
+// https://reactrouter.com/6.30.1/routers/create-browser-router
 
 // Type 1 - for create router start ----------------------------
 // const router = createBrowserRouter([
