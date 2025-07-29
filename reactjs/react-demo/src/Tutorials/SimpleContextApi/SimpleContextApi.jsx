@@ -10,6 +10,7 @@ import DataAdd from './Components/DataAdd'
 import DataShow from './Components/DataShow'
 
 const SimpleContextApi = () => {
+
   return (
     <>
       <h2>SimpleContextApi Landing page</h2>
