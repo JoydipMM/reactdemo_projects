@@ -9,6 +9,11 @@ const tutorialMenusList = [
         'menulink': "generate-password",
         'menusubtitle': `Using useState, useEffect, useRef, useCallback`,
     },
+    {
+        'menutitle': "Simple Context API",
+        'menulink': "simple-context-api",
+        'menusubtitle': `Using createContext, useContext, useState`,
+    },
 ]
 
 export default tutorialMenusList;

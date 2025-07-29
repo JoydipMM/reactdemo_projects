@@ -6,6 +6,7 @@ import Tutorials from '../Tutorials/Tutorials';
 import TutorialLayout from '../Layout/TutorialLayout';
 import SimpleCounter from '../Tutorials/SimpleCounter/SimpleCounter';
 import GeneratePassword from '../Tutorials/GeneratePassword/GeneratePassword';
+import SimpleContextApi from '../Tutorials/SimpleContextApi/SimpleContextApi';
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
             <Route path="cc2" element={<Count2 />} /> */}
           </Route>
           <Route path="generate-password" element={<GeneratePassword />}/>
+          <Route path="simple-context-api" element={<SimpleContextApi />}/>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
