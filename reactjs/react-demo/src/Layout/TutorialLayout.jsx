@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import {Outlet, useLocation} from 'react-router-dom';
 import TutorialHeader from '../Components/TutorialHeader/TutorialHeader';
+import {TutorialContextProvider} from '../Context/TutorialContext';
+import TutorialCodePreview from '../Components/TutorialCodePreview';
 
 const TutorialLayout = () => {
   const location = useLocation();
@@ -15,17 +17,20 @@ const TutorialLayout = () => {
   }, [location]);
   return (
     <>
-      <TutorialHeader currentpath={firstSegment}/> {/* Renders Tuttorial Header */}
+    <TutorialContextProvider>
+      <TutorialHeader currentpath={firstSegment}/>
       {/* {firstSegment} */}
       <div className='tutorial-detail-section'>
-        {/* {isTutorialPage &&
+        {isTutorialPage &&
           <div className="tutorial-detail-left">
+            <TutorialCodePreview/>
           </div>
-        } */}
+        }
         <div className="tutorial-detail-right">
           <Outlet /> {/* Renders child route */}
         </div>
       </div>
+      </TutorialContextProvider>
     </>
   )
 }
