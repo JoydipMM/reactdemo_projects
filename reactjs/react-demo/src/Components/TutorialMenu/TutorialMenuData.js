@@ -67,6 +67,11 @@ export default SimpleContextApi
         'menusubtitle': `Using createContext, useContext, useState`,
     },
     {
+        'menutitle': "Simple Todo App",
+        'menulink': "simple-todo",
+        'menusubtitle': `Using useState, Localstorage`,
+    },
+    {
         'menutitle': "Todo App",
         'menulink': "todo",
         'menusubtitle': `Using createContext, useContext, useState, Localstorage`,
