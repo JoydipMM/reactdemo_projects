@@ -61,6 +61,11 @@ export default SimpleContextApi
         'menulink': "simple-context-api",
         'menusubtitle': `Using createContext, useContext, useState`,
     },
+    {
+        'menutitle': "Theme Switcher(light/dark mode)",
+        'menulink': "theme-switcher",
+        'menusubtitle': `Using createContext, useContext, useState`,
+    },
 ]
 
 export default tutorialMenusList;
