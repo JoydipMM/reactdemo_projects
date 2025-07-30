@@ -8,6 +8,7 @@ import SimpleCounter from '../Tutorials/SimpleCounter/SimpleCounter';
 import GeneratePassword from '../Tutorials/GeneratePassword/GeneratePassword';
 import SimpleContextApi from '../Tutorials/SimpleContextApi/SimpleContextApi';
 import ThemeSwitcher from '../Tutorials/ThemeSwitcher/ThemeSwitcher';
+import Todo from '../Tutorials/Todo/Todo';
 
 const AppRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const AppRoutes = () => {
           <Route path="generate-password" element={<GeneratePassword />}/>
           <Route path="simple-context-api" element={<SimpleContextApi />}/>
           <Route path="theme-switcher" element={<ThemeSwitcher />}/>
+          <Route path="todo" element={<Todo />}/>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

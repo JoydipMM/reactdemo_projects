@@ -66,6 +66,11 @@ export default SimpleContextApi
         'menulink': "theme-switcher",
         'menusubtitle': `Using createContext, useContext, useState`,
     },
+    {
+        'menutitle': "Todo App",
+        'menulink': "todo",
+        'menusubtitle': `Using createContext, useContext, useState, Localstorage`,
+    },
 ]
 
 export default tutorialMenusList;
