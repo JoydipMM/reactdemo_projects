@@ -73,7 +73,8 @@ const SimpleTodo = () => {
                 const isEditable = editableTodoId === todo.id;
                 //console.log("Todo ID ",todo.id, " Editable: ",isEditable);
                 
-                return(<div className={`todo-box ${todo.completed? "completed" :""}`} key={todo.id}>
+                return(
+                <div className={`todo-box ${todo.completed? "completed" :""}`} key={todo.id}>
                     <input type="checkbox" 
                     checked={todo.completed}
                     onChange={()=>completedTodo(todo.id)}
@@ -95,9 +96,10 @@ const SimpleTodo = () => {
                         </button>
                         <button style={{margin: "0px 5px" }} onClick={()=>deleteTodo(todo.id)}>Delete</button>
                     </div>    
-                </div>)
-                
-})}
+                </div>
+                )
+                })
+            }
             
         </div>
       </div>
