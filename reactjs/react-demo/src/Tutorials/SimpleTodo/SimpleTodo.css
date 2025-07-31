@@ -63,7 +63,7 @@ button:disabled{
     flex-direction: column;
     row-gap: 10px;
     position: relative;
-    padding: 15px;
+    padding:0px 15px 15px 15px;
     align-items: center;
 }
 .todo-box{
