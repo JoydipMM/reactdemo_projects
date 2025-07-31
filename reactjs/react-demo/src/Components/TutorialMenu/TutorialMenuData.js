@@ -57,6 +57,11 @@ export default SimpleContextApi
         'menusubtitle': `Using useState, useEffect, useRef, useCallback`,
     },
     {
+        'menutitle': "Simple Todo App",
+        'menulink': "simple-todo",
+        'menusubtitle': `Using useState, Localstorage`,
+    },
+    {
         'menutitle': "Simple Context API",
         'menulink': "simple-context-api",
         'menusubtitle': `Using createContext, useContext, useState`,
@@ -65,11 +70,6 @@ export default SimpleContextApi
         'menutitle': "Theme Switcher(light/dark mode)",
         'menulink': "theme-switcher",
         'menusubtitle': `Using createContext, useContext, useState`,
-    },
-    {
-        'menutitle': "Simple Todo App",
-        'menulink': "simple-todo",
-        'menusubtitle': `Using useState, Localstorage`,
     },
     {
         'menutitle': "Todo App",

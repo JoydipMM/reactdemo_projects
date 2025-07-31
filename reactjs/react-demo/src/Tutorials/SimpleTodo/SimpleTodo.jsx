@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './SimpleTodo.css';
 
 const SimpleTodo = () => {
@@ -6,21 +6,34 @@ const SimpleTodo = () => {
     const [todoData, setTodoData] = useState([]);
     const [todoInput, setTodoInput] = useState("");
 
+    const addNewTodo = (todoTitle)=>{
+        const newTodo = {
+            id: Date.now(),
+            todoTitle:todoTitle,
+            completed: false,
+        };
+        setTodoData([...todoData, newTodo]);
+    }
+
 
     const todoFormSubmitEvent = (e) => {
         e.preventDefault();
         //console.log(!todoInput.trim());
         if(!todoInput.trim()) return
-
-        const newTodo = {
-            id: Date.now(),
-            todoTitle:todoInput,
-            completed: false,
-        };
-
-        setTodoData([...todoData, newTodo]);
+        addNewTodo(todoInput);
         setTodoInput("");
     }
+
+    useEffect(()=>{
+        const todos = JSON.parse(localStorage.getItem("localTodos"));
+        if(todos && todos.length > 0){
+            setTodoData(todos);
+        }
+    },[])
+
+    useEffect(()=>{
+        localStorage.setItem("localTodos", JSON.stringify(todoData))
+    },[todoData])
 
 
 
