@@ -76,6 +76,11 @@ export default SimpleContextApi
         'menulink': "todo",
         'menusubtitle': `Using createContext, useContext, useState, Localstorage`,
     },
+    {
+        'menutitle': "Todo Practice",
+        'menulink': "Todo-practice",
+        'menusubtitle': `--- Practice ---`,
+    },
 ]
 
 export default tutorialMenusList;
