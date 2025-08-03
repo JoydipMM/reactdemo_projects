@@ -48,11 +48,18 @@ export const todoSlice = createSlice({
         removeTodo: ( state, action )=>{
             state.todos = state.todos.filter((todo)=> todo.id !== action.payload)
         }
+        editTodo: (state, action) =>{
+            const { id, text } = action.payload
+            const todo = state.todos.find((todo)=> todo.id === id);
+            if(todo){
+                todo.text = text
+            }
+        }
     }
 }) 
 
 // export individual reducers and export default reducer Provider
-export const { addTodo, removeTodo } = todoSlice.actions
+export const { addTodo, editTodo, removeTodo } = todoSlice.actions
 export default todoSlice.reducer
 
 Main Uses of createSlice:
@@ -118,29 +125,69 @@ const AddTodo = () => {
 export default AddTodo
 
 
-STEP 7: Get todo list and delete todo
+STEP 7: Get todo list
 --------------------------------------------------------
 src/components/TodoList.jsx
 
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeTodo } from '../redux/todoSlice';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import TodoCard from './TodoCard';
 
 const TodoList = () => {
-  const todos = useSelector((state) => state.todos); // fetch todos from store
-  const dispatch = useDispatch(); // this is for send todo text to store
-
+  const todos = useSelector((state) => state.todos);
   return (
     <div>
       <h3>Todo list</h3>
       {todos.map((todo)=> <div key={todo.id}>
-        {todo.text} <button onClick={()=>dispatch(removeTodo(todo.id))}>Delete</button>
+        <TodoCard todo={todo} />
       </div>)}
     </div>
   )
 }
 
 export default TodoList
+
+STEP 7-2: Edit and Delete todo
+--------------------------------------------------------
+src\components\TodoCard.jsx
+
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { removeTodo, editTodo  } from '../redux/todoSlice';
+
+const TodoCard = ({todo}) => {
+    const dispatch = useDispatch();
+    const [isEditable, setIsEditable] = useState(false);
+    const [editedText, setEditedText] = useState(todo.text);
+    const editEvent = () => {
+        setIsEditable((prev)=> !prev)
+    }
+    const UpdateEvent = () => {
+      if (editedText.trim() !== '') {
+        dispatch(editTodo({id: todo.id, text:editedText}))
+      }
+        setIsEditable(false);
+    }
+  return (
+    <div>
+      {todo.text} 
+      {isEditable && 
+      <input 
+      type="text"
+      value={editedText}
+      onChange={(e)=>setEditedText(e.target.value)}
+      /> 
+      }
+      {isEditable ? <>
+      <button onClick={UpdateEvent}>Save</button>
+      <button onClick={editEvent}>Cancel</button>
+      </> : <button onClick={editEvent}>Edit</button> }
+      <button onClick={()=>dispatch(removeTodo(todo.id))}>Delete</button>
+    </div>
+  )
+}
+
+export default TodoCard
 
 
 STEP 8: Add all components
