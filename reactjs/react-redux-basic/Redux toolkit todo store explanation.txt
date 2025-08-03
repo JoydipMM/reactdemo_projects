@@ -1,0 +1,181 @@
+STEP 1: Install required packages
+--------------------------------------------------------
+npm install @reduxjs/toolkit react-redux
+
+
+
+STEP 2: Project Structure
+--------------------------------------------------------
+src/
+│
+├── redux/
+│   └── store.js         ← Redux store setup
+│   └── todoSlice.js     ← Slice (state + actions + reducer)
+├── components/
+│   └── AddTodo.jsx
+│   └── TodoList.jsx
+
+
+
+STEP 3: configure Store
+--------------------------------------------------------
+// src/redux/store.js
+
+import { configureStore } from "@reduxjs/toolkit";
+
+// create a variable and assign configureStore with blank object
+export const store = configureStore({})
+
+
+
+STEP 4: Create Slice file for create state+action and reducer
+--------------------------------------------------------
+// src/redux/todoSlice.js
+
+// import createSlice for create new slice for todo
+import { createSlice, nanoid } from "@reduxjs/toolkit";
+
+// create slice variable for assign initialState and create reducers
+export const todoSlice = createSlice({
+    name:"todo",
+    initialState: initialState,
+    //initialState:{ todos: [{id:1, text:"Todo 01" }] }  we can also write like this
+    reducers:{
+        addTodo: ( state, action )=>{
+            const todo = {id:nanoid(), text:action.payload}
+            state.todos.push(todo)
+        },
+        removeTodo: ( state, action )=>{
+            state.todos = state.todos.filter((todo)=> todo.id !== action.payload)
+        }
+    }
+}) 
+
+// export individual reducers and export default reducer Provider
+export const { addTodo, removeTodo } = todoSlice.actions
+export default todoSlice.reducer
+
+Main Uses of createSlice:
+1. Define state: Sets the initial state for a part of your app.
+2. Write reducer logic:	Handles how the state should update for different actions.
+3. Auto-generate action creators: Automatically generates action creators from reducer functions.
+4. Connect to store: The reducer from the slice is passed into configureStore to integrate with the Redux store.
+
+what is reducer?
+A reducer is a pure function that determines how the state in your app should change in response to an action
+A reducer takes:
+state → current state of the application
+action → object that describes what happened (must have a type)
+returns → the next state
+
+
+STEP 5: Import todo reducer in store
+--------------------------------------------------------
+// src/redux/store.js
+
+import { configureStore } from "@reduxjs/toolkit";
+//import todoReducer from "./todoSlice";
+import { todoSlice } from "./todoSlice";
+
+export const store = configureStore({
+   // reducer: todoReducer
+   reducer: todoSlice.reducer
+})
+
+
+STEP 6: Create Component for add todo
+--------------------------------------------------------
+//src/components/AddTodo.jsx
+
+import React, {useState} from 'react';
+import { useDispatch } from 'react-redux'; // this is for send todo text to store
+import { addTodo } from '../redux/todoSlice'; // this reducer will help to send todo text to store 
+
+const AddTodo = () => {
+    const [todoInput, setTodoInput] = useState("");
+    const dispatch = useDispatch();
+    const addTodoEvent = (e) => {
+        e.preventDefault();
+        dispatch(addTodo(todoInput));
+        setTodoInput("");
+    }
+  return (
+    <div>
+      <div className='todo-form-section'>
+            <form onSubmit={addTodoEvent}>
+                <input
+                type='text'
+                value={todoInput}
+                onChange={(e)=>setTodoInput(e.target.value)}
+                />
+                <button type='submit'>Add Todo</button>
+            </form>
+        </div>
+    </div>
+  )
+}
+
+export default AddTodo
+
+
+STEP 7: Get todo list and delete todo
+--------------------------------------------------------
+src/components/TodoList.jsx
+
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeTodo } from '../redux/todoSlice';
+
+const TodoList = () => {
+  const todos = useSelector((state) => state.todos); // fetch todos from store
+  const dispatch = useDispatch(); // this is for send todo text to store
+
+  return (
+    <div>
+      <h3>Todo list</h3>
+      {todos.map((todo)=> <div key={todo.id}>
+        {todo.text} <button onClick={()=>dispatch(removeTodo(todo.id))}>Delete</button>
+      </div>)}
+    </div>
+  )
+}
+
+export default TodoList
+
+
+STEP 8: Add all components
+--------------------------------------------------------
+src\App.js
+
+import AddTodo from "./components/AddTodo";
+import TodoList from "./components/TodoList";
+
+function App() {
+  return (
+    <div className="App">
+      <AddTodo/>
+      <TodoList/>
+    </div>
+  );
+}
+
+export default App;
+
+
+STEP 9: get access the store to overall app we need to wrap all components with redux provider
+--------------------------------------------------------
+src\index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { Provider } from 'react-redux'; // this one
+import { store } from './redux/store'; // this one
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);

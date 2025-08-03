@@ -1,0 +1,140 @@
+STEP 1: Install required packages
+--------------------------------------------------------
+npm install @reduxjs/toolkit react-redux
+
+
+
+STEP 2: Project Structure
+--------------------------------------------------------
+src/
+│
+├── app/
+│   └── store.js         ← Redux store setup
+│
+├── features/
+│   └── counter/
+│       ├── counterSlice.js  ← Slice (state + actions + reducer)
+│       └── Counter.js       ← UI Component using the slice
+│
+├── App.js
+└── index.js
+
+
+
+STEP 3: Create the Redux Store
+--------------------------------------------------------
+// src/app/store.js
+import { configureStore } from '@reduxjs/toolkit';
+import counterReducer from '../features/counter/counterSlice';
+
+export const store = configureStore({
+  reducer: {
+    counter: counterReducer
+  }
+});
+
+
+
+STEP 4: Create the Counter Slice
+--------------------------------------------------------
+// src/features/counter/counterSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+
+const initialState = {
+  value: 0
+};
+
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState,
+  reducers: {
+    increment: (state) => {
+      state.value += 1;
+    },
+    decrement: (state) => {
+      state.value -= 1;
+    },
+    incrementByAmount: (state, action) => {
+      state.value += action.payload;
+    }
+  }
+});
+
+// Export actions
+export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+
+// Export reducer
+export default counterSlice.reducer;
+
+
+
+STEP 5: Build a UI Component
+--------------------------------------------------------
+// src/features/counter/Counter.js
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement, incrementByAmount } from './counterSlice';
+
+const Counter = () => {
+  const count = useSelector((state) => state.counter.value); // Read state
+  const dispatch = useDispatch(); // Dispatch actions
+  const [amount, setAmount] = useState(0);
+
+  return (
+    <div style={{ textAlign: 'center', marginTop: 50 }}>
+      <h2>Redux Toolkit Counter</h2>
+      <h3>{count}</h3>
+      <button onClick={() => dispatch(increment())}>+1</button>
+      <button onClick={() => dispatch(decrement())}>-1</button>
+      <br /><br />
+      <input
+        type="number"
+        value={amount}
+        onChange={(e) => setAmount(Number(e.target.value))}
+      />
+      <button onClick={() => dispatch(incrementByAmount(amount))}>
+        Add Amount
+      </button>
+    </div>
+  );
+};
+
+export default Counter;
+
+
+
+STEP 6: Provide the Store to React
+--------------------------------------------------------
+// src/index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+
+
+STEP 7: Use the Component
+--------------------------------------------------------
+// src/App.js
+import React from 'react';
+import Counter from './features/counter/Counter';
+
+function App() {
+  return (
+    <div>
+      <Counter />
+    </div>
+  );
+}
+
+export default App;
+
+
