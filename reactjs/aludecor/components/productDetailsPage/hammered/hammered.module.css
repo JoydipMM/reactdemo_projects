@@ -1,0 +1,41 @@
+.speci_mwrper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left_speci {
+    width: 70%;
+}
+
+.spec_prodright {
+    width: 25%;
+    justify-content: flex-end;
+}
+
+.spec_prodright img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+}
+
+.speci_mwrper h2 span {
+    padding-top: 20px;
+}
+
+@media (max-width:991px) {
+    .speci_mwrper {
+        flex-wrap: wrap;
+    }
+
+    .left_speci {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .spec_prodright {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+}

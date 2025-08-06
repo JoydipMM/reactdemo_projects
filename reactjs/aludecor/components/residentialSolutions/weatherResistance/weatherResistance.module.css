@@ -1,0 +1,320 @@
+.Tab {
+  background-color: #f0f0f0;
+  border-bottom: 2px solid #ccc;
+  padding: 10px;
+}
+
+.Tab.active {
+  background-color: #fff;
+  border-bottom: 2px solid #337ab7;
+  padding: 10px;
+}
+
+.Expl_metalmpwr h2 {
+  text-align: center;
+  /* margin-bottom: 50px; */
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tabcont_explore ul {
+  display: flex;
+  border-top: 1px solid #ccc;
+  border-bottom: 0px solid #ccc;
+  padding-bottom: 30px;
+  justify-content: space-between;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  align-items: center;
+}
+
+.tabcont_explore ul:after {
+  display: block;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  background-color: #ccc;
+  height: 1px;
+  left: 0;
+  bottom: 29px;
+  position: absolute;
+  content: "";
+}
+
+.tabcont_explore ul li {
+  margin-right: 20px;
+  font-size: 24px;
+  color: #666666;
+  font-weight: 400;
+  cursor: pointer;
+  padding:20px 0
+}
+
+.tabcont_explore .activeTab:before {
+  background-color: #02854b;
+  height: 4px;
+    position: absolute;
+    content: "";
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    background-size: 100%;
+    z-index: 2;
+}
+
+.tabcont_explore .activeTab:after {
+  background: url(../../../public/images/activetab.svg) no-repeat;
+  position: absolute;
+    content: "";
+    bottom: -25px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 41px;
+    height: 31px;
+    background-size: 100% 100%;
+    z-index: 2;
+
+}
+.tabcont_explore .activeTab {
+  position: relative;
+  color: var(--txtcolor);
+  /* border-bottom: 3px; */
+}
+.panel_conttab {
+  padding: 20px 0 0 0;
+}
+
+.paneltab_imgcont {
+  width: 100%;
+  height: 840px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.paneltab_imgcont img {
+  position: relative;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.paneltab_txtcont {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 0 40px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.panel_left_txtcont {
+  max-width: 840px;
+}
+
+.panel_right_txtcont {
+  width: 30%;
+  display: block;
+  text-align: right;
+}
+
+.gapbtn {
+  margin-bottom: 20px;
+}
+
+.brandin {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 679px;
+  height: 679px;
+  margin: auto;
+  z-index: 2;
+  opacity: 0;
+  transition: all ease-out 1s;
+}
+
+.brandin img {
+  width: 100% !important;
+  height: 100%;
+  object-fit: cover;
+}
+
+.paneltab_imgcont:hover .brandin {
+  opacity: 1;
+  transition: all ease-out 1s;
+  cursor: pointer;
+}
+
+.overlay_txt {
+  position: absolute;
+  left: 150px;
+  width: 40%;
+  z-index: 3;
+}
+
+.overlay_txt h2 {
+  margin: 0 0 10px 0;
+  color: #fff;
+  text-align: left;
+}
+
+.overlay_txt p {
+  color: #fff;
+  line-height: 1.3;
+  text-align: left;
+  max-width: 591px;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.panel_left_txtcont h3 {
+  margin-bottom: 15px;
+}
+.slidercontent{
+  max-width: 1200px;
+}
+
+@media (max-width: 1600px) {
+  .overlay_txt {
+    left: 60px;
+  }
+
+  .paneltab_imgcont {
+    width: 100%;
+    height: 700px;
+  }
+
+  .brandin {
+    width: 300px;
+    height: 300px;
+  }
+
+  .Expl_metalmpwr h2 {
+    max-width: 711px;
+  }
+}
+
+@media (max-width: 1400px) {}
+
+@media (max-width: 1366px) {
+  .brandin {
+    width: 250px;
+    height: 250px;
+  }
+
+  .tabcont_explore ul li {
+    margin-right: 20px;
+    font-size: 16px;
+  }
+
+  .overlay_txt {
+    left: 50px;
+  }
+
+  .paneltab_imgcont {
+    width: 100%;
+    height: 600px;
+  }
+
+  .panel_left_txtcont {
+    width: 63%;
+  }
+
+  .panel_right_txtcont {
+    width: 35%;
+  }
+
+  .panel_conttab {
+    padding: 20px 0 0 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .brandin {
+    width: 250px;
+    height: 250px;
+  }
+
+
+  .tabcont_explore .activeTab:after {
+    background: #02854b;
+    position: absolute;
+    content: "";
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+  }
+
+  .tabcont_explore .activeTab:before {
+    display: none;
+  }
+  .tabcont_explore ul {
+    
+    padding-bottom: 3px;
+    border-bottom: 1px solid #ccc;
+  }
+  .tabcont_explore ul:after { display: none;}
+  .tabcont_explore .activeTab {}
+
+  .tabcont_explore ul li {
+    margin-right: 41px;
+  }
+
+  .overlay_txt {
+    display: none;
+  }
+
+  .paneltab_imgcont {
+    width: 100%;
+    height: 600px;
+  }
+
+  .panel_left_txtcont {
+    width: 60%;
+  }
+
+  .panel_right_txtcont {
+    width: 35%;
+  }
+
+  .tabcont_explore ul li {
+    margin-right: 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .brandin {
+    width: 200px;
+    height: 200px;
+  }
+
+  .paneltab_imgcont {
+    width: 100%;
+    height: 300px;
+  }
+
+  .paneltab_txtcont {
+    padding: 40px 0 40px 0;
+
+    flex-wrap: wrap;
+  }
+
+  .panel_left_txtcont {
+    width: 100%;
+  }
+
+  .panel_right_txtcont {
+    width: 100%;
+    display: block;
+    text-align: left;
+    margin: 30px 0 0 0;
+  }
+}

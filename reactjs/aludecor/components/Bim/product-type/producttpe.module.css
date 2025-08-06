@@ -1,0 +1,231 @@
+.tabList {
+  display: flex;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 30px 0;
+  position: relative;
+  gap: 70px;
+}
+
+.tabButton {
+  color: #666;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+  padding: 0 15px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.dropdowntogle {
+  position: absolute;
+  left: 0 !important;
+  top: 100%;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.dropdownItem {
+  color: #666;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.tabList :global .select-btn {
+  cursor: pointer;
+}
+
+.tabList :global .select-menu {
+  position: relative;
+  width: 150px;
+  z-index: 4;
+}
+
+.tabList :global .select-menu .options {
+  position: absolute;
+  background-color: #fff;
+  width: 200px;
+  border: 1px solid #ccc;
+  padding: 5px 20px;
+  top: 57px;
+  z-index: 2;
+}
+
+.tabList :global .select-menu .options li {
+  font-size: 16px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  list-style-type: none;
+}
+
+.tabList :global .select-menu .options li:last-child {
+  border: none;
+  padding: 0;
+}
+
+.tabContent {
+  margin-top: 47px;
+}
+
+/* .tabContent :global .ourprojects_prj_innerbox__xaiBy{
+    width: 23%;
+} */
+.tabContent :global .newprowrap {
+  justify-content: space-between;
+}
+
+.tabContent :global .ourprojects_prj_innerbox_overlay__uNpga {
+  padding: 54px;
+  text-align: center;
+  align-items: flex-end;
+  z-index: 3 !important;
+}
+
+.tabContent :global .ourprojects_prj_overltitle__gPN9z {
+  width: 260px;
+  margin: 0 auto 10px auto;
+}
+
+.tabContent :global .newprowrap .common-btn {
+  color: var(--foreground);
+  background-color: #fff;
+  border: none;
+}
+
+.tabContent :global .newprowrap .common-btn img {
+  width: 30px !important;
+  height: auto;
+}
+
+.tabContent :global .newprowrap .common-btn:hover {
+  color: #fff;
+}
+
+.overltitle {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  width: 260px;
+  transform: translate(-50%);
+  z-index: 2;
+}
+
+.tabContent :global .ourprojects_prj_viewbtn__jsvu_ {
+  justify-content: center;
+}
+
+.prj_innerboxin:hover .overltitle {
+  opacity: 0;
+}
+
+.innerbox_overlay {
+  text-align: center;
+}
+
+.prj_innerboxin {
+  position: relative;
+}
+
+.prj_innerboxin:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(000, 000, 000, 0.4);
+  z-index: 1;
+  left: 0;
+  top: 0;
+  border-radius: 24px;
+}
+
+.innerbox_overlay {
+  z-index: 2 !important;
+}
+.loadbox {
+  justify-content: center;
+}
+.buttoncontfilter {
+  display: flex;
+  justify-content: flex-end;
+}
+.menucontfilter {
+  flex: 1;
+  display: flex;
+  gap: 0 60px;
+}
+@media only screen and (max-width: 1600px) {
+  .tabContent :global .ourprojects_prj_overltitle__gPN9z {
+    font-size: 26px;
+  }
+
+  .overltitle {
+    width: 210px;
+  }
+
+  .tabContent :global .ourprojects_prj_overltxt__7Hq0s {
+    font-size: 16px;
+  }
+
+  .tabContent :global .ourprojects_prj_innerbox_overlay__uNpga {
+    padding: 24px;
+  }
+
+  .tabContent :global .newprowrap {
+    justify-content: flex-start;
+  }
+
+  .tabContent :global .newprowrap {
+    gap: 25px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .tabList {
+    gap: 40px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .tabList {
+    display: block;
+    padding: 0;
+  }
+
+  .tabList :global .select-menu .options {
+    position: relative;
+    top: 10px;
+    width: 100%;
+    padding: 0;
+    border: none;
+    padding-bottom: 10px;
+  }
+
+  .tabList :global .select-btn {
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .tabList :global .select-menu {
+    width: 100%;
+    padding: 0;
+    border: none;
+  }
+
+  .tabList :global .select-menu:last-child .select-btn {
+    border: none;
+  }
+  .buttoncontfilter {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+  }
+  .menucontfilter {
+    display: block;
+  }
+}

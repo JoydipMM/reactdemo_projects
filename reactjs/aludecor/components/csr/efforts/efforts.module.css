@@ -1,0 +1,28 @@
+.efforts_content { display: flex; flex-wrap: wrap; align-items: center;}
+.efforts_content .left { width: 50%; padding-right: 40px; padding-top: 25px;}
+
+.efforts_content .right { width: 50%; padding-left: 40px; }
+
+.video_list {display: flex; flex-wrap: wrap;}
+.video_list :global .video-box { padding: 12px; width: 33.33%; text-align: center;}
+
+
+
+.exploreimgcont { height: 140px; margin-bottom: 15px;}
+.exploreimgcont .overlay_vidiconexp :global img{ width: 40px; height: 40px;}
+
+@media (max-width: 1024px) {
+
+.efforts_content .left { width: 100%; padding-right: 0px;}
+.efforts_content .right { width: 100%; padding-left: 0px; }
+
+
+}
+
+
+@media (max-width: 767px) {
+.video_list { margin: 0 -5px;}
+.video_list :global .video-box { padding: 5px;}
+.exploreimgcont { height: 100px; }
+
+}

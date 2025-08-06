@@ -1,0 +1,35 @@
+.projectcontact .projectcontact_row { display: flex; flex-wrap: wrap; align-items: center;}
+.projectcontact .projectcontact_row :global .left {width: 60%; padding-right: 110px;}
+.projectcontact .projectcontact_row :global .right {width: 40%; padding: 50px; border-radius: 24px; background-color: #2F3192;}
+
+.projectcontact :global .form-row { margin-bottom: 20px;}
+.projectcontact :global .form-row input,
+.projectcontact :global .form-row select 
+{width: 100%; background-color: transparent;height: 80px;border:1px solid #ccc;padding:0 30px;font-size: 22px; color: #fff;font-weight: 500;font-family: 'Poppins', sans-serif;}
+
+
+.projectcontact :global .form-row select { -moz-appearance: none;  appearance: none; -webkit-appearance: none; background: url(/images/down-arrow-2.svg) 95% 50% no-repeat; }
+
+.projectcontact :global .form-row input::-webkit-input-placeholder {opacity: 1; color: #fff;}
+.projectcontact :global .form-row input:-moz-placeholder {opacity: 1; color: #fff;}
+.projectcontact :global .form-row input::-moz-placeholder {opacity: 1; color: #fff;}
+.projectcontact :global .form-row input:-ms-input-placeholder {opacity: 1; color: #fff;}
+.projectcontact :global .form-row input::-ms-input-placeholder {opacity: 1; color: #fff;}
+.projectcontact :global .form-row input:placeholder-shown {opacity: 1; color: #fff;}
+.projectcontact :global .common-btn.white { background-color: #fff; color: #2F3192;}
+.projectcontact :global .common-btn.white img { filter: brightness(0);}
+.projectcontact :global .common-btn.white:hover { color: #fff;}
+.projectcontact :global .common-btn.white:hover img { filter: brightness(0) invert(1);}
+
+.projectcontact :global .form-container { padding-bottom: 20px;}
+
+
+
+@media (max-width: 991px) {
+
+.projectcontact .projectcontact_row :global .left { width: 100%; padding-right: 0;}
+.projectcontact .projectcontact_row :global .right { width: 100%; padding: 20px; border-radius: 15px;}
+.projectcontact :global .form-row input,
+.projectcontact :global .form-row select { font-size: 16px; padding: 0 15px; height: 50px;}
+
+}

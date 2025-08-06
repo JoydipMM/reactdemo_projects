@@ -1,0 +1,31 @@
+.top_content { max-width: 1400px; margin: 0 auto; padding-bottom: 40px; text-align: center;}
+.whyfirewall h3, .whyfirewall h4 { padding-bottom: 5px;}
+.whyfirewall h4 { font-weight: 500;}
+.whyfirewall :global { display: flex; flex-wrap: wrap; padding-bottom: 25px;}
+.whyfirewall :global .left { width: 50%; padding-right: 50px;}
+.whyfirewall :global .right { width: 50%; padding-left: 50px;}
+
+.whytable { overflow-x: auto;}
+.whytable table { width: 100%; border-collapse: collapse;}
+.whytable table tr th { background-color: #ccc; color: #000; font-size: 22px; font-weight: 700;}
+.whytable table tr th, .whytable table tr td { padding: 15px; text-align: center; white-space: nowrap;}
+.whytable table tr td:first-child { font-size: 22px; font-weight: 500;}
+.whytable table tr td { border-bottom: 1px solid #ccc;}
+.whytable table tr td img { height: 15px; display: inline-block; margin-right: 10px;}
+
+@media (max-width: 1600px) {
+
+
+}
+
+@media (max-width: 1024px) {
+.top_content { padding-bottom: 0;}
+
+.whyfirewall :global .left { width: 100%; padding-right: 0px;}
+.whyfirewall :global .right { width: 100%; padding-left: 0px;}
+
+.whytable table tr th, .whytable table tr td:first-child  { font-size: 18px;}
+.whytable table tr th, .whytable table tr td { padding: 8px;}
+
+}
+

@@ -1,0 +1,186 @@
+.beforewrp {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+}
+
+.box_before {
+    width: 49.7%;
+    height: 599px;
+    position: relative;
+}
+
+.borderleft {
+    border-radius: 24px 0 0 24px;
+}
+
+.borderleft img {
+    border-radius: 24px 0 0 24px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.borderright {
+    border-radius: 0 24px 24px 0;
+}
+
+.borderright img {
+    border-radius: 0 24px 24px 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.round {
+    width: 39px;
+    height: 39px;
+    border-radius: 100%;
+    background-color: #F9F9F9;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 3;
+}
+
+.before_ovellaptxt {
+    position: absolute;
+    width: 209px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 36px;
+    color: #fff;
+    padding: 15px;
+    line-height: 1.5;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    border: 2px solid #fff;
+    z-index: 2;
+}
+
+.overlayb {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    border-radius: 24px 0 0 24px;
+}
+
+.projdet {
+    border-top: 1px solid var(--bordercolor);
+    border-bottom: 1px solid var(--bordercolor);
+    padding: 55px 0;
+    display: flex;
+    margin: 55px 0;
+    justify-content: space-between;
+}
+
+.prjleft {
+    width: 65%;
+}
+
+.inerprjcont {
+    display: flex;
+    color: #000;
+    font-size: 18px;
+    padding-bottom: 6px;
+}
+
+.inerprjcont span {
+    width: 180px;
+    font-weight: 500;
+}
+
+.inerprjcont p {
+    flex: 1;
+    padding: 0;
+    margin: 0;
+}
+
+.prjright {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+@media (max-width:1440px) {
+.projdet {
+    margin: 20px 0;
+     padding: 20px 0;
+     flex-wrap: wrap;
+ }
+.prjleft {
+    width: 100%; margin-bottom: 30px;
+}
+.prjright { width: 100%; justify-content: center;}
+
+}
+
+@media (max-width:1024px) {
+    .box_before {
+
+        height: 475px;
+
+    }
+   
+}
+
+@media (max-width:767px) {
+    .box_before {
+        width: 100%;
+        height: 300px;
+        margin-bottom: 15px;
+    }
+
+    .borderleft {
+        border-radius: 24px
+    }
+
+    .borderleft img {
+        border-radius: 24px;
+    }
+
+    .borderright {
+        border-radius: 24px;
+    }
+
+    .borderright img {
+        border-radius: 24px;
+    }
+
+    .before_ovellaptxt {
+        font-size: 25px;
+    }
+
+    .round {
+        display: none;
+    }
+    .inerprjcont {
+        flex-wrap: wrap;
+        padding-bottom: 10px;
+    }
+    
+    .inerprjcont span {
+        width: 100%;
+        font-weight: 500;
+        padding-bottom: 5px;
+    }
+    
+    .inerprjcont p {
+        flex: 1;
+        padding: 0;
+        margin: 0;
+    }
+    
+    
+}

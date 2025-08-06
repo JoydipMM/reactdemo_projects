@@ -1,0 +1,97 @@
+.sswraper :global .sstextpart {
+  max-width: 938px;
+}
+
+.sswraper :global .ssimagepart {
+  max-width: 701px;
+}
+
+.formarea {
+  width: 100%;
+  background-color: var(--foreground);
+  padding: 40px 50px;
+  border-radius: 24px;
+}
+
+.formarea :global .formbox {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.formarea :global h3 {
+  color: var(--white);
+}
+.formarea form{ width: 100%;}
+.formarea :global .formbox input {
+  background-color: transparent;
+  color: var(--white);
+}
+
+.formarea :global .formbox input::-webkit-input-placeholder {
+  color: var(--white);
+}
+
+.formarea :global .formbox input:-moz-placeholder {
+  color: var(--white);
+}
+
+.formarea :global .formbox input::-moz-placeholder {
+  color: var(--white);
+}
+
+.formarea :global .formbox input:-ms-input-placeholder {
+  color: var(--white);
+}
+
+.formarea :global .common-btn {
+  background-color: var(--white);
+  color: #000;
+  border: none;
+  font-size: 21px;
+}
+
+.formarea :global .common-btn img {
+  filter: none;
+}
+.formarea :global .formbox select {
+  color:#fff;
+  background: url(../../../public/images/arrow-down-white.svg) 95% 50% no-repeat;  
+}
+.formarea :global .checkboxLabel {
+ 
+  padding-left: 37px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 400;
+}
+@media (max-width: 1800px) {
+
+  .sswraper :global .sstextpart,
+  .sswraper :global .ssimagepart {
+    max-width: 47%;
+  }
+}
+@media (max-width: 1199px) {
+
+  .sswraper :global .sstextpart,
+  .sswraper :global .ssimagepart {
+    max-width: 46%;
+  }
+}
+@media (max-width: 991px) {
+  .sswraper :global .sstextpart,
+  .sswraper :global .ssimagepart {
+      max-width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .sswraper {
+      flex-direction: column;
+  }
+  .formarea{
+    padding: 25px;
+    margin-bottom: 0;
+  }
+}

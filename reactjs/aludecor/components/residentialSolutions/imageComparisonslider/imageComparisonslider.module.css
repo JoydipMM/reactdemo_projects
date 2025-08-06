@@ -1,0 +1,41 @@
+.slidercontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sliderwrapper {
+  width: 90%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+  height: 599px;
+  position: relative;
+}
+.sliderwrapper > div{
+  height: 100%!important;
+}
+.sliderwrapper img{
+  position: absolute!important;
+}
+.sliderwrapper:before, .sliderwrapper:after{
+  position: absolute;
+  content: "Before";
+  top: 5px;
+  left: 5px;
+  z-index: 9;
+  background-color: var(--white);
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+.sliderwrapper:after{
+  content: "After";
+  left: auto;
+  right: 5px;
+}
+
+@media only screen and (max-width:1024px){
+  .sliderwrapper{
+    height: 400px;
+  }
+}

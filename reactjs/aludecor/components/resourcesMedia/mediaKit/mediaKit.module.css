@@ -1,0 +1,61 @@
+.mediawrper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 31px;
+}
+
+.vid_viewbtn {
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-top: 40px;
+}
+
+.tab_drpdwn {
+    justify-content: center !important;
+}
+
+.tab_drpdwn :global .select-menu {
+    width: 100% !important;
+}
+
+.mediamwrper :global .vid_explore_mper {
+    flex-wrap: wrap;
+}
+
+.mediamwrper :global .menu-item {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    padding: 0 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: none;
+}
+
+.mediamwrper :global .sBtn-text {
+    color: #666;
+    font-size: 18px;
+}
+
+.mediamwrper .contboxvid {
+    flex-wrap: wrap;
+    display: flex;
+}
+
+@media (max-width: 767px) {
+.mediamwrper :global .menu-item {
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    justify-content: flex-start;
+    text-align: left;
+}
+}

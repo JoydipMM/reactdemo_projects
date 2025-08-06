@@ -1,0 +1,92 @@
+.settingwrp{
+    display: block;
+}
+.settingwrp :global .passwordinput{
+    margin-bottom: 30px;
+}
+.settingwrp :global .common-btn{
+    width: 206px;
+}
+.listing{
+    border-top: 1px solid var(--bordercolor);
+}
+.listing li{
+    list-style-type: none;
+    border-bottom: 1px solid var(--bordercolor);
+    padding: 30px 90px;
+    background: url(/images/arrow-right-2.svg) 95% 50% no-repeat;
+    background-size: 8px;
+}
+.listing li a{
+    display: block;
+}
+.settingwrp{
+    display: flex;
+    justify-content: flex-start;
+}
+.settingwrp :global h3{
+    padding-left: 90px;
+}
+.settingwrps{
+    padding-left: 90px; 
+}
+#formmodal :global .modalcontent{
+    max-width: 972px;
+    padding: 100px;
+    width: 100%;
+    border-radius: 0;
+    text-align: center;
+}
+#formmodal :global .modalcontent p{
+    font-size: 22px;
+    font-weight: 500;
+}
+#formmodal :global .modalcontent .btnwrp{
+    justify-content: center;
+}
+#formmodal :global .modalcontent .common-btn{
+    margin: 0;
+    margin-top: 50px;
+}
+.listing li button{
+    font-size: 22px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.formsection.formsection2 input{
+    height:80px;
+    padding:0 30px;
+}
+@media only screen and (max-width:1600px){
+    .listing li{
+        padding: 15px 40px;
+    }
+    .settingwrp :global h3{
+        padding-left: 40px;
+    } 
+    .settingwrps{
+        padding-left: 40px;
+    }
+    #formmodal :global .modalcontent{
+        max-width: 672px;
+        padding: 60px;
+    }
+}
+
+@media only screen and (max-width:991px){
+    .listing li{
+        padding: 15px 0px;
+    }
+    .settingwrp :global h3{
+        padding-left: 0px;
+    } 
+    .settingwrps{
+        padding-left: 0px;
+    }
+    #formmodal :global .modalcontent{
+        padding: 30px;
+    }
+    #formmodal :global .modalcontent .common-btn{
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,99 @@
+.tabcont_explore ul{
+    justify-content: space-evenly;
+}
+.tabcont_explore ul li:nth-child(1){
+    padding-left: inherit;
+    padding-right: inherit;
+}
+.prj_viewbtn{
+    justify-content: center;
+}
+.prj_innerbox{
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.prj_innerbox img{
+    width: auto!important;
+    height: auto!important;
+    border-radius: 0;
+}
+.prj_innerbox_overlay img{
+    transform: rotate(90deg);
+}
+.achivmentlft :global h2{
+    text-align: left;
+}
+.achivmentlft{
+    max-width: 680px;
+}
+.achivment, .achivmentrgt{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+.prj_innerboxs{
+    width: 47%;
+}
+.prj_innerbox_overlays{
+    opacity: 1;
+    z-index: 1;
+    display: block;
+    border-radius: 24px;
+}
+.prj_innerboxs .prj_innerbox_overlays img{
+    transform: none;
+    margin-bottom: 15px;
+    width: 100px;
+    height: 100px;
+}
+.prj_overltitles{
+    font-size: 36px;
+    font-weight: 500;
+}
+.prj_overltxts{
+    font-size: 24px;
+}
+@media only screen and (max-width:1800px){
+    .achivmentlft{
+        width: 35%;
+        max-width: inherit;
+    }
+    .achivment, .achivmentrgt{
+        gap: 10px;
+    }
+    .achivmentrgt{
+        width: 60%;
+    }
+}
+@media only screen and (max-width:1400px){
+    .prj_innerboxs .prj_innerbox_overlays img{
+        height: 60px;
+    }
+    .prj_overltitles{
+        font-size: 24px;
+    }
+    .prj_overltxts{
+        font-size: 17px;
+    }
+}
+@media only screen and (max-width:767px){
+    .achivmentrgt, .achivmentlft{
+        width: 100%;
+        text-align: center;
+    }
+    .achivmentlft :global h2{
+        justify-content: center;
+        display: flex;
+        padding-bottom: 15px;
+    }
+}
+@media only screen and (max-width:600px){
+    .prj_innerboxs{
+        width: 100%;
+    }
+}

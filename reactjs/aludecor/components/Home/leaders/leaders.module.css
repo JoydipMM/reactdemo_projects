@@ -1,0 +1,40 @@
+.leaders_container {
+  text-align: center;
+}
+
+.leaders_container :global(.slick-slide) {
+  padding: 20px;
+}
+.leaders_container :global(.slick-slider) {
+  margin: 0 -20px;
+  
+}
+
+.leaders_container :global(.logo-pic) {
+  border-radius: 0 0 24px;
+  border: 1px solid #ccc;
+  text-align: center; 
+  
+}
+.leaders_container :global(.logo-pic img) {
+  height: auto;
+  margin: 0 auto;
+  border-radius: 0 0 30px;
+}
+
+/* responsive start */
+@media (min-width: 1600px) {
+  .leaders_container :global(.logo-pic img) {
+    height: 200px;
+  }
+}
+@media (max-width: 767px) {
+  .leaders_container :global(.slick-slide) {
+    padding: 10px;
+  }
+  .leaders_container :global(.slick-slider) {
+    margin: 0 -10px;
+  }
+}
+
+/* responsive end */

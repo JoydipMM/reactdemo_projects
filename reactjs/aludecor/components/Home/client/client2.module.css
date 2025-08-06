@@ -1,0 +1,10 @@
+@media only screen and (min-width:1601px){
+  .tabcont_explore ul li{
+    margin-right: 50px;
+    text-align: center;
+    min-height: 112px;
+    display: flex;
+    align-items: center;
+  }
+
+}

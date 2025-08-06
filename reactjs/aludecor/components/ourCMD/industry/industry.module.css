@@ -1,0 +1,16 @@
+.sswraper :global { padding-top: 0;}
+.sswraper :global .ssimage { z-index: 1;}
+.flipimg :global { flex-direction: row-reverse;}
+
+.brdtop :global{ border-top: 1px solid #ccc;}
+
+.sswraper :global .animate_frame {width: 100%;}
+
+ul.sociallist {display: flex; list-style: none; margin: 0; padding: 0;}
+ul.sociallist li {margin-right: 20px; list-style: none;}
+ul.sociallist li img { width: auto!important; height: auto!important;}
+
+
+@media (max-width: 767px) {
+ul.sociallist li img { width: 40px!important; height: 40px!important;}
+}

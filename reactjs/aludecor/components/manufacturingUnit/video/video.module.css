@@ -1,0 +1,31 @@
+.premium_boxwrp :global .brands  { z-index: 0;}
+.slidergallery h2 { max-width: 850px; margin: 0 auto;}
+.slidergallery :global .slick-slide { padding: 0 15px;}
+.slidergallery :global .slick-slider {margin-left: -15px; margin-right: -14px;}
+.slidergallery :global .box-content { border: 1px solid #ccc; border-radius: 24px; padding: 30px; text-align: left;}
+.slidergallery :global .box-content .pic { margin-bottom: 25px; cursor: pointer; position: relative;}
+.slidergallery :global .box-content .pic img { width: 100%!important; height: 500px!important; object-fit: cover; object-position: center; border-radius: 24px;}
+.slidergallery :global .box-content p { padding-bottom: 0;}
+.slidergallery :global .box-content .pic .brands img{ height: auto!important;}
+.slidergallery :global .box-content .pic .brands { height: auto; left: 50%; top: 50%; transform: translate(-50%, -50%);}
+
+@media only screen and (max-width:1600px){
+.slidergallery h2 { max-width: 800px;}
+
+.slidergallery :global .box-content .pic img { height: 350px!important;}
+
+}
+
+@media only screen and (max-width:1024px){
+
+.slidergallery :global .container { padding-left: 20px; padding-right: 20px;}
+.slidergallery :global .box-content { padding: 15px;}
+.slidergallery :global .box-content .pic img { height: 250px!important;}
+
+}
+
+@media only screen and (max-width:600px){
+
+.slidergallery :global .box-content .pic .brands img{ height: 100px!important;}
+
+}

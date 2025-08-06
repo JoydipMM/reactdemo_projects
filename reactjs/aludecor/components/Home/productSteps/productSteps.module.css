@@ -1,0 +1,637 @@
+.welcomewrp {
+  display: flex;
+  gap: 98px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 0;
+}
+
+.wtitlewrp {
+  max-width: 1006px;
+  padding-left: 60px;
+}
+
+/* .stepsacordian :global .accordion-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  } */
+
+.stepsacordian :global .section {
+  margin: 20px auto;
+  text-align: center;
+  font-weight: bold;
+  overflow: hidden;
+  color: #fff;
+}
+
+.stepsacordian :global .item {
+  width: 115px;
+  float: left;
+  background-color: #7f9ea9;
+  height: 839px;
+  cursor: pointer;
+  margin-left: 20px;
+  border-radius: 0 0 20px 0;
+  position: relative;
+  padding: 40px 0;
+}
+
+.stepsacordian :global .active {
+  margin-right: 0;
+  border-radius: 0 0 0px 0;
+}
+
+.stepsacordian :global .info {
+  width: 0;
+  float: left;
+  background-color: #94aab2;
+  color: #fff;
+  height: 839px;
+  transition: width 0.3s;
+  overflow: hidden;
+  text-align: left;
+  padding: 0px;
+  opacity: 0;
+}
+
+.stepsacordian :global .info .item-info {
+  opacity: 0;
+}
+
+.stepsacordian :global .info.active {
+  width: 68%;
+  transition: width 0.3s;
+  overflow: visible;
+  padding: 40px;
+  opacity: 1;
+  position: relative;
+}
+
+.stepsacordian :global .info.active .item-info {
+  opacity: 1;
+}
+
+.stepsacordian :global .totalbar {
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.stepsacordian :global .item-title span {
+  font-size: 36px;
+  font-weight: normal;
+}
+
+.stepsacordian :global .item-title h3 {
+  font-size: 24px;
+  font-weight: 500;
+  position: absolute;
+  width: 500px;
+  text-align: left;
+  transform: rotate(-90deg);
+  bottom: 300px;
+  left: -190px;
+  padding: 0;
+}
+
+.stepsacordian :global .info .item-info h3 {
+  font-size: 30px;
+  margin-bottom: 25px;
+}
+
+.stepsacordian :global .info .propert-in {
+  width: 48%;
+}
+
+.stepsacordian :global .info .propert-in .propert-img {
+  position: relative;
+  overflow: hidden;
+  height: 530px;
+}
+
+.stepsacordian :global .info .propert-in img {
+  position: relative !important;
+  border-radius: 0 0 15px 0;
+}
+
+.stepsacordian :global .checkboxWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stepsacordian :global .checkboxWrapper .checkboxInput,
+.stepsacordian :global .checkboxWrapper .radioInput {
+  opacity: 0;
+  /* Hide the default checkbox */
+  position: absolute;
+}
+
+.stepsacordian :global .checkboxWrapper .checkboxLabel,
+.stepsacordian :global .checkboxWrapper .radioLabel {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+.stepsacordian :global .checkboxWrapper .checkboxLabel::before,
+.stepsacordian :global .checkboxWrapper .radioLabel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  background-color: #fff;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+}
+
+.stepsacordian :global .infoboxarea .checkboxWrapper .checkboxLabel::before,
+.stepsacordian :global .infoboxarea .checkboxWrapper .radioLabel::before {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+}
+
+/* .stepsacordian :global .checkboxWrapper .checkboxInput:checked + .checkboxLabel::before {
+    background-color: #2F3192;
+  } */
+
+.stepsacordian :global .checkboxWrapper .checkboxInput:checked+.checkboxLabel::after,
+.stepsacordian :global .checkboxWrapper .radioInput:checked+.radioLabel::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  width: 36px;
+  height: 36px;
+  background: url(/images/productstep/check-tick.svg);
+}
+
+.stepsacordian :global .infoboxarea .checkboxWrapper .checkboxInput:checked+.checkboxLabel::after,
+.stepsacordian :global .infoboxarea .checkboxWrapper .radioInput:checked+.radioLabel::after {
+  width: 21px;
+  height: 21px;
+  background-size: cover;
+  left: 4px;
+  top: 5px;
+}
+
+
+.stepsacordian :global .item-info .propert {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.stepsacordian :global .item-info .checksteparea {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-left: -50px;
+}
+
+.stepsacordian :global .item-info .checksteparea span {
+  position: relative;
+  top: 25px;
+  left: 35px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.stepsacordian :global .brands {
+  position: absolute;
+  width: 50%;
+  bottom: 30px;
+  left: -40px;
+  transform: none;
+}
+
+.stepsacordian :global .info .common-btn {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  color: #fff;
+  border-color: #fff;
+}
+
+.stepsacordian :global .info .common-btn img {
+  filter: brightness(0) invert(1);
+}
+
+.brandview :global .brands {
+  opacity: 0;
+  transition: all ease-in-out 1s;
+}
+
+.brandview:hover :global .brands {
+  opacity: 1;
+  cursor: pointer;
+  transition: all ease-in-out 1s;
+}
+
+.stepsacordian :global .infoboxarea {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+ overflow-y: auto;
+   height: 550px;
+  padding: 60px 0 0 0;
+}
+
+.stepsacordian :global .infoboxarea .infoboxareain {
+  border: 1px solid var(--white);
+  width: 240px;
+  height: 170px;
+  border-radius: 0 0 27px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 2%;
+  position: relative;
+}
+
+.stepsacordian :global .infoboxarea .infoboxareain span {
+  /* max-width: 80%; */
+  text-align: center;
+}
+
+.smalltxt {
+  position: absolute;
+  bottom: 11px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.tooltip {
+  position: relative;
+  display: block;
+  cursor: help;
+  width: 100%;
+  padding: 0;
+
+  &:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #25317f;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  z-index: 3;
+  top: 35px;
+  /* margin-left: -100px; */
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 13px;
+  font-weight: 400;
+  left:0;
+  right: 0;
+  margin: 0 auto;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+    transform: rotate(180deg);
+  }
+}
+
+@media only screen and (max-width: 1800px) {
+  .welcomewrp {
+    padding: 80px 0;
+    padding-bottom: 0;
+  }
+
+  .wtitlewrp {
+    max-width: 70%;
+  }
+
+  .stepsacordian :global .info.active {
+    width: 60%;
+  }
+
+  .stepsacordian :global .info .propert-in {
+    width: 46%;
+  }
+
+  .stepsacordian :global .info .propert-in .propert-img {
+    height: 308px;
+  }
+
+  .stepsacordian :global .info,
+  .stepsacordian :global .item {
+    height: 680px;
+  }
+
+  .stepsacordian :global .infoboxarea {
+    height: 430px;
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  .welcomewrp {
+    padding: 80px 0;
+    padding-bottom: 0;
+  }
+
+  .rotateimg {
+    margin-top: 48px;
+  }
+
+  .stepsacordian :global .item {
+    width: 8%;
+  }
+
+  .stepsacordian :global .item-title h3 {
+    left: -200px;
+  }
+
+  .stepsacordian :global .infoboxarea .infoboxareain {
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .stepsacordian :global .item {
+    width: 6%;
+    margin-left: 16px;
+  }
+
+  .stepsacordian :global .info.active {
+    width: 70%;
+  }
+
+  .stepsacordian :global .item-title h3 {
+    left: -214px;
+    font-size: 18px;
+  }
+
+  .stepsacordian :global .info .item-info h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .stepsacordian :global .item-title span {
+    font-size: 26px;
+  }
+
+  .stepsacordian :global .info .propert-in .propert-img {
+    height: 280px;
+  }
+
+  .stepsacordian :global .item-info .checksteparea span {
+    font-size: 16px;
+  }
+
+  .stepsacordian :global .checkboxWrapper {
+    margin-top: 12px;
+  }
+
+  .stepsacordian :global .checkboxWrapper .checkboxLabel::before,
+  .stepsacordian :global .checkboxWrapper .radioLabel::before {
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+  }
+
+  .stepsacordian :global .item-info .checksteparea span {
+    left: 10px;
+  }
+
+  .stepsacordian :global .checkboxWrapper .checkboxInput:checked+.checkboxLabel::after,
+  .stepsacordian :global .checkboxWrapper .radioInput:checked+.radioLabel::after {
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+  }
+
+  .stepsacordian :global .info,
+  .stepsacordian :global .item {
+    height: 550px;
+  }
+
+  .stepsacordian :global .infoboxarea {
+    height: 340px;
+  }
+
+  .stepsacordian :global .infoboxarea .infoboxareain span {
+    font-size: 14px;
+    margin-top: -54px;
+  }
+
+  .stepsacordian :global .infoboxarea .infoboxareain {
+    gap: 5px;
+    justify-content: center;
+  }
+
+  .tooltiptext { top: 84px;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .welcomewrp {
+    gap: 50px;
+  }
+
+  .stepsacordian :global .info.active {
+    width: 68%;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .wtitlewrp {
+    max-width: 60%;
+  }
+
+  .stepsacordian :global .info .propert-in .propert-img {
+    height: 228px;
+  }
+
+  .stepsacordian :global .item-title h3 {
+    left: -222px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .welcomewrp {
+    padding: 40px 0;
+    padding-bottom: 0;
+  }
+
+  .stepsacordian :global .infoboxarea {
+    height: 240px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .stepsacordian :global .info .propert-in .propert-img {
+    height: 206px;
+  }
+
+  .stepsacordian :global .info.active {
+    width: 66%;
+  }
+
+  .stepsacordian :global .item-title h3 {
+    left: -229px;
+  }
+
+  .stepsacordian :global .item-title h3 {
+    bottom: 270px;
+  }
+
+  .stepsacordian :global .info.active {
+    padding: 22px;
+  }
+
+  .stepsacordian :global .item-info .propert {
+    gap: 20px;
+  }
+
+  .stepsacordian :global .info .item-info h3 {
+    font-size: 18px;
+  }
+
+  .stepsacordian :global .info,
+  .stepsacordian :global .item {
+    height: 450px;
+  }
+
+  .stepsacordian :global .item {
+    padding: 20px 0;
+  }
+
+  .wtitlewrp {
+    max-width: 100%;
+  }
+
+  .stepsacordian :global .infoboxarea .infoboxareain {
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .wtitlewrp {
+    max-width: 100%;
+  }
+
+  .stepsacordian :global .item {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    text-align: center;
+    padding: 15px 25px;
+    border-radius: 8px;
+    margin-bottom: 0px;
+    margin-top: 8px;
+  }
+
+  .stepsacordian :global .item.active {
+    border-radius: 8px 8px 0 0;
+  }
+
+  .stepsacordian :global .item-title h3 {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    transform: none;
+    width: 100%;
+    padding: 0;
+  }
+
+  .stepsacordian :global .item .item-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .stepsacordian :global .info {
+    width: 100%;
+    height: 0;
+    transition: height 0.3s;
+  }
+
+  .stepsacordian :global .info.active {
+    width: 100%;
+    height: 500px;
+    transition: height 0.3s;
+  }
+
+  .wtitlewrp {
+    padding-left: 25px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .stepsacordian :global .info .propert-in {
+    width: 100%;
+    padding-bottom: 45px;
+  }
+
+  .stepsacordian :global .info.active {
+    height: auto;
+    padding-bottom: 65px;
+    min-height: 500px;
+  }
+
+  .stepsacordian :global .checkboxWrapper .checkboxLabel::before,
+  .stepsacordian :global .checkboxWrapper .radioLabel::before {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+  }
+
+  .stepsacordian :global .checkboxWrapper .checkboxInput:checked+.checkboxLabel::after,
+  .stepsacordian :global .checkboxWrapper .radioInput:checked+.radioLabel::after {
+    width: 14px;
+    height: 14px;
+  }
+
+  .stepsacordian :global .info .common-btn {
+    position: absolute;
+    bottom: 22px;
+    right: 22px;
+  }
+
+  .stepsacordian :global .checkboxWrapper {
+    margin-top: 20px;
+  }
+
+  .stepsacordian :global .infoboxarea .infoboxareain {
+    width: 100%;
+  }
+
+  .stepsacordian :global .infoboxarea .infoboxareain {
+    gap: 0px;
+    height: 120px;
+  }
+
+  .stepsacordian :global .infoboxarea {
+    height: 285px;
+  }
+}

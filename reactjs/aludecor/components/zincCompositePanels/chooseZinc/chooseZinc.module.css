@@ -1,0 +1,37 @@
+.right_container{
+    padding: 0;
+}
+.right_container ul li{
+    list-style-type: none;
+    text-align: left;
+}
+.right_container ul li h4{
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: 5px;
+}
+.right_container ul li h4 img{
+    margin-right: 12px;
+    position: relative;
+    top:8px;
+}
+.right_container ul li p{
+    padding-left: 50px;
+}
+.right_area h2, .earlylife_container h2{
+    max-width: inherit;
+}
+.right_area{
+    display: flex;
+    align-items: center;
+}
+.earlylife_container{
+    text-align: center;
+}
+
+@media only screen and (max-width:1600px) {
+    .right_container ul li h4{
+        font-size: 30px;
+        line-height: normal;
+    }
+}

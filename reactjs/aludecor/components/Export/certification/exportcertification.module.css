@@ -1,0 +1,7 @@
+.exportgallery h2 { max-width: inherit;}
+
+.colorbox_imgcont { margin: 0 10px;}
+
+@media (max-width: 1600px) {
+.exportgallery h2 { max-width: 1000px;}
+}

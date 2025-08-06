@@ -1,0 +1,11 @@
+.roofboxsld{height: 879px; width: 100%;}
+.roofboxsld img{ width: 100%; height: 100%; object-fit: cover; border-radius: var(--border-round);}
+.roofslide :global(.slick-dots){
+bottom:65px !important
+}
+.roofslide :global(.slick-dots li){ margin: 0 12px !important; }
+.roofslide :global(.slick-dots li button){ width: 25px !important; height: 25px !important; border-radius: 100%; background-color: #fff !important; font-size: 0px;}
+.roofslide :global(.slick-dots li.slick-active button)
+{background: 475A6E;
+    background: linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, rgba(0, 169, 157, 1) 85%);}
+    .roofslide :global(.slick-dots li button:before){ display: none !important;}

@@ -1,0 +1,6 @@
+.manufacturer_container {background-color: rgba(148, 170, 178, 0.2);}
+.manufacturer_container h2 { max-width: 1150px; margin: 0 auto;}
+
+@media only screen and (max-width:1600px){
+.manufacturer_container h2 { max-width: 700px;}
+}

@@ -1,0 +1,25 @@
+.rivettypesslider {
+  position: relative;
+}
+
+.rivettypesslidercontent {
+  border-bottom: none !important;
+  padding: 0px !important;
+}
+
+.rivettypescommonslider {
+  border-bottom: none !important;
+  padding: 0px !important;
+}
+.rivettypesslidercontent :global .commonSlider:before{
+  display: none;
+}
+/* .rivettypesslidercontent :global .slick-slide {
+  padding: 0 10px;
+} */
+
+@media (max-width: 1600px) {
+  .rivettypescommonslider {
+    padding-bottom: 0px !important;
+  }
+}

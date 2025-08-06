@@ -1,0 +1,223 @@
+.solutionvtabwrp {
+  position: relative;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.solutionvtabwrp h2 {
+  position: absolute;
+  left: 0;
+  top: 18%;
+  max-width: 800px;
+}
+
+.tabsContainer {
+  display: flex;
+  align-items: flex-start;
+}
+
+.tabList {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  margin-right: 0;
+  padding: 0;
+  list-style: none;
+  /* border-right: 1px solid #ccc; */
+  padding: 8% 0 0 0;
+}
+
+.tab {
+  padding: 40px 0;
+  cursor: pointer;
+  border-top: 1px solid #ccc;
+  border-bottom: none;
+  background-color: transparent;
+  transition: 0.3s;
+  font-size: 36px;
+  color: #666666;
+  font-weight: 400;
+  list-style-type: none;
+}
+
+.tab:first-child {
+  border-top: 0px solid #ccc;
+}
+
+.tab:hover {
+  background: transparent;
+}
+
+.solutionvtabwrp .activeTab {
+  background: #fff;
+  position: relative;
+  color: var(--txtcolor) !important;
+  font-weight: 500;
+}
+
+.solutionvtabwrp .activeTab:after {
+  position: absolute;
+  position: absolute;
+  right: -3px;
+  top: 15px;
+  content: "";
+  width: 58px;
+  height: 105px;
+  background: #fff url(../../../public/images/Shape_branding_reason.svg)
+    no-repeat;
+  margin-bottom: 0;
+  background-size: 100% 100% !important;
+  color: var(--txtcolor);
+  /* transform: rotate(-180deg); */
+}
+
+.solutionvtabwrp :global .react-tabs__tab-panel--selected {
+  min-height: 555px;
+}
+
+.tabContent {
+  flex: 1;
+  padding: 100px 40px;
+  border-left: 1px solid #ccc;
+  background: white;
+}
+
+.topcontreas {
+  font-size: 22px;
+  color: var(--txtcolor);
+  line-height: 1.2;
+  font-weight: 400;
+  margin: 0 0 18px;
+}
+
+.boxsolutionvtab {
+  margin-bottom: 40px;
+  display: flex;
+}
+
+.boxtxtcont {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.boxtxtcont h3 {
+  font-weight: 500;
+  margin: 0 0 10px 0;
+  color: #2b2d2f;
+}
+
+.boxtxtcont p {
+}
+
+@media (max-width: 1700px) {
+  .solutionvtabwrp h2 {
+    top: 10%;
+  }
+}
+
+@media (max-width: 1500px) {
+  .solutionvtabwrp h2 {
+    top: 9%;
+  }
+
+  .tabContent {
+    flex: 1;
+    padding: 80px 40px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .solutionvtabwrp h2 {
+    top: 4%;
+  }
+
+  .tab {
+    padding: 22px 0;
+    font-size: 22px;
+  }
+
+  .solutionvtabwrp .activeTab:after {
+    right: -3px;
+    top: 0;
+    width: 32px;
+    height: 56px;
+  }
+
+  .solutionvtabwrp img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  .solutionvtabwrp h2 {
+    top: 4%;
+  }
+
+  .tab {
+    padding: 20px 0;
+    font-size: 18px;
+  }
+
+  .solutionvtabwrp .activeTab:after {
+    right: -3px;
+    top: 0;
+    width: 32px;
+    height: 56px;
+  }
+}
+
+@media (max-width: 767px) {
+  .tabsContainer {
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    padding: 10px 33px 10px 0;
+    border-top: 1px solid #ccc;
+  }
+
+  .tabList {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-right: 0;
+    padding: 0;
+    padding: 0% 0 0 0;
+    overflow: auto;
+  }
+
+  .solutionvtabwrp .activeTab:after {
+    position: absolute;
+    display: none;
+  }
+
+  .tabContent {
+    flex: auto;
+    padding: 30px 40px;
+    border-top: 1px solid #ccc;
+    border-left: 0px solid #ccc;
+    background: white;
+    width: 100%;
+  }
+
+  .tab {
+    padding: 10px 20px 10px 0;
+    border-top: 0px solid #ccc;
+    font-size: 14px;
+  }
+
+  .solutionvtabwrp h2 {
+    position: relative;
+    max-width: 100%;
+    margin: 30px 0;
+  }
+
+  .tabContent {
+    flex: auto;
+    padding: 30px 0;
+    border-top: 1px solid #ccc;
+    border-left: 0px solid #ccc;
+    width: 100%;
+  }
+}

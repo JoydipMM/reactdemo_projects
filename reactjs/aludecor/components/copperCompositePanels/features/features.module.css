@@ -1,0 +1,12 @@
+.sowwrp{ display: flex; justify-content: space-between;}
+.sowleft{ width: 30%; position: relative;}
+.sowleft img{ width: 100%; border: 0px solid #ccc; border-radius: 24px; }
+.sowrit{ width: 65%; align-items: center; display: flex; }
+.sowrit ul li{ list-style-type: disc  !important; width: 100%; white-space: normal; text-align: left; padding: 0 0 25px 0 !important; color: var(--txtcolor); }
+.sowrit ul{ border: 0; flex-wrap: wrap; overflow: inherit !important; white-space: normal;}
+.sowrit ul::after{ display: none;}
+@media (max-width:767px) {
+    .sowleft{ width: 100%; position: relative;}
+    .sowwrp{  flex-wrap: wrap;  gap:30px 0}
+    .sowrit{ width: 100%; } 
+}

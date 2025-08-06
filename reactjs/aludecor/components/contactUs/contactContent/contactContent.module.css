@@ -1,0 +1,80 @@
+.contactdetails{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 110px;
+    justify-content: space-between;
+}
+.contactlft{
+    max-width: 395px;
+}
+.contactrgt{
+    max-width: 1136px;
+    position: relative;
+    padding-bottom: 100px;
+}
+.contactrgt:after{
+    position: absolute;
+    content: "";
+    background-color: #ccc;
+    width: 1px;
+    height: 100%;
+    left: -10%;
+    top: 0;
+}
+.contactrgt :global .common-btn{
+    margin-top: 50px;
+}
+.contactlft li{
+    font-size: 22px;
+    font-weight: 500;
+    list-style-type: none;
+}
+.contactlft ul{
+    margin-bottom: 25px;
+}
+
+@media only screen and (max-width:1800px){
+    .contactrgt{
+        max-width: 65%;
+    }
+}
+@media only screen and (max-width:1600px){
+    .contactrgt{
+        max-width: 60%;
+    }
+}
+@media only screen and (max-width:1300px){
+    .contactrgt{
+        max-width: 55%;
+    }
+}
+@media only screen and (max-width:1199px){
+    .contactrgt{
+        max-width: 50%;
+    }
+}
+@media only screen and (max-width:1024px){
+    .contactrgt{
+        max-width: 48%;
+    }
+}
+@media only screen and (max-width:991px){
+    .contactrgt, .contactlft{
+        max-width: 100%;
+    }
+    .contactrgt:after{
+        width: 100%;
+        height: 1px;
+        left: 0;
+        top: -4%;
+    }
+    .contactdetails{
+        gap: 50px;
+    }
+    .contactrgt{
+        padding-bottom: 50px;
+    }
+    .contactrgt :global .common-btn{
+        margin-top: 25px;
+    }
+}

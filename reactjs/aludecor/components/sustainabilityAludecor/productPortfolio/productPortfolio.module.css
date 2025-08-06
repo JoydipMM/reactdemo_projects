@@ -1,0 +1,9 @@
+.prdportfoliomwrp{ overflow-y: hidden; overflow-x: auto;}
+.prdportfoliomwrp table{ width: 100%;}
+.prdportfoliomwrp th, .prdportfoliomwrp td{ border-bottom: 1px solid var(--bordercolor);}
+.prdportfoliomwrp th{ font-size: 22px; font-weight: 700; line-height: 1.2; text-align: center; padding: 24px;vertical-align: middle;}
+.prdportfoliomwrp td{ text-align: center; padding: 24px; vertical-align: middle; font-size: 18px; line-height: 1.2;}
+.prdportfoliomwrp h4{ font-size: 22px; font-weight: 500; line-height: 1.2; padding: 0; margin: 0;}
+.prdportfoliomwrp p{ padding: 0;}
+.probtnwrp{ display: flex; justify-content: center;}
+.prdportbtnwrp{ display: flex; justify-content: center; width: 100%; margin: 64px 0 0 0;}

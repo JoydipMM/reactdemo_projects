@@ -1,0 +1,31 @@
+.earlylife_container :global .earlylife-row { display: flex; flex-wrap: wrap; border-bottom: 1px solid #ccc;}
+.earlylife_container :global .earlylife-row .left { width: 50%; padding-right: 50px; border-right: 1px solid #ccc;}
+.earlylife_container :global .earlylife-row .right { width: 50%; padding-left: 50px;}
+.earlylife_container :global h2 { max-width: 500px;}
+.earlylife_container :global h3 { font-size: 48px; font-weight: 500; padding-bottom: 25px;}
+.earlylife_container :global h4 { font-size: 36px; font-weight: 500; padding-bottom: 25px;}
+.earlylife_container :global .right p { font-size: 18px;}
+
+@media only screen and (max-width:1600px){
+.Expl_metalmpwr h2 { max-width: 750px;}
+}
+
+@media (max-width:1024px) {
+
+.prj_viewbtn { padding: 15px 0;}
+
+.earlylife_container :global .earlylife-row .left { width: 100%; padding-right: 0px; padding-bottom: 15px; border-right: 0; border-bottom: 1px solid #ccc;}
+.earlylife_container :global .earlylife-row .right { width: 100%; padding-left: 0px; padding-top: 40px;}
+
+.earlylife_container :global h3 { font-size: 30px;}
+.earlylife_container :global h4 { font-size: 25px;}
+
+}
+
+
+@media (max-width:767px) {
+
+.earlylife_container :global h3 { font-size: 25px;}
+.earlylife_container :global h4 { font-size: 20px;}
+
+}

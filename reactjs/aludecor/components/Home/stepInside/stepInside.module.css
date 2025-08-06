@@ -1,0 +1,126 @@
+.welcomewrp {
+  /* padding: 135px 0; */
+  display: flex;
+  gap: 98px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 0;
+}
+
+.wtitlewrp {
+  max-width: 850px;
+}
+
+.w_conttitle {
+  font-size: 36px;
+  color: #2b2d2f;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 0 0 10px 0;
+}
+
+.wcontentwrp p {
+  color: #2b2d2f;
+  line-height: 1.5;
+}
+
+.wcontentwrp {
+  max-width: 769px;
+}
+.rotateimg {
+  display: block;
+  margin-top: 68px;
+  overflow: hidden;
+}
+.rotateimg img {
+  position: relative !important;
+  border-radius: 24px;
+  display: block;
+}
+.brandview {
+  position: relative;
+  overflow: hidden;
+}
+.brandview :global .brands {
+  opacity: 0;
+  transition: all ease-in-out 1s;
+  left: 17%;
+  top: auto;
+  bottom: -25px;
+  overflow: hidden;
+}
+.brandview:hover :global .brands {
+  opacity: 1;
+  cursor: pointer;
+  transition: all ease-in-out 1s;
+}
+@media only screen and (max-width: 1800px) {
+  .welcomewrp {
+    padding: 80px 0;
+    padding-bottom: 0;
+  }
+  .wtitlewrp,
+  .wcontentwrp {
+    max-width: 45%;
+  }
+
+  .wtitlewrp h2 {
+    font-size: 60px;
+  }
+}
+@media only screen and (max-width: 1600px) {
+  .welcomewrp {
+    padding: 80px 0;
+    padding-bottom: 0;
+  }
+  .wtitlewrp h2 {
+    font-size: 40px;
+  }
+  .w_conttitle {
+    font-size: 30px;
+  }
+  .rotateimg {
+    margin-top: 48px;
+  }
+}
+@media only screen and (max-width: 1300px) {
+  .welcomewrp {
+    gap: 50px;
+  }
+}
+@media only screen and (max-width: 1199px) {
+  .wtitlewrp,
+  .wcontentwrp {
+    max-width: 47%;
+  }
+  .welcomewrp {
+    gap: 38px;
+  }
+  .w_conttitle {
+    font-size: 28px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .welcomewrp {
+    padding: 40px 0;
+    padding-bottom: 0;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .wtitlewrp h2 {
+    font-size: 27px;
+  }
+  .wcontentwrp h5 {
+    font-size: 20px;
+  }
+  .wcontentwrp p {
+    font-size: 14px;
+  }
+  .welcomewrp {
+    gap: 0px;
+  }
+  .wtitlewrp,
+  .wcontentwrp {
+    max-width: 100%;
+  }
+}

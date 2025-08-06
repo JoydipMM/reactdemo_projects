@@ -1,0 +1,53 @@
+.staymwrper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  background: url(../../../public/images/stayb.svg) no-repeat;
+  background-size: cover;
+}
+.stayleft h2 span {
+  color: var(--txtcolor);
+}
+.sust_subtxt {
+  color: var(--txtcolor);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0 0 5px 0;
+}
+.sust_txt {
+  margin: 0 0 50px 0;
+  color: var(--txtcolor);
+}
+.stayleft {
+  width: 48%;
+  padding: 150px 0 0 0;
+}
+.stayrit {
+  width: 48.9%;
+  position: relative;
+}
+.stayrit img {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@media (max-width: 767px) {
+  .staymwrper {
+    flex-wrap: wrap;
+    padding: 0 0 40px 0;
+    margin: 0 0 0 0;
+  }
+  .stayleft {
+    width: 100%;
+    padding: 0 0 30px 0;
+  }
+  .stayrit {
+    width: 100%;
+    height: 350px;
+    padding: 10px;
+  }
+  .stayrit img {
+    object-fit: cover;
+  }
+}

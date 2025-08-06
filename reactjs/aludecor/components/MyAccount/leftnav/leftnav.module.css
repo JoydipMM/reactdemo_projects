@@ -1,0 +1,51 @@
+.calllink ul li a{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.propic{
+    text-align: center;
+}
+.propicarea{
+    width: 370px;
+    height: 370px;
+    border-radius: 100%;
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+.propicarea img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.clickarea{
+    width: 60px;
+    height: 60px;
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    right: 38px;
+}
+.callsec{
+    border-bottom: 1px solid var(--bordercolor);
+}
+
+@media only screen and (max-width:1600px){
+    .propicarea{
+        width: 270px;
+        height: 270px;
+    }
+    .clickarea{
+        right: 9px;
+    }
+}
+
+@media only screen and (max-width:1024px){
+    .propicarea{
+        width: 170px;
+        height: 170px;
+    }
+}

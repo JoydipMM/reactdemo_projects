@@ -1,0 +1,113 @@
+.ssimagewrappart {
+  width: 100%;
+  display: flex;
+  gap: 44px;
+}
+
+.ssimagebox {
+  position: relative;
+  width: 50%;
+}
+.rivetcolorwraper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+}
+.rivetcolorwrap {
+  display: flex;
+  gap: 25px;
+}
+.rivetcolorbox {
+  position: relative;
+}
+.rivetcolorboximage {
+  height: auto !important;
+}
+.rivetcolortextbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rivetcolorcode {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2b2d2f;
+}
+.rivetcolorname {
+  font-size: 12px;
+  color: #2b2d2f;
+}
+
+.rivetsystemtypewrap {
+  position: relative;
+}
+
+.rivetsystemtypetitle {
+  position: relative;
+  text-align: center;
+}
+
+.rivetwraper {
+  justify-content: flex-end;
+}
+.rivetleftwraper {
+  max-width: 1025px;
+}
+
+.rivetrightwraper {
+  max-width: 500px;
+}
+
+@media (max-width: 1800px) {
+  .rivetleftwraper {
+    max-width: 900px;
+  }
+
+  .rivetrightwraper {
+    max-width: 450px;
+  }
+}
+
+@media (max-width: 1600px) {
+  .rivetleftwraper {
+    max-width: 60%;
+  }
+
+  .rivetrightwraper {
+    max-width: 35%;
+  }
+
+  .rivetcolorboximage {
+    height: 150px !important;
+  }
+}
+
+@media (max-width: 1400px) {
+  .rivetleftwraper {
+    max-width: 65%;
+  }
+
+  .rivetrightwraper {
+    max-width: 28%;
+  }
+  .rivetcolorboximage {
+    height: 125px !important;
+  }
+  .sswraper{
+    align-items: center!important;
+  }
+}
+@media (max-width: 1199px) {
+  .rivetcolorboximage {
+    height: 100px !important;
+  }
+}
+@media (max-width: 767px) {
+  .rivetleftwraper,
+  .rivetrightwraper {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,30 @@
+.digitalinnvwrp button div span:before {
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    position: absolute;
+    left: 11px;
+    top: 49px;
+    content: "";
+    background-color: #666666;
+}
+
+.digitalinnvwrp button div span {
+    padding-left: 35px;
+}
+
+.digitalinnvwrp button div span[data-open="true"]:before {
+    background-color: var(--txtcolor) !important;
+}
+
+@media (max-width:1400px){
+    .digitalinnvwrp button div span:before {
+        top: 32px;
+    }
+    }
+
+@media (max-width:767px){
+.digitalinnvwrp button div span:before {
+    top: 29px;
+}
+}

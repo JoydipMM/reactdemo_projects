@@ -1,0 +1,22 @@
+.abouttop { text-align: center; padding-bottom: 25px;}
+
+.metaldhara { display: flex; flex-wrap: wrap; padding-bottom: 50px;}
+.metaldhara :global .left { width: 25%;}
+.metaldhara :global .right { width: 75%; padding-left: 50px;}
+
+.installation {display: flex; flex-wrap: wrap; margin: 0 -25px;}
+.installation :global .pic-col { width: 50%; padding: 0 25px; text-align: center;}
+.installation :global .pic-col .pic { position: relative;}
+.installation :global .pic-col img { border-radius: 24px; width: 100%!important; height: auto!important;}
+.installation :global .pic-col p { padding-top: 40px;}
+
+
+@media (max-width:1024px) {
+.metaldhara { padding-bottom: 0;}
+.metaldhara :global .left { width: 100%;}
+.metaldhara :global .right { width: 100%; padding-left: 0px;}
+
+.installation :global .pic-col { width: 100%;}
+.installation :global .pic-col p { padding-top: 15px;}
+
+}

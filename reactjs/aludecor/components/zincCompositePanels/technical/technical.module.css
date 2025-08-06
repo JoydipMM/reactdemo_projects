@@ -1,0 +1,36 @@
+.prjbox_wrp :global .txtarea{
+    max-width: 500px;
+}
+.prjbox_wrp :global .txtarea span{
+    display: block;
+    font-size: 18px;
+}
+.prjbox_wrp{
+    align-items: center;
+}
+.prjbox_wrp :global .txtarea label{
+    width: 145px;
+    display: inline-block;
+    font-weight: 500;
+}
+.prjbox_wrp :global .imgarea, .prjbox_wrp :global .imgarea img{
+    border-radius: 17px;
+}
+@media (max-width:1600px) {
+    .prjbox_wrp :global .imgarea, .prjbox_wrp :global .txtarea{
+        width: 30%;
+    }
+    .prjbox_wrp :global .imgarea img{
+        height: fit-content;
+    }
+}
+@media (max-width:991px) {
+    .prjbox_wrp :global .imgarea, .prjbox_wrp :global .txtarea{
+        width: 47%;
+    }
+}
+@media (max-width:600px) {
+    .prjbox_wrp :global .imgarea, .prjbox_wrp :global .txtarea{
+        width: 100%;
+    }
+}

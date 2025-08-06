@@ -1,0 +1,18 @@
+.warrntywrp{ margin: -40px 0 0 0; display: flex; justify-content: space-between;}
+.leftwrp_warrnty{ width: 27%;}
+.rightwrp_warrnty{width: 70%; padding-top: 137px; padding-bottom: 137px;}
+.customupload{ }
+
+@media (max-width:1400px){
+   
+    .leftwrp_warrnty{ width: 32%;}
+.rightwrp_warrnty{width: 65%; padding-top: 80px; padding-bottom: 80px;}
+
+}
+
+@media (max-width:991px){
+    .warrntywrp{ flex-wrap: wrap;}
+    .leftwrp_warrnty{ width: 100%;}
+.rightwrp_warrnty{width: 100%; padding-top: 40px; padding-bottom: 40px;}
+
+}

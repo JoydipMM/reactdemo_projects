@@ -1,0 +1,7 @@
+.slidergallery :global h2 { max-width: 100%;}
+
+@media (max-width: 1600px) {
+
+.slidergallery :global h2 { max-width: 100%;}
+
+}

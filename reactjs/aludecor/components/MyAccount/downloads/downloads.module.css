@@ -1,0 +1,12 @@
+.dowmload_titlewrp{ display: flex; justify-content: space-between; border-top:1px solid var(--bordercolor); margin-top: 30px; padding-top: 30px; align-items: center;}
+/* .dowmload_titlewrp:nth-child(1){ border-top: 0px;} */
+.titledownload{ flex:1 ;}
+.titledownload h3{ font-size: 25px; line-height: 1.2; color: var(--foreground); margin: 0; padding: 0; white-space: normal; }
+.downloadbtnicon{ width: 60px; height: 60px; border: 2px solid var(--bordercolor); display: flex; align-items: center; justify-content: center; border-radius:100%; margin-left: 30px; padding: 10px; cursor: pointer;}
+.downloadbtnicon button{ border: 0; background-color: transparent; cursor: pointer; }
+/* .downloadbtnicon img{ object-fit: cover;} */
+
+
+@media (max-width:767px){
+    .downloadbtnicon{ width: 40px; height: 40px;}
+}

@@ -1,0 +1,22 @@
+.performance_content :global h2 { max-width: 1400px; margin: 0 auto;}
+
+ul.bullet_list :global { list-style: none; margin: 0; padding: 0 0 25px;}
+ul.bullet_list :global li { list-style: none; position: relative; padding: 0 0 15px 35px;}
+ul.bullet_list :global li:before { content: ""; display: block; width: 24px; height: 24px; background: url(/images/product/firewall/bullet.svg) no-repeat; background-size: contain; position: absolute; left: 0; top: 2px;}
+
+.btn_row { display: flex;}
+.btn_row a { margin-right: 30px;}
+.btn_row a:last-child { margin-right: 0;}
+
+@media (max-width: 1600px) {
+.performance_content :global h2 { max-width: 900px; margin: 0 auto;}
+.btn_row a { margin-right: 15px;}
+
+}
+
+@media (max-width: 767px) {
+
+.btn_row { margin: 0 -5px; flex-wrap: wrap;}
+.btn_row a { margin: 5px;}
+
+}

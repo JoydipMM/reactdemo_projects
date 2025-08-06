@@ -1,0 +1,15 @@
+.choosemwrp{
+    background-color: transparent;
+}
+.choosemwrp :global .whyChoose_amplyfywrpbox__dbcMs{
+    text-align: center;
+}
+@media only screen and (min-width: 1401px) {
+    .choosemwrp :global .whyChoose_amplyfywrpbox__dbcMs{
+        width: 33%;
+        
+    }
+    .choosemwrp :global .whyChoose_amplyfywrp__fXjTV{
+       gap: 47px; 
+    }
+}

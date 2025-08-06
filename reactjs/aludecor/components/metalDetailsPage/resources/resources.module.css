@@ -1,0 +1,34 @@
+.resourwrp{}
+.resourcebox{ border:1px solid #ccc; border-radius:0 0 24px 0;}
+.residence_iconwrp{ display: flex; gap:32px;}
+.iconbox_resour{ background-color: #fff; border:1px solid #ccc; border-radius:0 24px 0 0; width: 100%; padding: 72px; flex:1}
+.resorce_iconcont{ height:70px; display: flex; justify-content: center; }
+.resorce_iconcont img{ object-fit: contain; width: auto !important; height:100% !important}
+.icontitlep{ margin: 46px 0 46px 0; display: block; text-align: center; color: #000; padding: 0;}
+.iconbox_resour:hover{  background: url(../../../public/images/hover_resrce.png); background-size: cover;border-radius:0 24px 0 0; cursor: pointer;}
+.iconbox_resour:hover .icontitlep{ color:#fff}
+.iconbox_resour:hover img{ filter: invert(1);}
+.iconbox_resour:hover :global .common-btn{ border:1px solid #fff; color: #fff;}
+
+@media (max-width:1800px) {
+    
+        .iconbox_resour {
+             padding: 50px 30px;
+        }
+    }
+
+@media (max-width:1400px) {
+.icontitlep {
+    margin: 25px 0 25px 0;}
+    .iconbox_resour {
+         padding: 40px 30px;
+    }
+}
+
+@media (max-width:767px) {
+.iconbox_resour {
+   
+    padding: 40px 30px;
+}
+
+}

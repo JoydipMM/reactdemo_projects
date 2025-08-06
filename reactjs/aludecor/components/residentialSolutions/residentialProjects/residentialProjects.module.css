@@ -1,0 +1,12 @@
+.Expl_metalmpwr :global .container{
+    padding: 0 0 50px 0;
+    border-bottom: 1px solid #CCCCCC;
+    overflow: hidden;
+}
+
+.Expl_metalmpwr :global .slick-slide{
+    padding: 0 10px;
+}
+.Expl_metalmpwr :global .slick-list {
+    padding: 25px 0 50px 0;
+}

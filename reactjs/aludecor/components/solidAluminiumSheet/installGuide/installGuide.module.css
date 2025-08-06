@@ -1,0 +1,73 @@
+.alumwrp {
+    display: flex;
+    justify-content: space-between;
+}
+
+.alumleft {
+    width: 30%;
+    position: relative;
+}
+
+.alumleft img {
+    width: 100%;
+    border: 0px solid #ccc;
+    border-radius: 24px;
+}
+
+.alumrit {
+    width: 65%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.alumrit ul {
+    display: block !important;
+    border: 0 !important;
+}
+
+.alumrit ul li {
+    max-width: 100% !important;
+    text-align: left !important;
+    list-style-type: disc !important;
+    padding: 0 0 5px 0 !important;
+    font-size: 18px !important;
+    
+}
+
+.alumrit ul:after {
+    display: none;
+}
+
+.solidsheetlist li {
+    max-width: 279px;
+    text-align: center;
+    min-height: 126px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+   margin:0 5% ;
+}
+.solidsheetlist{  justify-content: center !important;}
+@media (max-width:1440px) {}
+
+@media (max-width:767px) {
+    .alumleft {
+        width: 100%;
+        position: relative;
+    }
+
+    .alumwrp {
+        flex-wrap: wrap;
+        gap: 30px 0
+    }
+
+    .alumrit {
+        width: 100%;
+    }
+
+    .tectab ul li {
+        min-height: auto;
+    }
+    .solidsheetlist{  justify-content: flex-start !important;}
+}

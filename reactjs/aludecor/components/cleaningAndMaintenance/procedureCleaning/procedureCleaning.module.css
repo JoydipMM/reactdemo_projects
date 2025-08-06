@@ -1,0 +1,6 @@
+.sheetbox{
+    background-color: var(--bggrey);
+}
+.title{
+    max-width: inherit!important;
+}

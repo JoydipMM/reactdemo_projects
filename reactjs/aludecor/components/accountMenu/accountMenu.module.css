@@ -1,0 +1,79 @@
+/* Container for the dropdown */
+.profile_dropdown_container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 130px;
+    line-height: 18px;
+    font-size: 14px;
+}
+
+
+/* Dropdown menu styles */
+.dropdown_menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Dropdown item base styles */
+.dropdown_item {
+    display: block;
+    line-height: 40px;
+    padding: 0 15px;
+    color: var(--txtcolor);
+    text-decoration: none;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s ease;
+    font-size: 15px;
+}
+
+/* Hover state for regular items */
+.dropdown_item:hover {
+    background-color: #f5f5f5;
+    color: #2C3885;
+}
+
+/* Button-specific styles */
+.dropdown_item_button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/* Hover state for buttons */
+.dropdown_item_button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #2C3885;
+}
+.profile_dropdown_container span{
+    position: relative;
+}
+.profile_dropdown_container span img{
+    position: absolute !important;
+    top: 3px;
+    right: -16px;
+}
+
+@media only screen and (max-width: 1199px) {
+    .profile_dropdown_container{
+        width: 60px;
+    }
+    .profile_dropdown_container span{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .profile_dropdown_container{
+        width: 40px;
+    }
+}

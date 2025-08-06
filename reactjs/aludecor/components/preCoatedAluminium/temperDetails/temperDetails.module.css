@@ -1,0 +1,141 @@
+.temptable {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.temptable table,
+.temptable td,
+.temptable th {
+    border: 1px solid var(--bordercolor);
+}
+
+.temptable table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: var(--border-round);
+}
+
+.temptable td {
+    padding: 20px 15px 20px 35px;
+}
+
+.temptable th {
+    text-align: left;
+    padding: 20px 35px;
+}
+
+.temptable th:first-child,
+.temptable td:first-child {
+    text-align: center; padding: 20px 20px;
+}
+.noborder{ border-bottom: 0px !important; border-top: 0px !important;}
+.tempertabcontwrp{ border: 1px solid var(--bordercolor); border-radius:var(--border-round); position: relative;}
+.tabList {
+    display: flex;
+    flex-direction: column;
+    width: 18%;
+    margin-right: 0;
+    padding: 95px 0 0 0;
+    list-style: none;
+    /* border-right: 1px solid #ccc; */
+    margin: 0;    
+}
+.tab {
+    padding: 25px 10px 25px 10px;
+    cursor: pointer;
+    /* border-top: 1px solid #ccc; */
+    border-top: 1px solid var(--bordercolor);
+    background-color: transparent;
+    transition: 0.3s;
+    font-size: 18px;
+    color: var(--txtcolor);
+    font-weight: 400;
+    position: relative;
+    list-style-type: none;
+    text-align: center;
+}
+.tab:nth-child(1) { border-top: 0;}
+.tabContent {
+    flex: 1 1;
+    padding: 0;
+    /* border-left: 1px solid #ccc; 
+    background: white;*/
+}
+.tabsContainer {
+    display: flex;
+    /* align-items: flex-start; */
+    position: relative;
+}
+.tabsContainer:after {
+    position: absolute;
+    content: "";
+    width: 1px;
+    height: 100%;
+    background-color: #ccc;
+    top: 0;
+    left: 18%;
+}
+.remarkcont{ display: flex; height: 100%; }
+.remarkbox:nth-child(1){ width: 30%;height: 100%; text-align: center;}
+.remarkbox:nth-child(2){ flex: 1; border-left: 1px solid var(--bordercolor); }
+.remarkbox h4{ font-size: 22px; font-weight: 700; border-bottom: 1px solid var(--bordercolor); line-height: 1.2; padding: 35px 10px; text-align: left;}
+.remarkbox h4, .remarkbox p{ padding-left: 50px; padding-right: 30px; text-align: left;}
+.remarkbox:nth-child(2) p, .remarkbox:nth-child(1) p{ padding-top: 15px ; padding-bottom: 15px;}
+.alloytxttab{ font-size: 22px; font-weight: 700; border-bottom: 1px solid var(--bordercolor); line-height: 1.2; padding: 35px 10px; text-align: center; position: absolute; left:0; top:0; width:18%;}
+.tabsContainer :global(.react-tabs__tab-panel--selected){ height: 100%;}
+.activeTab{ font-weight: 700;}
+@media (max-width:767px){
+    .tabList {
+        display: flex
+;
+        flex-direction: row;
+        width: 100%;
+        margin-right: 0;
+        padding: 0;
+        padding: 0% 0 0 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        height: auto !important;
+        margin: 0;
+        justify-content: space-between;
+    }
+    .tab{ padding-left: 20px; padding-right: 20px;}
+    .alloytxttab{ 
+        border-bottom: 1px solid var(--bordercolor);
+        padding: 20px 10px;
+        text-align: center;
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;}
+    
+.remarkbox:nth-child(2){ flex: auto; border-left: 0px solid var(--bordercolor); border-top: 1px solid var(--bordercolor); width: 100%; padding-top: 30px; margin-top: 10px;}
+.remarkbox h4{ font-size: 22px; font-weight: 700; border-bottom: 0px solid var(--bordercolor); line-height: 1.2; padding: 0 10px; text-align: left;}
+.remarkbox h4, .remarkbox p{ padding-left: 50px; padding-right: 30px; text-align: left;}
+.remarkbox:nth-child(2) p, .remarkbox:nth-child(1) p{ padding-top: 15px ; padding-bottom: 15px;}
+.remarkcont{flex-wrap: wrap;}
+.tabsContainer {
+    flex-wrap: wrap;
+}
+.tabContent {
+    flex: auto;
+    padding: 30px 0;
+    border-top: 1px solid #ccc;
+    border-left: 0px solid #ccc;
+    width: 100%;
+}
+.tabsContainer:after{ display: none;}
+.remarkbox:nth-child(1) {
+    width: 100%;
+    height: auto;
+   
+}
+.remarkbox h4, .remarkbox p {
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
+}
+.tab {
+    border-top: 0px solid var(--bordercolor);
+}
+}

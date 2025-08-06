@@ -1,0 +1,89 @@
+.teambox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 160px 35px;
+  margin-top: 120px;
+  margin-bottom: 60px;
+  justify-content: flex-start;
+}
+
+.teambox :global .tools-item {
+  max-width: 550px;
+  border-radius: 24px;
+  text-align: center;
+  min-height: auto;
+  position: relative;
+  padding-top: 175px;
+  padding-bottom: 36px;
+}
+
+.teambox :global .tools-item .icon1 {
+  position: absolute;
+  top: -117px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+.teambox :global .tools-item .icon1 img {
+  height: 100%;
+}
+
+.teambox :global .tools-item .socialicon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(0, 0, 0, 20%);
+}
+
+.tools_container {
+  text-align: center;
+}
+
+@media only screen and (max-width:1800px) {
+  .teambox :global .tools-item {
+    max-width: 30%;
+  }
+}
+
+@media only screen and (max-width:1200px) {
+  .teambox :global .tools-item {
+    max-width: 46%;
+  }
+
+  .teambox :global .tools-item .icon1 {
+    position: relative;
+    top: 30px;
+  }
+
+  .teambox :global .tools-item {
+    padding-top: 0;
+  }
+}
+
+@media only screen and (max-width:1024px) {
+  .teambox {
+    gap: 35px
+  }
+}
+
+@media only screen and (max-width:767px) {
+
+  .teambox :global .tools-item {
+    max-width: 100%;
+  }
+
+  .teambox {
+    margin-top: 0px;
+    margin-bottom: 30px;
+    gap: 35px
+  }
+
+  .teambox :global .tools-item .icon1 {
+    width: 220px;
+    margin-bottom: 20px;
+  }
+}

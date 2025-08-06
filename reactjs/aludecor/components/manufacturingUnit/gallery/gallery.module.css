@@ -1,0 +1,14 @@
+.tabcont_explore ul {padding-left: 150px; padding-right: 180px;}
+
+.tabcont_explore :global .prj_innerbox_overlay { z-index: 9;}
+.tabcont_explore :global .brands{ z-index: 0;}
+
+.prj_viewbtn :global {justify-content: center;}
+
+.Expl_metalmpwr :global h2 { max-width: none;}
+
+@media (max-width:1024px) {
+
+.tabcont_explore ul {padding-left: 0px; padding-right: 0px;}
+
+}

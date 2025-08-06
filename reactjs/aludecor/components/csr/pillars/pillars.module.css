@@ -1,0 +1,29 @@
+.pillars_content { display: flex; flex-wrap: wrap; margin: 0 -25px;}
+.pillars_content :global .pillar-item { padding: 30px; border: 1px solid #ccc; border-radius: 0 0 24px 0; width: calc(25% - 50px); margin: 15px 25px;}
+.pillars_content :global .pillar-item .icon-pic { text-align: center; padding-bottom: 30px;}
+
+.pillars_content :global .pillar-item .title {font-size: 36px; font-weight: 500; line-height: 1.2; min-height: 100px; padding-bottom: 15px;}
+.pillars_content :global .pillar-item p { padding-bottom: 0;}
+
+.center { text-align: center;}
+
+@media (max-width: 1600px) {
+.pillars_content :global .pillar-item .title {font-size: 25px; min-height: 60px;}
+.pillars_content {  margin: 0 -10px;}
+.pillars_content :global .pillar-item {width: calc(25% - 30px); margin: 15px;}
+
+}
+
+@media (max-width: 1024px) {
+
+.pillars_content :global .pillar-item {width: calc(50% - 30px);}    
+
+}
+
+@media (max-width: 600px) {
+
+.pillars_content :global .pillar-item {width: calc(100% - 30px);}   
+.pillars_content :global .pillar-item .title, .pillars_content :global .pillar-item p  { text-align: center;} 
+
+}
+    

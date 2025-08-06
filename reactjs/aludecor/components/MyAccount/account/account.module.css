@@ -1,0 +1,24 @@
+.warrntywrp :global .word-count {text-align: right; padding-top: 5px; font-size: 18px; color: #666;}
+.warrntywrp :global .formsection textarea { resize: none;}
+.warrntywrp :global .verified-txt {display: flex; align-items: center; height: 100%;}
+.warrntywrp :global .verified-txt2 {padding-top: 10px; display: block;}
+
+.warrntywrp :global .verified {background-image: url(/images/verified-icon.svg); background-repeat: no-repeat; background-size: 25px; background-position: 95% 50%; } 
+
+.warrntywrp :global .phone-row { display: flex; border: 1px solid #ccc; align-items: center; height: 80px;}
+.warrntywrp :global .phone-row input, .warrntywrp :global .phone-row select { border: 0; height: auto;}
+.warrntywrp :global .phone-row input { padding-left: 20px;}
+.warrntywrp :global .phone-row select { width: 110px; border-right: 1px solid #ccc; padding-right: 0; background-image: none; }
+.warrntywrp :global .location-content { border: 1px solid #ccc; padding: 0 60px 0 30px; height: 80px;  background-image: url(/images/arrow-right-2.svg); background-repeat: no-repeat; background-position: 97% 50%; display: flex; align-items: center;  }
+.warrntywrp :global .location-content span {white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 22px; font-weight: 500;}
+
+
+
+@media (max-width:1440px){
+
+.warrntywrp :global .phone-row { height: 50px;}
+.warrntywrp :global .location-content { height: 50px; padding: 0 50px 0 15px;  }
+.warrntywrp :global .location-content span {font-size: 16px;}
+.warrntywrp :global .word-count, .warrntywrp :global .verified-txt, .warrntywrp :global .verified-txt2 { font-size: 14px;}
+
+}

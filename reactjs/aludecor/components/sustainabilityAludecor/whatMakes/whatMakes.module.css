@@ -1,0 +1,7 @@
+.sustainmwrp{ background-color: var(--bggrey);}
+.sustainmwrp :global .tabcont_explore ul{ justify-content: center;}
+.sustainmwrp :global .tabcont_explore ul li{ margin-left: 5%; margin-right: 5%;}
+
+@media (max-width:767px){
+  .sustainmwrp :global .tabcont_explore ul{ justify-content: flex-start;}  
+}

@@ -1,0 +1,394 @@
+.tdatacont {
+  position: relative;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.tdatacont h3 {
+  position: absolute;
+  left: 0;
+  top: 19%;
+  max-width: 800px;
+  padding: 0;
+  font-weight: 700;
+}
+
+.tabsContainer {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+.tabsContainer:after {
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: 100%;
+  background-color: #ccc;
+  top: 0;
+  left: 30.5%;
+}
+
+.tabList {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-right: 0;
+  padding: 0;
+  list-style: none;
+  /* border-right: 1px solid #ccc; */
+  margin: 12% 0 7% 0;
+  height: 300px;
+  overflow-y: auto;
+}
+.tabList::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+.tabList::-webkit-scrollbar-track {
+  background: #d9d9d9;
+  border-radius: 10px;
+  height: 97%;
+}
+
+/* Handle */
+.tabList::-webkit-scrollbar-thumb {
+  
+  height: 25px;
+  border-radius: 10px;
+  background: #2c3885;
+}
+
+/* Handle on hover */
+.tabList::-webkit-scrollbar-thumb:hover {
+  background: rgba(70, 86, 106, 0.4);
+}
+.tab {
+  padding: 20px 77px 20px 0;
+  cursor: pointer;
+  /* border-top: 1px solid #ccc; */
+  border-bottom: none;
+  background-color: transparent;
+  transition: 0.3s;
+  font-size: 22px;
+  color: #666666;
+  font-weight: 400;
+  position: relative;
+  list-style-type: none;
+}
+.tab:before {
+  position: absolute;
+  content: "";
+  width: 33px;
+  height: 33px;
+  background-size: 100% 100% !important;
+  top: 18px;
+  right: 38px;
+  background: url(../../../public/images/arrow_accordian.svg) no-repeat;
+}
+/* .tab:last-child:before {
+  display: none;
+} */
+
+.tab:first-child {
+  border-top: 0px solid #ccc;
+}
+
+.tab:hover {
+  background: transparent;
+}
+
+.activeTab {
+  background: #fff;
+  position: relative;
+  color: var(--txtcolor) !important;
+  font-weight: 500;
+}
+
+.activeTab:before {
+  position: absolute;
+  content: "";
+  width: 33px;
+  height: 33px;
+  background-size: 100% 100% !important;
+  top: 18px;
+  right: 38px;
+  background: url(../../../public/images/arrow_accordian_act.svg) no-repeat;
+  /* transform: rotate(-180deg); */
+}
+
+.tabContent {
+  flex: 1;
+  padding: 100px 0 100px 50px;
+  /* border-left: 1px solid #ccc; */
+  background: white;
+}
+.databoxwrp {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px; justify-content: space-between;
+}
+.databoxcont {
+  width: 47%;
+  background-color: #f5f5f5;
+  border-radius: var(--border-round);
+  padding: 40px;
+}
+.databoxcont h3 {
+  font-weight: 400;
+  padding-bottom: 20px;
+  margin: 0;
+  position: relative;
+}
+.databoxcont p {
+  font-size: 22px;
+  line-height: 1.2;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 1800px) {
+  .reasonwrp h2 {
+    top: 9%;
+    max-width: 46%;
+  }
+}
+
+@media (max-width: 1700px) {
+  /* .reasonwrp h2 {
+    top: 10%;
+  } */
+
+  .tabContent {
+    padding: 70px 0 40px 40px;
+  }
+
+  /* .tabList {
+    margin: 25% 0 7% 0;
+  } */
+}
+
+@media (max-width: 1500px) {
+  /* .reasonwrp h2 {
+    top: 12%;
+  } */
+
+  .tab {
+    padding: 22px 0;
+    font-size: 22px;
+  }
+
+  .reasonwrp .activeTab:after {
+    right: -5px;
+    top: 0;
+    width: 48px;
+    height: 78px;
+  }
+
+  .topcontreas {
+    font-size: 18px;
+  }
+
+  .boxreason {
+    margin-bottom: 5px;
+    display: flex;
+  }
+
+  .boxtxtcont p {
+    font-size: 15px;
+  }
+
+  /* .tabList {
+    padding: 23% 0 7% 0;
+  } */
+}
+
+@media (max-width: 1366px) {
+  /* .reasonwrp h2 {
+    top: 12%;
+  } */
+.tdatacont h3{
+  top: 13%;}
+  .tab {
+    padding: 12px 78px 12px 0;
+    font-size: 20px;
+  }
+
+  .reasonwrp .activeTab:after {
+    right: -5px;
+    top: 0;
+    width: 48px;
+    height: 78px;
+  }
+
+  .topcontreas {
+    font-size: 18px;
+  }
+
+  .boxreason {
+    margin-bottom: 5px;
+    display: flex;
+  }
+
+  .boxtxtcont p {
+    font-size: 15px;
+  }
+
+   .tabList {
+    /*margin: 23% 0 7% 0;*/
+    height: 250px;
+  } 
+
+  .tabContent {
+    padding: 60px 0 30px 40px;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* .reasonwrp h2 {
+    top: 7%;
+  } */
+   .tabsContainer {
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    padding: 10px 33px 10px 0;
+    border-top: none;
+  }
+  .tab:before {
+    display: none;
+  }
+
+  .tabList {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-right: 0;
+    padding: 0;
+    padding: 0% 0 0 0;
+    overflow: auto;
+    height: auto !important;
+    margin: 0;
+  }
+
+  .reasonwrp .activeTab:after {
+    position: absolute;
+    display: none;
+  }
+
+  .tabContent {
+    flex: auto;
+    padding: 30px 40px;
+    border-top: 1px solid #ccc;
+    border-left: 0px solid #ccc;
+    background: white;
+    width: 100%;
+  }
+
+  .tabContent {
+    flex: auto;
+    padding: 30px 20px;
+    border-top: 1px solid #ccc;
+    border-left: 0px solid #ccc;
+    background: white;
+    width: 100%;
+  }
+
+  .tabContent {
+    flex: auto;
+    padding: 30px 0;
+    border-top: 1px solid #ccc;
+    border-left: 0px solid #ccc;
+    width: 100%;
+  }
+  .tabsContainer:after {
+    display: none;
+  }
+  .tabList::-webkit-scrollbar {
+    display: none;
+  }
+
+ /* .tab {
+    padding: 20px 0;
+    font-size: 20px;
+  }
+
+  .reasonwrp .activeTab:after {
+    right: -5px;
+    top: 0;
+    width: 48px;
+    height: 78px;
+  }
+
+   .tabList {
+    margin: 36% 0 7% 0;
+    height: 250px;
+  } */
+}
+
+@media (max-width: 767px) {
+  .tabsContainer {
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    padding: 10px 33px 10px 0;
+    border-top: none;
+  }
+  .tab:before {
+    display: none;
+  }
+
+  .tabList {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-right: 0;
+    padding: 0;
+    padding: 0% 0 0 0;
+    overflow: auto;
+    height: auto !important;
+    margin: 0;
+  }
+
+  .reasonwrp .activeTab:after {
+    position: absolute;
+    display: none;
+  }
+
+  .tabContent {
+    flex: auto;
+    padding: 30px 40px;
+    border-top: 1px solid #ccc;
+    border-left: 0px solid #ccc;
+    background: white;
+    width: 100%;
+  }
+
+  .tabContent {
+    flex: auto;
+    padding: 30px 20px;
+    border-top: 1px solid #ccc;
+    border-left: 0px solid #ccc;
+    background: white;
+    width: 100%;
+  }
+
+  .tabContent {
+    flex: auto;
+    padding: 30px 0;
+    border-top: 1px solid #ccc;
+    border-left: 0px solid #ccc;
+    width: 100%;
+  }
+  .tabsContainer:after {
+    display: none;
+  }
+  .tabList::-webkit-scrollbar {
+    display: none;
+  }
+  .databoxcont {
+    width: 100%;
+  }
+}

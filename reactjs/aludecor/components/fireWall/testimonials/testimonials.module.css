@@ -1,0 +1,23 @@
+.testimonials_content { display: flex; flex-wrap: wrap; align-items: center;}
+.testimonials_content :global .left { width: 50%; padding-right: 50px;}
+.testimonials_content :global .right { width: 50%; padding-left: 50px;}
+
+.client_box :global  { width: 100%; margin-bottom: 40px;}
+.client_box:last-child :global { margin-bottom: 0;}
+
+
+@media (max-width: 1600px) {
+
+.testimonials_content :global .left { padding-right: 25px;}
+.testimonials_content :global .right {  padding-left: 25px;}
+.client_box :global { padding: 30px;}
+
+}
+
+@media (max-width: 1024px) {
+
+.testimonials_content :global .left { width: 100%; padding-right: 0px; padding-bottom: 40px;}
+.testimonials_content :global .right { width: 100%;  padding-left: 0px;}
+
+
+}

@@ -1,0 +1,52 @@
+.errorwrp {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.err_title {
+    height: 300px;
+    margin-bottom: 55px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.err_title img {
+    height: 100%;
+    object-fit: contain;
+    width: auto;
+}
+
+.errorwrp h2 {
+    max-width: 1362px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.errorwrp p {
+    width: 100%;
+    text-align: center;
+}
+
+@media (max-width:1400px) {
+    .err_title {
+        height: 190px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width:1024px) {
+    .err_title {
+        height: 110px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width:767px) {
+    .err_title {
+        height: 91px;
+        margin-bottom: 30px;
+    }
+}

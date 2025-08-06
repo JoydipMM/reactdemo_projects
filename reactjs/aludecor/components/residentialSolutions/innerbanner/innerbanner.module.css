@@ -1,0 +1,9 @@
+@media only screen and (max-width:600px){
+    .innerbanner :global .cpation-banner h2{
+        padding-bottom: 10px;
+    }
+    .innerbanner :global .cpation-banner p{
+        font-size: 14px;
+        padding-bottom: 10px;
+    }
+}

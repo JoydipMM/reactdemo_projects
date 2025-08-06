@@ -1,0 +1,20 @@
+.titlearea{
+    max-width: 1044px;
+    text-align: center;
+    margin: 0 auto;
+}
+.left_speci{
+    width: 66%;
+}
+.tectable th:first-child {
+    padding: 35px 10px 35px 47px;
+    width: 66%;
+}
+.tectable td:last-child {
+    padding-left: 12px!important;
+}
+@media only screen and (max-width:991px){
+    .left_speci{
+        width: 100%;
+    }
+}

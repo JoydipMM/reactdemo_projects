@@ -1,0 +1,92 @@
+.distributor_wrapper {padding: 150px 0; background-image: linear-gradient(#F5F5F7, #fff);}
+.distributor_wrapper h2 { max-width: 1350px; margin: 0 auto;}
+
+.distributor_content { display: flex; flex-wrap: wrap; align-items: center;}
+.distributor_content :global .left { width: 50%; padding-right: 40px;}
+.distributor_content :global .right { width: 50%; padding-left: 40px;}
+
+.distributor_content :global button { margin-top: 60px; }
+
+.distributor_content :global .form-row { display: flex; flex-wrap: wrap; margin-bottom: 30px; margin-left: -15px; margin-right: -15px;}
+.distributor_content :global .form-row :global .form-col { width: 50%; padding: 0 15px;}
+.distributor_content :global .form-row :global .form-col-full { width: 100%; padding: 0 15px;}
+.distributor_content :global .form-row input,
+.distributor_content :global .form-row select,
+.distributor_content :global .form-row textarea 
+{width: 100%; background-color: transparent;height: 80px;border:1px solid #ccc;padding:0 30px;font-size: 22px; color: #666;font-weight: 500;font-family: 'Poppins', sans-serif;}
+
+.distributor_content :global .form-row textarea { height: 220px; padding:15px 30px; resize: none;}
+
+.distributor_content :global .form-row select { -moz-appearance: none;  appearance: none; -webkit-appearance: none; background: url(/images/down-arrow.svg) 95% 50% no-repeat; }
+
+.sustainab_mrp { padding: 0; align-items: center;}
+.sustainab_rightboxinner { padding: 40px; margin-left: -30px; margin-top: 0;}
+.sustainab_rightboxinner h2 { padding-bottom: 5px;}
+.sustainab_rightboxinner h2 span { text-transform: none;}
+
+.sust_txt { margin: 0; font-size: 18px;}
+.designation { color: #666;}
+
+.sustain_leftbox img { border-radius: 0 0 24px 0; min-height: 650px; object-fit: cover; object-position: center;}
+
+.distributor_item { padding: 50px 0;}
+.distributor_item ul { display: flex; flex-wrap: wrap; justify-content: center; list-style: none;}
+.distributor_item ul li { position: relative; padding: 0 20px 0 40px; font-size: 22px; color: #666; list-style: none;}
+.distributor_item ul li::before { content: ""; width: 30px; height: 30px; background: url(/images/tick-icon.svg) no-repeat; background-size: contain; position: absolute; left: 0; top: 2px;}
+
+@media (max-width: 1800px) {
+.distributor_wrapper {padding: 100px 0;}
+.sustainab_mrp { padding: 0;}
+
+}
+
+@media (max-width: 1600px) {
+
+.sustainab_mrp { padding: 0;}
+.distributor_wrapper h2 { max-width: 800px;}
+
+}
+
+@media (max-width: 1440px) {
+.distributor_wrapper {padding: 70px 0;}
+
+}
+
+
+@media (max-width: 1024px) {
+.distributor_wrapper {padding: 60px 0;}
+
+.distributor_content :global .left { width: 100%; padding-right: 0px; padding-bottom: 40px;}
+.distributor_content :global .right { width: 100%; padding-left: 0px;}
+.distributor_item ul li { font-size: 18px; padding-bottom: 10px;}
+
+.sustainab_rightboxinner { margin-left: 0; padding: 20px;}
+.sustain_leftbox { height: auto;}
+.sustain_leftbox img {min-height: 400px; height: auto!important;}
+.sustain_rightbox { margin-top: -50px;}
+
+.distributor_item { padding: 30px 0;}
+.distributor_item ul { justify-content: flex-start;}
+
+.distributor_content :global .form-row { margin-bottom: 0px;}
+.distributor_content :global .form-row :global .form-col { width: 100%; margin-bottom: 15px;}
+.distributor_content :global .form-row :global .form-col-full { margin-bottom: 15px;}
+.distributor_content :global button { margin-top: 15px; }
+
+.distributor_content :global .form-row input,
+.distributor_content :global .form-row select,
+.distributor_content :global .form-row textarea { padding: 10px 15px; font-size: 16px; height: auto;} 
+.distributor_content :global .form-row textarea { height: 150px;}
+
+}
+
+
+@media (max-width: 991px) {
+.distributor_wrapper {padding: 50px 0;}
+
+}
+
+@media (max-width: 767px) {
+.distributor_wrapper {padding: 40px 0;}
+
+}

@@ -1,0 +1,47 @@
+.soluimg ul {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.soluimg ul li {
+  width: 48%;
+  border-radius: 0 0 24px 0;
+  position: relative;
+  height: 555px;
+  list-style-type: none;
+}
+.soluimg ul li img {
+  border-radius: 0 0 24px 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+}
+@media only screen and (max-width: 1800px) {
+  .soluimg ul li {
+    width: 46%;
+  }
+}
+@media only screen and (max-width: 1600px) {
+  .soluimg ul li {
+    height: 400px;
+  }
+}
+@media only screen and (max-width: 1400px) {
+  .soluimg ul li {
+    height: 300px;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .soluimg ul li {
+    height: 240px;
+  }
+  .soluimg ul {
+    gap: 25px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .soluimg ul li {
+    width: 100%;
+    height: auto;
+  }
+}

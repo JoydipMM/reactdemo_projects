@@ -1,0 +1,15 @@
+.tabsContainer :global { align-items: center;}
+.tabList :global { padding-top: 20%;}
+
+
+@media (max-width:1700px) {
+
+.tabList :global { padding-top: 15%;}
+
+}
+
+@media (max-width:767px) {
+
+.tabList :global { padding-top: 0;}
+
+}

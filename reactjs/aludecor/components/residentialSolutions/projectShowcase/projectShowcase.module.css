@@ -1,0 +1,47 @@
+.prj_innerbox{
+    width: calc(96% / 2);
+    height: 652px;
+    text-align: center;
+}
+.prj_shocase{
+   justify-content: space-between; 
+   position: relative;
+}
+.prj_shocase:before{
+    position: absolute;
+    content: "";
+    background-color: #ccc;
+    width: 1px;
+    height: 100%;
+    left: 50%;
+}
+.prj_innerbox :global .common-btn img{
+    width: auto!important;
+    height: auto!important;
+}
+.prj_innerbox_overlay{
+    padding: 10px 17%;
+}
+.prj_overltxt{
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+}
+
+@media only screen and (max-width:1300px){
+    .prj_innerbox{
+        height: 500px;
+    }
+}
+@media only screen and (max-width:1024px){
+    .prj_innerbox{
+        height: 400px;
+    }
+}
+@media only screen and (max-width:767px){
+    .prj_innerbox{
+        width: calc(100% / 1);
+    }
+    .prj_shocase:before{
+        display: none;
+    }
+}

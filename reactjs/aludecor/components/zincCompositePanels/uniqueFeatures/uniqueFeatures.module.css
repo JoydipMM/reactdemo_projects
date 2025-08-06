@@ -1,0 +1,20 @@
+.protect_content :global .protect-item{
+    position: relative;
+    padding-bottom: 130px;
+}
+.protect_content :global .protect-item p{
+    position: absolute;
+    bottom: 40px;
+    max-width: 200px;
+}
+@media only screen and (max-width: 991px) {
+    .protect_content :global .protect-item{
+        text-align: center;
+        padding-bottom: 30px;
+    }
+    .protect_content :global .protect-item p{
+        position: relative;
+        bottom: auto;
+        max-width:inherit;
+    }
+}

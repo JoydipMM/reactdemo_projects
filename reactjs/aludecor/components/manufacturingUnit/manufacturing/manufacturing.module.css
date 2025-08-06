@@ -1,0 +1,14 @@
+.premiumwrp :global {background-image: linear-gradient(#F5F5F7, #ffffff);}
+.premiumwrp :global h2 { max-width: none;}
+
+@media (max-width:1700px) {
+
+.premiumwrp :global h2 { max-width: 950px;}
+
+}
+
+@media (max-width:767px) {
+
+
+
+}

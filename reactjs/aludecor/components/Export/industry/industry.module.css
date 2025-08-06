@@ -1,0 +1,8 @@
+.premium_boxwrp :global .brands  { z-index: 0;}
+.slidergallery h2 { max-width: 850px; margin: 0 auto;}
+.premium_boxwrp .frembox :global .brands img { transition: ease-in-out 0.5s;}
+.premium_boxwrp .frembox:hover :global .brands img {filter: brightness(0) invert(1); transition: ease-in-out 0.5s;}
+
+@media only screen and (max-width:1600px){
+.slidergallery h2 { max-width: 800px;}
+}

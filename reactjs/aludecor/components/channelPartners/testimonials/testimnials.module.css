@@ -1,0 +1,258 @@
+.vid_expmpper h2 {
+    text-align: center;
+  }
+  
+  .vid_explore_mper {
+    display: flex;
+    gap: 38px;
+    justify-content: space-between;
+    
+  }
+  
+  .explorevidbox {
+    width: 23%;
+    border: 1px solid var(--bordercolor);
+    border-radius: var(--border-round);
+    padding: 20px;
+
+  }
+  
+  .exploreimgcont {
+    width: 100%;
+    height: 234px;
+    margin: 0 0 21px 0;
+    position: relative;
+    border-radius: 24px;
+  }
+  
+  .exploreimgcont img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+  }
+  
+  .explorevidbox h3 {
+    margin: 0 0 15px 0;
+  }
+  
+  .overlay_vidiconexp {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 24px;
+    cursor: pointer;
+  }
+  
+  .overlay_vidiconexp img {
+    width: 61px;
+    height: 61px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+  
+  .modalwrper {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 99999 !important;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .explorevidbox {
+    width: 23%;
+  }
+  
+  .exploreimgcont {
+    width: 100%;
+    height: 234px;
+    margin: 0 0 21px 0;
+    position: relative;
+    border-radius: 24px;
+  }
+  
+  .exploreimgcont img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+  }
+  
+  .explorevidbox h3 {
+    margin: 0 0 15px 0;
+  }
+  
+  .overlay_vidiconexp {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 24px;
+    cursor: pointer;
+  }
+  
+  .overlay_vidiconexp img {
+    width: 61px;
+    height: 61px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+  
+  .modalwrper {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 99999 !important;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .vidmodal_mwrp {
+    background: #fff;
+    position: relative;
+    border-radius: 27px 27px 20px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 34%;
+    padding: 40px 20px;
+    margin: auto;
+  }
+  
+  .video_modalcont {
+    width: 100%;
+    height: 300px;
+  }
+  
+  .video_modalcont iframe {
+    width: 100% !important;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  /* .close_popup{ position: absolute; right:0; top:0; } */
+  .close_popup {
+    position: absolute;
+    right: 27px;
+    top: 3px;
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+    font-size: 0;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .close_popup:hover {
+    opacity: 1;
+  }
+  
+  .close_popup:before,
+  .close_popup:after {
+    position: absolute;
+    left: 15px;
+    content: " ";
+    height: 20px;
+    width: 2px;
+    background-color: rgb(47, 49, 146);
+  }
+  
+  .close_popup:before {
+    transform: rotate(45deg);
+  }
+  
+  .close_popup:after {
+    transform: rotate(-45deg);
+  }
+  .testim_wrpbox{ display: flex; margin: 20px 0 0 0;}
+  .testim_wrpbox img{ border-radius: 100%; margin-right: 15px;}
+  .testim_wrpbox_desc{ flex: 1;}
+  .testim_wrpbox_desc p{ font-weight: 500; margin: 0; padding: 0;}
+  
+  @media (max-width: 1600px) {
+    .vidmodal_mwrp {
+  
+      width: 50%;
+  
+    }
+  }
+  
+  
+  @media (max-width: 1366px) {
+    .exploreimgcont {
+      height: 181px;
+    }
+  
+    .overlay_vidiconexp img {
+      width: 50px;
+      height: 50px;
+  
+    }
+  
+    .vidmodal_mwrp {
+  
+      width: 60%;
+  
+    }
+  }
+  
+  
+  @media (max-width: 1024px) {
+    .explorevidbox {
+      width: 44%;
+    }
+  
+    .vid_explore_mper {
+      flex-wrap: wrap;
+      gap: 30px 20px;
+    }
+  
+    .vidmodal_mwrp {
+  
+      width: 60%;
+  
+    }
+  
+  }
+  
+  @media (max-width: 767px) {
+    .explorevidbox {
+      width: 100%;
+    }
+  
+    .vidmodal_mwrp {
+  
+      width: 98%;
+  
+    }
+  }

@@ -1,0 +1,48 @@
+.explorevidbox{
+    width: 19%;
+    margin-top: 10px;
+}
+.explorevidbox :global .bussGrowth_exploreimgcont___DgRc{
+    height: 330px;
+}
+.explorevidbox h3, .explorevidbox p{
+    max-width: 246px;
+}
+
+@media (max-width:1800px) {
+    .explorevidbox{
+        width: 18%;
+    }
+    .explorevidbox :global .bussGrowth_exploreimgcont___DgRc{
+        height: 258px;
+    }
+}
+@media (max-width:1440px) {
+    .explorevidbox h3{
+       min-height: 100px; 
+    }
+    .explorevidbox :global .bussGrowth_exploreimgcont___DgRc{
+        height: fit-content;
+    }
+}
+@media (max-width:1300px) {
+    .explorevidbox h3{
+       min-height: 78px; 
+    }
+}
+@media (max-width:1023px) {
+    .explorevidbox{
+        width: 47%;
+    }
+    .explorevidbox h3, .explorevidbox p{
+        max-width: 100%;
+    }
+    .explorevidbox h3{
+       min-height: fit-content; 
+    }
+}
+@media (max-width:600px) {
+    .explorevidbox{
+        width: 100%;
+    }
+}

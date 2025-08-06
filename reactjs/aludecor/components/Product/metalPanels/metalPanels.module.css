@@ -1,0 +1,19 @@
+.shade :global .slick-slide{
+  padding: 0 12px;
+}
+.shade :global .designspace_colorbox_title__0cDFz{
+  margin-top: 20px;
+  text-align: left;
+}
+.shade :global .designspace_colorbox_imgcont__mfA4U{
+  border-radius: 0 0 24px 0;
+}
+.shade :global .slick-current .designspace_colorbox_title__0cDFz{
+  padding-left: 10px;
+}
+
+@media only screen and (max-width:1400px){
+  .shade :global .designspace_colorbox_title__0cDFz{
+    font-size: 18px;
+  }
+}

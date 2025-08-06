@@ -1,0 +1,6 @@
+
+@media (max-width:767px){
+
+.acpbannercont :global .cpation-banner h2{ font-size: 18px; padding-bottom: 10px;}
+.acpbannercont :global .cpation-banner p{ font-size: 14px; padding-bottom: 8px;}
+}

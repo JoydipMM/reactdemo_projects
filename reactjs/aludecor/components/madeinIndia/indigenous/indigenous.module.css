@@ -1,0 +1,33 @@
+.tools_container :global .tools-item{
+    padding: 20px;
+    min-height: 890px;
+    background-color: transparent;
+    border-radius: 24px;
+    border: 1px solid var(--txtcolor);
+}
+.tools_container :global .tools-item .txt{
+    display: -webkit-box;
+  -webkit-line-clamp: none;
+}
+.tools_container :global .tools-item h2{
+    max-width: 1490px;
+    margin: 0 auto;
+}
+@media only screen and (max-width: 1600px) {
+    .tools_container :global .tools-item img {
+        height: fit-content;
+    }
+}
+@media only screen and (max-width: 1440px) {
+    .tools_container :global .tools-item {
+        min-height: 690px;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .tools_container :global .tools-item {
+        min-height: 720px;
+    }
+    .tools_container :global .tools-item img {
+        width: 100%;
+    }
+}

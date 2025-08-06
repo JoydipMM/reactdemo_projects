@@ -1,0 +1,17 @@
+.textcenter :global { text-align: center;}
+.tolerances { display: flex; flex-wrap: wrap; align-items: center; border-bottom: 1px solid #ccc;}
+.tolerances :global .left { width: 40%;}
+.tolerances :global .right { width: 60%; padding-left: 70px;}
+
+.gentable :global { border: 1px solid #ccc; overflow-x: auto;}
+.gentable :global table { border-collapse: collapse; width: 100%; border: 1px solid #ccc;}
+.gentable :global table tr th {font-weight: 600;}
+.gentable :global table tr th, .gentable :global table tr td { padding: 10px 14px; text-align: center; font-weight: normal; border: 1px solid #ccc; width: 50%;}
+
+
+@media (max-width:1024px) {
+
+.tolerances :global .left { width: 100%;}
+.tolerances :global .right { width: 100%; padding-left: 0px; padding-top: 40px;}   
+
+}

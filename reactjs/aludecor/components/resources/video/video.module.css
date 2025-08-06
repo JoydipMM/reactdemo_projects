@@ -1,0 +1,29 @@
+.videocont video, .videocont{
+  height: 930px;
+}
+.videocont{
+  overflow: hidden;
+}
+.overlay_vidicon{
+  right: auto;
+  top: auto;
+  width: 50%!important;
+  height: auto!important;
+  background-color: var(--white);
+  padding: 5px 15px;
+  cursor: pointer;
+}
+.videocont, .videocont img, .videocont video{
+  border-radius: 0 0 24px 0;
+}
+
+@media only screen and (max-width:1600px){
+  .videocont video, .videocont{
+    height: 730px;
+  }
+}
+@media only screen and (max-width:1024px){
+  .videocont video, .videocont{
+    height: 426px;
+  }
+}

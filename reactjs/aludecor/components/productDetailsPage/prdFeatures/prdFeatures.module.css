@@ -1,0 +1,289 @@
+.featurewrp {
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.featureleft {
+    width: 30%;
+}
+
+/* .featureleft img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+} */
+
+.featureright {
+    width: 50%;
+    /* display: flex;   
+    flex-wrap: wrap; */
+    margin-left: 5%;
+}
+
+.featureicone {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 100%;
+}
+
+.feat_iconbox {
+    width: calc(95% / 3);
+
+}
+
+.feat_iconimgbox {
+    position: relative;
+    width: 75px;
+    height: 75px;
+    border: 1px solid #ccc;
+    border-radius: 100%;
+    padding: 18px;
+    margin: 0 auto 11px;
+}
+
+.feat_iconimgbox img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.feat_iconbox p {
+    color: var(--#2B2D2F);
+    max-width: 206px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.feat_iconbox:first-child p {
+    max-width: 144px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.linkbox {
+    margin: 71px 0 0 0;
+    display: flex;
+    gap: 37px;
+
+}
+
+.productboxb {
+    width: 100%;
+    height: 840px;
+    border-radius: 0 0 24px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.productboxb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 0 24px 0;
+}
+
+.thumbnail_slider {
+    margin-top: 48px;
+    display: flex;
+    gap: 20px;
+
+}
+
+.product_thumb {
+    width: calc(100% / 4);
+    /* padding: 0 10px; */
+}
+
+.thmbbox {
+    width: 100%;
+    height: 175px;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 0 0 24px 0;
+}
+
+.thmbbox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 0 24px 0;
+    display: block;
+}
+
+.productboxb :global .slick-slider,
+.productboxb :global .slick-list,
+.productboxb :global .slick-track {
+    height: 100%;
+}
+
+.product_text {
+    white-space: normal;
+    margin-top: 10px;
+}
+
+.productboxb:hover .prj_innerbox_overlay {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.prj_innerbox_overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    padding: 10px 50px 90px;
+    opacity: 0;
+    transition: allease-in 0.5s;
+}
+
+.prj_overltitle {
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 0 0 10px 0;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.prj_overltxt {
+    line-height: 1.5;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 19px;
+    font-size: 17px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    width: 100%;
+}
+
+.prj_innerbox_overlay img {
+    width: 100% !important;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 100%;
+    position: relative;
+    transform: rotate(90deg);
+}
+
+/* .linkbox :global .common-btn:first-child {
+    margin-right: 37px;
+} */
+@media (max-width:1400px) {
+    .feat_iconimgbox {
+        width: 60px;
+        height: 60px;
+        padding: 15px;
+    }
+
+    .linkbox {
+        margin: 29px 0 0 0;
+        gap: 25px;
+    }
+
+    .featureleft {
+        width: 40%;
+    }
+}
+
+@media (max-width:1024px) {
+    .linkbox {
+        margin: 30px 0 0 0;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .linkbox .common-btn:first-child {
+        margin-right: 15px;
+        margin-bottom: 15px;
+    }
+
+    .feat_iconbox p {
+        font-size: 16px;
+    }
+
+    .featureleft {
+        width: 39%;
+    }
+    .productboxb {
+        width: 100%;
+        height: 550px;
+        
+    }
+    .thmbbox {       
+        height: 135px;        
+    }
+}
+
+
+
+@media (max-width:767px) {
+    
+    .featurewrp {
+        flex-wrap: wrap;
+    }
+    
+    .featureleft {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .featureright {
+        width: 100%;
+    }
+    .feat_iconbox {
+        width: 100%;
+    }
+
+    .featureicone {
+        flex-wrap: wrap;
+        gap: 20px;
+
+    }
+
+    .feat_iconbox:first-child p {
+        max-width: 100%;
+    }
+
+    .feat_iconbox p {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .feat_iconimgbox {
+        width: 70px;
+        height: 70px;
+        padding: 15px;
+    }
+
+    .productboxb {
+        width: 100%;
+        height: 425px;
+    }
+    .thmbbox {
+        width: 100%;
+        height: 135px;
+        
+    }
+}

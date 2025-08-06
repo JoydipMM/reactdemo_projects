@@ -1,0 +1,16 @@
+.whydecorleft :global h2 { padding-top: 30%;}
+
+
+@media (max-width:1600px) {
+
+.whydecorleft :global h2 { max-width: 400px;}
+
+}
+
+@media (max-width:767px) {
+
+.whydecorleft :global h2 { padding-top: 30px;}
+.shapeimg :global { max-width: 40%; left: calc(100% - 100%);}
+
+
+}

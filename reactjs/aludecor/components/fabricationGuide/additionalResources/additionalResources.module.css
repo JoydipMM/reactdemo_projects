@@ -1,0 +1,217 @@
+
+
+
+.addibox_wrp {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+   /* justify-content: space-between;  */
+}
+
+.addi_innerbox {
+  width: calc(93% / 4 );
+  height: 400px;
+  position: relative;
+  border-radius: 24px;
+}
+
+.addi_innerbox img {
+  width: 100% !important;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  position: relative;
+}
+.addi_mwrpercont :global .tabcont_explore ul {
+     justify-content:center !important;
+}
+.addi_innerbox:hover .addi_innerbox_overlay,
+.frembox:hover .addi_innerbox_overlay {
+  display: block !important;
+  border-radius: 24px;
+  z-index: 1;
+  opacity: 1;
+  cursor: pointer;
+  transition: all ease-in-out 2s;
+}
+
+.addi_innerbox_overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: url(../../../public/images/overlayb.png) no-repeat;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  padding: 10px 50px;
+  opacity: 0;
+  transition: all ease-in 0.5s;
+}
+
+.addi_overltitle {
+  font-size: 26px;
+  line-height: 1.2;
+  margin: 0 0 10px 0;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+           line-clamp: 2; 
+   -webkit-box-orient: vertical;
+}
+
+.addi_overltxt {
+  line-height: 1.5;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 19px;
+  font-size: 17px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+           line-clamp: 2; 
+   -webkit-box-orient: vertical;
+   width: 100%;
+}
+
+.addibtnlink {
+  border: none;
+}
+
+.addi_innerbox_overlay img,
+.frembox .addi_innerbox_overlay img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.addi_viewbtn {
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin-top: 40px;
+}
+
+
+.frembox .addi_innerbox_overlay {
+  padding: 0 17%;
+  text-align: center;
+}
+.frembox .addi_innerbox_overlay a {
+  display: inline-block;
+  margin-left: -40px;
+}
+@media (max-width: 1800px) {
+.addibox_wrp {
+   gap: 25px;
+}
+}
+@media (max-width: 1600px) {
+  .addi_innerbox {
+    height: 301px;
+  }
+  .Expl_metalmpwr h2 {
+    max-width: 600px;
+  }
+  
+}
+@media (max-width: 1400) {
+  
+  .Expl_metalmpwr h2 {
+    max-width: 530px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .tabcont_explore ul li {
+    margin-right: 20px;
+    font-size: 16px;
+  }
+  .addi_innerbox {
+    width: 23%;
+    height: 257px;
+  }
+  .addi_overltitle {
+    font-size: 23px;
+  }
+  .addi_innerbox_overlay img,
+  .frembox .addi_innerbox_overlay img {
+    width: 40px;
+    height: 40px;
+  }
+  .frembox .addi_innerbox_overlay {
+    padding: 0 16%;
+  }
+  .frembox .addi_overltxt {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .tabcont_explore .activeTab:after {
+    background: #02854b;
+    position: absolute;
+    content: "";
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+  }
+
+  .tabcont_explore .activeTab:before {
+    display: none;
+  }
+  .tabcont_explore ul {
+    
+    padding-bottom: 3px;
+    border-bottom: 1px solid #ccc;
+  }
+  .tabcont_explore ul:after { display: none;}
+  .tabcont_explore .activeTab {}
+
+  .tabcont_explore ul li {
+    margin-right: 10px;
+  }
+  .addi_innerbox {
+    width: 31%;
+    height: 263px;
+  }
+  .addi_overltitle {
+    font-size: 22px;
+  }
+  .addi_innerbox_overlay img,
+  .frembox .addi_innerbox_overlay img {
+    width: 30px;
+    height: 30px;
+  }
+  .tabcont_explore ul li:nth-child(1) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .panel_conttab {
+    padding: 40px 0 0 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .addi_innerbox {
+    width: 100%;
+    height: 291px;
+  }
+  .tabcont_explore ul li {
+    margin-right: 20px;
+    font-size: 14px;
+  }
+}

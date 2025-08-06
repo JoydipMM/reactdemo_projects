@@ -1,0 +1,26 @@
+.impactbox :global .tools-item {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 80px 91px;
+}
+.impactbox { margin-bottom: 100px; }
+.countsust {
+    font-size: 66px;
+    font-weight: 500;
+}
+
+.impactbox :global .item-heading {
+    width: 100%;
+}
+
+@media (max-width:1440px){
+    .impactbox :global .tools-item { padding: 40px 20px;}
+    .countsust {
+    font-size: 50px;    
+}
+}

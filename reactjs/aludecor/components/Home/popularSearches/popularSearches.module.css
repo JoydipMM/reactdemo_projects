@@ -1,0 +1,51 @@
+.popularwrap :global .common-btn,
+.popularwrap :global .common-btn:before {
+  border-radius: 0 0 20px 0;
+}
+.popularwrap {
+}
+.popularwrap ul {
+  display: flex;
+  gap: 33px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.popularwrap h2 {
+  text-align: center;
+  margin-bottom: 38px;
+}
+.popularwrap :global .common-btn {
+  width: 18%;
+  height: 80px;
+  font-size: 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.popularwrap :global .common-btn:hover a { color:var(--white)}
+@media only screen and (max-width: 1600px) {
+  .popularwrap :global .common-btn {
+    width: 17%;
+    height: 50px;
+    font-size: 16px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .popularwrap ul {
+    gap: 18px;
+  }
+  .popularwrap :global .common-btn {
+    font-size: 12px;
+  }
+  .popularwrap {
+    padding: 40px 0;
+  }
+  .popularwrap h2 {
+    margin-bottom: 20px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .popularwrap :global .common-btn {
+    width: 124px;
+    height: 40px;
+  }
+}

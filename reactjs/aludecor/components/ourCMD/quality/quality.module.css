@@ -1,0 +1,22 @@
+.slidergallery :global {background-image: linear-gradient(#F5F5F7, #fff);}
+.slidergallery :global .animate_frame img { border-radius: 24px!important; object-fit: cover; object-position: center;}
+.slidergallery :global .slick-slide.slick-current { border-right: 1px solid #ccc;}
+.slidergallery :global .slick-slide { padding: 0 40px; min-height: 550px;}
+.slidergallery :global .slick-list { padding-bottom: 0;}
+
+.slidergallery :global .colorbox_imgcont { margin-left: 0;}
+
+.slidergallery  .colorbox_title :global p {display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;  overflow: hidden; height: 110px; padding-bottom: 0;}
+
+
+@media (max-width: 1600px) {
+.slidergallery :global .slick-list { padding-bottom: 0;}
+.slidergallery :global .container { padding-bottom: 25px;}
+}
+
+
+@media (max-width: 767px) {
+.slidergallery :global .slick-slide { padding: 0; min-height: 100px;}
+.slidergallery :global .slick-slide.slick-current { border-right: 0px;}
+.slidergallery :global { margin-top: 40px;}
+}

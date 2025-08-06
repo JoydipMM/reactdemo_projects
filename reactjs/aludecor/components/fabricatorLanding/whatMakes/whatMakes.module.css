@@ -1,0 +1,84 @@
+.choice ul, .choice ul li{
+  display: flex;
+  flex-wrap: wrap;
+}
+.choice ul{
+  gap: 20px;
+}
+.choice ul li{
+  list-style-type: none;
+  max-width: 380px;
+  width: 100%;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 0 0 24px 0;
+  padding: 30px;
+}
+.choicetxt{
+  width: 70%;
+}
+.choice ul li h4{
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.choice ul li p{
+  margin: 0;
+  padding: 0;
+}
+.sstextpart{
+  max-width: 840px;
+}
+.ssimagepart{
+  max-width: 800px;
+}
+@media (max-width: 1800px) {
+
+  .sstextpart,
+  .ssimagepart {
+    max-width: 47%;
+  }
+  .ssimagepart :global .ssimage{
+    height: auto;
+  }
+  .sswraper{
+    align-items: flex-start;
+  }
+  .choice ul li{
+    width: 47%;
+  }
+}
+@media (max-width: 1500px) {
+  .choicetxt{
+    width: 100%;
+    margin-bottom: 16px;
+  }
+}
+@media (max-width: 1199px) {
+
+  .sstextpart,
+  .ssimagepart {
+    max-width: 46%;
+  }
+}
+@media (max-width: 991px) {
+  .sstextpart,
+  .ssimagepart {
+      max-width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .sswraper {
+      flex-direction: column;
+  }
+  .choicetxt{
+    width: 70%;
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 600px) {
+  .choice ul li{
+    width: 100%;
+  }
+
+}

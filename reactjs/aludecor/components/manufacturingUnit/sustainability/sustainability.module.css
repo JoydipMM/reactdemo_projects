@@ -1,0 +1,6 @@
+.slidergallery :global .commonSlider::before { background-color: #fff;}
+
+@media only screen and (max-width:991px){
+.slidergallery :global .commonSlider::before { background-color: #ccc;}
+
+}

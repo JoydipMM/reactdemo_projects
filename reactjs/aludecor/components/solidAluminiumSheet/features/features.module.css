@@ -1,0 +1,13 @@
+.introwrp{ display: flex; justify-content: space-between;}
+.leftintro{ width: 45%; position: relative;}
+.ritintro{ width: 48%; position: relative; display: flex; flex-wrap: wrap; align-content: center;}
+.leftintro h2{ width: 100%;}
+.allcenter{ display: flex; flex-wrap: wrap; align-content: center;}
+.img_w{ width: 100%; height: 100%; border-radius: 24px;}
+.titletxt{ font-weight: 500; font-size: 22px; margin: 0; padding: 0 0 15px 0;}
+.reverse{ flex-direction: row-reverse;}
+@media (max-width:767px) {
+    .introwrp{ flex-wrap: wrap; gap:30px 0 } 
+    .leftintro{ width: 100%; }
+    .ritintro{ width: 100%; }
+}

@@ -1,0 +1,14 @@
+.tabcontent { padding: 20px 0 0; align-items: center; }
+
+.tabcontent .pic img { border-radius: 24px;}
+.Expl_metalmpwr h2 { max-width: inherit;}
+
+@media only screen and (max-width:1600px){
+.Expl_metalmpwr h2 { max-width: 750px;}
+}
+
+@media (max-width:1024px) {
+
+.prj_viewbtn { padding: 15px 0;}
+
+}

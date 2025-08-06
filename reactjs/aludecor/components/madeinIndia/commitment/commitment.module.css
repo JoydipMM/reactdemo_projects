@@ -1,0 +1,22 @@
+.earlylife_container h2{
+    max-width: fit-content;
+}
+.right_container{
+    padding-left: 100px;
+}
+.right_container li{
+    list-style-type: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 30px;
+}
+.right_container li h4{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.right_container li:last-child{
+    margin-bottom: 0;
+}
+.earlylife_container :global .earlylife-row{
+    border-bottom: none;
+}

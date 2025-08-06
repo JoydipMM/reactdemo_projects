@@ -1,0 +1,184 @@
+.shippwrap, .contarea, .stararea{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.shippwrap{
+  gap: 80px;
+}
+.contarea{
+  gap: 47px;
+}
+.shipplft{
+    max-width:970px;
+    position: relative;
+}
+.stararea{
+  position: relative;
+}
+.shipplft:after, .stararea:after{
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: 100%;
+  background-color: #ccc;
+  top: 0;
+  right: -40px;
+}
+.stararea:after{
+  right: 52%;
+  display: none;
+}
+.stararea{
+  margin-bottom: 10px;
+  
+}
+
+.stararea :global .starareas  {padding-right: 10px; border-right: 1px solid #2B2D2F;}
+
+.shipprgt{
+    max-width: 698px;
+    padding-top: 50px;
+}
+.shipprgt :global .common-btn {
+    color: var(--white);
+    background-color: var(--foreground);
+  }
+  .shipprgt :global .common-btn:hover:before {
+    background-color: #04aba3;
+  }
+  .shipprgt :global .common-btn img {
+    filter: brightness(0) invert(1);
+  }
+  .shipplft :global .formsection{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 50px;
+    margin-top: 15px;
+  }
+  .shipplft :global .formsection input,  .shipplft :global .formsection select{
+    width: 100%;
+    height: 80px;
+    border: 1px solid #ccc;
+    padding: 0 30px;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+  }
+  .shipplft :global .formsection .formbox{
+      width: 48%;
+  }
+  .shipplft :global .formsection select{
+    color: #666666;
+    appearance: none;
+    -webkit-appearance: none;
+    background: url(/images/arrow-down.svg) 95% 50% no-repeat
+  }
+  .shipprgt :global .sipimg{
+    max-width: 272px;
+  }
+  .shipprgt :global .sipcont{
+    max-width: 344px;
+  }
+  .shipprgt :global .sipimg img{
+    border-radius: 0 0 27px 0;
+  }
+
+  @media only screen and (max-width:1800px){
+    .shipplft{
+      max-width: 54%;
+    }
+  }
+  @media only screen and (max-width:1600px){
+    .shippwrap{
+      gap: 40px;
+    }
+    .contarea{
+      gap: 27px;
+    }
+    .shipplft{
+        max-width:60%;
+    }
+    .shipprgt{
+      max-width:35%;
+    }
+  .shipprgt :global .sipimg{
+    max-width: 32%;
+  }
+  .shipprgt :global .sipcont{
+    max-width: 60%;
+  }
+  }
+  @media only screen and (max-width:1440px){
+    .shipplft :global .formsection input,  .shipplft :global .formsection select{
+      height: 50px;
+      font-size: 16px;
+      padding: 0 15px;
+    }
+    .shipplft :global .formsection{
+      gap: 15px;
+    }
+    .shipprgt :global .sipcont p{
+      font-size: 14px;
+    }
+    .shipplft:after{
+      right: -25px;
+    }
+    .stararea:after{
+      opacity: 0;
+    }
+  }
+  @media only screen and (max-width:1199px){
+    .shipprgt :global .sipcont{
+      max-width: 58%;
+    }
+  }
+  @media only screen and (max-width:1024px){
+    .shipplft{
+      max-width:56%;
+    }
+    .shipprgt{
+      max-width:38%;
+    }
+  }
+  @media only screen and (max-width:991px){
+    .shipplft, .shipprgt{
+      max-width: 100%;
+    }
+    .shippwrap, .contarea, .stararea{
+      justify-content: flex-start;
+      gap: 20px;
+    }
+    .shipprgt{
+      padding-top: 20px;
+    }
+    .shipplft:after{
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 1px;
+      background-color: #ccc;
+      top: auto;
+      right: auto;
+      bottom: -20px;
+    }
+    .shipprgt :global .sipimg{
+      width: 35%;
+      max-width: inherit;
+    }
+    .contarea{
+      align-items: center;
+    }
+  }
+
+  @media only screen and (max-width:600px){
+    .contarea{
+      align-items: flex-start;
+    }
+    .shipplft :global .formsection input,  .shipplft :global .formsection select, .shipplft :global .formsection .formbox{
+      width: 100%;
+    }
+  }
+  

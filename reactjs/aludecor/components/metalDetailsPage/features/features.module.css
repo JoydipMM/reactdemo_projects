@@ -1,0 +1,142 @@
+.featurewrp {
+    display: flex;
+    justify-content: space-between;
+}
+
+.featureleft {
+    width: 48%;
+}
+
+.featureleft img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+}
+
+.featureright {
+    width: 48%;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.featureicone {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.feat_iconbox {
+    width: calc(95% / 3);
+}
+
+.feat_iconimgbox {
+    position: relative;
+    width: 75px;
+    height: 75px;
+    border: 1px solid #ccc;
+    border-radius: 100%;
+    padding: 18px;
+    margin: 0 auto 11px;
+}
+
+.feat_iconimgbox img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.feat_iconbox p {
+    color: var(--#2B2D2F);
+    max-width: 206px;
+    text-align: center;
+    margin-left:auto;
+}
+
+.feat_iconbox:first-child p {
+    max-width: 144px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.linkbox {
+    margin: 71px 0 0 0;
+    display: flex;
+    gap: 37px;
+
+}
+
+/* .linkbox :global .common-btn:first-child {
+    margin-right: 37px;
+} */
+@media (max-width:1400px) {
+    .feat_iconimgbox {
+        width: 60px;
+        height: 60px;
+        padding: 15px;
+    }
+
+    .linkbox {
+        margin: 29px 0 0 0;
+        gap: 25px;
+    }
+}
+
+@media (max-width:1024px) {
+    .linkbox {
+        margin: 30px 0 0 0;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .linkbox .common-btn:first-child {
+        margin-right: 15px;
+        margin-bottom: 15px;
+    }
+
+    .feat_iconbox p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width:767px) {
+    .featurewrp {
+        flex-wrap: wrap;
+    }
+
+    .featureleft {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .featureright {
+        width: 100%;
+    }
+
+    .feat_iconbox {
+        width: 100%;
+    }
+
+    .featureicone {
+        flex-wrap: wrap;
+        gap: 20px;
+
+    }
+
+    .feat_iconbox:first-child p {
+        max-width: 100%;
+    }
+
+    .feat_iconbox p {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .feat_iconimgbox {
+        width: 70px;
+        height: 70px;
+        padding: 15px;
+    }
+}

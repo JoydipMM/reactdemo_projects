@@ -1,0 +1,21 @@
+.btncontent :global .common-btn { margin-right: 37px;}
+.btncontent :global .common-btn img { max-width: 34px;}
+
+.banneradjust :global img { object-fit: cover; object-position: center;}
+.banneradjust :global .cpation-banner { bottom: 10%;}
+
+
+@media (max-width: 1780px) {
+.banneradjust :global .cpation-banner { bottom: 20%;}
+}
+
+@media (max-width: 991px) {
+.banneradjust :global {  height: 600px;   }
+}
+
+@media (max-width: 767px) {
+.banneradjust :global .cpation-banner { bottom: 7%;}
+
+.btncontent { text-align: center;}
+.btncontent :global .common-btn { margin: 5px;}
+}

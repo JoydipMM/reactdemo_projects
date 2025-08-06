@@ -1,0 +1,18 @@
+.bttnwrper{
+    background: rgb(0, 169, 155);
+  background: linear-gradient(90deg, rgba(0, 169, 155, 1) 0%, rgba(70, 86, 106, 1) 100%);
+  text-align: center;
+  
+}
+.bttnwrper :global h2{
+   color: var(--white); 
+}
+.btnarea{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.btnarea :global .common-btn{
+    background-color: var(--white);
+}

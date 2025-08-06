@@ -1,0 +1,129 @@
+.categorySection {
+    margin-bottom: 20px;
+    width: 80%;
+  }
+  
+  .checkboxContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .gallistnamemwrp{ border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 30px 0 ; position: relative;}
+  .gallistname{  }
+  .gallistname ul{ display: flex; overflow-x: auto; overflow-y: hidden; }
+  .gallistname ul li{ margin-right: 45px; font-size: 18px; color: #666; line-height: 1.2; position: relative; padding-right: 20px; cursor: pointer; list-style-type: none;}
+  .gallistname ul li:after{ background: url(../../../public/images/arrow-down.svg) no-repeat no-repeat; position: absolute; width: 15px; height: 17px; content:"" ; right: 0; top:4px; background-size: 100% 100%;}
+  .gallistname ul li:last-child{ margin-left: 0;}
+  /* Customize the label (the container) */
+.checkboxLabel {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 18px;  color: #666;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; margin-right: 33px;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .checkboxLabel input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #fff;
+    border:1px solid #ccc;
+    border-radius:7px;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .checkboxLabel:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .checkboxLabel input:checked ~ .checkmark {
+    background-color: #2F3192;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .checkboxLabel input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .checkboxLabel .checkmark:after {
+    left: 9px;
+    top: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 1px 1px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+/* ........custom ceckbox close....... */
+  .galfilterbox{ padding: 20px 0;}
+  .galfiltercont{ padding: 30px 0 0 0;}
+  .namedrpdn{ display: flex; flex-wrap: wrap; flex:1;}
+  .namedrpdn li{ border: 1px solid #ccc; border-radius: 0 0 24px 0; padding: 10px 20px; line-height: 1.2; font-size: 18px; color: #666; margin: 0 15px 15px 0; display: flex; align-items: center;}
+  .wrp_filtlist{ display: flex; justify-content: space-between; flex-wrap: wrap; align-items: flex-start; width: 80%;}
+   .btncont{ /*width: 232px;*/ display: flex; justify-content: flex-end; position:absolute; top: 30px; right: 0;} 
+  .deletefilt{ margin-left: 10px; cursor: pointer;}
+  .pagination{ display: flex; justify-content: flex-end; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 50px 0; margin: 50px 0 0 0;}
+  .pagiim{width: 340px; position: relative;}
+  .pagiim img{ width: 100% !important; height: 100%; object-fit: contain; }
+
+  @media only screen and (max-width:1600px){
+    .pagination{
+      padding: 30px 0;
+    }
+  }
+  @media only screen and (max-width:1199px){
+    .btncont{
+      position: relative;
+      top: auto;
+      right: auto;
+    }
+    .wrp_filtlist{
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width:1024px){
+    .gallistnamemwrp{
+      padding: 15px 0;
+    }
+    .gallistname ul li{
+      white-space: nowrap;
+      padding-bottom: 10px;
+    }
+  }
+  

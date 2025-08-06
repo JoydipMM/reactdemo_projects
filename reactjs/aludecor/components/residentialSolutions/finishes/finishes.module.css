@@ -1,0 +1,20 @@
+.colorbox_title{
+    text-align: left;
+}
+.colorbox_title :global .common-btn{
+    position: relative!important;
+}
+.colorbox_title :global .common-btn img {
+    height: auto;
+    width: auto;
+    position: relative !important;
+}
+.colorbox_imgcont, .colorbox_title{
+    margin-left: 10px;
+}
+.colorbox_title{
+    margin-top: 30px;
+}
+.colorbox_imgcont, .colorbox_imgcont img{
+    border-radius: 27px!important;
+}

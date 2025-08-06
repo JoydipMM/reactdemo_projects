@@ -1,0 +1,40 @@
+.Expl_metalmpwr :global .container {
+  padding: 0 0 50px 0;
+  border-bottom: 1px solid #cccccc;
+  overflow: hidden;
+}
+
+.Expl_metalmpwr :global .slick-slide {
+  padding: 0 10px;
+}
+.Expl_metalmpwr :global .slick-list {
+  padding: 25px 0 50px 0;
+}
+.realprjtmwrp :global .container {
+  position: relative;
+}
+.btnwrpreal {
+  position: absolute;
+  right: 0;
+  top: -63px;
+}
+
+@media (max-width: 1600px) {
+  .btnwrpreal {
+    top: -44px;
+  }
+}
+@media (max-width: 1024px) {
+  .btnwrpreal {
+    top: -44px;
+  }
+}
+@media (max-width: 500px) {
+  .btnwrpreal {
+    top: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0 0;
+  }
+}

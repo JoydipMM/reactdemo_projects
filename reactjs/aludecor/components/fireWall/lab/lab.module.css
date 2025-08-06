@@ -1,0 +1,41 @@
+.lab_content { background-color: #F5F5F7;}
+
+
+.lab_row { display: flex; flex-wrap: wrap; margin: 0 -13px;}
+.lab_row :global .lab-item { padding: 13px; width: 33.33%;}
+.lab_row :global .lab-item .pic { position: relative;}
+.lab_row :global .lab-item img { border-radius: 24px;}
+.lab_row :global .lab-item .title { padding: 30px 30px 10px; font-size: 36px; font-weight: 500;}
+.lab_row :global .lab-item p { padding: 0 30px 25px;}
+
+.microcopy { border: 1px solid #ccc; padding: 30px 100px; margin-top: 30px;}
+.microcopy h4 { font-size: 22px; font-weight: 500;}
+.microcopy p { padding-bottom: 0;}
+
+@media (max-width: 1600px) {
+
+.lab_row :global .lab-item .title { padding: 15px 15px 10px; font-size: 25px; }
+.lab_row :global .lab-item p { padding: 0 15px 25px;}
+.microcopy { padding: 20px 50px;}
+
+}
+
+@media (max-width:1365px) {
+
+.lab_row :global .lab-item .title { font-size: 22px;}
+
+}
+
+@media (max-width:1024px) {
+
+.lab_row :global .lab-item { width: 50%;}
+.microcopy { padding: 20px;}
+
+}
+
+@media (max-width:600px) {
+
+.lab_row :global .lab-item { width: 100%;}
+.microcopy { margin-top: 0;}
+
+}

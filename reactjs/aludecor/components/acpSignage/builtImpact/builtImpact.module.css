@@ -1,0 +1,128 @@
+.builtbox {
+   
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+   
+}
+
+.builtbox:nth-child(1):before {
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: var(--bordercolor);
+    top: -7px;
+    left: 49.6%;
+    content: "";
+    position: absolute;
+    content: "";
+}
+
+.builtwrp:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: var(--bordercolor);
+    bottom: -7px;
+    left: 49.6%;
+    position: absolute;
+    content: "";
+}
+
+.builtwrp {
+    display: flex;
+    position: relative;
+    /* max-width: 1330px; */
+    margin: 0 auto;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-top: 65px;
+}
+
+.builtwrp:before {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    width: 1px;
+    background-color: var(--bordercolor);
+    content: "";
+}
+
+
+.builtbox:nth-child(odd) {
+    background: url(../../../public/images/built_circle.svg) no-repeat right 5px;
+   
+    background-size: 145px 45px;
+    padding-right: 160px;
+    text-align: right;
+    padding-top: 5px;
+    padding-bottom: 55px;
+    justify-content: flex-end;
+}
+
+.builtbox:nth-child(even) {
+    background: url(../../../public/images/built_circle1.svg) no-repeat;
+    
+    background-size: 145px 45px;
+    padding-left: 160px;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 50px;
+    margin-top: 65px;
+    justify-content: flex-start;
+}
+
+.gaptopleft {
+    padding-top: 65px;
+    position: relative;
+}
+
+.gaptopright {
+    padding-top: 145px;
+    position: relative;
+}
+
+.builtbox p {
+    padding: 0;
+    margin: 0;
+    font-size: 22px;
+    max-width: 410px;
+    width: 100%;
+    line-height: 1.2;
+}
+
+@media (max-width:767px) {
+    .builtbox {
+        width: 100%;
+       
+    } 
+    .builtbox:nth-child(odd), .builtbox:nth-child(even) {
+        background: url(../../../public/images/built_circle1.svg) no-repeat left 5px;
+        background-size: 50px 45px;
+        padding-left: 70px;
+        text-align: left;
+        padding-top: 5px;
+        padding-bottom: 30px;
+        justify-content: flex-start;
+        padding-right: 0;
+        margin: 0;
+    }
+    .builtwrp:before {       
+        left: 0;
+        height: 100%;
+       
+    }
+    .builtwrp:after {
+       
+        bottom: -7px;
+        left: -7px;
+    }
+    .builtbox p {
+        max-width: 100%;
+    }
+    .builtbox:nth-child(1):before {
+        top: -7px;
+        left: -7px;
+    }
+}

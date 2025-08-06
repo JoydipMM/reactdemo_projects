@@ -1,0 +1,697 @@
+/* megamenu button css start */
+.hdr_megamenu_toggle_btn {
+  background: none; border: none; cursor: pointer;
+}
+.hdr_megamenu_close_btn{
+    display: inline-flex; position: absolute; top: 16px; right: 36px; align-items: center; column-gap: 10px; padding: 0px; border: none; background: transparent; appearance: none; cursor: pointer; font-size: 16px; font-weight: 600; text-transform: uppercase;
+}
+.hdr_megamenu_close_btn svg{
+    transition: all ease-in-out 0.2s;
+}
+.hdr_megamenu_close_btn:hover svg, .hdr_megamenu_close_btn:focus svg{
+    transform: rotate(90deg);
+}
+/* megamenu button css ended */
+
+
+/* megamenu lang dropdown section css start */
+.hdr_megamenu_mob_Lang_drop_wrap{
+    width: auto; position: absolute; display: none; align-items: center;  top: 16px; right: 106px; column-gap: 26px; z-index: 2;
+}
+/* megamenu lang dropdown section css ended */
+
+
+/* megamenu common css start */
+.hdr_megamenu_holder{
+    width: 100%; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.4s ease, opacity 0.4s ease; position: absolute; z-index: 9991; top: 110px; left: 0px;}
+.hdr_megamenu_holder.open {
+  max-height:700px; opacity: 1;
+}
+.hdr_megamenu{
+    width: 100%; height: auto; display: flex; flex-direction: column; position: relative; /*background-color: #000;*/ color: var(--white); overflow: hidden;
+}
+.hdr_megamenu *{
+    /* color: var(--white); */ color: rgba(0,0,0,0.5);
+}
+/* .hdr_megamenu .container{width: 100%;} */
+.hdr_megamenu .hdr_megamenu_inner{
+    width: 100%; height: 100%; display: flex; flex-direction: column; row-gap: 70px; position: relative; padding: 96px 40px 46px 100px; position: relative; background: #fff; box-shadow: 0 0 15px rgba(0,0,0,.15); border-radius: 0 0 15px 15px;
+}
+.hdr_megamenu .hdr_megamenu_inner:before{
+    position: absolute; content: ''; background: url(/images/menu-bg.svg) 0 0 no-repeat; width: 71px; height: 79px; right:20px; bottom: 20px;
+}
+.hdr_megamenu .hdr_megamenu_mainbody{
+    width: 100%; display: inline-block; position: relative; flex: 1; overflow: hidden;
+}
+.hdr_megamenu .hdr_megamenu_footer{
+    width: 100%; display: inline-flex; align-items: center; column-gap: 15px; padding: 0px;
+}
+.hdr_megamenu_mainbody_row{
+    width: 100%; display: flex; position: relative; column-gap: 48px;
+}
+.hdr_megamenu_mainbody_col{
+    position: relative;
+}
+.left_menu_col{
+    position: relative; width: 410px; padding-right: 5px; border-right: 1px solid rgba(255,255,255,0.3);
+}
+.center_menu_col{
+    position: relative; flex: 1;
+}
+.right_menu_col{
+    position: relative;
+}
+/* megamenu common css ended */
+
+
+/* megamenu image frame css start */
+.hdr_megamenu_right_img_frame{
+    /*width: 450px;*/ width: 400px; height: 100%; max-height: 594px; overflow: hidden; position: relative; flex-shrink: 0;
+}
+.hdr_megamenu_right_img_frame>*{
+    width: 100% !important; height: 100% !important; position: relative !important; object-fit: cover;
+}
+/* megamenu image frame css ended */
+
+
+/* left mmenu section css start */
+.megamenu_lft_menu_holder{
+    width: 100%; height: 100%; padding-right: 0px; display: flex; flex-direction: column; overflow: hidden; overflow-y: auto; position: relative;
+}
+.megamenu_lft_menu_holder{
+    scrollbar-width: thin; scrollbar-color: #415361 transparent;
+}
+.megamenu_lft_menu_holder::-webkit-scrollbar {
+    width: 7px; height: 7px;
+}
+.megamenu_lft_menu_holder::-webkit-scrollbar-track {
+    background: transparent;
+}
+.megamenu_lft_menu_holder::-webkit-scrollbar-thumb {
+    background-color: #415361; border-radius: 20px;
+}
+
+.megamenu_lft_menu_list{
+    width: 100%; display: flex; flex-direction: column; list-style-type: none; padding: 0px; margin: 0px; row-gap: 10px;
+}
+.megamenu_lft_menu_list li{
+    width: 100%; position: relative; display: flex; align-items: center; padding: 15px 20px; margin: 0px;transition: all ease 0.6s;
+}
+/* .megamenu_lft_menu_list li.active{background: #F2F2F2; border-radius: 0 0 15px 0;} */
+.megamenu_lft_menu_list li:hover, .megamenu_lft_menu_list li.active{background: #F2F2F2; border-radius: 0 0 15px 0;transition: all ease 0.6s;}
+/* .megamenu_lft_menu_list li span{font-size: 16px; font-weight: 500;color:#2C3885;} */
+.megamenu_lft_menu_list li:first-child{
+    /* padding-top: 0px; */
+}
+.megamenu_lft_menu_list li:last-child{
+    /* padding-bottom: 0px; */
+}
+.megamenu_lft_menu_list li a{
+    width: auto;  position: relative; display: inline-flex; align-items: center; column-gap: 10px;
+    font-size: 24px; font-weight: 400; line-height: 1.2; color: var(--white); text-transform: uppercase;
+}
+.megamenu_lft_menu_list li *{
+    transition: all ease 0.2s;
+}
+.megamenu_lft_menu_list li .menu_rgt_arrow{
+    width: 0px; overflow: hidden; transition: all ease-in-out 0.6s; display: flex; justify-content: flex-end;
+}
+.megamenu_lft_menu_list li .menu_rgt_arrow svg{
+    flex-shrink: 0;
+}
+.megamenu_lft_menu_list li:hover a,
+.megamenu_lft_menu_list li:hover a span{
+    /* color:#2f3192; */
+}
+.megamenu_lft_menu_list li.active_main_menu a,
+.megamenu_lft_menu_list li.active_main_menu a span{
+    font-size: 28px; font-weight: 700; color: var(--green);
+}
+.megamenu_lft_menu_list li.active_main_menu .menu_rgt_arrow{
+    width: 62px;
+}
+/* left mmenu section css ended */
+
+
+
+/* middle menu section css start */
+.megamenu_middle_menu_holder{
+    width: 100%; height: 100%; padding-right: 0px; display: flex; flex-direction: column; overflow: hidden; overflow-y: auto; position: relative;
+}
+.megamenu_middle_menu_holder{
+    scrollbar-width: thin; scrollbar-color: #415361 transparent;
+}
+.megamenu_middle_menu_holder::-webkit-scrollbar {
+    width: 7px; height: 7px;
+}
+.megamenu_middle_menu_holder::-webkit-scrollbar-track {
+    background: transparent;
+}
+.megamenu_middle_menu_holder::-webkit-scrollbar-thumb {
+    background-color: #415361; border-radius: 20px;
+}
+.megamenu_middle_menu_list_wrap{
+    width: 100%; display: flex; flex-wrap: wrap; column-gap: 20px; row-gap: 40px;
+}
+.submenu_loop_section{
+    width:calc(33.3% - 15px); display: flex; flex-direction: column; row-gap: 20px; border-left: solid 1px #CCCCCC; padding-left: 30px;}
+.submenu_loop_section .submenu_label{
+    width: 100%; line-height: 1.3; font-size: 24px; font-weight: 600; text-transform: uppercase; margin: 0px;
+}
+.submenu_loop_section .submenu_list{
+    width: 100%; display: flex; flex-direction: column; padding: 0px; margin: 0px; list-style-type: none;
+}
+.submenu_loop_section .submenu_list li{
+    width: 100%; margin: 0px;
+}
+.submenu_loop_section .submenu_list li a{
+    width: auto; display: inline-flex; align-items: center; font-size: 16px; font-weight: 500; color:rgba(0,0,0,0.5); transition: all ease-in-out 0.6s;
+}
+.submenu_loop_section .submenu_list li a.current,
+.submenu_loop_section .submenu_list li a:hover{
+    color: #2f3192;
+}
+
+.hdr_megamenu_sub_back_btn{
+    width: auto; display: none; align-items: center; column-gap: 10px; background: transparent; appearance: none; border: none; font-size: 20px; font-weight: 600;  margin-bottom: 20px; text-transform: uppercase;
+}
+.submenu_list li span{
+    font-size: 16px; font-weight: 500;color:#2C3885; padding-left: 80px; display: inline-block;
+}
+.hdr_megamenu_sub_back_btn .backicon{
+    width: 22px; height: 24px; overflow: hidden;
+}
+.hdr_megamenu_sub_back_btn .backicon svg{
+    transform: rotate(180deg);
+}
+/* middle menu section css ended */
+
+/* footer social section css start */
+.hdr_social_list{
+    width: auto; position: relative; display: inline-flex; align-items: center; padding: 0px; margin: 0px; list-style-type: none; column-gap: 29px;
+}
+.hdr_social_list li{
+    width: auto; display: inline-flex; position: relative; margin: 0px;
+}
+.hdr_social_list li a{
+    display: inline-flex;
+}
+.hdr_social_list li img{
+    max-height: 26px; filter: invert(1);
+}
+/* footer social section css ended */
+
+/**06-08-2025**/
+.hdr_menu_top{padding: 0; margin: 0; display: flex;}
+.hdr_menu_top li{list-style: none; padding: 0 16px;}
+.hdr_menu_top li a{color: #2B2D2F; text-transform: uppercase; font-size: 16px; position: relative;}
+.hdr_menu_top li a::before{position: absolute; content: ''; top:3px; right: -18px; background: url(/images/arrow-down.svg) 0 0 no-repeat; width: 15px; height: 16px; background-size: contain;}
+.hdr_menu_top li:first-child{padding-left: 0;}
+.megamenu_lft_menu_list{}
+.megamenu_lft_menu_list li{flex-wrap: wrap;}
+.megamenu_lft_menu_list li a{display: block; color: #2B2D2F; font-size: 24px; font-weight: 500; text-transform: none;}
+.megamenu_lft_menu_list li a span{color: rgba(0,0,0,0.5); font-size: 16px; font-weight: 400; display: block;}
+.submenu_loop_section h5{color: #2C3885; font-size: 16px; font-weight: 600;}
+.submenu_star_list{padding-top: 60px;}
+.submenu_star_list li{list-style: none; position: relative; padding-left: 30px; padding-bottom: 7px; margin-bottom: 7px; line-height: 18px; border-bottom: solid 1px #CCCCCC;}
+.submenu_star_list li a{font-size: 16px; font-weight:600; color: rgba(0, 0, 0, 0.5); transition: all ease-in-out 0.6s; text-transform: uppercase; line-height: 18px !important;}
+.submenu_star_list li:before{position: absolute; content: ''; background: url(/images/star-icon.svg) 0 0 no-repeat; width:20px; height:20px; left: 0; top:5px;}
+.submenu_star_list li:last-child{border: none;}
+.hdr_megamenu_toggle_btn, .hdr_megamenu_close_btn{display: none;}
+
+
+
+/**06-08-2025**/
+
+
+
+
+
+@media (max-width:1600px){
+
+    /* common section css start */
+    .hdr_megamenu .hdr_megamenu_inner {
+        row-gap: 70px;
+        padding: 76px 40px 36px 80px;
+    }
+    .left_menu_col {
+        width: 340px;
+    }
+    /* common section css ended */
+
+    /* megamenu button css start */
+    .hdr_megamenu_close_btn{
+        font-size: 14px;
+    }
+    .hdr_megamenu_close_btn svg {
+        width: 36px;
+    }
+    /* megamenu button css ended */
+
+    /*  left menu section css start */
+    .megamenu_lft_menu_list li a{
+        column-gap: 8px;
+        font-size: 18px;
+    }
+    .megamenu_lft_menu_list li.active_main_menu a, 
+    .megamenu_lft_menu_list li.active_main_menu a span {
+        font-size: 23px;
+    }
+    /*  left menu section css ended */
+
+    /* middle section css start */
+    .submenu_loop_section {
+        row-gap: 13px;
+        width: 31%;
+    }
+    .submenu_loop_section .submenu_label {
+        font-size: 18px;
+    }
+    .submenu_loop_section .submenu_list li a, .submenu_star_list li a{
+        font-size: 14px;
+        font-weight: 400;
+    }
+    /* middle section css ended */
+
+    /* right section css start */
+    .hdr_megamenu_right_img_frame{
+        width: 370px; height: 496px;
+    }
+    /* right section css ended */
+
+}
+
+
+@media (max-width:1440px){
+
+    /* common section css start */
+    .hdr_megamenu .hdr_megamenu_inner {
+        row-gap: 30px;
+        padding:30px;
+    }
+    .hdr_megamenu_mainbody_row {
+        column-gap: 38px;
+    }
+    .left_menu_col {
+        width: 305px;
+    }
+    /* common section css ended */
+
+    /* megamenu button css start */
+    .hdr_megamenu_close_btn{
+        font-size: 13px;
+        top: 5px;
+        right: 15px;
+    }
+    .hdr_megamenu_close_btn svg {
+        width: 32px;
+    }
+    /* megamenu button css ended */
+
+    /*  left menu section css start */
+    .megamenu_lft_menu_list li a{
+        column-gap: 8px;
+        font-size: 16px;
+    }
+    .megamenu_lft_menu_list li.active_main_menu a, 
+    .megamenu_lft_menu_list li.active_main_menu a span {
+        font-size: 19px;
+    }
+    .megamenu_lft_menu_list li.active_main_menu .menu_rgt_arrow{
+        width: 50px;
+    }
+    .megamenu_lft_menu_list li .menu_rgt_arrow svg{
+        height:16px;
+    }
+    /*  left menu section css ended */
+
+    /* middle section css start */
+    .megamenu_middle_menu_list_wrap {
+        gap: 30px 15px;
+    }
+    .submenu_loop_section {
+        row-gap: 13px;
+        width: 31%;
+    }
+    .submenu_loop_section .submenu_label {
+        font-size: 16px;
+    }
+    .submenu_loop_section .submenu_list li{
+        line-height: 1.4;
+    }
+    .submenu_loop_section .submenu_list li a, .submenu_star_list li a{
+        font-size: 12px;
+        font-weight: 400;
+    }
+    .submenu_star_list li:before{background-size: 100%; width: 10px; height: 10px; top:5px;}
+    .submenu_star_list li{padding-left: 20px;}
+    /* middle section css ended */
+
+    /* right section css start */
+    .hdr_megamenu_right_img_frame{
+        width: 337px; height: 447px;
+    }
+    /* right section css ended */
+
+    .hdr_menu_top li a{font-size: 14px;}
+.megamenu_lft_menu_list li a span{font-size: 14px;}
+.submenu_list li span{font-size: 12px; padding-left: 20px;}
+
+}
+
+
+@media (max-width:1366px){
+
+    /* common section css start */
+    .hdr_megamenu .hdr_megamenu_inner {
+        row-gap: 30px;
+        padding: 30px;
+    }
+    .hdr_megamenu_mainbody_row {
+        column-gap: 38px;
+    }
+    .left_menu_col {
+        width: 235px;
+    }
+    /* common section css ended */
+
+    /* megamenu button css start */
+    .hdr_megamenu_close_btn{
+        font-size: 13px;
+        top: 5px;
+        right: 15px;
+    }
+    .hdr_megamenu_close_btn svg {
+        width: 32px;
+    }
+    /* megamenu button css ended */
+
+    /* left menu section css start */
+    .megamenu_lft_menu_list {
+        row-gap: 8px;
+    }
+    .megamenu_lft_menu_list li {
+        /* padding: 7px 0; */
+    }
+    .megamenu_lft_menu_list li.active_main_menu a, 
+    .megamenu_lft_menu_list li.active_main_menu a span {
+        font-size: 16px;
+    }
+    .megamenu_lft_menu_list li.active_main_menu .menu_rgt_arrow{
+        width: 40px;
+    }
+    .megamenu_lft_menu_list li .menu_rgt_arrow svg{
+        height:14px;
+    }
+    /*  left menu section css ended */
+
+    /* middle section css start */
+    .megamenu_middle_menu_list_wrap {
+        gap: 30px 15px;
+    }
+    .submenu_loop_section {
+        row-gap: 13px;
+        width: 31%;
+    }
+    .submenu_loop_section .submenu_label {
+        font-size: 14px;
+    }
+    .submenu_loop_section .submenu_list li{
+        line-height: 1.4;
+    }
+    .submenu_loop_section .submenu_list li a {
+        font-size: 12px;
+        font-weight: 400;
+    }
+    /* middle section css ended */
+
+    /* right section css start */
+    .hdr_megamenu_right_img_frame{
+        width: 320px; height: 425px;
+    }
+    /* right section css ended */
+
+
+    /* footer social section css start */
+    .hdr_social_list{
+        column-gap: 19px;
+    }
+    .hdr_social_list li img{
+        max-height: 20px;
+    }
+    /* footer social section css ended */
+
+}
+
+
+@media (max-width:1281px){
+
+    /* common section css start */
+    .hdr_megamenu .hdr_megamenu_inner {
+        row-gap: 20px;
+        padding:20px;
+    }
+    .hdr_megamenu_mainbody_row {
+        column-gap: 38px;
+    }
+    .left_menu_col {
+        width: 235px;
+    }
+    /* common section css ended */
+
+    /* megamenu button css start */
+    .hdr_megamenu_close_btn{
+        font-size: 13px;
+        top: 5px;
+        right: 15px;
+    }
+    .hdr_megamenu_close_btn svg {
+        width: 32px;
+    }
+    /* megamenu button css ended */
+
+    /* left menu section css start */
+    .megamenu_lft_menu_list {
+        row-gap: 8px;
+    }
+    .megamenu_lft_menu_list li {
+        /* padding: 7px 0; */
+    }
+    .megamenu_lft_menu_list li.active_main_menu a, 
+    .megamenu_lft_menu_list li.active_main_menu a span {
+        font-size: 16px;
+    }
+    .megamenu_lft_menu_list li.active_main_menu .menu_rgt_arrow{
+        width: 40px;
+    }
+    .megamenu_lft_menu_list li .menu_rgt_arrow svg{
+        height:14px;
+    }
+    /*  left menu section css ended */
+
+    /* middle section css start */
+    .megamenu_middle_menu_list_wrap {
+        gap: 20px 15px;
+    }
+    .submenu_loop_section {
+        row-gap: 13px;
+        width: 31%;
+    }
+    .submenu_loop_section .submenu_label {
+        font-size: 14px;
+    }
+    .submenu_loop_section .submenu_list li{
+        line-height: 1.4;
+    }
+    .submenu_loop_section .submenu_list li a {
+        font-size: 12px;
+        font-weight: 400;
+    }
+    /* middle section css ended */
+
+    /* right section css start */
+    .hdr_megamenu_right_img_frame{
+        width: 300px; height: 395px;
+    }
+    /* right section css ended */
+
+}
+
+
+@media (max-width:1023px){
+
+    /* common section css start */
+    .hdr_megamenu .hdr_megamenu_inner {
+        row-gap: 20px;
+        padding: 60px 20px 20px 20px;
+    }
+    .hdr_megamenu_mainbody_row {
+        column-gap: 18px;
+    }
+    .left_menu_col {
+        width: 200px;
+    }
+    /* common section css ended */
+
+    /* megamenu button css start */
+    .hdr_megamenu_close_btn{
+        font-size: 9px;
+        top: 5px;
+        right: 15px;
+    }
+    .hdr_megamenu_close_btn svg {
+        width: 22px;
+    }
+    /* megamenu button css ended */
+
+    /* left menu section css start */
+    .megamenu_lft_menu_list {
+        row-gap: 8px;
+    }
+    .megamenu_lft_menu_list li {
+        padding: 4px 0;
+    }
+    .megamenu_lft_menu_list li a{
+        column-gap: 6px;
+        font-size: 14px;
+    }
+    .megamenu_lft_menu_list li.active_main_menu a, 
+    .megamenu_lft_menu_list li.active_main_menu a span {
+        font-size: 15px;
+    }
+    .megamenu_lft_menu_list li.active_main_menu .menu_rgt_arrow{
+        width: 30px;
+    }
+    .megamenu_lft_menu_list li .menu_rgt_arrow svg{
+        height:10px;
+    }
+    /*  left menu section css ended */
+
+    /* middle section css start */
+    .megamenu_middle_menu_list_wrap {
+        gap: 20px 15px;
+    }
+    .submenu_loop_section {
+        row-gap: 13px;
+        width: 31%;
+    }
+    .submenu_loop_section .submenu_label {
+        font-size: 12px;
+    }
+    .submenu_loop_section .submenu_list li{
+        line-height: 1.4;
+    }
+    .submenu_loop_section .submenu_list li a {
+        font-size: 11px;
+        font-weight: 400;
+    }
+    /* middle section css ended */
+
+    /* right section css start */
+    .hdr_megamenu_right_img_frame{
+        width: 220px; height: 315px;
+    }
+    /* right section css ended */
+.hdr_megamenu_toggle_btn, .hdr_megamenu_close_btn{display: block;} 
+/* .hdr_menu_top{display: none;} */
+
+    /* megamenu lang dropdown section css start */
+    .hdr_megamenu_mob_Lang_drop_wrap{
+        display: inline-flex; top: 16px; right: 106px;
+    }
+    /* megamenu lang dropdown section css ended */
+
+    /* center section css start */
+    .submenu_loop_section {
+        row-gap: 13px;
+        width: 48%;
+    }
+    /* center section css ended */
+
+
+    /* common section css start */
+    .hdr_megamenu .hdr_megamenu_inner {
+        row-gap: 20px;
+        padding: 20px 20px 20px;
+    }
+    .hdr_megamenu_mainbody_row {
+        column-gap: 0px;
+    }
+    /* common section css ended */
+
+    /* button css start */
+    .hdr_megamenu_close_btn{
+        z-index: 991;
+    }
+    /* button css ended */
+
+    /* left section css start */
+    .left_menu_col{
+        border: none;
+        position: absolute;
+        height: calc(100vh - 50px);
+        width: 100%;
+        left: 0px;
+        background:#fff ;
+        z-index: 1;
+        transition: all ease-in-out 0.4s;
+        opacity: 1;
+        padding-top: 40px;
+    }
+    .megamenu_lft_menu_list li a {
+        font-size: 14px;
+    }
+    .megamenu_lft_menu_list li.active_main_menu a, .megamenu_lft_menu_list li.active_main_menu a span {
+        font-size: 14px;
+    }
+    .left_menu_col.mobMenu_colaps{
+        left: -100%;
+        opacity: 0;
+    }
+    /* left section css ended */
+
+    /* center section css start */
+    .hdr_megamenu_sub_back_btn{
+        display: inline-flex;
+        font-size: 15px;
+        margin-left: -15px;
+    }
+    .hdr_megamenu_sub_back_btn .backicon{
+        width:40px;
+        height:20px;
+        transform:scale(0.6,0.6);
+    }
+    .hdr_megamenu_sub_back_btn svg{
+        height: 20px;
+    }
+    .submenu_loop_section{
+        width: 100%;
+    }
+    .hdr_megamenu_sub_back_btn {
+        margin-left: -15px;
+        font-size: 13px;
+    }
+    .submenu_loop_section .submenu_label{
+        font-size: 14px;
+    }
+    .submenu_loop_section .submenu_list li a {
+        font-size: 12px;
+    }
+    /* center section css ended */
+
+    /* right section css start */
+    .hdr_megamenu_mainbody_col.right_menu_col{
+        display: none;
+    }
+    /* right section css ended */
+
+    
+    /* footer social section css start */
+    .hdr_social_list{
+        column-gap: 15px;
+    }
+    .hdr_social_list li img{
+        max-height: 15px;
+    }
+    /* footer social section css ended */
+}

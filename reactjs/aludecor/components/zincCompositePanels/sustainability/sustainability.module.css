@@ -1,0 +1,22 @@
+.choosemwrp{
+    background-color: transparent;
+}
+.choosemwrp :global .whyChoose_amplyfywrpbox__dbcMs{
+    text-align: center;
+}
+.choosemwrp h3{ font-size: 36px;}
+@media only screen and (min-width: 1401px) {
+    .choosemwrp :global .whyChoose_amplyfywrpbox__dbcMs{
+        width: 33%;
+        
+    }
+    .choosemwrp :global .whyChoose_amplyfywrp__fXjTV{
+       gap: 47px; 
+    }
+}
+@media only screen and (max-width: 1440px) {
+.choosemwrp h3{ font-size: 30px;}
+}
+@media only screen and (max-width: 767px) {
+.choosemwrp h3{ font-size: 19px;}
+}

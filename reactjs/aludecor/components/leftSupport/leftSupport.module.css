@@ -1,0 +1,24 @@
+.leftsupport{  border-right: 1px solid #ccc; position: sticky; overflow-y: auto; overflow-x: hidden; padding: 137px 81px 137px 0; height: 100%;}
+.callsec{ padding: 0 0 20px 0;}
+.callsec p{ font-size: 22px; font-weight: 500; line-height: 1.3; margin: 0; padding: 0;}
+.emailsuprt{ display: block; padding: 10px 0 20px 0; border-bottom: 1px solid #ccc;}
+.tollsuprt{display: block;}
+.calllink ul{ display: block; margin-bottom: 70px; margin-top: 40px;}
+.linkgap{ padding-top:20px !important ; padding-bottom: 20px !important;}
+.calllink ul li{list-style-type: none;}
+.calllink ul li a{ display: block; border-bottom: 1px solid #ccc; padding: 20px 0; color: var(--txtcolor); line-height: 1.2; list-style-type: none;}
+.calllink ul li a.active, .calllink ul li a:hover{ font-weight: 600;}
+.calllink ul li ul{ padding: 0 0 0 0; margin: 0;}
+.calllink ul li ul li a{ display: block; padding: 20px 15px;}
+.leftinner{ overflow-y: auto; overflow-x: hidden;}
+@media (max-width:1600px){
+    .leftsupport{  padding: 137px 40px 137px 0;}   
+}
+
+@media (max-width:1400px){
+    .leftsupport{  padding: 85px 30px 40px 0; }   
+}
+
+@media (max-width:991px){
+    .leftsupport{  border-right: 0px solid #ccc;  border-bottom: 1px solid #ccc; padding: 85px 0 40px 0; }   
+}

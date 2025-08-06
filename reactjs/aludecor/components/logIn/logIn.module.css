@@ -1,0 +1,21 @@
+.contactrgt{
+    text-align: center;
+}
+.contactdetails{
+    justify-content: center;
+    border: none;
+}
+.contactrgt:after{
+    display: none;
+}
+.contactrgt :global .formsection{
+    max-width: 600px;
+    margin: 0 auto;
+}
+.contactrgt :global .common-btn{
+    margin-bottom: 50px;
+}
+.contactrgt :global p a{
+    color: var(--foreground);
+    text-decoration: underline;
+}

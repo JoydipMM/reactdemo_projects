@@ -1,0 +1,112 @@
+
+.needaccordian {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.needaccordian button {
+  width: 100%;
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+}
+.needaccordian button div span {
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  padding: 29px 60px 29px 0;
+  position: relative;
+  background: none;
+  width: 100%;
+  height: auto;
+  font-size: 36px;
+  color: #666666;
+  line-height: 1.2;
+  font-weight: 400;
+  top: 0;
+  display: block;
+  text-transform: none;
+}
+.needaccordian hr {
+  background-color: #ccc;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+}
+.needaccordian button span {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  background: url(../../../public/images/arrow_accordian.svg) no-repeat;
+  width: 50px;
+  height: 50px;
+  background-size: 100% 100%;
+  transform: none;
+}
+.needaccordian button span svg {
+  display: none;
+}
+.needaccordian h2 {
+  margin: 0;
+  padding: 0;
+  border-bottom: 0px solid #ccc;
+  line-height: 0;
+}
+
+.needaccordian button div span[data-open="true"] {
+  background: none;
+  transform: none;
+  width: 100%;
+  color: var(--txtcolor);
+  display: block;
+}
+.needaccordian button span[data-open="true"] {
+  background: url(../../../public/images/arrow_accordian_act.svg) no-repeat;
+  transform: rotate(90deg);
+  width: 50px;
+  height: 50px;
+  background-size: 100% 100%;
+}
+.accordiancont {
+  padding: 20px 0 5px;
+}
+
+@media (max-width: 1400px) {
+  .needaccordian button div span {
+    padding: 22px 60px 22px 0;
+    font-size: 25px;
+  }
+  .needaccordian button span {
+    width: 30px;
+    height: 30px;
+  }
+  .needaccordian button span[data-open="true"] {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .needaccordian button span {
+    width: 30px;
+    height: 30px;
+  }
+  .needaccordian button span[data-open="true"] {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .needaccordian button div span {
+    padding: 20px 40px 20px 0;
+    font-size: 20px;
+  }
+  .needaccordian button span {
+    width: 30px;
+    height: 30px;
+  }
+  .needaccordian button span[data-open="true"] {
+    width: 30px;
+    height: 30px;
+  }
+}
