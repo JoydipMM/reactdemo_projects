@@ -1,0 +1,172 @@
+1. Create Context
+------------------------------------------------------
+src\Tutorials\Todo\Context\TodoContext.js
+
+import { createContext, useContext } from 'react';
+
+export const TodoContext = createContext({
+    todos:[
+        { id: 1, todo: "Todo 1", completed: false, }
+    ],
+    addTodo: (todo) => {},
+    updateTodo: (todo, id) => {},
+    deleteTodo: (id) => {},
+    toggleComplete: (id) => {},
+});
+
+export const TodoContextProvider = TodoContext.Provider;
+
+export const useTodoContext = () => {
+    return useContext(TodoContext);
+}
+
+
+2. import all context in one index file 
+------------------------------------------------------
+src\Tutorials\Todo\Context\index.js
+
+export { TodoContext, TodoContextProvider, useTodoContext } from './TodoContext';
+
+
+3. Write todo curd method
+------------------------------------------------------
+src\Tutorials\Todo\Todo.jsx (it will be app component also)
+
+import React, { useEffect, useState } from 'react'
+import Todos from './Components/Todos'
+import TodoForm from './Components/TodoForm'
+import { TodoContextProvider } from './Context';
+import './Todo.css';
+
+const Todo = () => {
+    const [todos, setTodos] = useState([]);
+
+    const addTodo = (todo) => {
+        setTodos((prev) => [{id: Date.now(), ...todo}, ...prev])
+    }
+
+    const updateTodo = (id, todo) => {
+        setTodos((prev)=> prev.map((prevTodo)=>(
+            prevTodo.id === id ? todo : prevTodo 
+        )))
+    }
+
+    const deleteTodo = (id) => {
+        setTodos((prevTodo) => prevTodo.filter((todo)=> todo.id !== id ));
+    }
+
+    const toggleComplete = (id) => {
+        setTodos((prev)=> prev.map((prevtodo)=> prevtodo.id === id ? {...prevtodo, completed: !prevtodo.completed } : prevtodo))
+    }
+
+    useEffect(()=>{
+        const todos = JSON.parse(localStorage.getItem("reactDemoTodos"));
+        if(todos && todos.length > 0 ){
+            setTodos(todos)
+        } 
+    },[])
+
+    useEffect(()=>{
+        localStorage.setItem("reactDemoTodos", JSON.stringify(todos))
+    }, [todos])
+
+  return (
+    <>
+      <h2>Todo</h2>
+      <TodoContextProvider value={{ todos, addTodo, updateTodo, deleteTodo, toggleComplete }}>
+      <TodoForm/>
+
+      {todos.map((todo)=>(
+        <div key={todo.id}>
+            <Todos todo={todo}/>
+        </div>
+        ))}
+      
+      </TodoContextProvider>
+    </>
+  )
+}
+
+export default Todo
+
+
+4.create form page and add new todo with TodoContext
+------------------------------------------------------
+src\Tutorials\Todo\Components\TodoForm.jsx
+
+import React, { useState } from 'react'
+import { useTodoContext } from '../Context';
+
+const TodoForm = () => {
+
+    const [todo, setTodo] = useState("");
+    const {addTodo} = useTodoContext();
+
+    const add = (e) => {
+        e.preventDefault();
+        if(!todo) return
+        addTodo({todo:todo, completed: false});
+        setTodo("");
+    }
+
+  return (
+    <>
+      <h4>Todo Form</h4>
+      <form onSubmit={add}>
+
+        <input
+        type="text"
+        value={todo}
+        onChange={(e)=> setTodo(e.target.value)}
+        />
+        <button type='sumbit'>Add</button>
+      </form>
+    </>
+  )
+}
+
+export default TodoForm
+
+
+4.Show added data in list with TodoContext
+------------------------------------------------------
+src\Tutorials\Todo\Components\Todos.jsx
+
+import React, { useState } from 'react'
+import { useTodoContext } from '../Context';
+
+
+const Todos = ({todo}) => {
+
+    const { updateTodo, deleteTodo, toggleComplete } = useTodoContext();
+    const [isTodoEditable, setIsTodoEditable] = useState(false);
+    const [todoText, setTodoTitle] = useState(todo.todo);
+
+    const editTodoEvent = () => {
+        updateTodo(todo.id, {...todo, todo: todoText});
+        setIsTodoEditable(!isTodoEditable)
+    }
+
+  return (
+    <>
+      <div className={`todobox ${todo.completed ? "completed" : ""}`}>
+        <input 
+        type='checkbox'
+        onChange={() =>toggleComplete(todo.id)}
+        checked={todo.completed}
+        />
+        <input 
+        type='text'
+        value={todoText}
+        onChange={(e) =>setTodoTitle(e.target.value)}
+        readOnly={!isTodoEditable}
+        className={`${isTodoEditable ? "editable" : "noteditable"}`}
+        />
+        <button onClick={editTodoEvent}>Edit</button>
+        <button onClick={() => deleteTodo(todo.id)}>delete</button>
+        </div>
+    </>
+  )
+}
+
+export default Todos
