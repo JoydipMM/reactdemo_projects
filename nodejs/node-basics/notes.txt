@@ -1,0 +1,60 @@
+npm init -y
+
+npm install express
+npm i nodemon
+
+app.get("/profile/:id", (req, res)=>{
+    res.send(req.params)
+})
+http://localhost:3000/profile/10
+result: {"id":"10"}
+
+
+app.get("/user/:userid/book/:bookid", (req, res)=>{
+    res.send(req.params)
+})
+http://localhost:3000/user/10/book/30
+result: {"userid":"10","bookid":"30"}
+
+// router parameters
+app.get("/user/:userid/book/:bookid", (req, res)=>{
+    res.send(req.params.userid)
+})
+http://localhost:3000/user/10/book/30
+result: 10
+
+
+app.get("/user/:userid/book/:bookid", (req, res)=>{
+    res.send(`User ID: ${req.params.userid}`)
+})
+http://localhost:3000/user/10/book/30
+result: User ID: 10
+
+
+app.get("/user/:userid-:bookid", (req, res)=>{
+    res.send(req.params)
+})
+http://localhost:3000/user/10-30
+result: {"userid":"10","bookid":"30"}
+
+// query parameters
+app.get("/search", (req, res)=>{
+    res.send(req.query)
+})
+http://localhost:3000/search?name=nodejs
+result: {"name":"nodejs"}
+
+http://localhost:3000/search?name=nodejs&script=javascript
+result: {"name":"nodejs","script":"javascript"}
+
+
+app.get("/search", (req, res)=>{
+    const name = req.query.name;
+    const script = req.query.script;
+    res.send(`<h2>Name: ${name}<br/>Script: ${script}</h2>`)
+})
+http://localhost:3000/search?name=nodejs&script=javascript
+result: 
+Name: nodejs
+Script: javascript
+
