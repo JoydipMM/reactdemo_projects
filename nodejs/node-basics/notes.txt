@@ -58,3 +58,399 @@ result:
 Name: nodejs
 Script: javascript
 
+
+---------------------------------------------------------------------------------------
+ExpressJS Response Methods
+---------------------------------------------------------------------------------------
+
+The Express.js response object (res) provides numerous methods to send responses back to the client. 
+Here's a comprehensive list with examples and explanations.
+
+1. res.send()
+Sends a response with automatic content-type detection. String, Object (JSON), HTML, Buffer
+
+app.get('/send-example', (req, res) => {
+  res.send('Hello World!'); // String
+  // res.send({ message: 'Hello' }); // Object (JSON)
+  // res.send(Buffer.from('Hello')); // Buffer
+  // res.send('<h1>Hello HTML</h1>'); // HTML
+});
+
+----------------------------------------------------------
+
+2. res.json()
+Sends a JSON response with proper content-type. Specifically for JSON responses. Sets Content-Type to application/json.
+
+app.get('/users', (req, res) => {
+  const users = [
+    { id: 1, name: 'John' },
+    { id: 2, name: 'Jane' }
+  ];
+  res.json(users);
+});
+
+----------------------------------------------------------
+
+3. res.status()
+Sets the HTTP status code (chainable). Must be chained with another response method. Common status codes: 200 (OK), 201 (Created), 400 (Bad Request), 404 (Not Found), 500 (Server Error).
+
+app.get('/not-found', (req, res) => {
+  res.status(404).json({ error: 'Resource not found' });
+});
+
+app.post('/users', (req, res) => {
+  // Create user logic here
+  res.status(201).json({ message: 'User created successfully' });
+});
+
+----------------------------------------------------------
+
+4. res.end()
+Ends the response process without sending data. Terminates the response. Useful for responses without a body or when you've manually written to the response stream.
+
+app.get('/ping', (req, res) => {
+  res.status(200).end(); // Just status, no body
+});
+
+app.get('/custom-end', (req, res) => {
+  res.end('Custom response data');
+});
+
+----------------------------------------------------------
+
+5. res.redirect()
+Redirects the request to another URL. 
+301 for permanent redirects for SEO benefits.
+302 (temporary). 
+303 for
+
+app.get('/old-page', (req, res) => {
+  res.redirect('/new-page'); // 302 redirect by default
+});
+
+app.get('/permanent-redirect', (req, res) => {
+  res.redirect(301, '/new-permanent-location'); // 301 permanent redirect
+});
+
+app.get('/external-redirect', (req, res) => {
+  res.redirect('https://www.google.com');
+})
+
+----------------------------------------------------------
+
+6. res.sendFile()
+Sends a file as the response. Automatically sets appropriate headers based on file type. Requires absolute path unless root option is specified.
+
+const path = require('path');
+
+app.get('/download-pdf', (req, res) => {
+  const filePath = path.join(__dirname, 'files', 'document.pdf');
+  res.sendFile(filePath);
+});
+
+// With options
+app.get('/image', (req, res) => {
+  const options = {
+    root: path.join(__dirname, 'public'),
+    dotfiles: 'deny',
+    headers: {
+      'x-timestamp': Date.now(),
+      'x-sent': true
+    }
+  };
+  
+  res.sendFile('image.jpg', options, (err) => {
+    if (err) {
+      res.status(404).send('File not found');
+    }
+  });
+});
+
+----------------------------------------------------------
+
+7. res.download()
+Prompts the client to download a file. Sets Content-Disposition header to "attachment", prompting download dialog.
+
+app.get('/download/:filename', (req, res) => {
+  const filename = req.params.filename;
+  const filePath = path.join(__dirname, 'downloads', filename);
+  
+  res.download(filePath); // Uses original filename
+});
+
+app.get('/download-as', (req, res) => {
+  const filePath = path.join(__dirname, 'files', 'report.pdf');
+  res.download(filePath, 'Monthly-Report.pdf'); // Custom download name
+});
+
+app.get('/download-with-callback', (req, res) => {
+  const filePath = path.join(__dirname, 'files', 'data.csv');
+  
+  res.download(filePath, 'export.csv', (err) => {
+    if (err) {
+      res.status(404).send('File not found');
+    } else {
+      console.log('File downloaded successfully');
+    }
+  });
+});
+
+----------------------------------------------------------
+
+8. res.set() / res.header()
+Sets response headers. res.set() and res.header() are identical. Can set single header or multiple headers with object.
+
+app.get('/custom-headers', (req, res) => {
+  res.set('X-Custom-Header', 'MyValue');
+  res.set({
+    'X-Multiple-Headers': 'Value1',
+    'X-Another-Header': 'Value2'
+  });
+  
+  res.json({ message: 'Headers set' });
+});
+
+// Alternative syntax
+app.get('/header-method', (req, res) => {
+  res.header('X-API-Version', '1.0');
+  res.send('Header set using header() method');
+});
+
+----------------------------------------------------------
+
+9. res.type()
+Sets the Content-Type header. Accepts file extensions or full MIME types. Express maps common extensions to MIME types.
+
+app.get('/xml-data', (req, res) => {
+  res.type('xml');
+  res.send('<root><message>Hello XML</message></root>');
+});
+
+app.get('/plain-text', (req, res) => {
+  res.type('text/plain');
+  res.send('This is plain text');
+});
+
+// Using MIME type directly
+app.get('/custom-type', (req, res) => {
+  res.type('application/vnd.api+json');
+  res.send('{"data": "Custom MIME type"}');
+});
+
+----------------------------------------------------------
+
+10. res.cookie()
+Sets cookies in the response. Sets HTTP cookies. Options include expiration, security settings, and signing for tamper detection.
+
+app.get('/set-cookies', (req, res) => {
+  // Basic cookie
+  res.cookie('username', 'john_doe');
+  
+  // Cookie with options
+  res.cookie('sessionId', 'abc123', {
+    maxAge: 900000, // 15 minutes
+    httpOnly: true,
+    secure: true, // HTTPS only
+    sameSite: 'strict'
+  });
+  
+  res.send('Cookies set');
+});
+
+app.get('/signed-cookie', (req, res) => {
+  res.cookie('signed', 'secret-value', { signed: true });
+  res.send('Signed cookie set');
+});
+
+----------------------------------------------------------
+
+11. res.clearCookie()
+Clears cookies from the client. Must match the original cookie's path and domain options to clear effectively.
+
+app.get('/logout', (req, res) => {
+  res.clearCookie('username');
+  res.clearCookie('sessionId');
+  res.redirect('/login');
+});
+
+// Clear cookie with specific options
+app.get('/clear-secure-cookie', (req, res) => {
+  res.clearCookie('secureData', {
+    path: '/admin',
+    secure: true
+  });
+  res.send('Secure cookie cleared');
+});
+
+----------------------------------------------------------
+
+12. res.render()
+Renders a template (requires template engine setup). Renders server-side templates with data. Requires a template engine like EJS, Handlebars, or Pug.
+
+// First, set up view engine (e.g., EJS, Handlebars, Pug)
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
+app.get('/profile/:id', (req, res) => {
+  const user = { 
+    id: req.params.id, 
+    name: 'John Doe', 
+    email: 'john@example.com' 
+  };
+  
+  res.render('profile', { user: user, title: 'User Profile' });
+});
+
+app.get('/error', (req, res) => {
+  res.status(500).render('error', {
+    message: 'Something went wrong',
+    error: { status: 500 }
+  });
+});
+
+----------------------------------------------------------
+
+13. res.sendStatus()
+Sends a status code with its standard message. Combines res.status() and res.send() with the standard status message.
+
+app.delete('/users/:id', (req, res) => {
+  // Delete logic here
+  res.sendStatus(204); // "No Content"
+});
+
+app.get('/unauthorized', (req, res) => {
+  res.sendStatus(401); // "Unauthorized"
+});
+
+app.get('/server-error', (req, res) => {
+  res.sendStatus(500); // "Internal Server Error"
+});
+
+----------------------------------------------------------
+
+14. res.location()
+Sets the Location header (used with redirects). Typically used with 201 (Created) or 3xx redirect status codes to indicate resource location.
+
+app.post('/users', (req, res) => {
+  const newUserId = 123;
+  res.location(`/users/${newUserId}`);
+  res.status(201).json({ 
+    message: 'User created',
+    location: `/users/${newUserId}`
+  });
+});
+
+----------------------------------------------------------
+
+15. res.vary()
+Sets the Vary header for caching purposes. Tells caches that the response varies based on specified headers.
+
+app.get('/api/data', (req, res) => {
+  res.vary('User-Agent');
+  res.vary('Accept-Encoding');
+  
+  // Response varies based on User-Agent and Accept-Encoding
+  const data = { message: 'Data varies by headers' };
+  res.json(data);
+});
+
+----------------------------------------------------------
+
+16. res.format()
+Responds based on the Accept header (content negotiation). Content negotiation based on client's Accept header. Responds with appropriate format.
+
+app.get('/users/:id', (req, res) => {
+  const user = { id: 1, name: 'John Doe' };
+  
+  res.format({
+    'text/plain': () => {
+      res.send(`${user.name} (ID: ${user.id})`);
+    },
+    
+    'text/html': () => {
+      res.send(`<h1>${user.name}</h1><p>ID: ${user.id}</p>`);
+    },
+    
+    'application/json': () => {
+      res.json(user);
+    },
+    
+    'default': () => {
+      res.status(406).send('Not Acceptable');
+    }
+  });
+});
+
+----------------------------------------------------------
+
+17. res.attachment()
+Sets Content-Disposition header to "attachment". Suggests to browser that content should be downloaded rather than displayed.
+
+app.get('/export', (req, res) => {
+  res.attachment('data-export.csv');
+  res.send('name,email\nJohn,john@example.com\nJane,jane@example.com');
+});
+
+app.get('/download-invoice/:id', (req, res) => {
+  res.attachment(); // Generic attachment
+  res.send('Invoice data...');
+});
+
+----------------------------------------------------------
+
+Chaining Examples
+
+// Multiple methods can be chained
+app.get('/api/users', (req, res) => {
+  res
+    .status(200)
+    .set('X-Total-Count', '150')
+    .cookie('lastVisit', new Date().toISOString())
+    .json({
+      users: [],
+      pagination: { page: 1, total: 150 }
+    });
+});
+
+// Error handling with chaining
+app.get('/protected', (req, res) => {
+  if (!req.headers.authorization) {
+    return res
+      .status(401)
+      .set('WWW-Authenticate', 'Bearer')
+      .json({ error: 'Authorization required' });
+  }
+  
+  res.json({ message: 'Protected data' });
+});
+
+
+
+
+// Good practice example ---------------------------------------------
+app.post('/api/users', async (req, res) => {
+  try {
+    const user = await createUser(req.body);
+    
+    res
+      .status(201)
+      .location(`/api/users/${user.id}`)
+      .set('X-RateLimit-Remaining', '99')
+      .json({
+        success: true,
+        data: user,
+        message: 'User created successfully'
+      });
+      
+  } catch (error) {
+    res
+      .status(400)
+      .json({
+        success: false,
+        error: error.message
+      });
+  }
+});
+
+
+
