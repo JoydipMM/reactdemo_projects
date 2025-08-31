@@ -1059,11 +1059,52 @@ const usreskeys = Object.keys(users);
 const course = {
   coursename: "Javascript",
   courseinstructor:"youtube",
+  message: function(){
+    console.log(`welcome to ${this.coursename} course`);
+    
+  }
 }
-console.log(course.courseinstructor); // result: youtube
+course.message(); // result: welcome to Javascript course
+course.coursename = "React";
+course.message(); // Result: welcome to React course
 
+//console.log(course.courseinstructor); // result: youtube
+
+
+
+
+/***** Destructure using alias name ******/
 const { coursename, courseinstructor:teacher } = course;
-console.log(teacher); // 
+// here "teacher" is alias name of "courseinstructor". When we use alias of any key then it's mean that take the property courseinstructor from the object, but store it in a variable called teacher. So we will use that key name like below:
+//console.log(teacher); // youtube
 // console.log(coursename); // result: Javascript
 // console.log(courseinstructor); // result: youtube
 
+function multipleData(...number){
+  console.log(number)
+}
+
+//multipleData(2,1,4,7)
+
+
+() => {}
+let variableName = () => {}
+
+const addTwo = (num1,num2) => {
+  return num1+num2
+}
+console.log(addTwo(2,3)); // result: 5
+
+
+const addThree = (num1,num2) => num1+num2
+console.log(addThree(2,6)); // result: 8
+
+const addFour = (num1,num2) => (num1+num2)
+console.log(addFour(2,6)); // result: 8
+
+const addFive = (num1,num2) => ({name:"javascript", value: num1+num2})
+console.log(addFive(2,3)); // result: { name: 'javascript', value: 5 }
+
+(function one(name){
+  console.log(`User name is ${name}`);
+})('Mohan'); // result: User name is Mohan
