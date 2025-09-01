@@ -81,6 +81,11 @@ export default SimpleContextApi
         'menulink': "Todo-practice",
         'menusubtitle': `--- Practice ---`,
     },
+    {
+        'menutitle': "Tic Tac Toe",
+        'menulink': "Tic-tac-toe",
+        'menusubtitle': `--- Practice ---`,
+    },
 ]
 
 export default tutorialMenusList;

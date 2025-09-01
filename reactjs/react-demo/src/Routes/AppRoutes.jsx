@@ -11,6 +11,7 @@ import ThemeSwitcher from '../Tutorials/ThemeSwitcher/ThemeSwitcher';
 import Todo from '../Tutorials/Todo/Todo';
 import SimpleTodo from '../Tutorials/SimpleTodo/SimpleTodo';
 import TodoPractice from '../Tutorials/TodoPractice/TodoPractice';
+import TicTacToe from '../Tutorials/TicTacToe/index';
 
 const AppRoutes = () => {
   return (
@@ -30,6 +31,7 @@ const AppRoutes = () => {
           <Route path="todo" element={<Todo />}/>
           <Route path="simple-todo" element={<SimpleTodo />}/>
           <Route path="Todo-practice" element={<TodoPractice />}/>
+          <Route path="Tic-tac-toe" element={<TicTacToe />}/>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
