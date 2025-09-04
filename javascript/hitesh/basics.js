@@ -990,7 +990,121 @@ for (const key in ob2) {
 }
 
 
+const obj1 = {1: "a", 2: "b", 3:"c"}  
+const obj2 = {4: "d", 5: "e", 6:"f"}  
+const obj3 = {7: "g", 8: "h", 9:"i"}  
+
+//const obj4 = Object.assign({}, obj1, obj2, obj3);
+// {} -> mean after all array merge, the combined array will store inside {}, else with it new array dataset
+// {} >> target value
+//  obj1, obj2, obj3 //source data
+//console.log(obj4);
+// answer: {  '1': 'a','2': 'b', '3': 'c','4': 'd','5': 'e', '6': 'f','7': 'g','8': 'h', '9': 'i' }
+//console.log(obj1);
+// { '1': 'a', '2': 'b', '3': 'c' }
+
+// But if we write like below:
+//const obj5 = Object.assign(obj1, obj2, obj3);
+//console.log(obj5);
+// answer: {  '1': 'a','2': 'b', '3': 'c','4': 'd','5': 'e', '6': 'f','7': 'g','8': 'h', '9': 'i' }
+//console.log(obj1);
+// answer: {  '1': 'a','2': 'b', '3': 'c','4': 'd','5': 'e', '6': 'f','7': 'g','8': 'h', '9': 'i' }
+
+
+//const allobj = {...obj1, ...obj2, ...obj3}
+//console.log(allobj);
+// answer: {  '1': 'a','2': 'b', '3': 'c','4': 'd','5': 'e', '6': 'f','7': 'g','8': 'h', '9': 'i' }
+
+
+const user = {}
+//console.log(user);
+// result: {}
+
+user.name = "Mohan";
+user.email = "mohangmail.com";
+//console.log(user);
+// result: { name: 'Mohan', email: 'mohangmail.com' }
+
+const datakey = Object.keys(user);
+//console.log(datakey);
+// result: [ 'name', 'email' ]
+const datavalues = Object.values(user);
+//console.log(datavalues);
+// Result: [ 'Mohan', 'mohangmail.com' ]
+//console.log(user.hasOwnProperty("email")); // true
+//console.log(user.hasOwnProperty("address")); //  false
+
+const users = [
+  { id: 1, name: "Raja", email:"raja@gmail.com" },
+  { id: 2, name: "Mohan", email:"mohan@gmail.com" },
+];
+const usreskeys = Object.keys(users);
+//console.log(usreskeys); // Result: [ '0', '1' ]
+
+
+// const number = 1234567.89;
+
+// console.log(number.toLocaleString("en-US")); // "1,234,567.89"
+// console.log(number.toLocaleString("de-DE")); // "1.234.567,89"
+// console.log(number.toLocaleString("hi-IN")); // "12,34,567.89" (Indian system)
+
+
+// const num = 123;
+// console.log(num.toString());      // "123"
+// console.log(num.toString(2));   // "1111011" (binary)
+// console.log(num.toString(16));  // "7b" (hexadecimal)
+// console.log(true.toString());  // "true"
+// console.log(false.toString()); // "false"
+
+const course = {
+  coursename: "Javascript",
+  courseinstructor:"youtube",
+  message: function(){
+    console.log(`welcome to ${this.coursename} course`);
+    
+  }
+}
+course.message(); // result: welcome to Javascript course
+course.coursename = "React";
+course.message(); // Result: welcome to React course
+
+//console.log(course.courseinstructor); // result: youtube
 
 
 
- 
+
+/***** Destructure using alias name ******/
+const { coursename, courseinstructor:teacher } = course;
+// here "teacher" is alias name of "courseinstructor". When we use alias of any key then it's mean that take the property courseinstructor from the object, but store it in a variable called teacher. So we will use that key name like below:
+//console.log(teacher); // youtube
+// console.log(coursename); // result: Javascript
+// console.log(courseinstructor); // result: youtube
+
+function multipleData(...number){
+  console.log(number)
+}
+
+//multipleData(2,1,4,7)
+
+
+() => {}
+let variableName = () => {}
+
+const addTwo = (num1,num2) => {
+  return num1+num2
+}
+console.log(addTwo(2,3)); // result: 5
+
+
+const addThree = (num1,num2) => num1+num2
+console.log(addThree(2,6)); // result: 8
+
+const addFour = (num1,num2) => (num1+num2)
+console.log(addFour(2,6)); // result: 8
+
+const addFive = (num1,num2) => ({name:"javascript", value: num1+num2})
+console.log(addFive(2,3)); // result: { name: 'javascript', value: 5 }
+
+(function one(name){
+  console.log(`User name is ${name}`);
+})('Mohan'); // result: User name is Mohan

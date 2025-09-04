@@ -73,7 +73,6 @@ images.addEventListener("click", (event)=>{
     if(event.target.tagName === "IMG"){
         removeItem.remove();
     }
-    
 });
 
 
@@ -169,6 +168,13 @@ images.addEventListener("click", (event)=>{
         //     item.style.color = "yellow"
         // })
 
+const obj1 = {1: "a", 2: "b", 3:"c"}  
+const obj2 = {4: "d", 5: "e", 6:"f"}  
+const obj3 = {7: "g", 8: "h", 9:"i"}  
+
+const obj4 = Object.assign({}, obj1, obj2, obj3)
+// {} -> mean after all array merge, the combined array will store inside {}, else with it new array dataset 
+console.log(obj4)
     </script>
 </body>
 </html>

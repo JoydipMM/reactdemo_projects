@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    const course = {
+    coursename: "Javascript",
+    courseinstructor:"youtube",
+        message: function(){
+            console.log(`welcome to ${this.coursename} course`);
+        },
+        message2: ()=>{
+            console.log(`welcome to ${this.coursename} course`);
+        }
+    }
+    course.message(); // result: welcome to Javascript course
+    course.message2(); // result: welcome to undefined course
+    </script>
+</body>
+</html>
