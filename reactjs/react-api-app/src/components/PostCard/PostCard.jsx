@@ -1,10 +1,15 @@
 import React from 'react'
-import './PostCard.css';
+// import './PostCard.css';
+import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import { cn } from '../../lib/utils';
 
-const PostCard = () => {
+const PostCard = ({active}) => {
   return (
     <>
-      <div className="box"></div>
+      {/* <div className={clsx("card bg-amber-400", {"bg-amber-800":active})}>ghfghf erwe</div> */}
+      {/* <div className={twMerge(clsx("card bg-amber-400", {"bg-amber-800":active}))}>ghfghf erwe</div> */}
+      <div className={cn("card bg-amber-400", {"bg-amber-800":active})}>ghfghf erwe</div>
     </>
   )
 }
