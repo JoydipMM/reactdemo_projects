@@ -1,6 +1,9 @@
 import React from 'react'
 import GridRow from '../GridRow/GridRow';
+import { cn } from '../../lib/utils';
 import UserAvater from './UserAvater';
+import LavelTag from '../LavelTag/LavelTag';
+import KeyValueCard from '../KeyValueCard/KeyValueCard';
 
 
 const UserProfile = ({data}) => {
@@ -10,8 +13,22 @@ const UserProfile = ({data}) => {
     <>
     {/* gridcol="grid-cols-2" */}
       <GridRow>
-        <h4 className='text-xs font-medium text-gray-600 bg-gray-200 mb-2 absolute top-0 right-0 px-5 py-1 rounded-2xl rounded-tl-none rounded-br-none'>ID: {id}</h4>
-        <UserAvater avatar={avatar}/>
+        {/* <LavelTag position='left' lavel={id} title="ID" /> */}
+        <div className='flex gap-6'>
+            <UserAvater avatar={avatar}/>
+            <div className='flex-1'>
+                <GridRow className={'card pt-9'} gridcol="grid-cols-2">
+                    <LavelTag position='left' lavel={id} title="ID" />
+                    <KeyValueCard data={preferences} />
+                    <div>
+                        <h3 className='text-xl font-bold text-cyan-900 mb-2'>Notification</h3>
+                        <GridRow gridcol="grid-cols-4">
+                            <KeyValueCard data={preferences.notifications} />
+                        </GridRow>
+                    </div>
+                </GridRow>
+            </div>
+        </div>
       </GridRow>
     </>
   )
