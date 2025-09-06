@@ -7,14 +7,14 @@ import LavelTag from '../LavelTag/LavelTag';
 const CourseCard = ({data}) => {
 
   const { id, title, category, level, rating, durationHrs } = data;
-  
+
   return (
     <>
-      <div className={cn('card pt-10 pb-10')}>
+      <div className={cn('card pt-10 pb-5')}>
         <LavelTag lavel={level} position='left' title="Level" />
         <LavelTag lavel={id} title="ID" />
-        <h3 className='text-xl font-bold text-stone-800'>{title}</h3>
-        <h4 className='text-xs font-medium text-blue-500 mb-2'>Category: {category}</h4>
+        <h3 className='text-xl font-bold text-stone-800 mb-1.5'>{title}</h3>
+        <h4 className='text-xs font-medium text-blue-500 mb-3.5'>Category: {category}</h4>
         <div className='flex flex-col gap-y-2.5'>
           <GridRow gridcol='lg:grid-cols-2'>
             <div className='flex'>

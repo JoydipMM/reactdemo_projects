@@ -1,13 +1,14 @@
 import React from 'react';
 import { cn } from '../../lib/utils'
 import TagsCard from '../TagsCard/TagsCard';
+import LavelTag from '../LavelTag/LavelTag';
 
 const TeamCard = ({data}) => {
   const { id, name, role, location, skills } = data;
   return (
     <>
       <div className={cn('card')}>
-        <h4 className='text-xs font-medium text-gray-600 bg-gray-200 mb-2 absolute top-0 right-0 px-5 py-1 rounded-2xl rounded-tl-none rounded-br-none'>ID: {id}</h4>
+        <LavelTag lavel={id} title="ID" />
         <h3 className='text-xl font-bold text-stone-800'>{name}</h3>
         <h4 className='text-xs font-medium text-blue-500 mb-2'>{role}</h4>
         <div className='flex flex-col gap-y-2.5'>
