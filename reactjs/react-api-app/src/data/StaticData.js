@@ -9,11 +9,12 @@ export const team = [
  
 export const courses = [
   { id: "c1", title: "React Basics", category: "Frontend", level: "Beginner", rating: 4.6, durationHrs: 6 },
-  { id: "c2", title: "UI Foundations", category: "Design", level: "Beginner", rating: 4.4, durationHrs: 5 },
+  { id: "c2", title: "UI Foundations", category: "Design",level: "Intermediate", rating: 4.4, durationHrs: 5 },
   { id: "c3", title: "Accessibility 101", category: "Frontend", level: "Beginner", rating: 4.7, durationHrs: 4 },
-  { id: "c4", title: "Advanced CSS", category: "Frontend", level: "Intermediate", rating: 4.5, durationHrs: 7 },
+  { id: "c4", title: "Advanced CSS", category: "Frontend", level: "Beginner",  rating: 4.5, durationHrs: 7 },
   { id: "c5", title: "Design Systems Intro", category: "Design", level: "Intermediate", rating: 4.3, durationHrs: 6 },
-  { id: "c6", title: "Testing React", category: "Frontend", level: "Intermediate", rating: 4.2, durationHrs: 8 }
+  { id: "c6", title: "Testing React", category: "Frontend", level: "Intermediate", rating: 4.2, durationHrs: 8 },
+  { id: "c7", title: "Node Js", category: "Backend", level: "Pro", rating: 4.2, durationHrs: 10 }
 ];
 
 export const siteInfo = {

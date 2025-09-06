@@ -18,8 +18,8 @@ const SiteInfo = ({name, tagline, stats, links}) => {
     </GridRow>
     <GridRow className="mb-6" gridcol="grid-cols-3">
         <InfoCard className="py-4 px-5" label={"Users"} value={stats.users}/>
-        <InfoCard className="py-4 px-5" label={"Courses"} value={stats.courses}/>
-        <InfoCard className="py-4 px-5" label={"Team"} value={stats.team}/>
+        <InfoCard className="py-4 px-5" label={"Courses"} value={stats.courses} route="/course"/>
+        <InfoCard className="py-4 px-5" label={"Team"} value={stats.team} route="/team"/>
     </GridRow>
     {/* <GridRow className="mb-6" gridcol={true}>
         <InfoCard className="py-4 px-5 flex items-center justify-between" label={"github"} value={links.github} link/>
