@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 const GridRow = ({children, gridcol="grid-cols-1", className}) => {
   return (
     <>
-      <section className={cn('grid gap-4', gridcol, className)}>
+      <section className={cn('grid gap-4 relative', gridcol, className)}>
         {children}
       </section>
     </>
