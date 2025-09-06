@@ -98,12 +98,13 @@ export const userProfile = {
 
  
 
- C:\Users\joydi\AppData\Local\nvm
-
- C:\nvm4w\nodejs
-
-
 
 
  https://www.npmjs.com/package/clsx
  https://www.npmjs.com/package/tailwind-merge
+ https://lucide.dev/icons/square-arrow-out-up-right
+
+
+ 
+ C:\Users\joydi\AppData\Local\nvm
+ C:\nvm4w\nodejs

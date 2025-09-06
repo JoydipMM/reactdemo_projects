@@ -9,22 +9,25 @@ const Courses = () => {
 
   const sortedCourses = [...courses].sort((a, b) => {
     return sortOrder === "asc"
-      ? a.title.localeCompare(b.title)
-      : b.title.localeCompare(a.title);
+      ? a.level.localeCompare(b.level)
+      : b.level.localeCompare(a.level);
   });
   return (
     <>
     <div className='flex justify-between items-center mb-6'>
       <h1 className='text-3xl font-bold text-purple-700'>Course</h1>
 
-      <select
-        className="border-none py-2 px-4 rounded-2xl bg-gray-200 text-black text-xs"
-        value={sortOrder}
-        onChange={(e) => setSortOrder(e.target.value)}
-      >
-        <option value="asc">Sort A → Z</option>
-        <option value="desc">Sort Z → A</option>
-      </select>
+      <div className='inline-flex justify-between items-center gap-3'>
+          <label className='text-[14px] text-stone-500'>Filter By Lavel</label>
+          <select
+            className="border-none py-2 px-4 rounded-2xl bg-gray-200 text-black text-xs"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
+            <option value="asc">Sort A → Z</option>
+            <option value="desc">Sort Z → A</option>
+          </select>
+      </div>
     </div>
 
       <GridRow gridcol='lg:grid-cols-3'>

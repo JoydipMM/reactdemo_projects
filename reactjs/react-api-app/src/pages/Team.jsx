@@ -16,15 +16,17 @@ const Team = () => {
 
       <div className='flex justify-between items-center mb-6'>
         <h1 className='text-3xl font-bold text-purple-700'>Team</h1>
-
-        <select
-          className="border-none py-2 px-4 rounded-2xl bg-gray-200 text-black text-xs"
-          value={sortOrder}
-          onChange={(e) => setSortOrder(e.target.value)}
-        >
-          <option value="asc">Sort A → Z</option>
-          <option value="desc">Sort Z → A</option>
-        </select>
+        <div className='inline-flex justify-between items-center gap-3'>
+          <label className='text-[14px] text-stone-500'>Filter By Title</label>
+          <select
+            className="border-none py-2 px-4 rounded-2xl bg-gray-200 text-black text-xs"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
+            <option value="asc">Sort A → Z</option>
+            <option value="desc">Sort Z → A</option>
+          </select>
+        </div>
       </div>
       <GridRow gridcol='lg:grid-cols-3'>
         {/* {team.map((item) => <TeamCard key={item.id} data={item}/>)} */}
