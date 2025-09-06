@@ -4,6 +4,7 @@ import { cn } from '../../lib/utils';
 import UserAvater from './UserAvater';
 import LavelTag from '../LavelTag/LavelTag';
 import KeyValueCard from '../KeyValueCard/KeyValueCard';
+import TagsCard from '../TagsCard/TagsCard';
 
 
 const UserProfile = ({data}) => {
@@ -18,7 +19,10 @@ const UserProfile = ({data}) => {
             <UserAvater avatar={avatar}/>
             <div className='flex-1'>
                 <GridRow className={'card pt-9 mb-3 gap-2'} gridcol="grid-cols-2">
-                    <LavelTag position='left' lavel={id} title="ID" />
+                    <LavelTag position='right' lavel={id} title="ID" />
+                    <div className='flex flex-wrap gap-1.5 absolute top-2 left-4'>
+                    {badges.map((badge)=><TagsCard item={badge}/>)}
+                    </div>
                     <div>
                         <div className="flex-1 text-2xl font-bold text-purple-700">{name}</div>
                     </div>
@@ -32,7 +36,7 @@ const UserProfile = ({data}) => {
                     </div>
                     <div className="flex">
                         <label className="text-[14px] text-stone-500">Joined :</label>
-                        <div className="flex-1 text-[14px] px-2.5">{location}</div>
+                        <div className="flex-1 text-[14px] px-2.5">{joined}</div>
                     </div>
                     <KeyValueCard data={preferences} />
                 </GridRow>
