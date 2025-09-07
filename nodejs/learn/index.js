@@ -10,6 +10,8 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended:false }))
 
+app.use(express.static("public"))
+
 app.get("/", (req, res) => {
     //res.send("<h2>Home page</h2>")
     // render a html file
