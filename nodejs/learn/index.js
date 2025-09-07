@@ -1,2 +1,54 @@
-const importData = require('./export');
-console.log(importData.z())
+//const express = require('express'); // old command
+// es6 new import command
+import express from 'express';
+const app = express();
+
+
+// apply ejs middleware
+app.set("view engine", "ejs"); 
+//app.set("views", "./custom-templates") // use any other folder
+
+app.use(express.urlencoded({ extended:false }))
+
+app.get("/", (req, res) => {
+    //res.send("<h2>Home page</h2>")
+    // render a html file
+    const name = ["Rajesh", "Mohit", "Brijesh", "Sunil"]
+    const team = [
+        { id: 1, name: "Aisha Khan", role: "UI Designer", location: "Kolkata" },
+        { id: 2, name: "Ravi Sharma", role: "Frontend Dev", location: "Bengaluru" },
+        { id: 3, name: "Meera Patel", role: "Graphic Designer", location: "Pune" },
+        { id: 4, name: "Arjun Singh", role: "UI Designer", location: "Delhi" },
+        { id: 5, name: "Neha Verma", role: "Frontend Dev", location: "Hyderabad" },
+        { id: 6, name: "Sandeep Roy", role: "Product Designer", location: "Kolkata"}
+    ];
+    res.render("home", { title:"Dynamic Home Page", message: "Welcome to NodeJS", name:name, teamData:team })
+})
+
+app.get("/about", (req, res) => {
+    //res.send("<h2>About page</h2>")
+    res.render("about")
+})
+
+app.get("/works", (req, res) => {
+    //res.send("<h2>About page</h2>")
+    res.render("project")
+})
+
+app.get("/form", (req, res)=>{
+    res.render("form", { message:null })
+})
+
+app.post("/submit", (req, res)=>{
+    const resbody = req.body; // Use For Testing {"myname":"joydip"}
+    const name = req.body.myname;
+    const msg = `${name} your form submitted`;
+    //res.send(msg) // joydip your form submitted
+
+    // now we want to show this message in the form page after submit data
+    // then we commentted the above  --- >>> res.send(msg)
+    res.render("form", {message:msg})
+})
+
+
+app.listen("3000", ()=>{ console.log("server is runing") })

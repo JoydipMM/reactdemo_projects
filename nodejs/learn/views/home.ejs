@@ -1,0 +1,35 @@
+<%- include("common/header") -%>
+
+    <h1>Home EJS page</h1>
+    <h2><%= title %></h2>
+    <% if(message){ %> <!-- If is used to check that "message" variable is blank or not -->
+        <p><%= message %></p>
+    <% }else{ %>
+        <p>There is no message</p>
+    <% } %>
+
+    <ul>
+        <% name.forEach((item)=>{ %>
+        <li><%= item %></li>
+        <% }) %>
+    </ul>
+
+        <table class="table" border="1" cellpadding="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Location</th>
+        </tr>
+        <% teamData.forEach((item)=>{ %>
+        <tr>
+            <td><%= item.id %></td>
+            <td><%= item.name %></td>
+            <td><%= item.role %></td>
+            <td><%= item.location %></td>
+        </tr>
+        <% }) %>
+    </table>
+
+
+<%- include("common/footer") -%>
