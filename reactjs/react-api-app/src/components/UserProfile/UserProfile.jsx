@@ -16,7 +16,7 @@ const UserProfile = ({data}) => {
       <GridRow>
         {/* <LavelTag position='left' lavel={id} title="ID" /> */}
         <div className='flex gap-6'>
-            <UserAvater avatar={avatar}/>
+            <UserAvater avatar={avatar} size={24} />
             <div className='flex-1'>
                 <GridRow className={'card pt-9 mb-3 gap-2'} gridcol="grid-cols-2">
                     <LavelTag position='right' lavel={id} title="ID" />
