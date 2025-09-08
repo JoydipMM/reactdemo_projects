@@ -52,5 +52,31 @@ app.post("/submit", (req, res)=>{
     res.render("form", {message:msg})
 })
 
+// user routes
+app.get("/userlist", (req, res)=>{
+    res.render("users/list")
+})
+app.get("/userview", (req, res)=>{
+    res.render("users/view")
+})
+app.get("/useradd", (req, res)=>{
+    res.render("users/add")
+})
+app.post("/useradd", (req, res)=>{
+    res.render("users/add")
+})
+app.get("/useredit", (req, res)=>{
+    res.render("users/edit")
+})
+app.post("/useredit", (req, res)=>{
+    res.render("users/edit")
+})
+app.get("/userdelete", (req, res)=>{
+    res.render("users/delete")
+})
+app.post("/userdelete", (req, res)=>{
+    res.render("users/delete")
+})
+
 
 app.listen("3000", ()=>{ console.log("server is runing") })
