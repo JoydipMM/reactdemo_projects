@@ -1,7 +1,16 @@
 //const express = require('express'); // old command
 // es6 new import command
 import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
+
+// db connect
+const mongoURL = `${process.env.MONGODBURL}/${process.env.MONGODBNAME}`;
+//console.log("Connecting to:", mongoURL);
+mongoose.connect(mongoURL)
+.then(()=>{ console.log("Database connected") }).catch(err => console.log(err));
 
 
 // apply ejs middleware
