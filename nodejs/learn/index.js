@@ -2,7 +2,7 @@
 // es6 new import command
 import express from 'express';
 import mongoose from 'mongoose';
-import userSchema from './models/user.model';
+import User from './models/user.models.js';
 import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
@@ -63,10 +63,12 @@ app.post("/submit", (req, res)=>{
 })
 
 // user routes
-app.get("/userlist", (req, res)=>{
-    res.render("users/list")
+app.get("/userlist", async (req, res)=>{
+    const userslist = await User.find()
+    //res.json(userslist);
+    res.render("users/list", {userslist:userslist} )
 })
-app.get("/userview", (req, res)=>{
+app.get("/userview/:id", (req, res)=>{
     res.render("users/view")
 })
 app.get("/useradd", (req, res)=>{

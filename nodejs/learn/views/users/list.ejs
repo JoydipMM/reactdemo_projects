@@ -9,17 +9,19 @@
         <th>Phone</th>
         <th>Action</th>
     </tr>
+    <% userslist.forEach((user)=>{ %>
     <tr>
         <td>1</td>
-        <td>Title Surname</td>
-        <td>email@gmail.com</td>
-        <td>+91 87654 87908</td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone %></td>
         <td>
-            <a href="#">View</a>
+            <a href="userview/<%= user.id %>">View</a>
             <a href="#">Edit</a>
             <a href="#">Delete</a>
         </td>
     </tr>
+    <% }) %>
 </table>
     
 <%- include("common/footer") -%>
