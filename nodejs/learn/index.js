@@ -63,7 +63,7 @@ app.post("/submit", (req, res)=>{
 })
 
 // user routes
-app.get("/userlist", async (req, res)=>{
+app.get("/userslist", async (req, res)=>{
     const userslist = await User.find()
     //res.json(userslist);
     res.render("users/list", {userslist:userslist} )
