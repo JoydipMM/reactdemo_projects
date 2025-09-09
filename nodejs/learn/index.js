@@ -2,6 +2,7 @@
 // es6 new import command
 import express from 'express';
 import mongoose from 'mongoose';
+import userSchema from './models/user.model';
 import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
