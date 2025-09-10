@@ -1,6 +1,11 @@
 <%- include("common/header") -%>
+<div class="userflow-body-wrap">
+    <div class="container">
 <h2>Users List</h2>
-
+<a href="/useradd" class="btn btn-primary">Add New</a>
+<% if(message){  %>
+<%= message %>
+<% } %>
 <table class="table">
     <tr>
         <th>ID</th>
@@ -9,7 +14,7 @@
         <th>Phone</th>
         <th>Action</th>
     </tr>
-    <% userslist.forEach((user)=>{ %>
+    <% userlist.forEach((user)=>{ %>
     <tr>
         <td>1</td>
         <td><%= user.name %></td>
@@ -17,11 +22,14 @@
         <td><%= user.phone %></td>
         <td>
             <a href="userview/<%= user.id %>">View</a>
-            <a href="#">Edit</a>
-            <a href="#">Delete</a>
+            <a href="useredit/<%= user.id %>">Edit</a>
+            <a href="userdelete/<%= user.id %>">Delete</a>
         </td>
     </tr>
     <% }) %>
 </table>
-    
+   
+
+</div>
+</div>
 <%- include("common/footer") -%>

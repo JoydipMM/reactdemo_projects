@@ -64,30 +64,36 @@ app.post("/submit", (req, res)=>{
 
 // user routes
 app.get("/userslist", async (req, res)=>{
-    const userslist = await User.find()
-    //res.json(userslist);
-    res.render("users/list", {userslist:userslist} )
+    const userlist = await User.find()
+    //res.json(userlist);
+    res.render("users/list", {userlist:userlist, message:null} )
 })
-app.get("/userview/:id", (req, res)=>{
-    res.render("users/view")
+app.get("/userview/:id", async (req, res)=>{
+    const user = await User.findOne({ _id: req.params.id })
+    res.render("users/view", {user})
 })
 app.get("/useradd", (req, res)=>{
     res.render("users/add")
 })
-app.post("/useradd", (req, res)=>{
-    res.render("users/add")
+app.post("/useradd", async(req, res)=>{
+    const getUserData = req.body;
+    //res.json(getUserData)
+    await User.insertOne(req.body);
+    res.render("users/list", {message:"New User Added"} )
+    res.redirect("/userslist");
+    //res.render("users/add")
 })
-app.get("/useredit", (req, res)=>{
-    res.render("users/edit")
+app.get("/useredit/:id", async(req, res)=>{
+    const user = await User.findOne({ _id: req.params.id })
+    res.render("users/edit", {user})
 })
-app.post("/useredit", (req, res)=>{
-    res.render("users/edit")
+app.post("/useredit/:id", async (req, res)=>{
+    await User.findByIdAndUpdate(req.params.id, req.body)
+    res.redirect("/userslist");
 })
-app.get("/userdelete", (req, res)=>{
-    res.render("users/delete")
-})
-app.post("/userdelete", (req, res)=>{
-    res.render("users/delete")
+app.get("/userdelete/:id", async(req, res)=>{
+    await User.findByIdAndDelete({ _id: req.params.id })
+    res.redirect("/userslist");
 })
 
 
