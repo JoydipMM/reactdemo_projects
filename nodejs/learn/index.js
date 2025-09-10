@@ -65,8 +65,8 @@ app.post("/submit", (req, res)=>{
 // user routes
 app.get("/userslist", async (req, res)=>{
     const userlist = await User.find()
-    //res.json(userlist);
-    res.render("users/list", {userlist:userlist, message:null} )
+    //res.json(userlist); // we will get json the in http://localhost:3000/userslist
+    res.render("users/list", {userlist:userlist} )
 })
 app.get("/userview/:id", async (req, res)=>{
     //const user = await User.findOne({ _id: req.params.id }) // mongodb inbuild method

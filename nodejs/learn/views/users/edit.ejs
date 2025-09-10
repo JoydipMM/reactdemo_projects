@@ -8,33 +8,33 @@
             <div class="col"><h2>Edit User</h2></div>
         </div>
 
-<form action="/useredit/<%= user._id %>" method="POST">
-    <div class="row">
-        <div class="col">
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="<%= user.name %>">
+        <form action="/useredit/<%= user._id %>" method="POST">
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="<%= user.name %>">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput2" name="email" value="<%= user.email %>">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput3" name="phone"  value="<%= user.phone %>">
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <label for="exampleFormControlInput3" class="form-label" style="width:100%; height: 17px;"></label>
+                    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="mb-3">
-                <label for="exampleFormControlInput2" class="form-label">Email</label>
-                <input type="email" class="form-control" id="exampleFormControlInput2" name="email" value="<%= user.email %>">
-            </div>
-        </div>
-        <div class="col">
-            <div class="mb-3">
-                <label for="exampleFormControlInput3" class="form-label">Phone</label>
-                <input type="text" class="form-control" id="exampleFormControlInput3" name="phone"  value="<%= user.phone %>">
-            </div>
-        </div>
-        <div class="col-auto">
-            <label for="exampleFormControlInput3" class="form-label" style="width:100%; height: 17px;"></label>
-            <button type="submit" class="btn btn-primary mb-3">Submit</button>
-        </div>
-    </div>
-</form>
+        </form>
 
-</div>    
+    </div>    
 </div>    
 <%- include("common/footer") -%>
