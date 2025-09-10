@@ -69,7 +69,8 @@ app.get("/userslist", async (req, res)=>{
     res.render("users/list", {userlist:userlist, message:null} )
 })
 app.get("/userview/:id", async (req, res)=>{
-    const user = await User.findOne({ _id: req.params.id })
+    //const user = await User.findOne({ _id: req.params.id }) // mongodb inbuild method
+    const user = await User.findById(req.params.id) // mongoose method
     res.render("users/view", {user})
 })
 app.get("/useradd", (req, res)=>{
@@ -78,10 +79,14 @@ app.get("/useradd", (req, res)=>{
 app.post("/useradd", async(req, res)=>{
     const getUserData = req.body;
     //res.json(getUserData)
-    await User.insertOne(req.body);
-    res.render("users/list", {message:"New User Added"} )
+    await User.insertOne({
+        name:req.body.name,
+        email:req.body.email,
+        phone:req.body.phone,
+    }); // mongodb inbuild method
+    await User.create(req.body); // mongoose method
+    //res.render("users/list", {message:"New User Added"} )
     res.redirect("/userslist");
-    //res.render("users/add")
 })
 app.get("/useredit/:id", async(req, res)=>{
     const user = await User.findOne({ _id: req.params.id })
