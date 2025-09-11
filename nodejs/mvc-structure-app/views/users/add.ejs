@@ -1,0 +1,39 @@
+<%- include("common/header") -%>
+<div class="userflow-body-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>New User add</h2>
+            </div>
+        </div>
+
+        <form action="/useradd" method="POST">
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" name="name" placeholder="">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput2" name="email" placeholder="">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput3" name="phone" placeholder="">
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <label for="exampleFormControlInput3" class="form-label" style="width:100%; height: 17px;"></label>
+                    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<%- include("common/footer") -%>

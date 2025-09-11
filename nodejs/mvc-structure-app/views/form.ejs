@@ -1,0 +1,21 @@
+<%- include("common/header") -%>
+    <h1>Form page</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>Form</h2>
+            </div>
+        </div>
+        <div class="row">
+            <form action="/submit" method="POST">
+                Enter Name: <input type="text" name="myname">
+                <br><br>
+                <input type="submit" value="Submit">
+            </form>
+            <% if(message){ %>
+                <p><%= message %></p>
+            <% } %>
+        </div>
+        <div class="row"></div>
+    </div>
+<%- include("common/footer") -%>
