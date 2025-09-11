@@ -1,17 +1,14 @@
 //const express = require('express'); // old command
 // es6 new import command
 import express from 'express';
-import mongoose from 'mongoose';
-import User from './models/user.models.js';
+import {dbConnect} from './config/database.js';
+import UserRoutes from "./routes/users.routes.js";
 import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
 
 // db connect
-const mongoURL = `${process.env.MONGODBURL}/${process.env.MONGODBNAME}`;
-//console.log("Connecting to:", mongoURL);
-mongoose.connect(mongoURL)
-.then(()=>{ console.log("Database connected") }).catch(err => console.log(err));
+dbConnect()
 
 
 // apply ejs middleware
@@ -63,43 +60,7 @@ app.post("/submit", (req, res)=>{
 })
 
 // user routes
-app.get("/userslist", async (req, res)=>{
-    const userlist = await User.find()
-    //res.json(userlist); // we will get json the in http://localhost:3000/userslist
-    res.render("users/list", {userlist:userlist} )
-})
-app.get("/userview/:id", async (req, res)=>{
-    //const user = await User.findOne({ _id: req.params.id }) // mongodb inbuild method
-    const user = await User.findById(req.params.id) // mongoose method
-    res.render("users/view", {user})
-})
-app.get("/useradd", (req, res)=>{
-    res.render("users/add")
-})
-app.post("/useradd", async(req, res)=>{
-    const getUserData = req.body;
-    //res.json(getUserData)
-    await User.insertOne({
-        name:req.body.name,
-        email:req.body.email,
-        phone:req.body.phone,
-    }); // mongodb inbuild method
-    await User.create(req.body); // mongoose method
-    //res.render("users/list", {message:"New User Added"} )
-    res.redirect("/userslist");
-})
-app.get("/useredit/:id", async(req, res)=>{
-    const user = await User.findOne({ _id: req.params.id })
-    res.render("users/edit", {user})
-})
-app.post("/useredit/:id", async (req, res)=>{
-    await User.findByIdAndUpdate(req.params.id, req.body)
-    res.redirect("/userslist");
-})
-app.get("/userdelete/:id", async(req, res)=>{
-    await User.findByIdAndDelete({ _id: req.params.id })
-    res.redirect("/userslist");
-})
+app.use("/", UserRoutes);
 
 
 app.listen("3000", ()=>{ console.log("server is runing") })

@@ -14,9 +14,10 @@
         <th>Phone</th>
         <th>Action</th>
     </tr>
+    <% let srno = 1 %>
     <% userlist.forEach((user)=>{ %>
     <tr>
-        <td>1</td>
+        <td><%= srno++ %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.phone %></td>
