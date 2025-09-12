@@ -34,6 +34,10 @@
   box-shadow:#e7e7e7 0px 0px 10px;
   @apply w-full rounded-2xl p-3.5 sm:p-6 border border-solid border-neutral-200 relative;
 }
+@utility formfield{
+  box-shadow:#e7e7e7 0px 0px 10px;
+  @apply w-full min-h-12 py-1.5 px-3.5 rounded-2xl text-amber-50 flex items-center justify-center text-black
+}
 
 
 
