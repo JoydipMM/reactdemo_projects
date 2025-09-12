@@ -1,24 +1,23 @@
 import React, { useState } from 'react'
 
-const NormalForm = () => {
+const NormalForm = ({onSubmitData}) => {
 
     const [formData, setFormData] = useState({
-        name:"",
-        email:""
+        username:"",
+        useremail:""
     })
 
     const changeEvent = (e) => {
         const { name, value } = e.target;
+        setFormData((prev)=>({...prev, [name]:value}));
     }
 
-
-
-
-  const handleSubmit = (e) =>{  
-    e.preventDefault();
-    console.log("clicked");
+    const handleSubmit = (e) =>{  
+        e.preventDefault();
+        console.log("Form Data- username: "+ formData.username+ " useremail: " +formData.useremail);
+        onSubmitData(formData);
+    }  
     
-  }  
   return (
     <div className={`card`}>
         <div>
@@ -46,6 +45,7 @@ const NormalForm = () => {
                     className='formfield'
                     placeholder='Email'
                     name="useremail"
+                    onChange={changeEvent}
                     value={formData.email}
                     />
                 </div>

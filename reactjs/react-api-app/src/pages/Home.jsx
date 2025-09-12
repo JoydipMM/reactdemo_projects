@@ -1,10 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { siteInfo } from "../data/StaticData";
 import GridRow from '../components/GridRow/GridRow';
 import SiteInfo from '../components/SiteInfo/SiteInfo';
 import NormalForm from '../components/NormalForm';
 
 const Home = () => {
+
+  const [submittedData, setSubmittedData] = useState(null);
+
+  const childSubmitedFormData = (data) => {
+    setSubmittedData(data);
+    console.log(data);
+  }
 
   return (
     <>
@@ -14,8 +21,9 @@ const Home = () => {
         <GridRow>
           <SiteInfo name={siteInfo.name} tagline={siteInfo.tagline} stats={siteInfo.stats} links={siteInfo.links} />
         </GridRow>
-        <NormalForm/>
+        <NormalForm onSubmitData={childSubmitedFormData}/>
       </GridRow>
+      {submittedData?.useremail}
     </>
   )
 }
