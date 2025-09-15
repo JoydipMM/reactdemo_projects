@@ -16,12 +16,17 @@ const NormalForm = ({onSubmitData}) => {
         e.preventDefault();
         console.log("Form Data- username: "+ formData.username+ " useremail: " +formData.useremail);
         onSubmitData(formData);
+        setFormData({ username:"", useremail:"" })
     }  
+
+    const resetEvent = () => {
+        setFormData({ username:"", useremail:"" })
+    }
     
   return (
-    <div className={`card`}>
+    <div className={`card mb-5`}>
         <div>
-            <h3 className="text-2xl font-bold text-cyan-900 mb-6">Simple Form</h3>
+            <h3 className="text-2xl font-bold text-cyan-900 mb-6">Form</h3>
             {/* <label className="text-xs text-gray-600 p-0 mb-0">Tagline: Practice. Build. Repeat.</label> */}
         </div>
 
@@ -35,7 +40,7 @@ const NormalForm = ({onSubmitData}) => {
                     placeholder='Full Name' 
                     name="username" 
                     onChange={changeEvent} 
-                    value={formData.name} 
+                    value={formData.username} 
                     />
                 </div>
                 <div className='w-full relative flex flex-col gap-y-2'>
@@ -46,11 +51,11 @@ const NormalForm = ({onSubmitData}) => {
                     placeholder='Email'
                     name="useremail"
                     onChange={changeEvent}
-                    value={formData.email}
+                    value={formData.useremail}
                     />
                 </div>
                 <div className='w-full relative flex gap-x-2 justify-end'>
-                    <button type='reset' className='py-1.5 px-3.5 bg-red-700 hover:bg-black rounded-2xl text-amber-50 flex items-center justify-center cursor-pointer'>Reset</button>
+                    <button type='button' onClick={resetEvent} className='py-1.5 px-3.5 bg-red-700 hover:bg-black rounded-2xl text-amber-50 flex items-center justify-center cursor-pointer'>Reset</button>
                     <button type='submit' className='py-1.5 px-3.5 bg-blue-700 hover:bg-black rounded-2xl text-amber-50 flex items-center justify-center cursor-pointer'>Submit</button>
                 </div>
             </div>

@@ -8,10 +8,10 @@ const Home = () => {
 
   const [submittedData, setSubmittedData] = useState(null);
 
-  const childSubmitedFormData = (data) => {
-    setSubmittedData(data);
-    console.log(data);
-  }
+  // const childSubmitedFormData = (data) => {
+  //   setSubmittedData(data);
+  //   console.log(data);
+  // }
 
   return (
     <>
@@ -21,9 +21,16 @@ const Home = () => {
         <GridRow>
           <SiteInfo name={siteInfo.name} tagline={siteInfo.tagline} stats={siteInfo.stats} links={siteInfo.links} />
         </GridRow>
-        <NormalForm onSubmitData={childSubmitedFormData}/>
+        <NormalForm onSubmitData={setSubmittedData}/>
       </GridRow>
-      {submittedData?.useremail}
+      {submittedData &&<>
+      <div className={`card`}>
+        <h2 className='font-bold text-2xl text-purple-700 mb-3'>In Home Component</h2>
+        Email: {submittedData.useremail}<br/>
+        Name: {submittedData.username}<br/>
+      </div>
+      </>
+      }
     </>
   )
 }
