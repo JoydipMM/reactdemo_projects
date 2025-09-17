@@ -1,4 +1,6 @@
 //import User from '../models/user.models.js';
+import express from "express";
+const router = express.Router();
 import  {
     getUsersList, 
     singleUserView, 
@@ -7,8 +9,6 @@ import  {
     editUserPostMethod,
     deleteUser
 } from "../controller/users.controller.js";
-import express from "express";
-const router = express.Router();
 
 
 router.get("/userslist", getUsersList)
