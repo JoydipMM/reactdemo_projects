@@ -1,11 +1,12 @@
 import express from 'express';
-import { body, validationResult } from 'express-validator';
+import { body, validationResult } from 'express-validator'; // import
 
 
 const app = express();
-app.use(express.urlencoded({ extended:false }))
-app.set("view engine", "ejs"); 
+app.use(express.urlencoded({ extended:false })) // this middleware required
+app.set("view engine", "ejs"); // this is required for form template
 
+// express validator validations
 const validateOption = [
   body('username').notEmpty().withMessage('Username is required')
   .isLength({ min: 6, max:20 }).withMessage('Username must be at least 6 chars long and max 20 chars')
@@ -26,16 +27,18 @@ const validateOption = [
 ]
 
 app.get("/", (req, res)=>{
-  res.render("form-validation", {errorlist: null})
+  res.render("form-validation", {errorlist: null}) // added the errorlist null value as a object for avoid error if not data found on page load
 });
 
+
+// use "validateOption" like app middleware
 app.post("/validate-form", validateOption, (req, res)=>{
   const error = validationResult(req);
   if(error.isEmpty()){ // if no error found
     res.send(req.body);
   }
-  res.send(error);
-  //res.render("form-validation", {errorlist: error.array()})
+  //res.send(error); // this will show errors in json formate
+  res.render("form-validation", {errorlist: error.array()}) // this will send the message in form page
 });
 
 
