@@ -1,35 +1,41 @@
 import express from 'express';
-import multer from 'multer';
+import { body, validationResult } from 'express-validator';
+
 
 const app = express();
-
+app.use(express.urlencoded({ extended:false }))
 app.set("view engine", "ejs"); 
 
+const validateOption = [
+  body('username').notEmpty().withMessage('Username is required')
+  .isLength({ min: 6, max:20 }).withMessage('Username must be at least 6 chars long and max 20 chars')
+  .trim(),
 
-// Configure storage (files saved in 'uploads' folder)
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // folder name
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname); // unique filename
+  body('useremail').notEmpty()
+  .isEmail().withMessage('Enter a valid email')
+  .trim(),
+
+  body('userpassword').notEmpty().withMessage('Password is required')
+  .isLength({ min: 6, max:20 }).withMessage('Password must be at least 6 chars long and max 20 chars')
+  .trim(),
+
+  body('userage').notEmpty().withMessage('Username is required')
+  .isNumeric().withMessage('Age must be number'),
+  // body('usercity').isLength({ min: 6, max:12 }).withMessage('Password must be at least 6 chars long and max  chars'),
+  // body('usercheck').isLength({ min: 6, max:12 }).withMessage('Password must be at least 6 chars long and max  chars'),
+]
+
+app.get("/", (req, res)=>{
+  res.render("form-validation", {errorlist: null})
+});
+
+app.post("/validate-form", validateOption, (req, res)=>{
+  const error = validationResult(req);
+  if(error.isEmpty()){ // if no error found
+    res.send(req.body);
   }
-});
-
-const upload = multer({ storage: storage });
-
-app.get("/", (req, res) => {
-    res.render("file-upload-form", {message:null})
-})
-
-// Route: Single file upload
-app.post('/upload-single', upload.single('myFile'), (req, res) => {
-  res.send(`File uploaded: ${req.file.filename}`);
-});
-
-// Route: Multiple files upload
-app.post('/upload-multiple', upload.array('myFiles', 3), (req, res) => {
-  res.send(`Uploaded ${req.files.length} files`);
+  res.send(error);
+  //res.render("form-validation", {errorlist: error.array()})
 });
 
 

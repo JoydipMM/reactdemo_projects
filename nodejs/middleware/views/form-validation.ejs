@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express Form Validation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+   <div class="container mt-5">
+    <div class="row">
+        <div class="col-6">
+            <% if (errorlist){ %>
+                <ul>
+                <% errorlist.forEach((error)=>{ %>
+                    <li><%= error.msg %></li>
+                <% }) %>
+                </ul>
+            <% } %>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Express Form Validation</h5>
+                    <form action="/validate-form" method="POST" autocomplete="off">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control" name="username" autocomplete="off">
+                            <div class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email address</label>
+                            <input type="email" class="form-control" name="useremail" autocomplete="off">
+                            <div class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" name="userpassword" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Age</label>
+                            <input type="number" class="form-control" name="userage">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">City</label>
+                            <select class="form-select" id="inputGroupSelect02" name="usercity">
+                                <option selected>Choose City</option>
+                                <option value="kolkata">Kolkata</option>
+                                <option value="delhi">Delhi</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="usercheck">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+</body>
+</html>
