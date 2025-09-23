@@ -9,22 +9,22 @@ app.set("view engine", "ejs");
 
 // file type validate
 const filefilter = (req, file, cb) => {
-  if(file.fieldname==="myFile"){
-    //if(file.mimetype.startsWith('image/')){ // this is for all type of image format
-    if(file.mimetype == 'image/jpeg' || file.mimetype =='image/jpg' || file.mimetype =='image/png'){ // this is for specific image format
-      cb(null, true)
-    }else{
-      cb(new Error("Only images are allowed!"), false)
-    }
-  }else if(file.fieldname==="myFiles"){
-    if(file.mimetype == 'application/pdf'){ // this is for specific image format
-      cb(null, true)
-    }else{
-      cb(new Error("Only Pdf are allowed!"), false)
-    }
+  //if(file.mimetype.startsWith('image/')){ // this is for all type of image format
+  if(file.mimetype == 'image/jpeg' || file.mimetype =='image/jpg' || file.mimetype =='image/png'){ // this is for specific image format
+    cb(null, true)
   }else{
-    cb(new Error("Unkown files"), false)
+    cb(new Error("Only images are allowed!"), false)
   }
+}
+
+// File error handing
+const fileError = (err, req, res, next) => {
+  if(err instanceof multer.MulterError){ 
+    return res.status(400).send(`Multer error : ${error.message}`) // to get multer error
+  }else if(err){ 
+    return res.status(500).send(`Something went wrong : ${error.message}`) // to get code or file error
+  }
+  next()
 }
 
 // Configure storage (files saved in 'uploads' folder)

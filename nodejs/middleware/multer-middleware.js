@@ -1,10 +1,31 @@
+import { error } from 'console';
 import express from 'express';
 import multer from 'multer';
+import path from 'path';
 
 const app = express();
 
 app.set("view engine", "ejs"); 
 
+// file type validate
+const filefilter = (req, file, cb) => {
+  //if(file.mimetype.startsWith('image/')){ // this is for all type of image format
+  if(file.mimetype == 'image/jpeg' || file.mimetype =='image/jpg' || file.mimetype =='image/png'){ // this is for specific image format
+    cb(null, true)
+  }else{
+    cb(new Error("Only images are allowed!"), false)
+  }
+}
+
+// File error handing
+const fileError = (err, req, res, next) => {
+  if(err instanceof multer.MulterError){ 
+    return res.status(400).send(`Multer error : ${error.message}`) // to get multer error
+  }else if(err){ 
+    return res.status(500).send(`Something went wrong : ${error.message}`) // to get code or file error
+  }
+  next()
+}
 
 // Configure storage (files saved in 'uploads' folder)
 const storage = multer.diskStorage({
@@ -16,7 +37,13 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ 
+  storage: storage,
+  limits:{
+    fileSize: 1024 * 1024 * 3 // 1kb * 1mb * 3 = 3mb
+  },
+  fileFilter: filefilter
+});
 
 app.get("/", (req, res) => {
     res.render("file-upload-form", {message:null})
@@ -24,13 +51,37 @@ app.get("/", (req, res) => {
 
 // Route: Single file upload
 app.post('/upload-single', upload.single('myFile'), (req, res) => {
+  // first we check that user is uploaded anything or not
+  if(!req.file || req.file.length === 0){ 
+    return res.status(400).send(`No File uploaded`)
+  }
+  //res.send(req.file);
   res.send(`File uploaded: ${req.file.filename}`);
 });
 
+
 // Route: Multiple files upload
 app.post('/upload-multiple', upload.array('myFiles', 3), (req, res) => {
+  // first we check that user is uploaded anything or not
+  if(!req.files || req.files.length === 0){ 
+    return res.status(400).send(`No File uploaded`)
+  }
+  //res.send(req.files);
   res.send(`Uploaded ${req.files.length} files`);
 });
 
+
+// we use file upload error using middleware
+app.use( (error, req, res, next) => {
+  if(error instanceof multer.MulterError){ 
+    if (error.code === 'LIMIT_UNEXPECTED_FILE') { // this will check that the uploaded files are crossing the limit or not
+      return res.status(400).send("Unexpected field uploaded. Please check your file count.");
+    }
+    return res.status(400).send(`Multer error : ${error.message} : ${error.code}`) // to get multer error
+  }else if(error){ 
+    return res.status(500).send(`Something went wrong : ${error.message} : ${error.code}`) // to get code or file error
+  }
+  next()
+})
 
 app.listen("3000", ()=>{ console.log("server is runing") })
