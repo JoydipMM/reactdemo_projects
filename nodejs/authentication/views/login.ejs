@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="/login" method="POST">
+        <% if(message){ %>
+        <%= message %>
+        <% } %>
+        <div>
+            <div>
+                <label>User email</label>
+                <input type="email" name="useremail" />
+            </div>
+            <div>
+                <label>password</label>
+                <input type="password" name="userpass" />
+            </div>
+            <div>
+                <a href="/register">Register</a>
+                <button type="submit">Login</button>
+            </div>
+        </div>
+    </form>
+    
+</body>
+</html>
