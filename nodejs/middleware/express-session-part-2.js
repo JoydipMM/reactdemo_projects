@@ -1,6 +1,5 @@
 import express from 'express';
 import session from 'express-session';
-import MongoStore from 'connect-mongo';
 const app = express();
 
 app.set("view engine", "ejs"); 
@@ -10,11 +9,7 @@ app.use(session({
   secret: 'mySecretKey',    // secret to sign session ID cookie
   resave: false,         // disable session modify
   saveUninitialized: false,    // disable to create session if there have not value in the session 
-  cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 24 hours [session validity] 1000 = 1s
-  // store: MongoStore.create({ 
-  //   mongoUrl: 'mongodb+srv://joydip_db_user:<password>@cluster0.gj2rusk.mongodb.net/node_session_DB',
-  //   collectionName: "mysession"
-  // }),
+  cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hours [session validity] 1000 = 1s
 }));
 
 
