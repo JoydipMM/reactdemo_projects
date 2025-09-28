@@ -1,55 +1,48 @@
 import express from 'express';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
+import cookieParser from 'cookie-parser';
 const app = express();
+
+
+// Use cookie-parser middleware
+//app.use(cookieParser());
+
+// With a secret (for signed cookies)
+app.use(cookieParser("mySecretKey"));
 
 app.set("view engine", "ejs"); 
 
-// Setup express-session middleware
-app.use(session({
-  secret: 'mySecretKey',    // secret to sign session ID cookie
-  resave: false,         // disable session modify
-  saveUninitialized: false,    // disable to create session if there have not value in the session 
-  cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 24 hours [session validity] 1000 = 1s
-  // store: MongoStore.create({ 
-  //   mongoUrl: 'mongodb+srv://joydip_db_user:<password>@cluster0.gj2rusk.mongodb.net/node_session_DB',
-  //   collectionName: "mysession"
-  // }),
-}));
-
-
-
 app.get("/", (req, res) => {
-    if(req.session.username){
-      res.send(`<h1>Express Session</h1><h1>Session is: ${req.session.username}</h1>`);
-    }else{
-      res.send(`<h1>Express Session</h1><h1>No Session found</h1>`);
-    }
+    res.send(`<h1>Cookie Parser</h1>`);
 })
 
-app.get("/set-session", (req, res) => {
-  req.session.username = "Node Js"
-    res.send("<h1>Session Created</h1>")
-})
+app.get('/set-cookie', (req, res) => {
+ //res.cookie('username', 'John'); // set a cookie
+ res.cookie("username", "john123", { 
+  signed: false,
+  maxAge: 1000 * 60 * 60 * 24, // (optional)
+  httpOnly:true, // (optional)
+  secure:false, // (optional)
+  sameSite:true, // (optional)
+ });
+ res.send('Cookie has been set!');
+});
 
-app.get("/get-session", (req, res) => {
-  if(req.session.username){
-    res.send(`<h1>Session is: ${req.session.username}</h1>`);
-  }else{
-    res.send(`<h1>No Session found</h1>`);
-  }
-})
+app.get('/get-cookie', (req, res) => {
+ // read cookies from request
+ const username = req.cookies.username; // normal cookie
+ //const username = req.signedCookies.username; // signed cookie
+ res.send(`Cookie value: ${username}`);
+});
 
-app.get("/destroy", (req, res) => {
-  req.session.destroy((err)=>{
-    if(err){
-      res.status(500).send("Faild to destroy")
-    }
-    res.send(`<h1>Session destroy successfully</h1>`);
-  })
-    
-})
+app.get('/clear-cookie', (req, res) => {
+ res.clearCookie('username'); // delete cookie
+ res.send('Cookie cleared');
+});
+
 
 
 
 app.listen("3000", ()=>{ console.log("server is runing") })
+
