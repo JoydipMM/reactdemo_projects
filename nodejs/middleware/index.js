@@ -1,47 +1,30 @@
 import express from 'express';
-import session from 'express-session';
-import MongoStore from 'connect-mongo';
 import cookieParser from 'cookie-parser';
+import csurf from 'csurf';
 const app = express();
 
+app.use(express.urlencoded({extended: false}));
+app.use(express.json())
+app.set("view engine", "ejs")
 
 // Use cookie-parser middleware
-//app.use(cookieParser());
+app.use(cookieParser());
+const csrfProtection = csurf({ cookie: true })
 
 // With a secret (for signed cookies)
-app.use(cookieParser("mySecretKey"));
+//app.use(cookieParser("mySecretKey"));
 
 app.set("view engine", "ejs"); 
 
 app.get("/", (req, res) => {
     res.send(`<h1>Cookie Parser</h1>`);
-})
-
-app.get('/set-cookie', (req, res) => {
- //res.cookie('username', 'John'); // set a cookie
- res.cookie("username", "john123", { 
-  signed: false,
-  maxAge: 1000 * 60 * 60 * 24, // (optional)
-  httpOnly:true, // (optional)
-  secure:false, // (optional)
-  sameSite:true, // (optional)
- });
- res.send('Cookie has been set!');
 });
-
-app.get('/get-cookie', (req, res) => {
- // read cookies from request
- const username = req.cookies.username; // normal cookie
- //const username = req.signedCookies.username; // signed cookie
- res.send(`Cookie value: ${username}`);
+app.get("/csrf-form", csrfProtection, (req, res) => {
+    res.render(`csrf-form`, { csrfToken: req.csrfToken() });
 });
-
-app.get('/clear-cookie', (req, res) => {
- res.clearCookie('username'); // delete cookie
- res.send('Cookie cleared');
+app.post("/csrf", csrfProtection, (req, res) => {
+    res.send(req.body);
 });
-
-
 
 
 app.listen("3000", ()=>{ console.log("server is runing") })
