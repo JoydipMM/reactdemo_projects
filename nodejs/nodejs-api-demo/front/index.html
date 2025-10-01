@@ -99,7 +99,7 @@
             const userTableSelector = document.querySelector("#userDataRow");
             userTableSelector.innerHTML = "";
             try {
-                const res = await fetch(`${userlistAPI}`);
+                const res = await fetch(userlistAPI);
 
                 if(!res){
                     throw new Error("API Error")
@@ -129,7 +129,7 @@
 
                 
             } catch (error) {
-                console.log("Error: ",error);
+                //console.log("Error: ",error);
                 loading(false);
                 userTableSelector.innerHTML = `<tr><td colspan="4" class="text-center text-danger">API not working</td></tr> `;
             }
