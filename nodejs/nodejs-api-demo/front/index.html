@@ -58,7 +58,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const userlistAPI = "http://localhost:3000/api/auth";
+        const baseURL = "http://localhost:3000";
+        const userlistAPI = `${baseURL}/api/auth`;
 
 
         function loading(isVisible=false){
@@ -79,15 +80,15 @@
         function avater(avater){
             if(avater.useravater === ""){
                 if(avater.gender === "Male"){
-                    const img = `<img src="http://localhost:3000/uploads/default/male-default-avater.png" width="70px" height="70px" />`
+                    const img = `<img src="../uploads/default/male-default-avater.png" width="70px" height="70px" />`
                     return img;
                 }else if(avater.gender === "Female"){
-                    const img = `<img src="http://localhost:3000/uploads/default/female-default-avater.png" width="70px" height="70px" />`
+                    const img = `<img src="../uploads/default/female-default-avater.png" width="70px" height="70px" />`
                     return img;
                 }
                 return "asfasaf"
             }else{
-                const img = `<img src="http://localhost:3000/uploads/${avater.useravater}" width="70px" height="70px" />`
+                const img = `<img src="${baseURL}/uploads/${avater.useravater}" width="70px" height="70px" />`
                 return img;
             }
         }
@@ -114,7 +115,7 @@
                 data.forEach(user => {
                     userTableSelector.innerHTML+= `<tr>
                         <th scope="row">1</th>
-                        <td style="display:none"><img src="http://localhost:3000/uploads/${user.useravater}" width="70px" height="70px" /></td>
+                        <td style="display:none"><img src="${baseURL}/uploads/${user.useravater}" width="70px" height="70px" /></td>
                         <td>${avater(user)}</td>
                         <td>${user.useremail}</td>
                         <td>
