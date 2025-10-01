@@ -7,71 +7,180 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    <h1>Fetch Data using Javascript</h1>
+    <div class="container-fluid">
+        <div class="w-full">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto"><h1>Fetch Data using Javascript</h1></div>
+                <div class="col-auto"><button type="button" class="btn btn-danger" onclick="fetchUser()">Refresh</button></div>
+            </div>
+        </div>
+        
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Useremail</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody id="userDataRow">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Photo</th>
-                <th scope="col">Useremail</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody id="userDataRow">
-
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
 
-
-    <div class="modal fade" id="userView" tabindex="-1" aria-labelledby="userViewLabel" aria-hidden="true">
+    <div class="modal fade" id="userViewModal" tabindex="-1" aria-labelledby="userViewModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="userViewLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="userViewModalLabel">User Details</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                ...
+            <div id="viewUserModalBody" class="modal-body">
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>
             </div>
         </div>
     </div>
 
 
+
+    <div id="loader" style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; background: rgba(0,0,0,0.7); z-index: -1; opacity: 0; transition: all ease 0.3s; ">
+        <div style="width: auto; height: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 40px;">Loading...</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const userlistAPI = "http://localhost:3000/api/auth";
 
+
+        function loading(isVisible=false){
+            const loader  = document.querySelector("#loader");
+            if(isVisible){
+                loader.style.display = "block";
+                loader.style.zIndex = "9999";
+                loader.style.opacity = "1";
+            } else {
+                setTimeout(()=>{
+                    loader.style.display = "none"; 
+                    loader.style.zIndex = "-1";
+                    loader.style.opacity = "0";
+                }, 500)
+            }
+        }
+
+        function avater(avater){
+            if(avater.useravater === ""){
+                if(avater.gender === "Male"){
+                    const img = `<img src="http://localhost:3000/uploads/default/male-default-avater.png" width="70px" height="70px" />`
+                    return img;
+                }else if(avater.gender === "Female"){
+                    const img = `<img src="http://localhost:3000/uploads/default/female-default-avater.png" width="70px" height="70px" />`
+                    return img;
+                }
+                return "asfasaf"
+            }else{
+                const img = `<img src="http://localhost:3000/uploads/${avater.useravater}" width="70px" height="70px" />`
+                return img;
+            }
+        }
+
+
         async function fetchUser(){
-           const res = await fetch(`${userlistAPI}`);
-           const data =  await res.json();
-           console.log(data); 
-           const userTableSelector = document.querySelector("#userDataRow");
-           data.forEach(user => {
-            userTableSelector.innerHTML+= `<tr>
-                <th scope="row">1</th>
-                <td><img src="http://localhost:3000/uploads/${user.useravater}" width="70px" height="70px" /></td>
-                <td>${user.useremail}</td>
-                <td>
-                    <button type="button" class="btn btn-primary" onclick="viewUserPopup()">View</button>
-                    <button type="button" class="btn btn-warning">Edit</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                </td>
-            </tr>`
-           });
+            loading(true);
+            const userTableSelector = document.querySelector("#userDataRow");
+            userTableSelector.innerHTML = "";
+            try {
+                const res = await fetch(`${userlistAPI}`);
+
+                if(!res){
+                    throw new Error("API Error")
+                }
+                const data =  await res.json();
+                console.log(data); 
+                if(!data || data.length === 0){
+                    userTableSelector.innerHTML = `<tr><td colspan="4" class="text-center">No data found</td></tr>`;
+                    loading(false);
+                    return
+                }
+
+                data.forEach(user => {
+                    userTableSelector.innerHTML+= `<tr>
+                        <th scope="row">1</th>
+                        <td style="display:none"><img src="http://localhost:3000/uploads/${user.useravater}" width="70px" height="70px" /></td>
+                        <td>${avater(user)}</td>
+                        <td>${user.useremail}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick="openViewModal('${user._id}')">View</button>
+                            <button type="button" class="btn btn-warning">Edit</button>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>`
+                });
+                loading(false);
+
+                
+            } catch (error) {
+                console.log("Error: ",error);
+                loading(false);
+                userTableSelector.innerHTML = `<tr><td colspan="4" class="text-center text-danger">API not working</td></tr> `;
+            }
+
+           
         }
 
         fetchUser()
+
+        
+
+
+        async function openViewModal(id=null){
+            const modalBody = document.querySelector("#viewUserModalBody")
+            const viewModal = document.querySelector("#userViewModal");
+            const modal = new bootstrap.Modal(viewModal);
+            modal.show();
+            loading(true);
+            try {
+                const res = await fetch(`${userlistAPI}/${id}`);
+                if(!res){
+                    throw new Error("API Error")
+                }
+                const data =  await res.json();
+                //console.log(data); 
+                if(!data || data.length === 0){
+                    modalBody.innerHTML = `No data found`;
+                    loading(false);
+                    return
+                }
+                
+                modalBody.innerHTML= `
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">${avater(data)}</li>
+                    <li class="list-group-item"><b>Email : </b>${data.useremail}</li>
+                    <li class="list-group-item"><b>Phone : </b>${data.userphone}</li>
+                    <li class="list-group-item"><b>Gender : </b>${data.gender}</li>
+                </ul>
+                `
+                loading(false);
+
+            } catch (error) {
+                //console.log("Error: ",error);
+                loading(false);
+                userTableSelector.innerHTML = `API not working`;
+            }
+        }
     </script>
 
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    
   </body>
 </html>
