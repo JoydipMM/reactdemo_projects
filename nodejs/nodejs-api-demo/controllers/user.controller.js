@@ -15,6 +15,9 @@ export const addUser = async (req, res)=>{
         if(req.file){
             user.useravater = req.file.filename
         }
+        if(user.useremail === "" || user.userpassword === ""){
+            return res.status(404).json({message: "required", success: false})
+        }
         const newuser = await user.save()
         if(!newuser) return res.status(404).json({message: "Internal Error", success: false})
         return res.status(201).json(newuser, {message: "user added", success: true})
@@ -25,7 +28,14 @@ export const addUser = async (req, res)=>{
 
 export const allUsers = async (req, res)=>{
     try {
-       const users = await User.find(); 
+       const search = req.query.search || '';
+       const query = {
+        $or: [
+              { useremail: {$regex : search, $options: 'i'} },
+        ]
+       }
+
+       const users = await User.find(query); 
        if(!users) return res.status(404).json({message: "No users found", success: false})
         return res.status(201).json(users, {message: "get all user", success: true})
     } catch (error) {
