@@ -177,3 +177,7 @@ export const loginUser = async (req, res) => {
         res.status(500).send({message: error.message, success:false})
     }
 }
+
+export const logoutUser = async (req, res) => {
+    res.json({message: "logou successfully"})
+}
