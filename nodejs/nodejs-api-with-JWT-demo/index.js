@@ -5,6 +5,8 @@ import multer, { MulterError } from 'multer';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { authMiddleware } from './middleware/auth.middleware.js';
+import authRouter from './router/auth.router.js';
 
 const app = express();
 
@@ -19,11 +21,11 @@ dbConnect();
 
 
 app.get("/", (req, res)=>{
-    res.send("<h1>API Demo</h1>")
+    res.send("<h1>API Demo</h1>");
 })
-
-
-app.use("/api/auth", userRouter)
+app.use("/api/", authRouter);
+app.use(authMiddleware); // add above the router which we want to authenticate
+app.use("/api/auth", userRouter);
 
 // api error handling
 app.use((error,req,res,next)=>{

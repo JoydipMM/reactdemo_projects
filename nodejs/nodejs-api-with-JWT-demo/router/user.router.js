@@ -1,7 +1,7 @@
 import express from 'express';
 import multer, { diskStorage } from 'multer';
 import path from 'path';
-import { addUser, allUsers, singleUser, updateUser, deleteUser, registerUser, loginUser, logoutUser } from "../controllers/user.controller.js";
+import { addUser, allUsers, singleUser, updateUser, deleteUser } from "../controllers/user.controller.js";
 const userRouter = express.Router()
 
 const muterStorage = diskStorage({
@@ -45,15 +45,6 @@ userRouter.put("/:id", uploadFiles.single("useravater"), updateUser)
 
 // Delete user
 userRouter.delete("/:id", deleteUser)
-
-// register user
-userRouter.post("/register", registerUser)
-
-// login
-userRouter.post("/login", loginUser)
-
-// logout
-userRouter.post("/logout", logoutUser)
 
 
 
