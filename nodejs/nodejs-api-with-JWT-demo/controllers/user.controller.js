@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import fs from 'fs'; // for access files
 import path from 'path'; // get dir path
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import User from "../models/user.model.js";
 
 
@@ -118,5 +120,60 @@ export const deleteUser = async (req, res)=>{
         return res.status(201).json({message: "user deleted", success: true})
     } catch (error) {
         res.status(400).json({message: error.message})
+    }
+}
+
+
+export const registerUser = async (req, res) => {
+    try{
+        // email and usernam and phone field not black
+        const { username, useremail, userpassword, userphone } = req.body;
+        if(!username || !useremail || !userpassword || !userphone) return res.status(400).json({message: "All fields are required"})
+        
+        // match email and username and phone with existing database
+        const getExistingUser = await User.findOne({
+            $or: [{username},{useremail},{userphone}]
+        })
+
+        if(getExistingUser){ // if exist any data
+            return res.status(400).json({message: "Already have a user with same email, username or password."})
+        } else{ 
+            // if not exists means registration process will star here
+            // first we encrypt the password
+            const haspassword = await bcrypt.hash(userpassword, 10);
+            const newUser = new User({username, useremail, userpassword:haspassword, userphone});
+            await newUser.save()
+            res.status(201).json({message: "New User added.", success: true});
+        }    
+    }catch(error){
+        res.status(500).send({message: error.message})
+    }
+}
+
+
+export const loginUser = async (req, res) => {
+    try {
+        // received username and password
+        const { username, userpassword } = req.body;
+
+        // find user data by username
+        const user = await User.findOne({username});
+        if(!user) return res.status(401).json({message: "user not found with this username", success:false});
+
+        // match form password with user DB password using bcrypt.compare() method 
+        const matchPass = await bcrypt.compare(userpassword, user.userpassword);
+        if(!matchPass) return res.status(401).json({message: "Password not match", success:false});
+
+        // if above condition match then we will create token for login
+        // syntax: jwt.sign(payload, secretOrPrivateKey, [options, callback])
+        const token = jwt.sign(
+            {userid: user._id, username: user.username}, 
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        );
+        return res.status(202).json({ "token": token, success:true})
+        
+    } catch (error) {
+        res.status(500).send({message: error.message, success:false})
     }
 }
