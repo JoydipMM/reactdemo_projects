@@ -127,7 +127,7 @@ export const deleteUser = async (req, res)=>{
 export const registerUser = async (req, res) => {
     try{
         // email and usernam and phone field not black
-        const { username, useremail, userpassword, userphone } = req.body;
+        const { username, useremail, userpassword, userphone, gender } = req.body;
         if(!username || !useremail || !userpassword || !userphone) return res.status(400).json({message: "All fields are required"})
         
         // match email and username and phone with existing database
@@ -141,7 +141,7 @@ export const registerUser = async (req, res) => {
             // if not exists means registration process will star here
             // first we encrypt the password
             const haspassword = await bcrypt.hash(userpassword, 10);
-            const newUser = new User({username, useremail, userpassword:haspassword, userphone});
+            const newUser = new User({username, useremail, userpassword:haspassword, userphone, gender, useravater:''});
             await newUser.save()
             res.status(201).json({message: "New User added.", success: true});
         }    
