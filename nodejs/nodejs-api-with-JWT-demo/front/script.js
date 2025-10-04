@@ -63,7 +63,13 @@ if(loginForm){
 
         if(res.ok){
             document.querySelector(".logMsg").innerHTML=`<div class="alert alert-success" role="alert">Login successfull</div>`;
-            localStorage.setItem("API_token", data.token);
+            const userTokenData = {
+                token:data.token,
+                userid:data.userid,
+            }
+            //localStorage.setItem("API_token", data.token);
+            //window.location.href = "userlist.html";
+            localStorage.setItem("API_token", JSON.stringify(userTokenData));
             window.location.href = "userlist.html";
         }else{
             document.querySelector(".logMsg").innerHTML=`<div class="alert alert-warning" role="alert">${data.message}</div>` || "Registration failed";

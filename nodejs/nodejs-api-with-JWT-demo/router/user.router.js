@@ -1,7 +1,7 @@
 import express from 'express';
 import multer, { diskStorage } from 'multer';
 import path from 'path';
-import { addUser, allUsers, singleUser, updateUser, deleteUser } from "../controllers/user.controller.js";
+import { addUser, allUsers, singleUser, updateUser, deleteUser, updateUserPassword } from "../controllers/user.controller.js";
 const userRouter = express.Router()
 
 const muterStorage = diskStorage({
@@ -42,6 +42,9 @@ userRouter.get("/:id", singleUser)
 
 // Update user
 userRouter.put("/:id", uploadFiles.single("useravater"), updateUser)
+
+// Update user password
+userRouter.put("/change-password/:id", updateUserPassword)
 
 // Delete user
 userRouter.delete("/:id", deleteUser)

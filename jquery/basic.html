@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="box1 b1"><h1>box 1 heading</h1><p>box 1 para</p></div>
+    <button class="box1HideBtn">B1 Hide</button>
+    <button class="box1ShowBtn">B1 Show</button>
+    <button class="box1ToggleBtn">B1 Toggle</button>
+    <br>
+    <br>
+    <br>
+    <div class="box1 b2"><h1>box 2 heading</h1><p>box 2 para</p></div>
+    <button class="box2HideBtn">B1 Hide</button>
+    <button class="box2ShowBtn">B1 Show</button>
+    <button class="box2ToggleBtn">B1 Toggle</button>
+    <hr>
+    <input class="inputField" />
+    <button class="addButton">Add</button>
+    <ol class="olList">
+        <li>Item 1</li>
+    </ol>
+    
+
+
+    <!-- CDN: Content Delivery Network -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            let box1 = $(".box1").html();
+            //console.log(box1);
+
+            /*$(".box1").click(function(){
+                $(this).css({"background-color": "yellow", "color": "red"});
+                //let data = $(this).html();
+                //let data = $(this).text();
+                let data = $(this).attr('class');
+                console.log(data);
+                $(this).toggleClass("tglclass");
+            });*/
+        $(".box1HideBtn").click(function(){
+            $(".b1").hide();
+        });
+        $(".box1ShowBtn").click(function(){
+            $(".b1").show();
+        });
+        $(".box1ToggleBtn").click(function(){
+            $(".b1").toggle();
+        });
+
+        $(".box2HideBtn").click(function(){
+            $(".b2").slideUp();
+        });
+        $(".box2ShowBtn").click(function(){
+            $(".b2").slideDown();
+        });
+        $(".box2ToggleBtn").click(function(){
+            $(".b2").slideToggle();
+        });
+
+
+            let fieldvalue = $(".inputField");
+            let orderList = $(".olList");
+            $(".addButton").click(function(){
+                const getValue = fieldvalue.val();
+                console.log(getValue);
+                orderList.prepend(`<li>${getValue}</li>`);
+                fieldvalue.val("");
+            })
+
+            orderList.on("click", "li", function(){
+                console.log($(this).text());
+            })
+        })
+    </script>
+</body>
+</html>

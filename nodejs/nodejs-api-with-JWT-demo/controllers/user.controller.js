@@ -171,7 +171,7 @@ export const loginUser = async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: "1h" }
         );
-        return res.status(202).json({ "token": token, success:true})
+        return res.status(202).json({ "token": token, "userid": user._id, success:true})
         
     } catch (error) {
         res.status(500).send({message: error.message, success:false})
@@ -180,4 +180,33 @@ export const loginUser = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
     res.json({message: "logou successfully"})
+}
+
+
+
+export const updateUserPassword = async (req, res) => {
+    try {
+    const { currentPassword, newPassword } = req.body;
+    const userId = req.params.id;
+
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    // Verify current password
+    const isMatch = await bcrypt.compare(currentPassword, user.userpassword);
+    if (!isMatch) return res.status(401).json({ message: "Current password is incorrect" });
+
+    // Hash new password and save
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.userpassword = hashedPassword;
+    await user.save();
+
+    res.status(200).json({ message: "Password updated successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 }

@@ -136,6 +136,41 @@
 
 
 
+  <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Change Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form id="changePasswordForm">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label>Current Password</label>
+            <input type="password" name="currentPassword" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>New Password</label>
+            <input type="password" name="newPassword" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Confirm New Password</label>
+            <input type="password" name="confirmPassword" class="form-control" required>
+          </div>
+          <div id="passwordError" class="text-danger"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Update Password</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
   <div id="loader" style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; background: rgba(0,0,0,0.7); z-index: -1; opacity: 0; transition: all ease 0.3s; ">
     <div style="width: auto; height: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 40px;">Loading...</div>
   </div>
@@ -147,7 +182,8 @@
     const userlistAPI = `${baseURL}/api/auth`;
 
     function checkAuth(){
-      const token = localStorage.getItem("API_token");
+      //const token = localStorage.getItem("API_token");
+      const token = JSON.parse(localStorage.getItem("API_token"));
       if(!token){
         window.location.href = "login.html"
       }
@@ -215,7 +251,7 @@
       userTableSelector.innerHTML = "";
       try {
         const res = await fetch(`${userlistAPI}?search=${encodeURIComponent(search)}`,{
-          headers:{ 'Authorization': `Bearer ${token}` }
+          headers:{ 'Authorization': `Bearer ${token.token}` }
         });
 
         if (!res) {
@@ -230,6 +266,12 @@
         }
         let srno = 1;
         data.forEach(user => {
+          function matchID(){
+            if(token.userid === user._id){
+              return true
+            }
+          }
+          const haveAccess = matchID()
           userTableSelector.innerHTML += `<tr>
                         <th scope="row">${srno++}</th>
                         <td style="display:none"><img src="${baseURL}/uploads/${user.useravater}" width="70px" height="70px" /></td>
@@ -239,8 +281,9 @@
                         <td>${user.gender}</td>
                         <td>
                             <button type="button" class="btn btn-primary" onclick="openViewModal('${user._id}')">View</button>
-                            <button type="button" class="btn btn-warning" onclick="openEditModal('${user._id}')">Edit</button>
-                            <button type="button" class="btn btn-danger" onclick="deleteUser('${user._id}')">Delete</button>
+                            ${haveAccess ?`<button type="button" class="btn btn-warning" onclick="openEditModal('${user._id}')">Edit</button>`: `<button type="button" class="btn btn-warning" disabled style="opacity:0.2">Edit</button>`}
+                            ${haveAccess ?`<button type="button" class="btn btn-danger" onclick="deleteUser('${user._id}')">Delete</button>`: `<button type="button" class="btn btn-danger" disabled style="opacity:0.2">Delete</button>`}
+                            ${haveAccess ?`<button type="button" class="btn btn-primary" onclick="changePassword('${user._id}')">Change Password</button>`: ``}
                         </td>
                     </tr>`
         });
@@ -269,7 +312,8 @@
       loading(true);
       try {
         const res = await fetch(`${userlistAPI}/${id}`,{
-          headers:{ 'Authorization': `Bearer ${token}` }
+          method: "GET",
+          headers:{ 'Authorization': `Bearer ${token.token}` }
         });
         if (!res) {
           throw new Error("API Error")
@@ -308,7 +352,8 @@
       loading(true);
       try {
         const res = await fetch(`${userlistAPI}/${id}`,{
-          headers:{ 'Authorization': `Bearer ${token}` }
+          method: "GET",
+          headers:{ 'Authorization': `Bearer ${token.token}` }
         });
         if (!res) {
           throw new Error("API Error")
@@ -331,10 +376,6 @@
                     <div class="mb-3">
                         <label class="form-label">Phone</label>
                         <input type="number" name="userphone" class="form-control" value="${data.userphone}">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Password</label>
-                        <input type="password" name="userpassword" class="form-control" value="${data.userpassword}">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Gender</label>
@@ -370,7 +411,7 @@
           const formdata = new FormData(e.target);
           const res = await fetch(`${userlistAPI}/${id}`, {
             method: "PUT",
-            headers:{ 'Authorization': `Bearer ${token}` },
+            headers:{ 'Authorization': `Bearer ${token.token}` },
             body: formdata
           })
           if (res.ok) {
@@ -389,7 +430,7 @@
       } catch (error) {
         //console.log("Error: ",error);
         loading(false);
-        userTableSelector.innerHTML = `API not working`;
+        //userTableSelector.innerHTML = `API not working`;
       }
     }
 
@@ -419,7 +460,7 @@
       const formdata = new FormData(e.target);
       const res = await fetch(userlistAPI, {
         method: "POST",
-        headers:{ 'Authorization': `Bearer ${token}` },
+        headers:{ 'Authorization': `Bearer ${token.token}` },
         body: formdata,
       })
       //console.log(res);
@@ -445,7 +486,7 @@
         //console.log("Delete User");
         const res = await fetch(`${userlistAPI}/${id}`, {
           method: "DELETE",
-          headers:{ 'Authorization': `Bearer ${token}` }
+          headers:{ 'Authorization': `Bearer ${token.token}` }
         })
         if (res.ok) {
           fetchUser();
@@ -460,6 +501,54 @@
       localStorage.removeItem("API_token");
       window.location.href = "login.html";
     }
+
+
+
+
+
+
+    function changePassword(userId) {
+    const modalEl = document.querySelector("#changePasswordModal");
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+
+    const form = document.querySelector("#changePasswordForm");
+    form.onsubmit = async (e) => {
+      e.preventDefault();
+      const currentPassword = form.currentPassword.value;
+      const newPassword = form.newPassword.value;
+      const confirmPassword = form.confirmPassword.value;
+
+      if (newPassword !== confirmPassword) {
+        document.querySelector("#passwordError").textContent = "Passwords do not match!";
+        return;
+      }
+
+      document.querySelector("#passwordError").textContent = "";
+      loading(true);
+
+      const res = await fetch(`${userlistAPI}/change-password/${userId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.token}`
+        },
+        body: JSON.stringify({ currentPassword, newPassword })
+      });
+
+      const data = await res.json();
+      loading(false);
+
+      if (res.ok) {
+        alert("Password updated successfully");
+        modal.hide();
+        form.reset();
+      } else {
+        document.querySelector("#passwordError").textContent = data.message || "Error updating password";
+      }
+    };
+  }
+
   </script>
 
 
