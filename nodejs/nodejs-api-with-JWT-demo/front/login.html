@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fetch Data</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    img.show+img {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="w-full">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-12 text-center my-3">
+          <h1>Login</h1>
+        </div>
+        <!-- <div class="col-auto">
+          <button type="button" class="btn btn-primary" onclick="addUserModal()">Add New</button>
+          <button type="button" class="btn btn-danger" onclick="fetchUser()">Refresh</button>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- <b>Note: Pagination topic pending : https://www.youtube.com/watch?v=ZLXWdjBhSeI&list=PL0b6OzIxLPbx0ZTmVQgsB4T5KWXXxrZ6C&index=26</b> -->
+
+    <div class="w-full">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-3">
+          <div class="card">
+            <div class="card-body">
+              <form id="loginForm">
+                <div class="logMsg"></div>
+                <div class="mb-3">
+                  <label class="form-label">username</label>
+                  <input type="text" name="username" class="form-control username" value="">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Password</label>
+                  <input type="password" name="userpassword" class="form-control userpassword" value="">
+                </div>
+
+                <button type="submit" class="btn btn-primary">login</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <div id="loader" style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; background: rgba(0,0,0,0.7); z-index: -1; opacity: 0; transition: all ease 0.3s; ">
+    <div style="width: auto; height: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 40px;">Loading...</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+
+</body>
+
+</html>

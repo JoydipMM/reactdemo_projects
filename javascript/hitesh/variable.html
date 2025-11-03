@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color: #212121;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }   
+    </style>
+
+    <script>
+
+        // A variable points to a specific memory address that stores a value. Variables are given a name which can be used throughout your code to access that value.
+        // Variable naming follows specific rules: names can include letters, numbers, dollar signs, and underscores, but cannot contain spaces and must not begin with a number.
+        // Variable names are case-sensitive (e.g. myVar and myvar are different variables).
+        // Note: It is common practice to end statements in JavaScript with a semicolon. ;
+
+
+        //JavaScript has seven primitive data types: string, number, boolean, null, undefined, object, and symbol.
+
+        //string: In JavaScript, a string represents a sequence of characters and can be enclosed in either single (') or double (") quotes.
+
+        //undefined: The default value of an uninitialized variable is undefined. This is a special data type that represents a value that does not have a definition yet.
+
+        const name= "joydip Sarkar 001"
+        //console.log(name.length)
+
+        str = "Hello".slice(1);
+        //console.log(str); // "Yello"
+
+        //console.log("Hello".startsWith("H")); // true
+        //console.log("Hello".startsWith("h")); // false
+
+        console.log("Hello".includes("H")); // true
+        console.log("Hello i am".includes("i a")); // true
+        //console.log("Hello".includes("g")); // false
+        //console.log("Hello".includes("h")); // false
+
+        console.log("Hello".indexOf("o")); // 4 // in which index it find that index number will show, don't go futher
+        //console.log("Hello".indexOf("g")); // -1
+        console.log("Hello".indexOf("lo")); // 3 // show the index of that first letter in which index that word is present
+        console.log("Hello".replace("o", "www")); // Hellwww
+        console.log("Hello".replace("r", "www")); // Hello
+        console.log("Hello".replace("l", "t")); // Hetlo
+        console.log("Hello".replaceAll("l", "t")); // Hetto
+
+
+        const msg1 = "msg 01"
+        const msg2 = "msg 02"
+        const msg3 = "msg 03"
+        console.log(msg1.concat(msg2)); //msg 01msg 02
+        console.log(msg2.concat(msg1)); //msg 02msg 01
+        console.log(msg1.concat(msg2, msg3)); //msg 01msg 02msg 03
+
+        const starnumber = "001"
+        console.log(starnumber.padStart(5, "0")); // 00001
+        console.log(starnumber.padEnd(5, "0")); // 00100
+
+        const starnumber2 = "001"
+        // starnumber2.padStart(maxlength, "which string you want to add")); // **001
+        console.log(starnumber2.padStart(5, "*")); // **001
+        console.log(starnumber2.padEnd(5, "*")); // 001**
+
+        console.log("Hello".charAt(2)); // l
+        console.log("Hello".charCodeAt(2)); // 108
+
+        console.log("Hello".charAt(1)); // e
+        console.log("Hello".charCodeAt(1)); // 101
+
+        console.log("i am a student".split(" ")); // ["i", "am", "a", "student"] // split a string using space/special character and convert into array
+        console.log("i am a student".split()); // ["i am a student"] // this will convert full string into array
+        console.log("localhost:/home/page/1".split("/")); // ["localhost", "", "home", "page", "1"]
+        console.log("localhost:/home/page/1".split("/")[2]); // home
+        console.log("localhost:/home/page/1".split("/")[3]); // page
+
+
+        // Truthy and Falsy Values
+        // Falsy values: false, null, 0, "", undefined, and NaN.
+        // Truthy values:infinity, -infinity, any value that is not falsy.
+        Boolean("0"); // true
+        console.log(Boolean("0")); // true
+        
+        Boolean(0); // false
+        Boolean(!0); // true
+        Boolean(""); // false
+        Boolean(null); // false
+        Boolean(undefined); // false
+        Boolean(NaN); // false
+        Boolean(false); // false
+        Boolean(true); // true
+    </script>
+</body>
+</html>

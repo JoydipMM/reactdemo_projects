@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color: #212121;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }   
+    </style>
+
+    <script>
+        let day = 5;
+
+        //debugger
+        switch(day){
+            case 1:
+                console.log("Monday");
+                break;
+            case 2:
+                console.log("Tuesday");
+                break;
+            case 3:
+                console.log("Wednesday");
+                break;
+            case 4:
+                console.log("Thursday");
+                break;
+            case 5:
+                console.log("Friday");
+                break;
+            case 6:
+                console.log("Saturday");
+                break;
+            case 7:
+                console.log("Sunday");
+                break;
+            default:
+                console.log("Invalid day");
+        }
+
+        // if we don't use break then it will continue to the next case
+
+        const age = 14;
+        switch (true) {
+            case age < 18:
+                console.log("You are a child");
+                break;
+            case age >= 18 && age < 60:
+                console.log("You are an adult");
+                break;
+            case age >= 60:
+                console.log("You are a senior");
+                break;
+            default:
+                console.log("Invalid age");
+        }
+
+        const grade = 'C';
+        switch (grade) {
+            case 'A':
+                console.log("Excellent");
+                break;
+            case 'B':
+                console.log("Good");
+                break;
+            case 'C':
+                console.log("Average");
+                break;
+            case 'D':
+                console.log("Below average");
+                break;
+            case 'F':
+                console.log("Fail");
+                break;
+            default:
+                console.log("Invalid grade");
+        }
+        
+    </script>
+</body>
+</html>
