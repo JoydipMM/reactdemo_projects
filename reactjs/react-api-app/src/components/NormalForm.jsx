@@ -31,7 +31,7 @@ const NormalForm = ({onSubmitData}) => {
         </div>
 
         <form onSubmit={handleSubmit}>
-            <div className='w-full relative flex flex-col gap-y-5'>
+            <div className='w-full relative flex gap-x-5'>
                 <div className='w-full relative flex flex-col gap-y-2'>
                     <label className='px-2.5'>User Name</label>
                     <input 
@@ -54,10 +54,10 @@ const NormalForm = ({onSubmitData}) => {
                     value={formData.useremail}
                     />
                 </div>
-                <div className='w-full relative flex gap-x-2 justify-end'>
-                    <button type='button' onClick={resetEvent} className='py-1.5 px-3.5 bg-red-700 hover:bg-black rounded-2xl text-amber-50 flex items-center justify-center cursor-pointer'>Reset</button>
-                    <button type='submit' className='py-1.5 px-3.5 bg-blue-700 hover:bg-black rounded-2xl text-amber-50 flex items-center justify-center cursor-pointer'>Submit</button>
-                </div>
+            </div>
+            <div className='w-full relative flex gap-x-2 justify-end mt-3'>
+                <button type='button' onClick={resetEvent} className='py-1.5 px-3.5 bg-red-700 hover:bg-black rounded-2xl text-amber-50 flex items-center justify-center cursor-pointer'>Reset</button>
+                <button type='submit' className='py-1.5 px-3.5 bg-blue-700 hover:bg-black rounded-2xl text-amber-50 flex items-center justify-center cursor-pointer'>Submit</button>
             </div>
         </form>
 

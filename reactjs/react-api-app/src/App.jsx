@@ -8,6 +8,7 @@ import Courses from '@/pages/Courses'
 import Team from '@/pages/Team'
 import Profile from '@/pages/Profile'
 import NotFound from '@/pages/NotFound'
+import ApiPage from '@/pages/ApiPage'
 import BlankLayout from './layout/BlankLayout'
 
 function App() {
@@ -16,11 +17,13 @@ function App() {
     <>
       <Routes>
         <Route element={<MainLayout/>}>
+          {/* <Route path='/' element={<ApiPage/>} /> */}
           <Route path='/' element={<Home/>} />
           <Route path='/course' element={<Courses/>} />
           <Route path='/team' element={<Team/>} />
           <Route path='/profile' element={<Profile/>} />
           <Route path='/posts' element={<Posts/>} />
+          <Route path='/apipage' element={<ApiPage/>} />
         </Route>
         <Route element={<BlankLayout/>}>
           <Route path='*' element={<NotFound/>} />
