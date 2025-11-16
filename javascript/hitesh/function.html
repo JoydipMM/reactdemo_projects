@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #212121;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }   
+    </style>
+</head>
+<body>
+
+
+
+<script>
+
+console.log(n);
+a();
+console.log(m);
+
+var n =2;
+function a(){
+    console.log("Function a called");
+}
+const m = 3;
+
+// result:
+// undefined
+// Function a called
+// Uncaught ReferenceError: Cannot access 'm' before initialization
+
+
+function a(){
+    var b = 10;
+    c();
+
+    function c(){
+       
+    }
+}
+a();
+console.log(b);
+// result:
+// Uncaught ReferenceError: Cannot access 'b' before initialization
+
+
+
+
+</script>
+</body>
+</html>

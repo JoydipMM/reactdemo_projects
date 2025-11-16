@@ -3,21 +3,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color: #212121;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }   
+    </style>
 </head>
 <body>
+
     <script>
-    const course = {
-    coursename: "Javascript",
-    courseinstructor:"youtube",
-        message: function(){
-            console.log(`welcome to ${this.coursename} course`);
-        },
-        message2: ()=>{
-            console.log(`welcome to ${this.coursename} course`);
-        }
+
+    let name01 = "Anurag";
+    let name02 = "Anurag";
+
+    var a = 5
+    //console.log(1 < 2 < 3); // true
+    //console.log(3 > 2 > 1); // true
+    
+// Original Object
+const course = {
+coursename: "Javascript",
+courseinstructor:"youtube",
+    tags:{
+        tagTile1:"html",
+        tagTile2:"css",
     }
-    course.message(); // result: welcome to Javascript course
-    course.message2(); // result: welcome to undefined course
+    // message: function(){
+    //     console.log(`welcome to ${this.coursename} course`);
+    // },
+    // message2: ()=>{
+    //     console.log(`welcome to ${this.coursename} course`);
+    // },
+}
+//delete course.tags.tagTile2;
+
+//console.log(course); // result: { coursename: 'Javascript', courseinstructor: 'youtube', tags: { tagTile1: 'html' } }
+    //course.message(); // result: welcome to Javascript course
+    //course.message2(); // result: welcome to undefined course
+
+
+
+//Object.freeze(course);
+course.coursename = "Nextjs16";
+course.duration = "2 hours";
+
+console.log(course); 
+// result: { coursename: 'Javascript', courseinstructor: 'youtube', tags: { tagTile1: 'html' } }
+
+
+
+
+    // shallow copy
+    // const shallowCopyCourse = {...course};
+    // shallowCopyCourse.coursename = "React";
+    // shallowCopyCourse.courseinstructor = "Online Course";
+    // shallowCopyCourse.tags.tagTile1 = "HTML5";
+
+    // actual object
+    //console.log(course);
+    /*
+    {coursename: 'Javascript', courseinstructor: 'youtube', tags: {…}}
+    courseinstructor: "youtube"
+    coursename: "Javascript"
+    tags: 
+    tagTile1: "HTML5"
+    tagTile2: "css"
+    [[Prototype]]: Object
+    [[Prototype]]: Object
+    */
+
+    // shallow copy object
+    //console.log(shallowCopyCourse);
+    /*
+    {coursename: 'React', courseinstructor: 'Online Course', tags: {…}}
+    courseinstructor: "React"
+    coursename: "Online Course"
+    tags: 
+    tagTile1: "HTML5"
+    tagTile2: "css"
+    [[Prototype]]: Object
+    [[Prototype]]: Object
+    */ 
+
+const deepCopyCourse = JSON.parse(JSON.stringify(course));
+// deepCopyCourse.coursename = "Next";
+// deepCopyCourse.courseinstructor = "paid course";
+// deepCopyCourse.tags.tagTile1 = "Bootstrap";
+//console.log(deepCopyCourse);
+/*
+{coursename: 'Next', courseinstructor: 'paid course', tags: {…}}
+courseinstructor: "paid course"
+coursename: "Next"
+tags: 
+tagTile1: "Bootstrap"
+tagTile2: "css"
+[[Prototype]]: Object
+[[Prototype]]: Object
+*/
+
+//console.log(JSON.stringify(course));
+// {"coursename":"Javascript","courseinstructor":"youtube","tags":{"tagTile1":"html","tagTile2":"css"}}
+
+
+console.log('mobile' in course); // false
+console.log('coursename' in course); // true
+
+
     </script>
 </body>
 </html>

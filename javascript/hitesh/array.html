@@ -1,0 +1,241 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #212121;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }   
+    </style>
+</head>
+<body>
+
+
+
+<script>
+
+//  In array we can store multiple value and update the value by index if the array variable type is const. Because array is mutable and we can not change it's memory address, we updating it's value by index. Only we can not reassign the array variable.
+const friuts = ["apple", "banana", "orange", "mango", "grapes"]
+console.log(friuts);
+// Result: Array(5) 
+// 0: "apple"
+// 1: "banana"
+// 2: "orange"
+// 3: "mango"
+// 4: "grapes"
+// length: 5
+// [[Prototype]]: Array(0)
+
+// check type
+console.log(typeof friuts); // object
+
+// check array
+console.log(Array.isArray(friuts)); // true
+
+// get value by index
+console.log(friuts[3]); // mango
+
+// get length
+console.log(friuts.length); // 5
+
+// add value
+friuts.push("kiwi"); // push value at the end
+console.log(friuts);
+// Result: Array(6)
+// 0: "apple"
+// 1: "banana"
+// 2: "orange"
+// 3: "mango"
+// 4: "grapes"
+// 5: "kiwi"
+// length: 6
+// [[Prototype]]: Array(0)
+
+// update value
+friuts[3] = "kiwi";
+console.log(friuts);
+// Result: Array(6)
+// 0: "apple"
+// 1: "banana"
+// 2: "orange"
+// 3: "kiwi"
+// 4: "grapes"
+// 5: "kiwi"
+// length: 6
+// [[Prototype]]: Array(0)
+
+//friuts = []; // error: Identifier 'friuts' has already been declared. Because const variable can not be reassigned.
+
+// we can store data with multiple data type
+const arryData = ["name01", "name02", 7, true, { name: "java" }, "name06"];
+console.log(arryData);
+// Result: Array(6)
+// 0: "name01"
+// 1: "name02"
+// 2: 7
+// 3: true
+// 4: {name: "java"}
+// 5: "name06"
+// length: 6
+// [[Prototype]]: Array(0)
+
+arryData[1000] = 80;
+console.log(arryData);
+// Result: Array(1001)
+// 0: "name01"
+// 1: "name02"
+// 2: 7
+// 3: true
+// 4: {name: "java"}
+// 5: "name06"
+// 1000: 80
+// length: 1001
+// [[Prototype]]: Array(0)
+
+// remove array element
+delete friuts[3];
+console.log(friuts);
+// Result:
+// ['apple', 'banana', 'orange', empty, 'grapes', 'kiwi']
+// Array(5)
+// 0: "apple"
+// 1: "banana"
+// 2: "orange"
+// 4: "grapes"
+// length: 5
+// [[Prototype]]: Array(0)
+console.log(friuts)
+
+// pop array element. this will remove element from last
+friuts.pop(); 
+console.log(friuts);
+// Result:
+// ['apple', 'banana', 'orange', 'grapes']
+// Array(4)
+// 0: "apple"
+// 1: "banana"
+// 2: "orange"
+// 3: "grapes"
+// length: 4
+// [[Prototype]]: Array(0)
+
+// shift array element. this will remove element from first
+friuts.shift(); 
+console.log(friuts);
+// Result:
+// ['banana', 'orange', 'grapes']
+// Array(3)
+// 0: "banana"
+// 1: "orange"
+// 2: "grapes"
+// length: 3
+// [[Prototype]]: Array(0)
+
+// unshift array element. this will add element from first
+// based on Time complexity shift and unshift is Slower (O(n)), because it has to shift all the elements
+friuts.unshift("kiwi"); 
+console.log(friuts);
+// Result:
+// ['kiwi', 'banana', 'orange', 'grapes']
+// Array(4)
+// 0: "kiwi"
+// 1: "banana"
+// 2: "orange"
+// 3: "grapes"
+// length: 4
+// [[Prototype]]: Array(0)
+
+
+const arry01 = ["name01", "name02", "name03",];
+const arry02 = ["name04", "name05", "name06"];
+const arry03 = ["name07", "name08", "name09"];
+
+// concat single array
+const arrayConcat_type_01 = arry01.concat(arry02)
+console.log(arrayConcat_type_01) // [ 'name01', 'name02', 'name03', 'name04', 'name05', 'name06' ]
+
+// concat multiple array
+const arrayConcat_type_02 = arry01.concat(arry02, arry03)
+console.log(arrayConcat_type_02) // [ 'name01', 'name02', 'name03', 'name04', 'name05', 'name06', 'name07', 'name08','name09' ]
+
+// concat multiple array using spread operator
+const arrayConcat_type_03 = [...arry01, ...arry02, ...arry03];
+console.log(arrayConcat_type_03) // [ 'name01', 'name02', 'name03', 'name04', 'name05', 'name06', 'name07', 'name08','name09' ]
+
+
+let ary = ["name01", "name02", "name03", "name04", "name05", "name06"];
+// syntax
+//array.slice(start, end);
+
+let arySlice = ary.slice(1,4) 
+console.log("Slice Array", arySlice) // ["name02", "name03", "name04"]
+console.log("Actual Array", ary) // ["name01", "name02", "name03", "name04", "name05", "name06"]
+console.log(ary.slice(1,3)); //[ 'name02', 'name03' ]
+console.log(ary.slice(3)); //[ 'name04', 'name05', 'name06' ]
+
+console.log(ary.slice(-2)); // [ 'name05', 'name06' ]
+console.log(ary.slice(-5, -2)); // [ 'name02', 'name03', 'name04' ]
+console.log(ary.slice(-5, -3)); // [ 'name02', 'name03' ]
+console.log(ary.slice(-5, -1)); // [ 'name02', 'name03', 'name04', 'name05' ]
+
+// in indexOf() method if the element found twice then it will return first index only
+ary.indexOf("name01") // 0
+ary.indexOf("name02") // 1
+ary.indexOf("name03") // 2
+
+
+ary.includes("name01") // true
+ary.includes("name02") // true
+ary.includes("name1000") // false
+
+ary.reverse()
+console.log("Reverse Array", ary) // ["name06", "name05", "name04", "name03", "name02", "name01"]
+
+//const animals = ["ant", "Bison", "camel", "duck", "elephant"];
+//console.log(animals.sort()); // ["ant", "bison", "camel", "duck", "elephant"]
+//console.log(animals.sort()); // ['Bison', 'ant', 'camel', 'duck', 'elephant']
+
+//animals.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+//console.log(animals);
+// ["ant", "Bison", "camel", "duck", "elephant"]
+
+const numbers = [100, 5, 20, 10];
+numbers.sort();
+//console.log(numbers);
+// [10, 100, 20, 5] // Not what you expect
+
+numbers.sort((a, b) => a - b); // ascending order
+//console.log(numbers); // [5, 10, 20, 100]
+
+numbers.sort((a, b) => b - a);
+//console.log(numbers); // [100, 20, 10, 5]
+
+//console.log(numbers)
+
+//const sliced = animals.slice(1, 4);
+//console.log(sliced); // ["bison", "camel", "duck"]
+
+//const sliced = animals.slice(2);
+//console.log(sliced); // ["camel", "duck", "elephant"]
+
+//const sliced = animals.slice(-2);
+//console.log(sliced); // ["duck", "elephant"]
+
+//const sliced = animals.slice(-3, 1);
+//console.log(sliced); // []
+
+const animals = ["ant", "Bison", "camel", "duck", "elephant"];
+//const splicearr = animals.splice(1, 2);
+//console.log(splicearr); // ["bison", "camel"]
+//const splicearr = animals.splice(1, 2, "cat", "dog");
+const splicearr = animals.splice(1, 0, "cat", "dog");
+console.log(splicearr); // ['ant', 'Bison', 'cat', 'dog', 'camel', 'duck', 'elephant']
+//console.log(animals); // ["ant", "cat", "dog", "duck", "elephant"]
+
+
+</script>
+</body>
+</html>

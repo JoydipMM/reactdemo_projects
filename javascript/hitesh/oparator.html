@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #212121;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }   
+    </style>
+</head>
+<body>
+
+
+
+<script>
+let num = 5;
+num += 3; // 8
+num *= 2; // 16
+num -= 4; // 12
+num /= 3; // 4
+console.log(num); // 4
+
+//let num = 5;
+console.log(--num); // 4
+console.log(num);   // 3
+
+//let num = 5;
+console.log(num--); // 5
+console.log(num);   // 4
+
+let x = 5;
+let y = x++ + 2;
+console.log(y); // 7  (5 + 2)
+console.log(x); // 6
+
+let a = 5;
+let b = ++a + 2;
+console.log(b); // 8  (6 + 2)
+console.log(a); // 6
+
+let num2 = 0;
+while(num2 < 10){
+    console.log(num2);
+    num2++; 
+}
+// result
+// 0
+// 1
+// 2
+// 3
+// 4
+// 5
+// 6
+// 7
+// 8
+// 9
+
+
+for (let i = 1; i <= 5; i++) {
+  console.log("Count is:", i);
+}
+// result
+// Count is: 1
+// Count is: 2
+// Count is: 3
+// Count is: 4
+// Count is: 5
+
+const fruits = ["apple", "banana", "cherry"];
+
+for (let i = 0; i < fruits.length; i++) {
+  console.log(fruits[i]);
+} 
+// result
+// apple
+// banana
+// cherry
+
+// for (let i = 0; i <= 10; i++) {
+//   if(i%2 === 0){
+//     console.log("Count is:", i);
+//   }
+// }
+// result
+// Count is: 2
+// Count is: 4
+// Count is: 6
+// Count is: 8
+// Count is: 10
+
+let count = 1;
+do {
+  console.log("Count is:", count);
+  count++;
+} while (count <= 5);
+// result
+// Count is: 1
+// Count is: 2
+// Count is: 3
+// Count is: 4
+// Count is: 5
+// here count value is 1 so condition is true so loop run upto 5
+
+function add(a, b) {
+  return a + b;
+}
+let result;
+result = add(3, 4);
+console.log(result); // result = 7
+result = add(3+1, 4+1);
+console.log(result); // result = 9
+result = add(3+1, 4+1);
+console.log(result); // result = 9
+result = add(add(10+10, 0), add(20+20, 0));
+console.log(result);
+
+
+var n =2;
+function square(num){
+    var ans = num*num;
+    return ans;
+}
+var square2 = square(n);
+var square4 = square(4);
+
+
+
+
+</script>
+</body>
+</html>
