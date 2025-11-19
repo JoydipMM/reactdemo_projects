@@ -108,3 +108,11 @@ export const userProfile = {
  
  C:\Users\joydi\AppData\Local\nvm
  C:\nvm4w\nodejs
+
+
+
+DB name: appwrite_demo_DB
+DB ID: 6919771a0012ab64dde7
+DB Table/collection: articles >> id: articles
+Bucket ID: 69197a8000064ad6f7bd
+Bucket Name: appwrite_demo_storage
