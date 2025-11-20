@@ -10,16 +10,15 @@ import defaultContext from '../contextAPI/defaultContext';
 const Home = () => {
 
   const { name } = useContext(defaultContext);
+
+  const getFormData = (data) => {
+    console.log("Form Data- username: "+ data.username+ " useremail: " +data.useremail);
+  }
   return (
     <>
     <h1 className='text-3xl font-bold text-purple-700 mb-6'>Welcome to React Mini App</h1>
 
       <GridRow gridcol="grid-cols-2">
-        {/* col 1 start */}
-        <GridRow>
-          Default Context Data: {name}
-        </GridRow>
-        {/* col 1 ended */}
 
         {/* col 1 start */}
         <GridRow>
@@ -44,6 +43,17 @@ const Home = () => {
           </GridRow>
         </GridRow>
         {/* col 3 ended */}
+
+
+        {/* col 1 start */}
+        <GridRow>
+          Default Context Data: {name}
+
+         
+
+
+        </GridRow>
+        {/* col 1 ended */}
 
         
       </GridRow>
