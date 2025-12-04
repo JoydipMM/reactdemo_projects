@@ -26,7 +26,7 @@ const cartSlice = createSlice({
         (state, ...) state is the current state of the slice
         (..., action) it also get action as a parameter which contains the type and payload of the action dispatched.
         This reducer function modify the state based on the action dispatched.
-        we are mutating the state directly. Redux Toolkit uses Immer library internally which allows us to write "mutating" logic in reducers.
+        we are mutating the state directly. Redux Toolkit uses Immer library internally which allows us to write "mutating" logic in reducers. This is a impure function. Means we are changing the state directly here.
         */
             state.items.push(action.payload);
             // here we define a reducer function called addItem which takes the current state and an action as parameters.
