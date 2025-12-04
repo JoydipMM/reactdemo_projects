@@ -17,6 +17,10 @@ If you are developing a production application, we recommend using TypeScript wi
 
 # Unit Testing Setup
 
+<details>
+
+<summary>Expand</summary>
+
 ### 1. Install the testing tools
 ```
 npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom
@@ -70,3 +74,4 @@ Make sure your `App.jsx` includes something like:
 ```
 npm run test
 ```
+</details>
