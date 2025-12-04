@@ -10,31 +10,21 @@ import ViewCartPage from "./ViewCartPage";
 import Header from "./Header";
 import ErrorPage from "./ErrorPage";
 import HomePage from "./HomePage";
+import DetailPage from "./DetailPage";
 
 function App() {
 
   return (
     <>
     {/* Note : here store={appStore} is a prop passed to Provider */}
-    {/* <Provider store={appStore}>
+    <Provider store={appStore}>
       <Header />
       <Cart />
       <hr/>
       <div>
         <Outlet />
       </div>
-    </Provider> */}
-
-      <Routes>
-        <Route element={<MainLayout/>}>
-          <Route path='/' element={<Home/>} />
-          <Route path='/cart' element={<CartPage/>} />
-        </Route>
-        <Route element={<BlankLayout/>}>
-          <Route path='*' element={<NotFound/>} />
-        </Route>
-      </Routes>
-
+    </Provider>
     </>
   )
 }
@@ -53,6 +43,9 @@ export const appRouter = createBrowserRouter([
       },
       { path: "/cart", 
         element: <ViewCartPage /> // when the path is "/cart" we will render ViewCartPage component
+      },
+      { path: "/detail/:pageid", // dynamic route to handle detail pages based on pageid. this id is called route parameter
+        element: <DetailPage /> // when the path is "/detail/:id" we will render DetailPage component
       },
     ],
     errorElement: <ErrorPage /> // added errorElement to handle invalid routes
