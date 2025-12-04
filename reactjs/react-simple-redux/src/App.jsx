@@ -17,6 +17,7 @@ function App() {
         <CartItem item={"Momo"} />
         <CartItem item={"Pizza"} />
         <CartItem item={"Burger"} />
+        <CartItem item={"Biryani"} />
       </div>
     </Provider>
     </>
