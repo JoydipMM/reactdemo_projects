@@ -52,22 +52,38 @@ const parent = React.createElement("div", {id:"parent"},
 )
 */
 
-const parent = React.createElement("div", {id:"parent"}, [
-    React.createElement("div", {id:"child"}, [
-        React.createElement("h1", {id: "heading", className: "heading"}, "Hello World"),
-        React.createElement("h2", {id: "heading 2", className: "heading2"}, "Hello World 2")
-    ]),
-    React.createElement("div", {id:"child"}, [
-        React.createElement("h1", {id: "heading", className: "heading"}, "Hello World"),
-        React.createElement("h2", {id: "heading 2", className: "heading2"}, "Hello World 2"),
-    ])
-]);
+import React from "react"; // add this
+import ReactDOM from "react-dom/client"; // add this
+import { useState } from "react";
 
+// create a h1 tag with react create element
+const parent = React.createElement("h1", {id:"heading", className: "heading"}, "Hello World");
+const [user, addUser] = useState("User");
+// create react Element with JSX
+const parentJSX = <h1>Hello World ......</h1>;
+
+const data = "test data";
+
+// Create Functional Component which returns JSX
+const FunctionalComponent = () => {
+    return <div className="container">
+        <FunctionalComponent2/>
+        <h1>Functional Component</h1>
+        {data}
+        <p>para</p>
+        </div>
+}
+const FunctionalComponent2 = () => {
+    return <div className="container"><h1>Functional Component 2</h1><p>para</p></div>
+}
 
 // append the h1 tag to the root element. ReactDom job to render react element into the root element/DOM
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// render the h1 tag into the root element
-root.render(parent);
+// render react Element
+root.render(parentJSX);
+
+// render react component
+root.render(<FunctionalComponent/>);
 
 
