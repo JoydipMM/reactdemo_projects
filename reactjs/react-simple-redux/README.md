@@ -22,7 +22,7 @@ npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom
 
 1.Update your vite.config.js
 
-```
+```ruby
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
