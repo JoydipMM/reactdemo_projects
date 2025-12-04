@@ -16,12 +16,13 @@ The React Compiler is not enabled on this template because of its impact on dev 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
 # testing setup
+
+### 1. Install the testing tools
 ```
 npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom
 ```
 
-1.Update your vite.config.js
-
+### 2. Update your vite.config.js
 ```ruby
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
@@ -34,4 +35,38 @@ export default defineConfig({
     setupFiles: './src/setupTests.js'
   }
 })
+```
+### 3. Create src/setupTests.js
+```
+import '@testing-library/jest-dom';
+```
+
+### 4. Create your first test
+Example: src/App.test.jsx
+```ruby
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from "react-router-dom";
+import App from './App';
+
+test('renders heading', () => {
+  render(<MemoryRouter><App /></MemoryRouter>);
+  const heading = screen.getByText(/hello/i);
+  expect(heading).toBeInTheDocument();
+});
+```
+
+Make sure your `App.jsx` includes something like:
+```ruby
+<h1>Hello World</h1>
+```
+### 5. Add test script to package.json
+```ruby
+"scripts": {
+  "test": "vitest"
+}
+```
+
+### 6. Run the tests
+```
+npm run test
 ```
