@@ -17,6 +17,7 @@ function App() {
   return (
     <>
     {/* Note : here store={appStore} is a prop passed to Provider */}
+        <h1>Hello World</h1>
     <Provider store={appStore}>
       <Header />
       <Cart />
