@@ -1,0 +1,287 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    body {
+      background-color: #212121;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+
+
+<button id="clickme">Normal click</button>
+<button id="clickme_with_Closure">Closure click</button>
+
+  <script>
+    function a() {
+      var x = 1;
+      setTimeout(() => {
+        var y = 5;
+        console.log(y);
+      }, 3000);
+      console.log(x);
+    }
+
+
+    /*function b(){
+        for(var i=1; i<=5; i++){
+            setTimeout(()=>{
+                console.log(i);
+            }, i*1000)
+        }
+    }*/
+
+    //a();
+
+
+    function b(){
+        for(let i=1; i<=5; i++){
+            setTimeout(()=>{
+                console.log(i);
+            }, i*1000)
+        }
+    }
+
+
+
+    //b(); //resut: 1 2 3 4 5
+
+    /*
+    inside setTimeout() function: there is a callback function, which is a function like closure. When a closure forms, a closure is like fuction along with its laxical environment. which can rememeber the variables of the parent / laxical environment. Also variables inside closure are reference type variables. which means they are pointing to the same memory address. So when this closure function stored to another memory space by setTimeout function, this closure still remembers the variables referenced by its laxical environment. When the for loop runs first time, it makes the copy of the callback function and attached to the timer. When the for loop runs second time, it makes the copy of the callback function and attached to the timer. So the closure function still has access to the variables reference by its laxical environment. It will do the same thing until the for loop runs 5 times.
+
+    Now JavaScript dose not wait for anything. Mean while when the timer expires, it is too late and the value of i is 6, because the loop has already run 5 times and when the callback function runs by that time the value of i is 6. thats why it prints 6 6 6 6 6. All this happens because of variable type is "var".
+
+    So the solution is to use "let" variable type. With let variable type, "let" is a block scoop. So when every time the for loop runs, it makes a new copy of i all together, also it makes a new copy of the callback function. This is why the result is 1 2 3 4 5
+
+    The solution with variable type "var" is that every time the for loop runs, Some how we have to give a copy of "i" every loop with a forms of closure with it. So the solution is to use closure. Means we enclose the setTimeout function inside another function with i parameter.
+
+    */
+
+    function c(){
+        for(let i=1; i<=5; i++){
+            function close(x){
+                setTimeout(()=>{
+                    console.log(x);
+                    return x;
+                }, x*1000)
+            }
+            close(i);
+        }
+    }
+    //c();
+
+
+    function d(){
+        var x = 10;
+        function a(){
+            console.log(x)
+        }
+        return a;
+    }
+
+    //const f1 = d();
+    //f1();
+    // make above two lines in one line of code like below:
+    //d()();
+
+
+    // first class function
+
+    function e(){
+        function a(){
+            console.log("Hi");
+        }
+        return a;
+    }
+    const f1 = e();
+    //f1();
+
+
+
+
+/*
+function statement / function declaration ---------------------------------
+function a(){
+    console.log("Hi");
+} 
+a();
+
+
+function expression ---------------------------------
+-- function act like a value
+var b = function(){
+    console.log("Hi");
+} 
+b();
+
+
+difference between function statement and function expression ---------------------------------
+--difference is hoisting:
+    -- function statement will get hoisted. Mean we can access it before it is declared
+    -- function expression will not get hoisted. Means we can not access it before it is declared
+
+
+anonymous function ---------------------------------
+a function without name is called anonymous function. anonymous function does not have its own indentity. 
+But accroding to ecmascript specification, a function statement should have name always with it. So this it a syntax error.
+So anonymous function are used in a pleace where funaction used as a value.
+
+function(){
+    console.log("Hi");
+}
+
+
+named function expression ---------------------------------
+when function expression have a function name.
+var b = function test(){
+    console.log("Hi");
+} 
+test(); // give error : test is not a function
+
+
+
+difference between arguments and parameters ---------------------------------
+-- parameters are collection of variables declared inside the function and this are called formal parameters/ local variables.
+-- arguments are collection of values passed to the function when the function will called.
+function test(parameter1, parameter2){
+    console.log("Hi");
+} 
+test(argument1, argument2);
+
+
+first class function / first class citizen ---------------------------------
+-- function can be passed as a parameter to another function.
+-- we can return a function from another function.
+var a = function(){
+    return function(){
+        console.log("Hi");
+    }
+} 
+console.log(a());
+// result
+f(){ console.log("Hi"); }
+
+
+higher order function ---------------------------------
+-- takes another function as an argument
+-- returns a function
+
+
+
+callback function ---------------------------------
+-- as we known the first class function, we can pass a function as a parameter to another function. So which function is passed into a another function is called callback function. This callback function is very powerfull in javascript. It gave access to the hole asynchronous world in a syncronous single-threaded language.
+
+A callback function is a function that you pass as an argument to another function, and that other function decides when to execute it.
+*/
+setTimeout(() => {
+    console.log("timer");
+},5000)
+function x(y) {
+    console.log("x");
+    y();
+}
+ x(function y(){
+    console.log("y");
+ }); 
+// here y is a callback function. It is passed as a parameter to x function.
+/* 
+this setTimeout function is take a callback function as a parameter, and time is the secone parameter. So when code executes, setTimeout function store the callback function in other space in memory for the 5second and then execute it. Mean while javascript is running, and goto next line of code. So javascript will print "x" then it call y callback function and print "y" after that when 5 second is expired and then the callback function is executed and it print "timer".
+Result:
+x
+y
+timer
+*/
+
+/*
+So setTimeout asynchronous oparation is not possible without callback function. Javascript has a one call-stack as we can call it as main-thread. So what ever is executed in the page, it executed through the call-stack. So javascript can not execute the setTimeout function without callback function. If any oparation is blocks the call-stack that also known as "blocking the main thread".
+*/
+ 
+/*
+JavaScript is a synchronous and single-threaded language  ---------------------------------
+Javascript has a one call-stack as we can call it as main-thread. So what ever is executed in the page, it executed through the call-stack. 
+
+
+blocking the main thread ---------------------------------
+What ever is executed in the page, it executed through the call-stack. So javascript can not execute the setTimeout function without callback function. If any oparation is blocks the call-stack that also known as "blocking the main thread".
+
+
+power of callback functions ---------------------------------
+
+
+
+Deep about event listeners ---------------------------------
+-- first make a button with id. <button id="clickme">click me</button>
+-- add event listener to the button. button.addEventListener("click", function(){}); here "click" is the event is a firt parameter. the callback function is the second parameter.
+-- when we click on the button, it will call the function. then it will print "clicked". because when we click the button the callback function is come to the call-stack and executed. As a result it print "clicked".
+*/
+document.getElementById("clickme").addEventListener("click", function(){
+     console.log("clicked");
+});
+
+/*
+closure demo with event listeners ---------------------------------
+-- first create a closure which count the number of times the button is clicked.
+-- we can access the count variable inside the callback function as a closure. Then when we click on the button, it will print the count variable.
+*/
+function eventCounter(){
+    let count = 0;
+    document.getElementById("clickme_with_Closure").addEventListener("click", function clickCallback(){
+        count++;
+        console.log(count);
+    });
+};
+eventCounter();
+/*
+When we click on the button, addEventListener will call the clickCallback callback function which formed a closure function which can access the count variable from its outer scope/ parent scope/ lexical environment. This closure function put into call-stack and executed. As a result it print the count variable (to view this process we need to add a debugger in our devtool in source tab). 
+*/
+
+
+
+/*
+Garbage Collection and removeEventListeners ---------------------------------
+-- event listeners are heavy, it takes memory. when ever we attach event listeners it formed closure with its lexical environment. So if we don't trigger the event listener and call stack is empty, it can hold a memory space for count variable. becuase we dont know when we will need it. That is why event listeners are heavy. That is why we are remove event listener when it not needed. This is called garbage collection. So when ever we remove event listener, we remove the closure with its lexical environment. So that memory space is released.
+*/
+
+
+/*
+arrow function ---------------------------------
+
+
+function literal ---------------------------------
+
+
+
+
+
+
+
+
+
+event loop ---------------------------------
+JavaScript is a syncronous and single-threaded language. It has a one call-stack and it can do one think at a time. The call-stack is present in javaScript engine. All the code is executed through the call-stack.
+
+
+
+callback queue ---------------------------------
+
+
+
+
+Microtask queue ---------------------------------
+
+
+*/
+
+
+
+  </script>
+</body>
+
+</html>
