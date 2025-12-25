@@ -1,0 +1,254 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      display: flex;
+      gap: 20px;
+    }
+
+    .products, .cart {
+      background: #fff;
+      padding: 15px;
+      border-radius: 6px;
+      flex: 1;
+    }
+
+    .item, .cart-item {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .qty-btn {
+      margin: 0 5px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- <h1 class="text-3xl font-bold underline text-red-500">Hello world!</h1> -->
+
+    <div class="container">
+  <div class="products">
+    <h2>Products</h2>
+    <div id="item_list"></div>
+  </div>
+
+  <div class="cart">
+    <h2>Cart</h2>
+    <div id="cart_list"></div>
+    <h3 id="total"></h3>
+  </div>
+</div>
+    
+<!-- <div class="" id="item_list"></div>
+<h2>cart</h2>
+<div class="" id="cart_list"></div> -->
+
+
+
+<script>
+/*
+forEach is for doing something
+✔ Used for logging, DOM updates, API calls
+❌ Returns nothing (undefined)
+❌ Cannot chain
+
+map is for creating something new
+✔ Returns a new array
+✔ Pure transformation
+✔ Chainable
+
+*/
+
+
+
+
+const itemsData = [
+    { id:1, name: "Laptop", price: 50000, inCart: false, stock: 10, initialStock: 10 },
+    { id:2, name: "Mouse", price: 500, inCart: false, stock: 8, initialStock: 8 },
+    { id:3, name: "Keyboard", price: 1500, inCart: false, stock: 6, initialStock: 6 },
+    { id:4, name: "Monitor", price: 10000, inCart: false, stock: 9, initialStock: 9 },
+    { id:5, name: "Speaker", price: 5000, inCart: false, stock: 12, initialStock: 12 },
+]
+const cartData = [];
+
+const itemList = document.getElementById("item_list");
+const cartList = document.getElementById("cart_list");
+
+
+// render items process one start
+/*
+itemList.innerHTML = "";
+itemsData.forEach((item)=>{
+    const itemBox = document.createElement("div");
+    itemBox.classList.add("item-box");
+    itemBox.innerHTML = `
+        <h3>${item.name}</h3>
+        <p>Instock: ${item.stock}</p>
+        <p>Price: ${item.price}</p>
+        <button 
+            ${item.inCart ? "disabled" : ""} 
+            onclick="addToCart(${item.id})">
+            ${item.inCart ? "Added to Cart" : "Add to Cart"}
+        </button>
+    `;
+    itemList.appendChild(itemBox);
+})
+*/
+// render items process one ended
+
+
+// render items process two start
+/*
+itemList.innerHTML = "";
+itemsData.forEach((item)=>{
+    itemList.innerHTML += `
+    <div class="item-box">
+        <h3>${item.name}</h3>
+        <p>Instock: ${item.stock}</p>
+        <p>Price: ${item.price}</p>
+        <button 
+            ${item.inCart ? "disabled" : ""} 
+            onclick="addToCart(${item.id})">
+            ${item.inCart ? "Added to Cart" : "Add to Cart"}
+        </button>
+    </div>`
+});
+*/
+// render items process two ended
+
+
+function renderItems(){
+    itemList.innerHTML = "";
+    itemsData.forEach((item)=>{
+        itemList.innerHTML += `
+        <div class="item-box">
+            <h3>${item.name}</h3>
+            <p>Instock: ${item.stock}</p>
+            <p>Price: ${item.price}</p>
+            <button 
+                ${item.inCart ? "disabled" : ""} 
+                onclick="addToCart(${item.id})">
+                ${item.inCart ? "Added to Cart" : "Add to Cart"}
+            </button>
+        </div>`
+    });
+}
+
+function renderCartList(){
+    if(cartData.length === 0){
+        cartList.innerHTML = "<h3>Cart is empty</h3>";
+    }else{
+        cartList.innerHTML = "";
+        cartData.forEach((item)=>{
+            cartList.innerHTML += `
+            <div class="cart-item-box">
+                <h3>${item.name}</h3>
+                <button onclick="decreaseQty(${item.id})">-</button>
+                <p>Qty: ${item.qty}</p>
+                <button onclick="increaseQty(${item.id})">+</button>
+                <p>Price: ${item.price}</p>
+                <button onclick="removeFromCart(${item.id})">Remove</button>
+            </div>`
+        });
+    }
+}
+
+
+function addToCart(id){
+    const cartItem = itemsData.find((item) => item.id === id);
+    const product = itemsData.find(item => item.id === id);
+    product.inCart = true;
+    product.stock -= 1;
+    //console.log(cartItem);
+    cartData.push({...cartItem, qty:1, inCart: true});
+    renderCartList();
+    renderItems();
+}
+
+
+function removeFromCart(id){
+    //cartList.innerHTML = "";
+    //console.log(cartData)
+    const product = itemsData.find(item => item.id === id);
+    const cartItem = cartData.find(item => item.id === id);
+
+    product.inCart = false;
+    product.stock = product.initialStock;
+
+    const updateCartList = cartData.filter(item => item.id !== id);
+
+    //console.log(updateCartList);
+    cartData.length = 0;
+    cartData.push(...updateCartList);
+
+    renderCartList();
+    renderItems();
+    
+}
+
+function increaseQty(id){
+    const updateCartList = cartData.find((item)=>item.id === id);
+    const product = itemsData.find(item => item.id === id);
+
+    if(product.stock === 0) return;
+
+    updateCartList.qty += 1;
+    product.stock -= 1;
+
+    renderCartList();
+    renderItems();
+}
+
+function decreaseQty(id){
+    const updateCartList = cartData.find((item)=>item.id === id);
+    const product = itemsData.find(item => item.id === id);
+
+    updateCartList.qty -= 1;
+    product.stock += 1;
+
+    if(updateCartList.qty < 1){
+        removeFromCart(id);
+        return;
+    }
+
+    
+
+    renderCartList();
+    renderItems();
+}
+
+renderCartList();
+renderItems();
+
+</script>
+</body>
+</html>
