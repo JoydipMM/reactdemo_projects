@@ -1,0 +1,280 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1></h1>
+
+<script>
+    // const a = 4;
+    // const b = 6;
+
+function parent(){
+    const a = 3;
+    function inner(){
+        const b = 4;
+        /*function add(){
+            const c = 6;
+            console.log(a+b+c);
+        }*/
+        // return add;
+        return function (){
+            const c = 6;
+            console.log(a+b+c);
+        }
+    }
+    return inner;
+}
+
+
+// console.log(inner);
+// const add2 = inner();
+
+const p = parent()();
+console.dir(p);
+
+/*
+Method vs Function -------------------------------------------------
+every method is a function, but every functions not method.
+when we put a function placed inside a object, it becomes a method
+*/
+const customMethod = {
+    E: 2.7111111,
+    // ES5 syntax
+    add:function (){
+        console.log("addition");
+        return "addition";
+    }, // "add" is a method name, because it is a function placed inside a object.
+    subtrcation: function(){
+        console.log("subtraction");
+        return "subtraction";
+    },
+    // ES6 syntax (not required key name and function keyword)
+    square(){
+        console.log("square");
+        return "square";
+    }
+}
+
+console.log(customMethod);
+
+// function declaration: when we create a function using "function" keyword and after give function name. This is a function declaration.
+function add(){
+    console.log("addition");
+    return "addition";
+}
+
+// function expression: when we store a function ( here function name not required ) in a variable. This is a function expression. we can not call this function before it declared. It will give referance error.
+const subtrcation = function(){
+    console.log("subtraction");
+    return "subtraction";
+}
+
+// arrow function expression:  we can not call this function before it declared. It will give referance error.
+const square = () => {
+    console.log("square");
+    return "square";
+}
+const square2 = (value) => {
+    return value * value; // explicit return
+} 
+square2(2); // 4
+
+// arrow function expression in one line
+const cube = () => "cube"; // implied return
+const cube2 = (a) => a*2;
+const cube3 = a => a*3; // if we have one parameter, then () parathesis is optional.
+const cube4 = (a,b) => a+b;
+cube4(2,3); // 5
+
+
+// for of loop:  is used to iterate over iterable values such as: Arrays, Strings, Maps, Sets, NodeLists, Any object that is iterable
+const fruits = ["apple", "banana", "mango"];
+for (const fruit of fruits) {
+    console.log(fruit);
+} // apple, banana, mango
+
+for (const char of "HELLO") {
+  console.log(char);
+} // H, E, L, L, O
+
+const marks = new Map([
+  ["John", 90],
+  ["Alice", 85],
+  ["Bob", 92]
+]);
+
+for (const [name, score] of marks) {
+  console.log(name, score);
+} // John 90, Alice 85, Bob 92
+
+
+
+
+// for in loop: it is used to iterate an object. this loop performence not good.
+const person = {
+    name: "John", age: 30, city: "New York"
+};
+for (const key in person) {
+    console.log(key); // name, age, city
+    console.log(person[key]); // John, 30, New York
+}
+
+// easy way to iterate an object
+for (const key of Object.keys(person)) {
+    console.log(key); // name, age, city
+    console.log(person[key]); // John, 30, New York
+}
+
+'name' in person; // true
+'lastname' in person; // false
+
+const arr = ["a", "b", "c"];
+for (let i in arr) {
+  console.log(i); //index: 0, 1, 2
+}
+for (let v of arr) {
+  console.log(v); //value: a, b, c
+}
+
+// for each loop
+const newfruits = ["mango", "banana", "apple"];
+newfruits.forEach((fruit, index) => {
+  console.log(fruit); // mango, banana, apple
+  console.log(index); // 0, 1, 2
+});
+
+
+
+/////-------------------------------------------------------------------------
+
+// map loop: (non-destructive array) map is used to iterate over iterable values such as: Arrays, after iterate we can modify the each array data and return a new array set. we can store it in variable.
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+const shortMonths = months.map(month => month.slice(0, 3));
+console.log(shortMonths); // Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec
+
+const newmonths = months.map((month)=> { return month.toUpperCase(); });   
+console.log(newmonths); // January, February, March, April, May, June, July, August, September, October, November, December
+
+
+
+// filter loop: filter() loops through an array and keeps only the values where the callback returns true. It creates a new array, without modifying the original.
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const evenNumbers = numbers.filter(num => num % 2 === 0);
+console.log(evenNumbers); // 2, 4, 6, 8, 10
+
+const filteredMonths = months.filter((month) => {
+    console.log(month.toLowerCase().includes("m")); // false, false, true, false, true, false, false, false, true, false, true, true
+    return month.toLowerCase().includes("m"); // March, May, September, November, December
+});
+console.log(filteredMonths); // March, May, September, November, December
+
+const students = [
+    { name:"Akash", age: 21 },
+    { name:"Rahul", age: 17 },
+    { name:"Rohit", age: 23 },
+    { name:"Adarsh", age: 18 },
+    { name:"Amir", age: 25 },
+]
+
+const adults = students.filter((student) => student.age >= 18);
+console.log(adults); // [ { name: 'Akash', age: 21 }, { name: 'Rohit', age: 23 }, { name:"Adarsh", age: 18 }, { name: 'Amir', age: 25 } ]
+
+
+/////-------------------------------------------------------------------------
+
+// reduce loop: reduce() loops through an array and reduces it to a single value. It creates a new value, without modifying the original array.
+const numbers1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// accumulator is a variable that stores the result of the previous iteration.
+// currentValue is a variable that stores the current value being processed in the array.
+const sum = numbers1.reduce((accumulator, currentValue) => accumulator + currentValue);
+console.log(sum); // 55
+
+
+// de-structuring array , spread operator, rest operator
+
+// de-structuring array: is a way to extract specific values from an array and assign them to variables.
+const fruits2 = ["apple", "banana", "cherry"];
+const [a, b, c] = fruits2;
+console.log(a); // apple
+console.log(b); // banana
+console.log(c); // cherry
+
+
+/////-------------------------------------------------------------------------
+
+// spread operator: is a way to copy an array or object into another array or object. extract all the information/values from an array or object and add them to a new array or object.
+
+/*
+Notes: --------------------------------------------------
+De-structuring: is extracting specific values or data from an object or array and assigning them to variables.
+Spread Operator: is get all data from an array or object and copying an array or object into another array or object.
+Rest Operator: is collecting all or the remaining values of an array into a new array.
+*/
+
+const fruits3a = ["apple", "banana", "cherry"];
+const newFruitsArray1 = fruits3a; // this is not a copy of the array, it is a reference to the original array.
+console.log(newFruitsArray1); // ["apple", "banana", "cherry"]
+const newFruitsArray2 = Object.assign([], fruits3a); // this is a copy of the array
+console.log(newFruitsArray2); // ["apple", "banana", "cherry"]
+
+const fruits3 = ["apple", "banana", "cherry"];
+const newfruits3 = [...fruits3]; // this is a copy of the array with new reference of first layer
+console.log(newfruits3); // ["apple", "banana", "cherry"]
+
+const nameString = "Hellow World";
+const newnameString = [...nameString]; // this is a copy of the string with new reference of first layer
+console.log(newnameString); // ["H", "e", "l", "l", "o", " ", "W", "o", "r", "l", "d"]
+
+const array1 = [1,2,3,4,5];
+const newObj = {...array1}; // this is a copy of the array with new reference of first layer
+console.log(newObj); // {0: 1, 1: 2, 2: 3, 3: 4, 4: 5}
+
+const objNew = { lang:"javascript", frameWork:"react" };
+//const newArray = [...objNew]; // this is a copy of the array with new reference of first layer
+// array to object de-structuring is possible but object to array is not possible
+//console.log(newArray); // Uncaught TypeError: objNew is not iterable
+
+
+// rest operator: is a way to collect all or the remaining values of an array into a new array. It is used to create a new array from a variable number of arguments.
+
+const numbers2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const [first, second, ...rest] = numbers2;
+console.log(first); // 1
+console.log(second); // 2
+console.log(rest); // [3, 4, 5, 6, 7, 8, 9, 10]
+
+function sumRest(...all){ // rest oparator always at last
+    //console.log(all) // [1, 2, 3, 4]
+    //console.log(all.length) // 4
+    let result = 0;
+    all.forEach((item)=>{
+        console.log(item + result)
+        return result=item + result // result = 1 + 0 = 1; result = 2 + 1 = 3; result = 3 + 3 = 6; result = 4 + 6 = 10
+    })
+}
+sumRest(1,2,3,4) // result: 10
+
+
+const users = [
+  { id: 1, name: "A" },
+  { id: 2, name: "B" }
+];
+const [{ name }] = users;
+//console.log(name); // A
+
+//const [,{ name }] = users;
+//console.log(name); // B
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
