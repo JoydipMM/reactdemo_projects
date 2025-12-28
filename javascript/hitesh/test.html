@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+
+const person = {
+    firstName: "Alice",
+    "full name": "Alice Gomes",
+    age: 30,
+    isStudent: false
+};
+console.log(person.firstName); // "Alice"
+const person2 = person; // this is not a copy of the object, it is a reference to the original object.
+console.log(person2.firstName); // "Alice"
+person2.firstName = "Bob";
+console.log(person.firstName); // "Bob"
+console.log(person2.firstName); // "Bob"    
+
+const fruits3a = ["apple", "banana", "cherry"];
+const newFruitsArray1 = fruits3a; // this is not a copy of the array, it is a reference to the original array.
+console.log(newFruitsArray1); // ["apple", "banana", "cherry"]
+newFruitsArray1.push("orange");
+console.log(newFruitsArray1); // ["apple", "banana", "cherry", "orange"]
+console.log(fruits3a); // ["apple", "banana", "cherry", "orange"]
+
+</script>
+
+
+
+
+</body>
+</html>
