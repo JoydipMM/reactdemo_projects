@@ -6,6 +6,7 @@ import NormalForm from '../components/NormalForm';
 import CounterAction from '../components/Counter/CounterAction';
 import CounterView from '../components/Counter/CounterView';
 import defaultContext from '../contextAPI/defaultContext';
+import Calculator from '../components/Calculator';
 
 const Home = () => {
 
@@ -58,17 +59,21 @@ const Home = () => {
 
 
         {/* col 1 start */}
-        <GridRow>
+        <GridRow gridcol="grid-cols-3">
           Default Context Data: {name}
 
+        {/* <Button label='Minus' oncClick={decreament}/>
+        <Button label='Add' oncClick={increament}/> */}
          
 
 
         </GridRow>
         {/* col 1 ended */}
 
-        <Button label='Minus' oncClick={decreament}/>
-        <Button label='Add' oncClick={increament}/>
+         <GridRow>
+            <Calculator />
+         </GridRow>
+
       </GridRow>
     </>
   )
