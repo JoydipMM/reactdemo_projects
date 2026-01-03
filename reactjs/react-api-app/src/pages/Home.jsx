@@ -6,6 +6,7 @@ import NormalForm from '../components/NormalForm';
 import CounterAction from '../components/Counter/CounterAction';
 import CounterView from '../components/Counter/CounterView';
 import defaultContext from '../contextAPI/defaultContext';
+import Calculator from '../components/Calculator';
 
 const Home = () => {
 
@@ -14,6 +15,18 @@ const Home = () => {
   const getFormData = (data) => {
     console.log("Form Data- username: "+ data.username+ " useremail: " +data.useremail);
   }
+
+
+  function increament() {
+    console.log("increment")
+    //return user.firstName + ' ' + user.lastName;
+  }
+  function decreament() {
+    console.log("decrement")
+    //return user.firstName + ' ' + user.lastName;
+  }
+
+
   return (
     <>
     <h1 className='text-3xl font-bold text-purple-700 mb-6'>Welcome to React Mini App</h1>
@@ -46,19 +59,31 @@ const Home = () => {
 
 
         {/* col 1 start */}
-        <GridRow>
+        <GridRow gridcol="grid-cols-3">
           Default Context Data: {name}
 
+        {/* <Button label='Minus' oncClick={decreament}/>
+        <Button label='Add' oncClick={increament}/> */}
          
 
 
         </GridRow>
         {/* col 1 ended */}
 
-        
+         <GridRow>
+            <Calculator />
+         </GridRow>
+
       </GridRow>
     </>
   )
 }
+
+
+
+function Button({label='', oncClick=()=>{}}){
+  return <button className='text-xs font-medium px-3 py-3 rounded-2xl bg-blue-700 text-white hover:bg-gray-700 cursor-pointer' onClick={oncClick}>{label}</button>
+}
+
 
 export default Home
