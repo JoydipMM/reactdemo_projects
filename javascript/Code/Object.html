@@ -175,6 +175,24 @@ for(var key in obj){
     document.write(key+": "+obj[key]+"<br>");
 }
 </script>
+
+<h2>Check If Object is Empty</h2>
+<xmp style="margin-top: -25px;">
+const obj01 = {}
+function checkIfEmpty(data) {
+    return Object.keys(data).length === 0
+}
+checkIfEmpty(obj01)
+</xmp>
+<p>Result:</p>
+<script>
+const obj01 = {}
+function checkIfEmpty(data) {
+    return Object.keys(data).length === 0
+}
+checkIfEmpty(obj01);
+document.write(checkIfEmpty(obj01))
+</script>
     
 </body>
 </html>
