@@ -389,7 +389,7 @@ function secondLargeNumber(arr){
     let firstlargest = -Infinity;
     let secondlargest = -Infinity;
     for(i=0; i <arr.length; i++){
-        console.log("fl "+firstlargest + " sl "+secondlargest+ " arr[i] "+arr[i]);
+        //console.log("fl "+firstlargest + " sl "+secondlargest+ " arr[i] "+arr[i]);
         if(arr[i] > firstlargest){
             secondlargest = firstlargest;
             firstlargest = arr[i];
@@ -400,6 +400,437 @@ function secondLargeNumber(arr){
     return document.write("First largest number is "+ firstlargest+"<br/>"+"Seconed largest number is "+ secondlargest);
 }
 secondLargeNumber(arrayset05);
+</script>
+
+
+
+<br><br>
+<h2>Create a function that return second largest number in a array ignore duplicate number</h2>
+<xmp>
+const arrayset06 = [11,4,9,0,2,7,8,11,1,12,12];
+function secondLargeNumber(arr){
+    if(arr.length < 2){
+        return document.write("minimum 2 element required");
+    }
+    let firstlargest = -Infinity;
+    let secondlargest = -Infinity;
+    for(i=0; i < arr.length; i++){
+        console.log("fl "+ firstlargest + " sl "+secondlargest+ " arr[i] "+ arr[i]);
+        if(arr[i] > firstlargest){
+            secondlargest = firstlargest;
+            firstlargest = arr[i];
+        }else if(arr[i] > secondlargest && arr[i] != firstlargest){
+            secondlargest = arr[i];
+        }
+    }
+    return document.write("First largest number is "+ firstlargest+"<br/>"+"Seconed largest number is "+ secondlargest);
+}
+secondLargeNumber(arrayset06);
+</xmp>
+<p>Result:</p>
+<script>
+const arrayset06 = [11,4,9,0,2,7,8,11,1,12,12];
+function secondLargeNumber(arr){
+    if(arr.length < 2){
+        return document.write("minimum 2 element required");
+    }
+    let firstlargest = -Infinity;
+    let secondlargest = -Infinity;
+    for(i=0; i <arr.length; i++){
+        //console.log("fl "+firstlargest + " sl "+secondlargest+ " arr[i] "+arr[i]);
+        if(arr[i] > firstlargest){
+            secondlargest = firstlargest;
+            firstlargest = arr[i];
+        }else if(arr[i] > secondlargest && arr[i] != firstlargest){
+            secondlargest = arr[i];
+        }
+    }
+    return document.write("First largest number is "+ firstlargest+"<br/>"+"Seconed largest number is "+ secondlargest);
+}
+secondLargeNumber(arrayset06);
+</script>
+
+<br><br>
+<h2>Number table</h2>
+<xmp style="margin-top: -25px;">
+function tableOfNumber(num){
+    document.write("<h2>Table of "+ num + "</h2><br/>");
+    for(i=1; i <= 10; i++){
+        document.write(num+ " x "+ i + " = "+ (num*i) );
+        document.write("<br/>");
+    }
+}
+tableOfNumber(2);
+</xmp>
+<p>Result:</p>
+<script>
+function tableOfNumber(num){
+    document.write("<h2>Table of "+ num + "</h2><br/>");
+    for(i=1; i <= 10; i++){
+        document.write(num+ " x "+ i + " = "+ (num*i) );
+        document.write("<br/>");
+    }
+}
+tableOfNumber(2);
+</script>
+
+
+
+
+<br><br>
+<h2>Nested Loop Basic</h2>
+<xmp style="margin-top: -25px;">
+for(i=0; i < 3; i++){
+    for(j=0; j < 3; j++){
+        document.write("i = "+i+ " j = "+j+ "<br>");
+    }
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(i=0; i <3; i++){
+    for(j=0; j < 3; j++){
+        document.write("i = "+i+ " j = "+j+ "<br>");
+    }
+}
+</script>
+
+<br><br>
+<xmp style="margin-top: -25px;">
+for(i=0; i < 3; i++){
+    for(j=0; j < 3; j++){
+        document.write(i);
+    }
+    document.write("<br/>");
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(i=0; i < 3; i++){
+    for(j=0; j < 3; j++){
+        document.write(i);
+    }
+    document.write("<br/>");
+}
+</script>
+
+<br><br>
+<h2>Nested Loop Basic 02</h2>
+<xmp style="margin-top: -25px;">
+for(i=0; i < 3; i++){
+    document.write("i = "+i+ " : ");
+    for(j=0; j < i; j++){
+        //console.log(i,j);
+        document.write(" j = "+j+" ");
+    }
+    document.write("<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(i=0; i < 3; i++){
+    document.write("i = "+i+ " : ");
+    for(j=0; j < i; j++){
+        //console.log(i,j);
+        document.write(" j = "+j+" ");
+    }
+    document.write("<br>")
+}
+</script>
+
+
+<br><br>
+<h2>Nested Loop Basic 03</h2>
+<xmp style="margin-top: -25px;">
+for(i=0; i < 5; i++){
+    document.write("i = "+i+ " : ");
+    for(j=0; j <= i; j++){
+        //console.log(i,j);
+        document.write(" j = "+j+" ");
+    }
+    document.write("<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(i=0; i < 5; i++){
+    document.write("i = "+i+ " : ");
+    for(j=0; j <= i; j++){
+        //console.log(i,j);
+        document.write(" j = "+j+" ");
+    }
+    document.write("<br>")
+}
+</script>
+
+
+
+<br><br>
+<h2>Nested Loop Basic 04</h2>
+<xmp style="margin-top: -25px;">
+for(i=0; i < 3; i++){
+    document.write("i = "+i+ " : ");
+    for(j=i; j > 0; j--){
+        console.log(i,j);
+        document.write(" j = "+j+" ");
+    }
+    document.write("<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(i=0; i < 3; i++){
+    document.write("i = "+i+ " : ");
+    for(j=i; j >= 0; j--){
+        //console.log(i,j);
+        document.write(" j = "+j+" ");
+    }
+    document.write("<br>")
+}
+</script>
+
+
+
+<br><br>
+<h2>Nested Loop Basic 05</h2>
+<xmp style="margin-top: -25px;">
+for(i=5; i > 0; i--){
+    document.write("i = "+i+ " : ");
+    for(j=0; j < i; j++){
+        //console.log(i,j);
+        document.write(" j = "+j+" ");
+    }
+    document.write("<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(i=5; i > 0; i--){
+    document.write("i = "+i+ " : ");
+    for(j=0; j < i; j++){
+        //console.log(i,j);
+        document.write(" j = "+j+" ");
+    }
+    document.write("<br>")
+}
+</script>
+
+
+
+<br><br>
+<h2>Nested Star Pattern 01</h2>
+<xmp style="margin-top: -25px;">
+for(let i=0; i < 5; i++){
+    let row = " ";
+    for(let j=0; j < 5; j++){
+        row = row + " *";
+    }
+    console.log(row);
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(let i=0; i < 5; i++){
+    //console.log("* ");
+    let row = " ";
+    for(let j=0; j < 5; j++){
+        //console.log(" *");
+        row = row + " *";
+        document.write(" *");
+    }
+    //console.log(row);
+    document.write("<br>")
+}
+</script>
+
+<br><br>
+<h2>Nested Star Pattern 02</h2>
+<xmp style="margin-top: -25px;">
+for(let i=0; i < 5; i++){
+    let row = " ";
+    for(let j=0; j < i+1; j++){
+        row = row + " *";
+        document.write(" *");
+    }
+    console.log(row);
+    document.write("<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(let i=0; i < 5; i++){
+    let row = " ";
+    for(let j=0; j < i+1; j++){
+        row = row + " *";
+        document.write(" *");
+    }
+    //console.log(row);
+    document.write("<br>")
+}
+</script>
+
+<br><br>
+<h2>Nested number Pattern 01</h2>
+<xmp style="margin-top: -25px;">
+// Pattern 01
+for(let i=0; i < 5; i++){
+    let row = " ";
+    for(let j=0; j < i+1; j++){
+        //console.log(j+1);
+        row = row + (j+1);
+        document.write(j+1);
+    }
+    //console.log(row);
+    document.write("<br>")
+}
+
+// Pattern 02
+for(let i=1; i <= 5; i++){
+    for(let j=1; j <= i; j++){
+        console.log(j);
+        document.write(j+1);
+    }
+    document.write("<br>")
+}
+
+</xmp>
+<p>Result:</p>
+<script>
+for(let i=0; i < 5; i++){
+    let row = " ";
+    for(let j=0; j < i+1; j++){
+        //console.log(j+1);
+        row = row + (j+1);
+        document.write(j+1);
+    }
+    //console.log(row);
+    document.write("<br>")
+}
+</script>
+
+
+
+<br><br>
+<h2>Nested number Pattern 02</h2>
+<xmp style="margin-top: -25px;">
+// Pattern 01
+for(let i=0; i < 5; i++){
+    let row = " ";
+    for(let j=0; j < i+1; j++){
+        //console.log(i+1);
+        row = row + (i+1);
+        document.write(i+1);
+    }
+    console.log(row);
+    document.write("<br>")
+}
+
+// Pattern 02
+for(let i=0; i <= 5; i++){
+    let row = " ";
+    for(let j=1; j <= i; j++){
+        //console.log(i);
+        row = row + (i);
+        document.write(i);
+    }
+    console.log(row);
+    document.write("<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(let i=0; i <= 5; i++){
+    let row = " ";
+    for(let j=1; j <= i; j++){
+        //console.log(i);
+        row = row + (i);
+        document.write(i);
+    }
+    //console.log(row);
+    document.write("<br>")
+}
+</script>
+
+
+<br><br>
+<h2>Nested reverse number Pattern 01</h2>
+<xmp style="margin-top: -25px;">
+// Pattern 01
+for(let i=5; i > 0; i--){
+    let row = " ";
+    for(let j=0; j < i; j++){
+        //console.log(i);
+        row = row + (j+1);
+        document.write(j+1);
+    }
+    //console.log(row);
+    document.write("<br>")
+}
+
+// Pattern 02
+for(let i=0; i <= 5; i++){
+    let row = " ";
+    for(let j=0; j < 5-i; j++){
+        //console.log(i);
+        row = row + (j+1);
+        document.write(j+1);
+    }
+    //console.log(row);
+    document.write("<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(let i=0; i <= 5; i++){
+    let row = " ";
+    for(let j=0; j < 5-i; j++){
+        //console.log(i);
+        row = row + (j+1);
+        document.write(j+1);
+    }
+    //console.log(row);
+    document.write("<br>")
+}
+</script>
+
+
+
+<br><br>
+<h2>Nested star Pattern 02</h2>
+<xmp style="margin-top: -25px;">
+for(let i=0; i < 5; i++){
+    let row = " ";
+    for (let j=0; j < 5 - (i+1); j++){
+        //console.log(i);
+        row = row + (" ");
+        document.write(" &nbsp;");
+    }
+    for(let k=0; k < i+1; k++){
+        //console.log(i);
+        row = row + ("*");
+        document.write(" *");
+    }
+    console.log(row);
+    document.write("<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(let i=0; i < 5; i++){
+    let row = " ";
+    for (let j=0; j < 5 - (i+1); j++){
+        //console.log(i);
+        row = row + (" ");
+        document.write(" &nbsp;");
+    }
+    for(let k=0; k < i+1; k++){
+        //console.log(i);
+        row = row + ("*");
+        document.write(" *");
+    }
+    console.log(row);
+    document.write("<br>")
+}
 </script>
 
 
@@ -580,6 +1011,87 @@ for(row_4 = 5; row_4 >= 1; row_4--){
 </script>
 
 
+
+
+
+<script>
+function findSmallest(arr) {
+  // your solution here
+  // invalid: missing or non-array input
+  if (!Array.isArray(arr)) return false;
+
+  // base case: empty array
+  if (arr.length === 0) return null;
+
+  let min = arr[0];
+
+  if (typeof min !== 'number' || !Number.isFinite(min)) {
+    return false;
+  }
+
+  for (let i = 1; i < arr.length; i++) {
+    const value = arr[i];
+
+    if (typeof value !== 'number' || !Number.isFinite(value)) {
+      return false;
+    }
+
+    if (value < min) {
+      min = value;
+    }
+  }
+
+  return min;
+}
+
+//module.exports = { findSmallest };
+
+
+
+
+
+function countEvens(arr) {
+  // your solution here
+  if (!Array.isArray(arr)) return false;
+  if (arr.length === 0) return 0;
+
+  let count = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    const value = arr[i];
+
+    if (typeof value !== 'number' || !Number.isFinite(value)) {
+      return false;
+    }
+
+    if (value % 2 === 0) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+module.exports = { countEvens };
+
+
+
+
+
+function checkVotingEligibility(age) {
+  // implement your solution here
+  if (typeof age !== 'number' || !Number.isFinite(age)) {
+    return "Not eligible to vote";
+  }
+
+  if (age >= 18) {
+    return "Eligible to vote";
+  }
+
+  return "Not eligible to vote";
+  
+}
+</script>
 
 
 
