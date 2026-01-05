@@ -10,13 +10,14 @@ const Calculator = () => {
 
 
 
+  const REMOVE = "<-";
   const ADD = "+";
   const SUB = "-";
   const MULT = "*";
   const DIVI = "/";
   const EQAL = "=";
 
-  const oparations = [ADD, SUB, MULT, DIVI, EQAL];
+  const oparations = [REMOVE, ADD, SUB, MULT, DIVI, EQAL];
 
   const numberList = new Array(10);
 
@@ -50,25 +51,31 @@ const Calculator = () => {
     return ()=>{
       console.log("oparation: ",e);
       setOparation(e);
-      if(oparentA){
-        setOparentB(currentNumber);
-        setCurrentNumber('');
-      }else{
-        setOparentA(currentNumber);
-        setCurrentNumber('');
-      }
 
-      
-      if(oparation == EQAL){
+      if(e == REMOVE){
+        let rem = Math.floor(Number(currentNumber) / 10);
+        console.log(rem);
+        setCurrentNumber(rem);
+      }else{
         if(oparentA){
           setOparentB(currentNumber);
-          let res = Number(oparentA) + Number(oparentB);
-          console.log(res);
-          setResult(res);
-          setOparentA(res);
-          setCurrentNumber(result);
+          setCurrentNumber('');
+        }else{
+          setOparentA(currentNumber);
+          setCurrentNumber('');
+        }
+        if(oparation == EQAL){
+          if(oparentA){
+            setOparentB(currentNumber);
+            let res = Number(oparentA) + Number(oparentB);
+            console.log(res);
+            setResult(res);
+            setOparentA(res);
+            setCurrentNumber(result);
+          }
         }
       }
+      
     
 
 
