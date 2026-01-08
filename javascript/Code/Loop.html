@@ -25,7 +25,7 @@
 
 <br>
 
-<h2>While Loop</h2>
+<h2>While Loop 01</h2>
 <xmp style="margin-top: -25px;">
 var a = 0;
 while(a < 10){
@@ -40,6 +40,48 @@ while(a < 10){
     a = a+1;
     document.write("'a' value increased to "+ a + "<br>");
 } 
+</script>
+
+<br><br>
+
+
+<h2>While Loop 02</h2>
+<xmp style="margin-top: -25px;">
+function numberCount(n){
+    if (typeof n !== "number" || !Number.isFinite(n)) {
+        return "invalid input";
+    }
+    if( n === 0) return 1;
+    n = Math.abs(n); // this convert negative number to positive number [ abs = absolute value ]
+    let count = 0;
+    while(n > 0){
+        n = Math.floor(n / 10);
+        count ++;
+    }
+    return count;
+};
+const numm = numberCount(554645);
+console.log("Total digits are -> ", numm);
+document.write("Total digits are -> "+ numm);
+</xmp>
+<p>Result:</p>
+<script>
+function numberCount(n){
+    if (typeof n !== "number" || !Number.isFinite(n)) {
+        return "invalid input";
+    }
+    if( n === 0) return 1;
+    n = Math.abs(n); // this convert negative number to positive number [ abs = absolute value ]
+    let count = 0;
+    while(n > 0){
+        n = Math.floor(n / 10);
+        count ++;
+    }
+    return count;
+};
+const numm = numberCount(-298);
+//console.log("Total digits are -> ", numm);
+document.write("Total digits are -> "+ numm);
 </script>
 
 <br><br>
@@ -329,7 +371,7 @@ largestNumber(arrayset03);
 const arrayset04 = [5,0,10, 8, 17, 1, 4, 6, 80, 7, -1];
 function smallNumber(arr){
     let smallest = Infinity;
-    for(i=0; i <arr.length; i++){
+    for(i=0; i < arr.length; i++){
         if(arr[i] < smallest){
             smallest = arr[i];
         }
@@ -364,7 +406,7 @@ function secondLargeNumber(arr){
     if(arr.length > 2){
         let firstlargest = -Infinity;
         let secondlargest = -Infinity;
-        for(i=0; i <arr.length; i++){
+        for(i=0; i < arr.length; i++){
             console.log("fl "+firstlargest + " sl "+secondlargest+ " arr[i] "+arr[i]);
             if(arr[i] > firstlargest){
                 secondlargest = firstlargest;
@@ -828,11 +870,241 @@ for(let i=0; i < 5; i++){
         row = row + ("*");
         document.write(" *");
     }
-    console.log(row);
+    //console.log(row);
     document.write("<br>")
 }
 </script>
 
+
+
+
+<br><br>
+<h2>Nested star Pattern 03</h2>
+<xmp style="margin-top: -25px;">
+for(let i=0; i < 5; i++){
+    let row = " ";
+    for (let j=0; j < 5 - (i+1); j++){
+        //console.log(i);
+        row = row + (" ");
+        document.write(" &nbsp;");
+    }
+    for(let k=0; k < i+1; k++){
+        //console.log(i);
+        row = row + ("*");
+        document.write(" *");
+    }
+    for(let l=0; l < i; l++){
+        //console.log(i);
+        row = row + ("*");
+        document.write(" *");
+    }
+    console.log(row);
+    document.write("<br>")
+}
+for(let i=5; i >= 0; i--){
+    let row = " ";
+    for (let j=0; j < 5 - (i+1); j++){
+        //console.log(i);
+        row = row + (" ");
+        document.write(" &nbsp;");
+    }
+    for(let k=0; k < i+1; k++){
+        //console.log(i);
+        row = row + ("*");
+        document.write(" *");
+    }
+    for(let l=0; l < i; l++){
+        //console.log(i);
+        row = row + ("*");
+        document.write(" *");
+    }
+    console.log(row);
+    document.write("<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(let i=0; i < 5; i++){
+    let row = " ";
+    for (let j=0; j < 5 - (i+1); j++){
+        //console.log(i);
+        row = row + (" ");
+        document.write(" &nbsp;");
+    }
+    for(let k=0; k < i+1; k++){
+        //console.log(i);
+        row = row + ("*");
+        document.write(" *");
+    }
+    for(let l=0; l < i; l++){
+        //console.log(i);
+        row = row + ("*");
+        document.write(" *");
+    }
+    //console.log(row);
+    document.write("<br>")
+}
+for(let i=5; i >= 0; i--){
+    let row = " ";
+    for (let j=0; j < 5 - (i+1); j++){
+        //console.log(i);
+        row = row + (" ");
+        document.write(" &nbsp;");
+    }
+    for(let k=0; k < i+1; k++){
+        //console.log(i);
+        row = row + ("*");
+        document.write(" *");
+    }
+    for(let l=0; l < i; l++){
+        //console.log(i);
+        row = row + ("*");
+        document.write(" *");
+    }
+    //console.log(row);
+    document.write("<br>")
+}
+</script>
+
+
+<br><br>
+<h2>Binary Pattern 01</h2>
+<xmp style="margin-top: -25px;">
+for(let i=0; i < 5; i++){
+    let row = " ";
+    let switchnumber = 1;
+    for (let j=0; j < i+1; j++){
+        //console.log(i);
+        row = row + (switchnumber);
+        document.write(switchnumber);
+        if(switchnumber == 1){
+            switchnumber = 0;
+        }else{
+            switchnumber = 1;
+        }
+    }
+    console.log(row);
+    document.write("<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(let i=0; i < 5; i++){
+    let row = " ";
+    let switchnumber = 1;
+    for (let j=0; j < i+1; j++){
+        //console.log(i);
+        row = row + (switchnumber);
+        document.write(switchnumber);
+        if(switchnumber == 1){
+            switchnumber = 0;
+        }else{
+            switchnumber = 1;
+        }
+    }
+    //console.log(row);
+    document.write("<br>")
+}
+</script>
+
+
+
+<br><br>
+<h2>Binary Pattern 02</h2>
+<xmp style="margin-top: -25px;">
+for(let i=0; i < 5; i++){
+    let row = " ";
+    let switchnumber = 1;
+    for(let k = 0; k < 5 - (i+1); k++){
+        document.write("&nbsp;&nbsp;");
+        row = row + " ";
+    }
+    for (let j=0; j < i+1; j++){
+        //console.log(i);
+        row = row + (switchnumber);
+        document.write(switchnumber);
+        if(switchnumber == 1){
+            switchnumber = 0;
+        }else{
+            switchnumber = 1;
+        }
+    }
+    console.log(row);
+    document.write("<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+for(let i=0; i < 5; i++){
+    let row = " ";
+    let switchnumber = 1;
+    for(let k = 0; k < 5 - (i+1); k++){
+        document.write("&nbsp;&nbsp;");
+        row = row + " ";
+    }
+    for (let j=0; j < i+1; j++){
+        //console.log(i);
+        row = row + (switchnumber);
+        document.write(switchnumber);
+        if(switchnumber == 1){
+            switchnumber = 0;
+        }else{
+            switchnumber = 1;
+        }
+    }
+    //console.log(row);
+    document.write("<br>")
+}
+</script>
+
+
+<br><br>
+<h2>Binary Pattern 03</h2>
+<xmp style="margin-top: -25px;">
+let switchnumber = 1;
+for(let i=0; i < 5; i++){
+    let row = " ";
+    
+
+    for (let j=0; j < i+1; j++){
+        //console.log(i);
+        row = row + (switchnumber);
+        document.write(switchnumber);
+        if(switchnumber == 1){
+            switchnumber = 0;
+        }else{
+            switchnumber = 1;
+        }
+    }
+    //console.log(row);
+    document.write("<br>")
+}
+</xmp>
+<p>Result:</p>
+<script>
+;(
+    function(){
+    let switchnumber = 1;
+    for(let i=0; i < 5; i++){
+        let row = " ";
+        
+
+        for (let j=0; j < i+1; j++){
+            //console.log(i);
+            row = row + (switchnumber);
+            document.write(switchnumber);
+            if(switchnumber == 1){
+                switchnumber = 0;
+            }else{
+                switchnumber = 1;
+            }
+        }
+        //console.log(row);
+        document.write("<br>")
+    }
+    }
+)();
+</script>
 
 <br><br>
 <h2>Nested Loop</h2>
@@ -1010,8 +1282,53 @@ for(row_4 = 5; row_4 >= 1; row_4--){
 }
 </script>
 
+<br><br>
 
+<h2>Palindrome number</h2>
+A palindrome number reads the same forward and backward.
+Example: 121, 34443, 7
 
+<h2>How to get Last Digit form a number</h2>
+<p>By getting remainder of number divided by 10, we get the last digit</p>
+<p>n % 10</p>
+<script>
+let number = 123450;
+let lastDigit = number % 10;
+//console.log(lastDigit);
+document.write("Last digit of "+ number + " is "+ lastDigit);
+</script>
+<h2>Remove last digit</h2>
+<p>By dividing number by 10 and taking the floor value, we can remove the last digit</p>
+<script>
+let removeLastDigit = Math.floor(number / 10);
+//console.log(removeLastDigit);
+document.write("Remove last digit of "+ number + " is "+ removeLastDigit);
+</script>
+<h2>Reverse a number: By using reverse method</h2>
+<script>
+let reverseNumber = number.toString().split("").reverse().join("");
+//console.log(reverseNumber);
+document.write("Reverse number of "+ number + " is "+ reverseNumber);
+</script>
+<h2>Reverse a number: By using while loop</h2>
+<script>
+function reverseNumberFunction(number){
+    if(number < 0) return false;
+    numberCopy = number; // copy of number
+    let reverseNumber_1 = 0;
+    while(number > 0){
+        let lastDigit_1 = number % 10; // get last digit
+        reverseNumber_1 = (reverseNumber_1 * 10) + lastDigit_1; // append last digit in reverseNumber_1
+        number = Math.floor(number / 10); // remove last digit
+    }
+    //console.log(reverseNumber_1);
+    //document.write("Reverse number of "+ number + " is "+ reverseNumber_1);
+    //return reverseNumber_1 === numberCopy; // for palindrome check
+    return reverseNumber_1; // return reverse number
+}
+//console.log(reverseNumberFunction(12345));
+document.write("Reverse number of "+ 12345 + " is "+ reverseNumberFunction(123450));
+</script>
 
 
 <script>

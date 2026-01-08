@@ -1,0 +1,236 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA</title>
+    <style>body{ background-color: #000000; color: #fff; font-family: "arial"; font-size:14px; }</style>
+</head>
+<body>
+<h1>DSA:</h1>
+<h2>Array: Remove duplicates from a sorted non-decreasing array</h2>
+<p>Result:</p> 
+<p id="result"></p>
+
+<h4>Code:</h4> 
+<xmp style="margin-top: 0px; border: #fff dashed 1px; padding: 0px 20px 20px;">
+const arrayWithDuplicates = [0, 1, 1, 2, 2, 3, 4, 4, 5];
+
+function duplicatesRemoved(arr) {
+    let x = 0;
+    for (let i = 0; i < arr.length; i++){
+        if(arr[i] > arr[x]){
+            x = x+1;
+            arr[x] = arr[i]
+            
+        }
+        //console.log(arr);
+    }
+    //return x+1; // new length of array without duplicates
+    return { "Array: ":arr, "length without duplicates ":x+1 }; // modified array
+}
+
+let modifiedArray = duplicatesRemoved(arrayWithDuplicates);
+
+console.log(modifiedArray); // { 'Array: ': [ 0, 1, 2, 3, 4, 5, 5, 4, 5 ], 'length without duplicates ': 6 }
+
+console.log(arrayWithDuplicates); // [ 0, 1, 2, 3, 4, 5, 5, 4, 5 ]
+
+document.getElementById("result").innerText = JSON.stringify(modifiedArray);
+</xmp>
+
+<script>
+const arrayWithDuplicates = [0, 1, 1, 2, 2, 3, 4, 4, 5];
+function duplicatesRemoved(arr) {
+    let x = 0;
+    for (let i = 0; i < arr.length; i++){
+        if(arr[i] > arr[x]){
+            x = x+1;
+            arr[x] = arr[i]
+            
+        }
+        //console.log(arr);
+    }
+    //return x+1; // new length of array without duplicates
+    return { "Array: ":arr, "length without duplicates ":x+1 }; // modified array
+}
+
+let modifiedArray = duplicatesRemoved(arrayWithDuplicates);
+//console.log(modifiedArray); // { 'Array: ': [ 0, 1, 2, 3, 4, 5, 5, 4, 5 ], 'length without duplicates ': 6 }
+//console.log(arrayWithDuplicates); // [ 0, 1, 2, 3, 4, 5, 5, 4, 5 ]
+document.getElementById("result").innerText = JSON.stringify(modifiedArray);
+</script>
+
+
+<br/>
+<br/>
+
+
+<h2>Array: Remove Element</h2>
+<a href="https://leetcode.com/problems/remove-element/" target="_blank" style="color: #fff;">leetcode.com Link</a>
+<p>Given an integer array <b><i>nums</i></b> and an integer <b><i>val</i></b>, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.</p>
+<p>Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:</p>
+<ul>
+    <li>Change the array nums such that the first k elements of nums contain the elements which are not equal to val. The remaining elements of nums are not important as well as the size of nums.</li>
+    <li>Return k.</li>
+</ul>
+<p><b>Input: nums = [0,1,2,2,3,0,4,2], val = 2<br/>
+Output: 5, nums = [0,1,4,0,3,_,_,_]</b></p>
+<p>Result:</p> 
+<p id="result2"></p>
+
+<h4>Code:</h4> 
+<xmp style="margin-top: 0px; border: #fff dashed 1px; padding: 0px 20px 20px;">
+let nums = [0,1,2,2,3,0,4,2];
+let val = 2;
+
+function removeElement(nums, val) {
+    let k = 0; // Pointer for the next position
+    for(let i = 0; i < nums.length; i++) {
+        if(nums[i] != val){
+            nums[k] = nums[i];
+            console.log(k);
+            k = k + 1;
+        }
+    }
+    return { "New length": k, "Modified Array": nums };
+}
+</xmp>
+<script>
+let nums = [0,1,2,2,3,0,4,2];
+let val = 2;
+function removeElement(nums, val) {
+    let k = 0; // Pointer for the next position
+    for(let i = 0; i < nums.length; i++) {
+        if(nums[i] != val){
+            nums[k] = nums[i];
+            //console.log(k);
+            k = k + 1;
+        }
+    }
+    return { "New length": k, "Modified Array": nums };
+}
+
+const result = removeElement(nums, val);
+//console.log(result); // { 'New length': 5, 'Modified Array': [ 0, 1, 0, 3, 4, 0, 4, 2 ] }
+document.getElementById("result2").innerText = JSON.stringify(nums);
+</script>
+
+
+
+<br/>
+<br/>
+<h2>Swap Two Number</h2>
+<h4>Code:</h4> 
+<xmp style="margin-top: 0px; border: #fff dashed 1px; padding: 0px 20px 20px;">
+let a = 10;
+let b = 20;
+let temp = a;
+a = b;
+b = temp;
+console.log(a); // 20
+console.log(b); // 10
+</xmp>
+<script>
+;(
+    function(){
+        let a = 10;
+        let b = 20;
+        let temp = a;
+        a = b;
+        b = temp;
+        //console.log("a: ",a); // 20
+        //console.log("b: ",b); // 10
+    }
+)();
+</script>
+
+
+<br/>
+<br/>
+
+
+<h2>344. Reverse String</h2>
+<a href="https://leetcode.com/problems/reverse-string/" target="_blank" style="color: #fff;">leetcode.com Link</a>
+<p>Write a function that reverses a string. The input string is given as an array of characters s.</p>
+<p>You must do this by modifying the input array in-place with O(1) extra memory.</p>
+
+<p><b>Input: s = ["h","e","l","l","o"]<br/>
+Output: ["o","l","l","e","h"]</b></p>
+<p>Result:</p> 
+<p id="result3"></p>
+
+<h4>Code:</h4> 
+<xmp style="margin-top: 0px; border: #fff dashed 1px; padding: 0px 20px 20px;">
+let s = ["h","e","l","l","o"];  
+
+function reverseString(s) {
+    let half =Math.floor(s.length / 2);
+    for(let i = 0; i < half; i++){
+        let temp = s[i]; // store current element
+        s[i] = s[s.length - 1 - i]; // swap with corresponding element from end
+        s[s.length - 1 - i] = temp; // assign stored element
+    }
+}
+</xmp>
+<script>
+let s = ["h","e","l","l","o"];  
+
+function reverseString(s) {
+    let half =Math.floor(s.length / 2);
+    for(let i = 0; i < half; i++){
+        let temp = s[i]; // store current element
+        s[i] = s[s.length - 1 - i]; // swap with corresponding element from end
+        s[s.length - 1 - i] = temp; // assign stored element
+    }
+}
+
+reverseString(s);
+console.log(s); // ["o","l","l","e","h"]
+document.getElementById("result3").innerText = JSON.stringify(s);
+</script>
+
+
+<br/>
+<br/>
+
+
+<h2>121. Best Time to Buy and Sell Stock</h2>
+<a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/" target="_blank" style="color: #fff;">leetcode.com Link</a>
+<p>You are given an array prices where prices[i] is the price of a given stock on the ith day.</p>
+<p>You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.</p>
+<p>Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.</p>
+<p><b>Input: prices = [7,1,5,3,6,4]<br/>
+Output: 5<br/><br/>
+<b>Input: prices = [7,6,4,3,1]<br/>
+Output: 0
+</b></p>
+<p>Result:</p> 
+<p id="result4"></p>
+
+<h4>Code:</h4> 
+<xmp style="margin-top: 0px; border: #fff dashed 1px; padding: 0px 20px 20px;">
+
+</xmp>
+<script>
+prices = [7,1,5,3,6,4];
+function maxprofit(prices){
+    let minprice =  prices[0];
+    let maxprofit = 0;
+    for(let i = 1; i < prices.length; i++){
+        if(prices[i] - minprice > maxprofit){
+            maxprofit = prices[i] - minprice;
+        }
+        if(prices[i] < minprice){
+            minprice = prices[i];
+        }
+    }
+
+    return maxprofit;
+}
+</script>
+
+
+
+
+</body>
+</html>
