@@ -1,0 +1,122 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Question Solved</title>
+    <style>body{ font-size: 14px; font-family: Verdana, Geneva, Tahoma, sans-serif; } </style>
+</head>
+<body>
+
+<h2>Count of element in array</h2>
+<p><b>arraySet = [1,2,2,3,4,4,4,3,2,1,5];</b></p>
+<xmp style=" border: #000 dashed 1px; padding:0px 15px 15px;">
+let arraySet = [1,2,2,3,4,4,4,3,2,1,5];
+function elementCount(arr) {
+    let count ={}
+    for(let i=0; i < arr.length; i++){
+        console.log(arr[i]);
+        if(!count[arr[i]]){
+            count[arr[i]] = 0;
+        }
+        //count[arr[i]] = 0; // {"1":0,"2":0,"3":0,"4":0,"5":0}
+        count[arr[i]] = count[arr[i]] + 1;
+    }
+    return count;
+}
+
+elementCount(arraySet);
+</xmp>
+<h4>Result:</h4>
+<div id="result01"></div>
+<script>
+let arraySet = [1,2,2,3,4,4,4,3,2,1,5];
+function elementCount(arr) {
+    let count ={}
+    for(let i=0; i < arr.length; i++){
+        //console.log(arr[i]); 
+        if(!count[arr[i]]){
+            count[arr[i]] = 0;
+        }
+        //count[arr[i]] = 0; // {"1":0,"2":0,"3":0,"4":0,"5":0}
+        count[arr[i]] = count[arr[i]] + 1;
+    }
+    return count;
+}
+
+elementCount(arraySet);
+const arrayResult01 = elementCount(arraySet);
+document.getElementById("result01").innerHTML = JSON.stringify(arrayResult01);
+</script>
+
+
+<br/>
+<br/>
+
+
+<h2>Convert object keys to array</h2>
+<p><b>data = { name: "John", age: 30, city: "New York" };</b></p>
+<xmp style=" border: #000 dashed 1px; padding:0px 15px 15px;">
+// default process:
+let data = { name: "John", age: 30, city: "New York" };
+let keys = Object.keys(data);
+//console.log(keys); // ["name", "age", "city"]
+let objValue = Object.values(data); // ["John", 30, "New York"]
+//console.log(objValue);
+
+
+
+</xmp>
+<h4>Result:</h4>
+<div id="result02"></div>
+<script>
+
+// default process:
+;(
+    function(){
+        let data = { name: "John", age: 30, city: "New York" };
+        let keys = Object.keys(data);
+        //console.log(keys); // ["name", "age", "city"]
+        let objValue = Object.values(data); // ["John", 30, "New York"]
+        //console.log(objValue);
+    }
+)();
+
+// Manual process:
+;(
+function(){
+    let data = { name: "John", age: 30, city: "New York" };
+    let keys = [];
+    let index = 0;
+    for(k in data){
+        keys[index] = k;
+        index = index + 1;
+    }
+    //console.log(keys); // ["name", "age", "city"]
+}
+)();
+
+// Manual process 2:
+;(
+function(){
+    let data = { name: "John", age: 30, city: "New York" };
+    let keys = [];
+    let index = 0;
+    for(k in data){
+        keys[index] = k;
+        index = index + 1;
+    }
+    //console.log(keys); // ["name", "age", "city"]
+}
+)();
+
+
+
+// const arrayResult02 = JSON.stringify("Object Keys: "+keys+" || Object Values: "+objValue);
+// document.getElementById("result02").innerHTML = arrayResult02;
+</script>
+
+
+
+    
+</body>
+</html>
