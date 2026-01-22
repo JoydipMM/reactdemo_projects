@@ -120,11 +120,9 @@ function(){
 function sum(...args) {
     // Your implementation
     let num = 0;
-
     args.forEach((arg) => {
         num += arg;
     });
-
     return num;
 }
 
@@ -134,7 +132,76 @@ sum(100, 200, 300, 400);
 
 
 <script>
+const numlist = [2,41,5,10,40,20,23,42];
+function secondLarge(nums){
+    let largest = 0;
+    let secondLargest = 0;
+    for(let i = 0; i < nums.length; i++){
+        if(nums[i] > largest){
+            secondLargest = largest;
+            largest = nums[i];
+        }else if( nums[i] > secondLargest){
+            secondLargest = nums[i];
+        }
+    }
+    return secondLargest;
+}
 
+
+//console.log(secondLarge(numlist));
+</script>
+
+
+<h2>1796. Second Largest Digit in a String</h2>
+<p>Given an alphanumeric string s, return the second largest numerical digit that appears in s, or -1 if it does not exist.</p>
+<p>An alphanumeric string is a string consisting of lowercase English letters and digits.</p>
+<p>Input: s = "dfa12321afd"<br/>
+Output: 2</p>
+<script>
+const s = "dfa123421afd";
+function secondLarge(s){
+    let largest = -1;
+    let secondLargest = -1;
+    for(let i = 0; i < s.length; i++){
+        if (s[i] >= '0' && s[i] <= '9') {
+            let num = Number(s[i]);
+             if (num > largest) {
+                secondLargest = largest;
+                largest = num;
+            } 
+            else if (num < largest && num > secondLargest) {
+                secondLargest = num;
+            }
+        }
+    }
+    return secondLargest;
+}
+//console.log(secondLarge(s));
+</script>
+
+
+
+<h2>9. Palindrome Number</h2>
+<p>Given an integer x, return true if x is a palindrome, and false otherwise.</p>
+<p>Input: x = 121<br/>
+Output: true<br/>
+Explanation: 121 reads as 121 from left to right and from right to left.</p>
+<script>
+let nnnn = 121;
+
+function isPalindrome(x) {
+    let num = x;
+    let reverse = 0;
+
+    while (num > 0) {
+        let digit = num % 10;
+        reverse = reverse * 10 + digit;
+        num = Math.floor(num / 10);
+    }
+    console.log(reverse);
+}
+
+isPalindrome(nnnn);
 </script>
 
     
