@@ -15,9 +15,9 @@ export default function HomeWhatWeDoSection() {
 
                 <SlickCarousel>
                     <CornerThumbCurveCard thumbImage="/images/banner-01.jpg" icontype="image" icon="/icons/health-white-icon.svg"/> 
-                    <CornerThumbCurveCard thumbImage="/images/banner-02.jpg" icontype="image" icon="/icons/health-white-icon.svg"/> 
-                    <CornerThumbCurveCard thumbImage="/images/banner-03.jpg" icontype="image" icon="/icons/health-white-icon.svg"/> 
-                    <CornerThumbCurveCard thumbImage="/images/banner-04.jpg" icontype="image" icon="/icons/health-white-icon.svg"/>
+                    <CornerThumbCurveCard thumbImage="/images/banner-01.jpg" icontype="image" icon="/icons/health-white-icon.svg"/> 
+                    <CornerThumbCurveCard thumbImage="/images/banner-01.jpg" icontype="image" icon="/icons/health-white-icon.svg"/> 
+                    <CornerThumbCurveCard thumbImage="/images/banner-01.jpg" icontype="image" icon="/icons/health-white-icon.svg"/>
                 </SlickCarousel>
 
 
