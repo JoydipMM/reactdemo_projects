@@ -1,4 +1,4 @@
-const thumbImage = "/images/default-banner.jpg";
+const thumbImage = "/vite.svg";
 
 export default function ImageThumb({className="", url=thumbImage, title=""}){
     return (
