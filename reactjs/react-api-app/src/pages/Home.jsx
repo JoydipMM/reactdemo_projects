@@ -7,6 +7,7 @@ import CounterAction from '../components/Counter/CounterAction';
 import CounterView from '../components/Counter/CounterView';
 import defaultContext from '../contextAPI/defaultContext';
 import Calculator from '../components/Calculator';
+import GueseWord from '../components/GueseWord';
 
 const Home = () => {
 
@@ -70,9 +71,10 @@ const Home = () => {
         </GridRow>
         {/* col 1 ended */}
 
-         <GridRow>
-            <Calculator />
-         </GridRow>
+         
+          <Calculator />
+         
+          <GueseWord/>
 
       </GridRow>
     </>

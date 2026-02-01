@@ -1,0 +1,254 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA-121</title>
+</head>
+<body>
+
+<h2>121. Best Time to Buy and Sell Stock</h2>
+<p>You are given an array prices where prices[i] is the price of a given stock on the ith day.</p>
+<p>You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.</p>
+<p>Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.</p>
+<br/>
+<p>
+<br>
+Input: prices = [7,1,5,3,6,4]<br/>
+Output: 5
+
+</b>
+</p>
+
+<h4>Result</h4>
+<div id="Result_121"></div>
+<xmp>
+function maxProfit(prices){
+    let minPrice = prices[0];
+    let maxProfit = 0;
+    for(let i = 1; i < prices.length; i++){
+       if(prices[i] - minPrice > maxProfit){
+           maxProfit = prices[i] - minPrice;
+       }
+       if(prices[i] < minPrice){
+           minPrice = prices[i];
+       }
+    }
+    return maxProfit;
+}
+</xmp>
+
+<script>
+const prices = [7,1,5,3,6,4];
+function maxProfit(prices){
+    let minPrice = prices[0];
+    let maxProfit = 0;
+    for(let i = 1; i < prices.length; i++){
+       if(prices[i] - minPrice > maxProfit){
+           maxProfit = prices[i] - minPrice;
+       }
+       if(prices[i] < minPrice){
+           minPrice = prices[i];
+       }
+    }
+    return maxProfit;
+}
+
+const maxProfit_result = maxProfit(prices);
+
+document.querySelector("#Result_121").innerHTML = maxProfit_result;
+</script>
+
+<br/><br/>
+
+
+
+<h2>88. Merge Sorted Array</h2>
+<p>You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.</p>
+<p><b>Merge nums1 and nums2 into a single array sorted in non-decreasing order.</b></p>
+<p>The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.</p>
+<br/>
+<p>
+<br>
+Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3<br/>
+Output: [1,2,2,3,5,6]
+
+</b>
+</p>
+
+<h4>Result</h4>
+<div id="Result_88"></div>
+<xmp>
+
+nums1 = [1,2,3,0,0,0];
+nums2 = [2,5,6];
+m = 3;
+n = 3;
+
+var merge = function(nums1, m, nums2, n) {
+// solution 02 start ---------------------------------------
+// Without using extra space, with reverse order
+let p1 = m - 1;
+let p2 = n - 1;
+
+for(let i = m + n - 1; i >= 0; i--){
+    if(p2 < 0) break;
+    if( p1 >= 0 && nums1[p1] > nums2[p2]){
+        nums1[i] = nums1[p1];
+        p1--;
+    }else{
+        nums1[i] = nums2[p2];
+        p2--;
+    }
+}
+// solution 02 ended ---------------------------------------
+};
+
+merge(nums1, m, nums2, n);
+</xmp>
+
+<script>
+
+nums1 = [1,2,3,0,0,0];
+nums2 = [2,5,6];
+m = 3;
+n = 3;
+//console.log(nums1);
+
+var merge = function(nums1, m, nums2, n) {
+
+    // solution 01 start ---------------------------------------
+    /*let num1copy = nums1.slice(0, m);
+    let p1 = 0;
+    let p2 = 0;
+    for(let i = 0; i < m+n; i++){
+        if(p2 >= n || (p1 < m && num1copy[p1] < nums2[p2])){
+            nums1[i] = num1copy[p1];
+            p1++;
+        }else{
+            nums1[i] = nums2[p2];
+            p2++;
+        }
+    }*/
+    /*
+    first we make a copy of the first array
+    then we compare the values of the first array and second array and place the smaller value in the first array
+    So, if the first array of copy array 01 has less values than the second array, then we place the values of the copy array 01 array in the first array
+    else, we place the values of the second array in the first array
+
+    corner cases:
+    now we add another condition which check that the p1 is less than the length of the copy array 01
+    if the condition is true, then we place the values of the copy array 01 in the first array
+    or else, this loop will run if the p2 pointer is greater than or equal to the length of the second array length
+
+    *** Time Complexity: O(m + n)
+    1. slice(0, m) → O(m)
+    2. for (let i = 0; i < m + n; i++) -> Runs exactly m + n times
+       Each iteration does constant work → O(1) per iteration
+       So this loop is → O(m + n)
+    Total Time Complexity = O(m) + O(m + n) = O(m + n)
+
+
+    *** Space Complexity: O(m)
+    num1copy array of size m
+    Other variables (p1, p2, i) use constant space
+    */
+    // solution 01 ended ---------------------------------------
+
+
+    // solution 02 start ---------------------------------------
+    // Without using extra space, with reverse order
+    let p1 = m - 1;
+    let p2 = n - 1;
+
+    for(let i = m + n - 1; i >= 0; i--){
+        if(p2 < 0) break;
+        if( p1 >= 0 && nums1[p1] > nums2[p2]){
+            nums1[i] = nums1[p1];
+            p1--;
+        }else{
+            nums1[i] = nums2[p2];
+            p2--;
+        }
+    }
+    // solution 02 ended ---------------------------------------
+
+};
+
+merge(nums1, m, nums2, n);
+//console.log(nums1);
+
+//const merge_result = nums1;
+document.querySelector("#Result_88").innerHTML = nums1;
+</script>
+
+
+<br/><br/>
+
+
+
+<h2>231. Power of Two</h2>
+<p>Given an integer <b><i>n</i></b>, return true if it is a power of two. Otherwise, return <b><i>false</i></b>.</p>
+<p>You may assume that each input would have <b><i>exactly one solution</i></b>, and you may not use the same element twice.
+<p>You can return the answer in any order.</p>
+<br/>
+<p>
+<br/>
+<b>Example 1:</b><br/>
+Input: <b>n = 1</b><br/>
+Output: <b>true</b><br/><br/>
+<b>Example 2:</b><br/>
+Input: <b>n = 16</b><br/>
+Output: <b>true</b><br/>
+Explanation: <b>24 = 16</b>
+</p>
+
+<h4>Result</h4>
+<div id="Result_231"></div>
+<xmp>
+// Brute Force solution (For Learning Only)
+var isPowerOfTwo = function(n) {
+    if(n == 1) return true;
+    if(n < 1 || n % 2 !== 0) return false;
+    return isPowerOfTwo(n/2)
+};
+console.log(isPowerOfTwo(16));
+</xmp>
+<script>
+var isPowerOfTwo = function(n) {
+    if(n == 1) return true;
+    if(n < 1 || n % 2 !== 0) return false;
+    return isPowerOfTwo(n/2)
+};
+//console.log(isPowerOfTwo(16));
+const isPowerOfTwo_result = isPowerOfTwo(16);
+document.querySelector("#Result_231").innerHTML = isPowerOfTwo_result;
+</script>
+
+
+<br/><br/>
+
+
+
+<script>
+
+let sumTwonumberArray = [2,7,11,15];
+let target = 9;
+function sumtwonumber(arr, target){
+    for(let i = 0; i <arr.length; i++){
+        for(let j = i+1; j < arr.length; j++){
+            if(arr[i]+arr[j] === target){
+                return [i,j];
+            }
+        }
+    }
+}
+//console.log(sumTwonumberArray, target);
+console.log(sumtwonumber(sumTwonumberArray, target));
+</script>
+
+<br/><br/>
+
+
+
+</body>
+</html>
