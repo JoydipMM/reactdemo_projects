@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import CornerThumbCurveCard from "../common/CornerThumbCurveCard";
+import SlickCarousel from "../sliders/SlickCarousel";
 
 export default function HomeWhatWeDoSection() {
+
     return (
         <>
         <section className="common_page_indvdl_section home_what_we_do_section">
@@ -11,12 +13,15 @@ export default function HomeWhatWeDoSection() {
                     <p>A unified place to discover, connect, and thrive across care and inclusion.</p>
                 </div>
 
+                <SlickCarousel>
+                    <CornerThumbCurveCard thumbImage="/images/banner-01.jpg" icontype="image" icon="/icons/health-white-icon.svg"/> 
+                    <CornerThumbCurveCard thumbImage="/images/banner-02.jpg" icontype="image" icon="/icons/health-white-icon.svg"/> 
+                    <CornerThumbCurveCard thumbImage="/images/banner-03.jpg" icontype="image" icon="/icons/health-white-icon.svg"/> 
+                    <CornerThumbCurveCard thumbImage="/images/banner-04.jpg" icontype="image" icon="/icons/health-white-icon.svg"/>
+                </SlickCarousel>
 
 
-                {/* <CornerThumbCurveCard/>  */}
-
-
-
+                
             </div>
         </section>
         </>

@@ -88,6 +88,12 @@ p.invert{
 .section_common_heading_section{
   width: 100%; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; row-gap: 10px; margin-bottom: 70px;
 }
+.icon_box{
+  width: 60px; height: 60px; padding: 2%; border-radius: 100%; overflow: hidden; background-color: var(--secondary-color); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.icon_box > *{
+  width: 100%; max-height: 2rem;
+}
 /* common structure css ended */
 
 
@@ -113,7 +119,7 @@ p.invert{
 
 /* common corner curve card css start */
 .corner_curve_card{
-  width: auto; min-height:60px; position: relative; display: inline-block; border-radius: 70px 20px 70px 20px; padding: 35px 30px; background-color: #fff;
+  width: 100%; min-height:60px; position: relative; display: inline-block; border-radius: 70px 20px 70px 20px; padding: 35px 30px; background-color: #fff;
 }
 .corner_curve_card .corner_curve_card_innr{
   width: 100%; height: 100%; position: relative;
@@ -123,13 +129,13 @@ p.invert{
 
 /* common corner thumb curve card css start */
 .corner_curve_card.with_thumb{
-  box-shadow: 0px 2px 15px 0px #00000040; padding: 10px;
+  box-shadow: 0px 2px 15px 0px #00000040; padding: 10px; margin: 15px 0px;
 }
 .corner_curve_card.with_thumb .corner_curve_card_innr{
-  display: flex; flex-direction: column; align-items: flex-start; row-gap: 20px;
+  display: flex; flex-direction: column; align-items: flex-start; row-gap: 0px;
 }
 .corner_curve_card.with_thumb .corner_curve_card_cnt_row{
-  width: 100%; display: inline-flex; flex-direction: column; flex: 1; position: relative; row-gap: 15px; padding: 25px 26px;
+  width: 100%; display: inline-flex; flex-direction: column; flex: 1; position: relative; row-gap: 15px; padding: 25px 26px 45px 26px;
 }
 .corner_curve_card.with_thumb .thumb_img_frame{
   height: 215px; border-radius: 20px 20px 60px 20px;
@@ -140,7 +146,23 @@ p.invert{
 .corner_curve_card.with_thumb p{
   font-weight: 400; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
+.corner_curve_card.with_thumb .icon_box{
+  position: absolute; left: 30px; bottom: -20%; z-index: 1;
+}
 /* common corner thumb curve card css ended */
+
+
+/* common slick slider css start */
+.common_slider_wrapper{
+  margin: 0px -15px;
+}
+.sl_slick_carousel .slick-slide{
+  padding: 0px 15px;
+}
+.slick-track {
+  margin-left: 0 !important;
+}
+/* common slick slider css ended */
 
 
 /* site logo css start */
