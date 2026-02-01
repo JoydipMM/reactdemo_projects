@@ -1,6 +1,8 @@
 import HomeTopBanner from "../components/home/HomeTopBanner";
 import HomeAboutSection from "../components/home/HomeAboutSection";
 import HomeWhatWeDoSection from "../components/home/HomeWhatWeDoSection";
+import HomeKeyBenefitsSection from "../components/home/HomeKeyBenefitsSection";
+import HomeImpactSection from "../components/home/HomeImpactSection";
 
 
 export default function HomePage() {
@@ -9,6 +11,8 @@ export default function HomePage() {
         <HomeTopBanner />
         <HomeAboutSection />
         <HomeWhatWeDoSection/>
+        <HomeKeyBenefitsSection/>
+        <HomeImpactSection/>
 
 
 
