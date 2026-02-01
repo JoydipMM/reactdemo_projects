@@ -1,9 +1,0 @@
-.card{
-    width: 300px;
-    height: 400px;
-    background: lightgoldenrodyellow;
-    margin: 20px;
-}
-.dark .card{
-    background-color: gray;
-}

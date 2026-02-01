@@ -1,9 +1,0 @@
-.board{
-    width: 300px; display: flex; flex-direction: column; border:1px solid black; padding: 5px; gap: 5px;
-}
-.board-sqaure-row{
-    width: 100%; display: flex; gap: 5px;
-}
-.board-sqaure{
-    flex: 1; height: 100px; display: flex; align-items: center; justify-content: center; border: solid 1px black; padding: 5px;
-}
