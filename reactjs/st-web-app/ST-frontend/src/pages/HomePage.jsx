@@ -4,6 +4,9 @@ import HomeWhatWeDoSection from "../components/home/HomeWhatWeDoSection";
 import HomeKeyBenefitsSection from "../components/home/HomeKeyBenefitsSection";
 import HomeImpactSection from "../components/home/HomeImpactSection";
 import HomeHowItWorkSection from "../components/home/HomeHowItWorkSection";
+import HomeSolutionSection from "../components/home/HomeSolutionSection";
+import HomeServiceProviderSection from "../components/home/HomeServiceProviderSection";
+import HomeKnowledgeHubSection from "../components/home/HomeKnowledgeHubSection";
 
 
 export default function HomePage() {
@@ -15,6 +18,9 @@ export default function HomePage() {
         <HomeKeyBenefitsSection/>
         <HomeImpactSection/>
         <HomeHowItWorkSection/>
+        <HomeSolutionSection/>
+        <HomeServiceProviderSection/>
+        <HomeKnowledgeHubSection/>
 
 
 

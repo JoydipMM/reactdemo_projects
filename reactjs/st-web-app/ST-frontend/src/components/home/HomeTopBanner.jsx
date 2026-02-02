@@ -6,7 +6,7 @@ export default function HomeTopBanner() {
     return (
         <>
         <section className="home_top_banner">
-            <Banner />
+            <Banner url="/images/default-banner.jpg" />
             <div className="home_top_banner_overlay">
                 <div className="container">
                     <CornerCurveCard className="banner_enpowering_box" backgroundColor="#D16050">
