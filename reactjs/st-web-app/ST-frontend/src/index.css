@@ -14,6 +14,7 @@ a:focus{
   --text-color:#3B1A18;
   --button-text-color:#ffffff;
   --button-bg-color:#953F37;
+  --light-bg:#fdf4f2;
   --button-invert-text-color:#953F37;
   --button-invert-bg-color: transparent;
   --primary-font: "Nunito", sans-serif;
@@ -155,6 +156,16 @@ p.invert{
 /* common corner thumb curve card css ended */
 
 
+/* impact card css start */
+.impact_card{
+  width: 100%; height: 178px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; row-gap: 15px; border: 1px solid #CCCCCC; background-color: rgba(255,255,255,0.1); border-radius: 30px; padding: 20px 30px;
+}
+.impact_card p{
+  line-height: 1.3;
+}
+/* impact card css ended */
+
+
 /* common slick slider css start */
 .common_slider_wrapper{
   margin: 0px -15px;
@@ -245,6 +256,69 @@ p.invert{
   font-weight: 500; line-height: 1.2;
 }
 /* benefit card css ended */
+
+/* avater dp css start */
+.avater_dp_frame{
+  width: 70px; height: 70px; border-radius: 100%; overflow: hidden; position: relative; flex-shrink: 0;
+}
+.avater_dp_frame>img{
+  width: 100%; height: 100%; object-fit: cover;
+}
+.avater_dp_frame .avater_link{
+  width: 100%; height: 100%;
+}
+.avater_dp_frame .avater_dp_name{
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; background: var(--button-invert-text-color); color: #fff; font-size: 20px; font-weight: 700;
+}
+.avater_name_wrap{
+  display: flex; flex-direction: column; row-gap: 5px;
+}
+/* avater dp css ended */
+
+
+/* testimonial box css start */
+.testimonial_box{
+  padding:90px 46px; 
+}
+.testimonial_box .testimonial_card{
+  margin-top: 30px;
+}
+.testimonial_card{
+  width: 100%; position: relative; display: flex; flex-direction: column; row-gap: 25px; background: var(--light-bg); border-radius: 20px 20px 60px 15px; padding: 80px 50px 36px 50px;
+}
+.testimonial_card .testimonial_cont{
+  width: 100%; display: inline-block; position: relative;
+}
+.testimonial_card .testimonial_cont,
+.testimonial_card .testimonial_cont p{
+  font-weight: 600; line-height: 1.4;  font-size: 18px;
+}
+.testimonial_quote_icon{
+  position: absolute; top: -30px; left: 60px;
+}
+.testimoial_user_info_row{
+  width: 100%; display: flex; align-items: center; column-gap: 15px;
+}
+/* testimonial box css ended */
+
+
+/* how to work card css start */
+.how_to_work_card{
+  width: 100%; display: flex; flex-direction: column; align-items: center; position: relative;
+}
+.how_to_work_card .card_thumb{
+  width: 100%; max-width: 100%; height:230px; border-radius: 20px;
+}
+.how_to_work_card .work_card_cont_box{
+  width: 85%; min-height: 216px; padding: 20px 45px; border-radius: 20px; display: flex; justify-content: flex-end; flex-direction: column; row-gap: 15px; align-items: center; text-align: center; background: var(--primary-color); position: relative; z-index: 1; margin-top: -50px;
+}
+.how_to_work_card .card_number{
+  width: 60px; height: 60px; border-radius: 100%; display: flex; align-items: center; justify-content: center; background: #fff; color: var(--secondary-color) !important; font-size: 24px; font-weight: 700; position: absolute; top: -30px; left: 50%; transform: translateX(-50%); z-index: 2;
+}
+.how_to_work_card p{
+  text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+/* how to work card css ended */
 
 
 /* home page top banner section css start */
@@ -355,7 +429,10 @@ p.invert{
 
 /* home impact section css start */
 .common_page_indvdl_section.home_impact_section{
-  padding: 200px 0px 60px;
+  padding: 200px 0px 0px;
+}
+.common_page_indvdl_section.home_impact_section:after{
+  content:""; width: 100%; height: 6.5vw; position: absolute; bottom: 0px; left: 0px; background-color: #fff;
 }
 .home_impact_section .container{
   z-index: 1;
@@ -365,5 +442,31 @@ p.invert{
 }
 .home_impact_bg:before{
   content: ''; width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; z-index: 0; background-color: var(--text-color); opacity: 0.7;
+}
+
+.impact_section_row{
+  display: flex; flex-wrap: wrap; position: relative; margin: 0px -25px;
+}
+.impact_section_row .impact_section_col{
+  padding: 0px 25px;
+}
+.impact_section_sm_col{
+  width: 100%; max-width: 530px; /*height: 348px;*/
+}
+.impact_section_lg_col{
+  flex: 1;
+}
+.impact_cards_row{
+  width: 100%; display: inline-flex; flex-wrap: wrap; justify-content: space-between; column-gap: 70px;
+}
+.impact_cards_row .impact_cards_col{
+  flex: 1;
+}
+.impact_lft_col_inner{
+  width: 100%; display: inline-block; padding-left:8%;
+}
+
+.how_to_work_slider_section{
+  width: 100%; display: inline-block; position: relative; z-index: 1;
 }
 /* home impact section css ended */

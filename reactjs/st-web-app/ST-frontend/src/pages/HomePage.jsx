@@ -3,6 +3,7 @@ import HomeAboutSection from "../components/home/HomeAboutSection";
 import HomeWhatWeDoSection from "../components/home/HomeWhatWeDoSection";
 import HomeKeyBenefitsSection from "../components/home/HomeKeyBenefitsSection";
 import HomeImpactSection from "../components/home/HomeImpactSection";
+import HomeHowItWorkSection from "../components/home/HomeHowItWorkSection";
 
 
 export default function HomePage() {
@@ -13,6 +14,7 @@ export default function HomePage() {
         <HomeWhatWeDoSection/>
         <HomeKeyBenefitsSection/>
         <HomeImpactSection/>
+        <HomeHowItWorkSection/>
 
 
 
