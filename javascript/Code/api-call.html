@@ -56,6 +56,19 @@ const cartCount = document.querySelector(".cartCount");
 const cartitemshow = document.querySelector(".show_cart_item");
 const totalprice = document.querySelector(".total_price");
 
+
+function saveCartToLocalStorage(){
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+}
+
+function loadCartFromLocalStorage(){
+    const storedCart = localStorage.getItem("cartItems");
+    if(storedCart){
+        cartItems = JSON.parse(storedCart);
+    }
+    totalPrice();
+}
+
 async function fetchData(){
     const response = await fetch("https://dummyjson.com/recipes");
     const data = await response.json();
@@ -95,6 +108,7 @@ async function addToCart(id){
     const getItem = data.recipes.find((item)=>item.id === id);
     console.log(getItem);
     cartItems.push(getItem);
+    saveCartToLocalStorage();
     bucket();
     showCartItems();
     totalPrice();
@@ -104,6 +118,7 @@ async function removeFromCart(id){
     const getItem = cartItems.find((item)=>item.id === id);
     const index = cartItems.indexOf(getItem);
     cartItems.splice(index, 1);
+    saveCartToLocalStorage();
     bucket();
     showCartItems();
     totalPrice();
@@ -144,7 +159,7 @@ function showCartItems(){
 
 
 
-
+loadCartFromLocalStorage();
 bucket();
 showData();
 
