@@ -32,17 +32,12 @@
         <div class="total_price_row">Total: <span class="total_price"></span></div>
     </div>
     <div class="cart_bucket" onclick="expandBucketEvent()">Cart: <span class="cartCount"></span></div>
-        <div class="conatiner">
-            <div class="item-grid">
-                <!-- <div class="item-box">
-                    <div class="img_frame"><img src="" alt=""></div>
-                    <div class="content_wrap">
-                        <h3>Title</h3>
-                        <p>para</p>
-                    </div>
-                </div> -->
-            </div>
-        </div>
+
+
+
+    <div class="conatiner">
+        <div class="recipe_detail"></div>
+    </div>
     
 
 </section>
@@ -51,10 +46,15 @@
 
 <script>
 let cartItems = [];
-const itemwrap = document.querySelector(".item-grid");
+const recipeWrap = document.querySelector(".recipe_detail");
 const cartCount = document.querySelector(".cartCount");
 const cartitemshow = document.querySelector(".show_cart_item");
 const totalprice = document.querySelector(".total_price");
+
+const params = new URLSearchParams(window.location.search);
+const recipeId = params.get("id");
+console.log(params);
+console.log(recipeId);
 
 
 function saveCartToLocalStorage(){
@@ -70,7 +70,7 @@ function loadCartFromLocalStorage(){
 }
 
 async function fetchData(){
-    const response = await fetch("https://dummyjson.com/recipes");
+    const response = await fetch(`https://dummyjson.com/recipes/${recipeId}`);
     const data = await response.json();
     console.log("data ",data);
     return data;
@@ -78,21 +78,22 @@ async function fetchData(){
 
 async function showData(){
     const data = await fetchData();
-    console.log(data.recipes);
-    data.recipes.forEach(item => {
-        itemwrap.innerHTML += `
+    console.log(data);
+        recipeWrap.innerHTML = `
         <div class="item-box">
-            <div class="img_frame"><img src="${item.image}" alt=""></div>
+            <div class="img_frame"><img src="${data.image}" alt=""></div>
             <div class="content_wrap">
-                <h3>${item.name}</h3>
-                <p>Rating: ${item.rating}</p>
-                <h2>Rs: ${item.caloriesPerServing}</h2>
-                <a href="api-detail.html?id=${item.id}" style="text-decoration:none; color:inherit">View Recipe</a>
-                <button onclick="addToCart(${item.id})">Add to Cart</button>
+                <h3>${data.name}</h3>
+                <p>Rating: ${data.rating}</p>
+                <h2>Rs: ${data.caloriesPerServing}</h2>
+                <ul>
+                    ${data.ingredients.map((i)=>`<li>${i}</li>`)}
+                </ul>
+                <button onclick="addToCart(${data.id})">Add to Cart</button>
             </div>
         </div>
         `
-    });
+   
     showCartItems();
 }
 
@@ -106,9 +107,9 @@ function totalPrice(){
 async function addToCart(id){
     console.log(cartItems);
     const data = await fetchData();
-    const getItem = data.recipes.find((item)=>item.id === id);
-    console.log(getItem);
-    cartItems.push(getItem);
+    //const getItem = data.find((item)=>item.id === id);
+    //console.log(getItem);
+    cartItems.push(data);
     saveCartToLocalStorage();
     bucket();
     showCartItems();
@@ -151,7 +152,6 @@ function showCartItems(){
             <div class="content_wrap">
                 <h3>${item.name}</h3>
                 <h2>Rs: ${item.caloriesPerServing}</h2>
-                <a href="api-detail.html?id=${item.id}" style="text-decoration:none; color:inherit">View Recipe</a>
                 <button onclick="removeFromCart(${item.id})" style="color:red">Remove</button>
             </div>
         </div>
