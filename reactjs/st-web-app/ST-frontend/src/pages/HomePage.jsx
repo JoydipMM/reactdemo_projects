@@ -9,6 +9,7 @@ import HomeServiceProviderSection from "../components/home/HomeServiceProviderSe
 import HomeKnowledgeHubSection from "../components/home/HomeKnowledgeHubSection";
 import HomeWhatToSaySection from "../components/home/HomeWhatToSaySection";
 import GetStartedSection from "../components/common/GetStartedSection";
+import PartnershipSection from "../components/common/PartnershipSection";
 
 
 export default function HomePage() {
@@ -25,6 +26,7 @@ export default function HomePage() {
         <HomeKnowledgeHubSection/>
         <HomeWhatToSaySection/>
         <GetStartedSection/>
+        <PartnershipSection/>
 
 
 

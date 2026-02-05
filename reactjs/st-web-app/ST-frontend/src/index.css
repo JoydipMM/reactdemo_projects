@@ -634,6 +634,13 @@ p.invert{
 }
 /* get started section ended */
 
+.brand_logo_card{
+  width: 100%; height: 150px; border-radius: 20px; border: 1px solid #CCCCCC; display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.brand_logo_card > img{
+  width: auto; max-width: 90%; max-height: 100px; height: auto;
+}
+
 
 .section_action_row{
   width: 100%; display: inline-flex; align-items: center; justify-content: center; column-gap: 30px; margin-top: 60px;

@@ -1,7 +1,7 @@
-export default function WhatToSaySection({title, description, children}){
+export default function WhatToSaySection({className, title, description, children}){
     return(
         <>
-        <section className="common_page_indvdl_section what_to_say_section">
+        <section className={`common_page_indvdl_section what_to_say_section ${className ? className : ""}`}>
             <div className="what_to_say_inner_section">
                 <div className="container">
                     <div className="what_to_say_row">
