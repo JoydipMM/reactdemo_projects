@@ -92,6 +92,9 @@ p.invert{
 .section_common_heading_section.left_align{
   align-items: flex-start; text-align: left;
 }
+.section_common_heading_section.mb-0{
+  margin-bottom: 0px;
+}
 .icon_box{
   width: 60px; height: 60px; padding: 2%; border-radius: 100%; overflow: hidden; background-color: var(--secondary-color); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
@@ -586,6 +589,50 @@ p.invert{
   width: 100%; height: 100%; position: absolute; top:0px; left: 0px; z-index: 1;
 }
 /* thumbnail card css ended */
+
+
+/*  what to say section css start */
+.what_to_say_section{
+  padding-bottom: 0px; overflow: hidden;
+}
+.what_to_say_inner_section{
+  width: 100%; display: inline-block; position: relative; padding: 100px 0px;
+}
+.what_to_say_row{
+  width: 100%; display: inline-flex; align-items: center; column-gap: 120px; position: relative; z-index: 1;
+}
+.what_to_say_col{
+  position: relative; width:100%; max-width: 375px; flex-shrink: 0;
+}
+.what_to_say_slider_col{
+  width: 83%; position: relative;
+}
+.what_to_say_bg_curve{
+  width: 65%; height: 100%; background-color: var(--secondary-color); position: absolute; left: 0px; top: 0px; z-index: -1; border-radius: 0px 211px 211px 0px; overflow: hidden;
+}
+/*  what to say section css ended */
+
+
+/* get started section start */
+.get_started_section{
+  background-color: var(--secondary-color); padding-top: 0px;
+}
+.get_started_innr_section{
+  width: 100%; display: inline-block; position: relative;
+}
+.get_started_innr_section:after{
+  width: 50%; height: 100%; content: ''; position: absolute; right: 0px; top: 0px; background-color: #fff;
+}
+.get_started_capsule_box{
+  width: 100%; padding: 90px 0px; display: flex; align-items: flex-end; justify-content: space-between; position: relative; z-index: 1; background-color: #fff;
+}
+.get_started_capsule_box:before{
+  width: 135px; height: 100%; content: ''; position: absolute; left: -130px; top: 0px;  background-color: #fff; border-radius: 211px 0px 0px 211px; z-index: -1;
+}
+.get_started_action_col{
+  width:auto; display: inline-flex; column-gap: 20px; flex-shrink: 0;
+}
+/* get started section ended */
 
 
 .section_action_row{

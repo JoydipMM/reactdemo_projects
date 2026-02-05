@@ -7,6 +7,8 @@ import HomeHowItWorkSection from "../components/home/HomeHowItWorkSection";
 import HomeSolutionSection from "../components/home/HomeSolutionSection";
 import HomeServiceProviderSection from "../components/home/HomeServiceProviderSection";
 import HomeKnowledgeHubSection from "../components/home/HomeKnowledgeHubSection";
+import WhatToSaySection from "../components/common/WhatToSaySection";
+import GetStartedSection from "../components/common/GetStartedSection";
 
 
 export default function HomePage() {
@@ -21,6 +23,8 @@ export default function HomePage() {
         <HomeSolutionSection/>
         <HomeServiceProviderSection/>
         <HomeKnowledgeHubSection/>
+        <WhatToSaySection/>
+        <GetStartedSection/>
 
 
 
