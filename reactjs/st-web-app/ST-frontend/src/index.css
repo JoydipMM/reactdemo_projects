@@ -121,6 +121,9 @@ p.invert{
 .thumb_img_frame>img{
   width: 100%; height: 100%; object-fit: cover; object-position: center;
 }
+.thumb_img_frame.mid_height_rounded{
+  border-radius: 15px; height: 280px;
+}
 /* common thumb image css ended */
 
 
@@ -436,7 +439,7 @@ p.invert{
   position: absolute; max-width: 38%; height: 100%; left: 0px; top: 0px;
 }
 .home_about_section_innr{
-  width: 100%; max-width:82%; display: flex; flex-wrap: wrap; align-items: center; position: relative; margin-left: auto; background-color: red;
+  width: 100%; max-width:82%; display: flex; flex-wrap: wrap; align-items: center; position: relative; margin-left: auto;
 }
 .home_about_section .home_about_section_innr{
   position: relative;
@@ -553,6 +556,9 @@ p.invert{
 .solutions_row .col_one{
   padding-right: 90px;
 }
+.solutions_row .solution_col.full{
+  flex: 1;
+}
 /* .solutions_row .solution_col.col_three{
   margin-right: -60px;
 } */
@@ -661,6 +667,12 @@ p.invert{
 .section_action_row{
   width: 100%; display: inline-flex; align-items: center; justify-content: center; column-gap: 30px; margin-top: 60px;
 }
+.section_action_row.left_align{
+  justify-content: flex-start;
+}
+.section_action_row.mt-0{
+  margin-top: 0;
+}
 
 
 /* footer css start */
@@ -709,3 +721,11 @@ p.invert{
   width: 40px; height: 40px; object-fit: contain;
 }
 /* 404 Page CSS ended */
+
+
+
+/* about page about section css start */
+.about_page_about_section .home_about_cont_sctn{
+  width:100%; max-width: 65%;
+}
+/* about page about section css ended */
