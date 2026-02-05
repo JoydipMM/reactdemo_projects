@@ -1,8 +1,12 @@
+import { Link } from "react-router-dom";
 
-export default function BrandLogoCard({ className, image="/default/default-logo.svg", title="default logo" }){
+export default function BrandLogoCard({ className, image="/default/default-logo.svg", link="", target="", title="default logo" }){
     return(<>
-    <div className={`brand_logo_card ${className ? className : ""}`}>
+    {!link && <div className={`brand_logo_card ${className ? className : ""}`}>
         <img src={image} alt={title} />
-    </div>
+    </div> }
+    {link && <Link className={`brand_logo_card ${className ? className : ""}`} to={link} target={target}>
+        <img src={image} alt={title} />
+    </Link> }
     </>)
 }

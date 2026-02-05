@@ -1,7 +1,13 @@
-export default function Footer() {
+import MainLogo from "../common/MainLogo";
+
+export default function Footer({className}) {
     return (
         <>
-            <h1>Footer</h1>
+        <footer className={`site-main-footer ${className ? className : ""}`}>
+            <div className="container">
+                <MainLogo image={"/images/soultrove-white-logo.svg"}/>
+            </div>
+        </footer>
         </>
     )
 }

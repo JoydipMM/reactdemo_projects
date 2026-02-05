@@ -189,6 +189,7 @@ p.invert{
 /* site logo css ended */
 
 
+
 /* header css start */
 .main_header{
   width: 100%; padding:20px 0px 60px; position: relative; border-top: var(--primary-color) solid 5px;
@@ -196,13 +197,9 @@ p.invert{
 .header_inner{
   width: 100%; display: inline-flex; align-items: center; justify-content: space-between;
 }
-.header_menus{
-  display: flex; column-gap: 20px; list-style-type: none;
-}
 .header_cols{
   display: flex; flex-wrap: wrap; column-gap: 15px; align-items: center;
 }
-
 .header_flowting_box{
   width: calc(100% - 30px); position: absolute; bottom: -100%; left: 50%; transform: translateX(-50%) translateY(-5%); display: flex; flex-wrap: wrap; align-items: center; column-gap: 30px; justify-content: space-between; z-index: 2;
 }
@@ -216,6 +213,25 @@ p.invert{
   min-width: 25%; min-height: 90px;
 }
 /* header css ended */
+
+
+/* header menus css start */
+.header_menus{
+  width: auto; display: inline-flex; align-items: center; column-gap: 3vw; list-style-type: none; margin: 0px; padding: 0px;
+}
+.header_menus>li{
+  width: auto; display: inline-flex; align-items: center; column-gap: 10px; list-style-type: none; position: relative; margin: 0px;
+}
+.header_menus>li>a{
+  font-size: 18px; font-weight: 500; position: relative;  padding:5px 0px; color: var(--heading-color); font-weight: 600; transition: all ease-in-out 0.4s;
+}
+.header_menus>li>a:after{
+  content: ""; display: inline-block; width: 0; height: 2px; background-color: var(--heading-color); transition: all ease-in-out 0.4s; position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%);
+}
+.header_menus>li>a:hover:after, .header_menus>li>a.active_menu_item:after{
+  width: 100%;
+}
+/* header menus css ended */
 
 
 /* conatct info iconic box css start */
@@ -645,3 +661,51 @@ p.invert{
 .section_action_row{
   width: 100%; display: inline-flex; align-items: center; justify-content: center; column-gap: 30px; margin-top: 60px;
 }
+
+
+/* footer css start */
+.site-main-footer{
+  width: 100%; padding: 50px 0px; display: inline-block; position: relative; background: var(--primary-color); color: #fff;
+}
+/* footer css ended */
+
+
+
+/* 404 Page CSS Start */
+.not_found_page{
+  width: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--light-bg); padding: 80px 0px; position: relative; overflow: hidden;
+}
+.not_found_page::before{
+  content: ""; width: 500px; height: 500px; background: var(--primary-color); position: absolute; top: -180px; left: -200px; border-radius: 100%; opacity: 0.12; z-index: 0;
+}
+.not_found_page::after{
+  content: ""; width: 600px; height: 600px; background: var(--secondary-color); position: absolute; bottom: -220px; right: -250px; border-radius: 100%; opacity: 0.12; z-index: 0;
+}
+.not_found_inner{
+  width: 100%; max-width: 950px; position: relative; z-index: 1; text-align: center; margin: 0px auto;
+}
+.not_found_card{
+  width: 100%; padding: 80px 60px; border-radius: 70px 20px 70px 20px; background: #fff; box-shadow: 0px 10px 35px rgba(0,0,0,0.10); border: 1px solid rgba(149, 63, 55, 0.15);
+}
+.not_found_code{
+  font-size: 120px; font-weight: 800; color: var(--secondary-color); line-height: 1; margin-bottom: 20px; letter-spacing: 3px;
+}
+.not_found_title{
+  font-size: 45px; font-weight: 800; color: var(--heading-color); margin-bottom: 15px; line-height: 1.2;
+}
+.not_found_title span{
+  color: var(--primary-color);
+}
+.not_found_text{
+  width: 100%; max-width: 600px; margin: 0px auto 40px; font-size: 18px; font-weight: 600; color: var(--text-color); line-height: 1.7;
+}
+.not_found_action_row{
+  width: 100%; display: inline-flex; justify-content: center; flex-wrap: wrap; gap: 20px;
+}
+.not_found_icon{
+  width: 90px; height: 90px; border-radius: 100%; background: var(--secondary-color); display: inline-flex; align-items: center; justify-content: center; margin: 0px auto 25px; box-shadow: 0px 8px 18px rgba(149, 63, 55, 0.25);
+}
+.not_found_icon img{
+  width: 40px; height: 40px; object-fit: contain;
+}
+/* 404 Page CSS ended */

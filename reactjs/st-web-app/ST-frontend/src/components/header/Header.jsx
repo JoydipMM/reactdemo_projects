@@ -13,8 +13,8 @@ export default function Header(){
                     <div className="header_cols header_lft_col"><MainLogo url="/about" /></div>
                     <div className="header_cols header_mid_col"><HeaderMenus/></div>
                     <div className="header_cols header_rgt_col">
-                        <Link to="/" className="common_button">Login</Link>
-                        <Link to="/" className="common_button iconic">e</Link>
+                        <Link to="/" className="common_button invert">Login</Link>
+                        <Link to="/" className="common_button iconic invert"><Icons.CartIcon /></Link>
                     </div>
                 </div>
 
