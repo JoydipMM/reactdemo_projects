@@ -3,7 +3,7 @@ import CornerThumbCurveCard from "../common/CornerThumbCurveCard";
 import SlickCarousel from "../sliders/SlickCarousel";
 
 export default function HomeWhatWeDoSection() {
-
+    
     return (
         <>
         <section className="common_page_indvdl_section home_what_we_do_section">
