@@ -14,19 +14,19 @@ export default function AboutSolvingSection() {
 
                         <div className="solution_col col_one full">
                             <div className="section_common_heading_section left_align _invert_color">
-                                <h2 className="section_heading_text">For Service Providers</h2>
-                                <p>Grow with Soultrove.</p>
+                                <h2 className="section_heading_text">What We’re Solving</h2>
+                                {/* <p>Grow with Soultrove.</p> */}
                             </div>
-                            <div className="bullet_info_section">
-                                <h2 className="bullet_section_title">Join and connect</h2>
+                            <div className="bullet_info_section full-width">
+                                <h2 className="bullet_section_title">Challenges families face</h2>
                                 <ul className="bullet_list">
                                     <li>Create your account</li>
                                     <li>Browse providers and resources</li>
                                     <li>Book and manage support</li>
                                 </ul>
                             </div>
-                            <div className="bullet_info_section">
-                                <h2 className="bullet_section_title">Join and connect</h2>
+                            <div className="bullet_info_section full-width">
+                                <h2 className="bullet_section_title">How Soultrove bridges the gaps</h2>
                                 <ul className="bullet_list">
                                     <li>Create your account</li>
                                     <li>Browse providers and resources</li>
