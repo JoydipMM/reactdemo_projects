@@ -1,8 +1,14 @@
+import { useState } from "react";
+import * as data from '../../services/dummyData';
 import { Link } from "react-router-dom";
 import ThumbnailCard from "../common/ThumbnailCard";
 import SlickCarousel from "../sliders/SlickCarousel";
 
 export default function HomeKnowledgeHubSection() {
+    const [knowledgeHubTitle, setKnowledgeHubTitle] = useState(data.homedata.knowledgeHub.title);
+    const [knowledgeHubDescription, setKnowledgeHubDescription] = useState(data.homedata.knowledgeHub.description);
+    const [knowledgeHubCards, setKnowledgeHubCards] = useState(data.homedata.knowledgeHub.cards);
+
     const cardSettings = {
         dots: true,
         infinite: true,
@@ -18,15 +24,25 @@ export default function HomeKnowledgeHubSection() {
             <div className="container">
 
                 <div className="section_common_heading_section">
-                    <h2 className="section_heading_text">Knowledge Hub</h2>
-                    <p>Guides, stories, and expert tips for every step.</p>
+                    <h2 className="section_heading_text">{knowledgeHubTitle}</h2>
+                    <p>{knowledgeHubDescription}</p>
                 </div>
 
                 <div className="knowledge_cards_wrap">
                     <SlickCarousel settings={cardSettings}>
+                        {knowledgeHubCards.length > 0 && knowledgeHubCards.map((item, index) => (
+                            <ThumbnailCard 
+                            key={index} 
+                            className="knowledge_card" 
+                            title={item.title} 
+                            description={item.description} 
+                            imageUrl={item.image} 
+                            url={item.url} 
+                            />
+                        ))}
+                        {/* <ThumbnailCard className="knowledge_card" title="Starting Therapy: A Family Guide" description="What to expect and how to prepare." imageUrl="/images/default-banner.jpg" />
                         <ThumbnailCard className="knowledge_card" title="Starting Therapy: A Family Guide" description="What to expect and how to prepare." imageUrl="/images/default-banner.jpg" />
-                        <ThumbnailCard className="knowledge_card" title="Starting Therapy: A Family Guide" description="What to expect and how to prepare." imageUrl="/images/default-banner.jpg" />
-                        <ThumbnailCard className="knowledge_card" title="Starting Therapy: A Family Guide" description="What to expect and how to prepare." imageUrl="/images/default-banner.jpg" />
+                        <ThumbnailCard className="knowledge_card" title="Starting Therapy: A Family Guide" description="What to expect and how to prepare." imageUrl="/images/default-banner.jpg" /> */}
                     </SlickCarousel>
                 </div>
 

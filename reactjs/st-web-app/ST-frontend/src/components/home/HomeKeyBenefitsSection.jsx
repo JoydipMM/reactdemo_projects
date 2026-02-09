@@ -1,7 +1,13 @@
+import { useState } from "react";
+import * as data from '../../services/dummyData';
 import BenefitCard from "../common/BenefitCard";
 import SlickCarousel from "../sliders/SlickCarousel";
 
 export default function HomeKeyBenefitsSection() {
+
+    const [title, setTitle] = useState(data.homedata.keyBenefits.title);
+    const [description, setDescription] = useState(data.homedata.keyBenefits.description);
+    const [benefitCards, setBenefitCards] = useState(data.homedata.keyBenefits.cards);
 
     const customSettings = {
         dots: true,
@@ -22,18 +28,26 @@ export default function HomeKeyBenefitsSection() {
 
                     <div className="home_key_benefit_info_wrap">
                         <div className="key_benefit_lft_col">
-                            <h2 className="section_heading_text">Key Benefits</h2>
+                            <h2 className="section_heading_text">{title}</h2>
                         </div>
                         <div className="key_benefit_rgt_col">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet risus non est sodales efficitur. Integer imperdiet facilisis diam, dignissim varius risus ultrices at. Sed eu justo ut nulla condimentum gravida eget quis lorem.</p>
+                            <p>{description}</p>
                         </div>
                     </div>
 
                     <div className="home_key_benefit_cards_wrap">
                         <SlickCarousel settings={customSettings}>
+                            {benefitCards.map((item, index) => (
+                                <BenefitCard 
+                                key={index} 
+                                icontype={"image"} 
+                                icon={item.icon} 
+                                title={item.title} 
+                                description={item.description} />
+                            ))}
+                            {/* <BenefitCard icontype="image" icon="/icons/health-white-icon.svg"/>
                             <BenefitCard icontype="image" icon="/icons/health-white-icon.svg"/>
-                            <BenefitCard icontype="image" icon="/icons/health-white-icon.svg"/>
-                            <BenefitCard icontype="image" icon="/icons/health-white-icon.svg"/>
+                            <BenefitCard icontype="image" icon="/icons/health-white-icon.svg"/> */}
                         </SlickCarousel>
                     </div>
 

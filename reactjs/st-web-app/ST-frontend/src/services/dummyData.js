@@ -13,7 +13,7 @@ export const homedata = {
     },
     "whatWeDo":{
         "title":"What we do",
-        "description":"We believe every person deserves dignified support and opportunity. Soultrove bridges families, providers, and resources—so care is coordinated, transparent, and human.",
+        "description":"A unified place to discover, connect, and thrive across care and inclusion.",
         "cards":[
             {
                 "id":1,
