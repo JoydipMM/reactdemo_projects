@@ -1,8 +1,15 @@
+import { useState } from "react";
+import * as data from '../../services/dummyData';
 import { Link } from "react-router-dom";
 import CornerCurveCard from "../common/CornerCurveCard";
 import ImageThumb from "../common/ImageThumb";
 
 export default function AboutSolvingSection() {
+
+    const [solutionTitle, setSolutionTitle] = useState(data.aboutData.aboutSolving.title);
+    const [solutionDescription, setSolutionDescription] = useState(data.aboutData.aboutSolving.description);
+    const [solutionImage, setSolutionImage] = useState(data.aboutData.aboutSolving.image);
+    const [solutionCards, setSolutionCards] = useState(data.aboutData.aboutSolving.cards);
     return (
         <>
         <section className="common_page_indvdl_section home_service_provider_section">
@@ -14,10 +21,22 @@ export default function AboutSolvingSection() {
 
                         <div className="solution_col col_one full">
                             <div className="section_common_heading_section left_align _invert_color">
-                                <h2 className="section_heading_text">What We’re Solving</h2>
+                                <h2 className="section_heading_text">{solutionTitle}</h2>
                                 {/* <p>Grow with Soultrove.</p> */}
                             </div>
-                            <div className="bullet_info_section full-width">
+                            {solutionCards.length > 0 && solutionCards.map((item, index) => (
+                                <div className="bullet_info_section full-width">
+                                    <h2 className="bullet_section_title">{item.title}</h2>
+                                    <ul className="bullet_list">
+                                        {item.tags.length > 0 && item.tags.map((subItem, subIndex) => (<li key={subIndex}>{subItem}</li>))}
+                                        {/* <li>Create your account</li>
+                                        <li>Browse providers and resources</li>
+                                        <li>Book and manage support</li> */}
+                                    </ul>
+                                </div>
+                            ))}
+
+                            {/* <div className="bullet_info_section full-width">
                                 <h2 className="bullet_section_title">Challenges families face</h2>
                                 <ul className="bullet_list">
                                     <li>Create your account</li>
@@ -32,7 +51,9 @@ export default function AboutSolvingSection() {
                                     <li>Browse providers and resources</li>
                                     <li>Book and manage support</li>
                                 </ul>
-                            </div>
+                            </div> */}
+
+                            
                         </div>
 
                         {/* <div className="solution_col mid_col col_two">
@@ -51,7 +72,7 @@ export default function AboutSolvingSection() {
 
                         <div className="solution_col col_three">
                             <CornerCurveCard className="solution_curve_thumb_card">
-                                <ImageThumb url="/images/banner-01.jpg" />
+                                <ImageThumb url={solutionImage} />
                             </CornerCurveCard>
                         </div>
 

@@ -1,7 +1,10 @@
+import { useState } from "react";
+import * as data from '../../services/dummyData';
 import { Link } from "react-router-dom";
-import ImageThumb from "../common/ImageThumb";
 
 export default function AboutWideSection() {
+    const [aboutTitle, setAboutTitle] = useState(data.aboutData.about.title);
+    const [aboutDescription, setAboutDescription] = useState(data.aboutData.about.description);
     return (
         <>
         <section className="common_page_indvdl_section about_page_about_section">
@@ -13,7 +16,7 @@ export default function AboutWideSection() {
                             <Link to="/" className="common_button">Read our story </Link>
                             <Link to="/" className="common_button invert">Read our story </Link>
                         </div>
-                        <p>Empowering every journey, every ability.</p>
+                        <p>{aboutDescription}</p>
                     </div>
                 </div>
             </div>

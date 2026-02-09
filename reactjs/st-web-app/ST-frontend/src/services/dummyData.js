@@ -305,42 +305,44 @@ export const commonData = {
 
 
 export const aboutData = {
-    "banner":[
-        {
+    "banner":{
             "id":1,
             "title":"India’s first holistic digital ecosystem for developmental disabilities.",
             "subtitle":"About Soultrove",
             "description":"Connecting families to therapies, education, skills, and future security—all in one trusted space.",
             "image":"data/about-banner.jpg"
-        }
-    ],
+        },
     "about":{
-        "title":"Vision, Mission & Values",
-        "description":""
+        "title":"",
+        "description":"Empowering every journey, every ability.",
     },
-    "visionMission":[
-        {
-            "id":1,
-            "icon":"/data/dart-icon.svg",
-            "image":"/data/about-vision.jpg",
-            "title":"Vision",
-            "description":"A world where every individual with developmental disabilities is included, supported, and independent.",
-        },
-        {
-            "id":2,
-            "icon":"/data/mission-icon.svg",
-            "image":"/data/about-mission.jpg",
-            "title":"Mission",
-            "description":"To empower families and individuals through access, inclusion, and long-term sustainability.",
-        },
-        {
-            "id":3,
-            "icon":"/data/value-icon.svg",
-            "image":"/data/about-value.jpg",
-            "title":"Values",
-            "description":"Empathy Inclusion Trust Future-readiness",
-        },
-    ],
+    "visionMission":{
+        "title":"Vision, Mission & Values",
+        "description":"",
+        "cards":[
+            {
+                "id":1,
+                "icon":"/data/dart-icon.svg",
+                "image":"/data/about-vision.jpg",
+                "title":"Vision",
+                "description":"A world where every individual with developmental disabilities is included, supported, and independent.",
+            },
+            {
+                "id":2,
+                "icon":"/data/mission-icon.svg",
+                "image":"/data/about-mission.jpg",
+                "title":"Mission",
+                "description":"To empower families and individuals through access, inclusion, and long-term sustainability.",
+            },
+            {
+                "id":3,
+                "icon":"/data/value-icon.svg",
+                "image":"/data/about-value.jpg",
+                "title":"Values",
+                "description":"Empathy Inclusion Trust Future-readiness",
+            },
+        ],
+    },
     "aboutDifferentiator":{
         "title":"The Soultrove Differentiator",
         "description":"Why Soultrove is Unique",
