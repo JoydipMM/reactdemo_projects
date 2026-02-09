@@ -72,6 +72,7 @@ export const homedata = {
     "impact":{
         "title":"Impact & Inclusion",
         "description":"We partner with families and providers to drive measurable, human-centered outcomes.",
+        "image":"/data/home-impact-banner.jpg",
         "cards":[
             {
                 "id":1,
@@ -101,7 +102,7 @@ export const homedata = {
         {
             "id":1,
             "massage":"Better coordination with caregivers led to faster progress",
-            "avater":"/data/avater-01.jpg",
+            "avater":"/data/avater-02.jpg",
             "name":"Dr. Lee",
             "designation":"OT",
         },
@@ -187,7 +188,7 @@ export const homedata = {
         {
             "title":"For Service Providers",
             "description":"Grow with Soultrove.",
-            "image":"/data/home-service-image-01.jpg",
+            "image":"/data/home-service-image-02.jpg",
             "cards01":[
                 {
                     "id":1,
@@ -250,7 +251,7 @@ export const homedata = {
             {
                "title":"Financial Planning 101",
                 "description":"Foundations for long-term stability.", 
-                "image":"/data/knowledge-hub-02.jpg",
+                "image":"/data/knowledge-hub-03.jpg",
             },
         ]
     },
@@ -300,4 +301,101 @@ export const commonData = {
             "description":"Join a trusted community and access the support you need.",
         }
     ]
+}
+
+
+export const aboutData = {
+    "banner":[
+        {
+            "id":1,
+            "title":"India’s first holistic digital ecosystem for developmental disabilities.",
+            "subtitle":"About Soultrove",
+            "description":"Connecting families to therapies, education, skills, and future security—all in one trusted space.",
+            "image":"data/about-banner.jpg"
+        }
+    ],
+    "about":{
+        "title":"Vision, Mission & Values",
+        "description":""
+    },
+    "visionMission":[
+        {
+            "id":1,
+            "icon":"/data/dart-icon.svg",
+            "image":"/data/about-vision.jpg",
+            "title":"Vision",
+            "description":"A world where every individual with developmental disabilities is included, supported, and independent.",
+        },
+        {
+            "id":2,
+            "icon":"/data/mission-icon.svg",
+            "image":"/data/about-mission.jpg",
+            "title":"Mission",
+            "description":"To empower families and individuals through access, inclusion, and long-term sustainability.",
+        },
+        {
+            "id":3,
+            "icon":"/data/value-icon.svg",
+            "image":"/data/about-value.jpg",
+            "title":"Values",
+            "description":"Empathy Inclusion Trust Future-readiness",
+        },
+    ],
+    "aboutDifferentiator":{
+        "title":"The Soultrove Differentiator",
+        "description":"Why Soultrove is Unique",
+        "cards":[
+            {
+                "id":1,
+                "image":"/data/about-soul-01.jpg",
+                "title":"Life-span support",
+                "description":"From early childhood to adulthood.",  
+            },
+            {
+                "id":2,
+                "image":"/data/about-soul-02.jpg",
+                "title":"360° ecosystem",
+                "description":"Healthcare, education, legal, vocational, inclusion.",  
+            },
+            {
+                "id":3,
+                "image":"/data/about-soul-03.jpg",
+                "title":"Future-focused",
+                "description":"Solutions that grow with your needs.",  
+            },
+        ]
+    },
+    "aboutSolving":{
+        "title":"What We’re Solving",
+        "description":"",
+        "image":"/data/about-soul-solve.jpg",
+        "cards":[
+            {
+                "id":1,
+                "title":"Challenges families face",
+                "tags":["Scattered information", "Limited service", "Uncertainty about the future"],
+            },
+            {
+                "id":2,
+                "title":"How Soultrove bridges the gaps",
+                "tags":["Single place for access", "Transparent, trusted services", "Future-ready planning", "Community and collaboration"],
+            },
+        ]
+    },
+    "aboutFeatures":{
+        "title":"Join thousands of families creating brighter futures with Soultrove.",
+        "cards":[
+            {
+                "id":1,
+                "title":"",
+                "image":"/data/about-features-01.jpg",
+            }
+        ]
+    },
+    "aboutStory":{
+        "title":"Story Behind the Name",
+        "description":"The name Soultrove comes from two words—Soul and Treasure Trove. It reflects our belief that every individual is a treasure of potential, dignity, and dreams. Soultrove is the platform where these treasures are nurtured, protected, and celebrated—where empathy (roots) grows into connection (branches), and together we bear the fruit of lasting impact.",
+        "image":"/data/about-story.jpg",
+    },
+    
 }
