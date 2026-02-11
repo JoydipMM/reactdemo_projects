@@ -1,0 +1,1 @@
+export const USER_DEFAULT_AVATER = "https://api.dicebear.com/7.x/identicon/svg?seed=atanu"

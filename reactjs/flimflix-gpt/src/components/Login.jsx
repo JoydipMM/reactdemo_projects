@@ -1,15 +1,13 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import Header from './Header'
-import { Link, useNavigate } from 'react-router-dom'
 import { checkValidData } from '../utils/validate'
 import { auth } from '../utils/firebase'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux'
 import { addUser } from '../utils/userSlice'
+import { USER_DEFAULT_AVATER } from '../utils/constants';
 
 const Login = () => {
-
-    const navigate = useNavigate();
     const userDispatch = useDispatch();
 
     const [isSigninForm, setIsSigninForm] = useState(true);
@@ -53,12 +51,12 @@ const Login = () => {
 
                 // update user profile
                 updateProfile(user, {
-                    displayName: fullnameRef.current?.value, photoURL: "https://api.dicebear.com/7.x/identicon/svg?seed=atanu"
+                    displayName: fullnameRef.current?.value, photoURL: USER_DEFAULT_AVATER
                 }).then(() => {
                     // Profile updated!
                     const { uid, email, displayName, photoURL } = auth.currentUser;
                     userDispatch(addUser({ uid, email, displayName, photoURL }));
-                    navigate("/browse");
+                    //navigate("/browse");
                 }).catch((error) => {
                 // An error occurred
                     setErrorMsg(error.message);
@@ -89,7 +87,7 @@ const Login = () => {
                 console.log(user);
                 // if sign in success then save the user object in redux store - this step added in Body component
                 // redirect to browse page
-                navigate("/browse");
+                //navigate("/browse");
             })
             .catch((error) => {
                 const errorCode = error.code;
