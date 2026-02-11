@@ -20,7 +20,7 @@ const Login = () => {
         e.preventDefault();
         //console.log(emailRef.current.value);
         //console.log(passwordRef.current.value);
-        const validateMsg = checkValidData(emailRef.current.value, passwordRef.current.value);
+        const validateMsg = checkValidData(fullnameRef.current.value, emailRef.current.value, passwordRef.current.value);
         console.log(validateMsg);
         setErrorMsg(validateMsg);
     }
@@ -30,10 +30,11 @@ const Login = () => {
     <div>
         <Header/>
         <br/>
+        <h2>tesststst</h2>
       <h4>{isSigninForm ? "Sign In" : "Sign Up"}</h4>
       <div>
         <div>
-            <form>
+            <form onSubmit={(e)=> e.preventDefault()}>
                 {!isSigninForm && <div>
                     <label htmlFor="fullname">Full Name</label>
                     <input ref={fullnameRef} type="password" name="fullname" id="fullname" className='form_field' placeholder='Fullname' />
