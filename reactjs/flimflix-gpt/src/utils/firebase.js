@@ -7,13 +7,6 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  // apiKey: "AIzaSyB0Msx0_EcKx1S8MCcHBC-ELJPaVi3bUq0",
-  // authDomain: "flimflixgpt.firebaseapp.com",
-  // projectId: "flimflixgpt",
-  // storageBucket: "flimflixgpt.firebasestorage.app",
-  // messagingSenderId: "704902903016",
-  // appId: "1:704902903016:web:32f9848175e689202dc55d",
-  // measurementId: "G-X5JWFQHDCS"
   apiKey: process.env.VITE_APIKEY,
   authDomain: process.env.VITE_AUTHDOMAIN,
   projectId: process.env.VITE_PROJECTID,
