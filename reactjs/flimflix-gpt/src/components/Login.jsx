@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react'
 import Header from './Header'
 import { Link } from 'react-router-dom'
 import { checkValidData } from '../utils/validate'
+import { auth } from '../utils/firebase'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
     const [isSigninForm, setIsSigninForm] = useState(true);
@@ -10,6 +12,8 @@ const Login = () => {
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const fullnameRef = useRef(null);
+
+    
 
     const toggleSignInForm = () => {
         setIsSigninForm((prev) => !prev);
@@ -20,9 +24,61 @@ const Login = () => {
         e.preventDefault();
         //console.log(emailRef.current.value);
         //console.log(passwordRef.current.value);
-        const validateMsg = checkValidData(fullnameRef.current.value, emailRef.current.value, passwordRef.current.value);
+        const validateMsg = checkValidData(
+            !isSigninForm && fullnameRef.current?.value, 
+            emailRef.current.value, 
+            passwordRef.current.value);
         console.log(validateMsg);
         setErrorMsg(validateMsg);
+
+        if(validateMsg) return; //return if validateMsg is not null
+
+        if(!isSigninForm){
+            // signup / register
+            createUserWithEmailAndPassword(
+                auth,
+                emailRef.current.value, 
+                passwordRef.current.value
+            )
+            .then((userCredential) => {
+                // Signed up 
+                const user = userCredential.user;
+                console.log(user);
+
+                // if sign up success then save the user object in redux store
+                // redirect to browse page
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+                setErrorMsg(errorCode, errorMessage);
+                
+            });
+        }else{
+            // sign in
+            signInWithEmailAndPassword(
+                auth, 
+                emailRef.current.value, 
+                passwordRef.current.value
+            )
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log(user);
+                // if sign in success then save the user object in redux store
+                // redirect to browse page
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+                setErrorMsg(errorCode, errorMessage);
+            });
+        }
+
+
+
     }
 
 
@@ -37,7 +93,7 @@ const Login = () => {
             <form onSubmit={(e)=> e.preventDefault()}>
                 {!isSigninForm && <div>
                     <label htmlFor="fullname">Full Name</label>
-                    <input ref={fullnameRef} type="password" name="fullname" id="fullname" className='form_field' placeholder='Fullname' />
+                    <input ref={fullnameRef} type="text" name="fullname" id="fullname" className='form_field' placeholder='Fullname' />
                 </div> }
                 <div>
                     <label htmlFor="email">Email</label>
