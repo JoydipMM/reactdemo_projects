@@ -51,5 +51,14 @@ firebase deploy
 
 
 signup user:
+firebase.js
+import { getAuth } from "firebase/auth";
 
+Login.jsx:
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
+
+Redux setup:
+npm install -D @reduxjs/toolkit
+npm install react-redux
 
