@@ -64,9 +64,6 @@ const Header = () => {
       <button onClick={logoutEvent}>Logout</button></>}
       <br/>
       <br/>
-      <br/>
-      <br/>
-      <br/>
     </>
   )
 }
