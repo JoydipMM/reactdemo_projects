@@ -14,7 +14,7 @@ const Header = () => {
   const userStoreUser = useSelector((store) => store.user);
   const navigate = useNavigate();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const logoutEvent = () =>{
     setIsLoading(true);
@@ -54,7 +54,8 @@ const Header = () => {
     <>
       {isLoading && <Loading /> }
       <NavLink to={"/"}>Home</NavLink>
-      <NavLink to={"/about"}>About</NavLink>
+      {/* <NavLink to={"/about"}>About</NavLink> */}
+      {" | "}
       <NavLink to={"/browse"}>Browse</NavLink>
       {userStoreUser &&  <><div>
         <img width={20} src={userStoreUser?.photoURL} alt="" />
