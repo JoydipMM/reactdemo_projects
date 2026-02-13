@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import YouTube from "react-youtube";
 import { TMDB_API_OPTION } from '../../utils/constants';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTrailer, updateCurrentBrowseMovieIndex } from '../../utils/moviesSlice';
+const VideoBackground = ({movieID, backdrop, poster}) => {
 
-const VideoBackground = ({movieID, backdrop, poster, videoloop}) => {
+    const dispatch = useDispatch();
+
+    //console.log(movieID);
 
     // const [ trailerID, setTrailerID ] = useState(null);
     const posterUrl = `https://image.tmdb.org/t/p/w500${poster}`;
     const backdropUrl = `https://image.tmdb.org/t/p/w1920${backdrop}`;
 
-    const [trailers, setTrailers] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    //const [trailers, setTrailers] = useState(null);
+    const trailers = useSelector((store) => store.movies?.trailer);
+    const [ currentIndex, setCurrentIndex ] = useState(useSelector((store) => store.movies?.currentBrowseMovieIndex));
 
+    console.log("current index:", currentIndex);
     
 
     const movieVideoApi = async () => {
@@ -26,19 +33,17 @@ const VideoBackground = ({movieID, backdrop, poster, videoloop}) => {
         // setTrailerID(trailer);
 
         const trailerVideos = movieVideoData.results.filter((item) => item.type === "Trailer" && item.site === "YouTube");
-        setTrailers(trailerVideos);
-        setCurrentIndex((prev)=> prev++);
+
+        //setTrailers(trailerVideos[0]);
+        dispatch(addTrailer(trailerVideos[0]));
 
     }
 
+    useEffect(() => {
+        movieVideoApi();
+    }, [movieID]);
+
     // video end event
-    const handleVideoEnd = () => {
-        setCurrentIndex((prev) => {
-            const nextIndex = (prev + 1) % trailers.length;
-            videoloop(nextIndex); // send updated index to parent
-            return nextIndex;
-        });
-    };
 
     const opts = {
         height: "300",
@@ -52,17 +57,30 @@ const VideoBackground = ({movieID, backdrop, poster, videoloop}) => {
         },
     };
 
-    useEffect(() => {
-        movieVideoApi();
-    }, [movieID]);
+
+    const handleVideoEnd = () => {
+        /*setCurrentIndex((prev) => prev=prev+1);
+
+        console.log(currentIndex);
+        dispatch(updateCurrentBrowseMovieIndex(currentIndex));
+        return currentIndex;*/
+
+        setCurrentIndex((prev) => {
+            const nextIndex = prev + 1;
+            dispatch(updateCurrentBrowseMovieIndex(nextIndex));
+            return nextIndex;
+        });
+    };
+
+    
 
   return (
     <div>
-       {currentIndex} 
+        <button onClick={handleVideoEnd}>dfdfd</button>
       {/* <iframe width="560" height="315" src={`https://www.youtube.com/embed/${trailerID}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> */}
-      {trailers.length > 0 && (
+      {trailers && (
         <YouTube
-          videoId={trailers[currentIndex]?.key}
+          videoId={trailers?.key}
           opts={opts}
           onEnd={handleVideoEnd}
         />

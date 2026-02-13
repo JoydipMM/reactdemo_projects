@@ -5,30 +5,22 @@ import VideoBackground from './VideoBackground';
 
 const TopBannerSection = () => {
 
-    const [loopCount, setLoopCount] = useState(0);
-    const [nextMovide, setNextMovie] = useState(0);
-
+    const nextMovieIndex = useSelector((store) => store.movies?.currentBrowseMovieIndex);
     const getMovies = useSelector((store) => store.movies?.nowPlayingMovies);
-    //console.log(getMovies);
 
     //if(getMovies === null) return; //option - 01  also known as early return
     if(!getMovies) return; // option - 02  also known as early return
 
-    const singleMovieData = getMovies?.[nextMovide];
-    console.log(singleMovieData);
+    const singleMovieData = getMovies?.[nextMovieIndex];
+    //console.log("current movie:",singleMovieData);
     const {id, backdrop_path, poster_path} = singleMovieData;
-
-     const handleLoopCount = (count) => {
-        setLoopCount(count);
-        console.log("Video loop index:", count);
-        setNextMovie(count);
-    };
 
   return (
     <>
-    {loopCount}
+    <div>current movie: {singleMovieData.id}</div>
+    <div>next movie: {nextMovieIndex}</div>
     <VideoTitle data={singleMovieData}/>
-    <VideoBackground movieID={id} backdrop={backdrop_path} poster={poster_path} videoloop={handleLoopCount}/>
+    <VideoBackground movieID={singleMovieData.id} backdrop={backdrop_path} poster={poster_path}/>
     </>
   )
 }
