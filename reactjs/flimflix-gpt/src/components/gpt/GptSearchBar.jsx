@@ -20,9 +20,9 @@ const GptSearchBar = () => {
     const searchEvent = async (e) => {
         e.preventDefault()
         const text = inputRef.current.value;
-        console.log(text);
+        //console.log(text);
 
-        const queryText = `act as a movie recommendation system and suggest some movies for the query: ${text} only gave me name of 5 movies. comma separated`;
+        const queryText = `act as a movie recommendation system and suggest some movies for the query: ${text} only gave me name of 5 movies. Also search as per language preference.  comma separated`;
 
         const gptResult = await openai.chat.completions.create({
             messages: [{ role: 'user', content: queryText }],
@@ -38,13 +38,13 @@ const GptSearchBar = () => {
         //console.log(gptResult.choices?.[0]?.message?.content);
         // result is comma separated so convert it to array
         const gptResultArray = gptResult.choices?.[0]?.message?.content.split(",");
-        console.log(gptResultArray);
+        //console.log(gptResultArray);
         //const lastGptSearchObj = { searchContent: text, searchResult: gptResultArray };
         //dispatch(lastGptSearch(lastGptSearchObj));
 
         const gptSearchPromiseArray = gptResultArray.map((movieName) => findSearchMovies(movieName));
         const gptSearchResult = await Promise.all(gptSearchPromiseArray);
-        console.log(gptSearchResult);
+        //console.log(gptSearchResult);
         dispatch(lastGptSearch({searchContent: text, movieNames:gptResultArray, searchResult: gptSearchResult}));
     }
 

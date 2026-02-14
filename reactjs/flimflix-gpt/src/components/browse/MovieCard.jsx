@@ -2,7 +2,8 @@ import React from 'react'
 import { TMDB_IMG_PATH } from '../../utils/constants'
 
 const MovieCard = ({movie}) => {
-    console.log(movie);
+    //console.log(movie);
+    if(!movie.poster_path) return null;
   return (
     <div style={{flexShrink:"0"}}>
       {movie.title}
