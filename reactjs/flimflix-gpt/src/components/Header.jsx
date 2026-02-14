@@ -57,7 +57,11 @@ const Header = () => {
       {/* <NavLink to={"/about"}>About</NavLink> */}
       {" | "}
       <NavLink to={"/browse"}>Browse</NavLink>
-      {userStoreUser &&  <><div>
+      {userStoreUser &&  <>
+      {" | "}
+      <button>GPT search</button>
+      
+      <div>
         <img width={20} src={userStoreUser?.photoURL} alt="" />
         <span>{userStoreUser?.displayName}</span>
         </div>
