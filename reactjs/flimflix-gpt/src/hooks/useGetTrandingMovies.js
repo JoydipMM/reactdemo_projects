@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { TMDB_API_OPTION, API_BASE_URL } from '../utils/constants';
 import { useDispatch } from 'react-redux';
-import { trandingMovies } from '../utils/moviesSlice';
+import { trandingMovies } from '../store/moviesSlice';
 
 const useGetTrandingMovies = () => {
 

@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { auth } from '../utils/firebase';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from 'react-redux';
-import { addUser, removeUser } from '../utils/userSlice';
+import { addUser, removeUser } from '../store/userSlice';
 
 export const Loading = () => {
   return <><div style={{width:"100%", height:"100%", position:"fixed", top:"0px", left:"0px", background:"#fff", fontSize:"50px", display:"flex", justifyContent:"center", alignItems:"center", color:"#000", zIndex:"9999"}}>Loading...</div></>

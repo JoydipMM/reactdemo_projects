@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { TMDB_API_OPTION, API_BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addTrailer } from "../utils/moviesSlice";
+import { addTrailer } from "../store/moviesSlice";
 
 const useGetBrowseTrailers = (movieID) => {
   const dispatch = useDispatch();

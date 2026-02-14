@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import YouTube from "react-youtube";
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCurrentBrowseMovieIndex } from '../../utils/moviesSlice';
+import { updateCurrentBrowseMovieIndex } from '../../store/moviesSlice';
 import useGetBrowseTrailers from '../../hooks/useGetBrowseTrailers';
 
 

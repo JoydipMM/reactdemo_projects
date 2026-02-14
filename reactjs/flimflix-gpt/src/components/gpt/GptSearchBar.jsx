@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import openai from '../../utils/openAi';
 import { useDispatch } from 'react-redux';
-import { lastGptSearch } from '../../utils/gptSlice';
+import { lastGptSearch } from '../../store/gptSlice';
 import { API_BASE_URL, TMDB_API_OPTION } from '../../utils/constants';
 
 const GptSearchBar = () => {
@@ -22,7 +22,7 @@ const GptSearchBar = () => {
         const text = inputRef.current.value;
         //console.log(text);
 
-        const queryText = `act as a movie recommendation system and suggest some movies for the query: ${text} only gave me name of 5 movies. Also search as per language preference.  comma separated`;
+        const queryText = `act as a movie recommendation system and suggest some movies for the query: ${text} only gave me name of 5 movies.  comma separated`;
 
         const gptResult = await openai.chat.completions.create({
             messages: [{ role: 'user', content: queryText }],
