@@ -5,56 +5,56 @@ import { updateCurrentBrowseMovieIndex } from '../../utils/moviesSlice';
 import useGetBrowseTrailers from '../../hooks/useGetBrowseTrailers';
 
 
-const VideoBackground = ({movieID, backdrop, poster}) => {
+const VideoBackground = ({ movieID, backdrop, poster }) => {
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    //console.log(movieID);
+  //console.log(movieID);
 
-    // const [ trailerID, setTrailerID ] = useState(null);
-    const posterUrl = `https://image.tmdb.org/t/p/w500${poster}`;
-    const backdropUrl = `https://image.tmdb.org/t/p/w1920${backdrop}`;
+  // const [ trailerID, setTrailerID ] = useState(null);
+  const posterUrl = `https://image.tmdb.org/t/p/w500${poster}`;
+  const backdropUrl = `https://image.tmdb.org/t/p/w1920${backdrop}`;
 
-    //const [trailers, setTrailers] = useState(null);
-    const trailers = useSelector((store) => store.movies?.trailer);
-    const [ currentIndex, setCurrentIndex ] = useState(useSelector((store) => store.movies?.currentBrowseMovieIndex));
-
-    
-    useGetBrowseTrailers(movieID);
-    
-
-    // useEffect(() => {
-    //     movieVideoApi(movieID);
-    // }, [movieID]);
-
-    // video end event
-
-    const opts = {
-        height: "300",
-        width: "500",
-        playerVars: {
-        autoplay: 1,
-        controls: 0,
-        mute: 1,
-        rel: 0,
-        modestbranding: 1,
-        },
-    };
+  //const [trailers, setTrailers] = useState(null);
+  const trailers = useSelector((store) => store.movies?.trailer);
+  const [currentIndex, setCurrentIndex] = useState(useSelector((store) => store.movies?.currentBrowseMovieIndex));
 
 
-    const handleVideoEnd = () => {
-        setCurrentIndex((prev) => {
-            const nextIndex = prev + 1;
-            dispatch(updateCurrentBrowseMovieIndex(nextIndex));
-            return nextIndex;
-        });
-    };
+  useGetBrowseTrailers(movieID);
 
-    
+
+  // useEffect(() => {
+  //     movieVideoApi(movieID);
+  // }, [movieID]);
+
+
+  // youtube options
+  const opts = {
+    height: "300",
+    width: "500",
+    playerVars: {
+      autoplay: 1,
+      controls: 0,
+      mute: 1,
+      rel: 0,
+      modestbranding: 1,
+    },
+  };
+
+  // video end event
+  const handleVideoEnd = () => {
+    setCurrentIndex((prev) => {
+      const nextIndex = prev + 1;
+      dispatch(updateCurrentBrowseMovieIndex(nextIndex));
+      return nextIndex;
+    });
+  };
+
+
 
   return (
     <div>
-        <button onClick={handleVideoEnd}>dfdfd</button>
+      <button onClick={handleVideoEnd}>dfdfd</button>
       {/* <iframe width="560" height="315" src={`https://www.youtube.com/embed/${trailerID}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> */}
       {trailers && (
         <YouTube
