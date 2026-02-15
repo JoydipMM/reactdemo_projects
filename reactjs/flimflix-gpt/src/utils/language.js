@@ -98,7 +98,7 @@ export const SITE_CONTENT ={
       "hi":"पूरा नाम",
       "bn":"পূর্ণ নাম",
     },
-    "alreadyhaveaccount?":{
+    "alreadyhaveaccount":{
       "en":"Already have an account?",
       "hi":"एक खाता हैं?",
       "bn":"অ্যাকাউন্ট আছে?",
@@ -107,5 +107,35 @@ export const SITE_CONTENT ={
       "en":"Don't have an account?",
       "hi":"एक खाता नहीं हैं?",
       "bn":"অ্যাকাউন্ট নেই?",
-    }
+    },
+    "signinwithgoogle":{
+      "en":"Sign In with Google",
+      "hi":"Google से साइन इन करें",
+      "bn":"Google সাইন ইন করুন",
+    },
+    "termsofuse":{
+      "en":"Terms of Use",
+      "hi":"उपयोग की शर्तें",
+      "bn":"ব্যবহারের শর্ত",
+    },
+    "privacypolicy":{
+      "en":"Privacy Policy",
+      "hi":"गोपनीयीता नीति",
+      "bn":"গোপনীয় নীতি",
+    },
+    "contactsupport":{
+      "en":"Contact Support",
+      "hi":"सहायता करें",
+      "bn":"সহায়তা করুন",
+    },
+    "logout":{
+      "en":"Logout",
+      "hi":"लॉग आउट",
+      "bn":"লগ আউট",
+    },
+    "search":{
+      "en":"Search",
+      "hi":"खोज",
+      "bn":"অনুসন্ধান",
+    },
 }

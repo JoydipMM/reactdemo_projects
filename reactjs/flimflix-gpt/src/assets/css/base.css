@@ -14,17 +14,69 @@ body {
 .common_container{
     position: relative; z-index: 1; width: 90%; padding: 0px 15px; margin: 0px auto;
 }
+.common_button{
+    display: inline-flex; align-items: center; justify-content: center; padding: 10px 20px; border-radius: 5px; border: none; background: var(--color-primary);  text-decoration: none; cursor: pointer; transition: all 0.3s ease-in-out; appearance: none; outline: none; font-size: 0.9em; font-weight: 600; column-gap: 15px;
+}
+.common_button:hover{
+    background: var(--color-primary-hover);
+}
+.common_button img{
+    height: 1.3vw; min-height: 20px;
+}
+.common_button.white{
+    background: #fff; color: var(--color-secondary);
+}
+.common_button.white:hover{
+    background: #e7e7e7;
+}
+.normal_text_btn{
+    font-size: 0.9em; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s ease-in-out; display: inline-flex; align-items: center; justify-content: center; appearance: none; outline: none; flex-wrap: wrap; position: relative; column-gap: 5px;
+}
+
+
+.dot_links{
+    display: inline-flex; list-style: none; margin: 0px; padding: 0px; column-gap: 10px;
+}
+
+.dot_links li{
+    display: inline-flex; position: relative; list-style: none; margin: 0px; padding: 0px 0px 0px 20px; column-gap: 0px;
+}
+.dot_links li a{
+    text-decoration: none; transition: all 0.3s ease-in-out;
+}
+.dot_links li a:hover{
+    color: var(--color-primary);
+}
+.dot_links li, .dot_links a{
+    color: var(--color-text-muted); font-size: 12px; font-weight: 600;
+}
+.dot_links li:before{
+    content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--color-text-muted); position: absolute; top: 50%; left: 5px; transform: translate(-50%, -50%);
+}
+.dot_links li:first-child{
+    padding-left: 0px; padding-right: 0px;
+}
+.dot_links li:first-child::before{
+    display: none;
+}
+.dot_links li:last-child{
+    padding-right: 0px;
+}
+
+.error_msg{
+    font-size: 13px; font-weight: 500; color: var(--color-primary);
+}
 /* common css ended */
 
 /* header css start */
 .main_header{
-    position: relative; top: 0px; left: 0px; width: 100%; z-index: 2; padding: 15px 0px;
+    width: 100%; left: 0px; top: 0px; position: absolute; top: 0px; left: 0px; width: 100%; z-index: 2; padding: 15px 0px;
 }
 .main-header-inner-row{
     width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; position: relative;
 }
 .header_logo img{
-    width: auto; height: 60px;
+    width: auto; height: 3.15vw; min-height: 30px;
 }
 .hdr_menu_list{
     display: inline-flex; list-style: none; margin: 0px; padding: 0px; column-gap: 20px;
@@ -45,32 +97,51 @@ body {
 
 
 .loginpage{
-    width: 100%; min-height: 100vh; background: url("/images/page-background.jpg") no-repeat center center fixed; background-size: cover; position: relative; display: flex; justify-content: center; align-items: center; position: fixed; top: 0px; left: 0px; z-index: -1;
+    width: 100%; min-height: 100vh; padding: 5vw 0; background: url("/images/page-background.jpg") no-repeat center center; background-size: cover; position: relative; display: flex; justify-content: center; align-items: center;
 }
 .loginpage:before{
     content:""; width: 100%; min-height: 100vh; position: fixed; top: 0px; left: 0px; z-index: 1; background: linear-gradient(to bottom,  rgba(0,0,0,0.83) 0%,rgba(0,0,0,0.7) 50%,rgba(0,0,0,0.87) 100%);
 }
 .loginpage .login_container{
-    width: 90%; max-width: 900px; position: relative; z-index: 1;
+    width: 90%; max-width: 400px; position: relative; z-index: 1;
 }
 .login_form_full_box{
-    width: 100%; display: inline-flex; position: relative; padding:2vw; background: rgba(32, 13, 13, 0.3); border-radius: 10px; border: #2a2a2a solid 1px; 
-    backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+    width: 100%; display: inline-flex; flex-direction: column; position: relative; padding:2vw; background: rgb(6 6 6 / 60%); border-radius: 10px; border: #2a2a2a solid 1px; 
+    backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); row-gap: 20px;
 }
 .login_form_lft_col, .login_form_rgt_col{
-    width: 50%;
+    width: 100%;
+}
+.login_form_rgt_col{
+    display: flex; flex-direction: column; row-gap: 15px;
 }
 .login_form_mid_col{
-    padding: 0px 20px; display: flex; align-items: center; justify-content: center;
+    padding: 0px 0px; display: flex; align-items: center; justify-content: space-between; color: var(--color-text-secondary); font-weight: 600; font-size: 0.9em; column-gap: 15px; position: relative;
+}
+.login_form_mid_col:before,
+.login_form_mid_col:after{
+    content: ''; flex: 1; height: 1px; background: var(--color-text-dark);
 }
 .form_field_row{
     width: 100%; display: flex; flex-direction: column; justify-content: flex-start; position: relative; margin-bottom: 20px;
+}
+.form_field_row.row_view{
+    flex-direction: row; column-gap: 15px;
 }
 .form_label{
     width: 100%; font-size: 0.9em; font-weight: 600; color: var(--color-text-muted); margin-bottom: 5px;
 }
 .form_field_input{
-    width: 100%; padding: 10px; border-radius: 10px; background: var(--color-bg-card); color: var(--color-text-primary); border: #ffffff42 solid 1px; outline: none; font-size: 0.9em; font-weight: 400;
+    width: 100%; padding: 10px; border-radius: 5px; background: var(--color-bg-card); color: var(--color-text-primary); border: #ffffff42 solid 1px; outline: none; font-size: 0.9em; font-weight: 400;
+}
+.form_icon_button{
+    width: 42px; height: 41px; position: absolute; top: 0px; left: 0px; border: none; background: transparent; appearance: none; outline: none; display: inline-flex; align-items: center; justify-content: center; padding: 0px;
+}
+.form_icon_button.right{
+    left: auto; right: 0px;
+}
+.form_icon_button + .form_field_input{
+    padding-left: 40px; padding-right: 40px;
 }
 .login_hdng_wrap{
     width: 100%; display: flex; flex-direction: column; margin-bottom: 30px;
@@ -80,4 +151,35 @@ body {
 }
 .login_form_desc{
     font-size: 0.9em; color: var(--color-text-muted);
+}
+.form_field_row .forgotpass_text_btn{
+    margin-left: auto;
+}
+.signpage_text_link{
+    width: 100%; display: inline-block; position: relative; text-align: center;
+}
+.signpage_text_link a{
+    margin:0px 10px;
+}
+.login_quick_link_row{
+    display: inline-flex; align-items: center; justify-content: center; margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:991px) {
+    /* reset css start */
+    html{
+        font-size: 16px;
+    }
+    /* reset css ended */
 }

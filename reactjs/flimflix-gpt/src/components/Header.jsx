@@ -6,10 +6,8 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { addUser, removeUser } from '../store/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { LANGUAGES, SITE_CONTENT } from '../utils/language';
+import Loading from './Loader';
 
-export const Loading = () => {
-  return <><div style={{width:"100%", height:"100%", position:"fixed", top:"0px", left:"0px", background:"#fff", fontSize:"50px", display:"flex", justifyContent:"center", alignItems:"center", color:"#000", zIndex:"9999"}}>Loading...</div></>
-}
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -73,12 +71,12 @@ const Header = () => {
             <div className='hdr_rgt_col'>
               {userStoreUser &&  <>
               {" | "}
-              <button>GPT search</button>
+              <button>{SITE_CONTENT.search[language]}</button>
               <div>
                 <img width={20} src={userStoreUser?.photoURL} alt="" />
                 <span>{userStoreUser?.displayName}</span>
               </div>
-              <button onClick={logoutEvent}>Logout</button></>}
+              <button onClick={logoutEvent}>{SITE_CONTENT.logout[language]}</button></>}
             </div>
           </div>
           
