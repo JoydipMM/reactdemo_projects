@@ -156,7 +156,7 @@ const Login = () => {
 
                                 <div className='form_field_row row_view'>
                                     <p className='error_msg'>{errorMsg}</p>
-                                    <Link to="/forgot-password" className='normal_text_btn text-red-800 forgotpass_text_btn'>{SITE_CONTENT.forgotpassword[language]}</Link>
+                                    {/* <Link to="/forgot-password" className='normal_text_btn text-red-800 forgotpass_text_btn'>{SITE_CONTENT.forgotpassword[language]}</Link> */}
                                 </div>
 
                                 <div className='form_field_row'>
