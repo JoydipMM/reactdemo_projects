@@ -1,0 +1,83 @@
+html{
+    font-size: 0.84vw;
+}
+
+body {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-primary);
+  font-family: var(--body-font);
+  line-height: 1.5;
+  font-size: 0.9em;
+}
+
+/* common css start */
+.common_container{
+    position: relative; z-index: 1; width: 90%; padding: 0px 15px; margin: 0px auto;
+}
+/* common css ended */
+
+/* header css start */
+.main_header{
+    position: relative; top: 0px; left: 0px; width: 100%; z-index: 2; padding: 15px 0px;
+}
+.main-header-inner-row{
+    width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; position: relative;
+}
+.header_logo img{
+    width: auto; height: 60px;
+}
+.hdr_menu_list{
+    display: inline-flex; list-style: none; margin: 0px; padding: 0px; column-gap: 20px;
+}
+.hdr_menu_list li a{
+    text-decoration: none; color: var(--color-text-primary); transition: all 0.3s ease-in-out;
+}
+.hdr_menu_list li a:hover{
+    color: var(--color-primary);
+}
+/* header css ended */
+
+
+
+
+
+
+
+
+.loginpage{
+    width: 100%; min-height: 100vh; background: url("/images/page-background.jpg") no-repeat center center fixed; background-size: cover; position: relative; display: flex; justify-content: center; align-items: center; position: fixed; top: 0px; left: 0px; z-index: -1;
+}
+.loginpage:before{
+    content:""; width: 100%; min-height: 100vh; position: fixed; top: 0px; left: 0px; z-index: 1; background: linear-gradient(to bottom,  rgba(0,0,0,0.83) 0%,rgba(0,0,0,0.7) 50%,rgba(0,0,0,0.87) 100%);
+}
+.loginpage .login_container{
+    width: 90%; max-width: 900px; position: relative; z-index: 1;
+}
+.login_form_full_box{
+    width: 100%; display: inline-flex; position: relative; padding:2vw; background: rgba(32, 13, 13, 0.3); border-radius: 10px; border: #2a2a2a solid 1px; 
+    backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+}
+.login_form_lft_col, .login_form_rgt_col{
+    width: 50%;
+}
+.login_form_mid_col{
+    padding: 0px 20px; display: flex; align-items: center; justify-content: center;
+}
+.form_field_row{
+    width: 100%; display: flex; flex-direction: column; justify-content: flex-start; position: relative; margin-bottom: 20px;
+}
+.form_label{
+    width: 100%; font-size: 0.9em; font-weight: 600; color: var(--color-text-muted); margin-bottom: 5px;
+}
+.form_field_input{
+    width: 100%; padding: 10px; border-radius: 10px; background: var(--color-bg-card); color: var(--color-text-primary); border: #ffffff42 solid 1px; outline: none; font-size: 0.9em; font-weight: 400;
+}
+.login_hdng_wrap{
+    width: 100%; display: flex; flex-direction: column; margin-bottom: 30px;
+}
+.login_form_title{
+    font-size: 1.5em; font-weight: 600; color: var(--color-text-primary);
+}
+.login_form_desc{
+    font-size: 0.9em; color: var(--color-text-muted);
+}

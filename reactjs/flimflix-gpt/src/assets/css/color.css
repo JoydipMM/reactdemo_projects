@@ -1,0 +1,62 @@
+:root {
+
+    --font-manrope:"Manrope", sans-serif;
+    --body-font: var(--font-manrope);
+    --heading-font: var(--font-manrope);
+
+    /* ========== Brand Colors ========== */
+    --color-primary: #B91C1C;
+    /* Main red */
+    --color-primary-hover: #DC2626;
+    /* Slightly brighter red */
+    --color-primary-soft: #7F1D1D;
+    /* Dark red for gradients */
+
+    /* ========== Backgrounds ========== */
+    --color-bg-main: #0F0F14;
+    /* Deep dark background */
+    --color-bg-secondary: #19213D;
+    /* Section background */
+    --color-bg-card: #1A1A22;
+    /* Card background */
+    --color-bg-hover: #242430;
+    /* Hover state background */
+
+    /* ========== Text Colors ========== */
+    --color-text-primary: #FFFFFF;
+    /* Main white text */
+    --color-text-secondary: #B3B3B8;
+    /* Soft gray text */
+    --color-text-muted: #7C7C80;
+    /* Muted gray */
+    --color-text-dark: #3F3F46;
+    /* For light sections */
+
+    /* ========== Borders ========== */
+    --color-border: #2A2A35;
+    --color-border-soft: #1F1F28;
+
+    /* ========== Buttons ========== */
+    --btn-primary-bg: var(--color-primary);
+    --btn-primary-text: #FFFFFF;
+    --btn-primary-hover: var(--color-primary-hover);
+
+    --btn-secondary-bg: transparent;
+    --btn-secondary-border: var(--color-text-dark);
+    --btn-secondary-text: #FFFFFF;
+
+    /* ========== Shadows ========== */
+    --shadow-sm: 0 0.2em 0.6em rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 0.4em 1.2em rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 1em 2em rgba(0, 0, 0, 0.45);
+
+    /* ========== Gradients ========== */
+    --gradient-primary: linear-gradient(135deg,
+            var(--color-primary),
+            var(--color-primary-soft));
+
+    --gradient-overlay: linear-gradient(to top,
+            rgba(0, 0, 0, 0.85),
+            rgba(0, 0, 0, 0.2));
+
+}
