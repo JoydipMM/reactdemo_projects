@@ -10,7 +10,7 @@ const Browse = () => {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       Browse<br />
       <GptSearch />
       <TopBannerSection />

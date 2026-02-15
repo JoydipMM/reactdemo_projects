@@ -60,6 +60,8 @@ const Header = () => {
             <div className='hdr_lft_col'>
               <Link to={"/"} className='header_logo'><img src={SITE_LOGO} alt="" /></Link>
             </div>
+
+            { userStoreUser &&  <>
             <div className='hdr_mid_col'>
               <div className='hdr_menu_wrap_box'>
                 <ul className='hdr_menu_list'>
@@ -68,6 +70,8 @@ const Header = () => {
                 </ul>
               </div>
             </div>
+            </> }
+
             <div className='hdr_rgt_col'>
               {userStoreUser &&  <>
               {" | "}

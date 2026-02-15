@@ -112,7 +112,7 @@ const Login = () => {
 
     return (
         <>
-        <Header />
+        {/* <Header /> */}
         {/* loin section start */}
         <div className='loginpage'>
             <div className='login_container'>
