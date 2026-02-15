@@ -8,6 +8,7 @@ const movesSlice = createSlice({
         trailer: null,
         currentBrowseMovieIndex: 0,
         trandingMovies: null,
+        defaultMoviesList: null,
     },
     reducers:{
        addNowPlayingMovies : (state, action) => {
@@ -22,6 +23,9 @@ const movesSlice = createSlice({
        trandingMovies: (state, action) => {
         state.trandingMovies = action.payload;
        },
+       defaultLoadMovies: (state, action) => {
+        state.defaultMoviesList = action.payload;
+       },
        
 
     }
@@ -29,4 +33,4 @@ const movesSlice = createSlice({
 
 
 export default movesSlice.reducer;
-export const{ addNowPlayingMovies, addTrailer, updateCurrentBrowseMovieIndex, trandingMovies } = movesSlice.actions;
+export const{ addNowPlayingMovies, addTrailer, updateCurrentBrowseMovieIndex, trandingMovies, defaultLoadMovies } = movesSlice.actions;

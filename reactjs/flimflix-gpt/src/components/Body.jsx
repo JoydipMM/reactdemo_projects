@@ -12,7 +12,8 @@ const Body = () => {
           element: <DefaultLayout />,
           errorElement: <ErrorPage />,
           children: [
-            { path: "/", element: <Login /> },
+            // { path: "/", element: <Login /> },
+            { path: "/", element: <Home /> },
             { path: "browse", element: <Browse /> }
           ]
         }

@@ -168,6 +168,67 @@ body {
 
 
 
+/* movie banner card css start */
+.movieBannerCard{
+    width: 100%; min-height: 600px; height: 90vh; position: relative; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end;
+}
+.movieBannerCard:before{
+    content:""; width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 1; background: linear-gradient(to bottom,  rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.1) 50%,rgba(0,0,0,0.4) 100%); opacity: 0.6;
+}
+.movieBannerCard .coverimage{
+    width: 100%; height: 100%; object-fit: cover; position: absolute; top:50%; transform: translateY(-50%); left: 0px;
+}
+.movieBannerCard .contentwrapper{
+    width: 100%; position: relative; padding: 2vw 0 2.5vw; z-index: 2;
+}
+.movieBannerCard .banner_inner_row{
+    width: 100%; display: inline-flex; justify-content: space-between; align-items: flex-end; column-gap: 70px; position: relative; z-index: 2;
+}
+.movieBannerCard .banner_left_col{
+    flex: 1;
+}
+.movieBannerCard .movie_banner_cnt_wrap{
+    width: 100%; display: flex; flex-direction: column; align-items: flex-start; row-gap: 20px
+}
+.movieBannerCard .movie_banner_title{
+    font-size: 3em; font-weight: 600; color: #fff;
+}
+.movieBannerCard .movie_banner_overview{
+    width: 100%; max-width: 500px; line-height: 1.4;
+}
+.movie_small_info_row{
+    width: 100%; display: inline-flex; flex-wrap: wrap; align-items: center; column-gap: 10px; row-gap: 10px; margin: 0px; padding: 0px;
+}
+.movie_small_info_row .api_logo{
+    height: 15px;
+}
+
+.genarlist{
+    width: auto; list-style-type: none; display: flex; flex-wrap: wrap; column-gap: 10px; row-gap: 10px; margin: 0px; padding: 0px;
+}
+.genarlist li{
+    font-size: 0.9em; font-weight: 600; padding: 0px 10px 0px 0px; border-right: #ffffff42 solid 1px;
+}
+.genarlist li:last-child{
+    border-right: none;
+}
+
+
+.banner_post_frame{
+    width: 100%; max-width: 500px; height: 70vh; min-height: 500px; position: relative; overflow: hidden;
+}
+.banner_post_frame>img{
+    width: 100%; height: 100%; object-fit: cover;
+}
+
+/* movie banner card css ended */
+
+
+
+
+.home_body_section{
+    width: 100%; height: auto; min-height: 500px; position: relative; padding: 2vw 0; background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(0,0,0,0.1) 50%,rgba(0,0,0,0.4) 100%);
+}
 
 
 
