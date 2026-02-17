@@ -10,7 +10,7 @@ const useDefaultMovies = () => {
         const response = await fetch(`${API_BASE_URL}/movie/popular?language=en-US&page=1`, TMDB_API_OPTION);
         const data = await response.json();
         //console.log(data.results);
-        const firstFiveMovies = data.results.slice(7, 15);
+        const firstFiveMovies = data.results.slice(5, 15);
         dispatch(defaultLoadMovies(firstFiveMovies));
         return firstFiveMovies;
     }

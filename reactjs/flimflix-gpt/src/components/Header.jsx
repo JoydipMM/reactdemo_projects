@@ -4,6 +4,7 @@ import { SITE_LOGO } from '../utils/constants';
 import { auth } from '../utils/firebase';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { addUser, removeUser } from '../store/userSlice';
+import { toggleLogin } from '../store/settingSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { LANGUAGES, SITE_CONTENT } from '../utils/language';
 import Loading from './Loader';
@@ -12,7 +13,8 @@ import Loading from './Loader';
 const Header = () => {
   const dispatch = useDispatch();
   const userStoreUser = useSelector((store) => store.user);
-  const language = useSelector((store) => store.setting.language);
+  const language = useSelector((store) => store.setting?.language);
+  const isInLoginPage = useSelector((store) => store.setting?.gotologin);
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -28,6 +30,10 @@ const Header = () => {
       console.log(error);
       setIsLoading(false);
     });
+  }
+
+  const toggleLoginEvent = (status) =>{
+      dispatch(toggleLogin(status));
   }
 
 
@@ -49,6 +55,15 @@ const Header = () => {
   // Unsubscribe when component unmounts
   return () => unsubscribe();
   }, [])
+
+
+  useEffect(() => {
+    if (isInLoginPage) {
+      document.body.classList.add("no_scroll");
+    } else {
+      document.body.classList.remove("no_scroll");
+    }
+  }, [isInLoginPage]);
 
 
   return (
@@ -73,6 +88,11 @@ const Header = () => {
             </> }
 
             <div className='hdr_rgt_col'>
+              {(!userStoreUser && !isInLoginPage) &&  <>
+                <button className='common_button' onClick={()=>toggleLoginEvent(true)}>
+                  {SITE_CONTENT.signin[language]} / {SITE_CONTENT.signup[language]}
+                </button>
+              </>}
               {userStoreUser &&  <>
               {" | "}
               <button>{SITE_CONTENT.search[language]}</button>

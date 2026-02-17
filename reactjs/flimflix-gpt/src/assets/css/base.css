@@ -3,11 +3,13 @@ html{
 }
 
 body {
-  background-color: var(--color-bg-main);
-  color: var(--color-text-primary);
-  font-family: var(--body-font);
-  line-height: 1.5;
-  font-size: 0.9em;
+  background-color: var(--color-bg-main); color: var(--color-text-primary); font-family: var(--body-font); line-height: 1.5; font-size: 0.9em;
+}
+/* body.no_scroll{
+    overflow: hidden;
+} */
+body.no_scroll .main_header{
+    position: fixed; top: 0px; left: 0px;
 }
 
 /* common css start */
@@ -95,7 +97,7 @@ body {
 
 
 
-
+/* login component css start */
 .loginpage{
     width: 100%; min-height: 100vh; padding: 5vw 0; background: url("/images/page-background.jpg") no-repeat center center; background-size: cover; position: relative; display: flex; justify-content: center; align-items: center;
 }
@@ -164,6 +166,19 @@ body {
 .login_quick_link_row{
     display: inline-flex; align-items: center; justify-content: center; margin-top: 20px;
 }
+.popover_login{
+    position: fixed; top: 0px; left: 0px; opacity: 0; transition: all ease-in-out 0.7s; transition-delay: 1.5s;
+}
+.popover_login.isVisible{
+    opacity: 1;
+}
+.login_page_close_btn{
+    width: 39px; position: absolute; top: 15px; right: 15px; z-index: 91; cursor: pointer; border-radius: 30px; padding: 10px; background: #000; border: #2a2a2a solid 1px;
+}
+.login_page_close_btn:hover{
+    background: #000;
+}
+/* login component css ended */
 
 
 

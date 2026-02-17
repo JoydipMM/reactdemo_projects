@@ -9,9 +9,11 @@ import { USER_DEFAULT_AVATER, GOOGLELOGO } from '../utils/constants';
 import { LANGUAGES, SITE_CONTENT } from '../utils/language';
 import { Link } from 'react-router-dom';
 import * as Icons from '../utils/icons';
+import { toggleLogin } from '../store/settingSlice';
 
-const Login = () => {
+const Login = ({className=""}) => {
     const userDispatch = useDispatch();
+    const dispatch = useDispatch();
     const language = useSelector((store) => store.setting?.language);
 
     const [isSigninForm, setIsSigninForm] = useState(true);
@@ -32,6 +34,10 @@ const Login = () => {
         setIsSigninForm((prev) => !prev);
     }
 
+
+    const toggleLoginEvent = (status) =>{
+        dispatch(toggleLogin(status));
+    }
 
     const handleButtonClick = (e) => {
         e.preventDefault();
@@ -114,8 +120,11 @@ const Login = () => {
         <>
         {/* <Header /> */}
         {/* loin section start */}
-        <div className='loginpage'>
+        <div className={`loginpage ${className ? className : ""}`}>
             <div className='login_container'>
+                <button className='login_page_close_btn common_button cursor-pointer' onClick={() => toggleLoginEvent(false)}>
+                    <Icons.closeIcon />
+                </button>
 
                 <div className='login_form_full_box'>
                     <div className='login_form_lft_col'>

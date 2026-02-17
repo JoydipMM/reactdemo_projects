@@ -1,24 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import HomeMoviesBanner from '../components/home/HomeMoviesBanner'
+import { useSelector } from 'react-redux';
+import Login from './Login';
 
 const Home = () => {
+
+  const isInLoginPage = useSelector((store) => store.setting?.gotologin);
+
   return (
     <>
-      {/* <h1 className="text-4xl font-bold text-cyan-400">
-        Tailwind v4 is working
-      </h1>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/> */}
+    {!isInLoginPage && <>
       <HomeMoviesBanner />
       <section className='home_body_section'>
         <div className='common_container'>
           
         </div>
       </section>
+
+    </>}
+    {isInLoginPage && <Login className={`popover_login ${isInLoginPage ? 'isVisible' : ''}`}/>}
     </>
   )
 }

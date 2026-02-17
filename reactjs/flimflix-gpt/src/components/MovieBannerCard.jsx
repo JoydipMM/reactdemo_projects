@@ -1,10 +1,17 @@
 
 import useGenres from "../hooks/useGenres";
+import { useDispatch } from "react-redux";
+import { toggleLogin } from "../store/settingSlice";
 import { TMDB_IMG_PATH, TMDB_LOGO } from "../utils/constants";
 
 const MovieBannerCard = ({ className = "", movie }) => {
 
     const { getGenreName } = useGenres();
+    const dispatch = useDispatch();
+
+    const toggleLoginEvent = (status) =>{
+        dispatch(toggleLogin(status));
+    }
 
     const releaseYear = new Date(movie?.release_date).getFullYear();
 
@@ -23,7 +30,7 @@ const MovieBannerCard = ({ className = "", movie }) => {
                             </ul>}
                             </div>
                             {movie?.overview && <p className="movie_banner_overview">{movie?.overview}</p>}
-                            <button className="common_button">Watch Now</button>
+                            <button className="common_button" onClick={() => toggleLoginEvent(true)}>Watch Now</button>
                         </div>
                     </div>
                     <div className="banner_rgt_col">
