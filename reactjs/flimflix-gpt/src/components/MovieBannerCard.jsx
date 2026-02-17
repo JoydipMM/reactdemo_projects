@@ -26,8 +26,8 @@ const MovieBannerCard = ({ className = "", movie }) => {
                             <div className="movie_small_info_row">
                                 <img className="api_logo" src={TMDB_LOGO} alt="" />
                                 {movie?.genre_ids &&<ul className="genarlist">
-                                {movie.genre_ids.map((id) => (<li key={id}>{getGenreName(id)}</li>))}
-                            </ul>}
+                                    {movie.genre_ids.map((id) => (<li key={id}>{getGenreName(id)}</li>))}
+                                </ul>}
                             </div>
                             {movie?.overview && <p className="movie_banner_overview">{movie?.overview}</p>}
                             <button className="common_button" onClick={() => toggleLoginEvent(true)}>Watch Now</button>

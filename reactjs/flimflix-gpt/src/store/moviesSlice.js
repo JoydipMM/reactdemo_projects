@@ -23,6 +23,7 @@ const movesSlice = createSlice({
         currentBrowseMovieIndex: 0,
         trandingMovies: null,
         defaultMoviesList: null,
+        genres: null
     },
     reducers:{
        addNowPlayingMovies : (state, action) => {
@@ -40,6 +41,9 @@ const movesSlice = createSlice({
        defaultLoadMovies: (state, action) => {
         state.defaultMoviesList = action.payload;
        },
+       loadGenres: (state, action) => {
+        state.genres = action.payload;
+       }
     },
     extraReducers:(builder)=>{
         builder.addCase(defaultMoviesFetch.pending, (state, action)=>{
@@ -58,4 +62,4 @@ const movesSlice = createSlice({
 
 
 export default movesSlice.reducer;
-export const{ addNowPlayingMovies, addTrailer, updateCurrentBrowseMovieIndex, trandingMovies, defaultLoadMovies } = movesSlice.actions;
+export const{ addNowPlayingMovies, addTrailer, updateCurrentBrowseMovieIndex, trandingMovies, defaultLoadMovies, loadGenres } = movesSlice.actions;
