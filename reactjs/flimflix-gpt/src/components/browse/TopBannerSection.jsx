@@ -5,6 +5,7 @@ import VideoBackground from './VideoBackground';
 
 const TopBannerSection = () => {
 
+
     const nextMovieIndex = useSelector((store) => store.movies?.currentBrowseMovieIndex);
     const getMovies = useSelector((store) => store.movies?.nowPlayingMovies);
 
@@ -17,10 +18,23 @@ const TopBannerSection = () => {
 
   return (
     <>
-    <div>current movie: {singleMovieData.id}</div>
-    <div>next movie: {nextMovieIndex}</div>
-    <VideoTitle data={singleMovieData}/>
-    <VideoBackground movieID={singleMovieData.id} backdrop={backdrop_path} poster={poster_path}/>
+    <section className='browse_top_banner_section'>
+      {/* <div>current movie: {singleMovieData.id}</div>
+      <div>next movie: {nextMovieIndex}</div> */}
+      <div className={`browse_top_bnnr_cnt_wrap`}>
+        <div className='common_container'>
+          <div className='browse_top_bnnr_cnt_row'>
+            <div className='browse_top_bnnr_cnt_lft'>
+              <VideoTitle data={singleMovieData}/>
+            </div>
+            <div className='browse_top_bnnr_cnt_rgt'>
+              <VideoBackground movieID={singleMovieData.id} backdrop={backdrop_path} poster={poster_path}/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img className='banner_backdrop' src={`https://image.tmdb.org/t/p/w1920${singleMovieData.backdrop_path}`} />
+    </section>
     </>
   )
 }

@@ -9,13 +9,11 @@ const Browse = () => {
   useNowPlayingMovies();
 
   return (
-    <div>
-      {/* <Header /> */}
-      Browse<br />
-      <GptSearch />
+    <>
+      {/* <GptSearch /> */}
       <TopBannerSection />
       <BottomBodySection />
-    </div>
+    </>
   )
 }
 
