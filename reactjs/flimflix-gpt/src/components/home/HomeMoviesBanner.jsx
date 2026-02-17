@@ -1,13 +1,20 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useDefaultMovies from "../../hooks/useDefaultMovies";
 import MovieBannerCard from "../MovieBannerCard";
 import SlickCarousel from "../sliders/SlickCarousel";
+import { useEffect } from "react";
+import { defaultMoviesFetch } from "../../store/moviesSlice";
 
 const HomeMoviesBanner = () => {
-    
-    useDefaultMovies();
-    const getDefaultMovies = useSelector((store) => store.movies?.defaultMoviesList);
-    console.log(getDefaultMovies);
+
+    const dispatch = useDispatch();
+
+    // we are calling a hook for fetch api and dispatch to store
+    // useDefaultMovies();
+
+    // we are subscribe to data from store
+    const getDefaultMovies = useSelector((store) => store.movies?.defaultMoviesList?.firstFiveMovies);
+    //console.log(getDefaultMovies);
 
     const defaultSettings = {
         dots: true,
@@ -19,6 +26,10 @@ const HomeMoviesBanner = () => {
             { breakpoint: 768, settings: { slidesToShow: 1 } }
         ]
     };
+
+    useEffect(() => {
+        dispatch(defaultMoviesFetch()); // we are dispathing a outside action
+    }, []);
     return (
         <>
         <SlickCarousel settings={defaultSettings}>
