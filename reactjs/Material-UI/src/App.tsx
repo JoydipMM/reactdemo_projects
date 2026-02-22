@@ -13,13 +13,14 @@ function App() {
     <>
     {/* this one is required for normalize css */}
     <CssBaseline/>
-    
-    <ButtonsTemplates/>
-    <TextFieldsTemplates/>
-    <StackTemplates />
-    <RangeSliderTemplate />
-    <ContainerTemplate />
-    <IconsTemplates />
+    <Container maxWidth="lg">
+      <ButtonsTemplates/>
+      <TextFieldsTemplates/>
+      <StackTemplates />
+      <ContainerTemplate />
+      <IconsTemplates />
+      <RangeSliderTemplate />
+    </Container>
     </>
   )
 }
