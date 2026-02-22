@@ -1,0 +1,16 @@
+npm i @mui/material @emotion/react @emotion/styled @mui/icons-material
+
+Packages Explained
+@mui/material → The core Material UI component library → Buttons, TextFields, Cards, Dialogs, etc.
+@emotion/react → Required styling engine for MUI (CSS-in-JS)
+@emotion/styled → Enables styled components using Emotion
+@mui/icons-material → Material Design icons as React components → Example: <HomeIcon />, <MenuIcon />
+
+Install fonts for mui
+https://fontsource.org/
+select font > click on Install button > copy npm code > paste the code in our project terminal
+example: npm install @fontsource/poppins
+
+Now specify the font weight
+https://fontsource.org/ > import section > select font weight:
+G:\Reactjs\reactdemo_projects\reactjs\Material-UI\src\index.css
