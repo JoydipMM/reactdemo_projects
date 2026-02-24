@@ -55,6 +55,8 @@ const CustomSliderStyleWithCustomPropsType = styled(Slider, {
 }))
 
 const CustomStyled = () => {
+
+    const posts = [1, 2, 3, 4, 5, 6];
   return (
     <>
     <br/>
@@ -70,6 +72,7 @@ const CustomStyled = () => {
       <CustomSliderStyleWithCustomPropsType />
       <br/>
       <CustomSliderStyleWithCustomPropsType error />
+
     </>
   )
 }
