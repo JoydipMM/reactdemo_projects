@@ -1,4 +1,4 @@
-import { Container, createTheme, CssBaseline, Stack, ThemeProvider, Typography } from "@mui/material";
+import { alpha, Container, createTheme, CssBaseline, FormControlLabel, Radio, RadioGroup, Stack, ThemeProvider, Typography, useColorScheme } from "@mui/material";
 import ButtonsTemplates from "./examples/ButtonsTemplates";
 import TextFieldsTemplates from "./examples/TextFieldsTemplates";
 import RangeSliderTemplate from "./examples/RangeSliderTemplate";
@@ -7,7 +7,7 @@ import ContainerTemplate from "./examples/ContainerTemplate";
 import IconsTemplates from "./examples/IconsTemplates";
 import ReuseableComponent from "./examples/ReuseableComponent";
 import CustomStyled from "./examples/CustomStyled";
-import { blue, red } from "@mui/material/colors";
+import { blue, lime, red } from "@mui/material/colors";
 
 
 const customTheme = createTheme({
@@ -48,9 +48,44 @@ const customTheme = createTheme({
               style:{
                 border:`4px dashed ${red[500]}`,
               }
+            },
+            {
+              props: (props) => props.variant === "dashed" && props.color !== "secondary",
+              style:{
+                border:`1px dashed ${blue[500]}`,
+                color:blue[900],
+                fontSize: "20px"
+              }
             }
           ]
         } 
+      }
+    },
+
+    // global css override. this will come under components -> MuiCssBaseline
+    MuiCssBaseline: {
+      styleOverrides: (theme) => `
+      h2 {
+        color: ${theme.palette.success.main};
+      }
+      `
+    }
+  },
+  colorSchemes: {
+    // dark: true, // default activation
+    // customize dark theme
+    dark: {
+      palette: {
+        primary: {
+          //main: "#ff0000" // solid color
+          main: alpha("#ff0000", 0.2), // with opacity
+        },
+        secondary: {
+          main: "#00ff00"
+        },
+        customColor: {
+          main: "#ff00ff"
+        }
       }
     }
   }
@@ -67,6 +102,21 @@ const customInnerTheme = createTheme({
 });
 
 
+function ThemeToggler() {
+
+  const { mode, setMode } = useColorScheme();
+  if(!mode) return null;
+
+  return (
+    <RadioGroup value={mode} onChange={(e) => setMode(e.target.value as 'light' | 'dark' | 'system')}>
+      <FormControlLabel control={<Radio />} label="Light" value="light" />
+      <FormControlLabel control={<Radio />} label="Dark" value="dark" />
+      <FormControlLabel control={<Radio />} label="System" value="system" />
+    </RadioGroup>
+  )
+}
+
+
 function App() {
   
   return (
@@ -74,6 +124,13 @@ function App() {
     {/* this one is required for normalize css */}
     <CssBaseline/>
     <Container maxWidth="lg">
+
+      <ThemeToggler/>
+
+
+
+
+
       <ButtonsTemplates/>
       <TextFieldsTemplates/>
       <StackTemplates />
@@ -85,6 +142,7 @@ function App() {
     </Container>
 
     <Typography variant="h1">Hello</Typography>
+    <Typography variant="h2">Hello h2</Typography>
 
     <ThemeProvider theme={customInnerTheme}>
       <Typography variant="h1">Nested ThemeProvider Hello</Typography>

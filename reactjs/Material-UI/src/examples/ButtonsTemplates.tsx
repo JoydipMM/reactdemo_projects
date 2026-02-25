@@ -3,6 +3,7 @@ import { Button } from "@mui/material"
 const ButtonsTemplates = () => {
   return (
     <>
+      <Button color="customColor">custom Color</Button>&nbsp;&nbsp;&nbsp;
       <Button>Normal 01</Button>&nbsp;
       <Button>Normal 02</Button>&nbsp;
       <Button>Normal 03</Button>&nbsp;
@@ -17,7 +18,9 @@ const ButtonsTemplates = () => {
       <br/>
       <br/>
       <Button variant="outlined" color="secondary">Global customize variant</Button>&nbsp;&nbsp;&nbsp;
-      <Button variant="dashed" color="secondary">Global customize variant</Button>
+      <Button variant="dashed" color="secondary">Global customize variant 01</Button>&nbsp;&nbsp;&nbsp;
+      <Button variant="dashed">Global customize variant 02</Button>&nbsp;&nbsp;&nbsp;
+      
 
       
       <br/>

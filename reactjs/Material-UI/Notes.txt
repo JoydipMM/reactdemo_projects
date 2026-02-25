@@ -16,3 +16,8 @@ https://fontsource.org/ > import section > select font weight:
 G:\Reactjs\reactdemo_projects\reactjs\Material-UI\src\index.css
 
 32:52 done
+
+Module Augmentation
+
+Setting Page design, General lead form page modification, Added Preview of generated form in sidebar - 8:00pm - 1:00am 
+Filter sidebar design added in lead list page 11:00am - 1:00pm

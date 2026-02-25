@@ -1,4 +1,4 @@
-import '@mui/meterial'; // by importing this we tell the typescript that we are using Module Augmentation
+import '@mui/material'; // by importing this we tell the typescript that we are using Module Augmentation
 
 // what type of mui library to enhance.
 declare module '@mui/material/Button' {
@@ -11,4 +11,18 @@ declare module '@mui/material/Button' {
     interface ButtonPropsVariantOverrides {
         dashed: true;
     }
+    interface ButtonPropsColorOverrides {
+        customColor: true;
+    }
+}
+
+declare module '@mui/material/styles' {
+    interface Palette {
+        customColor: Palette['primary'];
+    }
+
+    interface PaletteOptions {
+        customColor?: PaletteOptions['primary'];
+    }
+
 }
