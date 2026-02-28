@@ -26,3 +26,20 @@ declare module '@mui/material/styles' {
     }
 
 }
+
+
+declare module '@mui/material/styles' {
+    interface BreakpointOverrides {
+        // keep existing ones
+        xs: true;
+        sm: true;
+        md: true;
+        lg: true;
+        xl: true;
+
+        // add custom ones
+        mobile: true, 
+        tablet: true,
+        desktop: true,
+    }
+}

@@ -1,4 +1,4 @@
-import { alpha, Container, createTheme, CssBaseline, FormControlLabel, Radio, RadioGroup, Stack, ThemeProvider, Typography, useColorScheme } from "@mui/material";
+import { alpha, Button, Container, createTheme, CssBaseline, FormControlLabel, Grid, Radio, RadioGroup, Stack, ThemeProvider, Typography, useColorScheme, useMediaQuery } from "@mui/material";
 import ButtonsTemplates from "./examples/ButtonsTemplates";
 import TextFieldsTemplates from "./examples/TextFieldsTemplates";
 import RangeSliderTemplate from "./examples/RangeSliderTemplate";
@@ -11,6 +11,20 @@ import { blue, lime, red } from "@mui/material/colors";
 
 
 const customTheme = createTheme({
+  breakpoints: {
+    values: {
+      // keep existing ones with default values or we can change them
+      xs: 0, 
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      // custom ones
+      mobile: 0, // we need to module augmentation to use this custom key name for responsive breakpoints
+      tablet: 768, // same this
+      desktop: 1800 // same this
+    }
+  },
   typography: {
     fontFamily: "Poppins, sans-serif",
     h1: {
@@ -118,6 +132,8 @@ function ThemeToggler() {
 
 
 function App() {
+
+  const isTablet = useMediaQuery("(min-width: 768px)");
   
   return (
     <ThemeProvider theme={customTheme}>
@@ -143,6 +159,57 @@ function App() {
 
     <Typography variant="h1">Hello</Typography>
     <Typography variant="h2">Hello h2</Typography>
+
+
+    <br/>
+    <br/>
+    
+
+  <Container maxWidth="desktop">
+    <Grid container spacing={2}>
+        <Grid size={{ xs: 12, md: 6, desktop: 4}}>
+          <Button fullWidth>Grid 01 xs: 12, md: 6, desktop: 4</Button>
+        </Grid>
+        {/* <Grid size={{ xs: 12, md: 6}}>
+          <Button fullWidth>sdsd</Button>
+        </Grid> */}
+        <Grid size="grow">
+          <Button fullWidth>Grid Size Grow</Button>
+        </Grid>
+        <Grid size={{ xs: 12, md: 12}}>
+          <Button fullWidth>Grid 02 normal breakdown</Button>
+        </Grid>
+      </Grid>
+  </Container>
+      <br/>
+    <br/>    
+  <Container maxWidth="desktop">
+    <Grid container spacing={2}>
+        <Grid size={{ xs: 12, md: 12}}>
+          <Button sx={(theme)=>({
+            backgroundColor: "green",
+            [theme.breakpoints.between("md", "lg")]:{
+              backgroundColor: "purple"
+            },
+            [theme.breakpoints.down("md")]:{
+              backgroundColor: "pink",
+              color: "red",
+              fontSize: "10px"
+            }
+          })}>
+            Max and min width breakdown button</Button>
+        </Grid>
+      </Grid>
+  </Container>
+    
+
+<br/>
+    <br/>
+
+    { isTablet? "Tablet" : "mobile" }
+<br/>
+    <br/>
+
 
     <ThemeProvider theme={customInnerTheme}>
       <Typography variant="h1">Nested ThemeProvider Hello</Typography>
