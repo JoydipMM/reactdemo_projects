@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>26-Remove Duplicates from Sorted Array</title>
+</head>
+<body>
+<h2>26. Remove Duplicates from Sorted Array</h2>
+<p>Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.</p>
+<p>Consider the number of unique elements in nums to be k. After removing duplicates, return the number of unique elements k.</p>
+<p>The first k elements of nums should contain the unique numbers in sorted order. The remaining elements beyond index k - 1 can be ignored.</p>
+<h4>Example</h4>
+<p><b>Input: nums = [0,0,1,1,1,2,2,3,3,4]</b></p>
+<p><b>Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]</b></p>
+<h2>Code:</h2>
+<xmp style="margin-top: -20px;">
+nums = [0,0,1,1,1,2,2,3,3,4];
+function removeDuplicates(nums) {
+    let x= 0; // set 0 index position
+    for(let i=0; i<nums.length; i++){
+        if(nums[i] > nums[x]){ // here we check that value of index i is greater than x index. that mean that value is unique
+            x = x+1; // so if the value of index x is unique then we shift the index of x by adding 1 to replace the unique value in next index position
+            nums[x] = nums[i] // here we update the unique value in updated index position.
+            //console.log(x)
+        }
+    }
+    return x+1; // this will return the total number of unique elements. if we don't add 
+}
+let total_unique_number = removeDuplicates(nums);
+console.log("Re-arranged array: ",nums); // Re-arranged array:  (10) [0, 1, 2, 3, 4, 2, 2, 3, 3, 4]
+console.log("Total unique number is: ", total_unique_number); // Total unique number is:  5
+</xmp>
+
+<h2>Explanation:</h2>
+<p>We are using the two-pointer technique:<br/>
+<b>x</b> → slow pointer (tracks last unique element index)<br/>
+<b>i</b> → fast pointer (scans the array)</p>
+
+<p>let x = 0;<br/>
+<b>x</b> starts at index 0<br/>
+It represents the position of the last unique element found</p>
+
+<p>for(let i = 0; i < nums.length; i++)<br/>
+<b>i</b> scans every element in the array</p>
+
+<p>if(nums[i] > nums[x])<br/>
+We are checking: "Is the current number greater than the last unique number?"<br/>
+Since the array is sorted, if nums[i] > nums[x], it must be a new unique number.
+</p>
+
+<p>x = x + 1;<br/>
+nums[x] = nums[i];<br/>
+Move x forward and Replace the next position with the new unique value<br/>
+This effectively: Keeps unique values at the beginning and Overwrites duplicates
+</p>
+
+<p>return x + 1;<br/>
+Return value: 5, without  +1 it will be 4 which not match with total count
+</p>
+
+<script>
+nums = [0,0,1,1,1,2,2,3,3,4];
+function removeDuplicates(nums) {
+    let x= 0; // set 0 index position
+    for(let i=0; i<nums.length; i++){
+        if(nums[i] > nums[x]){ // here we check that value of index i is greater than x index. that mean that value is unique
+            x = x+1; // so if the value of index x is unique then we shift the index of x by adding 1 to replace the unique value in next index position
+            nums[x] = nums[i] // here we update the unique value in updated index position.
+            //console.log(x)
+        }
+    }
+    return x+1; // this will return the total number of unique elements. if we don't add 
+}
+let total_unique_number = removeDuplicates(nums);
+console.log("Re-arranged array: ",nums); // Re-arranged array:  (10) [0, 1, 2, 3, 4, 2, 2, 3, 3, 4]
+console.log("Total unique number is: ", total_unique_number); // Total unique number is:  5
+</script>
+</body>
+</html>
