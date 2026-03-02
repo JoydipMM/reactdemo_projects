@@ -73,7 +73,7 @@ const Header = () => {
         <div className='common_container'>
           <div className='main-header-inner-row'>
             <div className='hdr_lft_col'>
-              <Link to={"/"} className='header_logo'><img src={SITE_LOGO} alt="" /></Link>
+              <Link to={!userStoreUser? "/": "/browse"} className='header_logo'><img src={SITE_LOGO} alt="" /></Link>
             </div>
 
             { userStoreUser &&  <>
