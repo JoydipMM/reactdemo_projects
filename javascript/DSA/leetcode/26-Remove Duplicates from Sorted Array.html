@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>26-Remove Duplicates from Sorted Array</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 <h2>26. Remove Duplicates from Sorted Array</h2>
@@ -13,7 +14,25 @@
 <p><b>Input: nums = [0,0,1,1,1,2,2,3,3,4]</b></p>
 <p><b>Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]</b></p>
 <h2>Code:</h2>
-<xmp style="margin-top: -20px;">
+
+<textarea id="editor">
+nums = [0,0,1,1,1,2,2,3,3,4];
+function removeDuplicates(nums) {
+    let x= 0; // set 0 index position
+    for(let i=0; i < nums.length; i++){
+        if(nums[i] > nums[x]){ // here we check that value of index i is greater than x index. that mean that value is unique
+            x = x+1; // so if the value of index x is unique then we shift the index of x by adding 1 to replace the unique value in next index position
+            nums[x] = nums[i] // here we update the unique value in updated index position.
+            //console.log(x)
+        }
+    }
+    return x+1; // this will return the total number of unique elements. if we don't add 
+}
+let total_unique_number = removeDuplicates(nums);
+console.log("Re-arranged array: ",nums); // Re-arranged array:  (10) [0, 1, 2, 3, 4, 2, 2, 3, 3, 4]
+console.log("Total unique number is: ", total_unique_number); // Total unique number is:  5 
+</textarea>
+<!-- <xmp style="margin-top: -20px;">
 nums = [0,0,1,1,1,2,2,3,3,4];
 function removeDuplicates(nums) {
     let x= 0; // set 0 index position
@@ -29,7 +48,7 @@ function removeDuplicates(nums) {
 let total_unique_number = removeDuplicates(nums);
 console.log("Re-arranged array: ",nums); // Re-arranged array:  (10) [0, 1, 2, 3, 4, 2, 2, 3, 3, 4]
 console.log("Total unique number is: ", total_unique_number); // Total unique number is:  5
-</xmp>
+</xmp> -->
 
 <h2>Explanation:</h2>
 <p>We are using the two-pointer technique:<br/>
@@ -75,5 +94,14 @@ let total_unique_number = removeDuplicates(nums);
 console.log("Re-arranged array: ",nums); // Re-arranged array:  (10) [0, 1, 2, 3, 4, 2, 2, 3, 3, 4]
 console.log("Total unique number is: ", total_unique_number); // Total unique number is:  5
 </script>
+
+
+
+
+
+
+<script src="assets/js/codemirror/codemirror.min.js"></script>
+<script src="assets/js/codemirror/javascript.min.js"></script>
+<script src="assets/js/common-script.js"></script>
 </body>
 </html>
