@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>27-Remove Element</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<h2>27. Remove Element</h2>
+<p>Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.</p>
+<p>Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:<br/>
+<ul>
+    <li>Change the array nums such that the first k elements of nums contain the elements which are not equal to val. The remaining elements of nums are not important as well as the size of nums.</li>
+    <li>Return k.</li>
+</ul>
+</p>
+<p><b>Input: nums = [0,1,2,2,3,0,4,2], val = 2 <br/>
+Output: 5, nums = [0,1,4,0,3,_,_,_]</b></p>
+
+<h2>Code:</h2>
+
+
+<textarea id="editor">
+// nums = [3,2,2,3]; 
+nums = [3,2,1,5,3,4,8,3]; 
+val = 3;
+
+function removeElement(nums, val){
+    let x= 0;
+    for(i=0; i < nums.length; i++){
+        if(nums[i] != val){
+            nums[x] = nums[i];
+            x = x+1;
+            console.log(nums[i])
+        }
+    }
+    return x
+}
+let y = removeElement(nums, val);
+console.log("Total Unique Elements: ", y); // Total Unique Elements:  5
+console.log(nums) // (8) [2, 1, 5, 4, 8, 4, 8, 3]
+</textarea>
+
+
+<h2>Explanation:</h2>
+<p>This Function removes all occurrences of: val = 3 from the array [3,2,1,5,3,4,8,3]. It does this in-place using the two-pointer technique.</p>
+<p><b>let x = 0;</b><br/><b>x</b> → position where next valid element should be placed.</p>
+<p><b>for(i = 0; i < nums.length; i++)</b><br/><b>i</b> → scans every element.</p>
+<p>Initial:<br/>
+<b>Index:  0 1 2 3 4 5 6 7<br/>
+Array: [3 2 1 5 3 4 8 3]<br/>
+x = 0</b>
+</p>
+<p><b>i = 0 → nums[i] = 3</b><br/><b>3 != 3</b> ❌ Skip it. x stays 0.</p>
+<p><b>i = 1 → nums[i] = 2</b><br/><b>2 != 3</b> ✅ Place it at index x: nums[0] = 2 and x = 1<br/>
+Array becomes: 
+<pre>
+[2 2 1 5 3 4 8 3]
+   ↑
+   x
+</pre>
+</p>
+<p>this process will continue upto end index</p>
+<p>Finally, <b>Return: return x;</b> Meaning: Only first 5 elements are valid:</p>
+<p>Full array still shows: [2,1,5,4,8,4,8,3] and <b>Return x</b> Count of elements NOT equal to 3</p>
+
+<script>
+// nums = [3,2,2,3]; 
+nums = [3,2,1,5,3,4,8,3]; 
+val = 3;
+
+function removeElement(nums, val){
+    let x= 0;
+    for(i=0; i<nums.length; i++){
+        if(nums[i] != val){
+            nums[x] = nums[i];
+            x = x+1;
+            console.log(nums[i])
+        }
+    }
+    return x
+}
+let y = removeElement(nums, val);
+console.log("Total Unique Elements: ", y); // Total Unique Elements:  5
+console.log(nums) // (8) [2, 1, 5, 4, 8, 4, 8, 3]
+</script>
+
+
+
+
+
+
+<script src="assets/js/codemirror/codemirror.min.js"></script>
+<script src="assets/js/codemirror/javascript.min.js"></script>
+<script src="assets/js/common-script.js"></script>
+</body>
+</html>
