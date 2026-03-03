@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-Binary-search</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<h2>02 Binary search</h2>
+<!-- https://leetcode.com/problems/binary-search/ -->
+<p>Binary Search is a fast searching algorithm that works on a <b>sorted array</b>. Instead of checking one-by-one (like Linear Search), it divides the array into half each time.</p>
+
+<textarea id="editor">
+let nums = [-1, 0, 3, 5, 9, 12];
+let target = 9;
+function binarySearch(nums, target){
+    let left_index = 0;
+    let right_index = nums.length - 1; // 6 - 1 = 5
+
+    while(right_index >= left_index){ // 5 >= 0 Because binary search must continue as long as there is at least one element in the search space. When left crosses right, it means the search space is empty.
+
+        let middle_index = Math.floor((left_index + right_index) / 2); // Math.floor((0 + 5) / 2) = Math.floor(5/2) = 2 = middle index
+        
+        if(target === nums[middle_index]){
+            return middle_index;
+        }else if(target < nums[middle_index]){
+            right_index = middle_index - 1;
+        }else{
+            left_index = middle_index + 1;
+        }
+    }
+    return -1;
+}
+console.log(binarySearch(nums, target)); // result: 4
+</textarea>
+
+
+<script>
+let nums = [-1, 0, 3, 5, 9, 12];
+let target = 9;
+function binarySearch(nums, target){
+    let left_index = 0;
+    let right_index = nums.length - 1; // 6 - 1 = 5
+
+    while(right_index >= left_index){
+
+        let middle_index = Math.floor((left_index + right_index) / 2); // Math.floor((0 + 5) / 2) = Math.floor(5/2) = 2 = middle index
+        
+        if(target === nums[middle_index]){
+            return middle_index;
+        }else if(target < nums[middle_index]){
+            right_index = middle_index - 1;
+        }else{
+            left_index = middle_index + 1;
+        }
+    }
+    return -1;
+}
+console.log(binarySearch(nums, target)); // result: 4
+</script>
+
+
+
+
+
+
+<script src="assets/js/codemirror/codemirror.min.js"></script>
+<script src="assets/js/codemirror/javascript.min.js"></script>
+<script src="assets/js/common-script.js"></script>
+</body>
+</html>
