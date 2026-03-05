@@ -1,0 +1,247 @@
+in git terminal in vscode show the message like below:
+$ python --version
+bash: python: command not found
+
+Then run the command
+export PATH=$PATH:/c/Python312
+*** Python312 -> this is my folder name where I installed python 3.12
+
+
+if want to remove environment
+rm -rf .venv
+
+First Check: Is pip working?
+python -m pip --version
+
+pip missing
+pip install --upgrade pip
+
+
+
+/********* use python environment in traditional way *****************/
+
+Create environment
+python -m venv .venv
+
+Activate the environment
+source .venv/Scripts/activate
+
+if environment activae correctly then it will show like below:
+(.venv) 
+joydi@JOYDIP MINGW64 /g/Python/Learn Python/Hitesh AI Course/01_environment
+
+Install third-party modules through txt file:
+create a file "requirements.txt". inside this file we write module name with version:
+flask==3.0.0
+request==2.31.0
+
+Save the file
+then in terminal: run command:
+pip install -r requirements.txt
+
+deactivate environment:
+deactivate
+
+/******************************************************************/
+
+
+/********* use python environment in modern way *****************/
+
+
+/******************************************************************/
+
+
+/***************** file & Folder structure *********************/
+mainFolder/
+--run.py (also known as modules) --> start the app
+--demo.py (also known as modules)
+--processing/
+--utils/ (also known as packages when folder has __init__ inside it)
+---- __init__.py
+
+/******************************************************************/
+
+
+/******* programe 01 start (immutable datatype) *********/
+create "datatype.py" file, inside it:
+suger_amount = 10
+print(f"the suger amount is {suger_amount}")
+
+print(f"ID(memory location) of 10 is {id(10)}")
+print(f"ID(memory location) of 20 is {id(20)}")
+
+goto terminal:
+python datatypes.py
+
+Result:
+the suger amount is 10
+the Second suger amount is 20
+ID(memory location) of 10 is 140719105764056
+ID(memory location) of 20 is 140719105764376
+/******* programe 01 ended *********/
+
+
+/******* programe 02 start (mutable datatype) *********/
+mix = set()  # empty set where we can store multiple values
+print(f"Type of mix is {type(mix)}")
+print(f"ID of mix is {id(mix)}")
+mix.add("potato")
+mix.add("tomato")
+mix.add("onion")
+mix.add("potato")
+print(mix)
+print(f"ID of mix is {id(mix)}")
+
+goto terminal:
+python datatypes_2.py
+
+Result:
+Type of mix is <class 'set'>
+ID of mix is 2316712416128
+{'potato', 'tomato', 'onion'}
+ID of mix is 2316712416128
+/******* programe 02 ended *********/
+
+
+/******* Type of Numbers *********/
+Numbers:
+-Boolean
+-Integers
+-Real Numbers
+-- floating -> decimal
+-Complex Numbers
+/********************************/
+
+/********** integer examples ************/
+ctrl + / = # (pound sign) // use for command things
+
+# Integer
+data_a = 10
+data_b = 20
+total = data_a + data_b
+print(f"total is {total}")
+
+result: ------------
+total is 30
+
+
+items = 7
+box = 4
+perbox = items / box;
+print(f"perbox is {perbox}")
+
+result: ------------
+perbox is 1.75
+
+
+items = 7
+box = 4
+perbox = items // box;
+print(f"perbox is {perbox}")
+
+result: ------------
+perbox is 1
+
+
+items = 10
+box = 3
+perbox = items % box;
+print(f"remain items {perbox}")
+
+result: ------------
+remain items 1
+
+
+billion = 1_000_000_000
+print(f"billion is {billion}")
+
+result: ------------
+billion is 1000000000
+
+# Boolean
+
+isBool = True
+print(f"isBool is {isBool}")
+
+# Result: ------------
+# isBool is True
+
+
+toalCount = 5 + isBool
+print(f"toalCount is {toalCount}")
+
+# Result: ------------
+# toalCount is 6
+
+bool_2 = 0
+print(f"bool_2 is {bool(bool_2)}")
+
+# Result: ------------
+# bool_2 is False
+
+Boolean logical operation:
+and, or, not
+
+hot_water = True
+tea_added = False
+can_serve = hot_water and tea_added
+print(f"can_serve is {can_serve}")
+
+# Result: ------------
+# can_serve is False
+
+hot_water = True
+tea_added = True
+can_serve = hot_water and tea_added
+print(f"can_serve is {can_serve}")
+
+# Result: ------------
+# can_serve is True
+
+
+#  Real Number
+ideal_temp = 95.5
+current_temp = 95.49999999999
+dif_temp = ideal_temp - current_temp
+print(f"ideal_number is {ideal_temp}")
+print(f"current_number is {current_temp}")
+print(f"dif_temp is {dif_temp}")
+
+# Result: ------------
+# ideal_number is 95.5
+# current_number is 95.49999999999
+# dif_temp is 1.000444171950221e-11
+
+
+ideal_temp = 95.5
+current_temp = 95.49
+dif_temp = ideal_temp - current_temp
+print(f"ideal_number is {ideal_temp}")
+print(f"current_number is {current_temp}")
+print(f"dif_temp is {dif_temp}")
+
+# Result: ------------
+# ideal_number is 95.5
+# current_number is 95.49
+# dif_temp is 0.010000000000005116
+
+
+print(f"") => f = formatted string
+/********** **************** ************/
+
+
+
+/********** String ************/
+name_1 = "Hello"
+name_2 = "World"
+
+print(name_1 + " " + name_2);
+print(f"Fullname {name_1} {name_2}")
+# Result: ------------
+# Hello World
+# Fullname Hello World
+
+
+
+
+/******************************/
