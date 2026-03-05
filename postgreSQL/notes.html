@@ -1,0 +1,103 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostgreSQL Notes</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<h2>Check PostgreSQL is sucessfully installed and running</h2>
+<p>open <b>Command Prompt</b> <i>[ if Command Prompt already open then close it first ] </i> and run the following command:</p> 
+<b>psql -U postgres</b><br/>
+<p>You should see something like: <b>Password for user postgres:</b></p>
+<p><b>Enter password</b> what we set when we installed PostgreSQL</p>
+<p>After entering the password: <b>postgres=#</b> this will show us which means that PostgreSQL is successfully installed and running</p>
+<textarea id="editor">
+C:\Users\joydi>psql -U postgres
+Password for user postgres:
+
+psql (18.3)
+WARNING: Console code page (437) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# // this means that PostgreSQL is connect to default postgres database
+</textarea>
+
+<h3>Quick test commands (inside psql)</h3>
+<p>Try a few commands to confirm everything works:</p>
+<p>In <b>Command Prompt</b> run the command: <b>\l</b></p>
+<p><b>\l</b> will show the list of all databases</p>
+<textarea class="code-editor">
+postgres-# \l
+                                                            List of databases
+   Name    |  Owner   | Encoding | Locale Provider |      Collate       |       Ctype        | Locale | ICU Rules |   Access privileges
+-----------+----------+----------+-----------------+--------------------+--------------------+--------+-----------+-----------------------
+ postgres  | postgres | UTF8     | libc            | English_India.1252 | English_India.1252 |        |           |
+ template0 | postgres | UTF8     | libc            | English_India.1252 | English_India.1252 |        |           | =c/postgres          +
+           |          |          |                 |                    |                    |        |           | postgres=CTc/postgres
+ template1 | postgres | UTF8     | libc            | English_India.1252 | English_India.1252 |        |           | =c/postgres          +
+           |          |          |                 |                    |                    |        |           | postgres=CTc/postgres
+(3 rows)
+</textarea>
+
+<h3>Create New Database</h3>
+<p>In <b>Command Prompt</b> run the command: <b>CREATE DATABASE testdb;</b></p>
+<textarea class="code-editor">
+postgres=# CREATE DATABASE testdb;
+CREATE DATABASE
+postgres=#
+postgres=#
+postgres-# \l
+                                                            List of databases
+   Name    |  Owner   | Encoding | Locale Provider |      Collate       |       Ctype        | Locale | ICU Rules |   Access privileges
+-----------+----------+----------+-----------------+--------------------+--------------------+--------+-----------+-----------------------
+ postgres  | postgres | UTF8     | libc            | English_India.1252 | English_India.1252 |        |           |
+ template0 | postgres | UTF8     | libc            | English_India.1252 | English_India.1252 |        |           | =c/postgres          +
+           |          |          |                 |                    |                    |        |           | postgres=CTc/postgres
+ template1 | postgres | UTF8     | libc            | English_India.1252 | English_India.1252 |        |           | =c/postgres          +
+           |          |          |                 |                    |                    |        |           | postgres=CTc/postgres
+ testdb    | postgres | UTF8     | libc            | English_India.1252 | English_India.1252 |        |           |
+(4 rows)
+
+// here testdb database is created and db name is visible in the list
+
+postgres=#
+
+</textarea>
+<h3>Change the database connection to testdb</h3>
+<p>In <b>Command Prompt</b> run the command: <b>\c testdb</b></p>
+<textarea class="code-editor">
+postgres=# \c testdb
+You are now connected to database "testdb" as user "postgres".
+testdb=# // this means that PostgreSQL is connect to testdb database
+</textarea>
+
+
+
+
+
+<!-- <textarea class="code-editor">
+test
+</textarea> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="assets/js/codemirror/codemirror.min.js"></script>
+<script src="assets/js/codemirror/javascript.min.js"></script>
+<script src="assets/js/common-script.js"></script>
+</body>
+</html>

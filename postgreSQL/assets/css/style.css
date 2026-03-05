@@ -1,0 +1,10 @@
+@import url('./codemirror/codemirror.min.css');
+@import url('./codemirror/theme/neo.min.css');
+@import url('./codemirror/theme/idea.min.css');
+@import url('./codemirror/theme/dracula.min.css');
+@import url('./codemirror/theme/eclipse.min.css');
+@import url('./codemirror/theme/mdn-like.min.css');
+
+
+body{ /*background-color: #000000; color: #fff;*/ font-family: "arial"; font-size:14px; }
+.CodeMirror, .CodeMirror-scroll{ height: auto; }
