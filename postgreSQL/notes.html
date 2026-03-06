@@ -43,6 +43,8 @@ postgres-# \l
 (3 rows)
 </textarea>
 
+<h4><i>Note: every command end with <b>;</b> without this command will not work</i></h4>
+
 <h3>Create New Database</h3>
 <p>In <b>Command Prompt</b> run the command: <b>CREATE DATABASE testdb;</b></p>
 <textarea class="code-editor">
@@ -67,6 +69,8 @@ postgres-# \l
 postgres=#
 
 </textarea>
+
+
 <h3>Change the database connection to testdb</h3>
 <p>In <b>Command Prompt</b> run the command: <b>\c testdb</b></p>
 <textarea class="code-editor">
@@ -74,11 +78,63 @@ postgres=# \c testdb
 You are now connected to database "testdb" as user "postgres".
 testdb=# // this means that PostgreSQL is connect to testdb database
 </textarea>
+<p>The left panel look like below:</p>
+<img src="assets/images/postgresql/connection-03.PNG" width="100%" style="max-width: 300px;" />
+<br/>
+<br/>
+<br/>
+
+<h3>Create a table in testdb</h3>
+<p>In <b>Command Prompt</b>/ <b>VS Code Terminal</b> run the command: <b>CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(255));</b></p>
+<textarea class="code-editor">
+testdb=# CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(255));
+CREATE TABLE
+testdb=#
+</textarea>
+<p>The left panel look like below:</p>
+<img src="assets/images/postgresql/connection-04.PNG" width="100%" style="max-width: 600px;" />
+<br/>
+<br/>
+<br/>
+
+<h3>Insert data in table</h3>
+<p>In <b>Command Prompt</b>/ <b>VS Code Terminal</b> run the command: <b>INSERT INTO users (name) VALUES ('Rahul');</b></p>
+<textarea class="code-editor">
+testdb=# INSERT INTO users (name) VALUES ('Rahul');
+INSERT 0 1
+</textarea>
+<br/>
 
 
+<h3>Get all database name</h3>
+<p>In <b>Command Prompt</b>/ <b>VS Code Terminal</b> run the command:</p>
+<textarea class="code-editor">
+testdb=# SELECT datname FROM pg_database;
+  datname
+-----------
+ postgres
+ testdb
+ template1
+ template0
+(4 rows)
+</textarea>
+<br/>
 
 
+<h3>Drop/Delete a database</h3>
+<p>In <b>Command Prompt</b>/ <b>VS Code Terminal</b> run the command:</p>
+<textarea class="code-editor">
+testdb=# DROP DATABASE instadb;
+DROP DATABASE
 
+// if we got error like below 
+ERROR: database "dbname" is being accessed by other users
+DETAIL: There is 1 other session using the database.
+
+// Solution:
+Goto pgadmin and close all connection to instadb database
+</textarea>
+<br/>
 <!-- <textarea class="code-editor">
 test
 </textarea> -->

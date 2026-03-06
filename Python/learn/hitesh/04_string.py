@@ -100,4 +100,4 @@ print(f"is veg masala is in all_masala ? {('veg masala' in all_masala)}")
 # Result: ------------
 # is veg masala is in all_masala ? False
 
-# here "in"  keyword is membership test in tuple
+# here "in" keyword is membership test in tuple
