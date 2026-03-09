@@ -1,0 +1,28 @@
+when we gave the node js code to v8 engine then the first step is "PARSING" 
+
+"PARSING" 
+----------------------------
+Stage 01. tokenization  > Lexical Analysis : here our node js code breakdown into tokens. [code -> tokens]. that mean v8 engine read our code token by token.
+
+Stage 02. Synctax Analysis : which codes are broken down in tokens and create Abstruct Synctax Tree. this is the second step of PARSING. [ https://astexplorer.net/] in this site we see the AST tree.
+
+Once we generated AST read by Ignition Interpretter and AST converted to Byte code and then executed. Compiler name of Javascript is "Turbofan Compiler".
+
+
+/********
+In the Interpretter language, codes are Interpretted line by line. When one line of code is Interpretted and compiled to machine code then go to net line...
+-- pros is fast initial execution fast. 
+
+In compiled language all code are compiled first and convert to machine code then execute.
+-- cons: initially heavy but executed fast.
+
+Javascript is Interpretter and compilation both. It used JIT [Just In Time] compilation. 
+********/
+
+Hot Code:
+----------------------------
+When AST process by Ignition Interpretter. So it find out the code  which is repeated a lot. there is change to optimization of code. in that chance of optimization it gives the code (hot code) to Turbofan compilier. Now turbofan optimize the hot code to optimize machine code and after it is again executed. This process also known as Optimization.
+
+Some this optimization process the optimize code might be de-optimize due some reason. here is a example: we have a function named "addition(a,b)" this function take two argument. So we repeated the function tree times with diffrent interger value [ addition(2,3) addition(4,3) addition(5,7) ]. Here v8 engine find that this function is used repeatedly. So at the first time it will take some it to optimize and compiled, but for the remaining function will compiled very first, because v8 engine already optimize the code. but when it found that thare have the same function with string [ addition("g", "h") ]. then v8 engine thought that the assumption type of aguments was wrong. So javascript will recognize that what code v8 engine optimize that code will not work in some condition, need to de-optimize the code. So Interpretter will again Interpretted, convert the code machine code and executed. All this things are happening parallely.
+
+meanwhile another thing is happening that is "Inline caching". Inline caching (IC) is a V8 engine optimization that speeds up repeated property lookups by remembering where object properties were found the first time.
