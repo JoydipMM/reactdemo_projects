@@ -1,0 +1,44 @@
+In libuv there has three major componenets:
+
+1. event loop
+2. callback queue
+3. thread pool
+
+
+what ever code we write that code is run inside v8 engine. But some of asyncronous code is offloaded to libuv. Javascript is synchronous single thread language. So it does not wait for anything. So when ever code is executed and in that code if there is any async code which take more time to execute ( do some api call) and we can not block the main thread. then that code is offloaded to libuv. Here is a highlighted things about libuv: that are asyncronous I/O and Non-Blocking O/I in node.js can noly be done because of libuv. libuv has superpower which makes asyncronous I/O and Non-Blocking O/I possible in Nodejs. 
+
+We have a code where we have API call, setTimeout, function call etc. This code is run in callstack inside javascript engine. We already know that javascript is a single threaded synchronous language, So javascript engine will execute that code line by line. But when we have async code then this code is offloaded to libuv. So libuv will take care of that. Now libuv do internal things inside like read the file, call to oparating system,  call the api and getting the data back. Once the data is back the job of libuv is take the callback function and pass that to call stack. Javascript engine will execute that callback function very quickly.
+
+
+
+How will take the callback function to call stack?
+when javascript busy to executing synchronous code, in meanwhile some api call is doen and result is back, then the callback function has to wait inside the callstack queue untill v8 engine is free. means when v8 engine executing some codes on that time the callback function can not be executed on the same time. Some time it can happen that all results of callback function are come at same time. At this moment libuv maintain all callbacks libuv use callback queue. So when javascript engine is busy then all callback will wait it's own queue. There are separate queue for timer, separate queue for api call. Once the javascript engine is free then callback function will be executed one by one.  
+
+1. event loop: The Event Loop is a mechanism inside libuv that continuously checks the call stack and different callback queues, and moves callbacks to the call stack when it becomes empty. suppose there have some task waiting in callback queue  and event loop is checking that call stack is empty then event loop take a callback from queue and give it to callstack.
+
+How eventloop work behind the scene?
+Event loop has some phases. Eventloop runs in a loop. it keep runing inside phases.there are many phases in event loop. But there have some major phases.
+1. Timer phases
+2. Poll phases
+3. Check phases
+4. close phases
+this is the phases cycle of event loop. loop start from Time phase and end at close phase. again it start from time phase.
+
+1. Timer phases: whenever the event loop start, event loop is at first phase/timer phase. In this phase all the callback set by setTimeout or setInterval is executed in this phase. Means Timers execute callbacks whose timer has expired. After this it moves to poll phase.
+2. Poll phases: In this phase all the callback associate with I/O callback executed in this phase. I/O callback means read file oparations, have some incoming connection, incoming api calls etc. All of this callback is executed in this phase. most of callbacks is executed in this phase.
+3. Check phases: In this phase all the callback associate with <b>setImmediate</b> is executed in this phase.
+4. Close phases: In this phase all the callback associate with close event (socket close event) is executed in this phase.
+
+process.nextTick: this is a way to handling some oparations with callbacks which scheduling the callbacks using <b>process.nextTick</b>. promise callback is process here. So process.nextTick --> promise callback cycle is executed before starting of each four phases of event loop. So before starting of each four phases of event loop, event loop checks if any callback is waiting for process.nextTick or any callback is waiting for promise callback. If have then it will execute before starting of each four phases of event loop and after every callback execution. 
+
+Execution priority: 
+process.nextTick queue
+↓
+Promise microtask queue
+↓
+Event loop phases
+
+
+
+
+2. callback queue: callback queue is like a queue which is maintain by libuv. It will maintain all the callback function which are offloaded to libuv. 
