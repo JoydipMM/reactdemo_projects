@@ -14,7 +14,9 @@ We have a code where we have API call, setTimeout, function call etc. This code 
 How will take the callback function to call stack?
 when javascript busy to executing synchronous code, in meanwhile some api call is doen and result is back, then the callback function has to wait inside the callstack queue untill v8 engine is free. means when v8 engine executing some codes on that time the callback function can not be executed on the same time. Some time it can happen that all results of callback function are come at same time. At this moment libuv maintain all callbacks libuv use callback queue. So when javascript engine is busy then all callback will wait it's own queue. There are separate queue for timer, separate queue for api call. Once the javascript engine is free then callback function will be executed one by one.  
 
-1. event loop: The Event Loop is a mechanism inside libuv that continuously checks the call stack and different callback queues, and moves callbacks to the call stack when it becomes empty. suppose there have some task waiting in callback queue  and event loop is checking that call stack is empty then event loop take a callback from queue and give it to callstack.
+1. event loop: 
+---------------------------------------------------------
+The Event Loop is a mechanism inside libuv that continuously checks the call stack and different callback queues, and moves callbacks to the call stack when it becomes empty. suppose there have some task waiting in callback queue  and event loop is checking that call stack is empty then event loop take a callback from queue and give it to callstack.
 
 How eventloop work behind the scene?
 Event loop has some phases. Eventloop runs in a loop. it keep runing inside phases.there are many phases in event loop. But there have some major phases.
@@ -37,6 +39,9 @@ process.nextTick queue
 Promise microtask queue
 ↓
 Event loop phases
+
+
+Now, Here a scenario, where event loop found the callbacks and didn't found anything. then event loop comes to poll phase and waits in poll phase.
 
 
 
