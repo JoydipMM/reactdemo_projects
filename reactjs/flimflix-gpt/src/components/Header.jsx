@@ -80,7 +80,7 @@ const Header = () => {
             <div className='hdr_mid_col'>
               <div className='hdr_menu_wrap_box'>
                 <ul className='hdr_menu_list'>
-                  <li><NavLink to={"/"}>{SITE_CONTENT.home[language]}</NavLink></li>
+                  {/* <li><NavLink to={"/"}>{SITE_CONTENT.home[language]}</NavLink></li> */}
                   <li><NavLink to={"/browse"}>{SITE_CONTENT.browse[language]}</NavLink></li>
                 </ul>
               </div>
@@ -94,8 +94,8 @@ const Header = () => {
                 </button>
               </>}
               {userStoreUser &&  <>
+              <button className='common_button'>{SITE_CONTENT.search[language]}</button>
               {" | "}
-              <button>{SITE_CONTENT.search[language]}</button>
               <div>
                 <img width={20} src={userStoreUser?.photoURL} alt="" />
                 <span>{userStoreUser?.displayName}</span>

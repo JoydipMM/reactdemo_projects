@@ -21,6 +21,8 @@ The Event Loop is a mechanism inside libuv that continuously checks the call sta
 How eventloop work behind the scene?
 Event loop has some phases. Eventloop runs in a loop. it keep runing inside phases.there are many phases in event loop. But there have some major phases.
 1. Timer phases
+1.a. pending callbacks
+1.b. idle, prepare
 2. Poll phases
 3. Check phases
 4. close phases
@@ -43,7 +45,7 @@ Event loop phases
 
 Now, Here a scenario, where event loop found the callbacks and didn't found anything. then event loop comes to poll phase and waits in poll phase.
 
-
+*** Tick: one cycle of event loop is known as Tick.
 
 
 2. callback queue: callback queue is like a queue which is maintain by libuv. It will maintain all the callback function which are offloaded to libuv. 

@@ -1,0 +1,12 @@
+if we have some read file then that read file off loaded to libuv. Libuv find the thread in the thread pool. then that thread request to oparating system to read the file. when file is reading that time thread is occupaid and when read completed then thread is free. and that thread available for another programme. 
+
+What is Thread: we assume that theard 1s a container where we can rund some piece of code. If we want to block the thread we can block. But our main tread not blocked. So when we want to block the main thread then we offload to libuv. meamwhile one more file is comes in. then that file oppucaied another thread and this thread is make the file system call. by default nodejs has 4 threads. suppose we made 5 file reading call symontiniously then the 5th file will wait for complete any one of the 4 threads to complete the file system call. 
+
+fs.readFile > use thread pool. means fs module use thread pool.
+DNS module not for all function only lookup function is a complex havy prrogram (dns.lookup) use thread pool.
+
+
+Is Nodejs Single Threaded?
+No. Nodejs is not single threaded. Nodejs is multi threaded. because nodejs has libuv, which oparate asyncronous I/O. then nodejs is multi thread and it use the uv thread pool. main thing is how we use nodejs, when we use the nodejs and which type of work we do in nodejs depends on that we can say nodejs is multi threaded or single thread language.
+
+We can change the thread pool size by process.env.UV_THREADPOOL_SIZE=7; in that way we can change the thread pool size.

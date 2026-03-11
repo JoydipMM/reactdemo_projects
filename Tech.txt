@@ -1,0 +1,12 @@
+typescript react rest apis
+build tools & development ( webpack, babel, vite, storybook )
+javascript es6+
+redux
+context api
+sonar, eslint
+restful services
+Azure cloud services
+microservices architecture
+docker
+kubernetes
+salesforce developers
