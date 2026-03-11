@@ -15,7 +15,7 @@ const LanguageDropdown = () => {
     <>
     {/* {selectedLang} */}
     <select name="language" id="language" className='bg-black' onChange={langEvent}>
-        {language.map((lang, index) => (
+        {language.slice(0,3).map((lang, index) => (
             <option selected={lang.iso_639_1 === selectedLang} key={index} value={lang.iso_639_1}>{lang.name}</option>
         ))}
     </select>
