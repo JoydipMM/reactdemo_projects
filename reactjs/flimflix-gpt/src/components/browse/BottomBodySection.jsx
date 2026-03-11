@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
 import useGetTrandingMovies from '../../hooks/useGetTrandingMovies';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MovieListSections from './MovieListSections';
+import { trandingMoviesFetch } from '../../store/moviesSlice';
 
 
 const BottomBodySection = () => {
+  const dispatch = useDispatch();
   const getTrandingMovies = useSelector((store) => store.movies?.trandingMovies);
 
-  useGetTrandingMovies();
+  //useGetTrandingMovies();
+
+  useEffect(()=>{
+    dispatch(trandingMoviesFetch());
+  }, [])
 
   return (
     <>
