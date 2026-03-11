@@ -8,6 +8,7 @@ import { toggleLogin } from '../store/settingSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { LANGUAGES, SITE_CONTENT } from '../utils/language';
 import Loading from './Loader';
+import LanguageDropdown from './LanguageDropdown';
 
 
 const Header = () => {
@@ -88,6 +89,8 @@ const Header = () => {
             </> }
 
             <div className='hdr_rgt_col'>
+              <LanguageDropdown/>
+              {" | "}
               {(!userStoreUser && !isInLoginPage) &&  <>
                 <button className='common_button' onClick={()=>toggleLoginEvent(true)}>
                   {SITE_CONTENT.signin[language]} / {SITE_CONTENT.signup[language]}
