@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import MovieListSections from '../components/browse/MovieListSections';
 import { useDispatch, useSelector } from 'react-redux';
 import { trandingMoviesFetch } from '../store/moviesSlice';
+import GenresMovieListSection from '../components/genresMovieKistSection';
 
 const Genres = () => {
     const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Genres = () => {
             {/* {movie?.movies?.length} */}
             {moviesByGenre?.map((movie) => (
                 <div key={movie.genreName}>
-                    {movie?.movies?.length > 0 && <MovieListSections title={movie.genreName} movies={movie.movies} /> }
+                    {movie?.movies?.length > 0 && <GenresMovieListSection title={movie.genreName} movies={movie.movies} /> }
                 </div>
             ))}
           </div>
