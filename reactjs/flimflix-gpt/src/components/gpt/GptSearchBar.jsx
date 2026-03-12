@@ -22,7 +22,8 @@ const GptSearchBar = () => {
         const text = inputRef.current.value;
         //console.log(text);
 
-        const queryText = `act as a movie recommendation system and suggest some movies for the query: ${text} only gave me name of 5 movies.  comma separated`;
+        // const queryText = `act as a movie recommendation system and suggest some movies for the query: ${text} only gave me name of 5 movies.  comma separated`;
+        const queryText = `act as a movie recommendation system and suggest some movies for the query: ${text} only gave me name of 5 movies. also if any specific language is mentioned then only give movies of that language.  comma separated`;
 
         const gptResult = await openai.chat.completions.create({
             messages: [{ role: 'user', content: queryText }],
