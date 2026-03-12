@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from '../pages/Home';
 import DefaultLayout from './layout/DEfaultLayout';
 import ErrorPage from '../pages/ErrorPage';
+import Genres from '../pages/Genres';
 
 const Body = () => {
     const appRouter = createBrowserRouter([
@@ -14,7 +15,8 @@ const Body = () => {
           children: [
             // { path: "/", element: <Login /> },
             { path: "/", element: <Home /> },
-            { path: "browse", element: <Browse /> }
+            { path: "browse", element: <Browse /> },
+            { path: "genres", element: <Genres /> },
           ]
         }
     ]);

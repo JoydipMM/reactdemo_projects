@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LANGUAGES, SITE_CONTENT } from '../utils/language';
 import Loading from './Loader';
 import LanguageDropdown from './LanguageDropdown';
+import { genresFetch } from '../store/moviesSlice';
 
 
 const Header = () => {
@@ -52,6 +53,8 @@ const Header = () => {
       setIsLoading(false);
     }
   });
+
+  dispatch(genresFetch());
 
   // Unsubscribe when component unmounts
   return () => unsubscribe();

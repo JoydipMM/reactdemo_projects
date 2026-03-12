@@ -1,6 +1,16 @@
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import { API_BASE_URL, TMDB_API_OPTION } from "../utils/constants";
 
+export const genresFetch = createAsyncThunk('movies/genres', async (_,{ rejectWithValue })=>{
+    try {
+        const response = await fetch(`${API_BASE_URL}/genre/movie/list?language=en`, TMDB_API_OPTION );
+        const data = await response.json();
+        return data.genres;
+      } catch (error) {
+        console.log("Genre API Error:", error);
+      }
+});
+
 export const trandingMoviesFetch = createAsyncThunk('movies/trandingMovies', async(_, { rejectWithValue }) => {
     try{
         const response = await fetch(`${API_BASE_URL}/trending/movie/day?language=en-US&page=1`, TMDB_API_OPTION);
@@ -62,7 +72,7 @@ const movesSlice = createSlice({
         builder.addCase(defaultMoviesFetch.pending, (state, action)=>{
             state.loading = true;
             state.error = null;
-        })
+        }),
         builder.addCase(defaultMoviesFetch.fulfilled, (state, action)=>{
             state.defaultMoviesList = action.payload;
         }),
@@ -70,6 +80,8 @@ const movesSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         }),
+
+        // Tranding Movies
         builder.addCase(trandingMoviesFetch.pending, (state,action)=>{
             state.loading = true;
             state.error = null; 
@@ -80,6 +92,20 @@ const movesSlice = createSlice({
         }),
         builder.addCase(trandingMoviesFetch.rejected, (state, action)=>{
             state.loading = true;
+            state.error = action.payload;
+        }),
+
+        // Genres
+        builder.addCase(genresFetch.pending, (state, action)=>{
+            state.loading = true;
+            state.error = null;
+        }),
+        builder.addCase(genresFetch.fulfilled, (state, action)=>{
+            state.genres = action.payload;
+            state.loading = false;
+        }),
+        builder.addCase(genresFetch.rejected, (state, action)=>{
+            state.loading = false;
             state.error = action.payload;
         })
     }
