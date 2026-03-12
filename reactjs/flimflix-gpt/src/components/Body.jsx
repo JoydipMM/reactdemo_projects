@@ -5,6 +5,7 @@ import Home from '../pages/Home';
 import DefaultLayout from './layout/DEfaultLayout';
 import ErrorPage from '../pages/ErrorPage';
 import Genres from '../pages/Genres';
+import Search from '../pages/Search';
 
 const Body = () => {
     const appRouter = createBrowserRouter([
@@ -17,6 +18,7 @@ const Body = () => {
             { path: "/", element: <Home /> },
             { path: "browse", element: <Browse /> },
             { path: "genres", element: <Genres /> },
+            { path: "search", element: <Search/> }
           ]
         }
     ]);

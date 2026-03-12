@@ -94,13 +94,15 @@ const Header = () => {
             <div className='hdr_rgt_col'>
               <LanguageDropdown/>
               {" | "}
+              <Link to="/search" className='common_button'>{SITE_CONTENT.search[language]}</Link>
+              {" | "}
               {(!userStoreUser && !isInLoginPage) &&  <>
                 <button className='common_button' onClick={()=>toggleLoginEvent(true)}>
                   {SITE_CONTENT.signin[language]} / {SITE_CONTENT.signup[language]}
                 </button>
               </>}
               {userStoreUser &&  <>
-              <button className='common_button'>{SITE_CONTENT.search[language]}</button>
+              {/* <Link to="/search" className='common_button'>{SITE_CONTENT.search[language]}</Link> */}
               {" | "}
               <div>
                 <img width={20} src={userStoreUser?.photoURL} alt="" />
