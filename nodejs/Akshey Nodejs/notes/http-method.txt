@@ -1,0 +1,6 @@
+http methods:
+- post
+- get
+- put
+- patch
+- delete
