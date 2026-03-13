@@ -1,0 +1,31 @@
+↑
+
+4.18.2
+│ │  │
+│ │  └── PATCH (bug fixes)
+│ └───── MINOR (new features, backward compatible)
+└─────── MAJOR (breaking changes)
+
+"express": "^4.18.2"
+"express": "~4.18.2"
+
+
+^ Caret → allows minor + patch updates. Its means our project automatically updated if any new version comes in 4.x.x series
+~ Tilde → allows patch updates only. Its means our project automatically updated if any new patch comes in 4.4.x series
+If we don't add the ~ or ^ then its mean that our version will never auto update.
+
+What is inside package.json?
+What actual version we are using that is defined in package.json.
+
+Express helps to create web server by using listen method on a port.
+
+const express = required('express');
+const app = express();
+app.listen(3001, () => {
+    console.log("Server is running on port 3001");
+});
+
+
+
+npm i -D nodemon
+-D = dev dependency
