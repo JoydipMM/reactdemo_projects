@@ -14,6 +14,8 @@ app.use('/', (req, res) => {
 });
 
 // http://localhost:3001/hello --> this will not goto hello app page. it will not change the route because in express routes are read form top. So at the last the "/" url will be and ather will be upon of this route. please follow the above route order.
+// also if any url not match then the root url page will open related page with "/" url.
+// example: http://localhost:3001/hello/fgfdg%20fdgdf will open hello app page.
 
 
 app.listen(3001, () => {
