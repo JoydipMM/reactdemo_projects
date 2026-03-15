@@ -14,12 +14,62 @@ app.get("/user", (req, res) => {
 })
 
 
+// dummy error handling
+app.get("/getUserData", (req, res) => {
+    // making a dummy error
+    throw new Error("Dummy Error");
+    // response: <pre>Error: Dummy Error<br> &nbsp; &nbsp;at .....
+
+    // if we use use error handling [comment: error handling 01] then we get the response like below:
+    // Something went wrong!!!
+})
+
+
+// error handling 02
+app.get("/trycatch", (req, res) => {
+    try {
+        throw new Error("Dummy Error !!!");
+        res.send("Dummy Error");
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+    // response: Dummy Error !!!
+})
+
+
+// if any rotue have any error this route handed all error app.use("/", (req, res) => {}) match all type type of http methods
+/*
+---------------------------------
+Note: 
+--------------------------------- 
+parameter order is important.
+if we use error as a parameter then err will be the first parameter
+for 2 parameter ==> (req, res) => {})
+for 3 parameter ==> (req, res, next) => {})
+for 4 parameter ==> (err, req, res, next) => {})
+*/
+
+// error handling 01
+app.use("/", (err, req, res, next) => {
+    if(err){
+        res.status(500).send("Something went wrong!!!");
+    }
+})
+
+
+
+
 app.get("/user/:userid/:srno", (req, res) => {
     console.log(req.params);
     // req.params of /user/:userid/ ==> http://localhost:3001/user/20  [Object: null prototype] { userid: '20' }
     // req.params.userid ==> http://localhost:3001/user/20  [Object: null prototype] 20
     // req.params of /user/:userid/:srno ==> http://localhost:3001/user/20/30  [Object: null prototype] { userid: '20', srno: '340' }
-    // Note: colon ":" means : is a parameter and ? means : is a query string
+    /* 
+    ---------------------------------
+    Note: 
+    ---------------------------------  
+    colon ":" means : is a parameter and ? means : is a query string
+    */
     res.send({firstname: "Akshey", lastname: "Sharma"});
 })
 
@@ -122,7 +172,9 @@ app.use("/middleware06", [(req, res, next)=>{
 // response: 
 // Middleware 06 App Page 04
 
-//Note:
+/*---------------------------------
+Note: 
+--------------------------------- */
 // if we look from the above example the last callback function is route handler because it is send the response. 
 // and remaining callback functions above the last one are known as middlewares.
 
@@ -143,7 +195,10 @@ app.use("/admin", (req, res, next) =>{
 
 
 /*
-    Note: we can put this middleware callback function in another file and import it. 
+    ---------------------------------
+    Note: 
+    ---------------------------------  
+    we can put this middleware callback function in another file and import it. 
 
     import {adminMiddleware} from "./middleware/admin.middleware"; at the top of app.js if we use module export
     // or
@@ -197,7 +252,9 @@ app.get("/admin/report", (req, res)=>{
 
 
 /*
-Note:
+---------------------------------
+Note: 
+--------------------------------- 
 "/user" -> this route
 (req, res) => { res.send("save data to db");  } -> this is known as route handler
 but one route has multiple route handler.
