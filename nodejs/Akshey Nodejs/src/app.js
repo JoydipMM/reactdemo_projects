@@ -49,7 +49,7 @@ for 3 parameter ==> (req, res, next) => {})
 for 4 parameter ==> (err, req, res, next) => {})
 */
 
-// error handling 01
+// error handling 01 [wildcard error handling]
 app.use("/", (err, req, res, next) => {
     if(err){
         res.status(500).send("Something went wrong!!!");
