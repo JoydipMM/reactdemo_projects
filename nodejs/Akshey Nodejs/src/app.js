@@ -5,7 +5,32 @@ const app = express();
 
 // http route match with only get method
 app.get("/user", (req, res) => {
+    console.log(req.query);
+    // url example: 
+    // req.query ==> user?userid=101 -> this is query string
+    // http://localhost:3001/user?userid=101  [Object: null prototype] { userid: '101' }
+    // http://localhost:3001/user?userid=101&srno=123 [Object: null prototype] { userid: '101', srno: '123' }
     res.send({firstname: "Akshey", lastname: "Sharma"});
+})
+
+
+app.get("/user/:userid/:srno", (req, res) => {
+    console.log(req.params);
+    // req.params of /user/:userid/ ==> http://localhost:3001/user/20  [Object: null prototype] { userid: '20' }
+    // req.params.userid ==> http://localhost:3001/user/20  [Object: null prototype] 20
+    // req.params of /user/:userid/:srno ==> http://localhost:3001/user/20/30  [Object: null prototype] { userid: '20', srno: '340' }
+    // Note: colon ":" means : is a parameter and ? means : is a query string
+    res.send({firstname: "Akshey", lastname: "Sharma"});
+})
+
+
+
+app.get(/.*fly$/, (req, res) => {
+    // url example: 
+    // http://localhost:3001/testfly
+    // http://localhost:3001/fly
+    // http://localhost:3001/testfly1 give error
+    res.send("/.*fly$/ - regex route match with only fly word or start with any character and end with fly at the end and of the url with get method");
 })
 
 app.post("/user", (req, res) => {
