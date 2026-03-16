@@ -1,0 +1,161 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 Package.json</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<hr/>
+<h2><b>About Package.json</b></h2>
+<hr/>
+
+<textarea id="editor">
+4.18.2
+│ │  │
+│ │  └── PATCH (bug fixes)
+│ └───── MINOR (new features, backward compatible)
+└─────── MAJOR (breaking changes)
+
+"express": "^4.18.2"
+"express": "~4.18.2"
+</textarea>
+
+<ul>
+    <li><b>^</b> Caret → allows minor + patch updates. Its means our project automatically updated if any new version comes in 4.x.x series</li>
+    <li><b>~</b> Tilde → allows patch updates only. Its means our project automatically updated if any new patch comes in 4.4.x series</li>
+    <li>If we don't add the <b>~</b> or <b>^</b> then its mean that our version will never auto update.</li>
+</ul>
+
+<h4><b>What is inside package.json?</b></h4>
+<p>What actual version we are using that is defined in package.json.</p>
+<br/>
+<h4><b>About Express JS</b></h4>
+<p>Express helps to create web server by using listen method on a port.</p>
+<br/>
+<h4><b>Install Express and create a server</b></h4>
+<p><b>Install Command</b> <br/><code><b>npm install express</b></code></p>
+<br/>
+<p>In <b>src/App.js</b></p>
+<textarea class="code-editor">
+const express = required('express');
+const app = express();
+app.listen(3001, () => {
+    console.log("Server is running on port 3001");
+});
+</textarea>
+<p>In <b>package.json</b></p>
+<textarea class="code-editor">
+"scripts": {
+    "start": "node src/app.js" // add this line and run "npm start" in terminal.
+},
+</textarea>
+<br/>
+<h4><b>Use of Nodemon</b></h4>
+<p>Nodemon is a development utility for Node.js that automatically restarts the server when it detects file changes in the project directory.</p>
+<p><b>Install Command</b> <br/><code><b>npm i -D nodemon</b></code></p>
+<p>In <b>package.json</b> we need to update <br/><code><b>"scripts": {"start": "nodemon src/app.js"}</b></code></p>
+<p><b>Note:</b> <b><i>-D</i></b> = dev dependency</p>
+<br/>
+
+
+<h4><b>Interpretter language</b></h4>
+<p>In the Interpretter language, codes are Interpretted line by line. When one line of code is Interpretted and compiled to machine code then go to next line...<br/>
+<b>-- pros</b>: Interpretter language is fast initial execution fast. </p>
+<br/>
+<h4><b>Compiled language</b></h4>
+<p>In compiled language all code are compiled first and convert to machine code then execute.<br/>
+<b>-- cons</b>: initially heavy but executed fast.</p>
+<br/>
+<h4><b>In JavaScript</b></h4>
+<p>Javascript is Interpretter and compilation both. It used <span class="badge bg-dark">JIT [Just In Time] compilation</span>.</p>
+<br/>
+<br/>
+
+
+<hr/>
+<h2><b>About V8 Engine</b></h2>
+<hr/>
+<p>The V8 JavaScript Engine is the JavaScript engine that executes JavaScript code in Node.js and Google Chrome. It was created by Google.</p>
+
+<h4><b>Steps of compilation of Node.js code to executed by the V8 JavaScript Engine</b></h4>
+<p>When you run Node.js code, it is executed by the V8 JavaScript Engine, and the first step is Parsing.</p>
+<p>Let’s go through the actual pipeline inside V8 step-by-step.</p>
+<br/>
+<h5><b>Parsing (First Step)</b></h5>
+<p>When you write JavaScript code in Node.js, the V8 engine first parses the code. In this step there have <b>two stages</b> </p> 
+<ul>
+    <li class="mb-2"><b>Stage 01: Lexical Analysis</b>: this stage also known as <b><i>tokenization</i></b>. here our node js code breakdown into tokens. [code -> tokens]. that mean v8 engine read our code token by token.</li>
+    <li><b>Stage 02: Syntactic Analysis</b>: which codes are broken down in tokens and create Abstruct Synctax Tree. this is the second step of PARSING. [ https://astexplorer.net/] in this site we see the <b>AST (Abstract Syntax Tree)</b> tree.</li>
+</ul>
+<textarea class="code-editor">
+let x = 10 + 20;
+
+// Step 1: Lexical Analysis (Tokenization)
+let
+x
+=
+10
++
+20
+;
+
+// Step 2: AST (Abstract Syntax Tree)
+// The tokens are converted into a tree structure.
+Assignment
+    |
+    x
+    |
+ Addition
+  /   \
+10     20
+</textarea>
+<br/>
+<h5><b>Ignition (Interpreter) (Second Step)</b></h5>
+<p>After parsing: V8 converts <b><i>AST → Bytecode</i></b>. This is done by <b>Ignition Interpreter</b> and the compiler name of Javascript is "<b>Turbofan Compiler</b>". Bytecode is low-level instructions for V8.</p>
+<br/>
+<h5><b>Execution</b></h5>
+<p>The bytecode is executed line by line.</p>
+<br/>
+<h5><b>TurboFan (Optimization)</b></h5>
+<p>If some code runs many times (like loops or frequently used functions): V8 sends it to TurboFan. TurboFan compiles it into optimized machine code. This makes it much faster.</p>
+<br/>
+<hr/>
+<i>
+<p><b>Hot Code:</b> When AST process by Ignition Interpretter. So it find out the code  which is repeated a lot. there is change to optimization of code. in that chance of optimization it gives the code (hot code) to Turbofan compilier. Now turbofan optimize the hot code to optimize machine code and after it is again executed. This process also known as Optimization.</p>
+<p>Some this optimization process the optimize code might be de-optimize due some reason. here is a example: we have a function named "addition(a,b)" this function take two argument. So we repeated the function three times with diffrent interger value [ addition(2,3) addition(4,3) addition(5,7) ]. Here v8 engine find that this function is used repeatedly. So at the first time it will take same code and convert it to optimize and compiled, after that for the remaining function will compiled very first, because v8 engine already optimize the code. but when it found that thare have the same function with string [ addition("g", "h") ]. then v8 engine thought that the assumption type of aguments was wrong. So javascript will recognize that what code v8 engine optimize that code will not work in some condition, need to de-optimize the code. So Interpretter will again Interpretted, convert the code to machine code and executed. All this things are happening parallely.</p>
+<p>meanwhile another thing is happening that is "Inline caching". Inline caching (IC) is a V8 engine optimization that speeds up repeated property lookups by remembering where object properties were found the first time.</p>
+</i><hr/>
+<br/>
+<h4><b>Full V8 Pipeline</b></h4>
+<textarea class="code-editor">
+JavaScript Code
+      │
+      ▼
+1️⃣ Parsing
+      │
+      ▼
+2️⃣ AST (Abstract Syntax Tree)
+      │
+      ▼
+3️⃣ Ignition Interpreter
+      │
+      ▼
+4️⃣ Bytecode
+      │
+      ▼
+5️⃣ TurboFan Compiler
+      │
+      ▼
+6️⃣ Machine Code
+      │
+      ▼
+Program Executes
+</textarea>
+
+<script src="assets/js/codemirror/codemirror.min.js"></script>
+<script src="assets/js/codemirror/javascript.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/common-script.js"></script>
+</body>
+</html>
