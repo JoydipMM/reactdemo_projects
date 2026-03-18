@@ -1,0 +1,154 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03 Mongodb Database Connection</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<hr/>
+<h2><b>Create a claster in mongodb</b></h2>
+<hr/>
+<p><b>First</b> goto mongodb website and login </p>
+<p>For first time signup, this step can ignore</p>
+<img src="assets/images/mongodb-01.png"/>
+<br/>
+<br/>
+<p><b>Second</b> create a claster [select free plan] and remain field as it is will be defalt no need to change, then click on <b>Create Deployment</b> button.<br/>
+<span class="badge bg-danger">Note:</span><i> we can create only one claster in mongodb for free. We can make multiple database in one claster</i>
+</p>
+<img src="assets/images/mongodb-02.png" width="90%"/>
+<br/>
+<br/>
+<p><b>Third</b> We need to copy the username and password from mongodb claster popup. Then click on <b>Create Database User</b> button</p>
+<img src="assets/images/mongodb-03.png" width="90%"/>
+<br/>
+<br/>
+<p><b>Fourth</b> click on <b>choose a connection method</b> button in popup and copy the connection string and press "Done" button</p>
+<img src="assets/images/mongodb-04.png" width="30%"/>
+<img src="assets/images/mongodb-05.png" width="30%"/>
+<img src="assets/images/mongodb-06.png" width="30%"/>
+<br/>
+<br/>
+<p>The mongodb interface is shown below. Click on <b>Browse collections</b> button</p>
+<img src="assets/images/mongodb-07.png"/>
+<hr/>
+<img src="assets/images/mongodb-08.png" style="max-width: 100%;"/>
+<br/>
+<br/>
+<p>To create new Database click on <b>Create database</b> button. A popup will open where we need to enter the <b>name of database</b> and give a <b>collection name</b> and click on <b>Create Database</b> button<br/>Here <b>Collection</b> like as table in sql</p>
+<img src="assets/images/mongodb-09.png" style="max-width: 100%;"/>
+<br/>
+<br/>
+<p>Final Interface of mongodb is shown below</p>
+<img src="assets/images/mongodb-10.png" style="max-width: 100%;"/>
+<br/>
+<br/>
+
+<hr/>
+<h2><b>Connect mongodb in nodejs we use mongoose</b></h2>
+<hr/>
+<p><b>Installation Command</b> <code>npm i mongoose</code></p>
+<p>create a folder name <b>config</b> in our project src folder and create a file name <b>database.js</b></p>
+<p>In <b>database.js</b></p>
+<textarea id="editor">
+// use require to import mongoose and assign it to a variable
+const mongoose = require('mongoose');
+
+// now to connect database we use a async function because we have to wait for the database to connect
+const connectDB = async () => {
+    try {
+        await mongoose.connect("mongodb+srv://joydiponlinemarket_db_user:7tmGKcB9QEgnPcM2@cluster0.uqtiuyl.mongodb.net/Demo_node_db");
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error);
+    }
+}
+
+// this function will be called when the application starts and will connect to the database
+connectDB().then(()=>{
+    console.log('Connected to MongoDB');
+}).catch((error)=>{
+    console.log(error);
+})
+</textarea>
+<br/>
+<p>In <b>app.js</b></p>
+<textarea class="code-editor">
+require('./config/database');
+</textarea>
+<p>Now if we run our app it will show the message <b>Connected to MongoDB</b> in our terminal.<br/>This is our basic database connection</p>
+<p><span class="badge bg-danger">Note:</span><i> But the above database connection is not the best way to connect database. From the above code we are assuming that the database is connected. if we look in the console we can see that the below lines</i></p>
+<textarea class="code-editor">
+[nodemon] restarting due to changes...
+[nodemon] starting `node src/app.js`
+Server is running on port 3001
+Connected to MongoDB
+</textarea>
+<p>Here first node server is starting and then database connection is happening. But this is not the best way to connect database. The best way to connect database is first connect database then start node server.</p>
+<p>For that in <b>database.js</b> we need to export the connectDB function and import it in <b>app.js</b></p>
+<textarea class="code-editor">
+// use require to import mongoose and assign it to a variable
+const mongoose = require('mongoose');
+
+// now to connect database we use a async function because we have to wait for the database to connect
+const connectDB = async () => {
+    try {
+        await mongoose.connect("mongodb+srv://joydiponlinemarket_db_user:7tmGKcB9QEgnPcM2@cluster0.uqtiuyl.mongodb.net/Demo_node_db");
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error);
+    }
+}
+
+// module export the connectDB function
+module.exports = connectDB;
+
+// remove this lines from here and paste it in app.js
+connectDB().then(()=>{
+    console.log('Connected to MongoDB');
+}).catch((error)=>{
+    console.log(error);
+})
+</textarea>
+<br/>
+<p>In <b>app.js</b></p>
+<textarea class="code-editor">
+// change this line
+// require('./config/database');
+// to this line
+const connectDB = require('./config/database');
+
+
+// then server listening code will be in this line
+connectDB().then(()=>{
+    console.log('Connected to MongoDB');
+    app.listen(3001, () => {
+        console.log("Server is running on port 3001");
+    });
+}).catch((error)=>{
+    console.log(error);
+})
+
+/* Note :
+With the above changes in app.js, the server will start listening only after the database connection is established.
+*/
+
+</textarea>
+
+
+
+
+
+
+<!-- <textarea class="code-editor">
+
+</textarea> -->
+<br/>
+
+
+
+<script src="assets/js/codemirror/codemirror.min.js"></script>
+<script src="assets/js/codemirror/javascript.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/common-script.js"></script>
+</body>
+</html>

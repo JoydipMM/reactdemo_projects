@@ -1,0 +1,119 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 route and middleware</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<hr/>
+<h2><b>Create a basic route and server</b></h2>
+<hr/>
+<p>To create route in Node.js we need to install <b>express</b><br/><b>Installation Command</b> <code>npm i express</code></p>
+<p>After installation we need to import <b>express</b> in our <b>app.js</b> <i>[here we are using common javascript import]</i>. Then we assign <b>express</b> to a variable <b>app</b>.</p>
+<p>Then we can able to create a route. code example below</p>
+<p>At last we need to <b>create a server</b> where our app is running in our local system.</p>
+<br/>
+<p><b>app.js</b></p>
+<textarea id="editor">
+const express = require('express');
+const app = express();
+
+// this is root route
+app.use('/', (req, res) => {
+    res.send("Home App Page !");
+});
+
+// server
+app.listen(3001, () => {
+    console.log("Server is running on port 3001");
+});
+// to check server is running or not go to http://localhost:3001
+</textarea>
+<p><b>Output</b>: <i>The below text will view on http://localhost:3001</i> <br/> Home App Page ! <br/></p>
+
+<br/>
+<h4><b>We can make more routes</b></h4>
+<textarea class="code-editor">
+const express = require('express');
+const app = express();
+
+// this is root route
+app.use('/', (req, res) => {
+    res.send("Home App Page !");
+});
+
+// like the above route we can create many routes
+// url : http://localhost:3001/hello/2
+app.use('/hello/2', (req, res) => {
+    res.send("hello 2 App Page");
+});
+
+// url : http://localhost:3001/hello/
+app.use('/hello', (req, res) => {
+    res.send("hello App Page");
+});
+
+// server
+app.listen(3001, () => {
+    console.log("Server is running on port 3001");
+});
+</textarea>
+
+
+<br/>
+<hr/><p><span class="badge bg-danger mb-2">Important Note</span><br/><i>
+<code><b>When We mka eany route then the order of routes is important.</b></code><br/>
+When we check the above all routes then we can see the output of first route only "Home App Page ! ". <b>Because the order of routes is important.</b><br/>
+In javascript code run line by line and nodejs if get any response form root route then it will stop the execution of other routes. that's why we can see the output of first route only "Home App Page ! ". for better understand thr root route always need to be at last.<br/>
+To fix that issue we need to change the order of routes. like below.<br/>
+</i><hr/></p>
+<h4><b>Correct Order</b></h4>
+<textarea class="code-editor">
+const express = require('express');
+const app = express();
+
+// like the above route we can create many routes
+// url : http://localhost:3001/hello/2
+app.use('/hello/2', (req, res) => {
+    res.send("hello 2 App Page");
+});
+
+// url : http://localhost:3001/hello/
+app.use('/hello', (req, res) => {
+    res.send("hello App Page");
+});
+
+// this is root route
+app.use('/', (req, res) => {
+    res.send("Home App Page !");
+});
+
+// server
+app.listen(3001, () => {
+    console.log("Server is running on port 3001");
+});
+</textarea>
+
+<!-- <ul>
+    <li><b>^</b> Caret → allows minor + patch updates. Its means our project automatically updated if any new version comes in 4.x.x series</li>
+    <li><b>~</b> Tilde → allows patch updates only. Its means our project automatically updated if any new patch comes in 4.4.x series</li>
+    <li>If we don't add the <b>~</b> or <b>^</b> then its mean that our version will never auto update.</li>
+</ul>
+
+<h4><b>What is inside package.json?</b></h4> -->
+
+
+<textarea class="code-editor">
+
+</textarea>
+<br/>
+
+
+
+<script src="assets/js/codemirror/codemirror.min.js"></script>
+<script src="assets/js/codemirror/javascript.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/common-script.js"></script>
+</body>
+</html>

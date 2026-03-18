@@ -1,4 +1,5 @@
 const express = require('express');
+const connectDB = require('./config/database')
 const app = express();
 
 
@@ -292,6 +293,12 @@ app.use('/', (req, res) => {
 // if we remove the "/" then http://localhost:3001/xyz will show: Cannot GET /yyyy
 
 
-app.listen(3001, () => {
-    console.log("Server is running on port 3001");
-});
+connectDB().then(()=>{
+    console.log('Connected to MongoDB');
+    app.listen(3001, () => {
+        console.log("Server is running on port 3001");
+    });
+}).catch((error)=>{
+    console.log(error);
+})
+
