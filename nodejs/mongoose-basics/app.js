@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 // step 01 - connect Database
-mongoose.connect('mongodb+srv://joydipsarkar01:joydip1234@cluster0.4q84a.mongodb.net/')
+mongoose.connect('')
 .then(()=>console.log("Database connected successfully"))
 .catch((error)=> console.log(error) )
 
