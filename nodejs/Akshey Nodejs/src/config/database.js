@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 // now to connect database we use a async function because we have to wait for the database to connect
 const connectDB = async () => {
     try {
-        await mongoose.connect(`${process.env.MONGODB_URI}/${process.env.MONOGODB_DB_NAME}`);
+        await mongoose.connect(`${process.env.MONGODB_URI}${process.env.MONOGODB_DB_NAME}`);
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
     }

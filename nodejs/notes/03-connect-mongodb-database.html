@@ -144,7 +144,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(`${process.env.MONGODB_URI}/${process.env.MONOGODB_DB_NAME}`); // update this line
+        await mongoose.connect(`${process.env.MONGODB_URI}${process.env.MONOGODB_DB_NAME}`); // update this line
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
     }
@@ -156,8 +156,84 @@ module.exports = connectDB;
 MONGODB_URI=mongodbconnectString
 MONOGODB_DB_NAME=test_db 
 </textarea>
+<br/>
+<hr/>
+<h2><b>Create Schema, Model </b></h2>
+<hr/>
+<p>Create a folder name <b>models</b> in our project src folder</p>
+<p>In <b>models/user.js</b> We will create a schema and model for user</p>
+<textarea class="code-editor">
+const mongoose = require("mongoose");
+
+// create mongoose schema
+const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    }
+}, {
+    timestamps: true
+});
 
 
+// create mongoose model
+// syntax: mongoose.model(ModelName, schema) // Note: Model Name should be singular and start with capital letter
+const userModel = mongoose.model("User", userSchema);
+module.exports = userModel;
+</textarea>
+<br/>
+<hr/>
+<h2><b>Create API with model and schema </b></h2>
+<hr/>
+<textarea class="code-editor">
+// below code is for signup api: http://localhost:3001/signup
+app.post("/signup", async (req, res)=>{
+    const dummyuserObj = {
+        name: "raj",
+        email: "tYt2F@example.com",
+        password: "1234"
+    }
+    // to save the dummydata user collection we need to make a new instance of user model
+    // first inport user model at the top
+    // create new instance of user model and pass the data info
+    const user = new userModel(dummyuserObj);
+    
+    // to save data we use try catch block
+    try{
+        // save data to db. this save method is return promise add await before user.save() and add async before router handler
+        await user.save()
+        // at last send the response
+        res.send({message: "user created successfully", user: user});
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+});
+
+
+
+// in postman the below this type of respose will be shown and data will save in mongodb database
+{
+    "message": "user created successfully",
+    "user": {
+        "name": "raj",
+        "email": "tYt2F@example.com",
+        "password": "1234",
+        "_id": "69ba80ea3d03fffb4f7c46fb",
+        "createdAt": "2026-03-18T10:39:38.588Z",
+        "updatedAt": "2026-03-18T10:39:38.588Z",
+        "__v": 0
+    }
+}
+</textarea>
+<p>Now if we want to save new user data from postman</p>
 <!-- <textarea class="code-editor">
 
 </textarea> -->

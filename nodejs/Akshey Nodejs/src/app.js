@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/database')
+const userModel = require('./models/user')
 const app = express();
 
 
@@ -247,8 +248,30 @@ app.get("/admin/report", (req, res)=>{
     res.send("Admin Report Page");
 });
 
+// below code is for signup api: http://localhost:3001/signup
+app.post("/signup", async (req, res)=>{
+    const dummyuserObj = {
+        name: "raj",
+        email: "tYt2F@example.com",
+        password: "1234"
+    }
+    
+    // to save the dummydata user collection we need to make a new instance of user model
+    // first inport user model at the top
+    // create new instance of user model and pass the data info
+    const user = new userModel(dummyuserObj);
 
-
+    // to save data we use try catch block
+    try{
+        // save data to db. this save method is return promise add await before user.save() and add async before router handler
+        await user.save()
+        // at last send the response
+        res.send({message: "user created successfully", user: user});
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+    
+});
 
 
 
