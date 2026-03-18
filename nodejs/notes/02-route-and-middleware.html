@@ -94,7 +94,95 @@ app.listen(3001, () => {
     console.log("Server is running on port 3001");
 });
 </textarea>
+<br/>
+<h4><b>Send object as response</b></h4>
+<textarea class="code-editor">
+app.get("/user", (req, res) => {
+    res.send({firstname: "Akshey", lastname: "Sharma"});
+})    
+</textarea>
+<br/>
+<p><b>Output</b>: <i>The below text will view on http://localhost:3001/user</i> <br/> {"firstname": "Akshey", "lastname": "Sharma"}</p>
+<br/>
+<h4><b>route with query string</b></h4>
+<textarea class="code-editor">
+app.get("/user", (req, res) => {
+    console.log(req.query);
+    res.send({firstname: "Akshey", lastname: "Sharma"});
+})
 
+/* url example: 
+// req.query ==> user?userid=101 -> this is query string
+http://localhost:3001/user?userid=101  
+In console [Object: null prototype] { userid: '101' }
+
+http://localhost:3001/user?userid=101&srno=123 
+In console [Object: null prototype] { userid: '101', srno: '123' }
+*/
+</textarea>
+<br/>
+<h4><b>route with parameter</b></h4>
+<textarea class="code-editor">
+app.get("/user/:userid/:srno", (req, res) => {
+    console.log(req.params);
+    res.send({firstname: "Akshey", lastname: "Sharma"});
+})
+
+/* 
+req.params of /user/:userid/ ==> http://localhost:3001/user/20  [Object: null prototype] { userid: '20' }
+req.params.userid ==> http://localhost:3001/user/20  [Object: null prototype] 20
+req.params of /user/:userid/:srno ==> http://localhost:3001/user/20/30  [Object: null prototype] { userid: '20', srno: '340' }
+
+---------------------------------
+Note: 
+---------------------------------  
+colon ":" means : is a parameter and ? means : is a query string
+*/
+</textarea>
+<br/>
+<h4><b>route with regex</b></h4>
+<textarea class="code-editor">
+app.get(/.*fly$/, (req, res) => {
+    res.send("/.*fly$/ - regex route match with only fly word or start with any character and end with fly at the end and of the url with get method");
+})
+
+// url example: 
+// http://localhost:3001/testfly
+// http://localhost:3001/fly
+// http://localhost:3001/testfly1 give error
+</textarea>
+<br/>
+<h4><b>Without response</b></h4>
+<textarea class="code-editor">
+// if we dont not pass any response then
+app.use("/middleware", (req, res)=>{
+    //res.send("Middleware App Page");
+    // if we do not send any response then postman continue finding the response for some time period then it will timeout error message.
+});
+</textarea>
+<br/>
+<h4><b>Use Middleware</b></h4>
+<textarea class="code-editor">
+app.use("/middleware", (req, res, next)=>{
+    // res.send("Middleware App Page");
+    // if we do not send any response then postman continue finding the response for some time period then it will timeout error message.
+
+    next(); // this is the third argument of route handler
+    // next is use when we want to go to next route handler to bypass the current route handler if there did not pass any response. then it will work. 
+    // But if we send any response then it will not go to next route handler. it will give Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client in console. Because we send the response in the first route handler already.
+
+    res.send("Middleware App Page");
+    // if we send any respone will call after next() then it will go to second route handler. But also it will give Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+
+    // why this is error?
+    /*
+    JavaScript execute code line by line, so when javaScript come to next() line then it execute the second request handler and send the response of second request handler. after execute the second request handler then javaScript come to res.send("Middleware App Page"); of the first request handler, at this time javaScript already send the response of second request handler, that is why javaScript give error.
+    */
+},
+(req, res)=>{ 
+    res.send("Middleware App Page 02");
+});
+</textarea>
 <!-- <ul>
     <li><b>^</b> Caret → allows minor + patch updates. Its means our project automatically updated if any new version comes in 4.x.x series</li>
     <li><b>~</b> Tilde → allows patch updates only. Its means our project automatically updated if any new patch comes in 4.4.x series</li>
