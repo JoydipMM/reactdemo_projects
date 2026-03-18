@@ -131,12 +131,31 @@ connectDB().then(()=>{
 /* Note :
 With the above changes in app.js, the server will start listening only after the database connection is established.
 */
-
 </textarea>
+<br/>
+<hr/>
+<h2><b>Secure Database Connection</b></h2>
+<hr/>
+<p>First, install <b>dotenv</b> package <code>npm i dotenv</code></p>
+<p>In <b>database.js</b> <br/>import dotenv package and update the connection string</p>
+<textarea class="code-editor">
+require('dotenv').config(); // this will load the environment variables from .env file
+const mongoose = require('mongoose');
 
-
-
-
+const connectDB = async () => {
+    try {
+        await mongoose.connect(`${process.env.MONGODB_URI}/${process.env.MONOGODB_DB_NAME}`); // update this line
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error);
+    }
+}
+module.exports = connectDB;
+</textarea>
+<p>In <b>.env</b></p>
+<textarea class="code-editor">
+MONGODB_URI=mongodbconnectString
+MONOGODB_DB_NAME=test_db 
+</textarea>
 
 
 <!-- <textarea class="code-editor">
