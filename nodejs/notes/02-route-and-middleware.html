@@ -182,7 +182,158 @@ app.use("/middleware", (req, res, next)=>{
 (req, res)=>{ 
     res.send("Middleware App Page 02");
 });
+
+
+// example 02:
+app.use("/middleware03", (req, res, next)=>{
+    next(); 
+},
+(req, res, next)=>{ 
+    next(); 
+});
+// response: <pre>Cannot GET /middleware03</pre>
+// this error because the second route handler expecting third request handler but third request handler not found.
+
+
+// example 03:
+app.use("/middleware04", (req, res, next)=>{
+    next(); 
+},
+(req, res, next)=>{ 
+    // if we dont send any response  or next() then postman continue finding the response for some time period then it will timeout error message.
+});
+
+
+// example 04:
+app.use("/middleware05", [(req, res, next)=>{
+    console.log("Middleware 05 App Page 01");
+    next(); 
+},
+(req, res, next)=>{ 
+    console.log("Middleware 05 App Page 02");
+    next(); 
+},
+(req, res, next)=>{ 
+    console.log("Middleware 05 App Page 03");
+    next(); 
+},
+(req, res, next)=>{ 
+    console.log("Middleware 05 App Page 04");
+    res.send("Middleware 05 App Page 04");
+}]);
+// response: 
+// Middleware 05 App Page 04
+
+
+// example 05:
+app.use("/middleware06", [(req, res, next)=>{
+    console.log("Middleware 06 App Page 01");
+    next(); 
+},
+(req, res, next)=>{ 
+    console.log("Middleware 06 App Page 02");
+    next(); 
+},
+(req, res, next)=>{ 
+    console.log("Middleware 06 App Page 03");
+    next(); 
+}],
+(req, res, next)=>{ 
+    console.log("Middleware 06 App Page 04");
+    res.send("Middleware 06 App Page 04");
+});
+// response: 
+// Middleware 06 App Page 04
+
+
+
+/*---------------------------------
+Note: 
+--------------------------------- */
+// if we look from the above example the last callback function is route handler because it is send the response. 
+// and remaining callback functions above the last one are known as middlewares.
 </textarea>
+<br/>
+<h4><b>with use method we will handle all type of http methods (post, get, put, patch, delete)</b></h4>
+<textarea class="code-editor">
+// middleware with use method
+app.use("/admin", (req, res, next) =>{
+    const token = "demo";
+    const isAuthenticated = token === "demo";
+    if(!isAuthenticated){
+        res.status(401).send("Unauthorized");
+    }else{
+        next();
+    }
+});
+
+// above middleware will check the token and if token is not valid then it will send the response 401. if token is valid then it will go to next middleware. also it will go to inner route handler. like below:
+
+app.get("/admin/dashboard", (req, res)=>{
+    // if we want to authentication then we can do that.
+    // let we make demo token for authentication.
+    
+    /*
+        // individual route handler authentication. this authentication is work for this route handler only
+        const token = "demo";
+        const isAuthenticated = token === "demo";
+        if(isAuthenticated){
+            res.send("Admin Dashboard Page");
+        }else{
+            res.status(401).send("Unauthorized");
+        }
+    */
+    // above condition will go to top middleware and check the token is valid or not.
+    res.send("Admin Dashboard Page");
+});
+
+app.get("/admin/profile", (req, res)=>{
+    // Note:---------------------------
+    // if we want to authentication then we need to do above one again. But this is a repeated code. so we can use middleware. this will add above of all admin routes
+    res.send("Admin Profile Page");
+});
+
+app.get("/admin/report", (req, res)=>{
+    // Note:---------------------------
+    // if we want to authentication then we need to do above one again. But this is a repeated code. so we can use middleware. this will add above of all admin routes
+    res.send("Admin Report Page");
+});
+</textarea>
+<br/>
+<h4><b>We can move middleware to another file</b></h4>
+<p>We create a middleware file "<b>admin.middleware.js</b>" in <code><b>src/middleware</b></code> folder.</p>
+<p>In <b>admin.middleware.js</b> file we write the middleware code.</p>
+<textarea class="code-editor">
+const adminMiddleware = (req, res, next) =>{
+    const token = "demo";
+    const isAuthenticated = token === "demo";
+    if(!isAuthenticated){
+        res.status(401).send("Unauthorized");
+    }else{
+        next();
+    }
+}
+
+module.exports ={
+    adminMiddleware
+}
+</textarea>
+<p>In <b>app.js</b> file we import the middleware file and use the middleware.</p>
+<textarea class="code-editor">
+import {adminMiddleware} from "./middleware/admin.middleware"; // at the top of app.js if we use module export
+// or
+const {adminMiddleware} = require("./middleware/admin.middleware"); // at the top of app.js if we use require for normal export
+
+// then we can use this middleware in admin routes
+// use like below:
+app.use("/admin", adminMiddleware);
+
+//or we do like below:
+app.get("/admin/profile", adminMiddleware, (req, res)=>{
+    res.send("Admin Profile Page");
+});
+</textarea>
+
 <!-- <ul>
     <li><b>^</b> Caret → allows minor + patch updates. Its means our project automatically updated if any new version comes in 4.x.x series</li>
     <li><b>~</b> Tilde → allows patch updates only. Its means our project automatically updated if any new patch comes in 4.4.x series</li>
@@ -192,9 +343,9 @@ app.use("/middleware", (req, res, next)=>{
 <h4><b>What is inside package.json?</b></h4> -->
 
 
-<textarea class="code-editor">
+<!-- <textarea class="code-editor">
 
-</textarea>
+</textarea> -->
 <br/>
 
 
