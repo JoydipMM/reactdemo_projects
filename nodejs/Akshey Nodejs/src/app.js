@@ -34,6 +34,45 @@ app.post("/signup", async (req, res)=>{
 });
 
 
+// get all users
+app.get("/all-users", async (req, res)=>{
+    try{
+        const users = await userModel.find({});
+        if(users.length === 0){
+          res.status(404).send({message: "no user not found"});  
+        }
+        res.send(users);
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+});
+
+app.get("/user", async (req, res)=>{
+    try{
+        const users = await userModel.findOne({email: req.body.email});
+        if(users.length === 0){
+          res.status(404).send({message: "user not found"});  
+        }
+        res.send(users);
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+});
+
+
+app.patch("/user", async (req, res)=>{
+    try{
+        const users = await userModel.findOneAndUpdate({email: req.body.email}, req.body, {new: true});
+        if(users.length === 0){
+          res.status(404).send({message: "user not found"});  
+        }
+        res.send(users);
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+});
+
+
 /*
 // this route will match with all http route method
 app.use('/', (req, res) => {

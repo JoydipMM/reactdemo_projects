@@ -191,7 +191,7 @@ module.exports = userModel;
 </textarea>
 <br/>
 <hr/>
-<h2><b>Create API with model and schema with static data </b></h2>
+<h2><b>Create POST API with model and schema with static data </b></h2>
 <hr/>
 <textarea class="code-editor">
 // below code is for signup api: http://localhost:3001/signup
@@ -236,7 +236,7 @@ app.post("/signup", async (req, res)=>{
 <p>Now if we want to save new user data from postman</p>
 <br/>
 <hr/>
-<h2><b>Create API with model and schema with json data </b></h2>
+<h2><b>Create POST API with model and schema with json data </b></h2>
 <hr/>
 <p><b>First</b> we need to add Express json middleware in app.js.<br/>if we not use this middleware then we can't get json data from postman, response will be undefined</p>
 <textarea class="code-editor">
@@ -293,7 +293,74 @@ in postman: select >> Body -> Raw -> JSON -> inside JSON filedarea paste the bel
 </textarea>
 <img src="assets/images/postman-01.png" style="max-width:100%" />
 <br/>
-
+<br/>
+<hr/>
+<h2><b>Create GET API for get all signed up users </b></h2>
+<hr/>
+<textarea class="code-editor">
+app.get("/users", async (req, res)=>{
+    // to get all users data from db
+    try{
+        const users = await userModel.find({});
+        res.send(users);
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+});
+</textarea>
+<br/>
+<br/>
+<hr/>
+<h2><b>Create GET API for get single user based on email </b></h2>
+<hr/>
+<textarea class="code-editor">
+app.get("/user", async (req, res)=>{
+    try{
+        const users = await userModel.find({email: req.body.email});
+        if(users.length === 0){
+          res.status(404).send({message: "user not found"});  
+        }
+        res.send(users);
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+});
+</textarea>
+<img src="assets/images/postman-02.PNG" style="max-width:100%" />
+<p><span class="badge bg-danger">Note:</span><i> If we have multiple data with same email then this api will return all same email id related data</i></p>
+<br/>
+<p>So we use <code>findOne</code> method instead of <code>find</code></p>
+<textarea class="code-editor">
+app.get("/user", async (req, res)=>{
+    try{
+        const users = await userModel.findOne({email: req.body.email});
+        if(users.length === 0){
+          res.status(404).send({message: "user not found"});  
+        }
+        res.send(users);
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+});
+</textarea>
+<p><span class="badge bg-danger">Note:</span><i> Now we get only one user data based on email which data will get first based on email.</i></p>
+<br/>
+<hr/>
+<h2><b>Create PATCH API for edit user data using email </b></h2>
+<hr/>
+<textarea class="code-editor">
+app.patch("/user", async (req, res)=>{
+    try{
+        const users = await userModel.findOneAndUpdate({email: req.body.email}, req.body, {new: true});
+        if(users.length === 0){
+          res.status(404).send({message: "user not found"});  
+        }
+        res.send(users);
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+});
+</textarea>
 <!-- <textarea class="code-editor">
 
 </textarea> -->
