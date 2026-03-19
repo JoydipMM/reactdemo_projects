@@ -10,7 +10,8 @@ const MovieCard = ({movie, className=""}) => {
     <div className={className? className : ""} style={{flexShrink:"0"}}>
       {/* {movie.title} */}
       {movie.original_language === language ? movie.original_title : movie.title}
-      <img src={`${TMDB_IMG_PATH}${movie.poster_path}`} alt="" width={"100px"} />
+      {/* {movie.poster_path && <img src={`${TMDB_IMG_PATH}${movie.poster_path}`} alt="" width={"100px"} /> } */}
+      {movie.backdrop_path && <img src={`${TMDB_IMG_PATH}${movie.backdrop_path}`} alt="" width={"100px"} /> }
       <br/>
       <hr/>
     </div>

@@ -7,8 +7,8 @@ const VideoTitle = ({data}) => {
   return (
     <>
       {/* <h2>{title}</h2> */}
-      <h2>{original_language === language ? original_title : title}</h2>
-      <p>{overview}</p>
+      <h2 className='movie_banner_title'>{original_language === language ? original_title : title}</h2>
+      <p className='movie_banner_overview'>{overview}</p>
     </>
   )
 }
