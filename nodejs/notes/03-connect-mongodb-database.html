@@ -191,7 +191,7 @@ module.exports = userModel;
 </textarea>
 <br/>
 <hr/>
-<h2><b>Create API with model and schema </b></h2>
+<h2><b>Create API with model and schema with static data </b></h2>
 <hr/>
 <textarea class="code-editor">
 // below code is for signup api: http://localhost:3001/signup
@@ -234,6 +234,66 @@ app.post("/signup", async (req, res)=>{
 }
 </textarea>
 <p>Now if we want to save new user data from postman</p>
+<br/>
+<hr/>
+<h2><b>Create API with model and schema with json data </b></h2>
+<hr/>
+<p><b>First</b> we need to add Express json middleware in app.js.<br/>if we not use this middleware then we can't get json data from postman, response will be undefined</p>
+<textarea class="code-editor">
+// to get json data from postman add this in at the top after app declaration
+app.use(express.json());
+
+// then update the post route
+app.post("/signup", async (req, res)=>{
+    // we remove the dummyuserObj
+    /*const dummyuserObj = {
+        name: "raj",
+        email: "tYt2F@example.com",
+        password: "1234"
+    }*/
+    console.log(req.body); // without json middleware this will be undefined
+
+    // const user = new userModel(dummyuserObj);
+    // **** instead of dummyuserObj we will use req.body ****
+    const user = new userModel(req.body);
+
+    // to save data we use try catch block
+    try{
+        // save data to db. this save method is return promise add await before user.save() and add async before router handler
+        await user.save()
+        // at last send the response
+        res.send({message: "user created successfully", user: user});
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+    
+});
+
+/************* Note ***********/
+in postman: select >> Body -> Raw -> JSON -> inside JSON filedarea paste the below json data
+{
+    "name": "deepraj",
+    "email": "deepraj@example.com",
+    "password": "1234"
+}
+
+// after json data send from postman the below this type of respose will be shown and data will save in mongodb database
+{
+    "message": "user created successfully",
+    "user": {
+        "name": "deepraj",
+        "email": "deepraj@example.com",
+        "password": "1234",
+        "_id": "69bbc4375e7d447e36010712",
+        "createdAt": "2026-03-19T09:39:03.425Z",
+        "updatedAt": "2026-03-19T09:39:03.425Z",
+        "__v": 0
+    }
+}
+</textarea>
+<img src="assets/images/postman-01.png" style="max-width:100%" />
+<br/>
+
 <!-- <textarea class="code-editor">
 
 </textarea> -->
