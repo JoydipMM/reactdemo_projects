@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const validator = require('validator');
 
 // create mongoose schema
 const userSchema = new mongoose.Schema({
@@ -16,7 +17,12 @@ const userSchema = new mongoose.Schema({
         maxlength: 60,
         lowercase: true,
         unique: true, // email should be unique else it will throw error
-        trim: true // remove white space
+        trim: true, // remove white space
+        validate(value) {
+            if(!validator.isEmail(value)){
+                throw new Error("Invalid email | check from schema lavel validation");
+            }
+        }
     },
     password: {
         type: String,

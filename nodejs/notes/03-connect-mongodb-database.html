@@ -358,53 +358,53 @@ app.get("/user", async (req, res)=>{
 <h2><b>Create PATCH API for edit user data using email </b></h2>
 <hr/>
 <textarea class="code-editor">
-app.patch("/user", async (req, res)=>{
-    try{
-        const users = await userModel.findOneAndUpdate({email: req.body.email}, req.body, {new: true});
-        if(users.length === 0){
-          res.status(404).send({message: "user not found"});  
+    app.patch("/user", async (req, res)=>{
+        try{
+            const users = await userModel.findOneAndUpdate({email: req.body.email}, req.body, {new: true});
+            if(users.length === 0){
+                res.status(404).send({message: "user not found"});  
+            }
+            res.send(users);
+        }catch(err){
+            res.status(500).send({message: err.message});
         }
-        res.send(users);
-    }catch(err){
-        res.status(500).send({message: err.message});
-    }
-});
+    });
 </textarea>
 <br/>
 <hr/>
 <h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span> <br/>Create PATCH API for edit user data using Mongodb ID and restrict the fields to update </b></h2>
 <hr/>
 <textarea class="code-editor">
-app.patch("/user", async (req, res) => {
-    const { userID, ...updateData } = req.body;
-
-    const ALLOWED_UPDATE_FIELDS = ["gender"]; // in this array we will gave the key name of the data which we want to update
-
+    app.patch("/user", async (req, res) => {
+        const { userID, ...updateData } = req.body;
+        
+        const ALLOWED_UPDATE_FIELDS = ["gender"]; // in this array we will gave the key name of the data which we want to update
+        
     const isAllowed = Object.keys(updateData).every(key =>
         ALLOWED_UPDATE_FIELDS.includes(key)
     );
-
+    
     // if isAllowed is false then return error
     if (!isAllowed) {
         return res.status(400).send({ message: "Invalid update fields" });
     }
-
+    
     try {
         const user = await userModel.findByIdAndUpdate(
             userID,
             updateData,
             { new: true, runValidators: true }
-        );
-
-        if (!user) {
-            return res.status(404).send({ message: "user not found" });
+            );
+            
+            if (!user) {
+                return res.status(404).send({ message: "user not found" });
+            }
+            
+            res.send(user);
+        } catch (err) {
+            res.status(500).send({ message: err.message });
         }
-
-        res.send(user);
-    } catch (err) {
-        res.status(500).send({ message: err.message });
-    }
-});
+    });
 </textarea>
 
 
@@ -413,31 +413,31 @@ app.patch("/user", async (req, res) => {
 <h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span> <br/>Validate schema</b></h2>
 <hr/>
 <textarea class="code-editor">
-// custom validation
-gender: {
-    type: String,
-    required: true,
-    // ******* Note *******
-    // this custom validator is work if we insert new data, not validate when we update any exiting data
-    // we need to "runValidators: true" to enable custom validator in "patch route handler" to works for update data.
-    validate(value) {
-        if (!["male", "female", "other"].includes(value)) {
-            throw new Error("Invalid gender");
-        }
-        if(value === ""){
-            throw new Error("Gender is required");
-        }
-    },
-    default: "male",
-}
+    // custom validation
+    gender: {
+        type: String,
+        required: true,
+        // ******* Note *******
+        // this custom validator is work if we insert new data, not validate when we update any exiting data
+        // we need to "runValidators: true" to enable custom validator in "patch route handler" to works for update data.
+        validate(value) {
+            if (!["male", "female", "other"].includes(value)) {
+                throw new Error("Invalid gender");
+            }
+            if(value === ""){
+                throw new Error("Gender is required");
+            }
+        },
+        default: "male",
+    }
 </textarea>
 <br/>
 <hr/>
 <h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span> <br/>Enable custom validator in patch route handler </b></h2>
 <hr/>
 <textarea class="code-editor">
-app.patch("/user", async (req, res)=>{
-    try{
+    app.patch("/user", async (req, res)=>{
+        try{
         const users = await userModel.findOneAndUpdate(
             {email: req.body.email}, 
             req.body, 
@@ -488,38 +488,70 @@ body --> raw --> json
 app.patch("/user/:userID", async (req, res) => {
     const userID = req.params?.userID; // get user id from params
     const { ...updateData } = req.body;
-
+    
     const ALLOWED_UPDATE_FIELDS = ["gender"]; // in this array we will gave the key name of the data which we want to update
 
     const isAllowed = Object.keys(updateData).every(key =>
         ALLOWED_UPDATE_FIELDS.includes(key)
-    );
-
+        );
+        
     // if isAllowed is false then return error
     if (!isAllowed) {
         return res.status(400).send({ message: "Invalid update fields" });
     }
-
+    
     try {
         const user = await userModel.findByIdAndUpdate(
             userID,
             updateData,
             { new: true, runValidators: true }
-        );
-
-        if (!user) {
-            return res.status(404).send({ message: "user not found" });
+            );
+            
+            if (!user) {
+                return res.status(404).send({ message: "user not found" });
+            }
+            
+            res.send(user);
+        } catch (err) {
+            res.status(500).send({ message: err.message });
         }
-
-        res.send(user);
-    } catch (err) {
-        res.status(500).send({ message: err.message });
-    }
 });
 </textarea>
+<br/>
+<hr/>
+<h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span><br/> Email validation with validator npm package in API Lavel validation</b></h2>
+<hr/>
+<p><b>install validator package</b> <code><b>npm i validator</b></code></p>
+<p>Import validator package in app.js</p>
+<textarea class="code-editor">
+const validator = require("validator");
+</textarea>
+<p>Use validator in route handler</p>
+<textarea class="code-editor">
+ // validate email
+if(!validator.isEmail(req.body.email)){
+    return res.status(400).send({message: "Invalid email"});
+}   
+// add above this line of code before try catch block
+</textarea>
+<br/>
+<hr/>
+<h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span><br/> Email validation with validator npm package in Schema Lavel validation</b></h2>
+<hr/>
+<textarea class="code-editor">
+// import validator
+const validator = require('validator');
 
-
-
+// add schema level validation
+email: {
+    ... ,
+    validate(value) {
+        if(!validator.isEmail(value)){
+            throw new Error("Invalid email | check from schema lavel validation");
+        }
+    }
+},
+</textarea>
 
 
 <br/>
@@ -536,7 +568,7 @@ app.patch("/user/:userID", async (req, res) => {
 
 
 <!-- <textarea class="code-editor">
-
+    
 </textarea> -->
 <br/>
 

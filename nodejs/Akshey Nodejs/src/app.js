@@ -1,6 +1,7 @@
 const express = require('express');
 const connectDB = require('./config/database')
 const userModel = require('./models/user')
+const validator = require('validator');
 const app = express();
 app.use(express.json())
 
@@ -15,6 +16,11 @@ app.post("/signup", async (req, res)=>{
     console.log(req.body);
 
     // to get json data first use json middleware
+
+    // validate email
+    // if(!validator.isEmail(req.body.email)){
+    //     return res.status(400).send({message: "Invalid email"});
+    // }
     
     // to save the dummydata user collection we need to make a new instance of user model
     // first inport user model at the top
