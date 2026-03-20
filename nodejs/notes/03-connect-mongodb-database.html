@@ -372,7 +372,7 @@ app.patch("/user", async (req, res)=>{
 </textarea>
 <br/>
 <hr/>
-<h2><b>Create PATCH API for edit user data using Mongodb ID and restrict the fields to update </b></h2>
+<h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span> <br/>Create PATCH API for edit user data using Mongodb ID and restrict the fields to update </b></h2>
 <hr/>
 <textarea class="code-editor">
 app.patch("/user", async (req, res) => {
@@ -410,7 +410,7 @@ app.patch("/user", async (req, res) => {
 
 <br/>
 <hr/>
-<h2><b>Validate schema</b></h2>
+<h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span> <br/>Validate schema</b></h2>
 <hr/>
 <textarea class="code-editor">
 // custom validation
@@ -433,7 +433,7 @@ gender: {
 </textarea>
 <br/>
 <hr/>
-<h2><b>Enable custom validator in patch route handler </b></h2>
+<h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span> <br/>Enable custom validator in patch route handler </b></h2>
 <hr/>
 <textarea class="code-editor">
 app.patch("/user", async (req, res)=>{
@@ -479,6 +479,49 @@ body --> raw --> json
 }
 */
 </textarea>
+<br/>
+<hr/>
+<h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span> <br/>Get data from URL params </b></h2>
+<hr/>
+<textarea class="code-editor">
+// get user id from params
+app.patch("/user/:userID", async (req, res) => {
+    const userID = req.params?.userID; // get user id from params
+    const { ...updateData } = req.body;
+
+    const ALLOWED_UPDATE_FIELDS = ["gender"]; // in this array we will gave the key name of the data which we want to update
+
+    const isAllowed = Object.keys(updateData).every(key =>
+        ALLOWED_UPDATE_FIELDS.includes(key)
+    );
+
+    // if isAllowed is false then return error
+    if (!isAllowed) {
+        return res.status(400).send({ message: "Invalid update fields" });
+    }
+
+    try {
+        const user = await userModel.findByIdAndUpdate(
+            userID,
+            updateData,
+            { new: true, runValidators: true }
+        );
+
+        if (!user) {
+            return res.status(404).send({ message: "user not found" });
+        }
+
+        res.send(user);
+    } catch (err) {
+        res.status(500).send({ message: err.message });
+    }
+});
+</textarea>
+
+
+
+
+
 <br/>
 <hr/>
 <h2><b>Restrict update of any field in schema when update </b></h2>

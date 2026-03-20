@@ -92,6 +92,40 @@ app.patch("/user", async (req, res) => {
 });
 
 
+// get user id from params
+app.patch("/user/:userID", async (req, res) => {
+    const userID = req.params?.userID; // get user id from params
+    const { ...updateData } = req.body;
+
+    const ALLOWED_UPDATE_FIELDS = ["gender", "skills"]; // in this array we will gave the key name of the data which we want to update
+
+    const isAllowed = Object.keys(updateData).every(key =>
+        ALLOWED_UPDATE_FIELDS.includes(key)
+    );
+
+    // if isAllowed is false then return error
+    if (!isAllowed) {
+        return res.status(400).send({ message: "Invalid update fields" });
+    }
+
+    try {
+        const user = await userModel.findByIdAndUpdate(
+            userID,
+            updateData,
+            { new: true, runValidators: true }
+        );
+
+        if (!user) {
+            return res.status(404).send({ message: "user not found" });
+        }
+
+        res.send(user);
+    } catch (err) {
+        res.status(500).send({ message: err.message });
+    }
+});
+
+
 app.delete("/user", async (req, res)=>{
     const userId = req.body.userId;
     //const users = await userModel.findByIdAndDelete({_id: userId});
