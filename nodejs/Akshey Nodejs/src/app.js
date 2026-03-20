@@ -60,17 +60,52 @@ app.get("/user", async (req, res)=>{
 });
 
 
-app.patch("/user", async (req, res)=>{
-    try{
-        const users = await userModel.findOneAndUpdate({email: req.body.email}, req.body, {new: true});
-        if(users.length === 0){
-          res.status(404).send({message: "user not found"});  
+app.patch("/user", async (req, res) => {
+    const { userID, ...updateData } = req.body;
+
+    const ALLOWED_UPDATE_FIELDS = ["gender"]; // in this array we will gave the key name of the data which we want to update
+
+    const isAllowed = Object.keys(updateData).every(key =>
+        ALLOWED_UPDATE_FIELDS.includes(key)
+    );
+
+    // if isAllowed is false then return error
+    if (!isAllowed) {
+        return res.status(400).send({ message: "Invalid update fields" });
+    }
+
+    try {
+        const user = await userModel.findByIdAndUpdate(
+            userID,
+            updateData,
+            { new: true, runValidators: true }
+        );
+
+        if (!user) {
+            return res.status(404).send({ message: "user not found" });
         }
-        res.send(users);
-    }catch(err){
-        res.status(500).send({message: err.message});
+
+        res.send(user);
+    } catch (err) {
+        res.status(500).send({ message: err.message });
     }
 });
+
+
+app.delete("/user", async (req, res)=>{
+    const userId = req.body.userId;
+    //const users = await userModel.findByIdAndDelete({_id: userId});
+    const users = await userModel.findByIdAndDelete(userId);
+    console.log(users);
+    if(!users){
+        res.status(404).send({message: "user not found"});  
+    }
+    try{
+        res.status(200).send({message: "user deleted successfully"});
+    }catch(err){
+        res.status(500).send({message: "Something went wrong!!!", error: err.message});
+    }
+})
 
 
 /*
