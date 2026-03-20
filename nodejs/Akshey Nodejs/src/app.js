@@ -2,6 +2,8 @@ const express = require('express');
 const connectDB = require('./config/database')
 const userModel = require('./models/user')
 const validator = require('validator');
+const {signupDataValidation} = require('./utils/dataValidation')
+const bcrypt = require('bcrypt');
 const app = express();
 app.use(express.json())
 
@@ -21,14 +23,30 @@ app.post("/signup", async (req, res)=>{
     // if(!validator.isEmail(req.body.email)){
     //     return res.status(400).send({message: "Invalid email"});
     // }
-    
-    // to save the dummydata user collection we need to make a new instance of user model
-    // first inport user model at the top
-    // create new instance of user model and pass the data info
-    const user = new userModel(req.body);
 
+    
     // to save data we use try catch block
     try{
+        // add data validation first
+        signupDataValidation(req);
+
+        // hash password:
+        const {name, email, password, gender, skills} = req.body;
+        // syntax: await bcrypt.hash(password, saltRounds) ==> saltRounds is number of rounds to generate the hash (default is 10)
+        const hashedPassword = await bcrypt.hash(password, 10);
+        req.body.password = hashedPassword;
+
+        
+        // to save the dummydata user collection we need to make a new instance of user model
+        // first inport user model at the top
+        // create new instance of user model and pass the data info
+        const user = new userModel({
+            name,
+            email,
+            password: hashedPassword,
+            gender,
+            skills
+        });
         // save data to db. this save method is return promise add await before user.save() and add async before router handler
         await user.save()
         // at last send the response
@@ -37,6 +55,33 @@ app.post("/signup", async (req, res)=>{
         res.status(500).send({message: err.message});
     }
     
+});
+
+// login api
+app.post("/login", async (req, res)=>{
+    try{
+        const {email, password} = req.body;
+        const user = await userModel.findOne({email});
+        if(!user){
+            return res.status(400).send({message: "invalid credentials"});
+        }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if(!isMatch){
+            return res.status(400).send({message: "invalid credentials"});
+        }
+
+        res.send({message: "user logged in successfully", 
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                gender: user.gender,
+                skills: user.skills
+            }
+        }); // here we send the user data without password
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
 });
 
 

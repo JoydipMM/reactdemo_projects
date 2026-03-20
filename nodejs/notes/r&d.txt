@@ -14,10 +14,18 @@ Object.keys(updateData).every(key =>
 --------------------------------------------------------
 
 --------------------------------------------------------
-4.
+4. Possible Attack Vectors (and fixes) chatgpt
 --------------------------------------------------------
 
 
 
+
+Episode target ***************************
+
+Tomorrow Saturday [21-03-2026]:
+Episode-10, Episode-11
+
+Sunday [22-03-2026]
+Episode-12, Episode-13, Episode-14
 
 

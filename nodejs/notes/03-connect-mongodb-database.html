@@ -519,7 +519,7 @@ app.patch("/user/:userID", async (req, res) => {
 </textarea>
 <br/>
 <hr/>
-<h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span><br/> Email validation with validator npm package in API Lavel validation</b></h2>
+<h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span><br/> *** Email validation with validator npm package in API Lavel validation</b></h2>
 <hr/>
 <p><b>install validator package</b> <code><b>npm i validator</b></code></p>
 <p>Import validator package in app.js</p>
@@ -536,7 +536,7 @@ if(!validator.isEmail(req.body.email)){
 </textarea>
 <br/>
 <hr/>
-<h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span><br/> Email validation with validator npm package in Schema Lavel validation</b></h2>
+<h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span><br/> *** Email validation with validator npm package in Schema Lavel validation</b></h2>
 <hr/>
 <textarea class="code-editor">
 // import validator
@@ -552,12 +552,178 @@ email: {
     }
 },
 </textarea>
+<br/>
+<hr/>
+<h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span><br/> Data validation kept in another file</b></h2>
+<hr/>
+<p><b>install validator package</b> <code><b>npm i validator</b></code></p>
+<p>Create <code><b>dataValidation.js</b></code> file in <code><b>src/utils</b></code> folder</p>
+<p>In <code><b>dataValidation.js</b></code> file</p>
+<textarea class="code-editor">
+const validator = require('validator');
 
+const signupDataValidation = (req) => {
+    const { name, email, password, gender, dpPhoto="" } = req.body;
 
+    const nameRegex = /^[A-Za-z\s]+$/;
+
+    // user name validation
+    if(!name){
+        throw new Error("Name is required | check from utils validation lavel validation");
+    }else if(name.length < 5 || name.length > 20){
+        throw new Error("Name should be between 5 to 20 characters | check from utils validation lavel validation");
+    }else if(name && !nameRegex.test(name)){
+        throw new Error("Name should contain only alphabets and spaces | check from utils validation lavel validation");
+    }
+
+    // user dp photo validation
+    if(dpPhoto){
+        if(!validator.isURL(dpPhoto)){
+            throw new Error("Invalid dp photo url | check from utils validation lavel validation");
+        }
+    }
+
+    // user password validation
+    if(!password){
+        throw new Error("Password is required | check from utils validation lavel validation");
+    }else if(password.length < 8 || password.length > 20){
+        throw new Error("Password should be between 8 to 20 characters | check from utils validation lavel validation");
+    }else if(password && !validator.isStrongPassword(password)){
+        throw new Error("Password should be strong | check from utils validation lavel validation");
+    }
+
+    if(!gender){
+        throw new Error("Gender is required | check from utils validation lavel validation");
+    }else if(!["male", "female", "other"].includes(gender)){
+        throw new Error("Gender should be male, female or other | check from utils validation lavel validation");
+    }
+
+    // user email validation
+    if(!email){
+        throw new Error("Email is required | check from utils validation lavel validation");
+    }
+    else if(!validator.isEmail(email)){
+        throw new Error("Invalid email | check from utils validation lavel validation");
+    }
+
+}
+
+module.exports = {
+    signupDataValidation
+}    
+</textarea>
+<br/>
+<p>In <code><b>app.js</b></code> file</p>
+<textarea class="code-editor">
+// import dataValidation.js
+const { signupDataValidation } = require("./utils/dataValidation");
+
+// update the signup route handler
+app.post("/signup", async (req, res)=>{
+    // to save data we use try catch block
+    try{
+        // validate function call here because if in validator have some error then it will throw error
+        signupDataValidation(req);
+        
+        // to save the dummydata user collection we need to make a new instance of user model
+        // first inport user model at the top
+        // create new instance of user model and pass the data info
+        const user = new userModel(req.body);
+        // save data to db. this save method is return promise add await before user.save() and add async before router handler
+        await user.save()
+        // at last send the response
+        res.send({message: "user created successfully", user: user});
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+    
+});
+</textarea>
+<br/>
+<hr/>
+<h2><b><span class="badge bg-primary">Data Sanitization & Schema Validations</span><br/> Encrypting Passwords</b></h2>
+<hr/>
+<p>First install <code><b>npm i bcrypt</b></code></p>
+<p>In <code><b>app.js</b></code> file import <code><b>const bcrypt = require('bcrypt');</b></code></p>
+<textarea class="code-editor">
+const bcrypt = require('bcrypt');
+
+app.post("/signup", async (req, res)=>{
+
+    // to save data we use try catch block
+    try{
+        // add data validation first
+        signupDataValidation(req);
+
+        // hash password:
+        const {name, email, password, gender, skills} = req.body;
+        // syntax: await bcrypt.hash(password, saltRounds) ==> saltRounds is number of rounds to generate the hash (default is 10)
+        const hashedPassword = await bcrypt.hash(password, 10);
+        req.body.password = hashedPassword;
+
+        
+        // to save the dummydata user collection we need to make a new instance of user model
+        // first inport user model at the top
+        // create new instance of user model and pass the data info
+        const user = new userModel({
+            name,
+            email,
+            password: hashedPassword,
+            gender,
+            skills
+        });
+        // save data to db. this save method is return promise add await before user.save() and add async before router handler
+        await user.save()
+        // at last send the response
+        res.send({message: "user created successfully", user: user});
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+    
+});
+</textarea>
+<br/>
+<hr/>
+<h2><b>Make user login api</b></h2>
+<hr/>
+<p>First install <code><b>npm i bcrypt</b></code></p>
+<p>In <code><b>app.js</b></code> file import <code><b>const bcrypt = require('bcrypt');</b></code></p>
+<textarea class="code-editor">
+const bcrypt = require('bcrypt');
+
+// login api
+app.post("/login", async (req, res)=>{
+    try{
+        const {email, password} = req.body;
+        const user = await userModel.findOne({email});
+        if(!user){
+            return res.status(400).send({message: "invalid credentials"});
+        }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if(!isMatch){
+            return res.status(400).send({message: "invalid credentials"});
+        }
+
+        res.send({message: "user logged in successfully", 
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                gender: user.gender,
+                skills: user.skills
+            }
+        }); // here we send the user data without password
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+});
+</textarea>
+<!-- 
 <br/>
 <hr/>
 <h2><b>Restrict update of any field in schema when update </b></h2>
-<hr/>
+<hr/> 
+-->
 
 
 
