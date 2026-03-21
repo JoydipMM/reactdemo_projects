@@ -4,9 +4,11 @@ const userModel = require('./models/user')
 const validator = require('validator');
 const {signupDataValidation} = require('./utils/dataValidation')
 const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 const app = express();
 app.use(express.json())
-
+app.use(cookieParser());
 
 // below code is for signup api: http://localhost:3001/signup
 app.post("/signup", async (req, res)=>{
@@ -70,11 +72,17 @@ app.post("/login", async (req, res)=>{
             return res.status(400).send({message: "invalid credentials"});
         }
 
+        // create jwt token
+        const token = await jwt.sign({_id: user._id, email: user.email}, "thisisasecretkey@1990");
+        //console.log(token);
+
+        //res.cookie("token", token, {httpOnly: true, maxAge: 1000*60*60*24});
+        res.cookie("token", token);
         res.send({message: "user logged in successfully", 
             user: {
-                _id: user._id,
+                //_id: user._id, // we don't send id because it is not a secure data, we send it with jwt
                 name: user.name,
-                email: user.email,
+                //email: user.email, // we don't send id because it is not a secure data, we send it with jwt
                 gender: user.gender,
                 skills: user.skills
             }
@@ -82,6 +90,42 @@ app.post("/login", async (req, res)=>{
     }catch(err){
         res.status(500).send({message: err.message});
     }
+});
+
+// user profile
+app.get("/profile", async (req, res)=>{
+
+    // getr token from cookie
+    const cookie = req.cookies;
+    //console.log(cookie);
+
+    // assign token to a variable
+    const {token} = cookie;
+
+    // check if token is exist
+    if(!token){
+        return res.status(400).send({message: "invalid token"});
+    }
+    
+    // validate token :  Note : jwt.verify(token, secretkey) don't gave boolean value, it gave a decoded object/value
+    const decodedToken = jwt.verify(token, "thisisasecretkey@1990");
+    // console.log(decodedToken);
+    // in console: { _id: '69bd9bf79dabdc925b24b493', iat: 1774098760 }
+
+    // now we can get user details from token
+    const {_id} = decodedToken;
+    const user = await userModel.findById(_id);
+    if(!user){
+        return res.status(400).send({message: "user not found"});
+    }else{
+        res.status(200).send({message:"user profile page", user: {
+            name: user.name,
+            email: user.email,
+            gender: user.gender,
+            skills: user.skills
+        }});
+    } 
+    
 });
 
 

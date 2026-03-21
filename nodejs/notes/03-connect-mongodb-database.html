@@ -718,6 +718,165 @@ app.post("/login", async (req, res)=>{
     }
 });
 </textarea>
+
+
+
+<br/>
+<hr/>
+<h2><b>Send a dummy cookie when user login and get that cookie in profile api</b></h2>
+<hr/> 
+<textarea class="code-editor">
+// login api
+app.post("/login", async (req, res)=>{
+    try{
+        const {email, password} = req.body;
+        const user = await userModel.findOne({email});
+        if(!user){
+            return res.status(400).send({message: "invalid credentials"});
+        }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if(!isMatch){
+            return res.status(400).send({message: "invalid credentials"});
+        }
+
+        res.cookie("token", "sdfsdfsdfsdfdsfdfdfe534543rffdssgdfdsf"); // this is the dummy cookie send with response
+        res.send({message: "user logged in successfully", 
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                gender: user.gender,
+                skills: user.skills
+            }
+        }); // here we send the user data without password
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+});
+
+
+// user profile
+app.get("/profile", (req, res)=>{
+    const cookie = req.cookies;
+    console.log(cookie); // this will print the cookie as undefined
+    res.send("user profile page");
+})
+</textarea>
+<p>click on cookies button in postman hightlight with red border</p>
+<p><b>When we console the cookie in profile api we will get the value of cookie from response as undefined</b>. Because in nodejs can't read the cookie directly. To read the cookie we need to add a middleware in app.js file that is <b>cookie-parser</b></p>
+<p><b>Install <code>npm i cookie-parser</code></b></p>
+<p>In <code><b>app.js</b></code> file import <code><b>const cookieParser = require('cookie-parser');</b></code></p>
+<p>Then add <code><b>app.use(cookieParser());</b></code> as a middleware</p>
+<textarea class="code-editor">
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+</textarea>
+<img src="assets/images/cookie-01.png" width="40%" />
+<img src="assets/images/cookie-02.png" width="40%" />
+<img src="assets/images/cookie-03.png" width="40%" />
+<img src="assets/images/cookie-04.png" width="40%" />
+
+
+
+
+<br/>
+<hr/>
+<h2><b>JWT - Json Web Token</b></h2>
+<hr/> 
+<p>JWT token has three parts: header, payload, signature. In <b>header</b> we store the algorithm used to sign the token, in <b>payload</b> we store the user data, in <b>signature</b> we store the hash of header and payload using the secret key. This is used to verify the token. <br/>
+We can generate the token using <code><b>npm install jsonwebtoken</b></code></p>
+<p>In <code><b>app.js</b></code> import JWT <code><b>const jwt = require('jsonwebtoken');</b></code></p>
+<img src="assets/images/jwt-01.png" width="40%" />
+<br/>
+<br/>
+<p><b>Syntax</b>: <code><b>jwt.sign(payload (data), secretKey, options)</b></code></p>
+<p><b>secretKey</b> is password that we use to encrypt the token and only server knows this password.</p>
+<p>In <b>app.js</b> we create <b>jwt token</b> when user's email and password is valid and before sending the response like below:</p>
+<textarea class="code-editor">
+// create jwt token
+const token = await jwt.sign({_id: user._id, email: user.email}, "jwtsecretkey");
+
+console.log(token);
+// after jwt token is created we send the response as cookie like below:
+res.cookie("token", token);
+res.send({message: "user logged in successfully", 
+    user: {
+        //_id: user._id, // we don't send id because it is not a secure data, we send it with jwt
+        name: user.name,
+        //email: user.email, // we don't send id because it is not a secure data, we send it with jwt
+        gender: user.gender,
+        skills: user.skills
+    }
+}); // here we send the user data without password
+</textarea>
+<br/> 
+<p>Now if we call the login api we will get the token in cookie. Inside the token we have the user id of who is logged in</p>
+<img src="assets/images/jwt-02.png" width="40%" />
+<br/>
+<br/>
+<p>To decode the token we use <code><b>jwt.verify(token, secretKey)</b></code></p>
+<p>In <b>profile api</b> we decode the token using <code><b>jwt.verify(token, secretKey)</b></code></p>
+<textarea class="code-editor">
+// user profile
+app.get("/profile", (req, res)=>{
+
+    // getr token from cookie
+    const cookie = req.cookies;
+    //console.log(cookie);
+
+    // assign token to a variable
+    const {token} = cookie;
+
+    // validate token :  Note : jwt.verify(token, secretkey) don't gave boolean value, it gave a decoded object/value
+    const decodedToken = jwt.verify(token, "thisisasecretkey@1990");
+    console.log(decodedToken);
+    // in console: { _id: '69bd9bf79dabdc925b24b493', email: 'Kb3tK@example.com', iat: 1774098760 }
+
+    res.send("user profile page");
+})
+</textarea>
+<br/>
+<hr/>
+<h2><b>Authenticate user profile api using JWT with error handling</b></h2>
+<hr/> 
+<textarea class="code-editor">
+// user profile
+app.get("/profile", async (req, res)=>{
+
+    // getr token from cookie
+    const cookie = req.cookies;
+    //console.log(cookie);
+
+    // assign token to a variable
+    const {token} = cookie;
+
+    // check if token is exist
+    if(!token){
+        return res.status(400).send({message: "invalid token"});
+    }
+    
+    // validate token :  Note : jwt.verify(token, secretkey) don't gave boolean value, it gave a decoded object/value
+    const decodedToken = jwt.verify(token, "thisisasecretkey@1990");
+    // console.log(decodedToken);
+    // in console: { _id: '69bd9bf79dabdc925b24b493', iat: 1774098760 }
+
+    // now we can get user details from token
+    const {_id} = decodedToken;
+    const user = await userModel.findById(_id);
+    if(!user){
+        return res.status(400).send({message: "user not found"});
+    }else{
+        res.status(200).send({message:"user profile page", user: {
+            name: user.name,
+            email: user.email,
+            gender: user.gender,
+            skills: user.skills
+        }});
+    } 
+    
+});
+</textarea>
+
 <!-- 
 <br/>
 <hr/>
