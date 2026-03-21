@@ -789,7 +789,16 @@ We can generate the token using <code><b>npm install jsonwebtoken</b></code></p>
 <img src="assets/images/jwt-01.png" width="40%" />
 <br/>
 <br/>
-<p><b>Syntax</b>: <code><b>jwt.sign(payload (data), secretKey, options)</b></code></p>
+<p><b>Syntax</b>: <code><b>jwt.sign(payload (data), secretKey, options)</b></code> in option we can add <code><b>expiresIn</b></code></p>
+<p><code><b>jwt.sign({ data: 'foobar' }, 'secret', { expiresIn: '1h' });</b></code></p>
+<p><b>expiresIn time unit<br/>
+expiresIn: '1h' // 1 hour<br/>
+expiresIn: 3600    // 1 hour<br/>
+expiresIn: "60s"   // 60 seconds<br/>
+expiresIn: "10m"   // 10 minutes<br/>
+expiresIn: "1h"    // 1 hour<br/>
+expiresIn: "7d"    // 7 days<br/>
+</b></p>
 <p><b>secretKey</b> is password that we use to encrypt the token and only server knows this password.</p>
 <p>In <b>app.js</b> we create <b>jwt token</b> when user's email and password is valid and before sending the response like below:</p>
 <textarea class="code-editor">
@@ -875,6 +884,155 @@ app.get("/profile", async (req, res)=>{
     } 
     
 });
+</textarea>
+<br/>
+<hr/>
+<h2><b>Making Authentication middleware</b></h2>
+<hr/> 
+<p>We can make a middleware to check if user is authenticated or not.</p>
+<p>Create <b>auth.middleware.js</b> in <code>middleware</code> folder</p>
+<p>In <b>auth.middleware.js</b> we will write the code to check if user is authenticated or not</p>
+<textarea class="code-editor">
+const jwt = require('jsonwebtoken');
+const userModel = require('../models/user');
+
+const authMiddleware = async (req, res, next) => {
+    try{
+        // read the token from request cookies
+        const cookie = req.cookies;
+        const {token} = cookie;
+
+        // validate the token
+        if(!token){
+            return res.status(400).send({message: "invalid token"});
+        }
+        // if token valid then decode the token
+        const decodeToken = await jwt.verify(token, process.env.JWT_SECRETKEY);
+
+        // validate the decoded token
+        if( !decodeToken){
+            return res.status(400).send({message: "invalid token"});
+        }
+
+        // assign decoded token to a variable
+        const {_id} = decodeToken;
+
+        // find the user from database by id
+        const user = await userModel.findById(_id);
+
+        // check if user exist
+        if(!user){
+            return res.status(400).send({message: "user not found"});
+        }
+
+        // if we got user then assign user data to request object
+        req.user = { name: user.name, gender: user.gender, skills: user.skills };
+
+        // pass the request to the next middleware
+        next();
+
+    }catch(err){
+        res.status(400).send({message: err.message});
+    }
+    
+}
+
+module.exports = { authMiddleware }
+</textarea>
+<br/>
+<p>Now we need to <b>use this middleware</b> in our api where we want to check if user is authenticated or not</p>
+<p>For now we will add this middleware to <b>profile</b> api</p>
+<p>In <b>app.js</b> update the profile api</p>
+<textarea class="code-editor">
+// import the middleware at the top
+const { authMiddleware } = require('./middleware/auth.middleware')
+
+// update the profile api
+// user profile
+app.get("/profile", authMiddleware, async (req, res)=>{
+    try{
+        const user = req.user;
+        res.status(200).send({message:"user profile page", user: user});
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+});
+</textarea>
+<br/>
+<br/>
+<hr/>
+<h2><b>Expire token and cookies</b></h2>
+<hr/>
+<textarea class="code-editor">
+// jwt token with expiry
+const token = await jwt.sign({_id: user._id, email: user.email}, "scretkey", { expiresIn: "1m" });
+
+// cookie with expiry
+res.cookie("token", token, { expires: new Date(Date.now() + 8 * 3600000) });
+
+// What it means
+Date.now() → current time in milliseconds
+3600000 → 1 hour in milliseconds
+8 * 3600000 → 8 hours
++ → adds 8 hours to current time
+
+👉 So overall:
+Current time + 8 hours (in milliseconds) = Expiry time
+</textarea>
+<br/>
+<img src="assets/images/jwt-03.png" width="60%" />
+<br/>
+<hr/>
+<h2><b>*** Schema lavel JWT helper functions</b></h2>
+<hr/> 
+<p>For example: jwt token is related to user, then we can create jwt token helper method in user schema.</p>
+<p>So, in <code>src/models</code> folder in <b>user.js</b> we will create a helper method</p>
+<textarea class="code-editor">
+const userSchema = new mongoose.Schema({
+....
+});
+
+userSchema.methods.getJWT = async function(){
+    const user = this;
+    // this is a instances of this user model
+    // example: if we call user.getJWT() and the user is "Ravi", then it will take jwt token form Ravi. 
+    // *** Note: And "this" keyword only work in normal function not in arrow function
+    const token = await jwt.sign({_id: user._id, email: user.email}, "thisisasecretkey@1990", { expiresIn: "1m" });
+    return token;
+}
+</textarea>
+<p>Now we can use this <b>helper method</b> in <b>app.js</b>. We use this helper method in <b>profile</b> api</p>
+<textarea class="code-editor">
+// previous code
+//const token = await jwt.sign({_id: user._id, email: user.email}, "thisisasecretkey@1990", { expiresIn: "1m" });
+
+// current changes
+// jwt token coming from jwt helper method from schema
+const token = await user.getJWT(); // user is an instance of user model
+</textarea>
+<br/>
+<hr/>
+<h2><b>*** Schema lavel Password Compare helper functions</b></h2>
+<hr/> 
+<textarea class="code-editor">
+const userSchema = new mongoose.Schema({
+....
+});
+
+userSchema.methods.matchPassword = async function(passwordInputByUser){
+    const user = this;
+    const isPasswordMatch = await bcrypt.compare(passwordInputByUser, user.password);
+    return isPasswordMatch;
+}
+</textarea>
+<br/>
+<p>Now we can use this <b>helper method</b> in <b>app.js</b>. We use this helper method in <b>login</b> api</p>
+<textarea class="code-editor">
+// previous code
+const isMatch = await bcrypt.compare(password, user.password);
+
+// current changes
+const isMatch = await user.matchPassword(password);
 </textarea>
 
 <!-- 
