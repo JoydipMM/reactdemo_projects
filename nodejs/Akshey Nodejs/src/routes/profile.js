@@ -4,6 +4,6 @@ const { authMiddleware } = require('../middleware/auth.middleware')
 const profileController = require('../controllers/profile');
 
 // user profile
-profileRouter.get("/", authMiddleware, profileController.profile);
+profileRouter.get("/view", authMiddleware, profileController.profile);
 
 module.exports = profileRouter;
