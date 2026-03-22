@@ -1034,7 +1034,271 @@ const isMatch = await bcrypt.compare(password, user.password);
 // current changes
 const isMatch = await user.matchPassword(password);
 </textarea>
+<br/>
+<hr/>
+<h2><b>Use express router to use routes in better way. <br/><small>This will help us to manage routes easily and maintainable with groups</small></b></h2>
+<hr/> 
+<textarea class="code-editor">
+/*
+auth router
+-POST /auth/login
+-POST auth/singup
+-POST auth/logout
 
+profile router
+-GET /profile/view
+-PATCH /profile/edit
+-PATCH /profile/password
+
+connection request router
+-POST /request/send/interested/:userID
+-POST /request/send/ignored/:userID
+-POST /request/review/accepted/:userID
+-POST /request/review/rejected/:userID
+*/
+</textarea>
+<br/>
+<br/>
+<hr/>
+<h2><b>Full API Router breakdown</b></h2>
+<hr/>
+<table class="table">
+    <tr>
+        <td>
+            <textarea class="code-editor">
+In app.js file
+
+// signup api
+app.post("/signup", async (req, res)=>{
+
+    // to save data we use try catch block
+    try{
+        // add data validation first
+        signupDataValidation(req);
+
+        // hash password:
+        const {name, email, password, gender, skills} = req.body;
+        // syntax: await bcrypt.hash(password, saltRounds) ==> saltRounds is number of rounds to generate the hash (default is 10)
+        const hashedPassword = await bcrypt.hash(password, 10);
+        req.body.password = hashedPassword;
+
+        // to save the dummydata user collection we need to make a new instance of user model
+        // first inport user model at the top
+        // create new instance of user model and pass the data info
+        const user = new userModel({
+            name,
+            email,
+            password: hashedPassword,
+            gender,
+            skills
+        });
+        // save data to db. this save method is return promise add await before user.save() and add async before router handler
+        await user.save()
+        // at last send the response
+        res.send({message: "user created successfully", user: user});
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+});
+</textarea>
+        </td>
+        <td>
+            <textarea class="code-editor">
+In app.js file
+
+// login api
+app.post("/login", async (req, res)=>{
+    try{
+        const {email, password} = req.body;
+        const user = await userModel.findOne({email});
+        if(!user){
+            return res.status(400).send({message: "invalid credentials"});
+        }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if(!isMatch){
+            return res.status(400).send({message: "invalid credentials"});
+        }
+
+        // create jwt token
+        const token = await jwt.sign({_id: user._id, email: user.email}, "thisisasecretkey@1990");
+        //console.log(token);
+
+        //res.cookie("token", token, {httpOnly: true, maxAge: 1000*60*60*24});
+        res.cookie("token", token);
+        res.send({message: "user logged in successfully", 
+            user: {
+                //_id: user._id, // we don't send id because it is not a secure data, we send it with jwt
+                name: user.name,
+                //email: user.email, // we don't send id because it is not a secure data, we send it with jwt
+                gender: user.gender,
+                skills: user.skills
+            }
+        }); // here we send the user data without password
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+});
+            </textarea>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+<p><b>First</b> we make <b>auth router</b> group in <b>auth.js</b> where we add our <b>login and signup api</b> and import it in <b>app.js</b></p>
+<table class="table">
+<tr>
+    <td>
+        <p>In <b>app.js</b></p>
+        <p>Add auth router in <b>app.js</b></p>
+<textarea class="code-editor">
+// import auth router
+const authRouter = require("./routes/auth");
+
+// use auth router
+app.use("/auth", authRouter);
+
+// and login and signup api will be added in auth router
+</textarea>
+    </td>
+    <td style="width:60%; white-space: wrap;">
+        <p>Make <b>auth.js</b> file in <code>src/routes</code> folder</p>
+        <p>In <b>auth.js</b></p>
+<textarea class="code-editor">
+const express = require('express');
+// es module ===> import { Router } from 'express';
+const authController = require('../controllers/auth');
+// create auth router with express router method
+const authRouter = express.Router();
+
+// add login and signup api in auth router
+authRouter.post("/login", authController.login); // (req, res) => {} will be replaced by authController.login, because inside authController.js file we have this function
+authRouter.post("/signup", authController.signup); // (req, res) => {} will be replaced by authController.signup, because inside authController.js file we have this function
+
+// export auth router
+module.exports = authRouter;
+</textarea>
+    </td>
+</tr>
+</table>
+<p>In <b>src/controllers/authController.js</b> we add our login and signup api function blocks</p>
+<textarea class="code-editor">
+const userModel = require('../models/user');
+const {signupDataValidation} = require('../utils/dataValidation')
+const bcrypt = require('bcrypt');
+
+const signupController = async (req, res)=>{
+
+    // to save data we use try catch block
+    try{
+        // add data validation first
+        signupDataValidation(req);
+
+        // hash password:
+        const {name, email, password, gender, skills} = req.body;
+        // syntax: await bcrypt.hash(password, saltRounds) ==> saltRounds is number of rounds to generate the hash (default is 10)
+        const hashedPassword = await bcrypt.hash(password, 10);
+        req.body.password = hashedPassword;
+        
+        // to save the dummydata user collection we need to make a new instance of user model
+        // first inport user model at the top
+        // create new instance of user model and pass the data info
+        const user = new userModel({
+            name,
+            email,
+            password: hashedPassword,
+            gender,
+            skills
+        });
+        // save data to db. this save method is return promise add await before user.save() and add async before router handler
+        await user.save()
+        // at last send the response
+        res.send({message: "user created successfully", user: user});
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+    
+}
+
+
+const loginController = async (req, res)=>{
+    try{
+        const {email, password} = req.body;
+        const user = await userModel.findOne({email});
+        if(!user){
+            return res.status(400).send({message: "invalid credentials"});
+        }
+        //const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await user.matchPassword(password);
+        if(!isMatch){
+            return res.status(400).send({message: "invalid credentials"});
+        }
+
+        // create jwt token
+        // const token = await jwt.sign({_id: user._id, email: user.email}, "thisisasecretkey@1990");
+
+        // jwt token with expiry
+        //const token = await jwt.sign({_id: user._id, email: user.email}, "thisisasecretkey@1990", { expiresIn: "1m" });
+
+        // jwt token coming from jwt helper method from schema
+        const token = await user.getJWT(); // user is an instance of user model
+        //console.log(token);
+
+        //res.cookie("token", token, {httpOnly: true, maxAge: 1000*60*60*24});
+        res.cookie("token", token, { expires: new Date(Date.now() + 8 * 3600000), httpOnly: true});
+        res.send({message: "user logged in successfully", 
+            user: {
+                //_id: user._id, // we don't send id because it is not a secure data, we send it with jwt
+                name: user.name,
+                //email: user.email, // we don't send id because it is not a secure data, we send it with jwt
+                gender: user.gender,
+                skills: user.skills
+            }
+        }); // here we send the user data without password
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+}
+
+
+module.exports = {
+    signup: signupController,
+    login: loginController
+}
+</textarea>
+
+
+
+
+<p><b>Second</b> we make profile router where we add our profile api</p>
+<p>Make <b>profile.js</b> file in <code>src/routes</code> folder</p>
+<p>In <b>profile.js</b></p>
+<textarea class="code-editor">
+// create profile router with express router method
+const profileRouter = express.Router();
+
+// add profile api in profile router
+profileRouter.get("/view", profileController.view);
+profileRouter.patch("/edit", profileController.edit);
+profileRouter.patch("/password", profileController.password);
+
+// export profile router
+module.exports = profileRouter;
+</textarea>
+<p><b>Third</b> we make connection request router where we add our connection request api</p>
+<p>Make <b>connectionRequest.js</b> file in <code>src/routes</code> folder</p>
+<p>In <b>connectionRequest.js</b></p>
+<textarea class="code-editor">
+// create connection request router with express router method
+const connectionRequestRouter = express.Router();
+
+
+</textarea>
 <!-- 
 <br/>
 <hr/>
