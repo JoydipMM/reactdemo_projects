@@ -58,7 +58,7 @@ const mongoose = require('mongoose');
 // now to connect database we use a async function because we have to wait for the database to connect
 const connectDB = async () => {
     try {
-        await mongoose.connect("mongodb+srv://joydiponlinemarket_db_user:7tmGKcB9QEgnPcM2@cluster0.uqtiuyl.mongodb.net/Demo_node_db");
+        await mongoose.connect("mongodbconnectionstring/Demo_node_db");
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
     }
@@ -1163,7 +1163,7 @@ const authRouter = require("./routes/auth");
 // use auth router
 app.use("/auth", authRouter);
 
-// and login and signup api will be added in auth router
+
 </textarea>
     </td>
     <td style="width:60%; white-space: wrap;">
@@ -1272,33 +1272,70 @@ module.exports = {
 }
 </textarea>
 
-
-
-
-<p><b>Second</b> we make profile router where we add our profile api</p>
-<p>Make <b>profile.js</b> file in <code>src/routes</code> folder</p>
-<p>In <b>profile.js</b></p>
+<hr/>
+<p><b>Same way we make profile and connection routers</b></p>
+<hr/>
+<table class="table">
+<tr>
+    <td>
+        <p>In <b>app.js</b></p>
+        <p>Add profile router in <b>app.js</b></p>
 <textarea class="code-editor">
-// create profile router with express router method
+// import auth router
+const authRouter = require("./routes/auth");
+const profileRouter = require('./routes/profile');
+const connectionRouter = require('./routes/connection');
+
+// use auth router
+app.use("/auth", authRouter);
+app.use("/profile", profileRouter);
+app.use("/connection", connectionRouter);
+</textarea>
+    </td>
+    <td>
+        <p>Make <b>profile.js</b> file in <code>src/routes</code> folder</p>
+        <p>In <b>profile.js</b></p>
+<textarea class="code-editor">
+const express = require("express");
 const profileRouter = express.Router();
+const { authMiddleware } = require('../middleware/auth.middleware')
+const profileController = require('../controllers/profile');
 
-// add profile api in profile router
-profileRouter.get("/view", profileController.view);
-profileRouter.patch("/edit", profileController.edit);
-profileRouter.patch("/password", profileController.password);
+// user profile
+profileRouter.get("/", authMiddleware, profileController.profile);
 
-// export profile router
 module.exports = profileRouter;
 </textarea>
-<p><b>Third</b> we make connection request router where we add our connection request api</p>
-<p>Make <b>connectionRequest.js</b> file in <code>src/routes</code> folder</p>
-<p>In <b>connectionRequest.js</b></p>
+    </td>
+    <td>
+        <p>Make <b>profile.js</b> file in <code>src/controllers</code> folder</p>
+        <p>In <b>profile.js</b></p>
 <textarea class="code-editor">
-// create connection request router with express router method
-const connectionRequestRouter = express.Router();
+const userModel = require('../models/user');
 
+const profileController = async (req, res)=>{
+    try{
+        const user = req.user;
+        res.status(200).send({message:"user profile page", user: user});
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+}
 
+module.exports = { 
+    profile: profileController 
+}
 </textarea>
+    </td>
+</tr>
+</table>
+
+
+
+
+
+
+
 <!-- 
 <br/>
 <hr/>
