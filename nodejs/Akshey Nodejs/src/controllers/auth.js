@@ -75,8 +75,19 @@ const loginController = async (req, res)=>{
     }
 }
 
+const logoutController = async (req, res)=>{
+    try{
+        //res.clearCookie("token");
+        res.cookie("token", null, {expires: new Date(Date.now())});
+        res.send({message: "user logged out successfully"});
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+}
+
 
 module.exports = {
     signup: signupController,
-    login: loginController
+    login: loginController,
+    logout: logoutController
 }

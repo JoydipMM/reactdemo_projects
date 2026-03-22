@@ -1330,9 +1330,94 @@ module.exports = {
 </tr>
 </table>
 
+<br/>
+<hr/>
+<p><b>Edit API</b></p>
+<hr/>
+In <b>utils/dataValidation.js</b>
+<textarea class="code-editor">
+const validateEditProfileData =(req) =>{
+    const ALLOWEDFIELDS = ["name", "gender", "skills"];
+    const isEditAllowed = Object.keys(req.body).every((field)=> { return ALLOWEDFIELDS.includes(field) });
 
+    const nameRegex = /^[A-Za-z\s]+$/;
+    const { name, gender, skills } = req.body;
 
+    if(!isEditAllowed){
+        throw new Error("Invalid update fields");
+    }
 
+    // user name validation
+    if(!name){
+        throw new Error("Name is required | check from utils validation lavel validation");
+    }else if(name.length < 5 || name.length > 20){
+        throw new Error("Name should be between 5 to 20 characters | check from utils validation lavel validation");
+    }else if(name && !nameRegex.test(name)){
+        throw new Error("Name should contain only alphabets and spaces | check from utils validation lavel validation");
+    }
+
+    if(!gender){
+        throw new Error("Gender is required | check from utils validation lavel validation");
+    }else if(!["male", "female", "other"].includes(gender)){
+        throw new Error("Gender should be male, female or other | check from utils validation lavel validation");
+    }
+
+    if(!skills){
+        throw new Error("At least two skills are required | check from utils validation lavel validation");
+    }else if(skills.length < 2){
+        throw new Error("At least two skills are required | check from utils validation lavel validation");
+    }
+
+    return isEditAllowed;
+}   
+</textarea>
+<br/>
+In <b>controllers/profile.js</b>
+<textarea class="code-editor">
+const userModel = require('../models/user');
+const jwt = require('jsonwebtoken');
+const { validateEditProfileData } = require('../utils/dataValidation');
+
+const viewController = async (req, res)=>{
+    try{
+        const user = req.user;
+        res.status(200).send({message:"user profile page", user: user});
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+}
+
+const editController = async (req, res)=>{
+    try{
+        const loggedUser = req.user; // this req.user is coming from auth middleware
+
+        // check the requested fields are allowed or not
+        if(!validateEditProfileData(req)){
+            throw new Error("Invalid update fields");
+        };
+
+        // update the user data as per keys in req.body
+        Object.keys(req.body).forEach(key => loggedUser[key] = req.body[key]); // here we are updating the loggedUser object with the data from req.body
+
+        const token = req.cookies.token;
+        decodeToken = await jwt.verify(token, process.env.JWT_SECRETKEY);
+        //console.log(decodeToken);
+        
+        // now we will save the updated user data to db
+        await userModel.findByIdAndUpdate(decodeToken._id, req.body, { new: true });
+       
+        res.status(200).send({message:"User profile data updated", user: loggedUser});
+
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+}
+
+module.exports = { 
+    profileView: viewController,
+    profileEdit: editController,
+}
+</textarea>
 
 
 

@@ -16,6 +16,8 @@ auth router list
 authRouter.post("/signup", authController.signup);
 // login api
 authRouter.post("/login", authController.login);
+// logout api
+authRouter.post("/logout", authController.logout);
 
 
 module.exports = authRouter;
