@@ -1,7 +1,7 @@
 const validator = require('validator');
 
 const signupDataValidation = (req) => {
-    const { name, email, password, gender, dpPhoto="" } = req.body;
+    const { name, email, password, gender, skills, dpPhoto="" } = req.body;
 
     const nameRegex = /^[A-Za-z\s]+$/;
 
@@ -40,8 +40,6 @@ const signupDataValidation = (req) => {
         throw new Error("At least two skills are required | check from utils validation lavel validation");
     }else if(skills.length < 2){
         throw new Error("At least two skills are required | check from utils validation lavel validation");
-    }else if(skills && !nameRegex.test(skills)){
-        throw new Error("Skills should contain only alphabets and spaces | check from utils validation lavel validation");
     }
 
     // user email validation
