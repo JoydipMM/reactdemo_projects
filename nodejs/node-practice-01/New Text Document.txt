@@ -1,0 +1,14 @@
+{
+    "name": "souvik Bose",
+    "email": "souvik@gmail.com",
+    "password": "Pass@1234",
+    "gender": "male",
+    "age": 25,
+    "skills": ["js", "php"]
+}
+
+
+{
+    "email": "souvik@gmail.com",
+    "password": "Pass@1234"
+}

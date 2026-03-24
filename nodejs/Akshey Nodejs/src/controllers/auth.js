@@ -13,7 +13,6 @@ const signupController = async (req, res)=>{
         const {name, email, password, gender, skills} = req.body;
         // syntax: await bcrypt.hash(password, saltRounds) ==> saltRounds is number of rounds to generate the hash (default is 10)
         const hashedPassword = await bcrypt.hash(password, 10);
-        req.body.password = hashedPassword;
         
         // to save the dummydata user collection we need to make a new instance of user model
         // first inport user model at the top
