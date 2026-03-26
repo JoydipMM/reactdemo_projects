@@ -142,8 +142,10 @@ const getRequestListController = async(req, res)=>{
             throw new Error("Connection request not found");
         }
 
+        const filterConnectionData = connections.map((row) => row.fromuserid)
+
         // if connections found then send the connections
-        res.status(200).send({message:"request list", connections: connections});
+        res.status(200).send({message:"get request list", users: filterConnectionData});
 
     }catch(err){
         res.status(500).send({message: err.message});
@@ -157,12 +159,23 @@ const connectedListController = async(req, res)=>{
         const loggedUser = req.user;
 
         const connectionList = await Connection.find({
-            fromuserid: loggedUser._id,
-            status: "accepted"
-        }).populate("touserid", ["name", "gender"]);
+            $or: [
+                {fromuserid: loggedUser._id, status: "accepted"},
+                {touserid: loggedUser._id, status: "accepted"}
+            ]
+        }).populate("fromuserid", ["name", "gender"]).populate("touserid", ["name", "gender"]);
+
+        // get connected user data based on logged user id
+        const getAccptedUserData = connectionList.map((row)=> {
+            if (row.fromuserid._id.toString() === loggedUser._id.toString()) {
+                return row.touserid;
+            } else {
+                return row.fromuserid;
+            }
+        });
 
 
-        res.status(200).send({message:"Send connection list", user:connectionList});
+        res.status(200).send({message:"get Connected list", users:getAccptedUserData});
     }catch(err){
         res.status(500).send({message: err.message});
     }
