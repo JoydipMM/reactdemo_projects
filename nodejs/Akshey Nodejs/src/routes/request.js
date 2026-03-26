@@ -34,4 +34,8 @@ status: accepted, rejected, unfriend, blocked
 requestRouter.post("/received/:status/:requestid", authMiddleware, requestController.receivedRequest);
 
 
+// this is the list of logged user get request 
+requestRouter.get("/request-list", authMiddleware, requestController.getRequestList);
+
+
 module.exports = requestRouter;
