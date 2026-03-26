@@ -35,7 +35,10 @@ requestRouter.post("/received/:status/:requestid", authMiddleware, requestContro
 
 
 // this is the list of logged user get request 
-requestRouter.get("/request-list", authMiddleware, requestController.getRequestList);
+requestRouter.get("/get-request-list", authMiddleware, requestController.getRequestList);
+
+
+requestRouter.get("/connected-list", authMiddleware, requestController.connectedList);
 
 
 module.exports = requestRouter;

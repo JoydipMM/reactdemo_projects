@@ -151,8 +151,27 @@ const getRequestListController = async(req, res)=>{
 }
 
 
+const connectedListController = async(req, res)=>{
+    try{
+        // this logged in user data is coming from middleware auth
+        const loggedUser = req.user;
+
+        const connectionList = await Connection.find({
+            fromuserid: loggedUser._id,
+            status: "accepted"
+        }).populate("touserid", ["name", "gender"]);
+
+
+        res.status(200).send({message:"Send connection list", user:connectionList});
+    }catch(err){
+        res.status(500).send({message: err.message});
+    }
+}
+
+
 module.exports = {
     sendRequest: sendRequestController,
     receivedRequest: receivedRequestController,
-    getRequestList: getRequestListController
+    getRequestList: getRequestListController,
+    connectedList: connectedListController
 }
