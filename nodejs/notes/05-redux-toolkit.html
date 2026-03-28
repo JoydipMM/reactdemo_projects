@@ -1,0 +1,154 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05 Redux Toolkit</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<hr/>
+<h2><b>Create Redux Store</b></h2>
+<hr/>
+<p>install <b>react-redux</b> and <b>@reduxjs/toolkit</b></p>
+<p><b>Install Command <code>npm i react-redux @reduxjs/toolkit</code></b></p>
+<p><b>Below steps are to create and use redux store</b></p>
+<ol>
+    <li><b>Configure Store and export it</b></li>
+    <li><b>Create Slice</b> and export default the slice reducer and name export of the reducers</li>
+    <li>Wrap full app with <b>Provider</b></li>
+    <li>Use <b>useDispatch</b> for dispatch action to reducer to store the data</li>
+    <li>Use <b>useSelector</b> for get the data from store</li>
+</ol>
+<p><b>First</b> create <b>store.js</b> file in <b>src/📁store</b> folder</p>
+<textarea id="editor">
+// src/store/store.js
+
+// import configureStore of reduxjs/toolkit
+import { configureStore } from '@reduxjs/toolkit';
+
+// configure store
+const appStore = configureStore({
+    reducer: {
+        // create slice and export default the slice reducer and name export of the reducers
+    }
+});
+
+// export store
+export default appStore;
+</textarea>
+<p>After main store configured, create slice, Here we create auth slice in <b>authSlice.js</b> file in <b>src/📁 slices</b> folder</p>
+<textarea class="code-editor">
+// To create auth slice first import createSlice from reduxjs/toolkit
+import { createSlice } from '@reduxjs/toolkit';
+
+/*
+To Configure Auth Slice we need to do the following
+1. name the slice
+2. create initial state
+3. create reducers
+*/
+const authSlice = createSlice({
+    // name the slice
+    name: 'auth',
+    initialState: {
+        // create initial states with initial values
+        authUser: null,
+        ...: ...,
+    },
+    reducers: {
+        // create reducers
+        addAuthUser: (state, action) => {
+            // update authUser state
+            state.authUser = action.payload;
+        },
+        removeAuthUser: (state) => {
+            // update authUser state
+            state.authUser = null;
+        },
+        ...: ...
+    }
+});
+
+// export default the slice reducer and name export of the reducers
+export const { addAuthUser, removeAuthUser } = authSlice.actions;
+export default authSlice.reducer;
+</textarea>
+<p>Now time to add authReducer in <b>store.js</b> in <b>src/📁 utils</b> folder</p>
+<textarea class="code-editor">
+// import authSlice
+import authSlice from '../slices/authSlice';
+
+// configure store
+const appStore = configureStore({
+    reducer: {
+        auth: authSlice,
+    }
+});
+
+// export store
+export default appStore;
+</textarea>
+<p>Wrap full app with <b>Provider</b></p>
+<textarea class="code-editor">
+// import Provider from react-redux
+import { Provider } from 'react-redux';
+
+// wrap full app with Provider
+<Provider store={appStore}>
+    <App />
+</Provider>
+</textarea>
+<br/>
+<p>Use <b>useDispatch</b> for dispatch action to reducer to store the data</p>
+<textarea class="code-editor">
+// import useDispatch from react-redux
+import { useDispatch } from 'react-redux';
+
+// use useDispatch
+const dispatch = useDispatch();
+
+// dispatch action
+dispatch(addAuthUser(user));
+</textarea>
+<p>Use <b>useSelector</b> for get the data from store</p>
+<textarea class="code-editor">
+// import useSelector from react-redux
+import { useSelector } from 'react-redux';
+
+// use useSelector
+const user = useSelector(state => state.auth.authUser);
+</textarea>
+
+
+
+
+<!-- 
+<br/>
+<hr/>
+<h2><b>Restrict update of any field in schema when update </b></h2>
+<hr/> 
+<p>First, install <b>dotenv</b> package <code>npm i dotenv</code></p>
+<p>In <b>database.js</b> <br/>import dotenv package and update the connection string</p>
+-->
+
+
+
+
+
+
+
+
+
+<!-- <textarea class="code-editor">
+    
+</textarea> -->
+<br/>
+
+
+
+<script src="assets/js/codemirror/codemirror.min.js"></script>
+<script src="assets/js/codemirror/javascript.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/common-script.js"></script>
+</body>
+</html>

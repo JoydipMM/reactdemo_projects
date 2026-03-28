@@ -1418,6 +1418,49 @@ module.exports = {
     profileEdit: editController,
 }
 </textarea>
+<br/>
+<hr/>
+<h2><b>Cors issue resolved with cors package between backend and frontend</b></h2>
+<hr/> 
+<p><b>CORS [Cross-Origin-Resource-Sharing]</b> is a <b>Node.js</b> middleware for Express/Connect that sets CORS response headers. These headers tell browsers which origins can read responses from your server.</p>
+<p><b>In backend</b> (in node setup) <b>Install cors package</b> <code><b>npm i cors</b></code></p>
+<p>Then in <b>app.js</b> import cors <code><b>const cors = require('cors');</b></code> and add <code><b>app.use(cors());</b></code> as a middleware with configuration <code><b>app.use(cors({credentials: true, origin: 'http://localhost:5173'}));</b></code></p>
+<textarea class="code-editor">
+// app.js
+const cors = require('cors');
+
+// configure cors to whitelist localhost:3000
+app.use(cors({
+    origin: 'http://localhost:5173', // allow frontend port can access backend
+    credentials: true
+}));    
+</textarea>
+<br/>
+<p>Now, in <b>frontend</b> (in react setup) for <b>API <i>[Application Programming Interface]</i></b> call we use <b>Axios</b> </p>
+<p>Install <b>Axios</b> <code><b>npm i axios</b></code></p>
+<p>Then import <b>Axios</b> <code><b>import axios from 'axios';</b></code> and use <b>Axios</b></p>
+<textarea class="code-editor">
+// App.js
+import axios from 'axios';
+
+const submitEvent = async(e) => {
+    e.preventDefault()
+    console.log(email, password);
+
+    try{
+        const user = await axios.post(
+            'http://localhost:3001/auth/login', // api endpoint
+            {email, password}, // data
+            { withCredentials: true } // Include credentials (like cookies) with this request.
+        )
+        if(user){
+        console.log(user);
+        }
+    }catch(err){
+        console.log(err);
+    }
+}
+</textarea>
 
 
 
