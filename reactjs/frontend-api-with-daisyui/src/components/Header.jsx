@@ -1,6 +1,32 @@
+import { Link, useNavigate } from 'react-router-dom';
 import React from 'react'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { removeAuthUser } from '../utils/slices/authSlice'
+import { API_BASE_URL } from '../utils/constants'
 
 const Header = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const logouevent = async () => {
+        try{
+            const res = await axios.post(`${API_BASE_URL}/auth/logout`,{}, { withCredentials:true });
+            //console.log(res.status);
+            if(res.status === 200){
+                return navigate("/login");
+            }
+        }catch(err){
+            //console.log(err.status);
+            if(err.status === 404){
+              dispatch(removeAuthUser());
+              return navigate("/login");
+            }
+        }
+    }
+
+
+
     return (
         <>
             <div className="navbar bg-base-100 shadow-sm">
@@ -26,7 +52,7 @@ const Header = () => {
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li><Link onClick={logouevent}>Logout</Link></li>
                         </ul>
                     </div>
                 </div>

@@ -17,6 +17,8 @@ Object.keys(updateData).every(key =>
 4. Possible Attack Vectors (and fixes) chatgpt
 --------------------------------------------------------
 
+https://www.amazon.in/Therapy-Mandala-Adult-Colouring-Book/dp/9359856835/ref=pd_sbs_d_sccl_1_4/258-2626326-0101556?pd_rd_w=YkkmF&content-id=amzn1.sym.d1406b44-aa69-47e4-9270-f613e12d52dc&pf_rd_p=d1406b44-aa69-47e4-9270-f613e12d52dc&pf_rd_r=ZM9NR02B348WQ7YX0JF3&pd_rd_wg=gfThD&pd_rd_r=994be579-12a2-4561-a884-b08254734a34&pd_rd_i=9359856835&psc=1
+
 
 
 

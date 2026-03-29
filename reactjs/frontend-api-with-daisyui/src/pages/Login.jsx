@@ -3,10 +3,12 @@ import React from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { addAuthUser } from '../utils/slices/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [email, setEmail] = React.useState('ashoke@testmail.com')
   const [password, setPassword] = React.useState('1234@Ashoke')
@@ -18,11 +20,12 @@ const Login = () => {
     try{
       const user = await axios.post('http://localhost:3001/auth/login', {email, password}, { withCredentials: true })
       if(user){
-        console.log(user.data.user);
+        //console.log(user.data.user);
         dispatch(addAuthUser(user.data.user))
+        navigate('/');
       }
     }catch(err){
-      console.log(err);
+      //console.log(err);
     }
   }
 
