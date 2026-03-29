@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import DefaultLayout from './layout/DefaultLayout'
 import AfterLoginLayout from './layout/AfterLoginLayout'
+import NotFound from './pages/NotFound'
 
 function App() {
 
@@ -12,13 +13,18 @@ function App() {
     <>
      <BrowserRouter basename={"/"}>
       <Routes>
+
         <Route element={<DefaultLayout />}>
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
         </Route>
+
         <Route element={<AfterLoginLayout />}>
           <Route path="/" element={<Home/>} />
         </Route>
+
+        <Route path="*" element={<NotFound />} />
+        
       </Routes>
      </BrowserRouter>
     </>
