@@ -29,7 +29,7 @@ const Header = () => {
 
     return (
         <>
-            <div className="navbar bg-base-100 shadow-sm">
+            <div className="navbar _bg-base-300 bg-neutral shadow-sm">
                 <div className="flex-1">
                     <a className="btn btn-ghost text-xl">daisyUI</a>
                 </div>

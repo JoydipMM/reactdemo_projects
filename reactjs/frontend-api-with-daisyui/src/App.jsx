@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Body from './components/Body'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import DefaultLayout from './layout/DefaultLayout'
+import AfterLoginLayout from './layout/AfterLoginLayout'
 
 function App() {
 
@@ -11,11 +12,11 @@ function App() {
     <>
      <BrowserRouter basename={"/"}>
       <Routes>
-        <Route>
+        <Route element={<DefaultLayout />}>
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
         </Route>
-        <Route element={<Body />}>
+        <Route element={<AfterLoginLayout />}>
           <Route path="/" element={<Home/>} />
         </Route>
       </Routes>

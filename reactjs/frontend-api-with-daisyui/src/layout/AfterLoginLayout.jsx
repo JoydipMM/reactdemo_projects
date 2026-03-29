@@ -2,13 +2,13 @@ import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { Outlet } from 'react-router-dom'
-import Header from './Header'
-import Footer from './Footer'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 import { useNavigate } from 'react-router-dom'
 import { addAuthUser } from '../utils/slices/authSlice'
 import { API_BASE_URL } from '../utils/constants'
 
-const Body = () => {
+const AfterLoginLayout = () => {
 
   const getAuthUser = useSelector((store)=>store.auth.user)
   const dispatch = useDispatch();
@@ -43,4 +43,4 @@ const Body = () => {
   )
 }
 
-export default Body
+export default AfterLoginLayout
