@@ -38,12 +38,12 @@ const Register = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 p-4 animate-in fade-in duration-700">
       <div className="w-full max-w-5xl flex flex-col lg:flex-row-reverse bg-base-100 rounded-[2.5rem] shadow-2xl overflow-hidden border border-base-200">
-        
+
         {/* Right Side: Visual Branding (Reversed for variety) */}
         <div className="lg:w-1/2 p-12 bg-neutral text-white flex flex-col justify-between relative overflow-hidden">
           <div className="absolute top-0 left-0 w-64 h-64 bg-secondary/20 rounded-full blur-3xl -ml-32 -mt-32"></div>
           <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -mr-32 -mb-32"></div>
-          
+
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-10">
               <div className="bg-primary p-2 rounded-2xl shadow-xl shadow-primary/30">
@@ -53,28 +53,28 @@ const Register = () => {
               </div>
               <span className="text-2xl font-black tracking-tight">GravitySocial</span>
             </div>
-            
+
             <h1 className="text-5xl font-bold leading-tight mb-6">
-              Join the <br/>
-              <span className="text-secondary italic">Community</span> of <br/>
+              Join the <br />
+              <span className="text-secondary italic">Community</span> of <br />
               Future Makers.
             </h1>
             <p className="text-white/60 text-lg leading-relaxed max-w-md">
               Create your profile, showcase your skills, and start collaborating with developers from around the globe.
             </p>
           </div>
-          
+
           <div className="relative z-10 pt-10">
-             <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white/5 backdrop-blur-md p-4 rounded-3xl border border-white/10">
-                   <div className="text-primary font-bold text-lg mb-1">100% Free</div>
-                   <p className="text-xs text-white/40">No hidden costs or subscriptions for basic networking.</p>
-                </div>
-                <div className="bg-white/5 backdrop-blur-md p-4 rounded-3xl border border-white/10">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white/5 backdrop-blur-md p-4 rounded-3xl border border-white/10">
+                <div className="text-primary font-bold text-lg mb-1">100% Free</div>
+                <p className="text-xs text-white/40">No hidden costs or subscriptions for basic networking.</p>
+              </div>
+              {/* <div className="bg-white/5 backdrop-blur-md p-4 rounded-3xl border border-white/10">
                    <div className="text-secondary font-bold text-lg mb-1">Global Reach</div>
                    <p className="text-xs text-white/40">Connect with talent across 150+ countries.</p>
-                </div>
-             </div>
+                </div> */}
+            </div>
           </div>
         </div>
 
@@ -88,25 +88,25 @@ const Register = () => {
               <div className="flex gap-4">
                 <div className="form-control w-1/2">
                   <label className="label text-[10px] font-black uppercase tracking-widest text-base-content/40 mb-1 px-1">First Name</label>
-                  <input 
+                  <input
                     name="firstName"
-                    type="text" 
-                    className="input input-bordered w-full h-12 rounded-2xl bg-base-200 border-none transition-all font-medium" 
-                    placeholder="John" 
-                    value={formData.firstName} 
-                    onChange={handleChange} 
+                    type="text"
+                    className="input input-bordered w-full h-12 rounded-2xl bg-base-200 border-none transition-all font-medium"
+                    placeholder="John"
+                    value={formData.firstName}
+                    onChange={handleChange}
                     required
                   />
                 </div>
                 <div className="form-control w-1/2">
                   <label className="label text-[10px] font-black uppercase tracking-widest text-base-content/40 mb-1 px-1">Last Name</label>
-                  <input 
+                  <input
                     name="lastName"
-                    type="text" 
-                    className="input input-bordered w-full h-12 rounded-2xl bg-base-200 border-none transition-all font-medium" 
-                    placeholder="Doe" 
-                    value={formData.lastName} 
-                    onChange={handleChange} 
+                    type="text"
+                    className="input input-bordered w-full h-12 rounded-2xl bg-base-200 border-none transition-all font-medium"
+                    placeholder="Doe"
+                    value={formData.lastName}
+                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -114,13 +114,13 @@ const Register = () => {
 
               <div className="form-control w-full">
                 <label className="label text-[10px] font-black uppercase tracking-widest text-base-content/40 mb-1 px-1">Email Address</label>
-                <input 
+                <input
                   name="email"
-                  type="email" 
-                  className="input input-bordered w-full h-12 rounded-2xl bg-base-200 border-none transition-all font-medium" 
-                  placeholder="name@company.com" 
-                  value={formData.email} 
-                  onChange={handleChange} 
+                  type="email"
+                  className="input input-bordered w-full h-12 rounded-2xl bg-base-200 border-none transition-all font-medium"
+                  placeholder="name@company.com"
+                  value={formData.email}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -128,16 +128,16 @@ const Register = () => {
               <div className="form-control w-full">
                 <label className="label text-[10px] font-black uppercase tracking-widest text-base-content/40 mb-1 px-1">Create Password</label>
                 <div className="relative group">
-                  <input 
+                  <input
                     name="password"
-                    type={showPassword ? "text" : "password"} 
-                    className="input input-bordered w-full pr-12 h-12 rounded-2xl bg-base-200 border-none transition-all font-medium" 
-                    placeholder="••••••••" 
-                    value={formData.password} 
-                    onChange={handleChange} 
+                    type={showPassword ? "text" : "password"}
+                    className="input input-bordered w-full pr-12 h-12 rounded-2xl bg-base-200 border-none transition-all font-medium"
+                    placeholder="••••••••"
+                    value={formData.password}
+                    onChange={handleChange}
                     required
                   />
-                  <button 
+                  <button
                     type="button"
                     className="absolute inset-y-0 right-0 pr-4 flex items-center text-base-content/30 hover:text-primary transition-colors"
                     onClick={() => setShowPassword(!showPassword)}
@@ -158,8 +158,8 @@ const Register = () => {
                 </label>
               </div>
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className={`btn btn-primary w-full h-14 rounded-2xl shadow-xl shadow-primary/30 text-white font-bold tracking-wider text-xl transition-all ${isLoading ? 'loading' : ''}`}
                 disabled={isLoading}
               >
