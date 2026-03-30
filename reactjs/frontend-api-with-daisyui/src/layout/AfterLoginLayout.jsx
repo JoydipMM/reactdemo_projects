@@ -21,7 +21,8 @@ const AfterLoginLayout = () => {
       dispatch(addAuthUser(res.data.user));
       navigate("/");
     }catch(err){
-      if(err.status === 400 || err.status === 401){
+      //console.log(err.status);
+      if(err.status === 400 || err.status === 401 || getAuthUser === null){
         navigate("/login");
       }
     }
