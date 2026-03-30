@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet, NavLink } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { useNavigate } from 'react-router-dom'
@@ -38,7 +38,21 @@ const AfterLoginLayout = () => {
   return (
     <>
       <Header/>
-      <Outlet/>
+      <section className='w-full relative py-3 px-3'>
+
+        <div className='w-full relative'>
+          <div className="join mb-5">
+            <NavLink to="/" className={({ isActive }) =>`btn join-item ${isActive ? "btn-primary" : "btn-neutral"}`}>Posts</NavLink>
+            <NavLink to="/connections" className={({ isActive }) =>`btn join-item ${isActive ? "btn-primary" : "btn-neutral"}`}>Connections</NavLink>
+            {/* <Link className="btn btn-neutral join-item">Button</Link> */}
+          </div>
+        </div>
+
+
+        <Outlet/>
+
+
+      </section>
       <Footer/>
     </>
   )

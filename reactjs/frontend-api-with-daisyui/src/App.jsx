@@ -6,6 +6,7 @@ import Register from './pages/Register'
 import DefaultLayout from './layout/DefaultLayout'
 import AfterLoginLayout from './layout/AfterLoginLayout'
 import NotFound from './pages/NotFound'
+import Connections from './pages/Connections'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
 
         <Route element={<AfterLoginLayout />}>
           <Route path="/" element={<Home/>} />
+          <Route path="/connections" element={<Connections/>} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
