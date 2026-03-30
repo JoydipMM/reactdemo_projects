@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
+import CommentSection from './CommentSection';
 
 const FeedCard = ({ post }) => {
   // Support either single `image` or `images` array
   const images = post.images || (post.image ? [post.image] : []);
+  
+  // Image Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // Comment Section State
+  const [showComments, setShowComments] = useState(false);
+
+  // --- Image Modal Functions ---
   const openModal = (index) => {
     setCurrentSlide(index);
     setIsModalOpen(true);
-    // Optional: Hide body scroll when modal is open
     document.body.style.overflow = 'hidden';
   };
 
@@ -28,6 +34,7 @@ const FeedCard = ({ post }) => {
     setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
+  // --- Render Helpers ---
   const renderImages = () => {
     if (images.length === 0) return null;
 
@@ -127,7 +134,10 @@ const FeedCard = ({ post }) => {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
               <span className="font-medium group-hover:text-primary transition-colors">{post.stats.likes}</span>
             </button>
-            <button className="btn btn-ghost btn-sm group flex gap-2">
+            <button 
+              className={`btn btn-ghost btn-sm group flex gap-2 ${showComments ? 'text-blue-500' : ''}`}
+              onClick={() => setShowComments(!showComments)}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:text-blue-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
               <span className="font-medium group-hover:text-blue-500 transition-colors">{post.stats.comments}</span>
             </button>
@@ -139,6 +149,9 @@ const FeedCard = ({ post }) => {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
             </button>
           </div>
+
+          {/* Comment Section */}
+          {showComments && <CommentSection postId={post.id} />}
         </div>
       </div>
 
