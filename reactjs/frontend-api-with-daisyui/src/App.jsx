@@ -7,28 +7,32 @@ import DefaultLayout from './layout/DefaultLayout'
 import AfterLoginLayout from './layout/AfterLoginLayout'
 import NotFound from './pages/NotFound'
 import Connections from './pages/Connections'
+import Profile from './pages/Profile'
+import Requests from './pages/Requests'
 
 function App() {
 
   return (
     <>
-     <BrowserRouter basename={"/"}>
-      <Routes>
+      <BrowserRouter basename={"/"}>
+        <Routes>
 
-        <Route element={<DefaultLayout />}>
-          <Route path="/login" element={<Login/>} />
-          <Route path="/register" element={<Register/>} />
-        </Route>
+          <Route element={<DefaultLayout />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
 
-        <Route element={<AfterLoginLayout />}>
-          <Route path="/" element={<Home/>} />
-          <Route path="/connections" element={<Connections/>} />
-        </Route>
+          <Route element={<AfterLoginLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/connections" element={<Connections />} />
+            <Route path="/requests" element={<Requests />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
 
-        <Route path="*" element={<NotFound />} />
-        
-      </Routes>
-     </BrowserRouter>
+          <Route path="*" element={<NotFound />} />
+
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }

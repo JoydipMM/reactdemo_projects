@@ -34,11 +34,11 @@ const FeedCard = ({ post }) => {
     if (images.length === 1) {
       return (
         <figure className="mt-4 rounded-xl overflow-hidden border border-base-200">
-          <img 
-            src={images[0]} 
-            alt="Post content" 
-            className="w-full max-h-[500px] object-cover cursor-pointer hover:opacity-95 transition-opacity" 
-            onClick={() => openModal(0)} 
+          <img
+            src={images[0]}
+            alt="Post content"
+            className="w-full max-h-[500px] object-cover cursor-pointer hover:opacity-95 transition-opacity"
+            onClick={() => openModal(0)}
           />
         </figure>
       );
@@ -54,14 +54,14 @@ const FeedCard = ({ post }) => {
         {images.slice(0, 4).map((img, index) => {
           let wrapperClass = "relative w-full h-full";
           let imgClass = "w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity";
-          
+
           if (images.length === 3 && index === 0) {
             wrapperClass += " col-span-2 row-span-1";
             imgClass += " aspect-video";
           } else if (images.length === 3 || images.length >= 4) {
-             imgClass += " h-48 sm:h-64";
+            imgClass += " h-48 sm:h-64";
           } else if (images.length === 2) {
-             imgClass += " h-64 sm:h-80";
+            imgClass += " h-64 sm:h-80";
           }
 
           return (
@@ -81,7 +81,7 @@ const FeedCard = ({ post }) => {
 
   return (
     <>
-      <div className="card bg-base-100 shadow-md border border-base-200">
+      <div className="card bg-base-200 shadow-md border border-base-200">
         <div className="card-body p-5">
           {/* Post Header */}
           <div className="flex justify-between items-start">
@@ -117,7 +117,7 @@ const FeedCard = ({ post }) => {
           <div className="mt-3 text-base">
             <p>{post.content}</p>
           </div>
-          
+
           {/* Post Images Collage */}
           {renderImages()}
 
@@ -145,35 +145,35 @@ const FeedCard = ({ post }) => {
       {/* Image Carousel Modal */}
       {isModalOpen && (
         <dialog open className="modal modal-open bg-black/90 z-[9999] fixed inset-0 m-0">
-          <div 
-             className="w-full h-full flex flex-col justify-center items-center relative" 
-             onClick={closeModal}
+          <div
+            className="w-full h-full flex flex-col justify-center items-center relative"
+            onClick={closeModal}
           >
-            <button 
-              className="btn btn-circle btn-ghost absolute right-4 top-4 z-[60] text-base-content bg-base-100/50 hover:bg-base-100" 
+            <button
+              className="btn btn-circle btn-ghost absolute right-4 top-4 z-[60] text-base-content bg-base-100/50 hover:bg-base-100"
               onClick={closeModal}
             >
               ✕
             </button>
-            
+
             <div className="relative w-full h-full md:w-4/5 md:h-[85vh] flex items-center justify-center p-4" onClick={(e) => e.stopPropagation()}>
-              
-              <img 
-                src={images[currentSlide]} 
-                alt={`Slide ${currentSlide + 1}`} 
+
+              <img
+                src={images[currentSlide]}
+                alt={`Slide ${currentSlide + 1}`}
                 className="max-w-full max-h-full object-contain select-none shadow-2xl rounded-sm"
               />
 
               {images.length > 1 && (
                 <>
-                  <button 
-                    onClick={prevSlide} 
+                  <button
+                    onClick={prevSlide}
                     className="btn btn-circle border-0 absolute left-4 md:-left-12 text-black bg-white hover:bg-gray-200 shadow-lg"
                   >
                     ❮
                   </button>
-                  <button 
-                    onClick={nextSlide} 
+                  <button
+                    onClick={nextSlide}
                     className="btn btn-circle border-0 absolute right-4 md:-right-12 text-black bg-white hover:bg-gray-200 shadow-lg"
                   >
                     ❯
@@ -187,9 +187,9 @@ const FeedCard = ({ post }) => {
                 ))}
               </div>
             </div>
-            
+
             <div className="absolute top-4 left-4 text-white font-medium z-[60] bg-black/50 px-3 py-1 rounded-full text-sm">
-               {currentSlide + 1} / {images.length}
+              {currentSlide + 1} / {images.length}
             </div>
           </div>
         </dialog>
