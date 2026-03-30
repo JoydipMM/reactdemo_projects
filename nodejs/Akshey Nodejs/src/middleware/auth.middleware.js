@@ -12,7 +12,7 @@ const authMiddleware = async (req, res, next) => {
             return res.status(401).send({message: "invalid token"});
         }
         // if token valid then decode the token
-        const decodeToken = await jwt.verify(token, process.env.JWT_SECRETKEY);
+        const decodeToken = await jwt.verify(token, process.env.JWT_SECRETKEY, {ignoreExpiration: true});
 
         // validate the decoded token
         if( !decodeToken){

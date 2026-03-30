@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 const UserConnectionCard = ({
   user,
-  showSend = true,
-  showAccept = true,
-  showIgnore = true
+  showSend = false,
+  showAccept = false,
+  showIgnore = false
 }) => {
   const [isBlocked, setIsBlocked] = useState(false);
 
