@@ -7,7 +7,7 @@ import { API_BASE_URL } from '../utils/constants'
 const Register = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    name: '',
+    fullname: '',
     email: '',
     password: ''
   })
@@ -85,11 +85,11 @@ const Register = () => {
 
             <form onSubmit={submitEvent} className="space-y-4">
               <input
-                    name="name"
+                    name="fullname"
                     type="text"
                     className="input input-bordered w-full h-12 rounded-2xl bg-base-200 border-none transition-all font-medium"
                     placeholder="Doe"
-                    value={formData.name}
+                    value={formData.fullname}
                     onChange={handleChange}
                     required
                   />
@@ -159,12 +159,12 @@ const Register = () => {
                 </div>
               </div>
 
-              <div className="py-2">
+              {/* <div className="py-2">
                 <label className="label cursor-pointer justify-start gap-4">
                   <input type="checkbox" className="checkbox checkbox-primary checkbox-sm rounded-lg" required />
                   <span className="label-text text-base-content/60 text-xs">I agree to the <Link className="text-primary font-bold hover:underline">Terms of Service</Link> and <Link className="text-primary font-bold hover:underline">Privacy Policy</Link></span>
                 </label>
-              </div>
+              </div> */}
 
               <button
                 type="submit"

@@ -5,10 +5,10 @@ const bcrypt = require('bcrypt');
 
 // create mongoose schema
 const userSchema = new mongoose.Schema({
-    name: {
+    fullname: {
         type: String,
         required: true,
-        minlength: 5,
+        minlength: 2,
         maxlength: 20,
         trim: true
     },

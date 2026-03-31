@@ -33,11 +33,11 @@ const UserConnectionCard = ({
           <div className="flex items-center gap-4">
             <div className="avatar">
               <div className="w-16 h-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                <img src={user.avatar} alt={user.name} />
+                <img src={user.avatar} alt={user.fullname} />
               </div>
             </div>
             <div>
-              <h2 className="card-title text-lg font-bold">{user.name}</h2>
+              <h2 className="card-title text-lg font-bold">{user.fullname}</h2>
               <p className="text-sm text-base-content/60 italic">Online</p>
               {user._id}
             </div>

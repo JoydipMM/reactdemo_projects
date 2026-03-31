@@ -60,7 +60,7 @@ const sendRequestController = async (req, res)=>{
         await connection.save();
         
         
-        res.status(200).send({message:user.name + " send connection request "+ toUser.name +" !!!"});
+        res.status(200).send({message:user.fullname + " send connection request "+ toUser.fullname +" !!!"});
     }catch(err){
         res.status(500).send({message: err.message});
     }
@@ -132,9 +132,9 @@ const getRequestListController = async(req, res)=>{
         // get list of connections based on loggedin user id and status is "interested"
         const connections = await Connection.find(
             {touserid: loggedUser._id, status: "interested"}
-        ).populate("fromuserid", ["name", "gender"]); 
-        // syntax:01 .populate("fromuserid", ["name", "gender"])
-        // syntax:02 .populate("fromuserid", "name gender"])
+        ).populate("fromuserid", ["fullname", "gender"]); 
+        // syntax:01 .populate("fromuserid", ["fullname", "gender"])
+        // syntax:02 .populate("fromuserid", "fullname gender"])
         // syntax: .populate("document id of reference collection based schema", ["visible field name 01", "visible field name 02"]);
 
         // if connections not found
@@ -166,7 +166,7 @@ const connectedListController = async(req, res)=>{
                 {fromuserid: loggedUser._id, status: "accepted"},
                 {touserid: loggedUser._id, status: "accepted"}
             ]
-        }).populate("fromuserid", ["name", "gender"]).populate("touserid", ["name", "gender"]).populate("status");
+        }).populate("fromuserid", ["fullname", "gender"]).populate("touserid", ["fullname", "gender"]).populate("status");
 
         //console.log(connectionList);
 

@@ -10,7 +10,7 @@ const signupController = async (req, res)=>{
         signupDataValidation(req);
 
         // hash password:
-        const {name, email, password, gender, skills} = req.body;
+        const {fullname, email, password, gender, skills} = req.body;
         // syntax: await bcrypt.hash(password, saltRounds) ==> saltRounds is number of rounds to generate the hash (default is 10)
         const hashedPassword = await bcrypt.hash(password, 10);
         
@@ -18,7 +18,7 @@ const signupController = async (req, res)=>{
         // first inport user model at the top
         // create new instance of user model and pass the data info
         const user = new userModel({
-            name,
+            fullname,
             email,
             password: hashedPassword,
             gender,
@@ -63,7 +63,7 @@ const loginController = async (req, res)=>{
         res.send({message: "user logged in successfully", 
             user: {
                 //_id: user._id, // we don't send id because it is not a secure data, we send it with jwt
-                name: user.name,
+                fullname: user.fullname,
                 //email: user.email, // we don't send id because it is not a secure data, we send it with jwt
                 gender: user.gender,
                 skills: user.skills

@@ -42,7 +42,7 @@ const AfterLoginLayout = () => {
   return (
     <>
       <Header />
-      Logged User: {getAuthUser?.name} || id: {getAuthUser?._id}<br/>
+      Logged User: {getAuthUser?.fullname} || id: {getAuthUser?._id}<br/>
       <section className='w-full relative py-3 px-3 pb-24'>
         {isLoading ? (
           <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">

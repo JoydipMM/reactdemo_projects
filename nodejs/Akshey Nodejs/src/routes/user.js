@@ -21,8 +21,8 @@ userRouter.get("/new-connections", authMiddleware, async (req, res) => {
             ]
         })
         .select("fromuserid touserid status")
-        .populate("fromuserid", ["name"])
-        .populate("touserid", ["name"]);
+        .populate("fromuserid", ["fullname"])
+        .populate("touserid", ["fullname"]);
         // .select("fromuserid touserid") ==> helps to filter out which fields to return
 
         // hide users from feed that already connected with the logged in user
@@ -39,7 +39,7 @@ userRouter.get("/new-connections", authMiddleware, async (req, res) => {
                 {_id: { $ne: loggedUser._id }} // not equal to
             ]
             
-        }).select("name gender skills age");
+        }).select("fullname gender skills age");
 
 
 

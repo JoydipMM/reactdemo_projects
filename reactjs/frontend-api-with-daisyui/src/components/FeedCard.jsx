@@ -95,11 +95,11 @@ const FeedCard = ({ post }) => {
             <div className="flex gap-3">
               <div className="avatar">
                 <div className="w-12 h-12 rounded-full cursor-pointer">
-                  <img src={post.user.avatar} alt={post.user.name} />
+                  <img src={post.user.avatar} alt={post.user.fullname} />
                 </div>
               </div>
               <div>
-                <h3 className="font-bold text-base hover:underline cursor-pointer">{post.user.name}</h3>
+                <h3 className="font-bold text-base hover:underline cursor-pointer">{post.user.fullname}</h3>
                 <div className="text-sm text-base-content/60 flex items-center gap-1">
                   <span>{post.user.handle}</span>
                   <span>·</span>

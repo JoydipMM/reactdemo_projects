@@ -29,7 +29,7 @@ const Profile = () => {
             </div>
           </div>
           <div className="mb-4 hidden md:block">
-            <h1 className="text-3xl font-bold text-base-content">{user.name}</h1>
+            <h1 className="text-3xl font-bold text-base-content">{user.fullname}</h1>
             <p className="text-base-content/60 font-medium">{user.handle}</p>
           </div>
         </div>
@@ -45,7 +45,7 @@ const Profile = () => {
 
       {/* Profile Info Mobile */}
       <div className="mt-20 px-8 block md:hidden">
-        <h1 className="text-2xl font-bold text-base-content">{user.name}</h1>
+        <h1 className="text-2xl font-bold text-base-content">{user.fullname}</h1>
         <p className="text-base-content/60 font-medium">{user.handle}</p>
       </div>
 

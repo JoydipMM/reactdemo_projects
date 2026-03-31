@@ -4,12 +4,12 @@ const CommentItem = ({ comment, isReply = false }) => (
   <div className={`flex gap-3 ${isReply ? 'mt-3 ml-12' : 'mt-4'}`}>
     <div className="avatar shrink-0">
       <div className={`${isReply ? 'w-8 h-8' : 'w-10 h-10'} rounded-full`}>
-        <img src={comment.user.avatar} alt={comment.user.name} />
+        <img src={comment.user.avatar} alt={comment.user.fullname} />
       </div>
     </div>
     <div className="flex flex-col gap-1 max-w-full overflow-hidden">
       <div className="bg-base-300 px-4 py-2 rounded-2xl shadow-sm inline-block">
-        <h4 className="font-bold text-sm hover:underline cursor-pointer">{comment.user.name}</h4>
+        <h4 className="font-bold text-sm hover:underline cursor-pointer">{comment.user.fullname}</h4>
         <p className="text-sm leading-tight text-base-content/90 break-words">{comment.text}</p>
       </div>
       <div className="flex gap-4 ml-2 text-xs font-bold text-base-content/60">

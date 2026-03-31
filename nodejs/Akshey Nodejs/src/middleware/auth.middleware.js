@@ -31,7 +31,7 @@ const authMiddleware = async (req, res, next) => {
         }
 
         // if we got user then assign user data to request object
-        req.user = { _id:user._id, name: user.name, gender: user.gender, skills: user.skills };
+        req.user = { _id:user._id, fullname: user.fullname, gender: user.gender, skills: user.skills };
 
         // pass the request to the next middleware
         next();
