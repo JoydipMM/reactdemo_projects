@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
     },
     gender: {
         type: String,
-        required: true,
+        //required: true,
         default: "male",
         // this custom validator is work if we insert new data, not validate when we update any exiting data
         // we need to enable custom validator in patch route handler to works for update data.

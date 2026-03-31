@@ -7,8 +7,7 @@ import { API_BASE_URL } from '../utils/constants'
 const Register = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     password: ''
   })
@@ -24,7 +23,7 @@ const Register = () => {
     setIsLoading(true)
     try {
       // Note: Assuming the backend expects firstName, lastName, email, password
-      const res = await axios.post(`${API_BASE_URL}/auth/register`, formData, { withCredentials: true })
+      const res = await axios.post(`${API_BASE_URL}/auth/signup`, formData, { withCredentials: true })
       if (res.status === 200 || res.status === 201) {
         navigate('/login')
       }
@@ -85,7 +84,16 @@ const Register = () => {
             <p className="text-base-content/60 mb-8">Join GravitySocial and start your journey.</p>
 
             <form onSubmit={submitEvent} className="space-y-4">
-              <div className="flex gap-4">
+              <input
+                    name="name"
+                    type="text"
+                    className="input input-bordered w-full h-12 rounded-2xl bg-base-200 border-none transition-all font-medium"
+                    placeholder="Doe"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+              {/* <div className="flex gap-4">
                 <div className="form-control w-1/2">
                   <label className="label text-[10px] font-black uppercase tracking-widest text-base-content/40 mb-1 px-1">First Name</label>
                   <input
@@ -110,7 +118,7 @@ const Register = () => {
                     required
                   />
                 </div>
-              </div>
+              </div> */}
 
               <div className="form-control w-full">
                 <label className="label text-[10px] font-black uppercase tracking-widest text-base-content/40 mb-1 px-1">Email Address</label>

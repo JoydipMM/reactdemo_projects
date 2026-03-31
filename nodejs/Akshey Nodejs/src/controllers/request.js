@@ -95,7 +95,7 @@ const receivedRequestController = async (req, res)=>{
             return res.status(400).send({message: "Invalid status"});
         }
 
-        console.log(loggedUser._id);
+        //console.log(loggedUser._id);
 
         // validate connection request: we find the connections based on below condition
         /*
@@ -142,7 +142,10 @@ const getRequestListController = async(req, res)=>{
             throw new Error("Connection request not found");
         }
 
-        const filterConnectionData = connections.map((row) => row.fromuserid)
+        const filterConnectionData = connections.map((row) => ({
+            requestid:row._id,
+            user:row.fromuserid
+        }))
 
         // if connections found then send the connections
         res.status(200).send({message:"get request list", users: filterConnectionData});
@@ -163,7 +166,9 @@ const connectedListController = async(req, res)=>{
                 {fromuserid: loggedUser._id, status: "accepted"},
                 {touserid: loggedUser._id, status: "accepted"}
             ]
-        }).populate("fromuserid", ["name", "gender"]).populate("touserid", ["name", "gender"]);
+        }).populate("fromuserid", ["name", "gender"]).populate("touserid", ["name", "gender"]).populate("status");
+
+        //console.log(connectionList);
 
         // get connected user data based on logged user id
         const getAccptedUserData = connectionList.map((row)=> {
@@ -175,7 +180,7 @@ const connectedListController = async(req, res)=>{
         });
 
 
-        res.status(200).send({message:"get Connected list", users:getAccptedUserData});
+        res.status(200).send({message:"get Connected list", connectionType:"accepted", users:getAccptedUserData, });
     }catch(err){
         res.status(500).send({message: err.message});
     }

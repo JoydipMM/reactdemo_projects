@@ -5,7 +5,7 @@ const User = require('../models/user');
 const { authMiddleware } = require('../middleware/auth.middleware')
 
 
-userRouter.get("/feed", authMiddleware, async (req, res) => {
+userRouter.get("/new-connections", authMiddleware, async (req, res) => {
     try {
         const loggedUser = req.user;
 
@@ -43,7 +43,7 @@ userRouter.get("/feed", authMiddleware, async (req, res) => {
 
 
 
-        res.status(200).send({message:"user feeds", userfeeds:users});
+        res.status(200).send({message:"user feeds", users:users});
     } catch (error) {
         res.status(500).send({message: err.message});
     }
