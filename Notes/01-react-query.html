@@ -1,0 +1,388 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Query</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<hr/>
+<h2><b>React Query</b></h2>
+<hr/>
+<p>At first we create a product list using fetch and dummyjson, here we add loading and error handling. In <b>ProductsPage.jsx</b></p>
+<table class="table">
+<tr>
+      <td width="50%">
+            <textarea id="editor">
+// In ProductsPage.jsx
+import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom';
+
+const ProductsPage = () => {
+
+    const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const fetchData = async () => {
+        
+        try {
+            setIsLoading(true);
+            setError(null);
+            const response = await fetch("https://dummyjson.com/products");
+            const data = await response.json();
+            setProducts(data.products);
+            //console.log(data.products);
+            setIsLoading(false);
+        } catch (error) {
+            setError(error.message);
+            setIsLoading(false);
+        }
+    }
+
+    useEffect(()=>{
+        fetchData();
+    },[])
+
+    if(isLoading){
+        return <p className='w-screen h-screen fixed top-0 left-0 bg-amber-100 z-99 text-3xl font-bold flex justify-center items-center'>Loading...</p>
+    }
+    if(error){
+        return <p className='w-screen h-screen fixed top-0 left-0 bg-amber-100 z-99 text-3xl font-bold flex justify-center items-center'>{error}</p>
+    }
+
+
+  return (
+    <>
+     <h1 className="text-3xl font-bold">Product Page</h1>
+
+     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+     {products?.map((product) => (
+        <div key={product.id} className="group relative">
+            <img
+            alt={product.title}
+            src={product.thumbnail}
+            className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+            />
+            <div className="mt-4 flex justify-between">
+            <div>
+                <h3 className="text-sm text-gray-700 relative z-40">
+                <Link to={`/products/${product.id}`}>
+                    <span aria-hidden="true" className="absolute inset-0" />
+                    {product.title}
+                </Link>
+                </h3>
+                {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
+            </div>
+            <p className="text-sm font-medium text-gray-900">{product.price}</p>
+            </div>
+        </div>
+        ))}
+    </div>
+    </>
+  )
+}
+
+export default ProductsPage
+
+</textarea>
+      </td>
+      <td width="50%">
+<textarea class="code-editor">
+// in ProductDetail.jsx
+
+import React from 'react'
+
+const ProductDetail = () => {
+  return (
+    <>
+      <h1 className="text-3xl font-bold">Product Detail</h1>
+    </>
+  )
+}
+
+export default ProductDetail
+</textarea>           
+      </td>
+</tr>
+</table>
+<blockquote class="blockquote">
+      <p><code class="mark">Here when we click on a product, we will navigate to product detail page. and <b>then when we return back to product page, we will fetch the data again.</b></code></p>
+</blockquote>
+<br/>
+<br/>
+
+
+<hr/>
+<h4><b>The Core Problem (Without React Query)</b></h4>
+<hr/>
+When we fetch data like this:
+<textarea class="code-editor">
+useEffect(() => {
+  fetchData();
+}, []);
+</textarea>
+<p>We have to manually handle:</p>
+<ul>
+      <li>Loading state</li>
+      <li>Error handling</li>
+      <li>Caching</li>
+      <li>Refetching</li>
+      <li>Sync across components</li>
+</ul>
+<p>So <b>TanStack Query (formerly React Query)</b> is a library that manages server data for us.</p>
+<p>Think of it as: <b><i>“Smart data-fetching + caching + state management”</i></b></p>
+<br/>
+
+<hr/>
+<h4><b>Why we use React Query</b></h4>
+<hr/>
+<ol>
+      <li><b>Automatic Caching:</b> Fetch once → reuse everywhere.</li>
+      <li><b>Built-in Loading & Error State</b></li>
+      <li><b>Auto Refetching</b></li>
+      <li><b>Smart State Management</b></li>
+      <li><b>Request Deduplication</b></li>
+      <li><b>Pagination & Infinite Scroll (Easy)</b></li>
+</ol>
+<br/>
+
+<hr/>
+<h4><b>React Query Setup</b></h4>
+<hr/>
+<b>Installation command:</b> <code><b>npm i @tanstack/react-query</b></code>
+<p>Now wrap our app with <b>QueryClientProvider</b>. For that, we need to create a client instance.</p>
+<textarea class="code-editor">
+// in main.jsx
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+// create a client instance
+const queryClient = new QueryClient()
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    {/* wrap full app with QueryClientProvider */}
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  </StrictMode>,
+)
+</textarea>
+<br/>
+<p>After that, we can use <b>useQuery</b> to fetch data. So we need to modify our code in <b>ProductsPage.jsx</b></p>
+<textarea class="code-editor">
+// In ProductsPage.jsx
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
+
+const ProductsPage = () => {
+
+    const fetchData = async () => {
+       const response = await fetch("https://dummyjson.com/products");
+        const data = await response.json();
+        return data.products;
+    }
+
+    const { isLoading, error, data: products } = useQuery({
+        /*
+        syntax:
+        queryKey: [name of the data], // this name is a random name, we camn use any name relevant to the data, this is a array
+        queryFn: async () => {
+            fetch data
+        }
+        */
+        queryKey: ['products'],
+        // we can use like this
+        /*queryFn: async () => {
+            const response = await fetch("https://dummyjson.com/products");
+            const data = await response.json();
+            return data.products;
+        }*/
+       // or like this
+      queryFn: fetchData,
+      staleTime: milliseconds // The time in milliseconds after data is considered stale. If set to Infinity, the data will never be considered stale. If set to a function, the function will be executed with the query to compute a staleTime. Defaults to 0.
+    })
+
+    if(isLoading){
+        return <p className='w-screen h-screen fixed top-0 left-0 bg-amber-100 z-99 text-3xl font-bold flex justify-center items-center'>Loading...</p>
+    }
+    if(error){
+        return <p className='w-screen h-screen fixed top-0 left-0 bg-amber-100 z-99 text-3xl font-bold flex justify-center items-center'>{error.message}</p>
+    }
+
+
+  return (
+    <>
+     <h1 className="text-3xl font-bold">Product Page</h1>
+
+     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+     {products?.map((product) => (
+        <div key={product.id} className="group relative">
+            <img
+            alt={product.title}
+            src={product.thumbnail}
+            className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+            />
+            <div className="mt-4 flex justify-between">
+            <div>
+                <h3 className="text-sm text-gray-700 relative z-40">
+                <Link to={`/products/${product.id}`}>
+                    <span aria-hidden="true" className="absolute inset-0" />
+                    {product.title}
+                </Link>
+                </h3>
+                {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
+            </div>
+            <p className="text-sm font-medium text-gray-900">{product.price}</p>
+            </div>
+        </div>
+        ))}
+    </div>
+    </>
+  )
+}
+
+export default ProductsPage
+</textarea>
+<p>Here we use <b>useQuery</b> to fetch data, also maintaining loading and error state. So when any issue with API then it automatically show error after 3-5 times of API call.</p>
+<p>We can also use stealeTime to set the time in <b>queryClient</b> to consider data stale for global use. For taht remove the <b>staleTime</b> from <b>component</b>and update it in <b>queryClient</b>.</p>
+<textarea class="code-editor">
+// In main.jsx
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      //staleTime: 1000 * 60 * 5 // 5 minutes
+      staleTime: 10000 // 10 seconds
+    }
+  }
+})
+</textarea>
+<p class="mark"><b>Stale queries are refetched automatically in the background when: <a href="https://tanstack.com/query/latest/docs/framework/react/guides/important-defaults" target="_blank">Link</a></b>
+      <ul>
+            <li>New instances of the query mount</li>
+            <li>The network is reconnected</li>
+            <li>The window is refocused</li>
+      </ul>
+</p>
+
+
+<br/>
+
+<hr/>
+<h4><b>React Query Devtools</b></h4>
+<hr/>
+<b>Installation command:</b> <code><b>npm i @tanstack/react-query-devtools</b></code>
+<textarea class="code-editor"> 
+// main.jsx
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+....
+<StrictMode>
+  {/* wrap full app with QueryClientProvider */}
+  <QueryClientProvider client={queryClient}>
+    <App />
+    <ReactQueryDevtools initialIsOpen={false} /> // add this
+  </QueryClientProvider>
+</StrictMode>,
+.....
+</textarea>
+<hr/>
+<h5><b>Result:</b></h5><hr/>
+<img width="46%" src="assets/images/react-devtool-01.png" />
+<img width="46%" src="assets/images/react-devtool-02.png" />
+<hr/>
+<br/>
+
+<hr/>
+<h4><b>React Query In Product Details Page</b></h4>
+<hr/>
+<table  class="table">
+  <tr>
+    <td width="50%">
+<textarea class="code-editor">
+// in App.jsx
+
+import { useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Homepage from './pages/Homepage'
+import ProductsPage from './pages/ProductsPage'
+import DefaultLayout from './layout/DefaultLayout'
+import ProductDetail from './pages/ProductDetail'
+
+function App() {
+  return (
+    <>
+    <BrowserRouter>
+      <Routes>
+        <Route baseName='/' element={ <DefaultLayout />}>
+          <Route path='/' element={ <Homepage />} />
+          <Route path='/products' element={ <ProductsPage />} />
+          <Route path='/products/:productid' element={ <ProductDetail />} />
+          <Route path ="*" element={ <Error />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+    </>
+  )
+}
+
+export default App
+</textarea>
+    </td>
+    <td width="50%">
+<textarea class="code-editor">
+// in ProductDetail.jsx
+
+import { useQuery } from '@tanstack/react-query'
+import React, { use } from 'react'
+import { useParams } from 'react-router-dom'
+
+const ProductDetail = () => {
+  const params = useParams();
+
+  const fetchSingleProduct = async () => {
+    const response = await fetch(`https://dummyjson.com/products/${params.productid}`);
+    const data = await response.json();
+    return data;
+  }
+
+  const { isLoading, error, data: product } = useQuery({
+    queryKey: ["product-details", params.productid],
+    queryFn: fetchSingleProduct
+  })
+
+  if(isLoading){
+      return <h3 className='w-screen h-screen fixed top-0 left-0 bg-amber-100 z-99 text-3xl font-bold flex justify-center items-center'>Loading...</h3>
+  }
+  if(error){
+      return <h3 className='w-screen h-screen fixed top-0 left-0 bg-amber-100 z-99 text-3xl font-bold flex justify-center items-center'>{error.message}</h3>
+  }
+
+  return (
+    <>
+      <h1 className="text-3xl font-bold">Product Detail : {product.title}</h1>
+    </>
+  )
+}
+
+export default ProductDetail
+
+</textarea>
+    </td>
+  </tr>
+</table>
+<h5><b>Result:</b></h5><hr/>
+<img width="95%" src="assets/images/react-query-01.png" />
+
+<!-- <br/>
+<textarea class="code-editor">
+
+</textarea> -->
+
+<script src="assets/js/codemirror/codemirror.min.js"></script>
+<script src="assets/js/codemirror/javascript.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/common-script.js"></script>
+</body>
+</html>
