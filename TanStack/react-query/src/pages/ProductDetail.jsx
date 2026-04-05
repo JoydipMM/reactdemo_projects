@@ -1,9 +1,16 @@
-import { useQuery } from '@tanstack/react-query'
-import React, { use } from 'react'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 
 const ProductDetail = () => {
   const params = useParams();
+
+  const mutation = useMutation({
+    mutationFn: async (newproduct) => {
+      return axios.put(`https://dummyjson.com/products/${params.productid}`, newproduct)
+    }
+  })
 
   const fetchSingleProduct = async () => {
     const response = await fetch(`https://dummyjson.com/products/${params.productid}`);
@@ -26,6 +33,29 @@ const ProductDetail = () => {
   return (
     <>
       <h1 className="text-3xl font-bold">Product Detail : {product.title}</h1>
+
+
+      <div>
+      {mutation.isPending ? (
+        'Updating product...'
+      ) : (
+        <>
+          {mutation.isError ? (
+            <div>An error occurred: {mutation.error.message}</div>
+          ) : null}
+
+          {mutation.isSuccess ? <div>product updated!</div> : null}
+
+          <button
+            onClick={() => {
+              mutation.mutate({ title: 'updated Product title' })
+            }}
+          >
+            Update product
+          </button>
+        </>
+      )}
+    </div>
     </>
   )
 }
