@@ -5,7 +5,7 @@ const User = require('../models/user');
 const { authMiddleware } = require('../middleware/auth.middleware')
 
 
-userRouter.get("/feed", authMiddleware, async (req, res) => {
+userRouter.get("/new-connections", authMiddleware, async (req, res) => {
     try {
         const loggedUser = req.user;
 
@@ -21,8 +21,8 @@ userRouter.get("/feed", authMiddleware, async (req, res) => {
             ]
         })
         .select("fromuserid touserid status")
-        .populate("fromuserid", ["name"])
-        .populate("touserid", ["name"]);
+        .populate("fromuserid", ["fullname"])
+        .populate("touserid", ["fullname"]);
         // .select("fromuserid touserid") ==> helps to filter out which fields to return
 
         // hide users from feed that already connected with the logged in user
@@ -39,11 +39,11 @@ userRouter.get("/feed", authMiddleware, async (req, res) => {
                 {_id: { $ne: loggedUser._id }} // not equal to
             ]
             
-        }).select("name gender skills age");
+        }).select("fullname gender skills age");
 
 
 
-        res.status(200).send({message:"user feeds", userfeeds:users});
+        res.status(200).send({message:"user feeds", users:users});
     } catch (error) {
         res.status(500).send({message: err.message});
     }

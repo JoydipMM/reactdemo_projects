@@ -12,7 +12,7 @@ const authMiddleware = async (req, res, next) => {
             return res.status(401).send({message: "invalid token"});
         }
         // if token valid then decode the token
-        const decodeToken = await jwt.verify(token, process.env.JWT_SECRETKEY);
+        const decodeToken = await jwt.verify(token, process.env.JWT_SECRETKEY, {ignoreExpiration: true});
 
         // validate the decoded token
         if( !decodeToken){
@@ -31,7 +31,7 @@ const authMiddleware = async (req, res, next) => {
         }
 
         // if we got user then assign user data to request object
-        req.user = { _id:user._id, name: user.name, gender: user.gender, skills: user.skills };
+        req.user = { _id:user._id, fullname: user.fullname, gender: user.gender, skills: user.skills };
 
         // pass the request to the next middleware
         next();

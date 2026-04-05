@@ -1,0 +1,107 @@
+import axios from 'axios';
+import React, { useState } from 'react';
+import {API_BASE_URL} from '../utils/constants'
+
+const UserConnectionCard = ({
+  user,
+  showSend = false,
+  showAccept = false,
+  showIgnore = false,
+  extraOption = false,
+  showRejected = false,
+  requestid="",
+  onClick = () => {},
+}) => {
+  const [isBlocked, setIsBlocked] = useState(false);
+
+
+  return (
+    <div className={`card ${isBlocked ? 'opacity-50 grayscale' : 'bg-base-200'} shadow-xl border-2 border-dashed border-base-300 hover:shadow-2xl transition-all duration-300 relative overflow-hidden mb-3`}>
+      {isBlocked && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/10 backdrop-blur-[1px]">
+          <span className="badge badge-error gap-2 p-4 text-white font-bold animate-bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636" />
+            </svg>
+            Blocked
+          </span>
+        </div>
+      )}
+
+      <div className="card-body p-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="avatar">
+              <div className="w-16 h-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <img src={user.avatar} alt={user.fullname} />
+              </div>
+            </div>
+            <div>
+              <h2 className="card-title text-lg font-bold">{user.fullname}</h2>
+              <p className="text-sm text-base-content/60 italic">Online</p>
+              {user._id}
+            </div>
+          </div>
+
+          {extraOption && <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-sm btn-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+              </svg>
+            </div>
+            <ul tabIndex={0} className="dropdown-content z-[20] menu p-2 shadow-2xl bg-base-100 rounded-box w-40 border border-base-200">
+              <li onClick={() => { setIsBlocked(true); document.activeElement.blur(); }}>
+                <a className="text-warning font-medium">Block</a>
+              </li>
+              <li onClick={() => { setIsBlocked(false); document.activeElement.blur(); }}>
+                <a className="text-success font-medium">Unblock</a>
+              </li>
+            </ul>
+          </div> }
+        </div>
+
+        <div className={`card-actions grid ${[showSend, showAccept, showIgnore].filter(Boolean).length === 3 ? 'grid-cols-3' : 'grid-cols-2'} gap-2 mt-6`}>
+          {showSend && (
+            <button className="btn btn-primary btn-sm md:btn-md rounded-xl shadow-md hover:shadow-lg transition-all duration-300 gap-2"
+              // onClick={() => requestEvent('interested')}
+              onClick={() => onClick({status:'interested', touserid:user._id})}
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+              </svg>
+              <span className="hidden sm:inline">Send Request</span>
+            </button>
+          )}
+          {showAccept && (
+            <button className="btn btn-outline btn-success btn-sm md:btn-md rounded-xl hover:bg-success hover:border-success transition-all duration-300 gap-2" onClick={() => onClick({status:'accepted', requestid})}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              <span className="hidden sm:inline">Accept Request</span>
+            </button>
+          )}
+          {showIgnore && (
+            <button className="btn btn-outline btn-error btn-sm md:btn-md rounded-xl hover:bg-error hover:border-error transition-all duration-300 gap-2"
+            onClick={() => onClick({status:'ignored', touserid:user._id})}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <span className="hidden sm:inline">Ignore Request</span>
+            </button>
+          )}
+          {showRejected && (
+            <button className="btn btn-outline btn-error btn-sm md:btn-md rounded-xl hover:bg-error hover:border-error transition-all duration-300 gap-2" onClick={() => onClick({status:'rejected', requestid})}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <span className="hidden sm:inline">Reject Request</span>
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UserConnectionCard;

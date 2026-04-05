@@ -24,7 +24,7 @@ app.post("/signup", async (req, res)=>{
         signupDataValidation(req);
 
         // hash password:
-        const {name, email, password, gender, skills} = req.body;
+        const {fullname, email, password, gender, skills} = req.body;
         // syntax: await bcrypt.hash(password, saltRounds) ==> saltRounds is number of rounds to generate the hash (default is 10)
         const hashedPassword = await bcrypt.hash(password, 10);
         req.body.password = hashedPassword;
@@ -33,7 +33,7 @@ app.post("/signup", async (req, res)=>{
         // first inport user model at the top
         // create new instance of user model and pass the data info
         const user = new userModel({
-            name,
+            fullname,
             email,
             password: hashedPassword,
             gender,
@@ -79,7 +79,7 @@ app.post("/login", async (req, res)=>{
         res.send({message: "user logged in successfully", 
             user: {
                 //_id: user._id, // we don't send id because it is not a secure data, we send it with jwt
-                name: user.name,
+                fullname: user.fullname,
                 //email: user.email, // we don't send id because it is not a secure data, we send it with jwt
                 gender: user.gender,
                 skills: user.skills
@@ -106,7 +106,7 @@ app.get("/profile", authMiddleware, async (req, res)=>{
 app.get("/connection-request", authMiddleware, async (req, res)=>{
     try{
         const user = req.user;
-        res.status(200).send({message:user.name + " send connection request !!!"});
+        res.status(200).send({message:user.fullname + " send connection request !!!"});
     }catch(err){
         res.status(500).send({message: err.message});
     }

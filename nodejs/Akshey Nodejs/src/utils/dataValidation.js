@@ -1,16 +1,16 @@
 const validator = require('validator');
 
 const signupDataValidation = (req) => {
-    const { name, email, password, gender, skills, dpPhoto="" } = req.body;
+    const { fullname, email, password, gender, skills, dpPhoto="" } = req.body;
 
     const nameRegex = /^[A-Za-z\s]+$/;
 
     // user name validation
-    if(!name){
+    if(!fullname){
         throw new Error("Name is required | check from utils validation lavel validation");
-    }else if(name.length < 5 || name.length > 20){
+    }else if(fullname.length < 5 || fullname.length > 20){
         throw new Error("Name should be between 5 to 20 characters | check from utils validation lavel validation");
-    }else if(name && !nameRegex.test(name)){
+    }else if(fullname && !nameRegex.test(fullname)){
         throw new Error("Name should contain only alphabets and spaces | check from utils validation lavel validation");
     }
 
@@ -30,17 +30,17 @@ const signupDataValidation = (req) => {
         throw new Error("Password should be strong | check from utils validation lavel validation");
     }
 
-    if(!gender){
-        throw new Error("Gender is required | check from utils validation lavel validation");
-    }else if(!["male", "female", "other"].includes(gender)){
-        throw new Error("Gender should be male, female or other | check from utils validation lavel validation");
-    }
+    // if(!gender){
+    //     throw new Error("Gender is required | check from utils validation lavel validation");
+    // }else if(!["male", "female", "other"].includes(gender)){
+    //     throw new Error("Gender should be male, female or other | check from utils validation lavel validation");
+    // }
 
-    if(!skills){
-        throw new Error("At least two skills are required | check from utils validation lavel validation");
-    }else if(skills.length < 2){
-        throw new Error("At least two skills are required | check from utils validation lavel validation");
-    }
+    // if(!skills){
+    //     throw new Error("At least two skills are required | check from utils validation lavel validation");
+    // }else if(skills.length < 2){
+    //     throw new Error("At least two skills are required | check from utils validation lavel validation");
+    // }
 
     // user email validation
     if(!email){
@@ -56,7 +56,7 @@ const signupDataValidation = (req) => {
 
 
 const validateEditProfileData =(req) =>{
-    const ALLOWEDFIELDS = ["name", "gender", "skills"];
+    const ALLOWEDFIELDS = ["fullname", "gender", "skills"];
     const isEditAllowed = Object.keys(req.body).every((field)=> { return ALLOWEDFIELDS.includes(field) });
 
     const nameRegex = /^[A-Za-z\s]+$/;

@@ -81,7 +81,7 @@ app.post("/login", async (req, res)=>{
         res.send({message: "user logged in successfully", 
             user: {
                 //_id: user._id, // we don't send id because it is not a secure data, we send it with jwt
-                name: user.name,
+                fullname: user.fullname,
                 //email: user.email, // we don't send id because it is not a secure data, we send it with jwt
                 gender: user.gender,
                 skills: user.skills
@@ -119,7 +119,7 @@ app.get("/profile", async (req, res)=>{
         return res.status(400).send({message: "user not found"});
     }else{
         res.status(200).send({message:"user profile page", user: {
-            name: user.name,
+            fullname: user.fullname,
             email: user.email,
             gender: user.gender,
             skills: user.skills
