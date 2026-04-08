@@ -77,11 +77,40 @@ const ProductsPage = () => {
   return (
     <>
      <h1 className="text-3xl font-bold">Product Page</h1>
-    <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-2 sm:grid-cols-5 lg:grid-cols-5 xl:gap-x-8">
+    {/* <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-2 sm:grid-cols-5 lg:grid-cols-5 xl:gap-x-8">
         {categories?.map((category, index) => (
             <p className="inline-flex items-center rounded-md bg-blue-400/10 px-2 py-1 text-xs font-medium text-blue-400 inset-ring inset-ring-blue-400/30" key={index}>{category.slug}</p>
         ))}
+    </div> */}
+
+    {/* start */}
+    <div className="flex gap-4 mt-2.5">
+        <input
+        id="search"
+        name="search"
+        type="text"
+        autoComplete="given-name"
+        className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-gary-900 outline-1 -outline-offset-1 outline-gary/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
+        />
+        <select className='block _w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-gary-900 outline-1 -outline-offset-1 outline-gary/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500'>
+        {categories?.map((category, index) => (
+                <option key={index}>{category.slug}</option>
+            ))} 
+        </select>
+        <button
+            type="submit"
+            className="block _w-full rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer"
+          >Search</button>
     </div>
+    {/* ended */}
+
+    {/* start */}
+    {/* <select className='block _w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-gary-900 outline-1 -outline-offset-1 outline-gary/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500'>
+       {categories?.map((category, index) => (
+            <option key={index}>{category.slug}</option>
+        ))} 
+    </select> */}
+    {/* ended */}
 
      <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
      {products?.map((product) => (
