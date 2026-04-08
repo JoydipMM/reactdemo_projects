@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const ProductsPage = () => {
 
     const fetchData = async () => {
-       const response = await fetch("https://dummyjson.com/products");
+       const response = await fetch("https://dummyjson.com/products?limit=4");
         const data = await response.json();
         return data.products;
     }
@@ -29,6 +29,16 @@ const ProductsPage = () => {
        // or like this
         queryFn: fetchData,
         //staleTime: 10000 // The time in milliseconds after data is considered stale. If set to Infinity, the data will never be considered stale. If set to a function, the function will be executed with the query to compute a staleTime. Defaults to 0.
+    })
+
+
+    const { data: categories } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            const response = await fetch("https://dummyjson.com/products/categories");
+            const data = await response.json();
+            return data;
+        }
     })
 
 
@@ -67,6 +77,11 @@ const ProductsPage = () => {
   return (
     <>
      <h1 className="text-3xl font-bold">Product Page</h1>
+    <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-2 sm:grid-cols-5 lg:grid-cols-5 xl:gap-x-8">
+        {categories?.map((category, index) => (
+            <p className="inline-flex items-center rounded-md bg-blue-400/10 px-2 py-1 text-xs font-medium text-blue-400 inset-ring inset-ring-blue-400/30" key={index}>{category.slug}</p>
+        ))}
+    </div>
 
      <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
      {products?.map((product) => (
