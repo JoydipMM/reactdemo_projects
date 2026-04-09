@@ -1,13 +1,37 @@
-import { useQuery } from '@tanstack/react-query';
-import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import React, {useState, useEffect, use} from 'react'
+import { Link, useSearchParams } from 'react-router-dom';
+import debounce from 'lodash.debounce';
 
 const ProductsPage = () => {
 
+    // this limit and skip is controlled by local state
+    //const [limit] = useState(4);
+    //const [skip, setSkip] = useState(0);
+
+    // problem with above limit and skip is that when we redirect from product detail page to product page, it will reset the limit and skip
+    // To solve this problem, we can use useSearchParams hook instead of useState hook to keep the limit and skip value in url parameters
+    const [searchParams, setSearchParams] = useSearchParams({ limit: 4, skip: 0});
+    const limit = parseInt(searchParams.get("limit") || 4);
+    const skip = parseInt(searchParams.get("skip") || 0);
+    //Note ===> when we get the limit and skip values from url parameters that value is a string, So we need to convert it to number. Also if it is not present, then we will set the default value to 4
+
+    const search = searchParams.get("search") || "";
+    const category = searchParams.get("category") || "";
+
     const fetchData = async () => {
-       const response = await fetch("https://dummyjson.com/products?limit=4");
+
+        let url = `https://dummyjson.com/products?limit=${limit}&skip=${skip}`;
+
+        if(search){
+            url = `https://dummyjson.com/products/search?limit=${limit}&skip=${skip}&q=${search}`;
+        }
+        if(category){
+            url = `https://dummyjson.com/products/category/${category}?limit=${limit}&skip=${skip}`;
+        }
+        const response = await fetch(url);
         const data = await response.json();
-        return data.products;
+        return data;
     }
 
     const { isLoading, error, data: products } = useQuery({
@@ -19,7 +43,7 @@ const ProductsPage = () => {
         },
         staleTime: milliseconds
         */
-        queryKey: ['products'],
+        queryKey: ['products', limit, skip, search, category],
         // we can use like this
         /*queryFn: async () => {
             const response = await fetch("https://dummyjson.com/products");
@@ -28,7 +52,14 @@ const ProductsPage = () => {
         }*/
        // or like this
         queryFn: fetchData,
+
         //staleTime: 10000 // The time in milliseconds after data is considered stale. If set to Infinity, the data will never be considered stale. If set to a function, the function will be executed with the query to compute a staleTime. Defaults to 0.
+        
+        // placeholderData ==> is the data that will be displayed while the query is loading, which helps to reduced the jumping issue of the UI when new data is fetched. So when new data is loading placeholderData will be displayed the current data until the new data is fetched. That helps to reduce the jumping issue of the UI.
+        // keepPreviousData ==> need to import from @tanstack/react-query
+        placeholderData:keepPreviousData
+        // keepPreviousData: true ==> this will work in react query v3
+        
     })
 
 
@@ -66,8 +97,43 @@ const ProductsPage = () => {
     //     fetchData();
     // },[])
 
+
+    const handleMove = (movecount) => {
+        /*
+        Dry run: ---------
+        Next button pressed
+        skip = 0; movecount = 4 (limit)
+        return prevskip + movecount ===> 0 + 4 = 4
+        next move ===>                   4 + 4 = 8
+
+        prev button pressed
+        skip = 0; movecount = -4 (limit)
+        return prevskip + movecount ===> 0 + -4 = -4
+
+        So we need to check if movecount is in nagative, then our skip value will be invalid
+        So we will use Math.max(0, skip + movecount)
+        */
+        // setSkip((prevskip)=>{
+        //     //return prevskip + movecount;
+        //     const count = Math.max(prevskip + movecount, 0);
+        //     console.log(count);
+        //     return count;
+        // })
+
+        setSearchParams((prevskip)=>{
+
+            prevskip.set('skip', Math.max(skip + movecount, 0));
+            return prevskip;
+
+            //return prevskip + movecount;
+            // const count = Math.max(prevskip + movecount, 0);
+            // console.log(count);
+            // return count;
+        });
+    }
+
     if(isLoading){
-        return <h3 className='w-screen h-screen fixed top-0 left-0 bg-amber-100 z-99 text-3xl font-bold flex justify-center items-center'>Loading...</h3>
+        //return <h3 className='w-screen h-screen fixed top-0 left-0 bg-amber-100 z-99 text-3xl font-bold flex justify-center items-center'>Loading...</h3>
     }
     if(error){
         return <h3 className='w-screen h-screen fixed top-0 left-0 bg-amber-100 z-99 text-3xl font-bold flex justify-center items-center'>{error.message}</h3>
@@ -89,18 +155,39 @@ const ProductsPage = () => {
         id="search"
         name="search"
         type="text"
+        placeholder="Search..."
         autoComplete="given-name"
         className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-gary-900 outline-1 -outline-offset-1 outline-gary/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
+        onChange={debounce((e) => setSearchParams((prev) => {
+            if(e.target.value.length === 0){
+                prev.delete('search');
+                return prev;
+            }
+            prev.set('search', e.target.value);
+            prev.set('skip', 0);
+            prev.delete('category');
+            return prev;
+        }), 500)}
         />
-        <select className='block _w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-gary-900 outline-1 -outline-offset-1 outline-gary/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500'>
+        <select 
+        className='block _w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-gary-900 outline-1 -outline-offset-1 outline-gary/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500'
+        onChange={(e) =>{
+            setSearchParams((prev)=>{
+                prev.set("category", e.target.value);
+                prev.set("skip", 0);
+                prev.delete("search");
+                return prev;
+            })
+        }}
+        >
         {categories?.map((category, index) => (
-                <option key={index}>{category.slug}</option>
-            ))} 
+            <option key={index}>{category.slug}</option>
+        ))} 
         </select>
-        <button
+        {/* <button
             type="submit"
             className="block _w-full rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer"
-          >Search</button>
+          >Search</button> */}
     </div>
     {/* ended */}
 
@@ -112,8 +199,8 @@ const ProductsPage = () => {
     </select> */}
     {/* ended */}
 
-     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-     {products?.map((product) => (
+    <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+     {products?.products?.map((product) => (
         <div key={product.id} className="group relative">
             <img
             alt={product.title}
@@ -140,11 +227,15 @@ const ProductsPage = () => {
     <div className="flex gap-4 mt-6">
         <button
             type="button"
-            className="block _w-full rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer"
+            className="block _w-full rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-400"
+            onClick={()=>{handleMove(-limit)}}
+            disabled={skip === 0}
           >Prev</button>
           <button
             type="button"
-            className="block _w-full rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer"
+            className="block _w-full rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-400"
+            onClick={()=>{handleMove(limit)}}
+            disabled={skip + limit >= products?.total}
           >Next</button>
     </div>
     </>

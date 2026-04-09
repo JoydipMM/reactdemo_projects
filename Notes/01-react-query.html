@@ -374,6 +374,387 @@ export default ProductDetail
 </table>
 <h5><b>Result:</b></h5><hr/>
 <img width="95%" src="assets/images/react-query-01.png" />
+<br/>
+
+<hr/>
+<h4><b>Get Categories in React Query</b></h4>
+<hr/>
+<textarea class="code-editor">
+
+  const { data: categories } = useQuery({
+      queryKey: ['categories'],
+      queryFn: async () => {
+          const response = await fetch("https://dummyjson.com/products/categories");
+          const data = await response.json();
+          return data;
+      }
+  })
+
+
+  <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-2 sm:grid-cols-5 lg:grid-cols-5 xl:gap-x-8">
+      {categories?.map((category, index) => (
+          <p 
+          className="inline-flex items-center rounded-md bg-blue-400/10 px-2 py-1 text-xs font-medium text-blue-400 inset-ring inset-ring-blue-400/30" 
+          key={index}>
+            {category.slug}
+          </p>
+      ))}
+  </div>
+
+</textarea>
+<hr/>
+<h4><b>Create Pagination with keepPreviousData option in React Query</b></h4>
+<hr/>
+<textarea class="code-editor">
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+
+const ProductsPage = () => {
+
+    // this limit and skip is controlled by local state
+    const [limit] = useState(4);
+    const [skip, setSkip] = useState(0);
+
+    // update the response url
+    const fetchData = async () => {
+      const response = await fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`);
+      const data = await response.json();
+      return data.products;
+    }
+
+    const { isLoading, error, data: products } = useQuery({
+        queryKey: ['products', limit, skip],
+        queryFn: fetchData,
+        placeholderData:keepPreviousData
+    })
+
+
+    const handleMove = (movecount) => {
+      /*
+      Dry run: ---------
+      Next button pressed
+      skip = 0; movecount = 4 (limit)
+      return prevskip + movecount ===> 0 + 4 = 4
+      next move ===>                   4 + 4 = 8
+
+      prev button pressed
+      skip = 0; movecount = -4 (limit)
+      return prevskip + movecount ===> 0 + -4 = -4
+
+      So we need to check if movecount is in nagative, then our skip value will be invalid
+      So we will use Math.max(0, skip + movecount)
+      */
+      setSkip((prevskip)=>{
+          //return prevskip + movecount;
+          const count = Math.max(prevskip + movecount, 0);
+          console.log(count);
+          return count;
+      })
+    }
+
+    return (
+    <>
+
+    <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+     {products?.map((product) => (
+        <div key={product.id} className="group relative">
+            <img
+            alt={product.title}
+            src={product.thumbnail}
+            className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+            />
+            <div className="mt-4 flex justify-between">
+            <div>
+                <h3 className="text-sm text-gray-700 relative z-40">
+                <Link to={`/products/${product.id}`}>
+                    <span aria-hidden="true" className="absolute inset-0" />
+                    {product.title}
+                </Link>
+                </h3>
+                {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
+            </div>
+            <p className="text-sm font-medium text-gray-900">{product.price}</p>
+            </div>
+        </div>
+        ))}
+    </div>
+
+
+    <div className="flex gap-4 mt-6">
+        <button
+            type="button"
+            className="block _w-full rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer"
+            onClick={ ()=>{handleMove(-limit)}}
+          >Prev</button>
+          <button
+            type="button"
+            className="block _w-full rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer"
+            onClick={ ()=>{handleMove(limit)}}
+          >Next</button>
+    </div>
+
+    </>
+  )
+}
+
+export default ProductsPage
+</textarea>
+
+<hr/>
+<h4><b>Get Skip and Limit from URL in React Query</b></h4>
+<hr/>
+<textarea class="code-editor">
+// import useSearchParams hook
+import { Link, useSearchParams } from 'react-router-dom'; 
+
+const ProductsPage = () => {
+
+  // this limit and skip is controlled by local state
+  //const [limit] = useState(4);
+  //const [skip, setSkip] = useState(0);
+
+  // ======= Update limit and skip value in url parameters
+  // problem with above limit and skip is that when we redirect from product detail page to product page, it will reset the limit and skip
+  // To solve this problem, we can use useSearchParams hook instead of useState hook to keep the limit and skip value in url parameters
+  const [searchParams, setSearchParams] = useSearchParams({ limit: 4, skip: 0});
+  const limit = parseInt(searchParams.get("limit") || 4);
+  const skip = parseInt(searchParams.get("skip") || 0);
+  //Note ===> when we get the limit and skip values from url parameters that value is a string, So we need to convert it to number. Also if it is not present, then we will set the default value to 4
+
+
+  // update the skip function
+  const handleMove = (movecount) => {
+        
+        /* Old code to update the skip value
+        setSkip((prevskip)=>{
+            //return prevskip + movecount;
+            const count = Math.max(prevskip + movecount, 0);
+            console.log(count);
+            return count;
+        })
+        */
+
+        // New code to update the skip value
+        setSearchParams((prevskip)=>{
+            prevskip.set('skip', Math.max(skip + movecount, 0));
+            return prevskip;
+        });
+    }
+
+
+  return(
+  </>
+
+  </>
+  )
+}
+
+export default ProductsPage
+
+// Now url will be like this: http://localhost:5173/products?limit=4&skip=12
+</textarea>
+<br/>
+
+<hr/>
+<h4><b>Search in React Query</b></h4>
+<hr/>
+<textarea class="code-editor">
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import React, {useState, useEffect, use} from 'react'
+import { Link, useSearchParams } from 'react-router-dom';
+
+const ProductsPage = () => {
+
+    const [searchParams, setSearchParams] = useSearchParams({ limit: 4, skip: 0});
+    const limit = parseInt(searchParams.get("limit") || 4);
+    const skip = parseInt(searchParams.get("skip") || 0);
+
+    const search = searchParams.get("search") || ""; // create a search params
+
+    const fetchData = async () => {
+        // update the url [ added /search? and q=${search} ]
+        const response = await fetch(`https://dummyjson.com/products/search?limit=${limit}&skip=${skip}&q=${search}`);
+        const data = await response.json();
+        return data.products;
+    }
+
+    const { isLoading, error, data: products } = useQuery({
+        queryKey: ['products', limit, skip, search], // update the query key [ add "search"]
+        queryFn: fetchData,
+        placeholderData:keepPreviousData
+    })
+
+    
+
+
+  return (
+    <>
+    ....
+    
+    <div className="flex gap-4 mt-2.5">
+        <input
+        id="search"
+        name="search"
+        type="text"
+        autoComplete="given-name"
+        className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-gary-900 outline-1 -outline-offset-1 outline-gary/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
+        onChange={(e) => setSearchParams((prev) => {
+            prev.set('search', e.target.value);
+            prev.set('skip', 0);
+            return prev;
+        })}
+        />
+
+        ...
+
+    </>
+  )
+}
+
+export default ProductsPage
+
+</textarea>
+<br/>
+
+<hr/>
+<h4><b>Fix multiple API call onChange event</b></h4>
+<hr/>
+<img width="40%" src="assets/images/react-query-02.png" />
+<br/>
+<br/>
+<p><b>Install command: </b><code><b>npm i lodash.debounce</b></code></p>
+<p></p>
+<textarea class="code-editor">
+// import debounce
+import debounce from 'lodash.debounce';
+
+// update the search function
+<input
+  id="search"
+  name="search"
+  type="text"
+  autoComplete="given-name"
+  className="block w-full"
+  onChange={debounce ( (e) => setSearchParams((prev) => {
+      prev.set('search', e.target.value);
+      prev.set('skip', 0);
+      return prev;
+  }), 1000 )}
+/>
+</textarea>
+<br/>
+
+<hr/>
+<h4><b>Category filter in React Query</b></h4>
+<hr/>
+<textarea class="code-editor">
+// create category variable
+const category = searchParams.get("category") || "";
+
+// update product query function
+const fetchData = async () => {
+    let url = `https://dummyjson.com/products?limit=${limit}&skip=${skip}`;
+
+    if(search){
+        url = `https://dummyjson.com/products/search?limit=${limit}&skip=${skip}&q=${search}`;
+    }
+    if(category){
+        url = `https://dummyjson.com/products/category/${category}?limit=${limit}&skip=${skip}`;
+    }
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.products;
+}
+
+// update product query key
+const { isLoading, error, data: products } = useQuery({
+    queryKey: ['products', limit, skip, search, category], // add category key
+    queryFn: fetchData,
+    placeholderData:keepPreviousData
+})
+
+
+
+// update search and search and category html
+<input
+  id="search"
+  name="search"
+  type="text"
+  placeholder="Search..."
+  autoComplete="given-name"
+  className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-gary-900 outline-1 -outline-offset-1 outline-gary/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
+  onChange={debounce( (e) => setSearchParams((prev) => {
+      if(e.target.value.length === 0){
+          prev.delete('search');
+          return prev;
+      }
+      prev.set('search', e.target.value);
+      prev.set('skip', 0);
+      prev.delete('category');
+      return prev;
+  }), 500)}
+  />
+  <select 
+  className='block _w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-gary-900 outline-1 -outline-offset-1 outline-gary/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500'
+  onChange={(e) =>{
+      setSearchParams((prev)=>{
+          prev.set("category", e.target.value);
+          prev.set("skip", 0);
+          prev.delete("search");
+          return prev;
+      })
+  }}
+  >
+  {categories?.map((category, index) => (
+      <option key={index}>{category.slug}</option>
+  ))} 
+  </select>
+</textarea>
+<br/>
+
+<hr/>
+<h4><b>Disable Pagination</b></h4>
+<hr/>
+<textarea class="code-editor">
+// update the fetch data function
+const fetchData = async () => {
+
+  let url = `https://dummyjson.com/products?limit=${limit}&skip=${skip}`;
+
+  if(search){
+      url = `https://dummyjson.com/products/search?limit=${limit}&skip=${skip}&q=${search}`;
+  }
+  if(category){
+      url = `https://dummyjson.com/products/category/${category}?limit=${limit}&skip=${skip}`;
+  }
+  const response = await fetch(url);
+  const data = await response.json();
+  // return data.products;
+  return data; // here we are returning the whole data, where products is an array, also get total products data
+}
+
+
+// update product map loop
+{products?.products?.map((product, index) => (
+  ...
+))}
+
+// add disable pagination condition
+<button
+  type="button"
+  className="... disabled:cursor-not-allowed disabled:bg-gray-400"
+  onClick={ ()=>{handleMove(-limit)}}
+  disabled={skip === 0}
+>Prev</button>
+<button
+  type="button"
+  className="... disabled:cursor-not-allowed disabled:bg-gray-400"
+  onClick={ ()=>{handleMove(limit)}}
+  disabled={skip + limit >= products?.total}
+>Next</button>
+</textarea>
+
+
+
 
 
 <br/>
