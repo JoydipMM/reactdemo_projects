@@ -8,6 +8,8 @@ const DefaultLayout = () => {
         <NavLink to='/' className={({isActive}) => isActive ? 'active' : ''}>Home</NavLink>
         {" | "}
         <NavLink to='/products' className={({isActive}) => isActive ?  'active' : ''}>Products</NavLink>
+        {" | "}
+        <NavLink to='/paralal-query' className={({isActive}) => isActive ?  'active' : ''}>Paralal Query</NavLink>
         <hr/>
         <Outlet/>
     </div>
