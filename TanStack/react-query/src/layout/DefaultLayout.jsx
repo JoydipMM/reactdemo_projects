@@ -10,6 +10,8 @@ const DefaultLayout = () => {
         <NavLink to='/products' className={({isActive}) => isActive ?  'active' : ''}>Products</NavLink>
         {" | "}
         <NavLink to='/paralal-query' className={({isActive}) => isActive ?  'active' : ''}>Paralal Query</NavLink>
+        {" | "}
+        <NavLink to='/optimistic-updates' className={({isActive}) => isActive ?  'active' : ''}>Optimistic Updates</NavLink>
         <hr/>
         <Outlet/>
     </div>

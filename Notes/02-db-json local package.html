@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON-Server</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<hr/>
+<h2><b>JSON-Server</b></h2>
+<hr/>
+<p><b>Install command: </b><code><b>npm i json-server</b></code></p>
+<p><b>Run command: </b><code><b>npx json-server db.json</b></code></p>
+<textarea id="editor">
+// rootProjectFolder -> db.json
+{
+    "posts": [
+      {
+        "id": 1,
+        "title": "json-server 01",
+        "author": "typicode"
+      },
+      {
+        "id": 2,
+        "title": "json-server 02",
+        "author": "typicode"
+      },
+      {
+        "id": 3,
+        "title": "json-server 03",
+        "author": "typicode"
+      }
+    ]
+}
+</textarea>
+<p>Run the project first. then in another terminal run <b>npx json-server db.json</p>
+<textarea class="code-editor">
+// in terminal
+
+joydi@JOYDIP MINGW64 /g/Reactjs/reactdemo_projects/TanStack/react-query (demo-projects)
+$ npx json-server db.json
+JSON Server started on PORT :3000
+Press CTRL-C to stop
+Watching db.json...
+
+♡⸜(˶˃ ᵕ ˂˶)⸝♡
+
+Index:
+http://localhost:3000/
+
+Static files:
+Serving ./public directory if it exists
+
+Endpoints:
+http://localhost:3000/posts
+</textarea>
+
+
+
+
+<!-- 
+<hr/>
+<h4><b>Mutation in React Query</b></h4>
+<hr/> -->
+
+<!-- <br/>
+<textarea class="code-editor">
+
+</textarea> -->
+
+<script src="assets/js/codemirror/codemirror.min.js"></script>
+<script src="assets/js/codemirror/javascript.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/common-script.js"></script>
+</body>
+</html>

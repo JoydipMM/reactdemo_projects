@@ -1,0 +1,35 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "json-server 01",
+      "author": "typicode"
+    },
+    {
+      "id": "2",
+      "title": "json-server 02",
+      "author": "typicode"
+    },
+    {
+      "id": "3",
+      "title": "json-server 03",
+      "author": "typicode"
+    },
+    {
+      "id": "ewUoEQMgt6Y",
+      "title": "hjhjhj",
+      "author": "John Doe"
+    },
+    {
+      "id": "ilC3KlcCPLk",
+      "title": "yuyuyuyt",
+      "author": "John Doe"
+    },
+    {
+      "id": "fZrSFzo8jT8",
+      "title": "fgfgfg",
+      "author": "John Doe"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

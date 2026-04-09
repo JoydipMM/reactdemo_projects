@@ -5,6 +5,7 @@ import ProductsPage from './pages/ProductsPage'
 import DefaultLayout from './layout/DefaultLayout'
 import ProductDetail from './pages/ProductDetail'
 import ParalalQueryPage from './pages/ParalalQueryPage'
+import OptimisticUpdatesPage from './pages/OptimisticUpdatesPage'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path='/products' element={<ProductsPage />} />
           <Route path='/products/:productid' element={<ProductDetail />} />
           <Route path ="/paralal-query" element={<ParalalQueryPage />} />
+          <Route path="/optimistic-updates" element={<OptimisticUpdatesPage />} />
           <Route path ="*" element={<Error />} />
         </Route>
       </Routes>

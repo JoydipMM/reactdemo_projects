@@ -757,6 +757,7 @@ const fetchData = async () => {
 <hr/>
 <h4><b>Parallal Queries in React Query</b></h4>
 <hr/>
+<p><b>Parallel queries</b> = running multiple API calls at the same time, instead of one after another.</p>
 <textarea class="code-editor">
 // ParalalQueryPage.jsx
 
@@ -815,6 +816,25 @@ const ParalalQueryPage = () => {
 }
 
 export default ParalalQueryPage
+
+
+
+
+// another example:
+import { useQueries } from '@tanstack/react-query'
+
+const results = useQueries({
+  queries: [
+    {
+      queryKey: ['products'],
+      queryFn: fetchProducts,
+    },
+    {
+      queryKey: ['categories'],
+      queryFn: fetchCategories,
+    },
+  ],
+})
 
 </textarea>
 
