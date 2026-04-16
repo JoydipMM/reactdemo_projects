@@ -1,0 +1,232 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn TypeScript</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<hr/>
+<h2><b>TypeScript Basics</b></h2>
+<hr/>
+<p><b>TypeScript</b> is a <b>superset</b> of <b>JavaScript</b>.</p>
+<p><b>Create npm package</b> <code><b>npm init -y</b></code>. After run this command, we will get a <b>package.json</b> file.</p>
+<textarea id="editor">
+// package.json
+
+{
+  "name": "learntsnew",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
+</textarea>
+<p><b>Install command: </b><code><b>npm install -D typescript --save-dev</b></code></b>. Now <b>package.json</b> look like this</p>
+<textarea class="code-editor">
+{
+  "name": "learntsnew",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^6.0.2"
+  }
+}
+</textarea>
+<p>Now, We will create a <b>tsconfig.json</b> file. Here we maintain the all type of rules for <b>TypeScript.</b>
+<br/><b>To create this file, run this command: </b><code><b>npx tsc --init</b></code>. This command will create a <b>tsconfig.json</b> file.</p>
+<textarea class="code-editor">
+// tsconfig.json
+// First we remove all the default values from <b>tsconfig.json</b> file. Then we add our own values
+{ 
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "useUnknownInCatchVariables": true,
+    "skipLibCheck": true,
+    "rootDir": "src",
+    "outDir": "dist"
+    
+  },
+  "include": ["src"] // Include all files in the src directory
+}
+
+/*
+Notes: -------------------------
+"compilerOptions": {}, // Rules for TypeScript compiler
+"include": [], // Include all files in the src directory
+
+"target": "es2022"
+Output JavaScript version
+TS → converts your code into JS
+This decides how modern that JS is es2022 = modern browsers / Node.js support
+Uses latest features (async/await, etc.)
+
+"module": "es2022"
+How modules (imports/exports) are handled
+Uses modern import/export
+
+"moduleResolution": "bundler"
+"moduleResolution" -> How TypeScript finds files when you import
+"bundler" -> Webpack, Vite, Parcel
+This is recommended for frontend apps
+
+"strict": true -> Turns on all strict type-checking
+# Includes:
+- no implicit any
+- strict null checks
+- better type safety
+This is what makes TypeScript powerful
+
+"noUncheckedIndexedAccess": true
+Adds undefined when accessing arrays/objects
+
+"exactOptionalPropertyTypes": true
+Makes optional properties stricter
+
+"useUnknownInCatchVariables": true
+Makes catch safer
+
+
+"skipLibCheck": true
+Skips type checking for external libraries (node_modules)
+Benefits:
+- Faster builds
+- Avoids unnecessary errors from dependencies
+
+"rootDir": "src",
+- read files from this directory
+
+"outDir": "dist"
+- write compiled files to this directory
+*/
+</textarea>
+<p>Update the scripts key <b>package.json</b></p>
+<textarea class="code-editor">
+// package.json
+
+{
+  "name": "learntsnew",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    // "test": "echo \"Error: no test specified\" && exit 1" // remove this line and add below lines
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -w -p tsconfig.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^6.0.2"
+  }
+}
+</textarea>
+<br/>
+
+<hr/>
+<h2><b>Types by Inference</b></h2>
+<hr/>
+<p><b>Type inference in TypeScript</b> means TypeScript can <b>automatically figure out the type</b> of a variable without you explicitly writing it.</p>
+<textarea class="code-editor">
+// Inference
+
+// Instead of writing:
+let name: string = "Joydip";
+
+// You can write:
+let name = "Joydip";
+
+// TypeScript infers (guesses correctly) that name is a string.
+
+// 1. Variable Inference
+let age = 25; // inferred as number
+
+// 2. Function Return Type Inference
+function add(a: number, b: number): number {
+  return a + b;
+} // inferred return type: number
+
+// 3. Array Inference
+let numbers = [1, 2, 3]; // inferred as number[]
+let mixed = [1, "hello"]; // inferred as (string | number)[]
+
+// 3B. Empty Values
+let data: number[] = [];
+
+// 4. Object Inference
+let user = {
+  name: "Joydip",
+  age: 25
+};
+// inferred as { name: string; age: number }
+
+
+let age = 10; // TS already knows this is a number. So we don't need to specify it. 
+
+let rollno = 10;
+
+let data : (string | number)[];
+data = ['name', 10]; 
+
+let maybe: string | number;
+maybe = Math.random() > 0.5 ? 'hello' : 10;
+
+function add(a:number, b:number):void{
+    console.log(a+b);
+}
+
+export function add2(a:number, b:number):number{
+    return (a + b);
+}
+
+add(10, 20);
+add2(10, 20);
+</textarea>
+
+
+
+<!-- <textarea id="editor">
+
+</textarea> -->
+
+
+<!-- <hr/>
+<h4><b>The Core Problem (Without React Query)</b></h4>
+<hr/> -->
+
+
+<!-- <textarea class="code-editor">
+</textarea> -->
+
+
+
+
+<!-- <br/>
+<textarea class="code-editor">
+
+</textarea> -->
+
+<script src="assets/js/codemirror/codemirror.min.js"></script>
+<script src="assets/js/codemirror/javascript.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/common-script.js"></script>
+</body>
+</html>
