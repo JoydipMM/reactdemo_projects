@@ -11,10 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SkillsIndexRouteImport } from './routes/skills/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as SkillsNewRouteImport } from './routes/skills/new'
 import { Route as SkillsSkillidRouteImport } from './routes/skills/$skillid'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
+import { Route as DashboardProfileRouteImport } from './routes/dashboard/profile'
 import { Route as UsersUsernameSkillsSkillidRouteImport } from './routes/users/$username/skills/$skillid'
 
 const ContactRoute = ContactRouteImport.update({
@@ -27,6 +31,11 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRouteRoute = DashboardRouteRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -36,6 +45,11 @@ const SkillsIndexRoute = SkillsIndexRouteImport.update({
   id: '/skills/',
   path: '/skills/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRouteRoute,
 } as any)
 const SkillsNewRoute = SkillsNewRouteImport.update({
   id: '/skills/new',
@@ -47,6 +61,16 @@ const SkillsSkillidRoute = SkillsSkillidRouteImport.update({
   path: '/skills/$skillid',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardProfileRoute = DashboardProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
 const UsersUsernameSkillsSkillidRoute =
   UsersUsernameSkillsSkillidRouteImport.update({
     id: '/users/$username/skills/$skillid',
@@ -56,10 +80,14 @@ const UsersUsernameSkillsSkillidRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/dashboard/profile': typeof DashboardProfileRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/skills/$skillid': typeof SkillsSkillidRoute
   '/skills/new': typeof SkillsNewRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/skills/': typeof SkillsIndexRoute
   '/users/$username/skills/$skillid': typeof UsersUsernameSkillsSkillidRoute
 }
@@ -67,18 +95,25 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/dashboard/profile': typeof DashboardProfileRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/skills/$skillid': typeof SkillsSkillidRoute
   '/skills/new': typeof SkillsNewRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/skills': typeof SkillsIndexRoute
   '/users/$username/skills/$skillid': typeof UsersUsernameSkillsSkillidRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/dashboard/profile': typeof DashboardProfileRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/skills/$skillid': typeof SkillsSkillidRoute
   '/skills/new': typeof SkillsNewRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/skills/': typeof SkillsIndexRoute
   '/users/$username/skills/$skillid': typeof UsersUsernameSkillsSkillidRoute
 }
@@ -86,10 +121,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/dashboard'
     | '/about'
     | '/contact'
+    | '/dashboard/profile'
+    | '/dashboard/settings'
     | '/skills/$skillid'
     | '/skills/new'
+    | '/dashboard/'
     | '/skills/'
     | '/users/$username/skills/$skillid'
   fileRoutesByTo: FileRoutesByTo
@@ -97,23 +136,31 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/dashboard/profile'
+    | '/dashboard/settings'
     | '/skills/$skillid'
     | '/skills/new'
+    | '/dashboard'
     | '/skills'
     | '/users/$username/skills/$skillid'
   id:
     | '__root__'
     | '/'
+    | '/dashboard'
     | '/about'
     | '/contact'
+    | '/dashboard/profile'
+    | '/dashboard/settings'
     | '/skills/$skillid'
     | '/skills/new'
+    | '/dashboard/'
     | '/skills/'
     | '/users/$username/skills/$skillid'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   SkillsSkillidRoute: typeof SkillsSkillidRoute
@@ -138,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -151,6 +205,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/skills/'
       preLoaderRoute: typeof SkillsIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
     }
     '/skills/new': {
       id: '/skills/new'
@@ -166,6 +227,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SkillsSkillidRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/profile': {
+      id: '/dashboard/profile'
+      path: '/profile'
+      fullPath: '/dashboard/profile'
+      preLoaderRoute: typeof DashboardProfileRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
     '/users/$username/skills/$skillid': {
       id: '/users/$username/skills/$skillid'
       path: '/users/$username/skills/$skillid'
@@ -176,8 +251,25 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface DashboardRouteRouteChildren {
+  DashboardProfileRoute: typeof DashboardProfileRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
+  DashboardProfileRoute: DashboardProfileRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
+  DashboardRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRouteRoute: DashboardRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   SkillsSkillidRoute: SkillsSkillidRoute,
