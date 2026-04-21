@@ -238,7 +238,28 @@ http://localhost:3000/post/56546546
 http://localhost:3000/post/postdetails/56546546
 http://localhost:3000/post/56546546/edit
 */
+</textarea>
 
+
+<br/>
+<hr />
+<h5><b>Dynamic Routes with Flat Routes and Directory Routes</b></h5>
+<hr />
+<textarea class="code-editor">
+📂routes/
+├── __root.tsx
+├── index.tsx
+├── about.tsx
+├── 📂post/
+│   ├── index.tsx
+│   ├── $postid.tsx
+│   └── $postid.edit.tsx
+
+/* URL
+http://localhost:3000/post/
+http://localhost:3000/post/56546546
+http://localhost:3000/post/56546546/edit
+*/
 </textarea>
 
 
