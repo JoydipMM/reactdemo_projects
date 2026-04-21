@@ -263,6 +263,29 @@ http://localhost:3000/post/56546546/edit
 </textarea>
 
 
+<br/>
+<hr />
+<h5><b>Pathless routes</b></h5>
+<p>We can also create pathless routes with "_" underscore prefix with folder name like "_auth"</p>
+<hr />
+<textarea class="code-editor">
+routes/
+├── __root.tsx
+├── index.tsx
+├── about.tsx
+├── _auth/
+│  ├── route.tsx //( optional )
+│  ├── login/
+│  │   └── index.tsx
+│  └── register/
+│      └── index.tsx
+
+/* URL
+http://localhost:3000/login/
+http://localhost:3000/register/
+*/
+</textarea>
+
 
 <br/>
 <hr />

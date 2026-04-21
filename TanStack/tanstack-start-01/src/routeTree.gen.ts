@@ -22,6 +22,8 @@ import { Route as SkillsSkillidRouteImport } from './routes/skills/$skillid'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
 import { Route as DashboardProfileRouteImport } from './routes/dashboard/profile'
 import { Route as PostPostidIndexRouteImport } from './routes/post/$postid/index'
+import { Route as AuthSignupIndexRouteImport } from './routes/_auth/signup/index'
+import { Route as AuthLoginIndexRouteImport } from './routes/_auth/login/index'
 import { Route as PostPostidPostdetailsRouteImport } from './routes/post/$postid/postdetails'
 import { Route as PostPostidEditRouteImport } from './routes/post/$postid/edit'
 import { Route as UsersUsernameSkillsSkillidRouteImport } from './routes/users/$username/skills/$skillid'
@@ -91,6 +93,16 @@ const PostPostidIndexRoute = PostPostidIndexRouteImport.update({
   path: '/$postid/',
   getParentRoute: () => PostRouteRoute,
 } as any)
+const AuthSignupIndexRoute = AuthSignupIndexRouteImport.update({
+  id: '/_auth/signup/',
+  path: '/signup/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthLoginIndexRoute = AuthLoginIndexRouteImport.update({
+  id: '/_auth/login/',
+  path: '/login/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PostPostidPostdetailsRoute = PostPostidPostdetailsRouteImport.update({
   id: '/$postid/postdetails',
   path: '/$postid/postdetails',
@@ -123,6 +135,8 @@ export interface FileRoutesByFullPath {
   '/skills/': typeof SkillsIndexRoute
   '/post/$postid/edit': typeof PostPostidEditRoute
   '/post/$postid/postdetails': typeof PostPostidPostdetailsRoute
+  '/login/': typeof AuthLoginIndexRoute
+  '/signup/': typeof AuthSignupIndexRoute
   '/post/$postid/': typeof PostPostidIndexRoute
   '/users/$username/skills/$skillid': typeof UsersUsernameSkillsSkillidRoute
 }
@@ -139,6 +153,8 @@ export interface FileRoutesByTo {
   '/skills': typeof SkillsIndexRoute
   '/post/$postid/edit': typeof PostPostidEditRoute
   '/post/$postid/postdetails': typeof PostPostidPostdetailsRoute
+  '/login': typeof AuthLoginIndexRoute
+  '/signup': typeof AuthSignupIndexRoute
   '/post/$postid': typeof PostPostidIndexRoute
   '/users/$username/skills/$skillid': typeof UsersUsernameSkillsSkillidRoute
 }
@@ -158,6 +174,8 @@ export interface FileRoutesById {
   '/skills/': typeof SkillsIndexRoute
   '/post/$postid/edit': typeof PostPostidEditRoute
   '/post/$postid/postdetails': typeof PostPostidPostdetailsRoute
+  '/_auth/login/': typeof AuthLoginIndexRoute
+  '/_auth/signup/': typeof AuthSignupIndexRoute
   '/post/$postid/': typeof PostPostidIndexRoute
   '/users/$username/skills/$skillid': typeof UsersUsernameSkillsSkillidRoute
 }
@@ -178,6 +196,8 @@ export interface FileRouteTypes {
     | '/skills/'
     | '/post/$postid/edit'
     | '/post/$postid/postdetails'
+    | '/login/'
+    | '/signup/'
     | '/post/$postid/'
     | '/users/$username/skills/$skillid'
   fileRoutesByTo: FileRoutesByTo
@@ -194,6 +214,8 @@ export interface FileRouteTypes {
     | '/skills'
     | '/post/$postid/edit'
     | '/post/$postid/postdetails'
+    | '/login'
+    | '/signup'
     | '/post/$postid'
     | '/users/$username/skills/$skillid'
   id:
@@ -212,6 +234,8 @@ export interface FileRouteTypes {
     | '/skills/'
     | '/post/$postid/edit'
     | '/post/$postid/postdetails'
+    | '/_auth/login/'
+    | '/_auth/signup/'
     | '/post/$postid/'
     | '/users/$username/skills/$skillid'
   fileRoutesById: FileRoutesById
@@ -225,6 +249,8 @@ export interface RootRouteChildren {
   SkillsSkillidRoute: typeof SkillsSkillidRoute
   SkillsNewRoute: typeof SkillsNewRoute
   SkillsIndexRoute: typeof SkillsIndexRoute
+  AuthLoginIndexRoute: typeof AuthLoginIndexRoute
+  AuthSignupIndexRoute: typeof AuthSignupIndexRoute
   UsersUsernameSkillsSkillidRoute: typeof UsersUsernameSkillsSkillidRoute
 }
 
@@ -321,6 +347,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostPostidIndexRouteImport
       parentRoute: typeof PostRouteRoute
     }
+    '/_auth/signup/': {
+      id: '/_auth/signup/'
+      path: '/signup'
+      fullPath: '/signup/'
+      preLoaderRoute: typeof AuthSignupIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth/login/': {
+      id: '/_auth/login/'
+      path: '/login'
+      fullPath: '/login/'
+      preLoaderRoute: typeof AuthLoginIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/post/$postid/postdetails': {
       id: '/post/$postid/postdetails'
       path: '/$postid/postdetails'
@@ -388,6 +428,8 @@ const rootRouteChildren: RootRouteChildren = {
   SkillsSkillidRoute: SkillsSkillidRoute,
   SkillsNewRoute: SkillsNewRoute,
   SkillsIndexRoute: SkillsIndexRoute,
+  AuthLoginIndexRoute: AuthLoginIndexRoute,
+  AuthSignupIndexRoute: AuthSignupIndexRoute,
   UsersUsernameSkillsSkillidRoute: UsersUsernameSkillsSkillidRoute,
 }
 export const routeTree = rootRouteImport
