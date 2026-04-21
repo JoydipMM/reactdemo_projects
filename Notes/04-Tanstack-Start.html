@@ -1,0 +1,537 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tanstack Start</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <hr />
+  <h2><b>Tanstack Start</b></h2>
+  <hr />
+  <p><b>TanStack Start</b> is a modern full-stack React framework built by the team behind <b>TanStack Query</b> and <b>TanStack Router</b>. It’s designed to <b>help you build fast, scalable, type-safe web apps with a strong focus on data handling and performance</b>.</p>
+  <br />
+
+
+
+  <hr />
+  <h5><b>Key Benefits (Why People Use It)</b></h5>
+  <hr />
+  <ol class="list-group list-group-flush">
+
+    <li class="list-group-item"><b>1. Powerful Data Fetching</b> (Best in Industry)<br />
+      <b><i>Uses TanStack Query internally</i></b>.
+      <ul>
+        <li>Automatic caching</li>
+        <li>Background updates</li>
+        <li>Retry logic</li>
+        <li>Optimistic updates</li>
+      </ul>
+    </li>
+
+    <li class="list-group-item"><b>2. Type-Safe Everything</b><br />
+      <b><i>We get TypeScript-level safety across frontend + backend</i></b>
+      <ul>
+        <li>Routes are type-safe</li>
+        <li>API calls are type-safe</li>
+        <li>Params & data are validated</li>
+      </ul>
+    </li>
+
+    <li class="list-group-item"><b>3. Server Functions (No Separate Backend Needed)</b><br />
+      <b><i>No need for:</i></b>
+      <ul>
+        <li>Express</li>
+        <li>REST APIs</li>
+        <li>Separate server setup</li>
+      </ul>
+      <b><i>You can write backend logic like:</i></b>
+<textarea class="code-editor">
+export const getUsers = serverFn(async () => {
+  return db.users.findMany()
+})</textarea>
+    </li>
+
+    <li class="list-group-item"><b>4. Performance (SSR + Streaming)</b><br />
+      <!-- <b><i>We get TypeScript-level safety across frontend + backend</i></b> -->
+      <ul>
+        <li>Server-Side Rendering (SSR)</li>
+        <li>Streaming HTML</li>
+        <li>initial load</li>
+        <li>Better SEO</li>
+      </ul>
+    </li>
+
+    <li class="list-group-item"><b>5. Advanced Routing (TanStack Router)</b><br />
+      <b><i>More powerful than basic React Router</i></b>
+      <ul>
+        <li>Nested routes</li>
+        <li>Layouts</li>
+        <li>Loaders (data before render)</li>
+        <li>Search params as state</li>
+      </ul>
+    </li>
+
+  </ol>
+
+<br/>
+<br/>
+<hr />
+<h2><b>Basic Folder Structure (Recommended)</b></h2>
+<hr />
+<p></p>
+<textarea id="editor">
+📂my-app/
+├── 📂src/
+│   ├── 📂routes/          # All pages (file-based routing)
+│   ├── 📂components/      # Reusable UI components
+│   ├── 📂features/        # Business logic (auth, dashboard, etc.)
+│   ├── 📂lib/             # Utilities (api, db, helpers)
+│   ├── 📂server/          # Server-only code (DB, auth, etc.)
+│   ├── 📂styles/          # CSS / Tailwind
+│   ├── app.tsx          # Root app setup
+│   ├── router.tsx       # Router config
+│   └── entry-client.tsx # Client entry
+│
+├── 📂public/              # Static files
+├── package.json
+└── tsconfig.json
+</textarea>
+
+<br/>
+<hr />
+<h5><b>routes/ (Most Important)</b></h5>
+<hr />
+<textarea class="code-editor">
+📂routes/
+├── __root.tsx
+├── index.tsx
+├── about.tsx
+├── 📂dashboard/
+│   ├── index.tsx
+│   ├── settings.tsx
+│   └── users.tsx
+
+index.tsx	=> /
+about.tsx	=>	/about
+dashboard/index.tsx	=>	/dashboard
+dashboard/users.tsx	=>	/dashboard/users
+</textarea>
+
+<br/>
+<hr />
+<h5><b>Dynamic Routes</b></h5>
+<hr />
+<textarea class="code-editor">
+routes/
+├── __root.tsx
+├── index.tsx
+├── 📂skills/
+│   ├── index.tsx
+│   └── $skillid.tsx
+├── 📂users/
+│   ├── index.tsx
+│   └── 📂$username/
+│       ├── index.tsx
+│       └── 📂skills/
+│           ├── index.tsx
+│           └── $skillid.tsx
+
+/* url: 
+http://localhost:3000/skills/
+http://localhost:3000/skills/56546546
+
+http://localhost:3000/users/
+http://localhost:3000/users/rahul
+http://localhost:3000/users/rahul/skills/
+http://localhost:3000/users/rahul/skills/5645646
+*/
+
+
+// get params from URL
+// URL: http://localhost:3000/skills/56546546
+├── 📂skills/
+│   ├── index.tsx
+│   └── $skillid.tsx
+
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/skills/$skillid')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  const { skillid } = Route.useParams();
+  return <div>Hello "/skills/$skillid"! ${skillid}<br/>
+  </div>
+}
+
+// URL: http://localhost:3000/users/rahul/skills/5645646
+├── 📂users/
+│   ├── index.tsx
+│   └── 📂$username/
+│       ├── index.tsx
+│       └── 📂skills/
+│           ├── index.tsx
+│           └── $skillid.tsx
+
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/users/$username/skills/$skillid')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  const { username, skillid } = Route.useParams();
+  return <div>Hello "/users/$username/skills/$skillid"!<br/>
+  username: {username}<br/>skillid: {skillid}<br/>
+  </div>
+}
+
+
+// route.tsx inside folder
+📂routes/
+├── __root.tsx
+├── index.tsx
+├── about.tsx
+├── 📂dashboard/
+│   ├── route.tsx
+│   ├── index.tsx
+│   └── settings.tsx
+
+import { createFileRoute, Outlet } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/dashboard')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  return <>
+  <aside>sidebar</aside>
+  <section>
+    <div>Hello "/dashboard"! Dashboard Route file</div>
+    <Outlet />
+  </section>
+  </>
+}
+
+</textarea>
+
+<br/>
+<hr />
+<h5><b>Route File Example</b></h5>
+<hr />
+<p>When we create a new route file, we will get this structure automatically after file creation</p>
+<textarea class="code-editor">
+// src/routes/dashboard/users.tsx
+
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/dashboard/users')({
+  component: UsersPage,
+})
+
+function UsersPage() {
+  return <div>Users Page</div>
+}
+</textarea>
+
+
+
+<br/>
+<br/>
+<hr />
+<h5><b>Data Featching in traditional react app</b></h5>
+<hr />
+<p>We write a standard fetch request like below. This process is called <b>Render Fetch Waterfall</b>. In this process browser do the following</p>
+
+<textarea class="code-editor">
+import React, { useEffect, useState } from "react";
+
+function Users() {
+  // 01. component mount
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // 02. hook fire
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        setData(result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  // 03. loading appear untill data fetched
+  if (loading) return <h2>Loading...</h2>;
+  // or we can show error
+  if (error) return <h2>Error: {error}</h2>;
+
+  return (
+    <div>
+      <h2>User List</h2>
+      {/* 04. data show */}
+      {data.map((user) => (
+        <p key={user.id}>{user.name}</p>
+      ))}
+    </div>
+  );
+}
+
+export default Users;
+</textarea>
+
+<textarea class="code-editor">
+---------------     ---------------------------- 
+| Download JS | =>  | Parse and Execute        | 
+| Bundle load |     | Browser process the code |  
+---------------     ----------------------------  
+                                ↓
+   ------------------------------                                 
+  ↓
+---------------------     -----------------
+| React Initializes |  => | Render Layout |
+| App start         |     | UI appears    |
+---------------------     -----------------
+                                ↓
+   ------------------------------                                 
+  ↓
+---------------     ---------------
+| API request |  => | waiting for |
+| start       |     | Data        |
+---------------     ---------------
+                            ↓
+   --------------------------                               
+  ↓
+-----------------------
+| Re-render with data |
+| UI updates          |
+-----------------------
+</textarea>
+<blockquote class="blockquote">
+      <p><code class="mark"><b>Tanstack</b> completely eleminates this process using <b>Route Loader</b></code></p>
+</blockquote>
+<p><b>Tanstack</b> completely eleminates this process using <b>Route Loader</b>. This <b>Route Loader</b> is a dedicated asyncronous function that attached to the route file. When user click on a route link, <b>Router</b> intercept that click. So before react even attempt to render the next component, Router fire the loader to grabe the data. By the time component actually render, data is already waiting. So user get instant UI response with zero layout shift. </p>
+<textarea class="code-editor">
+import SkillCard from '#/components/SkillCard'
+import { createFileRoute, notFound, useRouter } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/')({ 
+  component: App,
+  // ====== pending component ======
+  pendingComponent: () => <div className='p-4 text-center'>Loading...</div>,
+  // ====== hide loading indicator ======
+  pendingMs: 10000,
+  // ====== loader ======
+  loader: async () => {
+    const response = await fetch('https://dummyjson.com/users');
+    //throw new Error('Error');
+    //throw notFound();
+    const data = await response.json();
+    //console.log(data);
+    if(!data.users || data.users.length === 0) {
+      throw notFound();
+    }
+    return data;
+  }, 
+  // ====== error component ======
+  errorComponent: ({error}) => {
+    const route = useRouter();
+    return (
+      <>
+      <div className='p-4 text-center'>{error.message}</div>
+      <button onClick={ () => route.invalidate()}>Try Again</button>
+      </>
+    )
+  },
+  // ====== not found component ======
+  notFoundComponent: () => <div className='p-4 text-center'>Not Found</div>,
+})
+
+function App() {
+  const data = Route.useLoaderData();
+  return (
+    <main className="page-wrap px-4 pb-8 pt-14">
+      {data.users.map((user: any) => <SkillCard  key={user.id} name={user.firstName} />)}
+    </main>
+  )
+}
+</textarea>
+
+
+
+
+<br/>
+<br/>
+<hr />
+<h5><b>Server Function</b></h5>
+<hr />
+<p><b>Server Function</b> is a function that run on the server side. When API need API key / secret key to fetch the data, then we can not put the those key inside the loader function, because the loader function run on the client side and we can not put any API key or raw database query inside of loader, if we do then that code shift to the client browser. So to fetch data securely, loader must call <b>Server Function</b>.</p>
+
+<p><b>Server Function</b> is a piece of code that run on the server side only.So when we call server function from client code like react button click event, then <b>Tanstack</b> automatically transform that call in to a proper http request behind the scene. It act as a <b><i>Remote Procedure Call (RPC)</i></b>. It means <b>Tanstack</b> has <b>tRPC</b> style architecture build natively into the framework via <b>Server Function</b>.</p>
+<blockquote class="blockquote my-3">
+      <p><code class="mark" style="font-size:16px; font-family: var(--bs-font-sans-serif);">
+        <i><b><u>Remote Procedure Call (RPC)</u></b>
+        it means, we can execute a function that live in different computer like inside a server as if it were a normal local function. In simple words: “Call a function → but it actually runs somewhere else (server)”. Here we don't have to write any manual fetch request, define url end points, set header or parse header responses. the framwork takes care of everything while keeping typescript types parfectly intact from the client to the server. In <b>React Eco System</b> we have <b>TRPC</b>, which is massively popular standalone library to <b>design the same type safe RPC experience</b>.
+      </code></i></p>
+</blockquote>
+<p>So we get <b>1. End-to-end type safety of tRPC</b>, <b>2. Incredible developer experience</b> without install any separate dependencies / library.</p>
+<textarea class="code-editor">
+// ./src/server/apiLogic.ts
+import { createServerFn } from "@tanstack/react-start";
+
+export const getApiLogicFn = createServerFn({method: 'GET'}).handler(async () => {
+    console.log("Calling this function from server");
+    const response = await fetch('https://dummyjson.com/users');
+    const data = await response.json();
+    console.log("data fetched on the server");
+    return data;
+})
+
+
+// ./src/routes/dashboard/index.tsx  
+import { getApiLogicFn } from '#/server/apiLogic';
+import { createFileRoute, useRouter } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/dashboard/')({
+  component: RouteComponent,
+  pendingComponent: () => <div className='p-4 text-center'>Loading...</div>,
+  pendingMs: 10000,
+  loader: async () => {
+    const data = await getApiLogicFn();
+    return data;
+  }, 
+  errorComponent: ({error}) => {
+    const route = useRouter();
+    return (
+      <>
+      <div className='p-4 text-center'>{error.message}</div>
+      <button onClick={() => route.invalidate()}>Try Again</button>
+      </>
+    )
+  },
+  notFoundComponent: () => <div className='p-4 text-center'>Not Found</div>,
+})
+
+function RouteComponent() {
+  const data = Route.useLoaderData();
+  return <>
+  <div>Hello "/dashboard/"! Dashboard Home Page</div>
+  <br/>
+  {data.users.map((user: any) => <span key={user.id}>{user.firstName}<br/></span>)}
+  </>
+}
+
+// We will get the console in terminal not in browser console:
+
+/dashboard/index.tsx?tsr-split=notFoundComponent
+12:10:53 pm [vite] (ssr) page reload src/routes/dashboard/index.tsx
+[vite] program reload
+LOG /src/server/apiLogic.ts:5:5
+ →  Calling this function from server
+LOG /src/server/apiLogic.ts:8:5
+ →  data fetched on the server
+
+</textarea>
+
+
+<br/>
+<br/>
+<hr />
+<h5><b>Server Function for Mutating Data</b></h5>
+<hr />
+<textarea class="code-editor">
+// ./src/server/apiLogic.ts
+
+// secure backend logic for post/mutating data
+export const saveApiLogicFn = createServerFn({method:"POST"})
+.inputValidator((name:string) => name)
+.handler(async ({data}) => {
+    await new Promise((resolve)=>setTimeout(resolve, 1000)); // we create a delay of 1 second to show the loading indicator
+    return { success:true, saved:data };
+})
+
+
+// in ./src/routes/dashboard/index.tsx
+import { saveApiLogicFn } from '#/server/apiLogic'; // import the server function for post/mutating data
+import { useServerFn } from '@tanstack/react-start';
+
+function RouteComponent() {
+
+  const [name, setName] = useState(""); // input field
+  const [status, setStatus] = useState(""); // status to show in UI
+
+  // use the server function for post mutating data using useServerFn hook of @tanstack/react-start
+  const saveData = useServerFn(saveApiLogicFn);
+
+  // form submit event
+  const submitEvent = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("Saving .....");
+    await saveData({data:name}); // we are calling the server function here to mutate the data
+    setStatus("Saved successfully");
+    setName("");
+  }
+
+  return <>
+  <div>Form</div>
+  <form onSubmit={submitEvent}>
+    <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
+    <input type="submit" value="Submit" />
+  </form>
+  <br/>
+  {status}
+  </>
+}
+</textarea>
+
+
+
+<!-- <textarea class="code-editor">
+
+</textarea> -->
+
+  <!-- <blockquote class="blockquote">
+      <p><code class="mark">Here when we click on a product, we will navigate to product detail page. and <b>then when we return back to product page, we will fetch the data again.</b></code></p>
+</blockquote>
+<br/>
+<br/> -->
+
+
+  <!-- <hr/>
+<h4><b>The Core Problem (Without React Query)</b></h4>
+<hr/> -->
+
+
+  When we fetch data like this:
+  <!-- <textarea class="code-editor">
+
+</textarea> -->
+
+
+
+  <!-- <br/>
+<textarea class="code-editor">
+
+</textarea> -->
+
+  <script src="assets/js/codemirror/codemirror.min.js"></script>
+  <script src="assets/js/codemirror/javascript.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common-script.js"></script>
+</body>
+
+</html>

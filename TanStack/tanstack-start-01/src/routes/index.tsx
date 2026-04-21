@@ -4,17 +4,12 @@ import { Heart } from 'lucide-react'
 
 export const Route = createFileRoute('/')({ 
   component: App,
-
   pendingComponent: () => <div className='p-4 text-center'>Loading...</div>,
-
   pendingMs: 10000,
-
   loader: async () => {
     const response = await fetch('https://dummyjson.com/users');
-    
     //throw new Error('Error');
     //throw notFound();
-    
     const data = await response.json();
     //console.log(data);
     if(!data.users || data.users.length === 0) {
@@ -22,7 +17,6 @@ export const Route = createFileRoute('/')({
     }
     return data;
   }, 
-
 
   errorComponent: ({error}) => {
     const route = useRouter();
@@ -35,8 +29,6 @@ export const Route = createFileRoute('/')({
   },
 
   notFoundComponent: () => <div className='p-4 text-center'>Not Found</div>,
-
-
 
 })
 
