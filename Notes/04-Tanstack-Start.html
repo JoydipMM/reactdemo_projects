@@ -122,7 +122,7 @@ dashboard/users.tsx	=>	/dashboard/users
 
 <br/>
 <hr />
-<h5><b>Dynamic Routes</b></h5>
+<h5><b>Dynamic Routes with Directory Routes</b></h5>
 <hr />
 <textarea class="code-editor">
 routes/
@@ -218,6 +218,30 @@ function RouteComponent() {
 }
 
 </textarea>
+
+
+<br/>
+<hr />
+<h5><b>Dynamic Routes with Flat Routes</b></h5>
+<hr />
+<textarea class="code-editor">
+📂routes/
+├── __root.tsx
+├── post.index.tsx
+├── post.$postid.tsx
+├── post.postdetails.$postid.tsx
+├── post.$postid.edit.tsx
+
+/* URL
+http://localhost:3000/post/
+http://localhost:3000/post/56546546
+http://localhost:3000/post/postdetails/56546546
+http://localhost:3000/post/56546546/edit
+*/
+
+</textarea>
+
+
 
 <br/>
 <hr />

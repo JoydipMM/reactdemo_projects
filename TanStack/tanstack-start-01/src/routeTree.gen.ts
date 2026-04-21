@@ -14,11 +14,15 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SkillsIndexRouteImport } from './routes/skills/index'
+import { Route as PostIndexRouteImport } from './routes/post.index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as SkillsNewRouteImport } from './routes/skills/new'
 import { Route as SkillsSkillidRouteImport } from './routes/skills/$skillid'
+import { Route as PostPostidRouteImport } from './routes/post.$postid'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
 import { Route as DashboardProfileRouteImport } from './routes/dashboard/profile'
+import { Route as PostPostdetailsPostidRouteImport } from './routes/post.postdetails.$postid'
+import { Route as PostPostidEditRouteImport } from './routes/post.$postid.edit'
 import { Route as UsersUsernameSkillsSkillidRouteImport } from './routes/users/$username/skills/$skillid'
 
 const ContactRoute = ContactRouteImport.update({
@@ -46,6 +50,11 @@ const SkillsIndexRoute = SkillsIndexRouteImport.update({
   path: '/skills/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PostIndexRoute = PostIndexRouteImport.update({
+  id: '/post/',
+  path: '/post/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -61,6 +70,11 @@ const SkillsSkillidRoute = SkillsSkillidRouteImport.update({
   path: '/skills/$skillid',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PostPostidRoute = PostPostidRouteImport.update({
+  id: '/post/$postid',
+  path: '/post/$postid',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -70,6 +84,16 @@ const DashboardProfileRoute = DashboardProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
   getParentRoute: () => DashboardRouteRoute,
+} as any)
+const PostPostdetailsPostidRoute = PostPostdetailsPostidRouteImport.update({
+  id: '/post/postdetails/$postid',
+  path: '/post/postdetails/$postid',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PostPostidEditRoute = PostPostidEditRouteImport.update({
+  id: '/edit',
+  path: '/edit',
+  getParentRoute: () => PostPostidRoute,
 } as any)
 const UsersUsernameSkillsSkillidRoute =
   UsersUsernameSkillsSkillidRouteImport.update({
@@ -85,10 +109,14 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/post/$postid': typeof PostPostidRouteWithChildren
   '/skills/$skillid': typeof SkillsSkillidRoute
   '/skills/new': typeof SkillsNewRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/post/': typeof PostIndexRoute
   '/skills/': typeof SkillsIndexRoute
+  '/post/$postid/edit': typeof PostPostidEditRoute
+  '/post/postdetails/$postid': typeof PostPostdetailsPostidRoute
   '/users/$username/skills/$skillid': typeof UsersUsernameSkillsSkillidRoute
 }
 export interface FileRoutesByTo {
@@ -97,10 +125,14 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/post/$postid': typeof PostPostidRouteWithChildren
   '/skills/$skillid': typeof SkillsSkillidRoute
   '/skills/new': typeof SkillsNewRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/post': typeof PostIndexRoute
   '/skills': typeof SkillsIndexRoute
+  '/post/$postid/edit': typeof PostPostidEditRoute
+  '/post/postdetails/$postid': typeof PostPostdetailsPostidRoute
   '/users/$username/skills/$skillid': typeof UsersUsernameSkillsSkillidRoute
 }
 export interface FileRoutesById {
@@ -111,10 +143,14 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/post/$postid': typeof PostPostidRouteWithChildren
   '/skills/$skillid': typeof SkillsSkillidRoute
   '/skills/new': typeof SkillsNewRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/post/': typeof PostIndexRoute
   '/skills/': typeof SkillsIndexRoute
+  '/post/$postid/edit': typeof PostPostidEditRoute
+  '/post/postdetails/$postid': typeof PostPostdetailsPostidRoute
   '/users/$username/skills/$skillid': typeof UsersUsernameSkillsSkillidRoute
 }
 export interface FileRouteTypes {
@@ -126,10 +162,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dashboard/profile'
     | '/dashboard/settings'
+    | '/post/$postid'
     | '/skills/$skillid'
     | '/skills/new'
     | '/dashboard/'
+    | '/post/'
     | '/skills/'
+    | '/post/$postid/edit'
+    | '/post/postdetails/$postid'
     | '/users/$username/skills/$skillid'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -138,10 +178,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dashboard/profile'
     | '/dashboard/settings'
+    | '/post/$postid'
     | '/skills/$skillid'
     | '/skills/new'
     | '/dashboard'
+    | '/post'
     | '/skills'
+    | '/post/$postid/edit'
+    | '/post/postdetails/$postid'
     | '/users/$username/skills/$skillid'
   id:
     | '__root__'
@@ -151,10 +195,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dashboard/profile'
     | '/dashboard/settings'
+    | '/post/$postid'
     | '/skills/$skillid'
     | '/skills/new'
     | '/dashboard/'
+    | '/post/'
     | '/skills/'
+    | '/post/$postid/edit'
+    | '/post/postdetails/$postid'
     | '/users/$username/skills/$skillid'
   fileRoutesById: FileRoutesById
 }
@@ -163,9 +211,12 @@ export interface RootRouteChildren {
   DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  PostPostidRoute: typeof PostPostidRouteWithChildren
   SkillsSkillidRoute: typeof SkillsSkillidRoute
   SkillsNewRoute: typeof SkillsNewRoute
+  PostIndexRoute: typeof PostIndexRoute
   SkillsIndexRoute: typeof SkillsIndexRoute
+  PostPostdetailsPostidRoute: typeof PostPostdetailsPostidRoute
   UsersUsernameSkillsSkillidRoute: typeof UsersUsernameSkillsSkillidRoute
 }
 
@@ -206,6 +257,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SkillsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/post/': {
+      id: '/post/'
+      path: '/post'
+      fullPath: '/post/'
+      preLoaderRoute: typeof PostIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard/': {
       id: '/dashboard/'
       path: '/'
@@ -227,6 +285,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SkillsSkillidRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/post/$postid': {
+      id: '/post/$postid'
+      path: '/post/$postid'
+      fullPath: '/post/$postid'
+      preLoaderRoute: typeof PostPostidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard/settings': {
       id: '/dashboard/settings'
       path: '/settings'
@@ -240,6 +305,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard/profile'
       preLoaderRoute: typeof DashboardProfileRouteImport
       parentRoute: typeof DashboardRouteRoute
+    }
+    '/post/postdetails/$postid': {
+      id: '/post/postdetails/$postid'
+      path: '/post/postdetails/$postid'
+      fullPath: '/post/postdetails/$postid'
+      preLoaderRoute: typeof PostPostdetailsPostidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/post/$postid/edit': {
+      id: '/post/$postid/edit'
+      path: '/edit'
+      fullPath: '/post/$postid/edit'
+      preLoaderRoute: typeof PostPostidEditRouteImport
+      parentRoute: typeof PostPostidRoute
     }
     '/users/$username/skills/$skillid': {
       id: '/users/$username/skills/$skillid'
@@ -267,14 +346,29 @@ const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
   DashboardRouteRouteChildren,
 )
 
+interface PostPostidRouteChildren {
+  PostPostidEditRoute: typeof PostPostidEditRoute
+}
+
+const PostPostidRouteChildren: PostPostidRouteChildren = {
+  PostPostidEditRoute: PostPostidEditRoute,
+}
+
+const PostPostidRouteWithChildren = PostPostidRoute._addFileChildren(
+  PostPostidRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRouteRoute: DashboardRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  PostPostidRoute: PostPostidRouteWithChildren,
   SkillsSkillidRoute: SkillsSkillidRoute,
   SkillsNewRoute: SkillsNewRoute,
+  PostIndexRoute: PostIndexRoute,
   SkillsIndexRoute: SkillsIndexRoute,
+  PostPostdetailsPostidRoute: PostPostdetailsPostidRoute,
   UsersUsernameSkillsSkillidRoute: UsersUsernameSkillsSkillidRoute,
 }
 export const routeTree = rootRouteImport
