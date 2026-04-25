@@ -400,6 +400,8 @@ export default TabsLayout;
 
 Safearea view
 ----------------------------------------
+npm i react-native-safe-area-context
+
 
 
 

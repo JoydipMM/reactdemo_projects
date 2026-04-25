@@ -2,9 +2,13 @@ import clsx from "clsx";
 import { Tabs } from "expo-router";
 import React from "react";
 import { Image, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { tabs } from "../constants/data";
+import { colors, components } from "../constants/theme";
 
 const TabsLayout = () => {
+  const insets = useSafeAreaInsets();
+  const tabBar = components.tabBar;
   const TabIcon = ({ focused, icon }: TabIconProps) => {
     return (
       <View className="tabs-icons">
@@ -16,7 +20,30 @@ const TabsLayout = () => {
   };
 
   return (
-    <Tabs screenOptions={{ headerShown: false }}>
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: false, // hide the nav label/title
+        tabBarStyle: {
+          position: "absolute",
+          bottom: Math.max(insets.bottom, tabBar.horizontalInset),
+          height: tabBar.height,
+          marginHorizontal: tabBar.horizontalInset,
+          borderRadius: tabBar.radius,
+          backgroundColor: colors.primary,
+          borderTopWidth: 0,
+          elevation: 0,
+        },
+        tabBarItemStyle: {
+          paddingVertical: tabBar.height / 2 - tabBar.iconFrame / 1.6,
+        },
+        tabBarIconStyle: {
+          width: tabBar.iconFrame,
+          height: tabBar.iconFrame,
+          alignItems: "center",
+        },
+      }}
+    >
       {tabs.map((tab) => (
         <Tabs.Screen
           key={tab.name}
