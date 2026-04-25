@@ -18,14 +18,14 @@ export default function App() {
         Signin
       </Link>
       <Link
-        href="/subscription/spotify"
+        href="/subscriptions/spotify"
         className="py-2 px-5 bg-primary text-white m-2"
       >
         Spotify Subscription
       </Link>
       <Link
         href={{
-          pathname: "/subscription/[id]",
+          pathname: "/subscriptions/[id]",
           params: { id: "anitigravity" },
         }}
         className="py-2 px-5 bg-primary text-white m-2"
