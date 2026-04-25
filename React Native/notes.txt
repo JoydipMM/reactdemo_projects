@@ -402,10 +402,121 @@ Safearea view
 ----------------------------------------
 npm i react-native-safe-area-context
 
+for proper common styling we create "theme.ts" inside "constant" folder
+export const colors = {
+  background: "#fff9e3",
+  foreground: "#081126",
+  card: "#fff8e7",
+  muted: "#f6eecf",
+  mutedForeground: "rgba(0, 0, 0, 0.6)",
+  primary: "#081126",
+  accent: "#ea7a53",
+  border: "rgba(0, 0, 0, 0.1)",
+  success: "#16a34a",
+  destructive: "#dc2626",
+  subscription: "#8fd1bd",
+} as const;
+
+export const spacing = {
+  0: 0,
+  1: 4, // 1x4
+  2: 8, // 2x4
+  3: 12, // 3x4
+  4: 16,
+  5: 20,
+  6: 24,
+  7: 28,
+  8: 32,
+  9: 36,
+  10: 40,
+  11: 44,
+  12: 48,
+  14: 56,
+  16: 64,
+  18: 72,
+  20: 80,
+  24: 96,
+  30: 120,
+} as const;
+
+export const components = {
+  tabBar: {
+    height: spacing[18],
+    horizontalInset: spacing[5],
+    radius: spacing[8],
+    iconFrame: spacing[12],
+    itemPaddingVertical: spacing[2],
+  },
+} as const;
+
+export const theme = {
+  colors,
+  spacing,
+  components,
+} as const;
+
+Now to style the bottom tabBar we update the <Tabs> with below lines:
+<Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: false, // hide the nav label/title
+        tabBarStyle: {
+          position: "absolute",
+          bottom: Math.max(insets.bottom, tabBar.horizontalInset),
+          height: tabBar.height,
+          marginHorizontal: tabBar.horizontalInset,
+          borderRadius: tabBar.radius,
+          backgroundColor: colors.primary,
+          borderTopWidth: 0,
+          elevation: 0,
+        },
+        tabBarItemStyle: {
+          paddingVertical: tabBar.height / 2 - tabBar.iconFrame / 1.6,
+        },
+        tabBarIconStyle: {
+          width: tabBar.iconFrame,
+          height: tabBar.iconFrame,
+          alignItems: "center",
+        },
+      }}
+    >
+
+Now we use "SafeAreaView" to fixed display screen view without cropping anything for that
+first 
+import { styled } from "nativewind";
+
+second
+import { SafeAreaView as RNSafAreaView } from "react-native-safe-area-context";
+// SafeAreaView would not accept the class name, So need to active styled component, for that import the SafeAreaView as differnt name using "as RNSafAreaView"
+const SafeAreaView = styled(RNSafAreaView); // SafeAreaView is a third party dependency, for that to support react native style we set the alise name of  SafeAreaView and pass the alise name in styled method
+
+Now update the page layout of "index.tsx" inside (tabs) folder like below:
+-----------------------------------------------------------------------------
+ {/* <View className="flex-1 items-center justify-center bg-background"> */}
+<SafeAreaView className="flex-1 bg-background p-5">
+...
+{/* </View> */}
+ </SafeAreaView>
 
 
+Same changes  for Setting, insights and subscriptions pages like below:
+-----------------------------------------------------------------------------
+import React from "react";
+import { Text } from "react-native";
 
+import { styled } from "nativewind";
+import { SafeAreaView as RNSafAreaView } from "react-native-safe-area-context";
+const SafeAreaView = styled(RNSafAreaView);
 
+const Insights = () => {
+  return (
+    <SafeAreaView className="flex-1 bg-background p-5">
+      <Text>Insights</Text>
+    </SafeAreaView>
+  );
+};
+
+export default Insights;
 
 
 

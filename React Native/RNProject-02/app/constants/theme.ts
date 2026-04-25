@@ -14,9 +14,9 @@ export const colors = {
 
 export const spacing = {
   0: 0,
-  1: 4,
-  2: 8,
-  3: 12,
+  1: 4, // 1x4
+  2: 8, // 2x4
+  3: 12, // 3x4
   4: 16,
   5: 20,
   6: 24,
