@@ -1,5 +1,6 @@
 https://www.youtube.com/watch?v=4nVoLX2taFg&list=PL6QREj8te1P54rZQx5AWWtFyf1hlznFjL
 https://www.figma.com/design/m3jtoedc0WWAoG6kiJZtxz/Subscription-Management-App?node-id=0-1&p=f
+https://jsmastery.com/video-kit/906b6d70-b862-4257-85dd-56b3ba76db59
 
 Tailwind CSS IntelliSense with Hex Colors
 Fullstack React/React Native snippets
@@ -228,6 +229,173 @@ but we don't want to show this two links in tabs section. To hide this two link 
 <Tabs.Screen name="subscriptions/spotify" options={{ href: null }} /> 
 
 above two line will hide the two links
+
+
+Use Icons images with constant
+----------------------------------------
+Create app\constants\icons.ts file
+
+import activity from "@/assets/icons/activity.png";
+import add from "@/assets/icons/add.png";
+import adobe from "@/assets/icons/adobe.png";
+import back from "@/assets/icons/back.png";
+import canva from "@/assets/icons/canva.png";
+import claude from "@/assets/icons/claude.png";
+import dropbox from "@/assets/icons/dropbox.png";
+import figma from "@/assets/icons/figma.png";
+import github from "@/assets/icons/github.png";
+import home from "@/assets/icons/home.png";
+import medium from "@/assets/icons/medium.png";
+import menu from "@/assets/icons/menu.png";
+import notion from "@/assets/icons/notion.png";
+import openai from "@/assets/icons/openai.png";
+import plus from "@/assets/icons/plus.png";
+import setting from "@/assets/icons/setting.png";
+import spotify from "@/assets/icons/spotify.png";
+import wallet from "@/assets/icons/wallet.png";
+
+export const icons = {
+  home,
+  wallet,
+  setting,
+  activity,
+  add,
+  back,
+  menu,
+  plus,
+  notion,
+  dropbox,
+  openai,
+  adobe,
+  medium,
+  figma,
+  spotify,
+  github,
+  claude,
+  canva,
+} as const;
+
+export type IconKey = keyof typeof icons;
+
+Now to handle image import we create "image.d.ts" declaration file in project root folder
+in "image.d.ts"
+declare module "*.png" {
+  const value: any;
+  export default value;
+}
+declare module "*.jpg" {
+  const value: any;
+  export default value;
+}
+declare module "*.jpeg" {
+  const value: any;
+  export default value;
+}
+declare module "*.svg" {
+  const value: any;
+  export default value;
+}
+declare module "*.gif" {
+  const value: any;
+  export default value;
+}
+
+this line of codes will help to read the images
+
+also create "type.d.ts" in project root folder. This declare the type of image source type
+in "type.d.ts"
+import type { ImageSourcePropType } from "react-native";
+
+declare global {
+  interface TabIconProps {
+    focused: boolean;
+    icon: ImageSourcePropType;
+  }
+interface AppTab {
+    name: string;
+    title: string;
+    icon: ImageSourcePropType;
+  }
+}
+
+export { }; 
+
+
+Create data for tabs "constants/data.ts"
+import { icons } from "./icons";
+
+export const tabs: AppTab[] = [
+  { name: "index", title: "Home", icon: icons.home },
+  { name: "subscriptions", title: "Subscriptions", icon: icons.wallet },
+  {
+    name: "subscriptions/spotify",
+    title: "spotify",
+    icon: icons.wallet,
+    href: null,
+  },
+  {
+    name: "subscriptions/[id]",
+    title: "subscription[id]",
+    icon: icons.wallet,
+    href: null,
+  },
+  { name: "insights", title: "Insights", icon: icons.activity },
+  { name: "settings", title: "Settings", icon: icons.setting },
+];
+
+
+Style Bottom Tab Bar
+----------------------------------------
+install npm i clsx
+this help multiple class join together
+
+app\(tabs)\_layout.tsx here we update our tabs code:
+import clsx from "clsx";
+import { Tabs } from "expo-router";
+import React from "react";
+import { Image, View } from "react-native";
+import { tabs } from "../constants/data";
+
+const TabsLayout = () => {
+  const TabIcon = ({ focused, icon }: TabIconProps) => {
+    return (
+      <View className="tabs-icons">
+        <View className={clsx("tabs-pill", focused && "tabs-active")}>
+          <Image source={icon} className="tabs-glyph" />
+        </View>
+      </View>
+    );
+  };
+
+  return (
+    <Tabs screenOptions={{ headerShown: false }}>
+      {tabs.map((tab) => (
+        <Tabs.Screen
+          key={tab.name}
+          name={tab.name}
+          options={{
+            title: tab.title,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon focused={focused} icon={tab.icon} />
+            ),
+            href: tab.href,
+          }}
+        />
+      ))}
+      {/* <Tabs.Screen name="index" options={{ title: "Home" }} />
+            <Tabs.Screen name="subscriptions" options={{ title: "Subscriptions" }} />
+            <Tabs.Screen name="subscriptions/[id]" options={{ href: null }} />
+            <Tabs.Screen name="subscriptions/spotify" options={{ href: null }} />
+            <Tabs.Screen name="insights" options={{ title: "Insights" }} />
+            <Tabs.Screen name="settings" options={{ title: "Settings" }} /> */}
+    </Tabs>
+  );
+};
+
+export default TabsLayout;
+
+
+
 
 
 Safearea view
