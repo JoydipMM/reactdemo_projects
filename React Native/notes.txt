@@ -218,6 +218,18 @@ add links:
       </Link>
 
 
+
+If we put "subscription" folder inside "(tabs)" folder, then in bottom tabs section extra two links will show, 
+1 >>> subcription[id]
+2 >>> subscription/spotify
+
+but we don't want to show this two links in tabs section. To hide this two link we will update "_layout.tsx" file of "(tabs)" folder
+<Tabs.Screen name="subscriptions/[id]" options={{ href: null }} />
+<Tabs.Screen name="subscriptions/spotify" options={{ href: null }} /> 
+
+above two line will hide the two links
+
+
 Safearea view
 ----------------------------------------
 
