@@ -518,5 +518,77 @@ const Insights = () => {
 
 export default Insights;
 
+Custom Font with expo font
+-----------------------------------------------------------------------------
+app.json
+
+1. register the custom .ttf font
+--------------------------------
+"plugins": [
+"expo-router",[
+....
+],
+[
+  "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/PlusJakartaSans-Light.ttf",
+            "./assets/fonts/PlusJakartaSans-Regular.ttf",
+            "./assets/fonts/PlusJakartaSans-Medium.ttf",
+            "./assets/fonts/PlusJakartaSans-Bold.ttf",
+            "./assets/fonts/PlusJakartaSans-SemiBold.ttf",
+            "./assets/fonts/PlusJakartaSans-ExtraBold.ttf"
+          ]
+        }
+      ]
+
+]
+
+2. Load the font
+-----------------------------
+app\_layout.tsx
+import "@/global.css";
+import { useFonts } from "expo-font";
+import { SplashScreen, Stack } from "expo-router";
+import { useEffect } from "react";
+
+export default function RootLayout() {
+  const [fontLoaded] = useFonts({
+    "sans-light": require("../assets/fonts/PlusJakartaSans-Light.ttf"),
+    "sans-regular": require("../assets/fonts/PlusJakartaSans-Regular.ttf"),
+    "sans-medium": require("../assets/fonts/PlusJakartaSans-Medium.ttf"),
+    "sans-bold": require("../assets/fonts/PlusJakartaSans-Bold.ttf"),
+    "sans-semibold": require("../assets/fonts/PlusJakartaSans-SemiBold.ttf"),
+    "sans-extrabold": require("../assets/fonts/PlusJakartaSans-ExtraBold.ttf"),
+  });
+
+  useEffect(() => {
+    if (fontLoaded) {
+      console.log("fonts loaded");
+      SplashScreen.hideAsync();
+    }
+  }, [fontLoaded]);
+
+  if (!fontLoaded) {
+    return null;
+  }
+
+  return <Stack screenOptions={{ headerShown: false }} />;
+}
 
 
+3. Sync the font with tailwind
+-------------------------------
+global.css
+
+--font-sans-light: sans-light;
+--font-sans-regular: sans-regular;
+--font-sans-medium: sans-medium;
+--font-sans-bold: sans-bold;
+--font-sans-semibold: sans-semibold;
+--font-sans-extrabold: sans-extrabold;
+
+use in jsx
+-------------------------------
+app\(tabs)\index.tsx
+<Text className="text-7xl text-success font-sans-extrabold">Home</Text>
