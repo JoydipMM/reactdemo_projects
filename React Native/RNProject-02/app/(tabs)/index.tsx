@@ -11,20 +11,23 @@ export default function App() {
   return (
     <SafeAreaView className="flex-1 bg-background p-5">
       {/* <View className="flex-1 items-center justify-center bg-background"> */}
-      <Text className="text-7xl text-success font-sans-extrabold">Home</Text>
+      <Text className="text-5xl text-success font-sans-extrabold">Home</Text>
       {/* <Text className="text-7xl text-success font-bold">Home</Text> */}
-      <Link href="/onboarding" className="py-2 px-5 bg-primary text-white m-2">
+      <Link
+        href="/onboarding"
+        className="py-2 px-5 bg-primary text-white m-2 font-sans-bold"
+      >
         Onboarding Page
       </Link>
       <Link
         href="/(auth)/signin"
-        className="py-2 px-5 bg-primary text-white m-2"
+        className="py-2 px-5 bg-primary text-white m-2 font-sans-bold"
       >
         Signin
       </Link>
       <Link
         href="/subscriptions/spotify"
-        className="py-2 px-5 bg-primary text-white m-2"
+        className="py-2 px-5 bg-primary text-white m-2 font-sans-bold"
       >
         Spotify Subscription
       </Link>
@@ -33,7 +36,7 @@ export default function App() {
           pathname: "/subscriptions/[id]",
           params: { id: "anitigravity" },
         }}
-        className="py-2 px-5 bg-primary text-white m-2"
+        className="py-2 px-5 bg-primary text-white m-2 font-sans-bold"
       >
         anitigravity Subscription
       </Link>
