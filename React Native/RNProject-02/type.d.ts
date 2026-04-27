@@ -49,7 +49,7 @@ declare global {
   > {}
 
   interface ListHeadingProps {
-    title: string;
+    title?: string;
   }
 }
 

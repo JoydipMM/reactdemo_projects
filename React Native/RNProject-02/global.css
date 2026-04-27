@@ -77,15 +77,15 @@
     }
 
     .home-user-name {
-        @apply ml-4 text-2xl font-sans-bold text-primary;
+        @apply ml-4 text-xl font-sans-bold text-primary;
     }
 
     .home-add-icon {
-        @apply size-12;
+        @apply size-10;
     }
 
     .home-balance-card {
-        @apply my-2.5 min-h-50 justify-between gap-5 rounded-bl-4xl rounded-tr-4xl bg-accent p-6;
+        @apply my-2.5 min-h-30 justify-between gap-5 rounded-bl-4xl rounded-tr-4xl bg-accent p-6;
     }
 
     .home-balance-label {
