@@ -592,3 +592,10 @@ use in jsx
 -------------------------------
 app\(tabs)\index.tsx
 <Text className="text-7xl text-success font-sans-extrabold">Home</Text>
+
+
+Day dependency
+----------------------------------
+npm i dayjs
+
+
