@@ -115,6 +115,584 @@ export default function App() {
 </textarea>
 <br/>
 
+
+<br/>
+<hr />
+<h5><b>Routing And navigation</b></h5>
+<hr />
+<p>We create <b>Onboarding page</b> and link it in <b>index.tsx</b>. For that, first we create <b>onboarding.tsx</b> in <b>app folder</b>.</p>
+<p><b>onboarding.tsx</b></p>
+<textarea class="code-editor">
+// app\onboarding.tsx
+
+import React from 'react';
+import { View, Text } from 'react-native';
+
+export default function Onboarding() {
+  return (
+    <View>
+      <Text>onboarding</Text>
+     </View>
+  );
+}
+</textarea>
+<p><b>index.tsx</b></p>
+<textarea class="code-editor">
+// app\index.tsx
+
+import { Link } from "expo-router"
+
+<Link href="/onboarding">Onboarding</Link>
+</textarea>
+<br/>
+
+
+<br/>
+<hr />
+<h5><b>Group Route</b></h5>
+<hr />
+<textarea class="code-editor">
+app/
+├── (auth)/
+│  ├── _layout.tsx
+│  ├── signin.tsx
+│  └── signup.tsx
+├── login.tsx
+└── register.tsx
+
+// app/index.tsx
+<Link href="/onboarding">Onboarding Page</Link>
+<Link href="/(auth)/signin"> Signin</Link>
+<Link href="/(auth)/signup"> Signup</Link>
+</textarea>
+<br/>
+
+
+<br/>
+<hr />
+<h5><b>Dynamic Routes</b></h5>
+<hr />
+<p>We make a subscription detail page. for that we create "<b>subscription</b>" folder inside root folder. inside "<b>subscription</b>" folder we create two .tsx file</p>
+<textarea class="code-editor">
+app/
+├── subscription/
+│  ├── [id].tsx
+│  └── spotify.tsx
+
+// in [id].tsx
+import { Link, useLocalSearchParams } from "expo-router";
+import React from "react";
+import { Text, View } from "react-native";
+
+const SubscriptionDetails = () => {
+  const { id } = useLocalSearchParams<{ id: string }>();
+  return (
+    <View>
+      <Text>subscription/[SubscriptionDetails] - of {id}</Text>
+      <Link href="/" className="py-2 px-5 bg-primary text-white m-2">
+        Go back
+      </Link>
+    </View>
+  );
+};
+
+export default SubscriptionDetails;
+
+
+//in spotify.tsx -------------------------
+import { Link } from "expo-router";
+import React from "react";
+import { Text, View } from "react-native";
+
+const Spotify = () => {
+  return (
+    <View>
+      <Text>Spotify</Text>
+      <Link href="/" className="py-2 px-5 bg-primary text-white m-2">
+        Go back
+      </Link>
+    </View>
+  );
+};
+
+export default Spotify;
+
+
+
+app\(tabs)\index.tsx
+add links:
+<Link href="/subscription/spotify"> Spotify Subscription</Link>
+<Link
+  href={{
+    pathname: "/subscription/[id]",
+    params: { id: "anitigravity" },
+  }}>
+  anitigravity Subscription
+</Link>
+</textarea>
+<br/>
+<blockquote class="blockquote" style="width: 100%;">
+<p><code class="mark" style="width: 100%; display: inline-block;"><b>Note : </b>
+If we put "subscription" folder inside "(tabs)" folder, then in bottom tabs section extra two links will show,<br/> 
+1 >>> subcription[id]<br/> 
+2 >>> subscription/spotify<br/> 
+but we don't want to show this two links in tabs section. To hide this two link we will update "<b>_layout.tsx</b>" file of "<b>(tabs)</b>" folder<br/>
+<textarea class="code-editor">
+<Tabs.Screen name="subscriptions/[id]" options={{ href: null }} />
+<Tabs.Screen name="subscriptions/spotify" options={{ href: null }} />
+</textarea>
+above two lines will hide the two links<br/>
+<b><i>If we put "index.tsx" file inside "(tabs)" folder the index.tsx file will route as a home page as before.</i></b>
+</code>
+</p>
+</blockquote>
+
+
+
+
+
+<br/>
+<hr />
+<h5><b>Layout Change</b></h5>
+<hr />
+<p>if we go in onboarding page. "<b>onboarding</b>" title show in header</p>
+<p>but if we go in <b>signup/signin</b> page the title will be show like "<b>(auth)/signin</b>" or "<b>(auth)/signup</b>". Because <b>expo</b> use "<b>stack navigation</b>" by default and each layout use it's own header</p>
+<p>So we will hide that header by create <b>"_layout.tsx" inside (auth) folder</b></p>
+<textarea class="code-editor">
+app/
+├── (auth)/
+│  ├── _layout.tsx
+│  ├── signin.tsx
+│  └── signup.tsx
+├── onboarding.tsx
+└── test.tsx
+
+// app/(auth)/_layout.tsx
+import "@/global.css";
+import { Stack } from "expo-router";
+
+export default function RootLayout() {
+  return <Stack screenOptions={{ headerShown: false }} />;
+}
+</textarea>
+<blockquote class="blockquote">
+<p><code class="mark"><b>Note : </b>if we want to hide header from root layout then add "<b>screenOptions={{ headerShown: false }}</b>" with <b>< stack /></b> </code></p>
+</blockquote>
+
+
+
+
+
+
+
+<br/>
+<hr />
+<h5><b>Use Icons/images with constant</b></h5>
+<hr />
+<p><b>Step: 01</b> Create <b>icons.ts</b> in <b>app\constants\</b> folder</p>
+<textarea class="code-editor">
+// app\constants\icons.ts
+import home from "@/assets/icons/home.png";
+import wallet from "@/assets/icons/wallet.png";
+import setting from "@/assets/icons/setting.png";
+import activity from "@/assets/icons/activity.png";
+import add from "@/assets/icons/add.png";
+
+export const icons = {
+  home,
+  wallet,
+  setting,
+  activity,
+  add,
+} as const;
+
+export type IconKey = keyof typeof icons;
+</textarea>
+<br/>
+<p><b>Step: 02</b> Now to handle image import we create "<b>image.d.ts</b>" declaration file in <b>project root folder</b></p>
+<textarea class="code-editor">
+// image.d.ts
+
+declare module "*.png" {
+  const value: any;
+  export default value;
+}
+declare module "*.jpg" {
+  const value: any;
+  export default value;
+}
+declare module "*.jpeg" {
+  const value: any;
+  export default value;
+}
+declare module "*.svg" {
+  const value: any;
+  export default value;
+}
+declare module "*.gif" {
+  const value: any;
+  export default value;
+}
+</textarea>
+<blockquote class="blockquote">
+<p><code class="mark" style="width: 100%; display: inline-block;"><b>Note : </b>this line of codes will help to read the images </code></p>
+</blockquote>
+<p><b>Step: 03</b> also create "<b>type.d.ts</b>" in project root folder. This declare the type of image source type</p>
+<textarea class="code-editor">
+// in "type.d.ts"
+
+import type { ImageSourcePropType } from "react-native";
+
+declare global {
+  interface TabIconProps {
+    focused: boolean;
+    icon: ImageSourcePropType;
+  }
+interface AppTab {
+    name: string;
+    title: string;
+    icon: ImageSourcePropType;
+  }
+}
+
+export { };
+</textarea>
+<br/>
+<p><b>Step: 04</b> use icons/images in json</p>
+<p>Create data for tabs "<b>constants/data.ts</b>"</p>
+<textarea class="code-editor">
+// constants/data.ts
+
+import { icons } from "./icons";
+
+export const tabs: AppTab[] = [
+  { name: "index", title: "Home", icon: icons.home },
+  { name: "subscriptions", title: "Subscriptions", icon: icons.wallet },
+  {
+    name: "subscriptions/spotify",
+    title: "spotify",
+    icon: icons.wallet,
+    href: null,
+  },
+  {
+    name: "subscriptions/[id]",
+    title: "subscription[id]",
+    icon: icons.wallet,
+    href: null,
+  },
+  { name: "insights", title: "Insights", icon: icons.activity },
+  { name: "settings", title: "Settings", icon: icons.setting },
+];
+</textarea>
+<br/>
+
+
+<br/>
+<hr />
+<h5><b>Dependency List </b></h5>
+<hr />
+<h6><b>clsx</b>: Dependency for Add/remove class conditionally</h6>
+<p><b>Command :</b> <code><b>install npm i clsx</b></code></p>
+<textarea class="code-editor">
+<View className={clsx("tabs-pill", focused && "tabs-active")}>
+  <Image source={icon} className="tabs-glyph" />
+</View>
+</textarea>
+<br/>
+<h6><b>dayjs</b>: Day dependency</h6>
+<p><b>Command :</b> <code><b>npm i dayjs</b></code></p>
+<textarea class="code-editor">
+<Text className="home-balance-date">
+  // nextRenewalDate: "2026-03-18T09:00:00.000Z",
+  {dayjs(HOME_BALANCE?.nextRenewalDate).format("DD/MM")}
+
+  // result >>> 18/03
+</Text>
+</textarea>
+<br/>
+<h6><b>react-native-safe-area-context</b>: Safe Area in React Native / Expo: ensures your UI doesn’t get hidden behind: <i>Notch / Dynamic Island</i>, <i>Status bar</i>, <i>Home indicator (bottom swipe area)</i></h6>
+<p><b>Command :</b> <code><b>npm i react-native-safe-area-context</b></code></p>
+<textarea class="code-editor">
+import { SafeAreaView as RNSafAreaView } from "react-native-safe-area-context";
+// SafeAreaView would not accept the class name, So need to active styled component, for that import the SafeAreaView as differnt name using "as RNSafAreaView"
+const SafeAreaView = styled(RNSafAreaView); // SafeAreaView is a third party dependency, for that to support react native style we set the alise name of  SafeAreaView and pass the alise name in styled method
+
+// update the html section
+{/* <View className="flex-1 items-center justify-center bg-background"> */}
+<SafeAreaView className="flex-1 bg-background p-5">
+...
+</SafeAreaView>
+{/* </View> */}
+</textarea>
+
+
+
+
+<br/>
+<hr />
+<h5><b>Style Bottom TabBar</b></h5>
+<hr />
+<p>We will update the code for <b>_layout.tsx</b> inside <b>(tabs)</b> folder</p>
+<textarea class="code-editor">
+// app\(tabs)\_layout.tsx
+
+import clsx from "clsx";
+import { Tabs } from "expo-router";
+import React from "react";
+import { Image, View } from "react-native";
+import { tabs } from "../constants/data";
+
+const TabsLayout = () => {
+  const TabIcon = ({ focused, icon }: TabIconProps) => {
+    return (
+      <View className="tabs-icons">
+        <View className={clsx("tabs-pill", focused && "tabs-active")}>
+          <Image source={icon} className="tabs-glyph" />
+        </View>
+      </View>
+    );
+  };
+
+  return (
+    <Tabs screenOptions={{ headerShown: false }}>
+      {tabs.map((tab) => (
+        <Tabs.Screen
+          key={tab.name}
+          name={tab.name}
+          options={{
+            title: tab.title,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon focused={focused} icon={tab.icon} />
+            ),
+            href: tab.href,
+          }}
+        />
+      ))}
+      {/* <Tabs.Screen name="index" options={{ title: "Home" }} />
+            <Tabs.Screen name="subscriptions" options={{ title: "Subscriptions" }} />
+            <Tabs.Screen name="subscriptions/[id]" options={{ href: null }} />
+            <Tabs.Screen name="subscriptions/spotify" options={{ href: null }} />
+            <Tabs.Screen name="insights" options={{ title: "Insights" }} />
+            <Tabs.Screen name="settings" options={{ title: "Settings" }} /> */}
+    </Tabs>
+  );
+};
+
+export default TabsLayout;
+
+
+
+
+// constants/data.ts
+
+import { icons } from "./icons";
+
+export const tabs: AppTab[] = [
+  { name: "index", title: "Home", icon: icons.home },
+  { name: "subscriptions", title: "Subscriptions", icon: icons.wallet },
+  {
+    name: "subscriptions/spotify",
+    title: "spotify",
+    icon: icons.wallet,
+    href: null,
+  },
+  {
+    name: "subscriptions/[id]",
+    title: "subscription[id]",
+    icon: icons.wallet,
+    href: null,
+  },
+  { name: "insights", title: "Insights", icon: icons.activity },
+  { name: "settings", title: "Settings", icon: icons.setting },
+];
+</textarea>
+<br/>
+<p>for proper common styling we create "<b>theme.ts</b>" inside "<b>constant</b>" folder</p>
+<textarea class="code-editor">
+// constant/theme.ts
+
+export const colors = {
+  background: "#fff9e3",
+  foreground: "#081126",
+  card: "#fff8e7",
+  muted: "#f6eecf",
+  mutedForeground: "rgba(0, 0, 0, 0.6)",
+  primary: "#081126",
+  accent: "#ea7a53",
+  border: "rgba(0, 0, 0, 0.1)",
+  success: "#16a34a",
+  destructive: "#dc2626",
+  subscription: "#8fd1bd",
+} as const;
+
+export const spacing = {
+  0: 0,
+  1: 4, // 1x4
+  2: 8, // 2x4
+  3: 12, // 3x4
+  4: 16,
+  5: 20,
+  6: 24,
+  7: 28,
+  8: 32,
+  9: 36,
+  10: 40,
+  11: 44,
+  12: 48,
+  14: 56,
+  16: 64,
+  18: 72,
+  20: 80,
+  24: 96,
+  30: 120,
+} as const;
+
+export const components = {
+  tabBar: {
+    height: spacing[18],
+    horizontalInset: spacing[5],
+    radius: spacing[8],
+    iconFrame: spacing[12],
+    itemPaddingVertical: spacing[2],
+  },
+} as const;
+
+export const theme = {
+  colors,
+  spacing,
+  components,
+} as const;
+</textarea>
+
+
+<br/>
+<hr />
+<h5><b>Safe Area in React Native / Expo</b></h5>
+<hr />
+<p>A <b>Safe Area</b> ensures your UI doesn’t get hidden behind:</p>
+<ul>
+  <li>Notch / Dynamic Island</li>
+  <li>Status bar</li>
+  <li>Home indicator (bottom swipe area)</li>
+</ul>
+<p><b>Command : </b> <code><b>npm i react-native-safe-area-context</b></code></p>
+<p>Now we use "<b>SafeAreaView</b>" to fixed display screen view without cropping anything for that, we update code of "<b>index.tsx</b>"</p>
+<p><b>Step: 01</b> import { styled } from "nativewind";</p>
+<p><b>Step: 02</b> add "<b>SafeAreaView</b>"</p>
+<textarea class="code-editor">
+import { SafeAreaView as RNSafAreaView } from "react-native-safe-area-context";
+// SafeAreaView would not accept the class name, So need to active styled component, for that import the SafeAreaView as differnt name using "as RNSafAreaView"
+const SafeAreaView = styled(RNSafAreaView); // SafeAreaView is a third party dependency, for that to support react native style we set the alise name of  SafeAreaView and pass the alise name in styled method
+
+// update the html section
+{/* <View className="flex-1 items-center justify-center bg-background"> */}
+<SafeAreaView className="flex-1 bg-background p-5">
+...
+</SafeAreaView>
+{/* </View> */}
+</textarea>
+<p><b>Same changes  for Setting, insights and subscriptions pages like below:</b></p>
+<textarea class="code-editor">
+import React from "react";
+import { Text } from "react-native";
+
+import { styled } from "nativewind";
+import { SafeAreaView as RNSafAreaView } from "react-native-safe-area-context";
+const SafeAreaView = styled(RNSafAreaView);
+
+const Insights = () => {
+  return (
+    <SafeAreaView className="flex-1 bg-background p-5">
+      <Text>Insights</Text>
+    </SafeAreaView>
+  );
+};
+
+export default Insights;
+</textarea>
+<br/>
+
+<br/>
+<hr />
+<h5><b>Custom Font with expo font</b></h5>
+<hr />
+<p><b>First : </b> register the custom .ttf font</p>
+<p>In <b>app.json</b> add the below code of <b>"expo-font"</b> section.</p>
+<textarea class="code-editor">
+"plugins": [
+"expo-router",[
+....
+],
+[
+"expo-font",
+      {
+        "fonts": [
+          "./assets/fonts/PlusJakartaSans-Light.ttf",
+          "./assets/fonts/PlusJakartaSans-Regular.ttf",
+          "./assets/fonts/PlusJakartaSans-Medium.ttf",
+          "./assets/fonts/PlusJakartaSans-Bold.ttf",
+          "./assets/fonts/PlusJakartaSans-SemiBold.ttf",
+          "./assets/fonts/PlusJakartaSans-ExtraBold.ttf"
+        ]
+      }
+    ]
+]
+</textarea>
+<br/>
+<p><b>Second : </b> Load the font</p>
+<textarea class="code-editor">
+// app\_layout.tsx
+
+import "@/global.css";
+import { useFonts } from "expo-font";
+import { SplashScreen, Stack } from "expo-router";
+import { useEffect } from "react";
+
+export default function RootLayout() {
+  const [fontLoaded] = useFonts({
+    "sans-light": require("../assets/fonts/PlusJakartaSans-Light.ttf"),
+    "sans-regular": require("../assets/fonts/PlusJakartaSans-Regular.ttf"),
+    "sans-medium": require("../assets/fonts/PlusJakartaSans-Medium.ttf"),
+    "sans-bold": require("../assets/fonts/PlusJakartaSans-Bold.ttf"),
+    "sans-semibold": require("../assets/fonts/PlusJakartaSans-SemiBold.ttf"),
+    "sans-extrabold": require("../assets/fonts/PlusJakartaSans-ExtraBold.ttf"),
+  });
+
+  useEffect(() => {
+    if (fontLoaded) {
+      console.log("fonts loaded");
+      SplashScreen.hideAsync();
+    }
+  }, [fontLoaded]);
+
+  if (!fontLoaded) {
+    return null;
+  }
+
+  return <Stack screenOptions={{ headerShown: false }} />;
+}
+</textarea>
+<br/>
+<p><b>Third : </b> Sync the font with tailwind in "global.css"</p>
+<textarea class="code-editor">
+// global.css
+
+--font-sans-light: sans-light;
+--font-sans-regular: sans-regular;
+--font-sans-medium: sans-medium;
+--font-sans-bold: sans-bold;
+--font-sans-semibold: sans-semibold;
+--font-sans-extrabold: sans-extrabold;
+</textarea>
+<br/>
+<p><b>Fourth : </b>use in jsx/tsx file</p>
+<textarea class="code-editor">
+// app\(tabs)\index.tsx
+
+<Text className="text-7xl text-success font-sans-extrabold">Home</Text>
+</textarea>
+<br/>
+
 <!-- <hr />
 <h5><b>Key Benefits (Why People Use It)</b></h5>
 <hr /> -->
