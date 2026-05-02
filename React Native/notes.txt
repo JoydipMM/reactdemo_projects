@@ -598,4 +598,20 @@ Day dependency
 ----------------------------------
 npm i dayjs
 
+centralize image import
+-------------------------------------
+app\constants\images.ts
+
+import avatar from "@/assets/images/avatar.png";
+import splashPattern from "@/assets/images/splash-pattern.png";
+
+export default { splashPattern, avatar };
+
+
+Cursor
+Clude
+radis
+kafka
+
+
 
