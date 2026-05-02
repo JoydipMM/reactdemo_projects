@@ -432,6 +432,55 @@ const SafeAreaView = styled(RNSafAreaView); // SafeAreaView is a third party dep
 <hr />
 <h5><b>Style Bottom TabBar</b></h5>
 <hr />
+<p>Tabs route group with folder structure</p>
+<textarea class="code-editor">
+app/
+├── (tabs)/
+│  ├── subscriptions/
+│  │  ├── [id].tsx
+│  │  ├── spotify.tsx
+│  ├── _layout.tsx
+│  ├── insights.tsx // insights page
+│  ├── settings.tsx // setting page
+│  └── index.tsx // we moved the index.tsx inside (tabs) folder from app folder
+└── type.d.ts // from here we declare the type for the Heading component data
+</textarea>
+<br/>
+<p>Tab data in <b>constants/data.ts</b></p>
+<textarea class="code-editor">
+// constants/data.ts
+import { icons } from "./icons";
+export const tabs: AppTab[] = [
+  { name: "index", title: "Home", icon: icons.home },
+  { name: "subscriptions", title: "Subscriptions", icon: icons.wallet },
+  {
+    name: "subscriptions/spotify",
+    title: "spotify",
+    icon: icons.wallet,
+    href: null,
+  },
+  {
+    name: "subscriptions/[id]",
+    title: "subscription[id]",
+    icon: icons.wallet,
+    href: null,
+  },
+  { name: "insights", title: "Insights", icon: icons.activity },
+  { name: "settings", title: "Settings", icon: icons.setting },
+];
+</textarea>
+<br/>
+<p>Tab data types in <b>type.d.ts</b></p>
+<textarea class="code-editor">
+// type.d.ts
+type AppTab = {
+  name: string;
+  title: string;
+  icon: ImageSourcePropType;
+  href?: null;
+};
+</textarea>
+<br/>
 <p>We will update the code for <b>_layout.tsx</b> inside <b>(tabs)</b> folder</p>
 <textarea class="code-editor">
 // app\(tabs)\_layout.tsx
@@ -454,7 +503,30 @@ const TabsLayout = () => {
   };
 
   return (
-    <Tabs screenOptions={{ headerShown: false }}>
+    <Tabs
+    screenOptions={{
+      headerShown: false,
+      tabBarShowLabel: false, // hide the nav label / title
+      tabBarStyle: { // this object for styling and position of the tabBar
+        position: "absolute",
+        bottom: Math.max(insets.bottom, tabBar.horizontalInset),
+        height: tabBar.height,
+        marginHorizontal: tabBar.horizontalInset,
+        borderRadius: tabBar.radius,
+        backgroundColor: colors.primary,
+        borderTopWidth: 0,
+        elevation: 0,
+      },
+      tabBarItemStyle: { // this object for styling and position of items in tabBar
+        paddingVertical: tabBar.height / 2 - tabBar.iconFrame / 1.6,
+      },
+      tabBarIconStyle: { // this object for styling of every single item in tabBar
+        width: tabBar.iconFrame,
+        height: tabBar.iconFrame,
+        alignItems: "center",
+      },
+    }}
+    >
       {tabs.map((tab) => (
         <Tabs.Screen
           key={tab.name}
@@ -469,42 +541,16 @@ const TabsLayout = () => {
         />
       ))}
       {/* <Tabs.Screen name="index" options={{ title: "Home" }} />
-            <Tabs.Screen name="subscriptions" options={{ title: "Subscriptions" }} />
-            <Tabs.Screen name="subscriptions/[id]" options={{ href: null }} />
-            <Tabs.Screen name="subscriptions/spotify" options={{ href: null }} />
-            <Tabs.Screen name="insights" options={{ title: "Insights" }} />
-            <Tabs.Screen name="settings" options={{ title: "Settings" }} /> */}
+          <Tabs.Screen name="subscriptions" options={{ title: "Subscriptions" }} />
+          <Tabs.Screen name="subscriptions/[id]" options={{ href: null }} />
+          <Tabs.Screen name="subscriptions/spotify" options={{ href: null }} />
+          <Tabs.Screen name="insights" options={{ title: "Insights" }} />
+          <Tabs.Screen name="settings" options={{ title: "Settings" }} /> */}
     </Tabs>
   );
 };
 
 export default TabsLayout;
-
-
-
-
-// constants/data.ts
-
-import { icons } from "./icons";
-
-export const tabs: AppTab[] = [
-  { name: "index", title: "Home", icon: icons.home },
-  { name: "subscriptions", title: "Subscriptions", icon: icons.wallet },
-  {
-    name: "subscriptions/spotify",
-    title: "spotify",
-    icon: icons.wallet,
-    href: null,
-  },
-  {
-    name: "subscriptions/[id]",
-    title: "subscription[id]",
-    icon: icons.wallet,
-    href: null,
-  },
-  { name: "insights", title: "Insights", icon: icons.activity },
-  { name: "settings", title: "Settings", icon: icons.setting },
-];
 </textarea>
 <br/>
 <p>for proper common styling we create "<b>theme.ts</b>" inside "<b>constant</b>" folder</p>
@@ -692,6 +738,47 @@ export default function RootLayout() {
 <Text className="text-7xl text-success font-sans-extrabold">Home</Text>
 </textarea>
 <br/>
+
+
+<br/>
+<hr />
+<h5><b>Reusable Component</b></h5>
+<hr />
+<p>Now we create reusable section's heading component. Folder structure as below</p>
+<textarea class="code-editor">
+app/
+├── (tabs)/
+│  ├── _layout.tsx
+│  └── index.tsx // Here we add the reusable Heading component
+├── components/
+│  └── ListHeading.tsx // This is the reusable Heading component
+└── type.d.ts // from here we declare the type for the Heading component data
+</textarea>
+
+
+
+
+<!-- 
+<textarea class="code-editor">
+app/
+├── (tabs)/
+│  ├── _layout.tsx
+│  └── index.tsx
+├── (constants)/
+│  └── data.tsx
+├── components/
+│  └── ListHeading.tsx
+└── type.d.ts
+</textarea> -->
+
+
+
+
+
+
+
+
+
 
 <!-- <hr />
 <h5><b>Key Benefits (Why People Use It)</b></h5>
