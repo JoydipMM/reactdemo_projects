@@ -753,10 +753,256 @@ app/
 ├── components/
 │  └── ListHeading.tsx // This is the reusable Heading component
 └── type.d.ts // from here we declare the type for the Heading component data
+
+
+// type.d.ts -----------------------------------
+type ListHeadingProps = {
+  title: string;
+};
+
+
+// components/ListHeading.tsx -----------------------------------
+import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
+
+const ListHeading = ({ title }: ListHeadingProps) => {
+  return (
+    <View className="list-head">
+      <Text className="list-title">{title !== "" && title}</Text>
+      <TouchableOpacity className="list-action">
+        <Text className="list-action-text">View All</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+export default ListHeading;
+
+
+// app\(tabs)\index.tsx -----------------------------------
+import { View } from "react-native";
+import ListHeading from "./components/ListHeading";
+
+<View>
+  <ListHeading title="Upcoming" />
+</View>
+<View>
+  <ListHeading title="All Subscriptions" />
+</View>
 </textarea>
+<br/>
+
+<br/>
+<hr />
+<h5><b>FlatList with Data population</b></h5>
+<hr />
+<textarea class="code-editor">
+import React from "react";
+import { FlatList, Text, View } from "react-native";
+
+import { SafeAreaView as RNSafAreaView } from "react-native-safe-area-context";
+const SafeAreaView = styled(RNSafAreaView);
+
+const Subscriptions = () => {
+  const DATA = [
+    { id: "1", title: "Item 1" },
+    { id: "2", title: "Item 2" },
+    { id: "3", title: "Item 3" },
+    { id: "4", title: "Item 4" },
+    { id: "5", title: "Item 5" },
+    { id: "6", title: "Item 6" },
+    { id: "7", title: "Item 7" },
+    { id: "8", title: "Item 8" },
+    { id: "9", title: "Item 9" },
+    { id: "10", title: "Item 10" },
+    { id: "11", title: "Item 11" },
+    { id: "12", title: "Item 12" },
+    { id: "13", title: "Item 13" },
+    { id: "14", title: "Item 14" },
+    { id: "15", title: "Item 15" },
+  ];
+  return (
+    <SafeAreaView className="flex-1 bg-background p-5">
+      <Text>subscriptions</Text>
+
+      <FlatList // import the FlatList component from react-native
+        data= {DATA} // The data to render
+        renderItem={({ item }) => ( // Render each item
+          <View
+            style={{
+              backgroundColor: " skyblue",
+              height: 40,
+              paddingLeft: 30,
+              paddingRight: 30,
+              paddingTop: 10,
+              paddingBottom: 10,
+              margin: 10,
+            }}
+          >
+            <Text style={{ color: " white" }}>{item.title}</Text>
+          </View>
+        )}
+        keyExtractor={(item) => item.id} // Unique key for each item
+        horizontal // Set to true for horizontal scrolling, default is vertical. Add this if you want horizontal scrolling
+        showsHorizontalScrollIndicator={false} // Hide the horizontal scroll indicator
+        showsVerticalScrollIndicator={false} // Hide the vertical scroll indicator
+        ListEmptyComponent={<Text>No Content Found</Text>} // Custom component to display when the list is empty
+      />
+    </SafeAreaView>
+  );
+};
+
+export default Subscriptions;
+</textarea>
+<br/>
 
 
+<hr />
+<h5><b>FlatList with Data population with reusable components</b></h5>
+<hr />
+<textarea class="code-editor">
+// constants/icons.ts -----------------------------------
+import activity from "@/assets/icons/activity.png";
+import add from "@/assets/icons/add.png";
+import adobe from "@/assets/icons/adobe.png";
+import back from "@/assets/icons/back.png";
+import canva from "@/assets/icons/canva.png";
+import claude from "@/assets/icons/claude.png";
+import dropbox from "@/assets/icons/dropbox.png";
+import figma from "@/assets/icons/figma.png";
+import github from "@/assets/icons/github.png";
+import home from "@/assets/icons/home.png";
+import medium from "@/assets/icons/medium.png";
+import menu from "@/assets/icons/menu.png";
+import notion from "@/assets/icons/notion.png";
+import openai from "@/assets/icons/openai.png";
+import plus from "@/assets/icons/plus.png";
+import setting from "@/assets/icons/setting.png";
+import spotify from "@/assets/icons/spotify.png";
+import wallet from "@/assets/icons/wallet.png";
 
+export const icons = {
+  home,
+  wallet,
+  setting,
+  activity,
+  add,
+  back,
+  menu,
+  plus,
+  notion,
+  dropbox,
+  openai,
+  adobe,
+  medium,
+  figma,
+  spotify,
+  github,
+  claude,
+  canva,
+} as const;
+
+export type IconKey = keyof typeof icons;
+
+
+// constants/data.ts -----------------------------------
+import { icons } from "./icons";
+export const UPCOMING_SUBSCRIPTIONS: UpcomingSubscription[] = [
+  {
+    id: "spotify",
+    icon: icons.spotify,
+    name: "Spotify",
+    price: 5.99,
+    currency: "USD",
+    daysLeft: 2,
+  },
+  {
+    id: "notion",
+    icon: icons.notion,
+    name: "Notion",
+    price: 12.0,
+    currency: "USD",
+    daysLeft: 4,
+  },
+  {
+    id: "figma",
+    icon: icons.figma,
+    name: "Figma",
+    price: 15.0,
+    currency: "USD",
+    daysLeft: 6,
+  },
+];
+
+
+// type.d.ts -----------------------------------
+import type { ImageSourcePropType } from "react-native";
+
+declare global {
+
+  interface UpcomingSubscription {
+    id: string;
+    icon: ImageSourcePropType;
+    name: string;
+    price: number;
+    currency?: string;
+    daysLeft: number;
+  }
+
+}
+
+export { };
+
+
+// components/UpcomingSubscriptionCard.tsx -----------------------------------
+import React from "react";
+import { Image, Text, View } from "react-native";
+
+const UpcomingSubscriptionCard = ({
+  name,
+  price,
+  daysLeft,
+  icon,
+  currency,
+}: UpcomingSubscription) => {
+  return (
+    <View className="upcoming-card">
+      <View className="upcoming-row">
+        <Image source={icon} className="upcoming-icon" />
+        <View>
+          <Text className="upcoming-price">
+            {currency}{price}
+          </Text>
+          <Text className="upcoming-meta" numberOfLines={1}>
+            {daysLeft}
+          </Text>
+        </View>
+      </View>
+      <Text className="upcoming-name">{name}</Text>
+    </View>
+  );
+};
+
+export default UpcomingSubscriptionCard;
+
+
+// app/(tabs)/index.tsx -----------------------------------
+import { FlatList, Image, Text, View } from "react-native";
+import { UPCOMING_SUBSCRIPTIONS } from "@/constants/data";
+
+export default function App() {
+  return (
+     <FlatList
+        data={UPCOMING_SUBSCRIPTIONS}
+        renderItem={({ item }) => <UpcomingSubscriptionCard {...item} />}
+        keyExtractor={(item) => item.id}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        ListEmptyComponent={<Text>NO Upcoming contnet</Text>}
+      ></FlatList>
+  );
+}
+</textarea>
 
 <!-- 
 <textarea class="code-editor">

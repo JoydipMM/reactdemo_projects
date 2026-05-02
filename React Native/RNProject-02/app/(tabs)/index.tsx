@@ -53,7 +53,14 @@ export default function App() {
             keyExtractor={(item) => item.id}
             horizontal
             showsHorizontalScrollIndicator={false}
+            ListEmptyComponent={<Text>NO Upcoming contnet</Text>}
           ></FlatList>
+        </View>
+      </View>
+
+      <View>
+        <View>
+          <ListHeading title="All Subscriptions" />
         </View>
       </View>
 
