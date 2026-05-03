@@ -28,7 +28,7 @@ export default function App() {
   return (
     <SafeAreaView className="flex-1 bg-background p-5">
       <View className="flex-1">
-        <View className="mb-14">
+        <View>
           {/* <SubscriptionCard
             expanded={expandedSubscriptionId === HOME_SUBSCRIPTIONS[0].id}
             onPress={() =>
@@ -109,6 +109,7 @@ export default function App() {
                 </View>
               </>
             )}
+            contentContainerClassName="pb-14"
           />
         </View>
       </View>

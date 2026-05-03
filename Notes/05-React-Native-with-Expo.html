@@ -1310,7 +1310,7 @@ export default function App() {
   return (
     <SafeAreaView className="flex-1 bg-background p-5">
       <View className="flex-1">
-        <View className="mb-14">
+        <View>
           <FlatList
             ListHeaderComponent={() => (
               <>
@@ -1379,6 +1379,7 @@ export default function App() {
                 </View>
               </>
             )}
+            contentContainerClassName="pb-14" // this add padding bottom at the FlatList
           />
         </View>
       </View>
