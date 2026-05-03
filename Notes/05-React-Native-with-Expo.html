@@ -796,6 +796,7 @@ import ListHeading from "./components/ListHeading";
 <hr />
 <h5><b>FlatList with Data population</b></h5>
 <hr />
+<p><b>FlatList</b> used for display the list of data in list view with scroll.</p>
 <textarea class="code-editor">
 import React from "react";
 import { FlatList, Text, View } from "react-native";
@@ -1003,6 +1004,392 @@ export default function App() {
   );
 }
 </textarea>
+<br/>
+
+<br/>
+<hr />
+<h5><b>Pressable Component with Props</b></h5>
+<hr />
+<p><b>Pressable</b> modern touch handler. Better than <b>TouchableOpacity</b> in most cases</p>
+<p><b>Core Props:</b></p>
+<ul>
+  <li><b>onPress, onLongPress, onPressIn, onPressOut, delayLongPress</b><br/>
+<textarea class="code-editor">
+onPress={() => {}}
+
+// Useful for animations / feedback
+onPressIn={() => console.log('touch start')}
+onPressOut={() => console.log('touch end')}
+
+// Trigger after holding press (~500ms)
+onLongPress={() => console.log('long press')}
+
+// Customize long press timing
+delayLongPress={800}
+
+// Disables interaction
+disabled={true}
+
+// Dynamic styling based on press state
+style={({ pressed }) => ({
+  backgroundColor: pressed ? 'gray' : 'white',
+})}
+
+// Native ripple effect (Android only)
+android_ripple={{ color: 'lightgray' }}
+
+// Allows finger to move slightly while pressing
+pressRetentionOffset={20}
+</textarea>
+  </li>
+  <!-- <li><b>onPress, onLongPress, onPressIn, onPressOut, delayLongPress</b><br/>
+<textarea class="code-editor">
+</textarea>
+  </li> -->
+</ul>
+<!-- <textarea class="code-editor">
+import { Pressable } from "react-native";
+</textarea> -->
+<br/>
+
+
+
+<hr />
+<h5><b>What is clsx</b></h5>
+<hr />
+<p><b>clsx</b> is just a tiny JavaScript utility that helps you <b>build class strings conditionally</b>. It works anywhere you need dynamic class names.</p>
+<p><b>Install clsx with:</b> <code><b>npm i clsx</b></code></p>
+<textarea class="code-editor">
+import clsx from "clsx";
+<div className={clsx("btn", isActive && "btn-active", isDisabled && "opacity-50")} />
+</textarea>
+<blockquote class="blockquote">
+  <p>
+    <code class="mark" style="width: 100%; display: inline-block;">
+        <b>Note: </b> We use <b>clsx</b> for conditional classes to make cleaner code than <b>string concatenation</b>. Without using <b>clsx</b> we use <b>string concatenation</b> to make conditional classes. like below:<br/>
+        <b>className={"btn" + (isActive ? " btn-active" : "") + (isDisabled ? " opacity-50" : "")}</b><br/>
+        With <b>clsx</b> we can write like below:<br/>
+        <b>className={clsx("btn", isActive && "btn-active", isDisabled && "opacity-50")}</b><br/>
+<textarea class="code-editor" style="background:transparent">
+// Without clsx:
+<div
+  className={
+    "btn " +
+    (active ? "btn-active " : "") +
+    (disabled ? "opacity-50 " : "") +
+    (error ? "border-red " : "")
+  }
+/>
+
+// With clsx:
+<div
+  className={clsx(
+    "btn",
+    active && "btn-active",
+    disabled && "opacity-50",
+    error && "border-red"
+  )}
+/>
+</textarea>
+    </code>
+  </p>
+</blockquote>
+
+
+
+
+
+<br/>
+<hr />
+<h5><b>FlatList with Tapable Cards with reusable components and conditional classes with "clsx"</b></h5>
+<hr />
+<p>We create <b>SubscriptionCard component</b>, import this component in <b>App.tsx</b>, then pass data through props for make expandable card on tap.</p>
+<textarea class="code-editor">
+// type.d.ts -----------------------------------
+interface Subscription {
+  id: string;
+  icon: ImageSourcePropType;
+  name: string;
+  plan?: string;
+  category?: string;
+  paymentMethod?: string;
+  status?: string;
+  startDate?: string;
+  price: number;
+  currency?: string;
+  billing: string;
+  renewalDate?: string;
+  color?: string;
+}
+
+interface SubscriptionCardProps extends Omit<Subscription, "id"> {
+  expanded: boolean;
+  onPress: () => void;
+  onCancelPress?: () => void;
+  isCancelling?: boolean;
+}
+
+
+// components/SubscriptionCard.tsx -----------------------------------
+import clsx from "clsx";
+import React from "react";
+import { Image, Pressable, Text, View } from "react-native";
+
+const SubscriptionCard = ({
+  name,
+  price,
+  currency,
+  icon,
+  billing,
+  color,
+  category,
+  plan,
+  paymentMethod,
+  expanded,
+  onPress,
+}: SubscriptionCardProps) => {
+  return (
+    <Pressable
+      onPress={onPress}
+      className={clsx("sub-card", expanded ? "sub-card-expanded" : "bg-card")}
+      style={!expanded && color ? { backgroundColor: color } : undefined}
+    >
+      <View className="sub-head">
+        <View className="sub-main">
+          <Image source={icon} className="sub-icon" />
+          <View className="sub-copy">
+            <Text numberOfLines={1} className="sub-title">
+              {name}
+            </Text>
+            <Text numberOfLines={1} ellipsizeMode="tail" className="sub-meta">
+              {category?.trim() || plan?.trim() || paymentMethod?.trim()}
+              {/* add renewal date with frmat */}
+            </Text>
+          </View>
+        </View>
+        <View className="sub-price-box">
+          <Text className="sub-price">{price}</Text>
+          <Text className="sub-billing">{billing}</Text>
+        </View>
+      </View>
+      {expanded && (
+        <View className="sub-row">
+          <View className="sub-row-copy">
+            <Text className="sub-label">Currency</Text>
+            <Text className="sub-value">{currency}</Text>
+          </View>
+          <View className="sub-row-copy">
+            <Text className="sub-label">Price</Text>
+            <Text className="sub-value">{price}</Text>
+          </View>
+        </View>
+      )}
+    </Pressable>
+  );
+};
+
+export default SubscriptionCard;
+
+
+// app/(tabs)/index.tsx -----------------------------------
+import { FlatList, Image, Text, View } from "react-native";
+import { UPCOMING_SUBSCRIPTIONS } from "@/constants/data";
+import SubscriptionCard from "@/components/SubscriptionCard";
+
+...
+
+<SubscriptionCard
+  expanded={expandedSubscriptionId === HOME_SUBSCRIPTIONS[1].id}
+  /*
+  The onPress prop is a function that is called when the user taps on the component.
+  Here we have a callback function, which checks if the current ID is equal to the ID of the subscription, if it is, we set the expandedSubscriptionId to null, otherwise we set it to the ID of the subscription. So when we tap on the subscription card, it will toggle between expanded and not expanded.
+  */
+  onPress={() =>
+    setExpandedSubscriptionId((currentId) =>
+      currentId === HOME_SUBSCRIPTIONS[1].id
+        ? null
+        : HOME_SUBSCRIPTIONS[0].id,
+    )
+  }
+  {...HOME_SUBSCRIPTIONS[1]}
+/>
+
+/*
+Now above SubscriptionCard data is showing the data of the second subscription. But We want to show all subscriptions in the FlatList, so we need to map over the subscriptions and pass the data to the SubscriptionCard component. So we update the above code like below:
+*/
+<FlatList
+  data={HOME_SUBSCRIPTIONS}
+  keyExtractor={(item) => item.id}
+  renderItem={({ item }) => (
+    <SubscriptionCard
+      expanded={expandedSubscriptionId === item.id}
+      onPress={() =>
+        setExpandedSubscriptionId((currentId) =>
+          currentId === item.id ? null : item.id,
+        )
+      }
+      {...item}
+    />
+  )}
+/>
+</textarea>
+<br/>
+<p>After this, if the list is unable to scroll vertically then we add <b>"flex-1"</b>class to the <b>SafeAreaView</b> and parent <b>View</b>. like below:</p>
+<textarea class="code-editor">
+<SafeAreaView className="flex-1 bg-background p-5">
+// ... exiting code ...
+<View className="flex-1">
+  <View>
+    <ListHeading title="All Subscriptions" />
+  </View>
+  <View>
+    <FlatList
+      data={HOME_SUBSCRIPTIONS}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => (
+        <SubscriptionCard
+          expanded={expandedSubscriptionId === item.id}
+          onPress={() =>
+            setExpandedSubscriptionId((currentId) =>
+              currentId === item.id ? null : item.id,
+            )
+          }
+          {...item}
+        />
+      )}
+    />
+  </View>
+</View>
+
+</SafeAreaView>
+</textarea>
+<br/>
+<p>But, the full page is not scrolling, only that FlatList section is scrolling. Every FlatList scroll it's own items. So <b>convert main vertical list into ONE FlatList and move everything else into "ListHeaderComponent"</b></p>
+<p>Inside the <b>ListHeaderComponent</b> we wrap all other View elements above of the flatlist.</p>
+<blockquote class="blockquote">
+<p><code class="mark" style="width: 100%; display: inline-block;">
+<textarea class="code-editor">
+// example
+<FlatList
+  ListHeaderComponent={<View>Sections</View>}
+  data={HOME_SUBSCRIPTIONS}
+  keyExtractor={(item) => item.id}
+  ....
+/></textarea>
+</code></p></blockquote>
+<p><b></b>Full updated Code below:</b></p>
+<textarea class="code-editor">
+// app/(tabs)/index.tsx
+import "@/global.css";
+
+import { styled } from "nativewind";
+import { FlatList, Image, Text, View } from "react-native";
+import {
+  HOME_BALANCE,
+  HOME_SUBSCRIPTIONS,
+  HOME_USER,
+  UPCOMING_SUBSCRIPTIONS,
+} from "../constants/data";
+import images from "../constants/images";
+
+// SafeAreaView would not accept the class name, So need to active styled component, for that import the SafeAreaView as differnt name useing "as RNSafAreaView"
+import ListHeading from "@/components/ListHeading";
+import SubscriptionCard from "@/components/SubscriptionCard";
+import UpcomingSubscriptionCard from "@/components/UpcomingSubscriptionCard";
+import { formatCurrency } from "@/lib/utils";
+import dayjs from "dayjs";
+import { useState } from "react";
+import { SafeAreaView as RNSafAreaView } from "react-native-safe-area-context";
+import { icons } from "../constants/icons";
+const SafeAreaView = styled(RNSafAreaView);
+
+export default function App() {
+  const [expandedSubscriptionId, setExpandedSubscriptionId] =
+    useState<String | null>(null);
+
+  return (
+    <SafeAreaView className="flex-1 bg-background p-5">
+      <View className="flex-1">
+        <View className="mb-14">
+          <FlatList
+            ListHeaderComponent={
+              <>
+                <View className="home-header">
+                  <View className="home-user">
+                    <Image source={images.avatar} className="home-avatar" />
+                    <Text className="home-user-name">{HOME_USER?.name}</Text>
+                  </View>
+                  <Image source={icons.add} className="home-add-icon" />
+                </View>
+
+                <View className="home-balance-card">
+                  <Text className="home-balance-label">Balance</Text>
+                  <View className="home-balance-row">
+                    <Text className="home-balance-amount">
+                      {formatCurrency(HOME_BALANCE?.amount)}
+                    </Text>
+                    <Text className="home-balance-date">
+                      {dayjs(HOME_BALANCE?.nextRenewalDate).format("DD/MM")}
+                    </Text>
+                  </View>
+                </View>
+
+                <View>
+                  <View>
+                    <ListHeading title="Upcoming" />
+                  </View>
+                  <View>
+                    <FlatList
+                      data={UPCOMING_SUBSCRIPTIONS}
+                      renderItem={({ item }) => (
+                        <UpcomingSubscriptionCard {...item} />
+                      )}
+                      keyExtractor={(item) => item.id}
+                      horizontal
+                      showsHorizontalScrollIndicator={false}
+                      ListEmptyComponent={<Text>NO Upcoming contnet</Text>}
+                    ></FlatList>
+                  </View>
+                </View>
+                <View>
+                  <ListHeading title="All Subscriptions" />
+                </View>
+              </>
+            }
+            data={HOME_SUBSCRIPTIONS}
+            keyExtractor={(item) => item.id}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item }) => (
+              <SubscriptionCard
+                expanded={expandedSubscriptionId === item.id}
+                onPress={() =>
+                  setExpandedSubscriptionId((currentId) =>
+                    currentId === item.id ? null : item.id,
+                  )
+                }
+                {...item}
+              />
+            )}
+            ListFooterComponent={
+              <>
+                <View>
+                  <Text className="home-footer-label">
+                    Remaining bottom content
+                  </Text>
+                </View>
+              </>
+            }
+          />
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+</textarea>
+
+
+
 
 <!-- 
 <textarea class="code-editor">
