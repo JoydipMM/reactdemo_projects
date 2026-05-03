@@ -694,6 +694,13 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 
+SplashScreen.preventAutoHideAsync();
+/*
+Note: “Don’t automatically hide the splash screen when the app loads.” Normally:
+App starts → splash screen shows → React Native loads → splash disappears automatically
+But with this: We take manual control of when the splash screen disappears.
+*/
+
 export default function RootLayout() {
   const [fontLoaded] = useFonts({
     "sans-light": require("../assets/fonts/PlusJakartaSans-Light.ttf"),
