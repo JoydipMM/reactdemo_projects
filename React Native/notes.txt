@@ -635,8 +635,12 @@ bash: ollama: command not found
 run this command: ollama run llama3
 
 
+
 https://ollama.com/library/minimax-m2.5
 ollama launch claude --model minimax-m2.5:cloud
+
+
+https://clerk.com/docs/expo/getting-started/quickstart
 
 
 
