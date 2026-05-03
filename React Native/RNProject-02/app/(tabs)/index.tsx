@@ -41,7 +41,7 @@ export default function App() {
             {...HOME_SUBSCRIPTIONS[0]}
           /> */}
           <FlatList
-            ListHeaderComponent={
+            ListHeaderComponent={() => (
               <>
                 <View className="home-header">
                   <View className="home-user">
@@ -85,7 +85,7 @@ export default function App() {
                   <ListHeading title="All Subscriptions" />
                 </View>
               </>
-            }
+            )}
             data={HOME_SUBSCRIPTIONS}
             keyExtractor={(item) => item.id}
             showsVerticalScrollIndicator={false}
@@ -100,7 +100,7 @@ export default function App() {
                 {...item}
               />
             )}
-            ListFooterComponent={
+            ListFooterComponent={() => (
               <>
                 <View>
                   <Text className="home-footer-label">
@@ -108,7 +108,7 @@ export default function App() {
                   </Text>
                 </View>
               </>
-            }
+            )}
           />
         </View>
       </View>
