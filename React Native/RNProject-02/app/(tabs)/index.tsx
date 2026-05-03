@@ -1,7 +1,8 @@
 import "@/global.css";
 
+import { Redirect } from "expo-router";
 import { styled } from "nativewind";
-import { FlatList, Image, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
 import {
   HOME_BALANCE,
   HOME_SUBSCRIPTIONS,
@@ -21,9 +22,28 @@ import { SafeAreaView as RNSafAreaView } from "react-native-safe-area-context";
 import { icons } from "../constants/icons";
 const SafeAreaView = styled(RNSafAreaView);
 
+import { useAuth, useClerk, useUser, useUserProfileModal } from "@clerk/expo";
+
 export default function App() {
   const [expandedSubscriptionId, setExpandedSubscriptionId] =
     useState<String | null>(null);
+
+  const { isSignedIn, isLoaded } = useAuth({ treatPendingAsSignedOut: false });
+  const { user } = useUser();
+  const { signOut } = useClerk();
+  const { presentUserProfile } = useUserProfileModal();
+
+  if (!isLoaded) {
+    return (
+      <View className="flex-1 items-center justify-center bg-background">
+        <ActivityIndicator size="large" color="#ea7a53" />
+      </View>
+    );
+  }
+
+  if (!isSignedIn) {
+    return <Redirect href="/(auth)/signin" />;
+  }
 
   return (
     <SafeAreaView className="flex-1 bg-background p-5">

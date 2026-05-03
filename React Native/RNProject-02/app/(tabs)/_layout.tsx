@@ -53,7 +53,7 @@ const TabsLayout = () => {
             tabBarIcon: ({ focused }) => (
               <TabIcon focused={focused} icon={tab.icon} />
             ),
-            href: tab.href,
+            ...(tab.href !== undefined ? { href: tab.href } : {}),
           }}
         />
       ))}

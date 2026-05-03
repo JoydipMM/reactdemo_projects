@@ -614,4 +614,29 @@ radis
 kafka
 
 
+Windows PowerShell:
+irm https://claude.ai/install.ps1 | iex
+Claude Code successfully installed!
+
+Version: 2.1.126
+Location: C:\Users\joydi\.local\bin\claude.exe
+add this in environment path :  C:\Users\joydi\.local\bin\
+
+claude --help
+
+run claude in terminal: claude [press enter]
+
+if show below error:
+$ ollama launch claude --model minimax-m2.5:cloud bash: ollama: command not found
+
+ollama --version
+bash: ollama: command not found
+
+run this command: ollama run llama3
+
+
+https://ollama.com/library/minimax-m2.5
+ollama launch claude --model minimax-m2.5:cloud
+
+
 
