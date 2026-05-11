@@ -89,6 +89,28 @@ src/
  ├── main.tsx
 </textarea>
 <br/>
+<hr />
+<h5><b>Gitbash command to create Folders and Files</b></h5>
+<hr />
+<textarea class="code-editor">
+// folder creating command:
+mkdir -p src/app/{providers,routes,layouts,config,error} \
+src/features/movies/{components,hooks,queries,services,store,types} \
+src/features/auth/{components,hooks,queries,services,store,types} \
+src/shared/{api,ui,hooks,constants,types,utils}
+
+// create .empty file inside each folder
+touch src/features/movies/components/.gitkeep \
+src/features/movies/hooks/.gitkeep \
+src/features/movies/queries/.gitkeep \
+src/features/movies/services/.gitkeep \
+src/features/movies/store/.gitkeep \
+src/features/movies/types/.gitkeep \
+
+// craete tsx/jsx files inside each folder
+touch src/app/layouts/{AuthLayout.tsx,DefaultLayout.tsx} \
+src/app/routes/{AppRouter.tsx,ProtectedRoute.tsx} \
+</textarea>
 
 <hr />
 <h5><b>Create React App with Vite</b></h5>
