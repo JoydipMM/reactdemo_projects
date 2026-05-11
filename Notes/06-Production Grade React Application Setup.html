@@ -15,7 +15,7 @@
 <ul class="list-group list-group-flush mx-4">
   <li><b>For TypeScript support :</b> <code><b>npm install -D typescript @types/react @types/react-dom</b></code> <b>OR</b> <code><b>npm install -D @vitejs/plugin-react-swc</b></code></li>
   <li><b>React Router DOM:</b> <code><b>npm install react-router-dom</b></code></li>
-  <li><b>Tailwind CSS for vite:</b> <code><b>npm install tailwindcss @tailwindcss/vite</b></code> <a class="btn btn-sm btn-primary" href="#tailwindcss"><b>tailwindcss Setup</b></a></li>
+  <li><b>Tailwind CSS for vite:</b> <code><b>npm install tailwindcss @tailwindcss/vite</b></code> <a href="#tailwindcss"><b>tailwindcss Setup</b></a></li>
   <li><b>Axios:</b> <code><b>npm install axios</b></code></li>
 </ul>
 <br/>
@@ -211,11 +211,8 @@ src/app/routes/{AppRouter.tsx,ProtectedRoute.tsx} \
 <hr />
 <h5><b>Tailwind CSS Setup</b></h5>
 <hr />
-<p><b>Step 01</b></p>
-<p><b>Tailwind CSS for vite:</b> <code><b>npm install tailwindcss @tailwindcss/vite</b></code></p>
-<br/>
-<p><b>Step 02</b></p>
-<p>then open <code><b>vite.config.ts</b></code> file and update below code</p>
+<p><b>Step 01</b> Tailwind CSS for vite: <code><b>npm install tailwindcss @tailwindcss/vite</b></code></p>
+<p><b>Step 02</b> then open <code><b>vite.config.ts</b></code> file and update below code</p>
 <textarea class="code-editor">
 // vite.config.ts
 import { defineConfig } from 'vite'
@@ -230,21 +227,18 @@ export default defineConfig({
   ],
 })
 </textarea>
-<br/>
-<p><b>Step 03</b></p>
-<p>import tailwincss in <code><b>src\index.css</b></code> file and update below code</p>
+<p><b>Step 03</b> import tailwincss in <code><b>src\index.css</b></code> file and update below code</p>
 <textarea class="code-editor">
 /* src\index.css */
 @import "tailwindcss";
 </textarea>
-<br/>
-<p><b>Step 04</b></p>
-<p>for test add below html in any jsx</p>
+<p><b>Step 04</b> for test add below html in any jsx</p>
 <textarea class="code-editor">
 <h1 class="text-3xl font-bold underline">
   Hello world!
 </h1>
 </textarea>
+<br/>
 
 <!-- <textarea id="editor">
 
