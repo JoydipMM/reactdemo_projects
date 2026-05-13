@@ -207,6 +207,32 @@ src/app/routes/{AppRouter.tsx,ProtectedRoute.tsx} \
   "include": ["src"]
 }
 </textarea>
+
+<hr />
+<h5><b>Path Improvement</b></h5>
+<hr />
+<p>Open <code><b>vite.config.ts</b></code> file and update below code</p>
+<textarea class="code-editor">
+// vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from "path"; // add this for import path improvement like "@/shared/api/client" instead of "../../../shared/api/client"
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+
+  // Import Path Improvement
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+})
+</textarea>
+
+
+
 <br id="tailwindcss"/>
 
 <hr />
@@ -219,6 +245,7 @@ src/app/routes/{AppRouter.tsx,ProtectedRoute.tsx} \
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite' // add this
+import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -226,6 +253,11 @@ export default defineConfig({
   react(),
   tailwindcss() // also add this
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 })
 </textarea>
 <p><b>Step 03</b> import tailwincss in <code><b>src\index.css</b></code> file and update below code</p>
@@ -240,6 +272,290 @@ export default defineConfig({
 </h1>
 </textarea>
 <br/>
+
+<hr />
+<h5><b>Simple API Call with Axios</b></h5>
+<hr />
+<p><b>Step 01</b> install axios: <code><b>npm install axios</b></code></p>
+<p><b>Step 02</b> import axios in file and write below code for api call</p>
+<textarea class="code-editor">
+import axios from "axios";
+import { useState, useEffect } from 'react'
+
+function App() {
+
+  const [users, setUsers] = useState([]);
+
+  // Simulate an API call
+  const fetchUsers = async () => {
+    await axios.get('https://jsonplaceholder.typicode.com/users')
+    .then(response => {
+      console.log(response.data);
+      setUsers(response.data);
+    })
+    .catch((error)=>{
+        console.log("Error fetching users", error);
+    });
+  };
+
+  // Get users when component mounts
+  useEffect(() => {
+    fetchUsers(); // Call the function to fetch users
+  }, []);
+
+  return (
+    <>
+    <h1 className="text-3xl font-bold text-amber-700 underline">Users List</h1>
+    {users.map((user)=>(
+      <div key={user.id} className="border p-4 m-2">
+        <h2 className="text-xl font-semibold">{user.name}</h2>
+        <p>Email: {user.email}</p>
+        <p>Phone: {user.phone}</p>
+      </div>
+    ))}
+    </>
+  )
+}
+
+export default App
+</textarea>
+<br/>
+
+<hr />
+<h5><b>Axios use in Production Grade Structure </b></h5>
+<hr />
+<blockquote class="blockquote">
+  <code class="mark" style="display: inline-block; font-family:system-ui, -apple-system; width:100%">
+    <p><b>Enterprise-Level Data Flow form API to Component</b></p>
+<textarea class="code-editor">
+Backend API  
+    ↓
+Axios Instance
+    ↓
+Service Layer
+    ↓
+Custom Hook / React Query
+    ↓
+Component
+</textarea>
+</code>
+</blockquote>
+
+<p><b>Recommended Folder Structure</b></p>
+<textarea class="code-editor">
+src/
+├── shared/
+│    ├── api/
+│    │   ├── client.ts // axios instance
+│    │   ├── endpoints.ts // API endpoint constants
+│    ├── routes/
+│    │   ├── AppRouter.tsx
+│    ├── utils/
+│    │   ├── constants.js
+│
+├── features/
+│    ├── users/
+│    │   ├── pages/
+│    │   │   ├── UsersPage.tsx
+│    │   │   ├── UserDetailPage.tsx
+│    │   ├── components/
+│    │   │   ├── UserList.tsx
+│    │   │   ├── User.tsx
+│    │   ├── services/
+│    │   │   ├── user.service.ts
+│    │   ├── types/
+│    │   │   ├── users.ts
+│
+├── hooks/
+├── types/
+└── app/
+</textarea>
+<br/>
+<p><b>Step 01</b> : Create <code><b>.env</b></code> file, where we will store our API access token if any</p>
+<textarea class="code-editor">
+// .env
+VITE_ACCESS_TOKEN=token3453534534sgsgsdf
+</textarea>
+<br/>
+<p><b>Step 02</b> : Create <code><b>src/shared/utils/constants.js</b></code> file, where we will store our API base URL and other constants</p>
+<textarea class="code-editor">
+// src/shared/utils/constants.js
+export const API_BASE_URL = "https://jsonplaceholder.typicode.com";
+</textarea>
+<br/>
+<p><b>Step 03</b> : Create <code><b>src/shared/api/client.ts</b></code> file, where we will create axios instance</p>
+<textarea class="code-editor">
+// src/shared/api/client.ts
+import axios from "axios";
+import { API_BASE_URL } from "@/shared/utils/constants";
+
+const axiosClient = axios.create({
+    baseURL: API_BASE_URL,
+    headers: {
+      accept: 'application/json', // [send JSON] What response format client wants
+      'Content-Type': 'application/json', // [receive JSON] What request body format client sends
+      Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`
+    }
+})
+
+export default axiosClient;
+</textarea>
+<blockquote class="blockquote">
+<code class="mark" style="width: 100%; display: inline-block; font-family:system-ui, -apple-system;"><b>Note:</b> Why use instance?
+  <ul class="list-group list-group-flush px-4 mb-2">
+    <li>Cleaner code</li>
+    <li>Centralized headers</li>
+    <li>Easier auth handling</li>
+    <li>Easier interceptors</li>
+  </ul>
+<b>Difference Between Accept and Content-Type:</b>
+<ul class="list-group list-group-flush px-4 mb-2">
+  <li><b>Accept: <i>[send JSON]</i></b> What response format client wants</li>
+  <li><b>Content-Type: <i>[receive JSON]</i></b> What request body format client sends</li>
+</ul>
+<b>Other Common Headers:</b>
+<ul class="list-group list-group-flush px-4 mb-2">
+  <li><b>Authorization:</b> Used to send credentials (e.g., Bearer token) for authentication.<br/>
+<textarea class="code-editor">
+Authorization: `Bearer ${token}`
+</textarea>
+  </li>
+  <li><b>Accept-Language:</b> Preferred language.<br/>
+<textarea class="code-editor">
+'Accept-Language': 'en-US'
+</textarea>
+  </li>
+  <li><b>Cache-Control:</b> Used to specify caching behavior (e.g., no-cache, no-store).<br/>
+<textarea class="code-editor">
+'Cache-Control': 'no-cache'
+</textarea></li>
+  <li><b>Multipart/FormData:</b> For image upload:<br/>
+<textarea class="code-editor">
+'Content-Type': 'multipart/form-data'
+</textarea></li>
+  <li><b>User-Agent:</b> Identifies the client software making the request.</li>
+  <li><b>Accept-Encoding:</b> Specifies the content encoding (e.g., gzip) the client can handle.</li>
+  <li><b>Origin:</b> Indicates the origin of the request, used in cross-origin requests.</li> 
+</ul>
+<b>Important Axios Behavior</b>
+<ul class="list-group list-group-flush px-4 mb-2">
+  <li>Usually no Content-Type needed for <b>GET Request</b> because no request body is sent.</li>
+  <li><b>POST/PUT/PATCH</b> Usually need: <b>'Content-Type': 'application/json'</b></li>
+</ul>
+</code>
+</blockquote>
+<br/>
+<p><b>Step 04</b> : Now we create API Endpoints file <code><b>src/shared/api/endpoints.ts</b></code>, where we will store our all API Endpoints</p>
+<textarea class="code-editor">
+// src/shared/api/endpoints.ts
+export const ENDPOINTS = {
+  USERS: "/users",
+  USER: "/users/:id",
+  LOGIN: "/auth/login",
+};
+</textarea>
+<br/>
+<p><b>Step 05</b> : Now we create service for API <code><b>src/features/users/services/user.service.ts</b></code>, where we will store our all API Endpoints</p>
+<p>For <b>production scalable</b> React apps: The <b><i>object-based service pattern</i></b> is usually better.</p>
+<textarea class="code-editor">
+// src/features/users/services/user.service.ts
+import axiosClient from "@/shared/api/client";
+import { ENDPOINTS } from "@/shared/api/endpoints";
+
+// Object-based service pattern
+export const userService = {
+
+  export const getUsers = async () => {
+    const response = await api.get(ENDPOINTS.USERS);
+    return response.data;
+  };
+  
+  createUser: async (data: CreateUserPayload) => {
+    /* axios post API call example 
+    const response = await axios({
+        method: 'post',
+        url: '/user/12345',
+        data: {
+            firstName: 'Fred',
+            lastName: 'Flintstone',
+        },
+    });
+    const result = response.data;
+    */
+    const response = await axiosClient.post(
+        ENDPOINTS.USERS,
+        data
+    );
+    return response.data;
+  },
+
+  // shorter version of above code
+  // getUsers: () => axiosClient.get(ENDPOINTS.USERS),
+
+}
+</textarea>
+
+
+
+
+
+<br/>
+
+<blockquote class="blockquote">
+<code class="mark" style="width: 100%; display: inline-block; font-family:system-ui, -apple-system;">
+
+<hr />
+<h6><b>Best Practice of Axios Usage</b></h6>
+<hr />
+<table class="table">
+  <tr>
+    <td><b>DO</b></td>
+    <td><b>DON'T</b></td>
+  </tr>
+  <tr>
+    <td>
+    ✅ Create single axios instance<br/>
+    ✅ Use service layer<br/>
+    ✅ Use interceptors<br/>
+    ✅ Use TypeScript types<br/>
+    ✅ Use React Query/TanStack Query with Axios<br/>
+    ✅ Centralize API logic<br/>
+    ✅ Handle loading/error globally<br/>
+    </td>
+    <td>
+    ❌ Call axios directly everywhere<br/>
+    ❌ Store API URLs in components<br/>
+    ❌ Repeat headers repeatedly<br/>
+    ❌ Ignore cancellation/cleanup<br/>
+    ❌ Mix UI and API logic<br/>
+  </td>
+</tr>
+</table>
+<br/>
+<hr />
+<h6><b>Axios + TanStack Query is the current industry standard combination.</b></h6>
+<hr />
+<textarea class="code-editor">
+// src/shared/utils/constants.js
+export const QUERY_KEYS = {
+    USERS: ["users"],
+};
+</textarea>
+<textarea class="code-editor">
+const fetchUsers = async () => {
+  const res = await api.get("/users");
+  return res.data;
+};
+
+const { data, isLoading } = useQuery({
+  queryKey: QUERY_KEYS.USERS,
+  queryFn: fetchUsers,
+});
+</textarea>
+
+</code>
+</blockquote>
+
 
 <!-- <textarea id="editor">
 
