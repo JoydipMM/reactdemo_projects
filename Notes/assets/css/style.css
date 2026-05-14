@@ -14,3 +14,11 @@ code{ font-size: 16px; }
 .badge{ padding: 5px 14px; font-size: 15px; font-weight: 400; }
 .cm-s-neo.CodeMirror{ background-color: transparent; }
 .blockquote .mark{ padding: 15px; }
+
+
+@media print {
+
+body{ font-size:12px; }
+code{ font-size: 12px; }
+
+}
