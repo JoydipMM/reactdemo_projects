@@ -1,31 +1,42 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchUsers } from '../slices/userSlice'
+import React from 'react';
+import { useUsers } from '@/features/user';
 
 function UserList() {
-    const dispatch = useDispatch();
-    const { users, loading, error } = useSelector((state)=>state.users);
-    //console.log(users);
 
-    useEffect(() => {
-        dispatch(fetchUsers());
-    }, [dispatch]);
+  const {
+    data: users,
+    isLoading,
+    isError,
+    error,
+    refetch
+  } = useUsers();
+
   return (
     <div>
+
       <h4>User List Component</h4>
 
-      {/* we can dispatch the action by using event handler */}
-      <button onClick={() => dispatch(fetchUsers())}>Click</button>
+      <button
+        onClick={refetch}
+        disabled={isLoading}
+      >
+        {isLoading ? "Reloading..." : "Reload Users"}
+      </button>
 
-      {loading && <div>Loading...</div>}
-      {error && <div>{error}</div>}
+      {isLoading && <div>Loading...</div>}
+
+      {isError && <div>{error.message}</div>}
+
       {
         users?.map((user) => (
-          <li key={user.id}>{user.name}</li>
+          <li key={user.id}>
+            {user.name}
+          </li>
         ))
       }
+
     </div>
-  )
+  );
 }
 
-export default UserList
+export default UserList;

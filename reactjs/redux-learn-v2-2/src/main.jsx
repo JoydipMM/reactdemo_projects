@@ -5,11 +5,14 @@ import App from './App.jsx'
 // import { Provider } from 'react-redux'
 // import store from './app/store.js'
 import ReduxProvider from '@/app/provider/ReduxProvider'
+import QueryProvider from '@/app/provider/QueryProvider'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ReduxProvider>
-      <App />
+      <QueryProvider>
+        <App />
+      </QueryProvider>
     </ReduxProvider>
   </StrictMode>,
 )

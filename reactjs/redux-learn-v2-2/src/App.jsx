@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CounterShow, CounterAction } from '@/features/counter'
-import User from './features/User'
+import { UserList } from '@/features/user'
 
 function App() {
 
@@ -9,7 +9,7 @@ function App() {
       <h1>App component</h1>
       <CounterShow/>
       <CounterAction/>
-      <User />
+      <UserList />
     </>
   )
 }
