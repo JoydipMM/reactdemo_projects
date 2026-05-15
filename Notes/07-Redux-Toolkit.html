@@ -481,6 +481,292 @@ function App() {
 
 export default App
 </textarea>
+<br/>
+
+
+<hr />
+<h2><b>Convert current structure to Modern 2026 Scalable achitecture</b></h2>
+<hr />
+<p>To convert it into a more modern scalable 2026 architecture, you should separate:</p>
+<ul class="list-group list-group-flush mx-4">
+  <li>UI</li>
+  <li>API layer</li>
+  <li>server state</li>
+  <li>Redux state</li>
+  <li>reusable logic</li>
+</ul>
+<hr />
+<h5><b>Folder and File Structure</b></h5>
+<hr />
+<textarea class="code-editor">
+src/
+├── app/
+│   ├── providers/
+│   │   ├── ReduxProvider.jsx
+│   │   ├── QueryProvider.jsx
+│   │   └── AppProviders.jsx
+│   │
+│   ├── store/
+│   │   └── store.js
+│   │
+│   ├── routes/
+│   │   └── AppRouter.jsx
+│   │
+│   └── layouts/
+│       └── MainLayout.jsx
+│
+├── features/
+│   ├── counter/
+│   │   ├── components/
+│   │   │   ├── CounterAction.jsx
+│   │   │   └── CounterShow.jsx
+│   │   ├── store/
+│   │   │   └── counterSlice.js
+│   │   ├── hooks/
+│   │   │   └── useCounter.js
+│   │   └── index.js
+│   │
+│   └── users/
+│       ├── api/
+│       │   └── usersAPI.js
+│       ├── hooks/
+│       │   └── useUsers.js
+│       ├── components/
+│       │   └── UserList.jsx
+│       ├── store/
+│       │   └── usersSlice.js
+│       └── index.js
+│
+├── shared/
+│   ├── api/
+│   │   └── client.js
+│   │
+│   ├── components/
+│   │   ├── Button/
+│   │   ├── Input/
+│   │   └── Loader/
+│   │
+│   ├── hooks/
+│   ├── utils/
+│   └── constants/
+│
+├── pages/
+│   ├── Home.jsx
+│   └── Users.jsx
+│
+├── main.jsx
+└── App.jsx
+</textarea>
+<br/>
+<p><b>Step 01: </b>We improvement the path in <code><b>vite.config.js</b></code>. This will help us to import the files easily with <b>@/</b> instead of <b>../</b></p>
+<textarea class="code-editor">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from "path"; // 01 >> import path dependency
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  resolve: { // 02 >> add this full resolve object
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+})
+</textarea>
+<br/>
+<p><b>Step 02:</b> we create <b>ReduxProvider</b> component in <code><b>src/app/providers/ReduxProvider.jsx</b></code>. In this component we wrap our app with <b>ReduxProvider</b> with <b>store</b> and this component take the <b>children</b> as a prop</p>
+<textarea class="code-editor">
+import React from 'react'
+import { Provider } from 'react-redux'
+import store from '@/app/store'
+
+function ReduxProvider({ children }) {
+  return (
+    <Provider store={store}>
+      {children}
+    </Provider>
+  )
+}
+
+export default ReduxProvider
+</textarea>
+<br/>
+<p><b>Step 03:</b> we move the <code><b>store.js</b></code> in <code><b>src/app/store/</b></code></p>
+<textarea class="code-editor">
+// src/app/store/store.js
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "@/features/Counter/slices/counterSlice";
+import usersReducer from "@/features/User/slices/userSlice";
+
+const store = configureStore({
+    reducer: {
+        counter: counterReducer,
+        users: usersReducer,
+    },
+});
+
+export default store;
+</textarea>
+<br/>
+<p><b>Step 04:</b> we wrap the <b>App</b> component with <b>ReduxProvider</b> in <code><b>src/main.jsx</b></code></p>
+<textarea class="code-editor">
+// src/main.jsx
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+// import { Provider } from 'react-redux' // remove
+// import store from './app/store.js' // remove
+import ReduxProvider from '@/app/provider/ReduxProvider' // add
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    {/* remove this redux provider and update ReduxProvider component like below */}
+    {/*<Provider store={store}>
+      <App />
+    </Provider> */}
+    
+    {/* wrap full app with Provider and pass the store as a prop */}
+    <ReduxProvider>
+      <App />
+    </ReduxProvider>
+  </StrictMode>,
+)
+</textarea>
+<p>Now we update the name of <b>Counter</b> Folder to <b>counter</b> and remove the <code><b>src/features/counter/index.jsx</b></code> and create <code><b>src/features/counter/index.js</b></code></p>
+<textarea class="code-editor">
+// src/features/counter/index.js
+export { default as CounterShow } from './components/CounterShow';
+export { default as CounterAction } from './components/CounterAction';
+</textarea>
+<blockquote class="blockquote">
+<code class="mark" style="width: 100%; display: inline-block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+<b>export { default as CounterShow } from './components/CounterShow';</b><br/>
+<span style="color: #525252;"><b>This pattern</b> is called a <b>barrel export</b>. It is used to create a <b>single public entry point for any feature</b>. Here the feature is <b>counter</b>.</span><br/><br/>
+<b>Without index.js</b> You must import like this:<br/>
+<textarea class="code-editor">
+import CounterShow from "@/features/counter/components/CounterShow";
+import CounterAction from "@/features/counter/components/CounterAction";
+</textarea>
+<b>With index.js</b> We can import: 
+<textarea class="code-editor">
+import { CounterShow, CounterAction } from "@/features/counter";
+</textarea>
+<b>What Happens Internally</b>
+<textarea class="code-editor">
+export { default as CounterShow } from './components/CounterShow';
+
+/*
+Step 1
+Import default export:
+import CounterShow from './components/CounterShow';
+
+Step 2
+Re-export it:
+export { CounterShow };
+*/
+</textarea>
+<b style="color: #525252;">scalable React apps combine both steps into one line.</b>
+</code>
+</blockquote>
+<p><b>Next</b> we update the import counter component in <b>App</b> component like below:</p>
+<textarea class="code-editor">
+// src/App.jsx
+import { useState } from 'react'
+import { CounterShow, CounterAction } from '@/features/counter'
+import User from './features/User'
+
+function App() {
+
+  return (
+    <>
+      <h1>App component</h1>
+      <CounterShow/>
+      <CounterAction/>
+      <User />
+    </>
+  )
+}
+
+export default App
+</textarea>
+<br/>
+<p><b>Next</b> we create counter custom hook for <b><i>dispatch a action, useSelector to get store data</i></b>, which use in <b>CounterShow</b> and <b>CounterAction</b> component</p>
+<textarea class="code-editor">
+// import useDispatch from react-redux which is used to dispatch actions and that action calls the reducer
+import { useDispatch, useSelector } from 'react-redux'
+// import the actions from the slice
+import { decrement, increment } from '@/features/counter/store/counterSlice'; 
+
+export const useCounter = () => {
+
+    // we store the dispatch function in a variable
+    const dispatch = useDispatch();
+    // we get the counter value from the store
+    const counter = useSelector(state => state.counter.counterValue);
+
+    // store the increment functions in variables
+    const handleIncrement = () => {
+        dispatch(increment());
+    };
+
+    // store the decrement functions in variables
+    const handleDecrement = () => {
+        dispatch(decrement());
+    };
+
+    // return the counter value, increment and decrement functions
+    return { 
+        counter, 
+        handleIncrement, 
+        handleDecrement 
+    };
+}
+</textarea>
+<p>Now update the <b>CounterShow</b> and <b>CounterAction</b> component like below:</p>
+<textarea class="code-editor">
+// src/features/counter/components/CounterShow.jsx
+import React from 'react'
+//import { useSelector } from 'react-redux' // remove this
+import { useCounter } from '@/features/counter/hooks/useCounter' // import counterValue from custom hook
+
+function CounterShow() {
+  // const counterValue = useSelector((state)=>state.counter.counterValue) // this is not required since we make custom hook for counter
+  const { counter } = useCounter();
+  const counterValue = counter;
+  return (
+    <div>
+      <h4>Counter Value is: {counterValue} </h4>
+    </div>
+  )
+}
+export default CounterShow
+
+
+
+// src/features/counter/components/CounterAction.jsx
+import React from 'react'
+import { useCounter } from '@/features/counter/hooks/useCounter'  
+
+function CounterAction() {
+  const { counter, handleIncrement, handleDecrement } = useCounter();
+  const number = counter;
+  return (
+    <div>
+      {/* <button onClick={ () => dispatch(decrement())}>Decrement</button> */}
+      <button onClick={handleDecrement}>Decrement</button>
+      <input type="text" value={number} readOnly />
+      {/* <button onClick={ () => dispatch(increment())}>Increment</button> */}
+      <button onClick={handleIncrement}>Increment</button>
+    </div>
+  )
+}
+export default CounterAction
+</textarea>
+<br/>
+
+
 
 <!-- 
 <br/>
