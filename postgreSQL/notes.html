@@ -26,6 +26,50 @@ Type "help" for help.
 postgres=# // this means that PostgreSQL is connect to default postgres database
 </textarea>
 
+
+<h2>Reset Password Using pg_hba.conf</h2>
+<p>go to <b>C:\Program Files\PostgreSQL\versionNumber\data\pg_hba.conf</b></p>
+<p>Open <b>pg_hba.conf</b> in VS Code or Notepad as Administrator.</p>
+<p>Find:</p>
+<textarea class="code-editor">
+host    all             all             127.0.0.1/32            md5
+// change to -----------
+host    all             all             ::1/128                 trust
+
+// OR
+# "local" is for Unix domain socket connections only
+local   all             all                                     scram-sha-256
+
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            scram-sha-256
+
+# IPv6 local connections:
+host    all             all             ::1/128                 scram-sha-256
+// change to -----------
+# "local" is for Unix domain socket connections only
+local   all             all                                     trust
+
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            trust
+
+# IPv6 local connections:
+host    all             all             ::1/128                 trust
+</textarea>
+<p>Close <b>Command Prompt</b></p>
+<p>open CMD with <b>Run as administrator</b></p>
+<p><b>Restart PostgreSQL</b></p>
+<textarea class="code-editor">
+net stop postgresql-x64-18
+net start postgresql-x64-18
+</textarea>
+<p><b>Login Without Password <code>psql -U postgres</code></b></p>
+<p><b>Reset Password <code>ALTER USER postgres PASSWORD 'YourNewPassword';</code></b></p>
+<p><b>Restore Security</b>: change <b>trust</b> to <b>md5</b> or <b>scram-sha-256</b> in <b>pg_hba.conf</b></p>
+<br/>
+<br/>
+
+
+
 <h3>Quick test commands (inside psql)</h3>
 <p>Try a few commands to confirm everything works:</p>
 <p>In <b>Command Prompt</b> run the command: <b>\l</b></p>
@@ -140,7 +184,222 @@ test
 </textarea> -->
 
 
+<h3>Create Schema</h3>
+<p><b>What is Schema?</b> In PostgreSQL, a schema is a logical container inside a database that helps organize database objects like: Table, Views, Functions, Indexes, Sequences, Triggers</p>
+<p>In <b>Command Prompt</b>/ <b>VS Code Terminal</b> run the command to create a new schema:</p>
+<textarea class="code-editor">
+// schema name: basics
+CREATE SCHEMA IF NOT EXISTS basics;
+// schema name: users
+CREATE SCHEMA IF NOT EXISTS users;
+</textarea>
+<br/>
 
+
+
+<h3>Create extension</h3>
+<p>In PostgreSQL, an <b>extension</b> is a package that adds extra features or capabilities to PostgreSQL without changing the core database itself.</p>
+<p>In <b>Command Prompt</b>/ <b>VS Code Terminal</b> run the command to create a new extension:</p>
+<textarea class="code-editor">
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+</textarea>
+<br/>
+
+
+<h3>Get Schema List</h3>
+<textarea class="code-editor">
+// get all schema name
+SELECT schema_name FROM information_schema.schemata;
+SELECT schema_name FROM information_schema.schemata ORDER BY schema_name ASC;
+
+
+    schema_name
+--------------------
+  public	// Default user schema
+  basics // our custom schema
+  information_schema // SQL standard metadata
+  pg_catalog // Internal PostgreSQL system tables/functions
+  pg_toast // Large value storage internally
+  (5 rows)
+</textarea>
+<br/>
+
+
+<h3>Create a new table inside Schema</h3>
+<textarea class="code-editor">
+// create table inside schema
+CREATE TABLE basics.students( 
+  id SERIAL PRIMARY KEY, -- automatic increment. Primary key is uniquely identifies each row
+  name VARCHAR(255) NOT NULL, -- NOT NULL is required field and 
+  email VARCHAR(255) NOT NULL UNIQUE, -- UNIQUE is unique field
+  age INT NOT NULL CHECK (age >= 18), -- CHECK is validation
+  created_at TIMESTAMP DEFAULT NOW()  -- DEFAULT is default value if we not provide any value
+);
+
+CREATE TABLE basics.students(  id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL UNIQUE, age INT NOT NULL CHECK (age >= 18), created_at TIMESTAMP DEFAULT NOW());
+</textarea>
+<br/>
+
+
+<h3>Get List of tables inside Schema</h3>
+<textarea class="code-editor">
+// comand
+testdb=# \dt basics.*
+
+// result
+List of tables
+ Schema |   Name   | Type  |  Owner
+--------+----------+-------+----------
+ basics | students | table | postgres
+(1 row)
+</textarea>
+<br/>
+
+
+<h3>Insert data and view data in table inside Schema</h3>
+<textarea class="code-editor">
+// Insert comand
+testdb=# INSERT INTO basics.students (name, email, age) VALUES ('Rahul', 'rahul01@example.com', 20), ('Bisu', 'F7x3V@example.com', 21), ('Raj', 'H2KQg@example.com', 22);
+
+// result
+INSERT 0 3
+
+// ---------------------------------------------------------------
+
+// View comand
+testdb=# SELECT * FROM basics.students;
+
+// result
+ id | name  |        email        | age |        created_at
+----+-------+---------------------+-----+---------------------------
+  1 | Rahul | rahul01@example.com |  20 | 2026-05-17 20:46:56.70972
+  2 | Bisu  | F7x3V@example.com   |  21 | 2026-05-17 20:46:56.70972
+  3 | Raj   | H2KQg@example.com   |  22 | 2026-05-17 20:46:56.70972
+(3 rows)
+</textarea>
+<br/>
+
+
+<h3>Create another new table inside Schema</h3>
+<textarea class="code-editor">
+// Create table comand
+testdb=# CREATE TABLE basics.product( 
+  id SERIAL PRIMARY KEY, 
+  name VARCHAR(255) NOT NULL, 
+  price DECIMAL(10, 2) DEFAULT 0.00,
+  stock INT DEFAULT 0,
+  description VARCHAR(255), 
+  total_views BIGINT DEFAULT 0, -- BIGINT is large integer
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+// result
+CREATE TABLE
+
+// ---------------------------------------------------------------
+
+// View table list
+testdb=# \dt basics.*
+// result
+List of tables
+ Schema |   Name   | Type  |  Owner
+--------+----------+-------+----------
+ basics | product  | table | postgres
+ basics | students | table | postgres
+(2 rows)
+
+// ---------------------------------------------------------------
+
+// insert data in product table
+testdb=# INSERT INTO basics.product (name, price, stock, description, total_views, is_active) VALUES ('Macbook', 52000.00, 12, 'Macbook description', 100, false);
+// result
+INSERT 0 1
+
+// ---------------------------------------------------------------
+
+// view data in product table
+testdb-# SELECT * FROM basics.product;
+// result
+testdb=# SELECT * FROM basics.product;
+ id |  name  |  price   | stock |    description     | total_views | is_active |         created_at
+----+--------+----------+-------+--------------------+-------------+-----------+----------------------------
+  1 | Laptop | 50000.00 |    10 | Laptop description |         100 | t         | 2026-05-17 21:00:15.355828
+(1 row)
+
+
+// insert data in product table
+testdb=# INSERT INTO basics.product (name, price, stock, description, total_views, is_active) VALUES ('Macbook', 52000.00, 12, 'Macbook description', 100, false);
+
+// view data in product table
+testdb=# SELECT * FROM basics.product;
+// result
+ id |  name   |  price   | stock |     description     | total_views | is_active |         created_at
+----+---------+----------+-------+---------------------+-------------+-----------+----------------------------
+  1 | Laptop  | 50000.00 |    10 | Laptop description  |         100 | t         | 2026-05-17 21:00:15.355828
+  2 | Macbook | 52000.00 |    12 | Macbook description |         100 | f         | 2026-05-17 21:07:35.010715
+(2 rows)
+
+</textarea>
+<br/>
+
+
+<h3>Filter data form table</h3>
+<textarea class="code-editor">
+testdb=# SELECT name, price description FROM basics.product WHERE is_active = true;
+// result
+  name  | description
+--------+-------------
+ Laptop |    50000.00
+(1 row)
+</textarea>
+<br/>
+
+
+<h3>Create table with random id for data inside table</h3>
+<textarea class="code-editor">
+testdb=# CREATE TABLE basics.users(
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  age INT NOT NULL CHECK (age >= 18),
+  metadata JSONB DEFAULT '{}'::jsonb,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+// result
+CREATE TABLE
+
+// ---------------------------------------------------------------
+
+// View table list
+testdb=# \dt basics.*
+// result
+            List of tables
+ Schema |   Name   | Type  |  Owner
+--------+----------+-------+----------
+ basics | product  | table | postgres
+ basics | students | table | postgres
+ basics | users    | table | postgres
+(3 rows)
+
+// ---------------------------------------------------------------
+
+// insert data in users table
+testdb=# INSERT INTO basics.users (name, email, age, metadata) VALUES ('Rahul', 'rahul01@example.com', 20, '{"role": "admin"}');
+// result
+INSERT 0 1
+
+// ---------------------------------------------------------------
+
+// view data in users table
+testdb=# SELECT * FROM basics.users;
+// result
+                  id                  | name  |        email        | age |     metadata      |         created_at      
+--------------------------------------+-------+---------------------+-----+-------------------+----------------------------
+ 61d8979a-6da7-4beb-a919-20ff88c779c3 | Rahul | rahul01@example.com |  20 | {"role": "admin"} | 2026-05-17 21:30:11.079719
+(1 row)
+</textarea>
+<br/>
 
 
 
