@@ -312,7 +312,9 @@ List of tables
 // ---------------------------------------------------------------
 
 // insert data in product table
-testdb=# INSERT INTO basics.product (name, price, stock, description, total_views, is_active) VALUES ('Macbook', 52000.00, 12, 'Macbook description', 100, false);
+testdb=# INSERT INTO basics.product 
+(name, price, stock, description, total_views, is_active) VALUES 
+('Macbook', 52000.00, 12, 'Macbook description', 100, false);
 // result
 INSERT 0 1
 
@@ -329,7 +331,9 @@ testdb=# SELECT * FROM basics.product;
 
 
 // insert data in product table
-testdb=# INSERT INTO basics.product (name, price, stock, description, total_views, is_active) VALUES ('Macbook', 52000.00, 12, 'Macbook description', 100, false);
+testdb=# INSERT INTO basics.product 
+(name, price, stock, description, total_views, is_active) VALUES 
+('Macbook', 52000.00, 12, 'Macbook description', 100, false);
 
 // view data in product table
 testdb=# SELECT * FROM basics.product;
@@ -385,7 +389,9 @@ testdb=# \dt basics.*
 // ---------------------------------------------------------------
 
 // insert data in users table
-testdb=# INSERT INTO basics.users (name, email, age, metadata) VALUES ('Rahul', 'rahul01@example.com', 20, '{"role": "admin"}');
+testdb=# INSERT INTO basics.users 
+(name, email, age, metadata) VALUES 
+('Bose', 'bose01@example.com', 20, '{"role": "customer"}');
 // result
 INSERT 0 1
 
@@ -394,17 +400,137 @@ INSERT 0 1
 // view data in users table
 testdb=# SELECT * FROM basics.users;
 // result
-                  id                  | name  |        email        | age |     metadata      |         created_at      
---------------------------------------+-------+---------------------+-----+-------------------+----------------------------
- 61d8979a-6da7-4beb-a919-20ff88c779c3 | Rahul | rahul01@example.com |  20 | {"role": "admin"} | 2026-05-17 21:30:11.079719
+                  id                  | name  |        email        | age |       metadata       |         created_at   
+--------------------------------------+-------+---------------------+-----+----------------------+----------------------------
+ 61d8979a-6da7-4beb-a919-20ff88c779c3 | Rahul | rahul01@example.com |  20 | {"role": "admin"}    | 2026-05-17 21:30:11.079719
+ 6451d50c-0e98-4323-a7c9-f0dcfee07a01 | Bose  | bose01@example.com  |  20 | {"role": "customer"} | 2026-05-17 21:37:22.325559
+(2 rows)
+
+// get metadata value from table
+testdb=# SELECT metadata->>'role' FROM basics.users WHERE metadata ? 'role';
+// result
+ role
+-------
+ admin
+ customer
+(2 rows)
+
+
+testdb=# INSERT INTO basics.users 
+(name, email, age, metadata) VALUES 
+('Roy', 'roy01@example.com', 20, '{"browser": "chrome"}');
+// result
+INSERT 0 1
+
+// view data in users table
+testdb=# SELECT * FROM basics.users;
+// result
+                  id                  | name  |        email        | age |       metadata        |         created_at  
+--------------------------------------+-------+---------------------+-----+-----------------------+----------------------------
+ 61d8979a-6da7-4beb-a919-20ff88c779c3 | Rahul | rahul01@example.com |  20 | {"role": "admin"}     | 2026-05-17 21:30:11.079719
+ 6451d50c-0e98-4323-a7c9-f0dcfee07a01 | Bose  | bose01@example.com  |  20 | {"role": "customer"}  | 2026-05-17 21:37:22.325559
+ 1a2b6ed2-9ba8-4e13-b05f-4dbebcdf0cfe | Roy   | roy01@example.com   |  20 | {"browser": "chrome"} | 2026-05-17 21:39:49.501762
+(3 rows)
+
+// get metadata value from table
+// metadata->>'browser' get value from json and 'browser' is key name in json
+testdb=# SELECT metadata->>'browser' AS Browser FROM basics.users WHERE metadata ? 'browser';
+// result
+ browser
+----------
+ chrome
 (1 row)
 </textarea>
 <br/>
 
 
+<h3>null, empty string, zero</h3>
+<ul class="list">
+  <li><b>null</b>: unknown/missing value</li>
+  <li><b>empty string</b>: known string value but it contain nothing</li>
+  <li><b>zero</b>: Actual numaric value 0</li>
+</ul>
+
+<textarea class="code-editor">
+testdb=# CREATE TABLE basics.null_empty(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255),
+  email VARCHAR(255),
+  age INT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+testdb=# INSERT INTO basics.null_empty (name, email, age) VALUES 
+('', 'rahul01@example.com', 20), 
+(null,'rahul01@example.com', 20);
+
+testdb=# SELECT * FROM basics.null_empty;
+// result
+ id | name |        email        | age |         created_at
+----+------+---------------------+-----+----------------------------
+  1 |      | rahul01@example.com |  20 | 2026-05-17 22:01:33.906017
+  2 |      | rahul01@example.com |  20 | 2026-05-17 22:01:33.906017
+(2 rows)
+
+// ---------------------------------------------------------------
+
+// filter data by null
+testdb=# SELECT * FROM basics.null_empty WHERE name IS NULL;
+// result
+ id | name |        email        | age |         created_at
+----+------+---------------------+-----+----------------------------
+  2 |      | rahul01@example.com |  20 | 2026-05-17 22:01:33.906017
+(1 row)
+
+// filter data by empty
+testdb=# SELECT * FROM basics.null_empty WHERE name = '';
+// result
+ id | name |        email        | age |         created_at
+----+------+---------------------+-----+----------------------------
+  1 |      | rahul01@example.com |  20 | 2026-05-17 22:01:33.906017
+(1 row)
+
+// filter data by 0
+testdb=# SELECT * FROM basics.null_empty WHERE score = 0;
+
+// filter data by NOT NULL
+testdb=# SELECT * FROM basics.null_empty WHERE name IS NOT NULL;
+// result
+ id | name |        email        | age |         created_at
+----+------+---------------------+-----+----------------------------
+  1 |      | rahul01@example.com |  20 | 2026-05-17 22:01:33.906017
+(1 row)
+</textarea>
+<br/>
 
 
+<h3>Constraint</h3>
+<p>In PostgreSQL, a constraint is a rule applied to a table column (or table) to control what data is allowed.</p>
+<p><b>Main Types of Constraints:</b></p>
+<textarea class="code-editor">
+Constraint      |    Purpose
+-----------------------------------------------
+PRIMARY KEY	    |    Unique identifier
+NOT NULL	    |    Value required
+UNIQUE	        |    No duplicate values
+CHECK		    |    Custom condition
+DEFAULT	        |    Default value
+FOREIGN KEY	    |    Relation between tables
+</textarea>
+<br/>
 
+
+<h3>SERIAL PRIMARY KEY</h3>
+<p>SERIAL PRIMARY KEY is not technically required for every table in PostgreSQL, but in most production applications, every table should have some form of primary key because it uniquely identifies each row.</p>
+<h4>Why Tables Need a Primary Key</h4>
+<p>With primary keys we uniquely identify one specific row <b>Update, Delete, Reference, Relate data</b></p>
+<textarea class="code-editor">
+testdb=# CREATE TABLE basics.null_empty(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255),
+);
+</textarea>
+<br/>
 
 
 

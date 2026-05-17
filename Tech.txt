@@ -10,3 +10,20 @@ microservices architecture
 docker
 kubernetes
 salesforce developers
+Kafka
+
+Problem Slover,
+System Designers,
+Workflow Builders,
+AI-assisted Engineers,
+Architecture,
+Business Logic,
+Scalability,
+Security,
+Integrations,
+AI Orchestration,
+Product Thinking,
+Production Grade Eco-system,
+Optimize Performance,
+Validate outputs,
+
