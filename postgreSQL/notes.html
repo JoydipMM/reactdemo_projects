@@ -533,8 +533,265 @@ testdb=# CREATE TABLE basics.null_empty(
 <br/>
 
 
+<h3>More Query Filters</h3>
+<ul>
+  <li><b>LIKE</b>: The LIKE operator is used in a WHERE clause to search for a specified pattern in a column</li>
+  <li><b>ILIKE</b> : The ILIKE operator is used in a WHERE clause to search for a specified pattern in a column</li>
+  <li><b>%</b> : The % operator is used to match any number of characters</li>
+  <li><b>IN</b>: The IN operator is used to test whether a value matches any value in a list of values</li>
+  <li><b>NOT IN</b>: The NOT IN operator is used to test whether a value does not match any value in a list of values</li>
+  <li><b>BETWEEN</b>: The BETWEEN operator is used to search for a value between two values</li>
+</ul>
+<p><b>First</b> We create a <b>products</b> table in <b>testdb</b> under <b>basics</b> schema and insert some data.</p>
+<textarea class="code-editor">
+CREATE TABLE basics.products (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name TEXT NOT NULL,
+    category TEXT NOT NULL,
+    price NUMERIC(10,2) NOT NULL CHECK (price >= 0),
+    stock INTEGER NOT NULL DEFAULT 0 CHECK (stock >= 0),
+    is_active BOOLEAN NOT NULL DEFAULT true,
+    sku TEXT UNIQUE,
+    description TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
 
+INSERT INTO basics.products (name, category, price, stock, is_active, sku, description)
+  VALUES
+  ('Mechanical Keyboard', 'electronics', 3499.00, 15, TRUE, 'ELEC-KEY-001', 'RGB keyboard with blue switches'),
+  ('Wireless Mouse', 'electronics', 1299.00, 40, TRUE, 'ELEC-MOU-001', 'Ergonomic wireless mouse'),
+  ('USB-C Cable', 'electronics', 399.00, 120, TRUE, 'ELEC-CAB-001', NULL),
+  ('Office Chair', 'furniture', 7999.00, 8, TRUE, 'FURN-CHR-001', 'Comfortable chair for long work sessions'),
+  ('Standing Desk', 'furniture', 15999.00, 3, TRUE, 'FURN-DSK-001', 'Height adjustable desk'),
+  ('Notebook', 'stationery', 99.00, 200, TRUE, 'STAT-NOT-001', 'Ruled notebook for daily notes'),
+  ('Gel Pen', 'stationery', 25.00, 500, TRUE, 'STAT-PEN-001', NULL),
+  ('Old Monitor', 'electronics', 4999.00, 0, FALSE, 'ELEC-MON-OLD', 'Inactive old stock item'),
+  ('laptop stand 5', 'electronics', 100, 45, TRUE, 'ELEC-LAP-100', 'laptop stand 5 desc'),
+('laptop stand 6', 'electronics', 100, 45, TRUE, 'ELEC-LAP-101', 'laptop stand 6 desc'),
+('laptop stand 7', 'electronics', 100, 45, TRUE, 'ELEC-LAP-102', 'laptop stand 7 desc');
 
+// view all data
+testdb=# SELECT * FROM basics.products;
+</textarea>
+<div style="width: 100%; position: relative;">
+<div style="width: 100%; background-color: #fff; z-index: 1; position: sticky; top: 0px; border-bottom: #6b6b6b solid 2px;">
+<textarea class="code-editor">
+// Result
+                  id                  |        name         |  category   |  price   | stock | is_active |     sku      |               description                |         created_at                                   
+--------------------------------------+---------------------+-------------+----------+-------+-----------+--------------+------------------------------------------+----------------------------
+  af1ed568-0308-49fb-986c-ad9f31c77d11 | Mechanical Keyboard | electronics |  3499.00 |    15 | t         | ELEC-KEY-001 | RGB keyboard with blue switches          | 2026-05-18 20:31:51.346532
+  1ea519cd-2d66-4bd7-a827-61d962b8e075 | Wireless Mouse      | electronics |  1299.00 |    40 | t         | ELEC-MOU-001 | Ergonomic wireless mouse                 | 2026-05-18 20:31:51.346532
+  c33ca88b-ccee-4f11-b996-6dc069eee997 | USB-C Cable         | electronics |   399.00 |   120 | t         | ELEC-CAB-001 |                                          | 2026-05-18 20:31:51.346532
+  640922fb-40bc-4e4d-8b6d-4c091d6ff0be | Office Chair        | furniture   |  7999.00 |     8 | t         | FURN-CHR-001 | Comfortable chair for long work sessions | 2026-05-18 20:31:51.346532
+  8b1c742b-078b-4b2d-926e-eb47e8da2bdf | Standing Desk       | furniture   | 15999.00 |     3 | t         | FURN-DSK-001 | Height adjustable desk                   | 2026-05-18 20:31:51.346532
+  8636954e-8c7f-4bc9-b394-7faa9f470546 | Notebook            | stationery  |    99.00 |   200 | t         | STAT-NOT-001 | Ruled notebook for daily notes           | 2026-05-18 20:31:51.346532
+  937de346-1339-417e-866e-c5c57919f67c | Gel Pen             | stationery  |    25.00 |   500 | t         | STAT-PEN-001 |                                          | 2026-05-18 20:31:51.346532
+  06aeca89-d3cc-43fe-90eb-da0f71ef7f43 | Old Monitor         | electronics |  4999.00 |     0 | f         | ELEC-MON-OLD | Inactive old stock item                  | 2026-05-18 20:31:51.346532
+  89cd1bec-72ef-417a-96cc-1cb9981882cf | laptop stand 5      | electronics |   100.00 |    45 | t         | ELEC-LAP-100 | laptop stand 5 desc                      | 2026-05-18 20:31:51.346532
+  73bffb71-457f-4439-8886-329355d3e339 | laptop stand 6      | electronics |   100.00 |    45 | t         | ELEC-LAP-101 | laptop stand 6 desc                      | 2026-05-18 20:31:51.346532
+  06975e4d-080b-4a9c-85ae-e3a51aa7a6d1 | laptop stand 7      | electronics |   100.00 |    45 | t         | ELEC-LAP-102 | laptop stand 7 desc                      | 2026-05-18 20:31:51.346532
+(11 rows)
+</textarea>
+</div>
+<br/>
+<b>Use of IN</b>
+<p><b>IN query</b> is used to check whether <i>a value matches any value from a list</i>.</p>
+<textarea class="code-editor">
+// IN query
+SELECT name, category, sku FROM basics.products WHERE sku IN ('ELEC-LAP-100', 'ELEC-LAP-101', 'ELEC-LAP-102');  
+// Result
+      name      |  category   |     sku                                                                                                                                                                                   
+----------------+-------------+--------------
+ laptop stand 5 | electronics | ELEC-LAP-100
+ laptop stand 6 | electronics | ELEC-LAP-101
+ laptop stand 7 | electronics | ELEC-LAP-102
+(3 rows)
+</textarea>
+<br/>
+<b>Create an Alias</b>
+<p><b>AS</b> is used to create an alias for a table.</p>
+<textarea class="code-editor">
+// Create an alias
+SELECT name AS product_name, category AS product_category, sku FROM basics.products;
+// Result
+    product_name     | product_category |     sku                                                                                                                                                                         
+---------------------+------------------+--------------
+ Mechanical Keyboard | electronics      | ELEC-KEY-001
+ Wireless Mouse      | electronics      | ELEC-MOU-001
+ USB-C Cable         | electronics      | ELEC-CAB-001
+ Office Chair        | furniture        | FURN-CHR-001
+ Standing Desk       | furniture        | FURN-DSK-001
+ Notebook            | stationery       | STAT-NOT-001
+ Gel Pen             | stationery       | STAT-PEN-001
+ Old Monitor         | electronics      | ELEC-MON-OLD
+ laptop stand 5      | electronics      | ELEC-LAP-100
+ laptop stand 6      | electronics      | ELEC-LAP-101
+ laptop stand 7      | electronics      | ELEC-LAP-102
+(11 rows)
+</textarea>
+<br/>
+<p>Filter data by any specific name. expample: <b>/products?category=stationery</b></p>
+<textarea class="code-editor">
+// Query
+SELECT name, category FROM basics.products WHERE category = 'stationery';
+// Result
+   name   |  category                                                                                                                                                                                                     
+----------+------------
+ Notebook | stationery
+ Gel Pen  | stationery
+(2 rows)
+
+// Query
+SELECT name, category, price FROM basics.products WHERE price > 1000;
+// Result
+        name         |  category   |  price                                                                                                                                                                               
+---------------------+-------------+----------
+ Mechanical Keyboard | electronics |  3499.00
+ Wireless Mouse      | electronics |  1299.00
+ Office Chair        | furniture   |  7999.00
+ Standing Desk       | furniture   | 15999.00
+ Old Monitor         | electronics |  4999.00
+(5 rows)
+</textarea>
+<br/>
+<b>AND, OR, NOT query</b>
+<ul>
+  <li><b>AND</b>: Every condition must be true</li>
+  <li><b>OR</b>: At least one condition must be true</li>
+  <li><b>NOT</b>: Reverse/Exclude the condition</li>
+</ul>
+<textarea  class="code-editor">
+// AND Query
+SELECT name, category, price FROM basics.products WHERE price > 1000 AND category = 'electronics';
+// Result
+        name         |  category   |  price                                                                                                                                                                               
+---------------------+-------------+---------
+ Mechanical Keyboard | electronics | 3499.00
+ Wireless Mouse      | electronics | 1299.00
+ Old Monitor         | electronics | 4999.00
+
+// OR Query
+SELECT name, category, price FROM basics.products WHERE category = 'electronics' OR category = 'stationery';
+// Result
+        name         |  category   |  price                                                                                                                                                                               
+---------------------+-------------+---------
+ Mechanical Keyboard | electronics | 3499.00
+ Wireless Mouse      | electronics | 1299.00
+ USB-C Cable         | electronics |  399.00
+ Notebook            | stationery  |   99.00
+ Gel Pen             | stationery  |   25.00
+ Old Monitor         | electronics | 4999.00
+ laptop stand 5      | electronics |  100.00
+ laptop stand 6      | electronics |  100.00
+ laptop stand 7      | electronics |  100.00
+
+// NOT Query
+SELECT name, category, price FROM basics.products WHERE NOT category = 'electronics';
+     name      |  category  |  price                                                                                                                                                                                      
+---------------+------------+----------
+ Office Chair  | furniture  |  7999.00
+ Standing Desk | furniture  | 15999.00
+ Notebook      | stationery |    99.00
+ Gel Pen       | stationery |    25.00
+(4 rows)
+
+// AND OR Query
+SELECT name, category, price FROM basics.products WHERE ( category = 'electronics' OR category = 'stationery' ) AND price > 2000;
+// Result
+        name         |  category   |  price                                                                                                                                                                               
+---------------------+-------------+---------
+ Mechanical Keyboard | electronics | 3499.00
+ Old Monitor         | electronics | 4999.00
+(2 rows)
+
+// AND OR Query
+SELECT name, category, price, stock FROM basics.products WHERE is_active = TRUE AND ( price < 1000 OR stock >= 40);
+// Result
+      name      |  category   |  price  | stock                                                                                                                                                                           
+----------------+-------------+---------+-------
+ Wireless Mouse | electronics | 1299.00 |    40
+ USB-C Cable    | electronics |  399.00 |   120
+ Notebook       | stationery  |   99.00 |   200
+ Gel Pen        | stationery  |   25.00 |   500
+ laptop stand 5 | electronics |  100.00 |    45
+ laptop stand 6 | electronics |  100.00 |    45
+ laptop stand 7 | electronics |  100.00 |    45
+(7 rows)
+</textarea>
+<br/>
+<p><b>LIKE</b>: Case sensitive pattern match</p>
+<p><b>ILIKE</b>: Case insensitive pattern match</p>
+<p><b>%</b>: Wildcard character, matches any sequence of zero or more characters</p>
+<p><b>BETWEEN</b>: Matches values within a range</p>
+<p><b>_</b>: Wildcard character, matches any single character</p>
+<textarea class="code-editor">
+// LIKE Query
+// 'Wireless%' matches any string that starts with 'Wireless'
+SELECT name, category, price, stock FROM basics.products WHERE name LIKE 'Wireless%'; 
+// Result      name      |  category   |  price  | stock                                                                                                                                                                           
+----------------+-------------+---------+-------
+ Wireless Mouse | electronics | 1299.00 |    40
+(1 row)
+
+// ILIKE and % Query
+// '%keyboard%' matches any string that contains 'keyboard', 'Keyboard', 'KEYBOARD'
+SELECT name, category, description FROM basics.products WHERE name ILIKE '%keyboard%' OR description ILIKE '%keyboard%'; 
+// Result
+        name         |  category   |           description                                                                                                                                                                
+---------------------+-------------+---------------------------------
+ Mechanical Keyboard | electronics | RGB keyboard with blue switches
+(1 row)
+
+// BETWEEN Query
+// BETWEEN 1000 AND 5000 means price is between 1000 and 5000
+SELECT name, category, price, stock FROM basics.products WHERE price BETWEEN 1000 AND 5000;
+// Result
+        name         |  category   |  price  | stock                                                                                                                                                                      
+---------------------+-------------+---------+-------
+ Mechanical Keyboard | electronics | 3499.00 |    15
+ Wireless Mouse      | electronics | 1299.00 |    40
+ Old Monitor         | electronics | 4999.00 |     0
+(3 rows)
+</textarea>
+<br/>
+<p><b>ORDER BY ASC, DESC</b></p>
+<textarea class="code-editor">
+// ORDER BY Query
+SELECT name, category, price FROM basics.products ORDER BY price ASC;
+// Result
+        name         |  category   |  price                                                                                                                                                                               
+---------------------+-------------+----------
+ Gel Pen             | stationery  |    25.00
+ Notebook            | stationery  |    99.00
+ laptop stand 7      | electronics |   100.00
+ laptop stand 5      | electronics |   100.00
+ laptop stand 6      | electronics |   100.00
+ USB-C Cable         | electronics |   399.00
+ Wireless Mouse      | electronics |  1299.00
+ Mechanical Keyboard | electronics |  3499.00
+ Old Monitor         | electronics |  4999.00
+ Office Chair        | furniture   |  7999.00
+ Standing Desk       | furniture   | 15999.00
+(11 rows)
+
+SELECT name, category, price FROM basics.products ORDER BY price DESC;
+// Result
+        name         |  category   |  price                                                                                                                                                                               
+---------------------+-------------+----------
+ Standing Desk       | furniture   | 15999.00
+ Office Chair        | furniture   |  7999.00
+ Old Monitor         | electronics |  4999.00
+ Mechanical Keyboard | electronics |  3499.00
+ Wireless Mouse      | electronics |  1299.00
+ USB-C Cable         | electronics |   399.00
+ laptop stand 7      | electronics |   100.00
+ laptop stand 5      | electronics |   100.00
+ laptop stand 6      | electronics |   100.00
+ Notebook            | stationery  |    99.00
+ Gel Pen             | stationery  |    25.00
+(11 rows)
+</textarea>
+</div>
 
 
 <script src="assets/js/codemirror/codemirror.min.js"></script>
