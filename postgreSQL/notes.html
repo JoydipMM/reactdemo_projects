@@ -791,7 +791,179 @@ SELECT name, category, price FROM basics.products ORDER BY price DESC;
  Gel Pen             | stationery  |    25.00
 (11 rows)
 </textarea>
+<br/>
 </div>
+
+
+<p><b>LIMIT</b>: Limit the number of rows returned</p>
+<p><b>OFFSET</b>: Skip a certain number of rows</p>
+<textarea class="code-editor">
+// ORDER BY Query with ASC BY name
+SELECT name, price FROM basics.products ORDER BY name ASC;
+// Result
+        name         |  price                                                                                                                                                                                             
+---------------------+----------
+ Gel Pen             |    25.00
+ laptop stand 5      |   100.00
+ laptop stand 6      |   100.00
+ laptop stand 7      |   100.00
+ Mechanical Keyboard |  3499.00
+ Notebook            |    99.00
+ Office Chair        |  7999.00
+ Old Monitor         |  4999.00
+ Standing Desk       | 15999.00
+ USB-C Cable         |   399.00
+ Wireless Mouse      |  1299.00
+(11 rows)
+
+// LIMIT Query
+SELECT name, price FROM basics.products ORDER BY name ASC LIMIT 5;
+// Result
+        name         |  price                                                                                                                                                                 
+---------------------+----------
+ Gel Pen             |    25.00
+ Notebook            |    99.00
+ USB-C Cable         |   399.00
+ Wireless Mouse      |  1299.00
+ Mechanical Keyboard |  3499.00
+(5 rows)
+
+// OFFSET Query
+SELECT name, price FROM basics.products ORDER BY name ASC OFFSET 5 LIMIT 5;
+// Result
+     name      |  price                                                                                                                                                                                                   
+---------------+----------
+ Notebook      |    99.00
+ Office Chair  |  7999.00
+ Old Monitor   |  4999.00
+ Standing Desk | 15999.00
+ USB-C Cable   |   399.00
+(5 rows)
+
+// OFFSET Query
+SELECT name, price FROM basics.products ORDER BY name ASC OFFSET 10 LIMIT 5;
+// Result
+      name      |  price                                                                                                                                                                                                  
+----------------+---------
+ Wireless Mouse | 1299.00
+(1 row)
+
+/*
+Pagination
+SELECT name, price FROM basics.products ORDER BY name ASC LIMIT 5 OFFSET ((page - 1) * limit);
+(page - 1) * limit
+(1 - 1) * 5 -> 0
+(2 - 1) * 5 -> 5
+(3 - 1) * 5 -> 10
+*/
+</textarea>
+<br/>
+<h4>Update Single Row</h4>
+<textarea class="code-editor">
+// First check the data
+SELECT name, price, stock, sku FROM basics.products WHERE sku = 'ELEC-KEY-001';
+// Result
+        name         |  price  | stock |     sku                                                                                                                                                                          
+---------------------+---------+-------+--------------
+ Mechanical Keyboard | 3499.00 |    15 | ELEC-KEY-001
+(1 row)
+
+// Update the data with "SET"
+UPDATE basics.products SET price = 1199.50, stock = 23 WHERE sku = 'ELEC-KEY-001';
+// Result
+UPDATE 1
+
+// Check the updated data
+testdb=# SELECT name, price, stock, sku FROM basics.products WHERE sku = 'ELEC-KEY-001';   
+        name         |  price  | stock |     sku                                                                                                                                                                          
+---------------------+---------+-------+--------------
+ Mechanical Keyboard | 1199.50 |    23 | ELEC-KEY-001
+(1 row)
+
+</textarea>
+<br/>
+<h4>Update Multiple Rows</h4>
+<textarea class="code-editor">
+// First Check the data
+SELECT name, price, category FROM basics.products WHERE category = 'electronics';
+// Result
+        name         |  price  |  category                                                                                                                                                                                
+---------------------+---------+-------------
+ Wireless Mouse      | 1299.00 | electronics
+ USB-C Cable         |  399.00 | electronics
+ Old Monitor         | 4999.00 | electronics
+ laptop stand 5      |  100.00 | electronics
+ laptop stand 6      |  100.00 | electronics
+ laptop stand 7      |  100.00 | electronics
+ Mechanical Keyboard | 1199.50 | electronics
+(7 rows)
+
+// Now we want to update the price of every items by 10% 
+UPDATE basics.products SET price = round(price * 1.1, 2) WHERE category = 'electronics';
+// Result
+UPDATE 7
+
+// Check the updated data
+testdb=# SELECT name, price, category FROM basics.products WHERE category = 'electronics';
+// Result
+        name         |  price  |  category                                                                                                                                                                                
+---------------------+---------+-------------
+ Wireless Mouse      | 1428.90 | electronics
+ USB-C Cable         |  438.90 | electronics
+ Old Monitor         | 5498.90 | electronics
+ laptop stand 5      |  110.00 | electronics
+ laptop stand 6      |  110.00 | electronics
+ laptop stand 7      |  110.00 | electronics
+ Mechanical Keyboard | 1319.45 | electronics
+(7 rows)
+</textarea>
+<br/>
+<h4>Delete Single Row</h4>
+<textarea class="code-editor">
+// We don't remove any existing data. So we add a new row
+INSERT INTO basics.products(name, category, price, stock, sku, description) VALUES('USB-C Cable 2', 'electronics', 399.00, 20, 'ELEC-CABLE-001', 'Description of USB-C Cable 2');
+// Result
+INSERT 0 1
+
+// Show the data
+SELECT name, price, category, sku FROM basics.products WHERE category = 'electronics';
+// Result
+        name         |  price  |  category   |      sku                                                                                                                                                                   
+---------------------+---------+-------------+----------------
+ Wireless Mouse      | 1428.90 | electronics | ELEC-MOU-001
+ USB-C Cable         |  438.90 | electronics | ELEC-CAB-001
+ Old Monitor         | 5498.90 | electronics | ELEC-MON-OLD
+ laptop stand 5      |  110.00 | electronics | ELEC-LAP-100
+ laptop stand 6      |  110.00 | electronics | ELEC-LAP-101
+ laptop stand 7      |  110.00 | electronics | ELEC-LAP-102
+ Mechanical Keyboard | 1319.45 | electronics | ELEC-KEY-001
+ USB-C Cable 2       |  399.00 | electronics | ELEC-CABLE-001
+(8 rows)
+
+// Now we want to remove the "USB-C Cable 2"
+DELETE FROM basics.products WHERE sku = 'ELEC-CABLE-001';
+// Result
+DELETE 1
+
+// Re-check the data
+SELECT name, price, category, sku FROM basics.products WHERE category = 'electronics';
+// Result
+        name         |  price  |  category   |     sku                                                                                                                                                                    
+---------------------+---------+-------------+--------------
+ Wireless Mouse      | 1428.90 | electronics | ELEC-MOU-001
+ USB-C Cable         |  438.90 | electronics | ELEC-CAB-001
+ Old Monitor         | 5498.90 | electronics | ELEC-MON-OLD
+ laptop stand 5      |  110.00 | electronics | ELEC-LAP-100
+ laptop stand 6      |  110.00 | electronics | ELEC-LAP-101
+ laptop stand 7      |  110.00 | electronics | ELEC-LAP-102
+ Mechanical Keyboard | 1319.45 | electronics | ELEC-KEY-001
+(7 rows)
+</textarea>
+<br/>
+
+
+
+
 
 
 <script src="assets/js/codemirror/codemirror.min.js"></script>
