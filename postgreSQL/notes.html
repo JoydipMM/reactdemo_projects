@@ -960,6 +960,41 @@ SELECT name, price, category, sku FROM basics.products WHERE category = 'electro
 (7 rows)
 </textarea>
 <br/>
+<h4>Returing after Insert, Update and Delete</h4>
+<p><b>Returning</b> help us to get the data that we just inserted, updated or deleted.</p>
+<textarea class="code-editor">
+// RETURNING * >> returns all the columns
+INSERT INTO basics.products(name, category, price, stock, sku, description) VALUES('USB-C Cable 2', 'electronics', 399.00, 20, 'ELEC-CABLE-001', 'Description of USB-C Cable 2') RETURNING *;
+// Result
+                  id                  |     name      |  category   | price  | stock | is_active |      sku       |         description          |         created_at                                                     
+--------------------------------------+---------------+-------------+--------+-------+-----------+----------------+------------------------------+----------------------------
+ 5a110630-0621-4ab3-b64c-f03f86dbbca4 | USB-C Cable 2 | electronics | 399.00 |    20 | t         | ELEC-CABLE-001 | Description of USB-C Cable 2 | 2026-05-18 23:16:55.936922
+(1 row)
+
+INSERT 0 1
+
+// RETURNING id, name >> returns specific columns
+INSERT INTO basics.products(name, category, price, stock, sku, description) VALUES('USB-C Cable 2', 'electronics', 399.00, 20, 'ELEC-CABLE-0001', 'Description of USB-C Cable 2') RETURNING id, name;
+// result
+                  id                  |     name                                                                                                                                                                          
+--------------------------------------+---------------
+ 645de37e-6248-459a-8b9e-e7e355fafcb3 | USB-C Cable 2
+(1 row)
+
+INSERT 0 1
+
+
+// RETURNING on DELETE
+DELETE FROM basics.products WHERE sku = 'ELEC-CABLE-0001' RETURNING id, name;
+// Result
+                  id                  |     name                                                                                                                                                                          
+--------------------------------------+---------------
+ 645de37e-6248-459a-8b9e-e7e355fafcb3 | USB-C Cable 2
+(1 row)
+
+DELETE 1
+</textarea>
+
 
 
 
