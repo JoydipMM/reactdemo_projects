@@ -1342,6 +1342,37 @@ ORDER BY p.views DESC;
   <li><b>MAX()</b>: Returns the maximum value in a set of values.</li>
 </ul>
 <textarea class="code-editor">
+SELECT COUNT(*) AS total_posts FROM relationships.posts;
+// Result
+ total_posts                                                                                                                                                                                                              
+-------------
+           3
+(1 row)
+
+SELECT 
+COUNT(*) AS total_posts,
+COUNT(*) FILTER (WHERE status = 'published') AS published_posts
+FROM relationships.posts;
+// Result
+ total_posts | published_posts                                                                                                                                                                                            
+-------------+-----------------
+           3 |               1
+(1 row)
+
+SELECT
+COUNT(*) AS total_posts,
+COUNT(*) FILTER (WHERE status = 'published') AS published_posts,
+SUM(views) AS total_views,
+AVG(views) AS average_views
+FROM relationships.posts;
+
+// Result
+ total_posts | published_posts | total_views |     average_views                                                                                                                                                          
+-------------+-----------------+-------------+------------------------
+           3 |               1 |           0 | 0.00000000000000000000
+(1 row)
+
+
 SELECT 
     u.name AS author_name,
     COUNT(p.id) AS post_count,
