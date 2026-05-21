@@ -1215,6 +1215,149 @@ ORDER BY users.name, posts.title;
 
 <h4>Inner Join</h4>
 <p>Inner Join is a type of join that returns only the rows that have matching values in both tables</p>
+<p><code><b>INNER JOIN</b></code> Will return only the rows that have matching values in both tables remaining rows will be ignored/hide</p>
+<textarea class="code-editor">
+SELECT 
+    u.name AS author_name,
+    p.title AS post_title
+FROM relationships.users u
+JOIN relationships.posts p
+ON u.id = p.user_id;
+
+// OR we can write like this 
+// ------------------------------------------------
+
+SELECT 
+    users.name AS author_name,
+    posts.title AS post_title
+FROM relationships.users
+JOIN relationships.posts
+ON users.id = posts.user_id;
+
+
+SELECT u.name AS author_name, 
+p.title AS post_title,
+p.views AS post_views
+FROM relationships.posts p
+INNER JOIN relationships.users u ON u.id = p.user_id
+WHERE p.status = 'published'
+ORDER BY p.views DESC;
+
+// Result
+ author_name | post_title | post_views                                                                                                                                                                                    
+-------------+------------+------------
+ Bose        | Post 1     |          0
+(1 row)
+</textarea>
+<br/>
+
+<h4>Left Join</h4>
+<p>Left Join returns all rows from the left table and the matched rows from the right table.</p>
+<p>Means, if right table has matching data, postgres will return that.</p>
+<p>If there is no match, the result is NULL on the right side.</p>
+<p><code><b>LEFT JOIN</b></code> will show all the rows from the left table and from the right table shows with NULL if there is no match </p>
+<textarea class="code-editor">
+SELECT 
+    u.name AS author_name,
+    p.title AS post_title
+FROM relationships.users u
+LEFT JOIN relationships.posts p
+ON u.id = p.user_id;
+
+// Result
+ author_name | post_title
+------------+------------
+ Bose        | Post 1
+ Bose        | Post 3
+ Rahul       | Post 2
+
+
+SELECT posts.title AS post_title,
+comments.content AS comment_content
+FROM relationships.posts
+LEFT JOIN relationships.comments ON comments.post_id = posts.id
+ORDER BY posts.title;
+
+// Result
+ post_title | comment_content                                                                                                                                                                                             
+------------+-----------------
+ Post 1     | Comment 1
+ Post 2     | Comment 2
+ Post 3     | 
+(3 rows)
+</textarea>
+<br/>
+
+<h4>Many to Many Relationship</h4>
+<p>In a many-to-many relationship, multiple records in one table can be related to multiple records in another table.</p>
+<p><i>One post can have many tags<br/>
+One tag can belong to many posts</i></p>
+<textarea class="code-editor">
+SELECT posts.title AS post_title,
+tags.name AS tag_name
+FROM relationships.posts
+INNER JOIN relationships.post_tags ON post_tags.post_id = posts.id
+INNER JOIN relationships.tags ON tags.id = post_tags.tag_id
+ORDER BY posts.title, tags.name;
+
+// Result
+ post_title | tag_name                                                                                                                                                                                                    
+------------+----------
+ Post 1     | Tag 1
+ Post 2     | Tag 1
+(2 rows)
+</textarea>
+<br/>
+
+
+<h4>Table Aliases</h4>
+<textarea class="code-editor">
+SELECT 
+    u.name AS author_name,
+    p.title AS post_title,
+    c.content AS comment_content
+FROM relationships.posts p
+INNER JOIN relationships.users u ON u.id = p.user_id
+LEFT JOIN relationships.comments c ON c.post_id = p.id
+ORDER BY p.views DESC;
+
+// Result
+ author_name | post_title | comment_content                                                                                                                                                                               
+-------------+------------+-----------------
+ Bose        | Post 1     | Comment 1
+ Rahul       | Post 2     | Comment 2
+ Bose        | Post 3     | 
+(3 rows)
+</textarea>
+<br/>
+
+<h4>Aggregate Functions</h4>
+<p>Aggregate functions perform a calculation on a set of values and return a single value.</p>
+<p>Aggregate Functions in PostgreSQL are used to perform calculations on multiple rows and return a single result.</p>
+<ul>
+  <li><b>COUNT()</b>: Returns the number of rows that match a specified condition.</li>
+  <li><b>SUM()</b>: Returns the total sum of a numeric column.</li>
+  <li><b>AVG()</b>: Returns the average value of a numeric column.</li>
+  <li><b>MIN()</b>: Returns the minimum value in a set of values.</li>
+  <li><b>MAX()</b>: Returns the maximum value in a set of values.</li>
+</ul>
+<textarea class="code-editor">
+SELECT 
+    u.name AS author_name,
+    COUNT(p.id) AS post_count,
+    SUM(p.views) AS total_views
+FROM relationships.users u
+LEFT JOIN relationships.posts p ON u.id = p.user_id
+GROUP BY u.name;
+
+// Result
+ author_name | post_count | total_views
+-------------+------------+------------
+ Bose        |          2 |           0
+ Rahul       |          1 |           0
+(2 rows)
+</textarea>
+<br/>
 
 
 <script src="assets/js/codemirror/codemirror.min.js"></script>
