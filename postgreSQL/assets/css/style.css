@@ -1,10 +1,24 @@
 @import url('./codemirror/codemirror.min.css');
 @import url('./codemirror/theme/neo.min.css');
-@import url('./codemirror/theme/idea.min.css');
+/* @import url('./codemirror/theme/idea.min.css');
 @import url('./codemirror/theme/dracula.min.css');
 @import url('./codemirror/theme/eclipse.min.css');
-@import url('./codemirror/theme/mdn-like.min.css');
+@import url('./codemirror/theme/mdn-like.min.css'); */
+@import url('./bootstrap.min.css');
+
+*{ padding: 0px; margin: 0px; }
+body{ /*background-color: #000000; color: #fff; font-family: "arial";*/ font-size:16px; padding: 0px 15px; }
+p{ margin-bottom: 5px; }
+.CodeMirror, .CodeMirror-scroll{ height: auto !important; font-size: 14px; }
+code{ font-size: 16px; }
+.badge{ padding: 5px 14px; font-size: 15px; font-weight: 400; }
+.cm-s-neo.CodeMirror{ background-color: transparent; }
+.blockquote .mark{ padding: 15px; }
 
 
-body{ /*background-color: #000000; color: #fff;*/ font-family: "arial"; font-size:14px; }
-.CodeMirror, .CodeMirror-scroll{ height: auto; }
+@media print {
+
+body{ font-size:12px; }
+code{ font-size: 12px; }
+
+}
