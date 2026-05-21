@@ -1175,6 +1175,46 @@ CREATE TABLE relationships.comments(
 </textarea>
 <br/>
 
+<h4>One to many Relationship</h4>
+<p>In a one-to-many relationship, one record in a table can be related to multiple records in another table.</p>
+<p>One row from Table A can have many related rows in Table B.</p>
+<p>For example, one user can have many posts, but each post belongs to only one user.</p>
+<p><code><b>user_id UUID NOT NULL REFERENCES relationships.users(id),</b></code></p>
+<textarea class="code-editor">
+// example
+INSERT INTO relationships.posts 
+(user_id, title, content, status, views) VALUES 
+((SELECT id FROM relationships.users WHERE email = 'bose01@example.com'), 'Post 4', 'Content of Post 4', 'published', 0), 
+((SELECT id FROM relationships.users WHERE email = 'bose01@example.com'), 'Post 5', 'Content of Post 5', 'published', 0), 
+((SELECT id FROM relationships.users WHERE email = 'bose01@example.com'), 'Post 6', 'Content of Post 6', 'draft', 0);
+
+/* --------------------------------------------------------------------
+Here we are inserting 3 posts for same user 'Bose'. 
+So one user can have many posts, but each post belongs to only one user. 
+This is one to many relationship.
+ -------------------------------------------------------------------- */
+</textarea>
+<br/>
+
+<h4>Show all post with their user name with Inner Join</h4>
+<textarea class="code-editor">
+SELECT users.name AS author_name, 
+posts.title AS post_title 
+FROM relationships.posts
+INNER JOIN relationships.users ON users.id = posts.user_id
+ORDER BY users.name, posts.title;
+
+// Result
+ author_name | post_title
+------------+------------
+ Bose        | Post 1
+ Bose        | Post 3
+ Rahul       | Post 2
+</textarea>
+<br/>
+
+<h4>Inner Join</h4>
+<p>Inner Join is a type of join that returns only the rows that have matching values in both tables</p>
 
 
 <script src="assets/js/codemirror/codemirror.min.js"></script>
