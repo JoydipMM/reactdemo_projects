@@ -1,0 +1,102 @@
+npm i express dotenv pg cors joi
+
+pg - postgres
+joi - schema validation
+
+
+npm i --save-dev nodemon
+
+.env
+
+src/config/
+src/controllers/
+src/data/
+src/middlewares/
+src/models/
+src/routes/
+src/index.js
+
+
+--------------------------------------------------------------------------
+in src/index.js > 
+-------------------------------------------------------------------------
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+
+
+dotenv.config();
+
+const app = express();
+const port = process.env.PORT || 3001;
+
+app.use(cors());
+app.use(express.json());
+
+app.listen(process.env.PORT, () => console.log(`Server running on port ${port}`));
+
+----------------------------------------------------------------------------------
+
+pg admin extension:
+https://github.com/marcelo-ochoa/pgadmin4-docker-extension
+
+
+-----------------------------------------------------------------------------------
+connect postgres database with nodejs
+-----------------------------------------------------------------------------------
+.env ----------------------------
+DB_PORT=5001
+DB_USER=postgres
+DB_HOST=localhost
+DB_DATBASE=express-crud
+DB_DBPORT=5432
+DB_PASSWORD=
+
+src/config/db.js --------------------------
+import pkg from "pg";
+const { Pool } = pkg;
+
+const pool = new Pool({
+    user: process.env.USER,
+    host: process.env.HOST,
+    database: process.env.DATBASE,
+    password: process.env.PASSWORD,
+    port: process.env.PORT,
+});
+
+pool.on("connect", () => {
+    console.log("Connected to database");
+});
+
+export default pool;
+
+src/index.js -------------------------------------
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import pool from "./config/db.js"; // import pool from the db.js file
+
+
+dotenv.config();
+
+const app = express();
+const port = process.env.PORT || 3001;
+
+app.use(cors());
+app.use(express.json());
+
+// testing postgres connection
+app.get("/", async (req, res) => {
+    const result = await pool.query("SELECT current_database();");
+    res.send(`The database name is ${result.rows[0].current_database}`);
+})
+
+app.listen(process.env.PORT, () => console.log(`Server running on port ${port}`));
+
+open postman
+
+-----------------------------------------------------------------------------------
+
+
+
+
