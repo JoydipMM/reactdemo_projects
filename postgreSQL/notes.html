@@ -1390,6 +1390,66 @@ GROUP BY u.name;
 </textarea>
 <br/>
 
+<h4>Group By</h4>
+<p>The GROUP BY clause is used to group rows together based on one or more columns.</p>
+<p><b><i>WHERE</i></b> filter is used to filter rows before grouping</p>
+<p><b><i>HAVING</i></b> filter is used to filter rows after grouping</p>
+<textarea class="code-editor">
+SELECT 
+    u.name AS author_name,
+    COUNT(p.id) AS post_count,
+    SUM(p.views) AS total_views
+FROM relationships.users u
+LEFT JOIN relationships.posts p ON u.id = p.user_id
+GROUP BY u.name
+HAVING COUNT(p.id) >= 1
+ORDER BY u.name DESC;
+
+// Result
+ author_name | post_count | total_views                                                                                                                                                                                   
+-------------+------------+-------------
+ Rahul       |          1 |           0
+ Bose        |          2 |           0
+(2 rows)
+</textarea>
+<br/>
+
+<h4>Count Distinct</h4>
+<p>Count Distinct is used to count the number of distinct (unique) values in a column.</p>
+<p><code><b>COUNT(DISTINCT column_name)</b></code></p>
+<textarea class="code-editor">
+SELECT 
+  t.name AS tag_name,
+  COUNT(DISTINCT p.id) AS total_unique_posts
+  FROM relationships.tags AS t
+  LEFT JOIN relationships.post_tags AS pt ON t.id = pt.tag_id
+  LEFT JOIN relationships.posts AS p ON pt.post_id = p.id
+  GROUP BY t.name
+  ORDER BY total_unique_posts DESC;
+                                                                                                                       
+// Result 
+ tag_name | total_unique_posts                                                                                                                                                                                            
+----------+--------------------
+ Tag 1    |                  2
+ Tag 3    |                  1
+ Tag 2    |                  0
+(3 rows)
+</textarea>
+<br/>
+
+<h4>Subqueries</h4>
+<p>A query written inside another query. First runs the inner query and then the outer query</p>
+<textarea class="code-editor">
+SELECT 
+    u.name
+FROM relationships.users u
+WHERE (
+    SELECT COUNT(*)
+    FROM relationships.posts p
+    WHERE p.user_id = u.id
+) > 2;
+</textarea>
+
 
 <script src="assets/js/codemirror/codemirror.min.js"></script>
 <script src="assets/js/codemirror/javascript.min.js"></script>

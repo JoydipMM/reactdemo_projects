@@ -12,6 +12,14 @@ kubernetes
 salesforce developers
 Kafka
 
+vector databases,
+RAG - Retrieval-Augmented Generation
+orchestration
+
+
+
+
+
 Problem Slover,
 System Designers,
 Workflow Builders,
@@ -26,4 +34,8 @@ Product Thinking,
 Production Grade Eco-system,
 Optimize Performance,
 Validate outputs,
+
+
+https://hub.docker.com/r/ollama/ollama
+https://docs.openwebui.com/getting-started/quick-start/
 
