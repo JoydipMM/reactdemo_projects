@@ -1,0 +1,283 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PostgreSQL And Node.js CRUD Application</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+<hr />
+<h2><b>PostgreSQL And Node.js CRUD Application</b></h2>
+<hr />
+<p><b>Dependencies:</b></p>
+<ul class="list-group list-group-flush mx-4">
+  <li><b>Main Dependencies :</b> <code><b>npm install express cors dotenv pg</b></code></li>
+  <li><b>Development Dependencies :</b> <code><b>npm install -D nodemon</b></code></li>
+</ul>
+<br/>
+
+<hr />
+<h5><b>Folder and File Structure</b></h5>
+<hr />
+<textarea id="editor">
+project-root/
+├── .env
+├── .gitignore
+├── notes.txt
+├── package.json
+├── package-lock.json
+│
+├── src/
+│   ├── index.js
+│   │
+│   ├── config/
+│   │   └── db.js
+│   │
+│   ├── controllers/
+│   │   └── userController.js
+│   │
+│   ├── data/
+│   │   ├── createUserTable.js
+│   │   └── data.sql
+│   │
+│   ├── middlewares/
+│   │   └── errorHandling.js
+│   │
+│   ├── models/
+│   │   └── userModel.js
+│   │
+│   └── routes/
+│       └── userRouter.js
+</textarea>
+<br/>
+
+
+
+
+<hr />
+<h5><b>If using ES Modules</b></h5>
+<hr />
+<p>Add this inside <code><b>package.json</b></code></p>
+<textarea class="code-editor">
+{
+  ...
+  "main": "index.js",
+  "type": "module", // Add this line
+  ...
+}
+</textarea>
+<br/>
+
+
+<hr />
+<h5><b>Recommended Scripts for app run</b></h5>
+<hr />
+<p>Add this inside <code><b>package.json</b></code></p>
+<textarea class="code-editor">
+"scripts": {
+  "start": "node src/index.js",
+  "dev": "nodemon src/index.js"
+}
+</textarea>
+<br/>
+
+
+<hr />
+<h5><b>Craete a Server</b></h5>
+<hr />
+<p>We create <code><b>index.js</b></code> file inside <code><b>src</b></code> folder</p>
+<textarea class="code-editor">
+// src/index.js
+//------------------------------------------------------------------  
+/* This all are main dependencies which we need to import */
+import express from "express";
+import cors from "cors"; // this is for enabling cors
+import dotenv from "dotenv"; // this is for accessing environment variables
+
+dotenv.config(); // after import dotenv above we need to call this
+
+const app = express();
+const port = process.env.PORT || 3001; // this is for accessing port variable from .env
+
+app.use(cors()); // enable cors
+app.use(express.json()); // for parsing json data
+
+app.listen(port, () => console.log(`Server running on port ${port}`));
+
+
+// .env file
+//------------------------------------------------------------------  
+PORT=5001
+</textarea>
+<br/>
+<p><b>Run this command:</b> <code><b>npm run dev</b></code></p>
+<p>If all things are fine then we will see this message <code><b>Server running on port 5001</b></code> in <b><i>terminal</i></b></p>
+<br/>
+
+<hr />
+<h5><b>Connect to PostgresSQL Database</b></h5>
+<hr />
+<p>To connect to database we need to create <code><b>db.js</b></code> file inside <code><b>src/config</b></code> folder. Here we write code for connecting to database</p>
+<textarea class="code-editor">
+// src/config/db.js
+//------------------------------------------------------------------
+
+import pkg from "pg"; // this is postgres package
+import dotenv from "dotenv"; // this is for accessing environment variables for postgres
+dotenv.config(); // after import dotenv above we need to call this
+const { Pool } = pkg; // this is for creating pool object
+
+// below code is for create Pool object instance and add configuration code for connecting to database
+const pool = new Pool({
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATBASE,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
+});
+
+pool.on("connect", () => {
+    console.log("Connected to database");
+});
+
+export default pool;
+
+
+// .env file [ for postgres we need to add the below line of code DB_USER ..... ]
+//------------------------------------------------------------------  
+PORT=5001
+
+DB_USER=postgres
+DB_HOST=localhost
+DB_DATBASE=postgres-db
+DB_PASSWORD=admin
+DB_PORT=5432
+</textarea>
+<br/>
+<p>After creating <code><b>db.js</b></code> file we need to import it in <code><b>index.js</b></code> to check if we are able to connect to database</p>
+<textarea class="code-editor">
+// src/index.js
+//------------------------------------------------------------------
+
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import pool from "./config/db.js"; // we import pool from db.js
+
+dotenv.config();
+
+const app = express();
+const port = process.env.PORT || 3001;
+
+app.use(cors());
+app.use(express.json());
+
+
+// testing postgres connection
+app.get("/", async (req, res) => {
+    const result = await pool.query("SELECT current_database();");
+    res.send(`The database name is ${result.rows[0].current_database}`);
+})
+
+app.listen(port, () => console.log(`Server running on port ${port}`));
+</textarea>
+<br/>
+<p><b>Run this command:</b> <code><b>npm run dev</b></code></p>
+<p>If all things are fine then we will see this message <code><b>The database name is postgres-db</b></code> in <b><i>terminal</i></b></p>
+<br/>
+
+
+
+<hr />
+<h5><b>Create Router for API where we can able to create, read, update and delete data</b></h5>
+<hr />
+<p>To create router first we need to create <b>Models</b> where we write code for postgres queries for CRUD. As a example we are creating CRUD API for <b>User</b>. For that we need to create <code><b>userModel.js</b></code> file inside <code><b>src/models</b></code> folder</p>
+<textarea class="code-editor">
+// src/models/userModel.js
+//------------------------------------------------------------------
+
+import pool from "../config/db.js"; // import pool from db.js file for connecting to database
+
+// This query is for getting all users
+export const getAllUsersService = async () => {
+    const result = await pool.query("SELECT * FROM users");
+    return result.rows;
+}
+
+// This query is for getting user by id
+export const getUserByIdService = async (id) => {
+    const result = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+    return result.rows[0];
+}
+
+// This query is for creating new user
+export const createUserService = async (name, email) => {
+    const result = await pool.query("INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *", [name, email]);
+    return result.rows[0];
+}
+
+// This query is for updating a user
+export const updateUserService = async (id, name, email) => {
+    const result = await pool.query("UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *", [name, email, id]);
+    return result.rows[0];
+}
+
+// This query is for deleting a user
+export const deleteUserService = async (id) => {
+    const result = await pool.query("DELETE FROM users WHERE id = $1 RETURNING *", [id]);
+    return result.rows[0];
+}
+</textarea>
+<br/>
+<blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block"><p style="color:#000; font-family: var(--bs-font-sans-serif);"><b>What is Controller</b><br/>
+In a production-grade Express.js app, a controller handles the business logic of your application. It receives the request from routes, processes data, talks to models/database, and sends the response.</p></code>
+</blockquote>
+<p>Our model is ready. Now we create controller for user where we control all API Endpoints and call our model functions.</p> <p>For that we need to create <code><b>userController.js</b></code> file inside <code><b>src/controllers</b></code> folder</p>
+<br/>
+<p>In <code><b>userController.js</b></code> file first we write a centralized function for handle response. write the following code</p>
+<textarea class="code-editor">
+// src/controllers/userController.js
+//------------------------------------------------------------------
+
+const handleReponse = (res, status, message, data=null) => {
+    res.status(status).json({ 
+        status, 
+        message, 
+        data 
+    });
+}
+
+/*
+Notes: -------------------------------------------------------------------
+When we call this function from route handler, we can pass status, message, data as argument.
+This is a response utility/helper function.
+Its job is to send a standard API response format.
+
+Instead of writing:
+res.status(200).json({
+   status: 200,
+   message: "Users fetched successfully",
+   data: users
+});
+again and again in every controller, you create one reusable function.
+*/
+</textarea> 
+<p></p>
+
+
+
+
+<blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">npm run dev</code>
+</blockquote>
+
+  <script src="assets/js/codemirror/codemirror.min.js"></script>
+  <script src="assets/js/codemirror/javascript.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common-script.js"></script>
+</body>
+
+</html>
