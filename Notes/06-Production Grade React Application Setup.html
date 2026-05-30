@@ -33,7 +33,6 @@ src/
  │    │   ├── AppProviders.tsx
  │    │   ├── QueryProvider.tsx
  │    │   ├── ReduxProvider.tsx
- │    │   ├── ContextProvider.tsx
  │    ├── routes/
  │    │   ├── AppRouter.tsx
  │    │   ├── ProtectedRoute.tsx
@@ -81,7 +80,7 @@ src/
  │    ├── contexts/
  │    │   ├── theme/
  │    │   │   ├── ThemeContext.ts
- │    │   │   ├── ThemeProvider.tsx
+ │    │   │   ├── ThemeContextProvider.tsx
  │    │   │   ├── useTheme.ts
  │    │   │   ├── types.ts
  │    │   │
@@ -125,6 +124,54 @@ src/
  ├── main.tsx
 </textarea>
 <br/>
+
+<hr/>
+<h5><b>Our main.jsx File</b></h5>
+<hr/>
+<textarea class="code-editor">
+// main.tsx
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+import AppProviders from '@/app/providers/AppProviders'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <AppProviders>
+      <App />
+    </AppProviders>
+  </StrictMode>,
+)
+</textarea>
+<br/>
+
+<hr/>
+<h5><b>Our AppProviders.jsx File</b></h5>
+<hr/>
+<p><code>AppProviders.jsx</code> file is a wrapper component that provides the necessary providers for our application.</p>
+<textarea class="code-editor">
+// src/app/providers/AppProviders.jsx
+import ReduxProvider from '@/app/providers/ReduxProvider' // if we have
+import QueryProvider from '@/app/providers/QueryProvider' // if we have
+import { ThemeContextProvider } from '@/shared/contexts/theme/ThemeContextProvider' // if we have
+
+const AppProviders = ({children}) => {
+    return (
+        <ThemeContextProvider> // if we have then import at top and wrap
+            <ReduxProvider> // if we have then import at top and wrap
+                <QueryProvider> // if we have then import at top and wrap
+                    {children}
+                </QueryProvider>
+            </ReduxProvider>
+        </ThemeContextProvider>
+    )
+}
+
+export default AppProviders;
+</textarea>
+<br/>
+
 <hr />
 <h5><b>Gitbash command to create Folders and Files</b></h5>
 <hr />
@@ -706,7 +753,30 @@ export const ThemeContextProvider = ({ children }) => {
 export default ThemeContextProvider;
 </textarea>
 <br/>
-<p><b>Step 03</b> : To use theme context, We create component for ThemeSwitch in <code><b>src/shared/ui/components/ThemeSwitch.jsx</b></code></p>
+<p><b>Step 03</b> : We wrap our app with ThemeContextProvider in <code><b>src/app/providers/AppProviders.tsx</b></code></p>
+<textarea class="code-editor">
+// src/app/providers/AppProviders.tsx
+import ReduxProvider from '@/app/providers/ReduxProvider' // if we have
+import QueryProvider from '@/app/providers/QueryProvider' // if we have
+import { ThemeContextProvider } from '@/shared/contexts/theme/ThemeContextProvider' // we import ThemeContextProvider
+
+const AppProviders = ({children}) => {
+    return (
+        <ThemeContextProvider> // we wrap our app with ThemeContextProvider
+            <ReduxProvider> // if we have
+                <QueryProvider> // if we have
+                    {children}
+                </QueryProvider>
+            </ReduxProvider>
+        </ThemeContextProvider>
+    )
+}
+
+export default AppProviders;
+</textarea>
+<br/>
+
+<p><b>Step 04</b> : To use theme context, We create component for ThemeSwitch in <code><b>src/shared/ui/components/ThemeSwitch.jsx</b></code></p>
 <textarea class="code-editor">
 // src/shared/ui/components/ThemeSwitch.jsx
 import { useContext } from "react";
