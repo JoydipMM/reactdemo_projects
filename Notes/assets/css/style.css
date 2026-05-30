@@ -13,8 +13,10 @@ p{ margin-bottom: 5px; }
 code{ font-size: 16px; }
 .badge{ padding: 5px 14px; font-size: 15px; font-weight: 400; }
 .cm-s-neo.CodeMirror{ background-color: transparent; }
-.blockquote .mark{ padding: 15px; }
-
+.blockquote, .blockquote code{ font-family: system-ui, -apple-system; }
+.blockquote .mark{ padding: 15px; width: 100%; display: inline-block; }
+.blockquote p{ color: black; }
+.blockquote .normal{ color: black; }
 
 @media print {
 

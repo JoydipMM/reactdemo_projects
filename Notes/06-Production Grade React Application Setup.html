@@ -33,6 +33,7 @@ src/
  │    │   ├── AppProviders.tsx
  │    │   ├── QueryProvider.tsx
  │    │   ├── ReduxProvider.tsx
+ │    │   ├── ContextProvider.tsx
  │    ├── routes/
  │    │   ├── AppRouter.tsx
  │    │   ├── ProtectedRoute.tsx
@@ -50,11 +51,15 @@ src/
  │    │   │   ├── MovieCard.tsx
  │    │   │   ├── MovieList.tsx
  │    │   ├── services/
- │    │   │   ├── moviesAPI.ts
+ │    │   │   ├── moviesAPI.ts / movie.service.ts
  │    │   ├── slice/
  │    │   │   ├── moviesSlice.ts
  │    │   ├── hooks/
+ │    │   │   ├── useMovies.ts
  │    │   ├── queries/
+ │    │   │   ├── movies.queries.ts
+ │    │   ├── pages/
+ │    │   │   ├── MoviesPage.tsx
  │    │
  │    ├── auth/
  │    │   ├── components/
@@ -65,13 +70,38 @@ src/
  │    │   ├── slice/
  │    │   │   ├── authSlice.ts
  │    │   ├── hooks/
+ │    │   │   ├── useAuth.ts
  │    │   ├── queries/
+ │    │   │   ├── auth.queries.ts
+ │    │   ├── pages/
+ │    │   │   ├── LoginPage.tsx
+ │    │   │   ├── RegisterPage.tsx
  │
  ├── shared/
+ │    ├── contexts/
+ │    │   ├── theme/
+ │    │   │   ├── ThemeContext.ts
+ │    │   │   ├── ThemeProvider.tsx
+ │    │   │   ├── useTheme.ts
+ │    │   │   ├── types.ts
+ │    │   │
+ │    │   ├── auth/
+ │    │   │   ├── AuthContext.ts
+ │    │   │   ├── AuthProvider.tsx
+ │    │   │   ├── useAuth.ts
+ │    │   │   ├── types.ts
+ │    │   │
+ │    │   ├── language/
+ │    │   │   ├── LanguageContext.ts
+ │    │   │   ├── LanguageProvider.tsx
+ │    │   │   ├── useLanguage.ts
+ │    │   │   ├── types.ts
+ │    │
  │    ├── api/
  │    │   ├── client.ts // axios instance
  │    │   ├── endpoints.ts // API endpoint constants
  │    │   ├── apiError.ts // custom error handling
+ │    │
  │    ├── ui/
  │    │   ├── Button.tsx
  │    │   ├── Input.tsx
@@ -79,11 +109,14 @@ src/
  │    │   │   ├── Loader.tsx
  │    │   │   ├── Header.tsx
  │    │   │   ├── Footer.tsx
+ │    │
  │    ├── hooks/
  │    │   ├── useDebounce.ts
+ │    │
  │    ├── types/
  │    │   ├── Movie.ts
  │    │   ├── User.ts
+ │    │
  │    ├── utils/
  │    │   ├── formatDate.js
  │    │   ├── constants.js
@@ -465,11 +498,13 @@ import { ENDPOINTS } from "@/shared/api/endpoints";
 // Object-based service pattern
 export const userService = {
 
-  export const getUsers = async () => {
-    const response = await api.get(ENDPOINTS.USERS);
-    return response.data;
-  };
+  getUsers : async() => {
+      const response = await axiosClient.get(ENDPOINTS.USERS);
+      return response?.data;
+  },
   
+  // this is a method create user example
+  // CreateUserPayload is a type, which is defined in types folder inside users
   createUser: async (data: CreateUserPayload) => {
     /* axios post API call example 
     const response = await axios({
@@ -492,6 +527,22 @@ export const userService = {
   // shorter version of above code
   // getUsers: () => axiosClient.get(ENDPOINTS.USERS),
 
+  // this are other methods
+  updateUser: (id: string, data: any) => axiosClient.put(`${ENDPOINTS.USER}/${id}`, data),
+
+  deleteUser: (id: string) => axiosClient.delete(`${ENDPOINTS.USER}/${id}`),
+
+  login: (credentials: any) => axiosClient.post(ENDPOINTS.LOGIN, credentials),
+
+}
+</textarea>
+<br/>
+<p><b>CreateUserPayload Type</b> : <code><b>src/features/users/types/users.ts</b></code></p> 
+<textarea class="code-editor">
+// src/features/users/types/users.ts
+export interface CreateUserPayload{
+    name: string;
+    email: string;
 }
 </textarea>
 <br/>
@@ -511,7 +562,7 @@ const Users = () => {
         try {
             setLoading(true);
             setError("");
-            const response = await userService.getUsers();
+            const response = await userService.getUsers(); // call getUsers method from userService, which we imported from users service
             setUsers(response);
         }catch (err) {
             console.log(err);
@@ -612,14 +663,67 @@ const { data, isLoading } = useQuery({
 
 </code>
 </blockquote>
+<br/>
+
+<hr />
+<h5><b>How to Use Context API</b></h5>
+<hr />
+<blockquote class="blockquote">
+<code class="mark"><b>What is Context API?</b><p><b><i>Context API</i></b> is a React feature that allows us to share data between components without passing props manually through every level. This solves the prop drilling problem.</p>
+<b>Steps of Context API?</b>
+<ul class="normal">
+  <li>Define a context</li>
+  <li>Provide the context</li>
+  <li>Consume the context</li>
+</ul>
+</code>
+</blockquote>
+<h5><b>For code example we create Context API for Theme</b></h5>
+<p><b>Step 01</b> : Create context for theme <code><b>src/shared/contexts/theme/ThemeContext.js</b></code></p>
+<textarea class="code-editor">
+// src/shared/contexts/theme/ThemeContext.js
+import { createContext } from "react";
+export const ThemeContext = createContext();
+</textarea>
+<br/>
+<p><b>Step 02</b> : Create provider for theme <code><b>src/shared/contexts/theme/ThemeContextProvider.jsx</b></code></p>
+<textarea class="code-editor">
+// src/shared/contexts/theme/ThemeContextProvider.jsx
+import { useState } from "react";
+import { ThemeContext } from "./ThemeContext";
+export const ThemeContextProvider = ({ children }) => {
+  const [theme, setTheme] = useState("light");
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
+  const contextValue = {
+    theme,
+    toggleTheme,
+    isDark: theme === "dark",
+  };
+  return <ThemeContext.Provider value={contextValue}>{children}</ThemeContext.Provider>;
+};
+export default ThemeContextProvider;
+</textarea>
+<br/>
+<p><b>Step 03</b> : To use theme context, We create component for ThemeSwitch in <code><b>src/shared/ui/components/ThemeSwitch.jsx</b></code></p>
+<textarea class="code-editor">
+// src/shared/ui/components/ThemeSwitch.jsx
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/theme/ThemeContext";
+const ThemeSwitch = () => {
+  const { toggleTheme, isDark } = useContext(ThemeContext);
+  return (
+    <button onClick={toggleTheme} className="btn btn-primary">
+      {isDark ? "Light" : "Dark"}
+    </button>
+  );
+};
+export default ThemeSwitch;
+</textarea>
 
 
-<!-- <textarea id="editor">
 
-</textarea> -->
-
-<!-- <textarea class="code-editor">
-</textarea> -->
 
 
 
