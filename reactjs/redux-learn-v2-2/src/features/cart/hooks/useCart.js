@@ -9,48 +9,6 @@ perpose of this custom hook:
 
 export const useCart = () => {
 
-    // add to cart event
-    const addToCart = (product) => {
-        setCart((currentItem) => {
-            // first we find the exiting item
-            const exitingItem = currentItem.find((item) => item.id === product.id);
-
-            // if the exiting item is found then we update the quantity
-            if(exitingItem){
-                // here we update the quantity with same id product
-                return currentItem.map((item) => item.id === product.id ? {...item, quantity: item.quantity + 1}: item);
-            }
-
-            // if not exit then first we spread the current product and add quantity 1 by default
-            return [...currentItem, {...product, quantity: 1}];
-        });
-    }
-
-    // remove from cart event
-    const removeFromCart = (productId) => {
-        setCart((currentItem) => currentItem.filter((item) => item.id !== productId));
-    }
-
-    // update quantity event
-    const updateQuantity = (productId, quantity) => {
-        // fif the quantity is less than 1 then we return null / nothing
-        if(quantity < 1) return;
-        // if the quantity is greater than 1 then we update the quantity
-        // first we map the current cart item then check if the id is same with product id then we update the quantity, else we return the same item
-        setCart((currentItem) => currentItem.map((item) => item.id === productId ? {...item, quantity}: item));
-    }
-
-    // update total price
-    // this is not required if we use react 19
-    const total = useMemo(() => {
-        return Number(cart.reduce((sum, item)=>{
-            const itemTotal = item.price * (item.quantity || 0);
-            return sum + itemTotal;
-        }, 0).toFixed(2));
-    }, [cart]);
-
-
-
     // 1. Keep an eye on local storage
     // ---------------------------------------------------
     // useState also can handle callback function. 
@@ -106,6 +64,47 @@ export const useCart = () => {
         */
         
     }, []);
+
+
+    // add to cart event
+    const addToCart = (product) => {
+        setCart((currentItem) => {
+            // first we find the exiting item
+            const exitingItem = currentItem.find((item) => item.id === product.id);
+
+            // if the exiting item is found then we update the quantity
+            if(exitingItem){
+                // here we update the quantity with same id product
+                return currentItem.map((item) => item.id === product.id ? {...item, quantity: item.quantity + 1}: item);
+            }
+
+            // if not exit then first we spread the current product and add quantity 1 by default
+            return [...currentItem, {...product, quantity: 1}];
+        });
+    }
+
+    // remove from cart event
+    const removeFromCart = (productId) => {
+        setCart((currentItem) => currentItem.filter((item) => item.id !== productId));
+    }
+
+    // update quantity event
+    const updateQuantity = (productId, quantity) => {
+        // fif the quantity is less than 1 then we return null / nothing
+        if(quantity < 1) return;
+        // if the quantity is greater than 1 then we update the quantity
+        // first we map the current cart item then check if the id is same with product id then we update the quantity, else we return the same item
+        setCart((currentItem) => currentItem.map((item) => item.id === productId ? {...item, quantity}: item));
+    }
+
+    // update total price
+    // this is not required if we use react 19
+    const total = useMemo(() => {
+        return Number(cart.reduce((sum, item)=>{
+            const itemTotal = item.price * (item.quantity || 0);
+            return sum + itemTotal;
+        }, 0).toFixed(2));
+    }, [cart]);
 
     // Return the required methodes which are required in cart page
     return {

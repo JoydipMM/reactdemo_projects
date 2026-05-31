@@ -1,13 +1,13 @@
 import React from 'react'
 
-const ProductCard = ({ title, description, price, thumbnail, onAddToCart }) => {
+const ProductCard = ({ product, onAddToCart }) => {
   return (
     <div style={{border:"1px solid gray", padding:"10px"}}>
-      {thumbnail && <img width={100} height={100} src={thumbnail} alt={title} /> }
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <p>{price}</p>
-      <button onAddToCart={onAddToCart}>Add to Cart</button>
+      {product.thumbnail && <img width={100} height={100} src={product.thumbnail} alt={product.title} /> }
+      <h3>{product.title}</h3>
+      <p>{product.description}</p>
+      <p>{product.price}</p>
+      <button onClick={()=>onAddToCart(product)}>Add to Cart</button>
     </div>
   )
 }

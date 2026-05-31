@@ -1,8 +1,15 @@
 import React from 'react'
 import { useProductsQuery } from '@/features/products';
 import { ProductCard } from '@/features/products';
+// import { useCart } from '@/features/cart/hooks/useCart';
 
-const ProductsPage = () => {
+const ProductsPage = ({addToCart}) => {
+
+  // const {addToCart} = useCart();
+
+    const onAddToCart = (product) => {
+        addToCart(product);
+    };
 
     const {
         data: products,
@@ -21,7 +28,7 @@ const ProductsPage = () => {
       <ul>
         {products?.products?.map((product) => (
             // <li key={product.id}>{product.title}</li>
-            <ProductCard {...product} key={product.id}/>
+            <ProductCard product={product} onAddToCart={onAddToCart}  key={product.id}/>
         ))}
       </ul>
     </div>

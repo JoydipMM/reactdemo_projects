@@ -1,12 +1,12 @@
 import React from 'react'
 
-const cartItem = ({item, onUpdateQuantity, onRemove}) => {
+const CartItem = ({item, onUpdateQuantity, onRemove}) => {
   return (
     <div>
-    {thumbnail && <img width={100} height={100} src={thumbnail} alt={title} /> }
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <p>{price}</p>
+    {item.thumbnail && <img width={100} height={100} src={item.thumbnail} alt={item.title} /> }
+      <h3>{item.title}</h3>
+      <p>{item.description}</p>
+      <p>{item.price}</p>
       <button onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}>-</button> 
       {item.quantity} 
       <button onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}>+</button> 
@@ -15,4 +15,4 @@ const cartItem = ({item, onUpdateQuantity, onRemove}) => {
   )
 }
 
-export default cartItem;
+export default CartItem;
