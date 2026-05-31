@@ -72,7 +72,7 @@ src/
  │    │   ├── hooks/
  │    │   │   ├── useAuth.ts
  │    │   ├── queries/
- │    │   │   ├── authQueries.ts
+ │    │   │   ├── useAuthQueries.ts
  │    │   ├── pages/
  │    │   │   ├── LoginPage.tsx
  │    │   │   ├── RegisterPage.tsx
@@ -86,9 +86,9 @@ src/
  │    │   ├── slice/
  │    │   │   ├── productsSlice.ts
  │    │   ├── hooks/
- │    │   │   ├── useProducts.ts
+ │    │   │   ├── useProducts.ts 
  │    │   ├── queries/
- │    │   │   ├── productsQueries.ts
+ │    │   │   ├── useProductsQueries.ts
  │    │   ├── pages/
  │    │   │   ├── ProductsPage.tsx
  │    │
@@ -103,7 +103,7 @@ src/
  │    │   ├── hooks/
  │    │   │   ├── useCart.ts
  │    │   ├── queries/
- │    │   │   ├── cartQueries.ts
+ │    │   │   ├── useCartQueries.ts
  │    │   ├── pages/
  │    │   │   ├── CartPage.tsx
  │
@@ -154,6 +154,50 @@ src/
  │
  ├── main.tsx
 </textarea>
+<br/>
+<blockquote class="blockquote">
+<code class="mark code-block">
+<b>When to use "queries" folder?</b>
+<p>Keep React Query hooks in the queries folder. These hooks are specifically responsible for server-state fetching.</p>
+<p>in a production-grade application that's actually a common pattern when using React Query.</p>
+<textarea class="code-editor">
+queries/
+├── productQueries.ts
+├── categoryQueries.ts
+├── userQueries.ts
+└── authQueries.ts
+
+useProductsQuery()
+useProductQuery(id)
+useCategoriesQuery()
+useProfileQuery()
+</textarea>
+<br/>
+<b>When to use "hooks" folder</b>
+<p>Keep business logic and reusable UI hooks here</p>
+<textarea class="code-editor">
+hooks/
+├── useDebounce.ts
+├── usePagination.ts
+├── useProductFilters.ts
+├── useLocalStorage.ts
+└── useAuth.ts
+
+// Example: -----------------------------------------
+export const useProductFilters = () => {
+   const [search, setSearch] = useState("");
+   const [category, setCategory] = useState("");
+
+   return {
+      search,
+      setSearch,
+      category,
+      setCategory,
+   };
+};
+</textarea>
+</code>
+</blockquote>
 <br/>
 
 <hr/>
