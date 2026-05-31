@@ -28,9 +28,12 @@ function UserList() {
       {isError && <div>{error.message}</div>}
       <ul>
         {
-          users?.map((user) => (
+          users?.users?.map((user) => (
             <li key={user.id}>
-              {user.name}
+              {user.name && <>{user.name}</>}
+              {user.firstName && <>
+                {user.firstName} {user.lastName}
+              </>}
             </li>
           ))
         }

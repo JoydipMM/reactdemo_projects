@@ -25,6 +25,7 @@
 <h5><b>Folder and File Structure</b></h5>
 <hr />
 <textarea id="editor">
+.env
 src/
  ├── app/
  │    ├── store/
@@ -50,13 +51,13 @@ src/
  │    │   │   ├── MovieCard.tsx
  │    │   │   ├── MovieList.tsx
  │    │   ├── services/
- │    │   │   ├── moviesAPI.ts / movie.service.ts
+ │    │   │   ├── movieService.ts
  │    │   ├── slice/
  │    │   │   ├── moviesSlice.ts
  │    │   ├── hooks/
  │    │   │   ├── useMovies.ts
  │    │   ├── queries/
- │    │   │   ├── movies.queries.ts
+ │    │   │   ├── moviesQueries.ts
  │    │   ├── pages/
  │    │   │   ├── MoviesPage.tsx
  │    │
@@ -65,13 +66,13 @@ src/
  │    │   │   ├── LoginForm.tsx
  │    │   │   ├── RegisterForm.tsx
  │    │   ├── services/
- │    │   │   ├── authAPI.ts
+ │    │   │   ├── authService.ts
  │    │   ├── slice/
  │    │   │   ├── authSlice.ts
  │    │   ├── hooks/
  │    │   │   ├── useAuth.ts
  │    │   ├── queries/
- │    │   │   ├── auth.queries.ts
+ │    │   │   ├── authQueries.ts
  │    │   ├── pages/
  │    │   │   ├── LoginPage.tsx
  │    │   │   ├── RegisterPage.tsx
@@ -81,13 +82,13 @@ src/
  │    │   │   ├── ProductCard.tsx
  │    │   │   ├── ProductList.tsx
  │    │   ├── services/
- │    │   │   ├── productsAPI.ts
+ │    │   │   ├── productsService.ts
  │    │   ├── slice/
  │    │   │   ├── productsSlice.ts
  │    │   ├── hooks/
  │    │   │   ├── useProducts.ts
  │    │   ├── queries/
- │    │   │   ├── products.queries.ts
+ │    │   │   ├── productsQueries.ts
  │    │   ├── pages/
  │    │   │   ├── ProductsPage.tsx
  │    │
@@ -96,13 +97,13 @@ src/
  │    │   │   ├── CartItem.tsx
  │    │   │   ├── CartList.tsx
  │    │   ├── services/
- │    │   │   ├── cartAPI.ts
+ │    │   │   ├── cartService.ts
  │    │   ├── slice/
  │    │   │   ├── cartSlice.ts
  │    │   ├── hooks/
  │    │   │   ├── useCart.ts
  │    │   ├── queries/
- │    │   │   ├── cart.queries.ts
+ │    │   │   ├── cartQueries.ts
  │    │   ├── pages/
  │    │   │   ├── CartPage.tsx
  │
@@ -382,6 +383,67 @@ export default defineConfig({
 </h1>
 </textarea>
 <br/>
+
+
+
+<hr />
+<h5><b>Users Feature Setup with React Query and fetch form Dummy API</b></h5>
+<hr />
+<p>We build users feature with React Query and fetch form Dummy API to demonstrate how to use file, folder and code structure.</p>
+<hr />
+<h6><b>Folder Structure</b></h6>
+<hr />
+<textarea class="code-editor">
+.env
+src/
+ ├── app/
+ │
+ ├── features/
+ │    ├── user/
+ │    │   ├── components/
+ │    │   │   ├── userList.jsx
+ │    │   ├── services/
+ │    │   │   ├── userService.js
+ │    │   ├── hooks/
+ │    │   │   ├── useUsers.js
+ │    │   ├── pages/
+ │    │   │   ├── usersPage.jsx
+ │
+ ├── shared/
+ │    ├── api/
+ │    │   ├── client.ts // axios instance
+ │    │   ├── endpoints.ts // API endpoint constants
+ │
+ ├── main.tsx
+</textarea>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <hr />
 <h5><b>Simple API Call with Axios</b></h5>
