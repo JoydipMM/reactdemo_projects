@@ -4,8 +4,8 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-      Feature Two page<br/>
-      <Link href="/features/feature-one">Go to Feature One</Link>
+      Two Component<br/>
+      <Link href="/four">Go to Four [Two Level Interceptor]</Link>
     </div>
   )
 }
