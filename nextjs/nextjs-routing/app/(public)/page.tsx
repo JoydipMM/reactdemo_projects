@@ -39,6 +39,13 @@ export default function Home() {
       <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
       <input type="submit" value={"SUBMIT"} />
       </form>
+      <br/>
+      <p>What is Query parameters</p>
+      <p>Query parameters are the key-value pairs in a URL that comes after the question mark (?).</p>
+      <p>Example: /products?color=red&size=large</p>
+
+
+
     </div>
   );
 }
