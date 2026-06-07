@@ -44,8 +44,29 @@ export default function Home() {
       <p>Query parameters are the key-value pairs in a URL that comes after the question mark (?).</p>
       <p>Example: /products?color=red&size=large</p>
 
-
-
+      <br/>
+      <br/>
+      <br/>
+      <h2>headers in route handler</h2>
+      <p>HTTP headers represent the metadata associated with an api request and response.</p>
+      <h4>1. request headers</h4>
+      <p>these are sending by the client, Such as a web browser to the server. They contain essantial information about the request, which help to the server understand the request and process it correctly.</p>
+      <ul>
+        <li>Authorization (token)</li>
+        <li>User-Agent (browser info)</li>
+        <li>Accept (what kind of response the client expects)</li>
+      </ul>
+      <br/>
+      <br/>
+      <h4>2. response headers</h4>
+      <p>These are send back from the server to the client. They provide information about the server and the data being send in the response. </p>
+      <ul>
+        <li>Content-Type: (JSON, HTML etc)</li>
+        <li>Cache-Control</li>
+        <li>CORS Headers</li>
+        <li></li>
+        <li></li>
+      </ul>
     </div>
   );
 }
