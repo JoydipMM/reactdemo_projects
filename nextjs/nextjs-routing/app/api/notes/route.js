@@ -22,3 +22,16 @@ export async function POST(request){
         message: "note added successfully", 
     });
 }
+
+
+export async function GET(request){
+
+    // 1. when ever we calling any endpoint we need connect our database first
+    await connectDB();
+
+    // 2. data from database
+    const notes = await Note.find().sort({ createdAt: -1 }); // syntax: await ModelName.find().sort();
+
+    // 3. return the data to client
+    return Response.json(notes, { status: 200, message: "notes fetched successfully" });
+}
