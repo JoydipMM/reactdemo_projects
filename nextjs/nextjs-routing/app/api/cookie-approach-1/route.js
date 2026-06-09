@@ -7,6 +7,7 @@ export async function GET(request){
     const username = request.cookies.get("username");
     // show resulkt in terminal
     console.log(username);
+    console.log(request.cookies);
     // in terminal: { name: 'username', value: 'dipen' }
 
     return new Response("<h1>Get API Cookie Data</h1>", {
