@@ -9,6 +9,7 @@ const NoteAddPage = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [notes, setNotes] = useState([]);
+  const [editid, setEditId] = useState(null);
 
   const getNotes = async() => {
     try{
@@ -39,7 +40,35 @@ const NoteAddPage = () => {
 
     try{
       setIsLoading(true);
-      const res = await fetch('/api/notes', {
+      setEditId(null);
+
+      if(editid){
+
+        // edit note
+        const res = await fetch(`/api/notes/${editid}`, {
+          method: "PUT",
+          headers: {
+            "content-type" : "application/json",
+          },
+          body: JSON.stringify({ title, content })
+        })
+
+        if(res.ok){
+          setIsLoading(false);
+          setSuccess("Note update successfully");
+          getNotes();
+          setTitle('');
+          setContent('');
+          setEditId(null);
+          setTimeout(() => {
+            setSuccess('');
+          }, 2000);
+        }
+
+      }else{
+
+        // add note 
+        const res = await fetch('/api/notes', {
         method: 'POST',
         headers:{
           "content-type": "application/json",
@@ -60,6 +89,8 @@ const NoteAddPage = () => {
         console.log(data);
       }
 
+      }
+
     }catch(err){
       setError(err.message);
       setIsLoading(false);
@@ -73,6 +104,15 @@ const NoteAddPage = () => {
 
   const noteEditAction = async (note) => {
     console.log(note);
+    setEditId(note._id);
+    setTitle(note.title);
+    setContent(note.content);
+  }
+
+  const cancelEditAction = () => {
+    setEditId(null);
+    setTitle('');
+    setContent('');
   }
 
   const noteDeleteAction = async (id) => {
@@ -116,7 +156,10 @@ const NoteAddPage = () => {
           <textarea rows={5} value={content} placeholder='Content' onChange={(e)=> setContent(e.target.value) }/>
         </div>
         <div>
-          <input type='submit' disabled={isLoading} value="SUBMIT" />
+          <button type='submit' disabled={isLoading}>
+            {isLoading ? "Adding..." : editid ? "Update Note" : "Add Note"}
+          </button>
+          {editid && <button onClick={cancelEditAction}>Cancel</button>}
         </div>
       </form>
 

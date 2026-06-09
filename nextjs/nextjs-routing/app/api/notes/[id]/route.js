@@ -14,3 +14,16 @@ export async function DELETE(request, {params}){
 
     return Response.json({ message: "note deleted successfully" });
 }
+
+
+export async function PUT(request, {params}){
+    // 1. connect the database
+    await connectDB();
+
+    // 2. get the id from params and delete the data from database
+    const {id} = await params;
+    const  { title, content } = await request.json();
+
+    const note = await Note.findByIdAndUpdate(id, {title, content}, {returnDocument: "after"});
+    return Response.json({ message: "note updated successfully", note });
+}
