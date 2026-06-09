@@ -16,8 +16,7 @@ export async function POST(request){
     // syntax: await ModelName.create({ key: value });
 
     // 5. return the saved data to client
-    return Response.json({ 
-        note:note, 
+    return Response.json(note, { 
         status: 201,
         success: true, 
         message: "note added successfully", 
