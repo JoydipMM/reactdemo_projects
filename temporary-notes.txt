@@ -1,3 +1,5 @@
+section 2, 3, 4, 5, 6, 8 read pending
+
 Next.js <Form /> Component
 ------------------------------------------------
 The <Form /> component in Next.js is an enhanced version of the HTML <form> element that integrates tightly with the App Router, Server Actions, and client navigation.
