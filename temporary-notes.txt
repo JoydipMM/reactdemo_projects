@@ -1,0 +1,11 @@
+server actions are asynchronous function that run only on the server and can be called directly from the react component [server component / client component]
+
+they allow to execute server-side logic such as database operations, authentication and handling without creating API routes
+
+In general if we want to call any API in Nextjs component then first we use fetch/axios request to create web request then it goes to API routes and API route talks to database. So we need create a backend endpoint manually. 
+
+But when it comes to "Server Actions", component can be client/server we write a asynchronous function and that asynchronous function can directly talk to database and perform some server side logic. So we no need to manage any request / response handling manually. Means Server Actions remove internal API Routes. 
+
+A server Action is a server-side function marked with "use server" that can be invoked from React components.
+
+Nestjs suggest us don't use "Server Actions" to fetch API. But we can use this for create, edit delete actions.
