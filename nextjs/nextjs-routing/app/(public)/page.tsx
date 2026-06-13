@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
+import ConatctFormMain from "@/components/ConatctFormMain";
+import ContactList from "@/components/ContactList";
 
 export default function Home() {
 
@@ -30,7 +32,7 @@ export default function Home() {
 
   }
   return (
-    <div className="flex flex-col flex-1 bg-zinc-50 font-sans dark:bg-black">
+    <div>
       Home page<br/>
       {
         message && <p>{message}</p>
@@ -81,8 +83,11 @@ export default function Home() {
       <br/>
       <h3>Approach - 1 (while returning the response set-cookie header)</h3>
       <p></p>
-      
-      
+      <br/>
+      <br/><br/>
+      <br/><br/>
+      <ConatctFormMain/>
+      <ContactList/>
       
       
       

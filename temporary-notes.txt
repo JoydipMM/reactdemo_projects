@@ -1,11 +1,120 @@
-server actions are asynchronous function that run only on the server and can be called directly from the react component [server component / client component]
+Next.js <Form /> Component
+------------------------------------------------
+The <Form /> component in Next.js is an enhanced version of the HTML <form> element that integrates tightly with the App Router, Server Actions, and client navigation.
 
-they allow to execute server-side logic such as database operations, authentication and handling without creating API routes
+Instead of manually handling form submission with JavaScript, Next.js lets you directly connect a form to server functions or routes.
 
-In general if we want to call any API in Nextjs component then first we use fetch/axios request to create web request then it goes to API routes and API route talks to database. So we need create a backend endpoint manually. 
+Why Next.js introduced <Form/>
+------------------------------------------------
+In traditional React or Next.js apps, forms required:
+onSubmit handlers
+fetch() calls
+API routes
+manual navigation
 
-But when it comes to "Server Actions", component can be client/server we write a asynchronous function and that asynchronous function can directly talk to database and perform some server side logic. So we no need to manage any request / response handling manually. Means Server Actions remove internal API Routes. 
+Example: 
+const handleSubmit = async (e) => {
+e.preventDefault();
+await fetch("/api/data", {method:"POST", ....})
+} 
 
-A server Action is a server-side function marked with "use server" that can be invoked from React components.
+Now with Next.js App Router:
+Form directly calls server actions
+No API route required
+Less boilerplate code
 
-Nestjs suggest us don't use "Server Actions" to fetch API. But we can use this for create, edit delete actions.
+How <Form/> works
+------------------------------------------------
+The behavior of <Form> depends on the type of action prop
+
+1. When action is a string: <Form action="/search" >...</Form>
+then it's behavior:
+a. work like normal HTML form
+b. Uses GET request
+c. Converts from inputs to URL search params
+d. Performs "client-side navigation"
+
+Converts from inputs to URL search params > when user submit the form then form data convert to url params like: /search?title=raja&age=40
+
+2. When action is a function (Server Action) <Form action={createPostAction} >...</Form>
+then it's behavior: 
+a. Calls a Server Action
+b. Sends data via POST
+c. No API router required
+d. Function receives "FormData" automatically. example: async function createPostAction(){...}
+
+Benefits of using <Form/>
+------------------------------------------------
+
+1. Less Boilerplate
+No need for:
+a. API routes
+b. Fetch requests
+c. manual event handling
+
+2. Direct Server Communication
+Forms can call "Server Actions" directly, reducing architecture complexity.
+
+3. Client-Side Navigation
+No full reload
+benefits:
+a. faster User experience
+b. preserved state
+c. layouts stay mounted
+
+4. URL Search Param Integration
+great for:
+a. search bars
+b. filters
+c. pagination
+
+------------------------------------------------------------------------------------
+
+import Link from 'next/link';
+
+<link 
+onNavigate={()=>console.log("Navigated")} 
+replace 
+scroll={false}
+prefetch={true}
+>Back</link>
+
+pass query parameter with Link:
+
+<link href={"/about"}>click</link>
+<link href={{
+pathname:"/about",
+query:{name: "jhon"}
+}}>click</link>
+
+
+To use Remote image we need some configuration in next.config.ts file to whitelist the image url
+--------------------------------------------------------------------------------------------------
+import Image from 'next/image';
+
+<Image src="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width={100} height={100} />
+
+const nextConfig: NextConfig = {
+  images:{
+    remotePatterns:[
+      {
+        protocol:"https",
+        hostname:"images.unsplash.com",
+      }
+    ]
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+

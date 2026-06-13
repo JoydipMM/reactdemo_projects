@@ -4,12 +4,9 @@ export async function FormAction(formData) {
     console.log(title);
 }
 
-export async function FormActionWithProps(title){
-    const newdata = {title};
+export async function SubmitUserForm(formData){
+    const username = formData.get("username");
+    const email = formData.get("email");
 
-    return {
-        success:true,
-        message: "sccess",
-        data: newdata
-    }
+    console.log("Submitted user data: ", username, email);
 }
