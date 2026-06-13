@@ -107,7 +107,7 @@ const nextConfig: NextConfig = {
 
 
 
-
+revalidatePath("/contacts");
 
 
 
