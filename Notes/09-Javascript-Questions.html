@@ -1,0 +1,134 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Basic</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+<hr />
+<h2><b>JavaScript Basic</b></h2>
+<hr />
+<br/>
+<br/>
+<hr />
+<h5><b>Data Types in JavaScript:</b></h5>
+<hr />
+<b><i>Primitive Data Types : </i></b>
+<ol class="list-group list-group-flush mx-4">
+  <li><b>string</b> : <code><b>"Hello World"</b></code></li>
+  <li><b>number</b> : <code><b>1234</b></code></li>
+  <li><b>boolean</b> : <code><b>true/false</b></code></li>
+  <li><b>undefined</b> : <code><b>Not defined / absence of value</b></code></li>
+  <li><b>null</b> : <code><b>empty</b></code></li>
+  <li><b>bigInt</b> : <code><b>12345678901234567890123456789n</b></code></li>
+  <li><b>symbol</b> : <code><b>Symbol("unique")</b></code></li>
+</ol>
+<br/>
+<b><i>Non-premitive Data Types : </i></b>
+<ol start="8" class="list-group list-group-flush mx-4">
+  <li><b>object</b> : 
+    <ul>
+      <li><b>object</b> : <code><b>{ name: "Jhon", age: 30 }</b></code></li>
+      <li><b>array</b> : <code><b>[1, 2, 3]</b></code></li>
+      <li><b>function</b> : <code><b>function(){}</b></code></li>
+    </ul>
+    
+  </li>
+  
+</ol>
+<br/>
+
+<hr />
+<h5><b>Different between == and ===</b></h5>
+<hr />
+<p><b>==</b> : <code><b>Equal to value</b></code></p>
+<p><b>===</b> : <code><b>Strict equal to value and type</b></code></p>
+<textarea id="editor">
+console.log( 5 == "5" ); // true
+console.log( 5 === "5" ); // false
+
+console.log( null == undefined ); // true
+console.log( null === undefined ); // false
+
+console.log( NaN == NaN ); // false
+console.log( NaN === NaN ); // false
+
+console.log( 0 == false ); // true
+console.log( 0 === false ); // false
+
+console.log( "0" == false ); // true
+console.log( "0" === false ); // false
+</textarea>
+<br/>
+
+
+
+
+<hr />
+<h5><b>Different between undefined and null</b></h5>
+<hr />
+<p><b>null</b> : <code><b>empty</b></code></p>
+<p><b>undefined</b> : <code><b>Represent a variable that has been declared but not assigned value</b></code></p>
+<textarea class="code-editor">
+let nullvar = null;
+console.log(nullvar); // null
+console.log(typeof nullvar); // object
+
+let undefinedvar;
+console.log(undefinedvar); // undefined
+console.log(typeof undefinedvar); // undefined
+
+console.log(null == undefined); // true
+console.log(null === undefined); // false
+</textarea>
+<br/>
+
+
+<hr />
+<h5><b>Hoisting in JavaScript</b></h5>
+<hr />
+<p></p>
+<textarea class="code-editor">
+
+</textarea>
+<br/>
+
+
+<hr />
+<h5><b>Different between var, let and const</b></h5>
+<hr />
+<p></p>
+<textarea class="code-editor">
+
+</textarea>
+<br/>
+
+<!-- 
+<hr />
+<h5><b>Craete a Server</b></h5>
+<hr />
+<p>We create <code><b>index.js</b></code> file inside <code><b>src</b></code> folder</p>
+<textarea class="code-editor">
+
+</textarea>
+<br/>
+<p><b>Run this command:</b> <code><b>npm run dev</b></code></p>
+<p>If all things are fine then we will see this message <code><b>Server running on port 5001</b></code> in <b><i>terminal</i></b></p>
+<br/> -->
+
+
+
+<!-- <blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">npm run dev</code>
+</blockquote> -->
+
+  <script src="assets/js/codemirror/codemirror.min.js"></script>
+  <script src="assets/js/codemirror/javascript.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common-script.js"></script>
+</body>
+
+</html>
