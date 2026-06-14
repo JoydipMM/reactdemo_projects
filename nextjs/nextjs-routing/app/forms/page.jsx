@@ -4,6 +4,11 @@ import { SubmitUserForm } from '@/actions/formActions';
 import Link from 'next/link';
 import Image from 'next/image';
 
+export const metadata = {
+    title: "Next Form page",
+    description: "Next Form page description" 
+}
+
 const FormPage = () => {
   return (
     <div>

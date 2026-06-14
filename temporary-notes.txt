@@ -114,6 +114,196 @@ revalidatePath("/contacts");
 
 
 
+----------------------------------------------------------------------------------------
+
+What is Metadata?
+-------------------------
+Metadata is a data that describes a webpage.
+It usually lives inside the HTML <head> section and provides information about 
+the page to browsers, search engines and social media platforms.
+
+Examples of Metadata:
+page title
+Description
+OpenGraph tags (for social media sharing)
+Twitter cards
+Robots instructions
+Icons / Favicons
+
+Why should we care about Metadata?  
+-------------------------
+metadata is important because it affects SEO, sharing and user trust.
+
+1. Search Engine Optimization (SEO)
+-------------------------
+Search engines like Google use metadata to understand your page.
+
+2. Social Media Sharing
+-------------------------
+When someone shares a link on twitter, linkedin, metadata controls the preview.
+Example preview:
+
+3. Browser Experience
+-------------------------
+metadata also controls:
+a. page title in browser tabs
+b. favicons
+c. viewport behavior
+Next.js automatically includes basic meta tags like charset and viewport even if you don't define them.
+
+
+Metadata in Next.js
+-----------------------------------------------
+Next.js provides a "metadata API" that automatically generates <head> tags for your pages.
+you define metadata inside:
+layout / page
+
+export const metadata = {
+title: "My Website",
+description: "My website description"
+}
+
+In webpage next.js automatically generates code like below:
+<head>
+....
+<title>My Website</title>
+<meta name="description" content="My website description" >
+</head>
+
+
+Static vs Dynamic Metadata
+--------------------------
+Next.js supports two types of metadata:
+1. Static Metadata
+Static metadata is fixed metadata that does not change.
+It is generated at build time.
+>> best for pages like:
+a. Home
+b. About
+c. Contact
+d. Pricing
+In next.js we found static metadata in root layout.tsx
+
+2. Dynamic Metadata
+Dynamic metadata changes based on:
+a. route parameters
+b. API data
+c. database content
+It is created using "generateMetadata()" method
+
+create nested metadata
+---------------------------------
+in form page
+
+export const metadata = {
+    title: "Next Form page",
+    description: "Next Form page description" 
+}
+
+const FormPage = () => {
+....
+
+In browser tab will show: Next Form page
+
+How to add dynamic metadata
+---------------------------------
+app\products\[productid]\page.jsx
+
+import React from 'react'
+
+export async function generateMetadata({params}){
+  const { productid } = await params;
+  return {
+    title: `Product ID: ${productid}`,
+    description: `Product Description of : ${productid}`
+  }
+}
+
+const page = async ({ params }) => {
+  const { productid } = await params;
+  console.log(productid);
+
+  return (
+    <div>
+      Product Details Page
+      <br/>
+      Product ID: { productid }
+    </div>
+  )
+}
+
+export default page
+
+url: http://localhost:3000/products/laptop
+tab title: Product ID: laptop
+
+
+Title metadata Types
+------------------------------------------------
+Default, Template & Absolute
+
+Title Object in Next.js
+----------------------
+The title can be defined as an object with three properties:
+
+app\products\layout.jsx
+--------------------------
+title: {
+default: "Next Product page", // default is the fallback title. It is used when a page dose not define its own title.
+template: "%s | Next Product page", // template allows you to create a title pattern. This will overrides metadata inside page.jsx
+absolute:"", // absolute overrides the template, It ignores the layout template completely
+},
+
+app\products\product-details\page.jsx
+-------------------------------------
+export const metadata = {
+  title: "Product Details page",
+  description: "Product Deatils page description" 
+}
+
+app\products\[productid]\page.jsx
+-------------------------------------
+export async function generateMetadata({params}){
+  const { productid } = await params;
+  return {
+    title: `Product ID: ${productid}`,
+    description: `Product Description of : ${productid}`
+  }
+}
+
+app\products\absolute-product\page.jsx
+export const metadata = {
+    title:{
+      absolute:"Absolute Product Page"
+    }
+}
+
+url: http://localhost:3000/products
+tab title: Next Product page
+
+url: http://localhost:3000/products/product-details
+tab title: Product Details page | Next Product page
+
+http://localhost:3000/products/laptop
+tab title: laptop | Next Product page
+
+url: http://localhost:3000/products/absolute-product
+tab title: Absolute Product Page
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
