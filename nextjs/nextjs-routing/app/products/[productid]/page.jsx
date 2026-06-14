@@ -5,7 +5,10 @@ export async function generateMetadata({params}){
   const { productid } = await params;
   return {
     title: `Product ID: ${productid}`,
-    description: `Product Description of : ${productid}`
+    description: `Product Description of : ${productid}`,
+    openGraph: {
+      url: `https://localhost:3000/products/${productid}`,
+    }
   }
 }
 

@@ -291,6 +291,131 @@ url: http://localhost:3000/products/absolute-product
 tab title: Absolute Product Page
 
 
+Static Open Graph Image
+------------------------------------------
+
+what is an Open Graph Image?
+----------------
+An Open Graph (OG) image is the preview image that appears when someone shares your website link on social media platforms.
+
+What is a Static Open Graph Image?
+-------------------
+A static Open Graph Image is a fixed image file used as a preview image for a page.
+In Next.js, you can add it by placing an image file named: opengraph-image.png  / opengraph-image.jpg [1200 x 630 ]
+
+Why Static OG Images matter:
+-------------------------
+1. Better Social Media Preview
+2. Stronger Branding
+3. Better SEO and Shareability
+
+
+How static OG image use in Next.js
+----------------------------------
+1. We place the image inside "app" folder and change the to "opengraph-image.png  / opengraph-image.jpg"
+2. <meta name="twitter:image" content="http://localhost:3000/opengraph-image.jpg?opengraph-image.1hv-k0j8_s5wh.jpg">
+
+How we can generate dynamic OG Image in Next.js
+------------------------------
+reference: https://nextjs.org/docs/app/api-reference/functions/image-response
+url: http://localhost:3000/products/laptop
+We want to generate dynamic OG image based in productname/slug
+app\products\[productid]\opengraph-image.jsx
+---------------------------------
+import { ImageResponse } from "next/og";
+// The ImageResponse class allows you to generate dynamic images using JSX and CSS. This is useful for generating social media images such as Open Graph images, Twitter cards, and more.
+
+export const size = {
+    width: 1200,
+    height: 630,
+};
+
+export const contentType = "image/png";
+
+export default async function Image({ params }) {
+    const { productid } = await params;
+    return new ImageResponse(
+        (
+            <div
+                style={{
+                    display: 'flex',
+                    height: '100%',
+                    width: '100%',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    letterSpacing: '-.02em',
+                    fontWeight: 700,
+                    background: 'white',
+                }}
+            >
+                <div
+                    style={{
+                        left: 42,
+                        top: 42,
+                        position: 'absolute',
+                        display: 'flex',
+                        alignItems: 'center',
+                    }}
+                >
+                    <span
+                        style={{
+                            width: 24,
+                            height: 24,
+                            background: 'black',
+                        }}
+                    />
+                    <span
+                        style={{
+                            marginLeft: 8,
+                            fontSize: 20,
+                        }}
+                    >
+                        Custom OG Image
+                    </span>
+                </div>
+                <div
+                    style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        justifyContent: 'center',
+                        padding: '20px 50px',
+                        margin: '0 42px',
+                        fontSize: 40,
+                        width: 'auto',
+                        maxWidth: 550,
+                        textAlign: 'center',
+                        backgroundColor: 'black',
+                        color: 'white',
+                        lineHeight: 1.4,
+                    }}
+                >
+                    {productid}
+                </div>
+            </div>
+        )
+    )
+}
+
+app\products\[productid]\page.jsx
+----------------------
+import React from 'react'
+
+export async function generateMetadata({params}){
+  const { productid } = await params;
+  return {
+    title: `Product ID: ${productid}`,
+    description: `Product Description of : ${productid}`,
+    openGraph: {
+      url: `https://localhost:3000/products/${productid}`,
+    }
+  }
+}
+
+const page = async ({ params }) => {
+  const { productid } = await params;
+  console.log(productid);
+
+....
 
 
 

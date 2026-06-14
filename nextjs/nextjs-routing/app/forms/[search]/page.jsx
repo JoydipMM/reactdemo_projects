@@ -8,7 +8,7 @@ const page = () => {
     
   return (
     <div>
-        <h2>Search Params page</h2>
+        <h2>Search Params page !!!</h2>
         User name: {params.get("username")}<br/>
         Email: {params.get("email")}
 
