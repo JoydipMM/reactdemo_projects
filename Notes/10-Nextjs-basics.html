@@ -48,7 +48,9 @@
 <hr />
 <p><b>Next.js</b> uses File-Based Routing. Next.js automatically creates routes from <b>folders and files inside the <code>app</code> directory</b>.</p>
 <br/>
+<hr/>
 <h6><b>Types of Routing in Next.js</b></h6>
+<hr/>
 <ol class="list-group list-group-flush mx-4">
   <li>Static Routing</li>
   <li>Dynamic Routing</li>
@@ -59,7 +61,7 @@
   <li>Parallel Routes</li>
   <li>Intercepting Routes</li>
 </ol>
-
+<br/>
 <hr />
 <h5><b>1. Static Routing</b></h5>
 <hr />
@@ -289,6 +291,50 @@ Docs route page
 */
 </textarea>
 <br/>
+
+
+
+<hr />
+<h5><b>6. Route Groups</b></h5>
+<hr />
+<p>Organize routes without affecting URLs. The convention of <code><b>route group</b></code> is <b><i>(foldername)</b></i>. This type of route help us to organize routes.</p>
+<textarea class="code-editor">
+// Folder Structure
+app/
+├── (public)/ // this folder will not show in URL
+|    ├── aboutus/
+|    |   └── page.tsx
+|    ├── contactus/
+|    |   └── page.tsx
+├── (auth)/ // this folder will not show in URL
+|    ├── login/
+|    |   └── page.tsx
+|    ├── register/
+|    |   └── page.tsx
+├── (afterlogin)/ // this folder will not show in URL
+|    ├── dashboard/
+|    |   └── page.tsx
+|    ├── profile/
+|    |   └── page.tsx
+
+/*
+URL:
+http://localhost:3000/aboutus
+http://localhost:3000/contactus
+http://localhost:3000/login
+http://localhost:3000/register
+http://localhost:3000/dashboard
+http://localhost:3000/profile
+*/
+</textarea>
+<br/>
+
+
+
+<hr />
+<h5><b>7. Parallel Routes</b></h5>
+<hr />
+<p>Render multiple route segments simultaneously.</p>
 
 
 
