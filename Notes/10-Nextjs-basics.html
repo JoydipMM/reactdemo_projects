@@ -1,0 +1,333 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Next.js Basic</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+<hr />
+<h2><b>Next.js Basic</b></h2>
+<hr />
+<p>We use <b>Next.js</b> because React is only a UI library, while Next.js is a full-stack framework built on top of React. It provides server-side rendering, static generation, server components, API routes, built-in routing, caching, image optimization, and many performance features out of the box.</p>
+<p>These features help improve SEO, reduce client-side JavaScript, speed up page loads, and simplify application architecture. In production applications such as e-commerce platforms, SaaS products, OTT platforms, and content websites, Next.js allows us to build scalable, high-performance applications with a better developer experience than plain React.</p>
+<p>It extends React by adding features such as:</p>
+<ul class="list-group list-group-flush mx-4">
+  <li><b>Server-side rendering</b> : <code><b>SSR</b></code></li>
+  <li><b>Static site generation</b> : <code><b>SSG</b></code></li>
+  <li><b>Incremental Static Regeneration</b> : <code><b>ISR</b></code></li>
+  <li><b>Static export</b> : <code><b>SSR</b></code></li>
+  <li><b>Server Component</b></li>
+  <li><b>Server Actions</b></li>
+  <li><b>Built-in Routing</b></li>
+  <li><b>API routes</b></li>
+  <li><b>caching</b></li>
+  <li><b>Full-Stack Capabilities</b></li>
+  <li><b>Performance Optimizations: 
+    <code><b>Image optimization</b></code>, 
+    <code><b>Streaming</b></code>, 
+    <code><b>Lazy Loading</b></code>, 
+    <code><b>Route-level caching</b></code>, 
+    <code><b>Partial Prerendering</b></code>
+  </b></li>
+</ul>
+<br/>
+
+
+<hr />
+<h5><b>What is Routing?</b></h5>
+<hr />
+<p>Routing is the mechanism that maps a URL to a specific page, component, or resource in an application. When a user visits a URL, the routing system determines which page should be rendered.</p>
+<br/>
+
+
+<hr />
+<h5><b>How Routing Works in Next.js</b></h5>
+<hr />
+<p><b>Next.js</b> uses File-Based Routing. Next.js automatically creates routes from <b>folders and files inside the <code>app</code> directory</b>.</p>
+<br/>
+<h6><b>Types of Routing in Next.js</b></h6>
+<ol class="list-group list-group-flush mx-4">
+  <li>Static Routing</li>
+  <li>Dynamic Routing</li>
+  <li>Nested Routing</li>
+  <li>Catch-All Routes</li>
+  <li>Optional Cache-All Routes</li>
+  <li>Route Groups</li>
+  <li>Parallel Routes</li>
+  <li>Intercepting Routes</li>
+</ol>
+
+<hr />
+<h5><b>1. Static Routing</b></h5>
+<hr />
+<p>This type of routing is called Fixed routes. In this type of routing, the URL is fixed and URL will be the same as the folder name.</p>
+<textarea id="editor">
+// Folder Structure for Home Page:
+app/
+└── page.tsx
+
+// app/page.tsx
+export default function HomePage() {
+  return (
+    <div>
+      <h1>Home Page</h1>
+    </div>
+  )
+}
+
+// URL: http://localhost:3000
+
+//-------------------------------------------------------
+
+// Folder Structure for About Page:
+app/
+└── about/
+    └── page.tsx
+
+// app/about/page.tsx
+export default function AboutPage() {
+  return (
+    <div>
+      <h1>About Page</h1>
+    </div>
+  )
+}
+
+// URL: http://localhost:3000/about
+</textarea>
+<br/>
+
+
+
+
+<hr />
+<h5><b>2. Dynamic Routing</b></h5>
+<hr />
+<p>Routes with dynamic parameters.</p>
+<textarea class="code-editor">
+// Folder Structure
+app/
+└── products/
+    └── [id]/
+        └── page.tsx
+
+// app/products/[id]/page.tsx
+export default async function ProductPage({params}) {
+  const { id } = await params;
+  return <h1>{id}</h1>;
+}
+
+// URL: http://localhost:3000/products/1
+</textarea>
+<br/>
+
+
+<hr />
+<h5><b>3. Nested Routing</b></h5>
+<hr />
+<p>Folders create nested URLs.</p>
+<textarea class="code-editor">
+// Folder structure
+app/
+└── dashboard/
+    └── page.tsx
+    └── users/
+        └── page.tsx
+
+// app/dashboard/page.tsx
+export default function DashboardPage() {
+  return (
+    <div>
+      <h1>Dashboard Page</h1>
+    </div>
+  )
+}
+// URL: http://localhost:3000/dashboard
+
+// app/dashboard/users/page.tsx
+export default function UsersPage() {
+  return (
+    <div>
+      <h1>Users Page</h1>
+    </div>
+  )
+}
+// URL: http://localhost:3000/dashboard/users
+</textarea>
+<br/>
+
+
+<hr />
+<h5><b>4. Catch-All Routes</b></h5>
+<hr />
+<p>Handle multiple URL segments. <br/>
+Example: <b>localhost:3000/products/electronics/smartphones/redmi-8</b>. Here <b>products</b>, <b>electronics</b>, <b>smartphones</b> and <b>redmi-8</b> all are called <b>Segments</b> of URL.
+</p>
+<textarea class="code-editor">
+// Folder Structure
+app/
+└── docs/
+    └── [...slug]/
+        └── page.tsx
+
+// app/docs/[...slug]/page.tsx
+import React from 'react'
+
+const page = async ({ params }) => {
+    const { slug } = await params;
+    console.log(slug);
+  return (
+    <div>
+      Docs route page
+      <br/>
+      {slug.join('/') || ''}
+      <br/>
+      {slug.length > 0 && slug.map((item, index) => (
+        <div key={index}>{item}</div>
+      ))}
+    </div>
+  )
+}
+
+export default page;
+
+// URL: http://localhost:3000/docs/react/hooks/use-effect
+
+// we got in console:
+{
+  slug: ["react", "hooks", "use-effect"]
+}
+</textarea>
+<br/>
+<blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Important Note:</b> <p>If we don't have any segments then it will show <code><b>404 page</b></code></p>
+    <p>Example: If the URL is <code><b>http://localhost:3000/docs</b></code> then it will show <code><b>404 page</b></code></p>
+<textarea class="code-editor">
+  app/
+  └── docs/
+    └── [...slug]/
+        └── page.tsx
+</textarea>
+<p><i>Example URL: http://localhost:3000/docs</i>: Show the <code><b>404 page</b></code></p><br/>
+<p>Or if we have a <code><b>page.jsx/tsx</b></code> inside <code><b>docs</b></code> folder then it will show the <code><b>Doc page</b></code></p>
+<textarea class="code-editor">
+app/
+└── docs/
+    └── page.tsx // this page
+    └── [...slug]/
+        └── page.tsx
+
+// app/docs/page.tsx
+const page = () => {
+  return (
+    <div>Docs Page</div>
+  )
+}
+export default page;
+</textarea>
+<p><i>Example URL: http://localhost:3000/docs</i>: Show the <code><b>Docs page</b></code></p>
+<br/>
+<p><b>Solution</b></p>
+<p><b>1.</b> We can create <code><b>page.tsx</b></code> inside <code><b>docs</b></code> folder to avoid this issue</p>
+<p><b>2.</b> We can use <code><b>Optional Catch-All Route</b></code> to fixed this issue</p>
+  </code>
+</blockquote>
+<br/>
+
+
+
+
+<hr />
+<h5><b>5. Optional Catch-All Route</b></h5>
+<hr />
+<p>We use <b><i>Double Square Bracket</i></b> to create <b><i>Optional Catch-All Route</i></b> like <b><i>[[...slug]]</i></b></p>
+<textarea class="code-editor">
+// Folder Structure
+app/
+└── docs/
+    └── [[...slug]]/
+        └── page.tsx
+
+// app/docs/[[...slug]]/page.tsx
+import React from 'react'
+
+const page = async ({ params }) => {
+    const { slug } = await params;
+    console.log(slug);
+  return (
+    <div>
+      Docs route page
+      <br/>
+      {slug.join('/') || ''}
+      <br/>
+      {slug.length > 0 && slug.map((item, index) => (
+        <div key={index}>{item}</div>
+      ))}
+    </div>
+  )
+}
+
+export default page;
+
+/* 
+URL: http://localhost:3000/docs/react/hooks/use-effect
+------------------------------------------------------
+console: ["react", "hooks", "use-effect"]
+in page:  
+Docs route page
+react/hooks/use-effect
+
+URL: http://localhost:3000/docs/
+------------------------------------------------------
+console: undefined
+in page:  
+Docs route page
+*/
+</textarea>
+<br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<hr />
+<h5><b>Craete a Server</b></h5>
+<hr />
+<p>We create <code><b>index.js</b></code> file inside <code><b>src</b></code> folder</p>
+<textarea class="code-editor">
+
+</textarea>
+<br/>
+<p><b>Run this command:</b> <code><b>npm run dev</b></code></p>
+<p>If all things are fine then we will see this message <code><b>Server running on port 5001</b></code> in <b><i>terminal</i></b></p>
+<br/> -->
+
+
+
+<!-- <blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">npm run dev</code>
+</blockquote> -->
+
+  <script src="assets/js/codemirror/codemirror.min.js"></script>
+  <script src="assets/js/codemirror/javascript.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common-script.js"></script>
+</body>
+
+</html>
