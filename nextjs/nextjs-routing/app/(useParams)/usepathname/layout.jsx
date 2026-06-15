@@ -2,7 +2,6 @@
 import React from 'react'
 import { usePathname } from 'next/navigation';
 
-
 const Layout = ({children}) => {
     const pathname = usePathname();
     const menulist = [
@@ -27,7 +26,6 @@ const Layout = ({children}) => {
             ))}
         </ul>
         {children}
-        
     </div>
   )
 }

@@ -519,17 +519,206 @@ app/
 <hr />
 <h5><b>8. Intercepting Routes</b></h5>
 <hr />
+<p>sdfsf fsdfds</p>
+<br/>
 
 
 
+<hr />
+<h5><b>useParams Hooks</b></h5>
+<hr />
+<p><b>useParams</b> is a client component hook that returns the current route's dynamic params filled in by the <b>current URL</b>. So if we pass any paramters in URL then we can access them using <b>useParams</b></p>
+<textarea class="code-editor">
+// Folder Structure:
+app/
+└── useparams/
+    ├── page.jsx
+    ├── useparam-inner/
+    |   ├── page.jsx
+    ├── [id]/
+    │   ├── page.jsx
+    ├── [...slug]/
+        ├── page.jsx
 
 
+// app/useparams/page.jsx
+"use client";
+import React from 'react'
+import { useParams } from 'next/navigation'  
+
+const USeParamsHookPage = () => {
+  const params = useParams();
+  console.log(params);
+  return (
+    <div>
+      <h2>UseParams Hook Page</h2>
+    </div>
+  )
+}
+export default USeParamsHookPage
+</textarea>
+<p style="margin-bottom:20px;">Same JSX code will be used in <b>useparams/[id]/page.jsx</b> and <b>useparams/[...slug]/page.jsx</b></p>
+<blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">
+    <p>Example URL: http://localhost:3000/useparams</p>
+    <p>File path: "app/useparams/page.jsx" </p>
+    <p>Result: "{}"</p>
+    <br/>
+    <p>Example URL: http://localhost:3000/useparams/useparams-inner</p>
+    <p>File path: "app/useparams/useparams-inner/page.jsx"</p>
+    <p>Result: "{}"</p>
+    <br/>
+    <p>Example URL: http://localhost:3000/useparams/6567656756</p>
+    <p>File path: "app/useparams/[id]/page.jsx"</p>
+    <p>Result: {id: '6567656756'}</p>
+    <br/>
+    <p>Example URL: http://localhost:3000/useparams/computer/ram/ddr4</p>
+    <p>File path: "app/useparams/[...slug]/page.jsx"</p>
+    <p>slug: (3) ['computer', 'ram', 'ddr4']</p>
+  </code>
+</blockquote>
+<br/>
 
 
+<hr />
+<h5><b>UsePathname Hooks</b></h5>
+<hr />
+<p>UsePathname give us the current url path name</p>
+<textarea class="code-editor">
+// File & Folder Structure:
+app/
+└── usepathname/
+    ├── page.jsx
+    ├── layout.jsx
+    ├── usepath-01/
+    |   ├── page.jsx
+    |   ├── usepath-01-inner/
+    |   |   ├── page.jsx
+    ├── usepath-02/
+    |   ├── page.jsx
+    ├── usepath-03/
+    |   ├── page.jsx
+    ├── [...slug]/
+    |   ├── page.jsx
+
+// page code like below:
+// Code start ----------------------------------
+"use client";
+import React from 'react'
+import { usePathname } from 'next/navigation'
+const page = () => {
+    const pathname = usePathname();
+    console.log(pathname);
+  return (
+    <div>page {JSON.stringify(pathname)}</div>
+  )
+}
+export default page
+// Code ended ----------------------------------
 
 
+// Example : -----------------------------------
+// ---------------------------------------------
+URL: http://localhost:3000/usepathname
+File path: "app/usepathname/page.jsx"
+Result: "/usepathname"
+
+URL: http://localhost:3000/usepathname/usepath-01
+File path: "app/usepathname/usepath-01/page.jsx"
+Result: "/usepathname/usepath-01"
+
+URL: http://localhost:3000/usepathname/usepath-01-inner/
+File path: "app/usepathname/usepath-01/usepath-01-inner/page.jsx"
+Result: "/usepathname/usepath-01-inner/"
+
+URL: http://localhost:3000/usepathname/electronics/computer/ram
+File path: "app/usepathname/[...slug]/page.jsx"
+Result: "/usepathname/electronics/computer/ram"
+</textarea>
+<!-- <br/> -->
+<hr/>
+<h5><b>Example: Active Link based on <code style="font-size:20px;">usePathname hook</code></b></h5>
+<hr/>
+<textarea class="code-editor">
+// File & Folder Structure:
+app/
+└── usepathname/
+    ├── page.jsx
+    ├── layout.jsx
+    ├── usepath-01/
+    |   ├── page.jsx
+    |   ├── usepath-01-inner/
+    |   |   ├── page.jsx
+    ├── usepath-02/
+    |   ├── page.jsx
+    ├── usepath-03/
+    |   ├── page.jsx
+    ├── [...slug]/
+    |   ├── page.jsx
 
 
+// page code like below:
+"use client";
+import React from 'react'
+import { usePathname } from 'next/navigation'
+const page = () => {
+    const pathname = usePathname();
+    console.log(pathname);
+  return (
+    <div>page {JSON.stringify(pathname)}</div>
+  )
+}
+export default page
+
+
+// layout code like below:
+"use client";
+import React from 'react'
+import { usePathname } from 'next/navigation';
+
+const Layout = ({children}) => {
+    const pathname = usePathname();
+    // here we create a static menulist
+    const menulist = [
+        { url: "/usepathname/usepath-01", title: "usepath-01" },
+        { url: "/usepathname/usepath-02", title: "usepath-02" },
+        { url: "/usepathname/usepath-03", title: "usepath-03" },
+    ]
+  return (
+    <div>
+        <h2>usepathname layout</h2>
+        <br/>
+        <ul>
+            {menulist.map((item) => (
+                <li key={item.url}>
+                    <a href={item.url} className={`${pathname === item.url ? "text-red-500" : ""}`}>
+                      {item.title}
+                    </a>
+                </li>
+            ))}
+        </ul>
+        {children}
+    </div>
+  )
+}
+
+export default Layout;
+</textarea>
+<br/>
+
+
+<hr />
+<h6><b>useRouter Hook</b></h6>
+<hr />
+<p style="margin-bottom:10px;"><b>useRouter</b> is a hook allow us to programmatically change routes inside <b>client component</b> </p>
+<p><b>Method of useRouter:</b></p>
+<ol>
+    <li><b>router.push()</b> method navigates to a new route and adds it to the browser history stack. So if we navigate back using the browser's back button, the previous route will be restored. </li>
+    <li><b>router.replace()</b> method navigates to a new route but does not add it to the browser history stack.</li>
+    <li><b>router.refresh()</b> method re-fetches the server data and re-renders the current page without reloading the entire page.</li>
+    <li><b>router.back()</b> method navigates to the previous route in the browser history stack.</li>
+    <li><b>router.forward()</b> method navigates to the next route in the browser history stack.</li>
+</ol>
 
 <!-- 
 <hr />
