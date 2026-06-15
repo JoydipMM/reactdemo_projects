@@ -334,10 +334,156 @@ http://localhost:3000/profile
 <hr />
 <h5><b>7. Parallel Routes</b></h5>
 <hr />
-<p>Render multiple route segments simultaneously.</p>
+<p>parallel routes allow you to simultaneously or conditionally render one or multiple pages at the same level with in the same layout. They are useful for scenarios where you want to display different content or components based on user interactions or specific conditions without navigating away from the current page. With parallel routes, you can have multiple routes active at the same time, allowing for a more dynamic and responsive user experience.</p>
+<p>parallal routes are created using name <b>slots</b>. <b><i>Slots are defined with <code>@folder</code> convention</b></i>. </p>
+<p><b>Slots</b> are passed as props to the shared parent layout.</p>
+<textarea class="code-editor">
+// Folder & File Structure
+//------------------------------------
+app/
+└── dashboard/
+    ├── @analytics/
+    |    ├── page.jsx
+    |    ├── @sales/
+    |        └── page.jsx
+    ├── @revenue/
+    |    └── page.jsx
+    ├── page.jsx
+    └── layout.tsx
 
 
+// app/dashboard/page.jsx
+//------------------------------------
+const DashboardPage = () => {
+  return (
+    <div>
+        <h1>Dashboard Page</h1>
+    </div>
+  )
+}
+export default DashboardPage
 
+
+// app/dashboard/layout.jsx
+//------------------------------------
+const ParalallLayout = ({children, analytics, revenue}) => {
+  return (
+    <div>
+        <h2>Parallal Route Header</h2>
+        {children}<br/>
+        {analytics}<br/>
+        {revenue}<br/>
+        <h2>Parallal Route Footer</h2>
+    </div>
+  )
+}
+export default ParalallLayout;
+
+
+// app/dashboard/@analytics/page.jsx
+//------------------------------------
+import Link from 'next/link'
+import React from 'react'
+
+const AnalyticsPage = () => {
+  return (
+    <div>
+        AnalyticsPage<br/>
+        <Link href="/dashboard/sales">Go to Sales</Link>
+    </div>
+  )
+}
+export default AnalyticsPage
+
+
+// app/dashboard/@analytics/sales/page.jsx
+//----------------------------------------
+import React from 'react'
+import Link from 'next/link'
+
+const SalesPage = () => {
+  return (
+    <div>
+        <h1>Sales Page</h1>
+        <Link href="/dashboard/">Back</Link>
+    </div>
+  )
+}
+export default SalesPage
+
+
+// app/dashboard/@revenue/page.jsx
+//----------------------------------------
+const RevenuePage = () => {
+  return (
+    <div>
+        RevenuePage
+    </div>
+  )
+}
+export default RevenuePage
+
+/* URL: localhost:3000/dashboard 
+----------------------------------------
+In dashboard page in browser:
+Parallal Route Header
+Dashboard Page
+AnalyticsPage
+Go to Sales - Link
+RevenuePage
+Parallal Route Footer
+*/
+</textarea>
+<p>When we go to <b>sales</b> page then it will show <b>sales page</b> and url will be <code><b>localhost:3000/dashboard/sales</b></code></p>
+<textarea class="code-editor">
+/* URL: localhost:3000/dashboard/sales 
+----------------------------------------
+In browser:
+Parallal Route Header
+Dashboard Page
+Sales Page
+back - Link
+RevenuePage
+Parallal Route Footer
+</textarea>
+<p>If we click on <b>back</b> link then it will show <b>Dashboard Page</b> and url will be <code><b>localhost:3000/dashboard</b></code></p>
+<br/>
+<blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Important Note:</b>
+    <br/>
+    <br/>
+    <p>We will get error if we go to <code><b>localhost:3000/dashboard/sales</b></code> by click on <code><b>Go to Sales</b></code> link when we are on <b>Dashboard Page</b> and after goto <code><b>localhost:3000/dashboard/sales</b></code> page and refresh the full page, then we will get <b>error</b> like: <code><b>GET http://localhost:3000/dashboard/sales 404 (Not Found)</b></code> in <b>Console</b> and redirect to <code><b>404 page</b></code></p>
+    <br/>
+    <b>Reason for error</b>
+    <ul class="list-group list-group-flush mx-4">
+      <li><p>When we performing a full page refresh, nextjs to lose the current state of <b>slots</b>.</p></li>
+      <li><p>Navigating to a route that doesn't have a corresponding page in a <b>slot</b>.</p></li>
+    </ul>
+    <br/>
+    <b>Error explain in detail:</b>
+    <p>When we navigate using <Link>, Next.js performs a <b>soft navigation</b> and <b>remembers the active state</b> of the parallel routes. However, when we refresh: <code><b>/dashboard/sales</b></code> Next.js performs a <b>hard navigation</b>. At that moment, Next.js knows: <code><b>sales = active</b></code> but it doesn't know what should be rendered inside: <code><b>@analytics</b></code> because that slot isn't part of the URL. Without a <b>fallback</b>, Next.js cannot recover the state of the unmatched slot and may render a <code><b>404</b></code>.</p>
+    <b><i>*** Fallback simply means: Next.js renders when it cannot find or restore the correct content for a route segment. Think of it as a <b>default replacement</b>. ***.</i></b>
+    <br/>
+    <br/>
+    <p><b>Real-Life Example:</b> Suppose we have a dashboard: <b>/dashboard</b> with two parallal routes <b>@sales, @analytics</b>. When we visit: <b>/dashboard/sales</b> Next.js knows: <b>@sales → render sales page</b> But after a page refresh, it doesn't know what to render in: <b>@analytics</b>. because the URL doesn't contain any information about the <b>analytics slot</b>. Without a <b>fallback</b>:</p>
+<textarea class="code-editor">
+@sales      → page.tsx
+@analytics  → ❓ Unknown
+</textarea>
+Result: <code><b>GET http://localhost:3000/dashboard/sales 404 (Not Found)</b></code>
+<p><b>With default.tsx (Fallback):</b> Next.js knows: <b>@sales → render sales page</b> and <b>@analytics → render default page</b></p>
+<textarea class="code-editor">
+export default function Default() {
+  return <div>No analytics selected</div>;
+}</textarea>
+<p>Now after refresh: </p>
+<textarea class="code-editor">
+@sales      → page.tsx
+@analytics  → default.tsx</textarea>
+<p>Next.js uses <b>default.tsx</b> as the <b>fallback UI</b>.</p>
+  </code>
+</blockquote>
 
 
 
