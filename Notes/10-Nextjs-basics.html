@@ -450,8 +450,7 @@ Parallal Route Footer
 <br/>
 <blockquote class="blockquote">
   <code class="mark" style="width:100%; display:inline-block">
-    <b>Important Note:</b>
-    <br/>
+    <h4><b>Important Note:</b></h4>
     <br/>
     <p>We will get error if we go to <code><b>localhost:3000/dashboard/sales</b></code> by click on <code><b>Go to Sales</b></code> link when we are on <b>Dashboard Page</b> and after goto <code><b>localhost:3000/dashboard/sales</b></code> page and refresh the full page, then we will get <b>error</b> like: <code><b>GET http://localhost:3000/dashboard/sales 404 (Not Found)</b></code> in <b>Console</b> and redirect to <code><b>404 page</b></code></p>
     <br/>
@@ -472,6 +471,15 @@ Parallal Route Footer
 @analytics  → ❓ Unknown
 </textarea>
 Result: <code><b>GET http://localhost:3000/dashboard/sales 404 (Not Found)</b></code>
+<br/>
+<br/>
+<b>Solution:</b>
+<p>To handle the unmatch routes gracefully, nextjs introduces the default.jsx/tsx file with in each slots. This file serves as a fallback UI when,</p>
+<ol class="list-group list-group-flush mx-4">
+  <li><p>A slot doesn't have a matching route for the current URL.</p></li>
+  <li><p>When the user performs a full page refresh and nextjs to lose the current state of a slot.</p></li>
+</ol>
+<br/>
 <p><b>With default.tsx (Fallback):</b> Next.js knows: <b>@sales → render sales page</b> and <b>@analytics → render default page</b></p>
 <textarea class="code-editor">
 export default function Default() {
@@ -482,9 +490,35 @@ export default function Default() {
 @sales      → page.tsx
 @analytics  → default.tsx</textarea>
 <p>Next.js uses <b>default.tsx</b> as the <b>fallback UI</b>.</p>
+<textarea class="code-editor">
+// update folder and file structure:
+app/
+└── dashboard/
+    ├── @analytics/
+    |    ├── page.jsx
+    |    ├── default.jsx
+    |    ├── @sales/
+    |        ├── page.jsx
+    |        └── default.jsx
+    ├── @revenue/
+    |    ├── page.jsx
+    |    └── default.jsx
+    ├── page.jsx
+    ├── default.jsx
+    └── layout.tsx
+</textarea>
+<br/>
+<b>Interview Answer</b>
+<p>In Parallel Routes, a page refresh or direct URL access causes a hard navigation. Next.js can only determine the active slot from the URL and cannot restore the state of unmatched slots. If those unmatched slots don't provide a default.tsx, Next.js may render a 404. Therefore, in production applications we add default.tsx to parallel route slots to provide fallback content and allow the application to recover correctly during hard navigations and page refreshes.</p>
   </code>
 </blockquote>
+<br/>
 
+
+
+<hr />
+<h5><b>8. Intercepting Routes</b></h5>
+<hr />
 
 
 
