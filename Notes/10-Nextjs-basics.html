@@ -708,17 +708,132 @@ export default Layout;
 
 
 <hr />
-<h6><b>useRouter Hook</b></h6>
+<h5><b>useRouter Hook</b></h5>
 <hr />
 <p style="margin-bottom:10px;"><b>useRouter</b> is a hook allow us to programmatically change routes inside <b>client component</b> </p>
 <p><b>Method of useRouter:</b></p>
 <ol>
-    <li><b>router.push()</b> method navigates to a new route and adds it to the browser history stack. So if we navigate back using the browser's back button, the previous route will be restored. </li>
-    <li><b>router.replace()</b> method navigates to a new route but does not add it to the browser history stack.</li>
+    <li><b>router.push()</b> method navigates to a new route and adds it to the browser history stack. So if we navigate back using the browser's back button, the previous route will be restored. 
+    <blockquote class="blockquote" style="margin-top:10px;">
+      <code class="mark" style="width:100%; display:inline-block">
+        <b>Example:</b>
+        <p>Suppose we are in <b>http://localhost:3000/userouter</b> page. Now if we click on "<b>UseRouter push router-01</b>" button, it will navigate to <b>http://localhost:3000/userouter/router-01</b>. Click on "<b>UseRouter push router-02</b>" button, it will navigate to <b>http://localhost:3000/userouter/router-02</b>. Same way we can navigate to "<b>Userouter push router-03</b>". Now if we click on <b>browser back button</b>, it will navigate to <b>router-02 > router-01 > userouter</b>.</p>
+      </code>
+    </blockquote>
+    </li>
+    <li><b>router.replace()</b> method navigates to a new route but does not add it to the browser history stack.
+    <blockquote class="blockquote" style="margin-top:10px;">
+      <code class="mark" style="width:100%; display:inline-block">
+        <b>Example:</b>
+        <p>Same here also we are in <b>http://localhost:3000/userouter</b> page. Now if we click on "<b>UseRouter push router-01</b>" button, it will navigate to <b>http://localhost:3000/userouter/router-01</b>. Click on "<b>UseRouter push router-02</b>" button, it will navigate to <b>http://localhost:3000/userouter/router-02</b>. But now if we click on "<b>UseRouter replace router-03</b>", it will navigate to <b>http://localhost:3000/userouter/router-03</b>. Now if we click on <b>browser back button</b>, it will navigate to <b>router-01</b>.</p>
+      </code>
+    </blockquote>
+    </li>
     <li><b>router.refresh()</b> method re-fetches the server data and re-renders the current page without reloading the entire page.</li>
     <li><b>router.back()</b> method navigates to the previous route in the browser history stack.</li>
     <li><b>router.forward()</b> method navigates to the next route in the browser history stack.</li>
 </ol>
+<textarea class="code-editor">
+// folder structure:
+app/
+└── userouter/
+    ├── page.jsx
+    ├── layout.jsx
+    ├── usepath-01/
+    |   ├── page.jsx
+    ├── usepath-02/
+    |   ├── page.jsx
+    ├── usepath-03/
+    |   ├── page.jsx
+
+// app/userouter/layout.jsx
+"use client";
+import React from 'react'
+import { useRouter, redirect } from 'next/navigation';
+
+const UseRouterLayout = ({children}) => {
+    const router = useRouter();
+  return (
+    <div>
+        <h2>useRouter Hook layout</h2>
+        <button className='px-2 py-1 bg-indigo-300 cursor-pointer' onClick={() => router.push("/userouter/router-01")} >UseRouter push router-01</button>
+        {" "}
+        <button className='px-2 py-1 bg-indigo-300 cursor-pointer' onClick={() => router.push("/userouter/router-02")} >useRouter push router-02</button>
+        {" "}
+        <button className='px-2 py-1 bg-indigo-300 cursor-pointer' onClick={() => router.replace("/userouter/router-03")} >useRouter replace router-03</button>
+        {" "}
+        <button className='px-2 py-1 bg-indigo-300 cursor-pointer' onClick={() => router.refresh()} >useRouter refresh</button>
+        {" "}
+        <button className='px-2 py-1 bg-indigo-300 cursor-pointer' onClick={() => router.back()} >Previous route</button>
+        {" "}
+        <button className='px-2 py-1 bg-indigo-300 cursor-pointer' onClick={() => router.forward()} >Next route</button>
+        {" "}
+        <button className='px-2 py-1 bg-indigo-300 cursor-pointer' onClick={() => redirect("/userouter")} >Redirect to userouter</button>
+        {children}
+    </div>
+  )
+}
+
+export default UseRouterLayout
+
+
+// app/userouter/router-01/page.jsx
+import React from 'react'
+const page = () => {
+  return (
+    <div>
+        <h2>Router 01</h2>
+    </div>
+  )
+}
+export default page
+</textarea>
+<br/>
+
+
+<hr />
+<h5><b>useSearchParams Hook</b></h5>
+<hr />
+<p><b>useSearchParams</b> is a client component hook that returns the current url's query strings</p>
+<p><i><b>Example:</b> shop/dashboard?product=mouse&tab=sales</i></p>
+<textarea class="code-editor">
+// folder structure:
+app/
+└── usesearchparams/
+    ├── page.jsx
+
+
+// app/usesearchparams/page.jsx
+"use client";
+import React from 'react';
+import { useSearchParams } from 'next/navigation'
+import Link from 'next/link'
+
+const page = () => {
+  const searchParams = useSearchParams();
+  //const tab = "aboutus" // default value for check active tab in static links
+  const tab = searchParams.get("tab") || "aboutus"; // get parameter from url, if not found then default value will be aboutus/which item we want to active
+  console.log(tab);
+
+  return (
+    <div>useSearchParams Page</div>
+  )
+}
+
+export default page;
+
+
+// url: localhost:3000/usesearchparams?tab=aboutus
+// in console: aboutus
+// url: localhost:3000/usesearchparams?tab=team
+// in console: team
+</textarea>
+<br/>
+
+
+
+
+
 
 <!-- 
 <hr />
