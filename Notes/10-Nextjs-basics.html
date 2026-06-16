@@ -831,6 +831,618 @@ export default page;
 <br/>
 
 
+<hr />
+<h5><b>API Routes in Next.js</b></h5>
+<hr />
+<p><b>API Routes</b> (called <b>Route Handlers</b> in the <b>App Router</b>) allow you to <b>create backend APIs</b> inside your Next.js application.</p>
+<p>Instead of creating a separate Express server:</p>
+<textarea class="code-editor">
+Instead of creating a separate Express server:
+------------------------------------------------
+Frontend (React)
+      ↓
+Backend (Express)
+      ↓
+Database
+
+We can do:
+-------------------------------------------------
+Next.js
+ ├── Frontend
+ ├── Backend APIs
+ └── Database Access
+
+Everything lives in one project.
+</textarea>
+<p><b>Why Do We Need API Routes?</b></p>
+<p>Imagine we have a login form. In this form there have <b>Email</b>, <b>Password</b> input field and one <b>Submit</b> button. When we click on submit button, </p>
+<p><ul class="list-group list-group-flush mx-4">
+<li>Receive credentials</li>
+<li>Validate user</li>
+<li>Check database</li>
+<li>Generate JWT/session</li>
+<li>Return response</li>
+</ul></p>
+<p>So, we should not put this logic in the browser. Instead <b>API Routes</b> handle this <b>server-side logic</b>.</p>
+<br/>
+
+
+<hr />
+<h5><b>API Route Folder Structure</b></h5>
+<hr />
+<textarea class="code-editor">
+// In the App Router:
+app/
+└── api/
+    └── users/
+        └── route.ts
+
+// URL: /api/users
+</textarea>
+<p><b>Supported HTTP Methods are: GET, POST, PUT, PATCH, DELETE</b></p>
+<p><b>Simple Example 01 - Methods: GET</b></p>
+<textarea class="code-editor">
+// app/api/users/route.ts
+export async function GET() {
+  return Response.json({
+    success: true,
+    users: [
+      { id: 1, name: "John" },
+      { id: 2, name: "Alice" },
+    ],
+  });
+}
+
+// In Postman paste the URL:
+http://localhost:3000/api/users
+
+// Response:
+{
+  "success": true,
+  "users": [
+    {
+      "id": 1,
+      "name": "John"
+    },
+    {
+      "id": 2,
+      "name": "Alice"
+    }
+  ]
+}
+</textarea>
+<p><b>Simple Example 02 - With dummy api data</b></p>
+<p><b>Supported HTTP Methods: GET</b></p>
+<textarea class="code-editor">
+export async function GET() {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    const data = await response.json();
+    
+    //return new Response("Hello Next.js!"); // When we return normal string then we will return response with "new Response".
+    //return Response.json({ message: "Hello Next.js!" });
+    return Response.json({ message: "Hello Next.js!", data:data });
+}
+</textarea>
+<p><b>Supported HTTP Methods: POST</b></p>
+<textarea class="code-editor">
+export async function POST( request: Request) {
+  const body = await request.json();
+  return Response.json(body);
+}
+</textarea>
+<br/>
+
+
+<hr />
+<h5><b>headers in route handler</b></h5>
+<hr />
+<p>HTTP headers represent the metadata associated with an api request and response. Type of headers rea two types: <b>request headers</b> and <b>response headers</b>.</p>
+<br/>
+<h6><b>1. request headers</b></h6>
+<p>these are sending by the client, Such as a web browser to the server. They contain essantial information about the request, which help to the server understand the request and process it correctly.</p>
+<ul class="list-group list-group-flush mx-4">
+  <li>Authorization (token)</li>
+  <li>User-Agent (browser info)</li>
+  <li>Accept (what kind of response the client expects)</li>
+</ul>
+<br/>
+<h6><b>2. response headers</b></h6>
+<p>These are send back from the server to the client. They provide information about the server and the data being send in the response. </p>
+<ul class="list-group list-group-flush mx-4">
+  <li>Content-Type: (JSON, HTML etc)</li>
+  <li>Cache-Control</li>
+  <li>CORS Headers</li>
+</ul>
+<br/>
+
+
+<hr />
+<h5><b>Get Request header - Approach 01</b></h5>
+<hr />
+<textarea class="code-editor">
+export async function GET(request){
+    const requestHeader = new Headers(request.headers);
+
+    // get header data by key name as string
+    // here we get Authorization header value
+    console.log(requestHeader.get("Authorization"));
+    return new Response("Get API Request Header Data");
+
+    // in postman:
+    // url: http://localhost:3000/api/get-request-header-approach-1
+    // GET Request
+    // Headers:
+    // key: Authorization
+    // value: Bearer 1234567890123
+
+    // console output:
+    // Bearer 1234567890123
+}
+</textarea>
+<br/>
+
+
+<hr />
+<h5><b>Get Request header - Approach 02</b></h5>
+<hr />
+<textarea class="code-editor">
+import { headers } from "next/headers";
+export async function GET(request){
+    const requestHeader = await headers();
+
+    // get header data by key name as string
+    // here we get Authorization header value
+    console.log(requestHeader.get("Authorization"));
+    
+    return new Response("Get API Request Header Data");
+    // in postman:
+    // url: http://localhost:3000/api/get-request-header-approach-1
+    // GET Request
+    // Headers:
+    // key: Authorization
+    // value: Bearer 1234567890123
+
+    // console output:
+    // Bearer 1234567890123
+}
+</textarea>
+<br/>
+
+
+<hr />
+<h5><b>Notes App: with API Routes, MongoDB</b></h5>
+<hr />
+<h6><b>Folder and File Structure</b></h6>
+<textarea class="code-editor">
+├── app/
+│   ├── api/
+│   │   ├── notes/
+│   │      └── route.js
+│   │      └── [id]/
+│   │           └── route.js
+│   └── notes/
+│        └── page.jsx
+│
+├── shared/
+│   ├── constant/
+│   │   └── constant.js
+│   ├── lib/
+│   │   └── db.js
+│   ├── models/
+│   │   └── Notes.js
+│ 
+├── .env
+</textarea>
+<p><b>01.</b> Open <code><b style="font-size: 17px;">.env</b></code> file</p>
+<p>Here we store our app secrate key and credentials </p>
+<textarea class="code-editor">
+MONGODB_CONNECTION_USERNAME=nextjs_note_app
+MONGODB_CONNECTION_PASSWORD=password_goes_here
+MONGODB_DATABASE_NAME=nextjs-note-app
+</textarea>
+<br/>
+<p><b>02.</b> Open <code><b style="font-size: 17px;">shared/constant/constant.js</b></code> file. In this file we create a constant variable for our mongodb connection string which is used in <code><b style="font-size: 17px;">shared/lib/db.js</b></code></p>
+<textarea class="code-editor">
+export const CONSTANT = {
+    MONGODB_CONNECTION_STRING: `mongodb+srv://${process.env.MONGODB_CONNECTION_USERNAME}:${process.env.MONGODB_CONNECTION_PASSWORD}@cluster0.gihfe1e.mongodb.net/${process.env.MONGODB_DATABASE_NAME}`,
+}
+</textarea>
+<br/>
+<p><b>03.</b> Now we connect our <b>Mongodb</b> database with our application. For that we write mongodb connecting code in <code><b style="font-size: 17px;">shared/lib/db.js</b></code></p>
+<textarea class="code-editor">
+import mongoose from "mongoose";
+import { CONSTANT } from "@/shared/constant/constant";
+
+export async function connectDB(){
+    try{
+        // write code for DB connection
+        // const connection = await mongoose.connect("mongodb+srv://username:pass@cluster0.gihfe1e.mongodb.net/db-name"); // we did not write username and password in url directly
+        const connection = await mongoose.connect(`${CONSTANT.MONGODB_CONNECTION_STRING}`);
+
+        // check database connection
+        //console.log(connection.STATES);
+        console.log("Database connected....");
+    }catch(err){
+        // if any error occurs then throw error
+        throw new Error(err);
+    }
+}
+</textarea>
+<br/>
+<p><b>04.</b> Open <code><b style="font-size: 17px;">shared/models/Notes.js</b></code> file</p>
+<p><b>Models</b> represents the structure of data in our application. It defines what fields a record contains, their data types, validation rules, relationships, and constraints. <b>Models</b> act as a <b>bridge between the application code and the database</b>, ensuring data consistency and making database operations easier and safer.</p>
+<p>We need to install <code><b style="font-size: 17px;">mongoose</b></code>. <b>Command: </b> <code><b style="font-size: 17px;">npm i mongoose</b></code></p>
+<textarea class="code-editor">
+import mongoose from "mongoose";
+
+const noteSchema = new mongoose.Schema({
+    title:{
+      type: String,
+      required: true,
+    },
+    content:{
+      type: String,
+      required: true,
+    },
+    notestatus:{
+      type: String,
+      enum: ["read", "unread"],
+      default: "unread"
+    }
+}, { timestamps: true });
+
+export default noteSchema;
+
+// create model for note
+export const Note = mongoose.models.Note || mongoose.model("Note", noteSchema);
+</textarea>
+<br/>
+<p><b>05.</b> if we run our app then we will get this message: <code><b style="font-size: 17px;">Database connected....</b></code>. This means our database connection is successfull. </p>
+<br/>
+<p><b>06. a.</b> Open <code><b style="font-size: 17px;">api/notes/route.js</b></code> file. Here write our API Routes for backend and database logic to store, edit and retrieve notes data</p>
+<textarea class="code-editor">
+// first we import database connection function
+import { connectDB } from "@/shared/lib/db";
+// then import note model
+import { Note } from "@/shared/models/Notes";
+
+// add notes api start
+export async function POST(request){
+
+    // 1. when ever we calling any endpoint we need connect our database first
+    await connectDB();
+
+    // 2. get data from request body
+    const { title, content } = await request.json();
+
+    // 3. import model to the above from schema for save data to database 
+    
+    // 4. save the data to database
+    const note = await Note.create({ title, content });
+    // syntax: await ModelName.create({ key: value });
+
+    // 5. return the saved data to client
+    return Response.json(note, { 
+        status: 201,
+        success: true, 
+        message: "note added successfully", 
+    });
+}
+// add notes api ended
+
+
+// get all notes api start
+export async function GET(request){
+
+    // 1. when ever we calling any endpoint we need connect our database first
+    await connectDB();
+
+    // 2. data from database
+    const notes = await Note.find().sort({ createdAt: -1 }); // syntax: await ModelName.find().sort();
+
+    // 3. return the data to client
+    return Response.json(notes, { status: 200, message: "notes fetched successfully" });
+}
+// get all notes api ended
+</textarea>
+<p><b>06. d.</b> Open <code><b style="font-size: 17px;">api/notes/[id]/route.js</b></code> file. Here write our dynamic API Routes for backend and database logic to update, delete of specific data</p>
+<textarea class="code-editor">
+import { connectDB } from "@/shared/lib/db";
+import { Note } from "@/shared/models/Notes";
+
+// delete note api start
+export async function DELETE(request, {params}){
+    // 1. connect the database
+    await connectDB();
+
+    // 2. get the id from params and delete the data from database
+    const {id} = await params;
+
+    // 3. run delete by id query from model
+    const note = await Note.findByIdAndDelete(id);
+    console.log(note);
+
+    return Response.json({ message: "note deleted successfully" });
+}
+// delete note api ended
+
+// update note api start
+export async function PUT(request, {params}){
+    // 1. connect the database
+    await connectDB();
+
+    // 2. get the id from params and delete the data from database
+    const {id} = await params;
+    const  { title, content } = await request.json();
+
+    const note = await Note.findByIdAndUpdate(id, {title, content}, {returnDocument: "after"});
+    return Response.json({ message: "note updated successfully", note });
+}
+// update note api ended
+
+// update note status api start
+export async function PATCH(request, {params}){
+    // 1. connect the database
+    await connectDB();
+
+    // 2. get the id from params and delete the data from database
+    const {id} = await params;
+    const  { notestatus } = await request.json();
+
+    const note = await Note.findByIdAndUpdate(id, {notestatus: notestatus}, {returnDocument: "after"});
+
+    return Response.json({ message: "note updated successfully", note });
+}
+// update note status api ended
+</textarea>
+<p>Our API related work is done. Now we create form to add notes.</p>
+<br/>
+<p><b>07.</b> Open <code><b style="font-size: 17px;">app/notes/page.js</b></code> file</p>
+<textarea class="code-editor">
+"use client"; 
+import React, {useEffect, useState} from 'react'
+
+const NoteAddPage = () => {
+
+  // this are the list of states with default values
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [notes, setNotes] = useState([]);
+  const [editid, setEditId] = useState(null);
+
+  // get notes function start
+  const getNotes = async() => {
+    try{
+      // here we are using fetch api, for that method is need to be declared
+      const res = await fetch('/api/notes', {
+      method: 'GET',
+      headers:{
+          "content-type": "application/json",
+        }
+      });
+      const data = await res.json();
+      setNotes(data);
+      setIsLoading(false);
+    }catch(err){
+      console.log(err.message);
+    }finally{
+      setIsLoading(false);
+    }
+  }
+
+  const noteFormAction = async(e) => {
+    e.preventDefault()
+    console.log(title, content);
+
+    // validation for title and content
+    if(!title || !content){
+      setError("Title and Content are required");
+      return;
+    };
+
+    // if above validation is true then we need to call api
+    try{
+      setIsLoading(true);
+      setEditId(null);
+
+      if(editid){
+
+        // edit note
+        const res = await fetch(`/api/notes/${editid}`, {
+          method: "PUT",
+          headers: {
+            "content-type" : "application/json",
+          },
+          body: JSON.stringify({ title, content })
+        })
+
+        if(res.ok){
+          setIsLoading(false);
+          setSuccess("Note update successfully");
+          getNotes();
+          setTitle('');
+          setContent('');
+          setEditId(null);
+          setTimeout(() => {
+            setSuccess('');
+          }, 2000);
+        }
+
+      }else{
+
+        // add note 
+        const res = await fetch('/api/notes', {
+        method: 'POST',
+        headers:{
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ title, content })
+      })
+
+      if(res.ok){
+        setIsLoading(false);
+        setSuccess("Note added successfully");
+        getNotes();
+        setTitle('');
+        setContent('');
+        setTimeout(() => {
+          setSuccess('');
+        }, 2000);
+        const data = await res.json();
+        console.log(data);
+      }
+
+      }
+
+    }catch(err){
+      setError(err.message);
+      setIsLoading(false);
+    }finally{
+      setIsLoading(false);
+      setTitle('');
+      setContent('');
+    }
+  }
+
+  // edit note function start
+  const noteEditAction = async (note) => {
+    console.log(note);
+    setEditId(note._id);
+    setTitle(note.title);
+    setContent(note.content);
+  }
+  // edit note function ended
+
+  // cancel edit function start
+  const cancelEditAction = () => {
+    setEditId(null);
+    setTitle('');
+    setContent('');
+  }
+  // cancel edit function ended
+
+
+  // delete note function start
+  const noteDeleteAction = async (id) => {
+    console.log(id);
+    if(!confirm("Are you sure you want to delete this note?")) return;
+    try{
+      const res = await fetch(`/api/notes/${id}`, {
+        method:'DELETE',
+        headers:{
+          "content-type": "application/json",
+        }
+      });
+      if(res.ok){
+        getNotes(); // if delete is success then we need to call getNotes function to show the updated notes
+      }
+    }catch(err){
+      console.log(err.message);
+    }
+  }
+  // delete note function ended
+
+
+  // update note status start
+  const updateNoteStatusAction = async (id, notestatus) => {
+    console.log(id);
+    //if(!confirm("Are you sure you want to delete this note?")) return;
+    try{
+      const res = await fetch(`/api/notes/${id}`, {
+        method:'PATCH',
+        headers:{
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          notestatus: notestatus,
+        }),
+      });
+      if(res.ok){
+        getNotes(); // if delete is success then we need to call getNotes function to show the updated notes
+      }
+    }catch(err){
+      console.log(err.message);
+    }
+  }
+  // update note status ended
+  
+
+  // call get all note function on page load/refresh
+  useEffect(() => {
+    getNotes();
+  }, []);
+
+
+  return (
+    <div>
+      <h2>NoteAddPage</h2>
+      {/* notes add/edit section start */}
+      {success && <p>{success}</p>}
+      {error && <p>{error}</p>}
+      {isLoading && <p>Loading...</p>}
+      <form onSubmit={noteFormAction}>
+        <div>
+          <label>Title</label>
+          <input type="text" value={title} placeholder='Title' name="title" onChange={(e)=> setTitle(e.target.value) } />
+        </div>
+        <div>
+          <label>Content</label>
+          <textarea rows={5} value={content} placeholder='Content' onChange={(e)=> setContent(e.target.value) }/>
+        </div>
+        <div>
+          <button type='submit' disabled={isLoading}>
+            {isLoading ? "Adding..." : editid ? "Update Note" : "Add Note"}
+          </button>
+          {editid && <button onClick={cancelEditAction}>Cancel</button>}
+        </div>
+      </form>
+      {/* notes add/edit section ended */}
+
+
+      {/* notes list section start */}
+      {notes.length === 0 ? (<>
+      <h3>No notes</h3>
+      </>) : (
+        notes?.length > 0 && notes.map((note, index)=>(
+        <div key={index}>
+          <h4>{note.title}</h4>
+          <p>{note.content}</p>
+          <p>{new Date(note.createdAt).toLocaleString()}</p>
+          <button onClick={() => noteEditAction(note)}>Edit</button>
+          <button onClick={() => noteDeleteAction(note._id)}>Delete</button>
+          <button
+          className={`py-2 px-2 mx-1 ${note.notestatus === "read" ? "bg-green-500" : "bg-red-500"}`}
+            onClick={() =>
+              updateNoteStatusAction(
+                note._id,
+                note.notestatus === "read"
+                  ? "unread"
+                  : "read"
+              )
+            }
+          >
+            {note.notestatus === "read"
+              ? "Mark as unread"
+              : "Mark as read"}
+          </button>
+          <hr/>
+        </div>
+        ))
+      ) }
+      {/* notes list section start */}
+
+      <br/>
+      <br/>
+    </div>
+  )
+}
+
+export default NoteAddPage
+</textarea>
+
 
 
 

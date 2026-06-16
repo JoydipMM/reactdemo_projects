@@ -8,6 +8,11 @@ const noteSchema = new mongoose.Schema({
     content:{
         type: String,
         required: true,
+    },
+    notestatus:{
+        type: String,
+        enum: ["read", "unread"],
+        default: "unread"
     }
 }, { timestamps: true });
 

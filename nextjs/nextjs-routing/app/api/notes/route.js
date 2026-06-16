@@ -14,7 +14,7 @@ export async function POST(request){
     // 4. save the data to database
     const note = await Note.create({ title, content });
     // syntax: await ModelName.create({ key: value });
-
+    console.log(note);
     // 5. return the saved data to client
     return Response.json(note, { 
         status: 201,
