@@ -1444,7 +1444,237 @@ const NoteAddPage = () => {
 
 export default NoteAddPage
 </textarea>
+<br/>
 
+
+<hr />
+<h5><b>Get and Set Cookies</b></h5>
+<hr />
+<p>cookies are small pieces of data that server sent to the client's web browser.</p>
+<p>The browser can store the cookies and send them back to the same server with the future requests.</p>
+<br/>
+<p><b>cookies serve main three purposes:</b></p>
+<ol>
+  <li>managing session (like user's login and shopping carts)</li>
+  <li>handling personalization (such as user's preferance and theme)</li>
+  <li>Tracking (like recordings and analyzing user behavior)</li>
+</ol>
+<p>when a client makes a request to the server, the server can send back a cookie to the client. After that server not going to remember the request and response cycle. So they are stateless. So sending a new request we again need to build a new connection for send request. It also known as "Three way Hand Shake". So in that case I wanted to server to keep remember me. For that server send a small information that is known as "cookie". Then we store that inside the client's web browser. So every time when client make a new request to the server, the server can identify the client by the cookie.</p>
+<p>*** The TCP <b>Three-Way Handshake</b> is the process used to establish a reliable connection between a client and a server before data is transmitted.</p>
+<br/>
+<h6><b>Approach - 1 (while returning the response set-cookie header)</b></h6>
+<textarea class="code-editor">
+import { headers } from "next/headers";
+export async function GET(request){
+
+    const requestHeader = await headers(); 
+    // read cookie
+    const username = request.cookies.get("username");
+    // show resulkt in terminal
+    console.log(username);
+    console.log(request.cookies);
+    // in terminal: { name: 'username', value: 'dipen' }
+
+    return new Response("<h1>Get API Cookie Data</h1>", {
+        headers:{
+            "content-type": "text/html",
+            "set-cookie": "username=dipen" // set cookie [keyname=value]
+        }
+    });
+}
+
+/*
+http://localhost:3000/api/cookie-approach-1
+
+
+in postman:
+url: http://localhost:3000/api/cookie-approach-1
+GET Request
+check cookie tab beside body tab in postman
+we get the cookie details
+*/
+</textarea>
+<br/>
+<h6><b>Approach - 2</b></h6>
+<textarea class="code-editor">
+import { headers, cookies } from "next/headers";
+export async function GET(request){
+
+    const cookieStore = await cookies();
+    cookieStore.set("theme", "dark");
+
+    const theme = cookieStore.get("theme");
+    console.log(theme);
+
+    return new Response("<h1>Get API Cookie Data</h1>", {
+        headers:{
+            "content-type": "text/html",
+            //"set-cookie": "username=dipen" // set cookie [keyname=value]
+        }
+    });
+}
+
+/*
+http://localhost:3000/api/cookie-approach-2
+
+in postman:
+url: http://localhost:3000/api/cookie-approach-2
+GET Request
+check cookie tab beside body tab in postman
+we get the cookie details like:
+{
+    "name": "theme",
+    "value": "dark"
+}
+in array format
+*/
+</textarea>
+<br/>
+
+
+<hr />
+<h5><b>Server Actions</b></h5>
+<hr />
+<p>server actions are asynchronous function that run only on the server and can be called directly from the react component</p>
+<p>they allow to execute server-side logic such as database operations, authentication and handling without creating API routes</p>
+<p>In general if we want to call any API in Nextjs component then first we use fetch/axios request to create web request then it goes to API routes and API route talks to database. So we need create a backend endpoint manually. </p>
+<p>But when it comes to "Server Actions", component can be client/server we write a asynchronous function and that asynchronous function can directly talk to database and perform some server side logic. So we no need to manage any request / response handling manually. Means Server Actions remove internal API Routes. </p>
+<br/>
+<h6><b>When to use server actions</b></h6>
+<ul class="list-group list-group-flush mx-4">
+  <li>They simplify mutations like: create, update, delete oparations</li>
+  <li>Nestjs suggest us don't use "Server Actions" to fetch API. But we can use this for create, edit delete actions.</li>
+</ul>
+<br />
+<p>A server Action is a server-side function marked with <b>"use server" directive</b> that can be invoked from React components.</p>
+<p>This <b>"Server Action"</b> directive tell Nextjs to treat the function as a server action</p>
+<p>Directive can be use at the <b>Top of the file</b> /  <b>inside in specific asynchronous function</b></p>
+<p>If we want use a file as a server action then we need to add "use server" directive at the top of the file like action.js/ts.</p>
+<p>So, when "use server" is placed at the top of the file, Nextjs treats the file as a server action and all export function are run on the server</p>
+<p><b>Example: </b> Most comonly used in form</p>
+<table class="table">
+<tr>
+  <th><b>Where to use server action</b></th>
+  <th></th>
+</tr>
+<tr>
+  <td>Form Submission</td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td>create/update/delete</td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td>Internal UI Mutations</td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td>Puction API</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Web Hook [webhook require public endpoints]</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Real Time Application</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>External Clients</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Heavy backend logic</td>
+  <td>No</td>
+</tr>
+</table>
+<br/>
+<h5><b>How to use server action - Approach - 1</b></h5>
+<hr/>
+<textarea class="code-editor">
+const page = () => {
+
+  // formData is a inbuild object
+  async function FormAction(formData){
+    "use server";
+    const title = formData.get("title");
+    console.log(formData);
+    /*
+    result show in terminal
+    FormData {
+      '$ACTION_ID_409b35a83f412ac5ea7f4f9a18b1a906bab6e70bad': '',
+      title: 'Raja'
+    }
+    */
+    console.log(title);
+    /*
+    result show in terminal
+    Raja
+    */
+  }
+  console.log("Server Action Page");
+
+  return (
+    <div>
+      <h2>Approach 01</h2>
+      {/* if we use server action function then in form tag we use action={FormActionFunction} instead of onSubmit={FormActionFunction} */}
+      <form action={FormAction}>
+        <input type="text" name="title" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  )
+}
+export default page
+</textarea>
+<br/>
+<h5><b>How to use server action - Approach - 2</b></h5>
+<hr/>
+<p>In this approach we create a saparate server action file and import that file in component</p>
+<p>Here we call the form action <b>asynchronous function</b> from another file. Which is will be inside "<b>actions</b>" folder in <b>root folder</b>. file name I give "<b>formAction.js</b>" and mmarked this entire file as "<b>use server</b>". create the async function in formAction.js and import that function here
+<textarea class="code-editor">
+// Folder structure
+root/
+├── actions/
+│   └── formActions.js
+├── app/
+│   └── page.jsx
+
+// actions/formActions.js
+//----------------------------------------------------------
+"use server"; // we add this to make this full file as server action
+
+export async function FormAction(formData) {
+    const title = formData.get("title");
+    console.log(title);
+}
+
+// app/page.jsx
+//----------------------------------------------------------
+import React from 'react'
+import { FormAction } from '@/actions/formActions';
+
+const page = () => {
+  console.log("Server Action Page");
+  return (
+    <div>
+      <h2>Approach 02</h2>
+      <p>Here we call the form action asynchronous function from another file. Which is will be inside "actions" folder in root folder. file name I give "formAction.js" and mmarked this entire file as "use server". create the async function in formAction.js and import that function here </p>
+
+      {/* if we use server action function then in form tag we use action={FormActionFunction} instead of onSubmit={FormActionFunction} */}
+      <form action={FormAction}>
+        <input type="text" name="title" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  )
+}
+
+export default page
+</textarea>
+<br/>
 
 
 
