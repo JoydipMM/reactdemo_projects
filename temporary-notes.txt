@@ -426,6 +426,13 @@ TanStack Query:
 {JSON.stringify(data, null, 2)}
 
 
+Normally the UI waits for the server response before updating.
+Example: Click Like -> request -> wait -> UI updates 
+
+This can feel slow.
+<b>Optimistic UI</b> updates the interface <b>immediately<b/>, assuming the request will succeed. If the request fails, the UI rols back.
+
+
 
 
 
