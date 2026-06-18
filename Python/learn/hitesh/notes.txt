@@ -17,14 +17,21 @@ pip missing
 pip install --upgrade pip
 
 
+pip install numpy
+
+update the requirement for installed dependencies
+pip freeze > requirement.txt
+
 
 /********* use python environment in traditional way *****************/
 
 Create environment
 python -m venv .venv
+python -m venv myenv
 
 Activate the environment
 source .venv/Scripts/activate
+source testenv/Scripts/activate
 
 if environment activae correctly then it will show like below:
 (.venv) 

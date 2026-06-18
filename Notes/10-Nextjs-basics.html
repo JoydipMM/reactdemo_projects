@@ -2285,7 +2285,28 @@ export default page;
 <br/>
 
 
-
+<hr />
+<h5><b>Hydration &  Caching in Next.js</b></h5>
+<hr />
+<p><b>In traditional React apps (like CRA or vite):</b></p>
+<ul class="list-group list-group-flush mx-4 pb-2">
+  <li>Browser downloads HTML</li>
+  <li>Browser downloads JavaScript</li>
+  <li>React renders everything on the client browser.</li>
+</ul>
+<p><b><i>This Means: Slower first load, Bad SEO, Blank screen until JS loads.</i></b></p>
+<p>Next.js solves this using Server Rendering + Hydration + Smart caching </p>
+<br/>
+<h6><b>What is Hydration?</b></h6>
+<p><b>Hydration</b> is the process of rendering the initial HTML on the server, and then React attached the JavaScript behavior to the HTML that was already rendered by server.</b></p>
+<br/>
+<h6><b>Hydration Flow</b></h6>
+<textarea class="code-editor">
+Server --> Render HTML --> Browser --> Show page --> React JS Loads --> Hydration Happends --> Page become interactive
+</textarea>
+<br/>
+<h6><b>Hydration Error</b></h6>
+<p>Hydration error means that the server rendered HTML doesn't match the client-side rendered HTML</p>
 <!-- 
 <hr />
 <h5><b>Craete a Server</b></h5>

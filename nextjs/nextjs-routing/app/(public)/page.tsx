@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import ConatctFormMain from "@/components/ConatctFormMain";
 import ContactList from "@/components/ContactList";
 import { useQuery } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
 
@@ -35,6 +36,7 @@ export default function Home() {
   return (
     <div>
       Home page<br/>
+      <Button>Button</Button>
       {
         message && <p>{message}</p>
       }
