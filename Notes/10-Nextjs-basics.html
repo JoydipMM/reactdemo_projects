@@ -637,7 +637,7 @@ Result: "/usepathname/electronics/computer/ram"
 </textarea>
 <!-- <br/> -->
 <hr/>
-<h5><b>Example: Active Link based on <code style="font-size:20px;">usePathname hook</code></b></h5>
+<h5><b>Example: Active Link based on <code>usePathname hook</code></b></h5>
 <hr/>
 <textarea class="code-editor">
 // File & Folder Structure:
@@ -1035,7 +1035,7 @@ export async function GET(request){
 │ 
 ├── .env
 </textarea>
-<p><b>01.</b> Open <code><b style="font-size: 17px;">.env</b></code> file</p>
+<p><b>01.</b> Open <code><b>.env</b></code> file</p>
 <p>Here we store our app secrate key and credentials </p>
 <textarea class="code-editor">
 MONGODB_CONNECTION_USERNAME=nextjs_note_app
@@ -1043,14 +1043,14 @@ MONGODB_CONNECTION_PASSWORD=password_goes_here
 MONGODB_DATABASE_NAME=nextjs-note-app
 </textarea>
 <br/>
-<p><b>02.</b> Open <code><b style="font-size: 17px;">shared/constant/constant.js</b></code> file. In this file we create a constant variable for our mongodb connection string which is used in <code><b style="font-size: 17px;">shared/lib/db.js</b></code></p>
+<p><b>02.</b> Open <code><b>shared/constant/constant.js</b></code> file. In this file we create a constant variable for our mongodb connection string which is used in <code><b>shared/lib/db.js</b></code></p>
 <textarea class="code-editor">
 export const CONSTANT = {
     MONGODB_CONNECTION_STRING: `mongodb+srv://${process.env.MONGODB_CONNECTION_USERNAME}:${process.env.MONGODB_CONNECTION_PASSWORD}@cluster0.gihfe1e.mongodb.net/${process.env.MONGODB_DATABASE_NAME}`,
 }
 </textarea>
 <br/>
-<p><b>03.</b> Now we connect our <b>Mongodb</b> database with our application. For that we write mongodb connecting code in <code><b style="font-size: 17px;">shared/lib/db.js</b></code></p>
+<p><b>03.</b> Now we connect our <b>Mongodb</b> database with our application. For that we write mongodb connecting code in <code><b>shared/lib/db.js</b></code></p>
 <textarea class="code-editor">
 import mongoose from "mongoose";
 import { CONSTANT } from "@/shared/constant/constant";
@@ -1071,9 +1071,9 @@ export async function connectDB(){
 }
 </textarea>
 <br/>
-<p><b>04.</b> Open <code><b style="font-size: 17px;">shared/models/Notes.js</b></code> file</p>
+<p><b>04.</b> Open <code><b>shared/models/Notes.js</b></code> file</p>
 <p><b>Models</b> represents the structure of data in our application. It defines what fields a record contains, their data types, validation rules, relationships, and constraints. <b>Models</b> act as a <b>bridge between the application code and the database</b>, ensuring data consistency and making database operations easier and safer.</p>
-<p>We need to install <code><b style="font-size: 17px;">mongoose</b></code>. <b>Command: </b> <code><b style="font-size: 17px;">npm i mongoose</b></code></p>
+<p>We need to install <code><b>mongoose</b></code>. <b>Command: </b> <code><b>npm i mongoose</b></code></p>
 <textarea class="code-editor">
 import mongoose from "mongoose";
 
@@ -1099,9 +1099,9 @@ export default noteSchema;
 export const Note = mongoose.models.Note || mongoose.model("Note", noteSchema);
 </textarea>
 <br/>
-<p><b>05.</b> if we run our app then we will get this message: <code><b style="font-size: 17px;">Database connected....</b></code>. This means our database connection is successfull. </p>
+<p><b>05.</b> if we run our app then we will get this message: <code><b>Database connected....</b></code>. This means our database connection is successfull. </p>
 <br/>
-<p><b>06. a.</b> Open <code><b style="font-size: 17px;">api/notes/route.js</b></code> file. Here write our API Routes for backend and database logic to store, edit and retrieve notes data</p>
+<p><b>06. a.</b> Open <code><b>api/notes/route.js</b></code> file. Here write our API Routes for backend and database logic to store, edit and retrieve notes data</p>
 <textarea class="code-editor">
 // first we import database connection function
 import { connectDB } from "@/shared/lib/db";
@@ -1147,7 +1147,7 @@ export async function GET(request){
 }
 // get all notes api ended
 </textarea>
-<p><b>06. d.</b> Open <code><b style="font-size: 17px;">api/notes/[id]/route.js</b></code> file. Here write our dynamic API Routes for backend and database logic to update, delete of specific data</p>
+<p><b>06. d.</b> Open <code><b>api/notes/[id]/route.js</b></code> file. Here write our dynamic API Routes for backend and database logic to update, delete of specific data</p>
 <textarea class="code-editor">
 import { connectDB } from "@/shared/lib/db";
 import { Note } from "@/shared/models/Notes";
@@ -1199,7 +1199,7 @@ export async function PATCH(request, {params}){
 </textarea>
 <p>Our API related work is done. Now we create form to add notes.</p>
 <br/>
-<p><b>07.</b> Open <code><b style="font-size: 17px;">app/notes/page.js</b></code> file</p>
+<p><b>07.</b> Open <code><b>app/notes/page.js</b></code> file</p>
 <textarea class="code-editor">
 "use client"; 
 import React, {useEffect, useState} from 'react'
@@ -1695,7 +1695,7 @@ export default page
 <h6><b>How <i>Form component</i>works</b></h6>
 <p>The behavior of <i>Form component</i> depends on the type of action prop:</p>
 <ol class="list-group list-group-flush mx-4">
-<li><b>When action is a string: <code style="font-size: 17px;">action="/search"</code></b> then it's behavior:
+<li><b>When action is a string: <code>action="/search"</code></b> then it's behavior:
   <ul>
     <li>work like normal HTML form</li>
     <li>Uses GET request</li>
@@ -1704,7 +1704,7 @@ export default page
   </ul>
   <p>Converts from inputs to URL search params > when user submit the form then form data convert to url params like: <b><i>/search?title=raja&age=40</i></b></p>
 </li>
-<li><b>When action is a function (Server Action): <code style="font-size: 17px;">action={createPostAction}</code></b> then it's behavior:
+<li><b>When action is a function (Server Action): <code>action={createPostAction}</code></b> then it's behavior:
   <ul class="list-group list-group-flush">
     <li>Calls a Server Action</li>
     <li>Sends data via POST</li>
@@ -1854,6 +1854,283 @@ const page = () => {
 
 export default page
 </textarea>
+<br/>
+
+
+<hr />
+<h5><b>TanStack Query</b></h5>
+<hr />
+<p><b>TanStack Query</b> <i>(formerly known as <b>React Query</b>)</i> is an <b>asynchronous server state management library</b> designed for fetching, caching, synchronizing, and updating server state in web applications. It eliminates the need for manual data fetching logic using complex useEffect chains and multiple useState hooks.</p>
+<br/>
+<h6><b>The Problem It solves:</b></h6>
+<p>When fetching data in React or Next.js manually, developers usually write code like:</p>
+<ul class="list-group list-group-flush mx-4">
+<li><code>fetch()</code> inside <code>useEffect</code></li>
+<li>manage loading</li>
+<li>manage error</li>
+<li>store data in <code>useState</code></li>
+<li>handle refetching</li>
+</ul>
+<br/>
+<h6><b>Why we use TanStack Query in Next.js</b></h6>
+<p>TanStack Query helps when application need:</p>
+<ul class="list-group list-group-flush mx-4">
+  <li>Server-side API fetching</li>
+  <li>Infinite Scroll</li>
+  <li>Pagination</li>
+  <li>Frequently updated data</li>
+</ul>
+<p>Instead of writing repetitive fetching logic, we use query hooks like <code><b>useQuery()</b></code>.</p>
+<br/>
+<h6><b>QueryClientProvider</b></h6>
+<p>To make <b>TanStack Query</b> available across the app, we wrap the application with <code><b>QueryClientProvider</b></code>. This provider gives all components access to the <b>query client and cache system</b></p>
+<br/>
+<h6><b>Core TanStack Query terms:</b></h6>
+<ul class="list-group list-group-flush mx-4">
+  <li><b>Query</b> - A request to the server for fetch data, to use query hooks <code><b>useQuery</b></code>
+<textarea class="code-editor">
+useQuery({
+    queryKey: ['posts'],
+    queryFn: () => fetchDataFunction()
+})
+</textarea>
+  </li>
+  <li><b>Mutation</b> - Change the data on the server like: <b><i>POST, PUT, PATCH, DELETE</i></b>. For mutation hooks <code><b>useMutation</b></code>
+<textarea class="code-editor">
+useMutation({
+    mutationKey: ['posts'],
+    mutationFn: () => mutationDataFunction()
+})
+</textarea>  
+  </li>
+  <li><b>cache</b> - A cache system for storing and retrieving the fetched data. So same request will not be sent to the server again if the data is already in the cache atleast for a certain period of time with the help of <b>queryKey</b></li>
+  <li><b>QueryKey</b> - A unique identifier for a query in the cache</li>
+  <li><b>QueryFunction</b> - A function that fetches data</li>
+  <li><b>Stale Data</b> - Data that is not up to date. TanStack Query consider cache data is a stale by default. When ever we worked with <b>cache data</b> then TanStack Query consider that it is <i>not up to date</i>. To update the cache data we need to use <b>refetch</b></li>
+  <li><b>Refetching</b> - Fetching data from the server again</li>
+  <li><b>Invalidation</b> - update the cache data as stale so that it can be refetched, Means I wanted to fetched the latest data.</li>
+  <li><b>QueryClient</b> - QueryClient manages the cache and all queries.</li>
+</ul>
+<br/>
+<h6><b>useQuery in TanStack Query - Simplifies Data Fetching</b></h6>
+<p>Fetching data in React traditionally requires <b>multiple steps and a lot of boilerplate code</b>. TanStack Query introduces the <code><b>useQuery</b></code> hook to simplify this process and handle many tasks automatically.</p>
+<p><code><b>useQuery</b></code> makes data fetching <b>declarative, cleaner and easier to maintain by removing most of the manual state management and boilerplate code.</b></p>
+<br/>
+<p><b>Traditional Approach (without TanStack Query)</b></p>
+<p>When fetching data using <b>fetch</b> or <b>axios</b>, developers usually need to manage <b>state, loading, errors manually</b></p>
+<p><code style="font-size:18px"><b>Example:</b></code></p>
+<textarea class="code-editor">
+import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom';
+
+const ProductsPage = () => {
+
+    const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const fetchData = async () => {
+        
+        try {
+            setIsLoading(true);
+            setError(null);
+            const response = await fetch("https://dummyjson.com/products");
+            const data = await response.json();
+            setProducts(data.products);
+            //console.log(data.products);
+            setIsLoading(false);
+        } catch (error) {
+            setError(error.message);
+            setIsLoading(false);
+        }
+    }
+
+    useEffect(()=>{
+        fetchData();
+    },[])
+
+    if(isLoading){
+        return <p className='w-screen h-screen fixed top-0 left-0 bg-amber-100 z-99 text-3xl font-bold flex justify-center items-center'>Loading...</p>
+    }
+    if(error){
+        return <p className='w-screen h-screen fixed top-0 left-0 bg-amber-100 z-99 text-3xl font-bold flex justify-center items-center'>{error}</p>
+    }
+
+
+  return (
+    <>
+     <h1 className="text-3xl font-bold">Product Page</h1>
+
+     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+     {products?.map((product) => (
+        <div key={product.id} className="group relative">
+            <img
+            alt={product.title}
+            src={product.thumbnail}
+            className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+            />
+            <div className="mt-4 flex justify-between">
+            <div>
+                <h3 className="text-sm text-gray-700 relative z-40">
+                <Link to={`/products/${product.id}`}>
+                    <span aria-hidden="true" className="absolute inset-0" />
+                    {product.title}
+                </Link>
+                </h3>
+                {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
+            </div>
+            <p className="text-sm font-medium text-gray-900">{product.price}</p>
+            </div>
+        </div>
+        ))}
+    </div>
+    </>
+  )
+}
+
+export default ProductsPage
+</textarea>
+<textarea class="code-editor">
+// in ProductDetail.jsx
+import React from 'react'
+const ProductDetail = () => {
+  return (
+    <>
+      <h1 className="text-3xl font-bold">Product Detail</h1>
+    </>
+  )
+}
+export default ProductDetail
+</textarea>
+<blockquote class="blockquote">
+      <code class="mark">
+        <h6><b>Problems with this approach:</b></h6>
+        <ul class="list-group list-group-flush mx-4">
+            <li>too much boilerplate code</li>
+            <li>Manual loading and error handling</li>
+            <li>No build-in caching</li>
+            <li>Refetching logic must be written manually</li>
+        </ul>
+        So, when we click on a product, we will navigate to product detail page. and <b>then when we return back to product page, we will fetch the data again.</b></code>
+</blockquote>
+<br/>
+<h5><b>using <code>useQuery (TanStack Query)</code></b></h5>
+<p><b>TanStack Query</b> simplifies this with a single hook.</p>
+<br/>
+<p><code style="font-size:18px"><b>Example:</b></code></p>
+<textarea class="code-editor">
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
+
+const ProductsPage = () => {
+
+    const fetchData = async () => {
+       const response = await fetch("https://dummyjson.com/products");
+        const data = await response.json();
+        return data.products;
+    }
+
+    const { isLoading, error, data: products } = useQuery({
+      queryKey: ['products'],
+      queryFn: fetch("https://dummyjson.com/products").then(res => res.json()).then(data => data.products),
+      // queryFn: fetchData, // we can also use like this, declared above and defined here
+      staleTime: milliseconds
+    })
+
+    if(isLoading){ return <p>Loading...</p>}
+    if(error){ return <p>{error.message}</p> }
+
+      return (
+        ....
+      )
+}
+</textarea>
+
+<hr />
+<h5><b>How to use TanStack Query</b></h5>
+<hr />
+<p><b>01.</b> Command to install TanStack Query: <code><b>npm install @tanstack/react-query</b></code></p>
+<p><b>02.</b> create <b>provider folder</b> in <b>root folder</b>. Inside this <b>provider folder</b> create <b>query-client-provider.jsx</b>.</p>
+<p>In <b>query-client-provider.jsx</b> we create a provider to wrap the application</p>
+<textarea class="code-editor">
+// 1.  make this file as client component
+"use client";
+import React, { useState } from "react";
+
+// 2. import QueryClient and QueryClientProvider
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// 3. wrap the app with QueryClientProvider
+export default function QueryProvider({ children }) {
+
+    // 4. create a query client instance
+    const [queryClient] = useState(() => new QueryClient()); 
+    // *** NOTE: this is the recommended pattern for creating a QueryClient instance by the TanStack Query team. We use the useState hook to ensure that the QueryClient instance is only created once per app live cycle. If we did not use useState, the QueryClient instance would be created every time the component re-renders
+
+    return (
+        // 5. wrap the app with QueryClientProvider and pass the query client instance
+        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    );
+}
+</textarea>
+<p><b>03.</b> wrap the app with <b>QueryProvider</b> from root layout <code><b>app/layout.jsx</b></code></p>
+<textarea class="code-editor">
+...
+import QueryProvider from "@/providers/query-client-provider";
+export default function RootLayout({ children }) {
+  return (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col">
+        <QueryProvider>
+          {children}
+        </QueryProvider>
+        </body>
+    </html>
+  );
+}
+</textarea>
+<p><b>04.</b> we use <code><b>useQuery</b></code> hook to fetch data. For that we open <code><b>app/page.jsx</b></code></p>
+<textarea class="code-editor">
+// 1. import useQuery
+import { useQuery } from '@tanstack/react-query';
+
+const page = () => {
+
+  // 2. we create a function for fetch data and return data. means we we call the function the fetche data also show.
+  const getContactData = async () => {
+      // const res = await fetch('https://jsonplaceholder.typicode.com/users');
+      // const data = await res.json();
+      
+      const data = await fetch("https://jsonplaceholder.typicode.com/users").then(res => res.json());
+      console.log("Get contact data : ", data);
+      return data;
+    }
+
+  // 3. fetch data using useQuery hook. Inside useQuery hook we get data, isLoading, error states. So we destructure them.
+  // data: contactsData -> we assign contactsData to data variable using key:value pair
+  const {data: contactsData, isLoading, error} = useQuery({
+      queryKey: ["conatcts_query_data"],
+      queryFn: () => getContactData(), // we call the fetch data function
+    })
+
+
+  return(
+    <>
+    <ul>
+      {/* 4. show the data using map() */}
+      {contacts.map((contact) => (
+        <li key={contact.id}>
+            {contact.name}
+        </li>
+      ))}
+    </ul>
+    </>
+  )
+}
+</textarea>
+
 
 
 

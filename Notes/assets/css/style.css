@@ -10,7 +10,8 @@
 body{ /*background-color: #000000; color: #fff; font-family: "arial";*/ font-size:16px; padding: 0px 15px; }
 p{ margin-bottom: 5px; }
 .CodeMirror, .CodeMirror-scroll{ height: auto !important; font-size: 14px; }
-code{ font-size: 16px; }
+code{ font-size: 1.1em; }
+blockquote code{ font-size: 16px; }
 .badge{ padding: 5px 14px; font-size: 15px; font-weight: 400; }
 .cm-s-neo.CodeMirror{ background-color: transparent; }
 .blockquote, .blockquote code{ font-family: system-ui, -apple-system; }

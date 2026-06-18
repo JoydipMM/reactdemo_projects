@@ -420,6 +420,11 @@ const page = async ({ params }) => {
 
 
 
+TanStack Query:
+-----------------------------------------------
+
+{JSON.stringify(data, null, 2)}
+
 
 
 

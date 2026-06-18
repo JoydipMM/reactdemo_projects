@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import ConatctFormMain from "@/components/ConatctFormMain";
 import ContactList from "@/components/ContactList";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
 
