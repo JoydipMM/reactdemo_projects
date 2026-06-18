@@ -11,59 +11,53 @@
 <hr />
 <h2><b>Python 3.12 Basics</b></h2>
 <hr />
+<p><b>Python version check command:</b> <code><b>python --version</b></code></b></p>
 <br/>
 <br/>
 <hr />
-<h5><b>Setup Python</b></h5>
+<h5><b>Create Virtual Environment with Python</b></h5>
 <hr />
-<p>Describe the desired style in detail, or referance a relavent persona.</p>
-<p>Indentity what others are doing to describe what to copy and where to innovate.</p>
+<h6><b>Create and Activate Virtual Environment</b></h6>
+<p>open terminal: <code><b>python -m venv envname</b></code></p>
+<p><b>activate environment</b>: <code><b>source envname/Scripts/activate</b></code></p>
+<p>if environment activate successfully then we will see this message <code><b>(envname) C:\Users\user\Documents\Python\envname</b></code> in <b><i>terminal</i></b></p>
+<p><b>Deactivate environment</b>: <code><b>deactivate</b></code></p>
 <br/>
-<p><b>Example:</b></p>
-<p><i>
-  <code><b>Me:</b></code><br/>
-  Brainstorm a list of product names for a shoe that fits any foot size, <code>in the style of Steve Jobs.</code>
-</i></p>
-<p><i>
-  <code><b>ChatGPT:</b></code><br/>
-  Product description: A shoe that fits any foot size<br/>
-  Product name: <code>iFitShoe, iAdapt, iUniversalStep</code>
-</i></p>
+
+
+<hr />
+<h5><b>Create Virtual Environment with Virtualenv</b></h5>
+<hr />
+<p>open terminal: <code><b>pip install virtualenv</b></code>, this will install virtual environment</p>
+<p>create virtual environment: <code><b>virtualenv -p python3 virtual_env</b></code> "virtual_env" this one is the name of virtual environment</p>
+<p>activate virtual environment: <code><b>source virtual_env/bin/activate</b></code></p>
 <br/>
-<h6><b>Impact on Result:</b></h6>
-<table class="table">
-  <tr>
-    <th>Variable</th>
-    <th>Results</th>
-  </tr>
-  <tr>
-    <td>Elon Musk</td>
-    <td>ShoeX, Marsfit, The Shoe Company</td>
-  </tr>
-  <tr>
-    <td>Walt Disney</td>
-    <td>Enchanted Slippers, Magic Step, Whimoles</td>
-  </tr>
-  <tr>
-    <td>Marc Jacobs</td>
-    <td>Morph by Marc, The Marc Jacobs Flexible Shoe, FlexForm Oxfords</td>
-  </tr>
-</table>
-<br/>
-<h6><b>Image Models: Stable Diffusion</b></h6>
+
+
+<hr />
+<h5><b>Create Virtual Environment with Conda</b></h5>
+<hr />
+<p><b>01.</b> install conda exe in system</p>
+<p><b>02.</b> after install open <b>Anaconda prompt terminal</b> and run <code><b>conda --version</b></code>. if it show version then it is installed successfully</p>
+<p><b>03.</b> save anaconda path to <b>System Environment Variables > users variables for joydi > Path > add > C:\Users\joydi\miniconda3</b></p>
+<p><b>04.</b> To conda setup for VSCode. First open <b>CMD</b> and run <code><b>C:\Users\joydi\miniconda3\Scripts\conda.exe init bash</b></code>, some message will show in <b><i>CMD</i></b>, Then close <b>VSCode</b> and opend again. Open <b>VSCode Terminal</b> run this command <code><b>conda --version</b></code>, if it show version then it is installed successfully</p>
+<b><b>05.</b> for create environment required Conda versions require you to accept the Anaconda Terms of Service before using the default repositories. For that we run below commands:</b>
 <textarea id="editor">
-
-</textarea>
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/msys2</textarea>
+<p><b>06.</b> create environment: <code><b>conda create -p venv1 python==3.12 -y</b></code>, this will create environment</p>
+<p><b>07.</b> activate environment: <code><b>conda activate ./venv1</b></code></p>
+<p><b>08.</b> deactivate environment: <code><b>conda deactivate</b></code></p>
+<p><b><i>With conda we can install other python version for specific project folder by using</i></b> <code><b>conda create -p venv1 python==3.10 -y</b></code></p>
 <br/>
 
-
 <hr />
-<h5><b>Specify Format</b></h5>
+<h5><b>Installation packages in Python</b></h5>
 <hr />
-<p>Define what rules to follow and the required structure of the response.</p>
-<br/>
-<h6><b>Text Models: ChatGPT</b></h6>
-<p><b>Prompting ChatGPT:</b> This is a simplr propmt we can use with ChatGPT when generating a list of ideas for product names.</p>
+<p><code><b>pip install flask</b></code> after install we will see this message <code><b>Successfully installed flask-2.2.2</b></code> in <b><i>terminal</i></b></p>
+<p>Then run <code><b>flask --version</b></code> in <b><i>terminal</i></b> we will see this message <code><b>Flask 2.2.2</b></code>. it is installed successfully</p>
+<p>Now run <code><b>pip freeze > requirements.txt</b></code> in <b><i>terminal</i></b>. This will create <code><b>requirements.txt</b></code> file. Inside this file we can see all installed packages. So when we install any package we run <code><b>pip freeze > requirements.txt</b></code> for update installed packages list</p>
 
 <!-- 
 <hr />

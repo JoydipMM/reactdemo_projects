@@ -426,7 +426,7 @@ TanStack Query:
 {JSON.stringify(data, null, 2)}
 
 
-
+conda create -p venv1 python==3.12 -y
 
 
 
