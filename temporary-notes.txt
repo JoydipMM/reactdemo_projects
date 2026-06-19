@@ -430,7 +430,7 @@ Running cells with 'condavenv (Python 3.12.0)' requires the ipykernel package.
 Install 'ipykernel' into the Python environment. 
 Command: 'conda install -n condavenv ipykernel --update-deps --force-reinstall'
 
-Semantics refers to the meaning or the interpretation of the symbols, characters and commands in a language. It is about what the code is supposed to do when it runs.
+
 
 
 
