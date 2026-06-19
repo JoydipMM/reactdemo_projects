@@ -34,3 +34,40 @@ export  async function addTodo(data){
     }
 
 }
+
+
+export  async function listTodo(){
+    await connectDB();
+     try{
+        const todos = await Todo.find({}).sort({ createdAt: -1 }); // syntax: await ModelName.find().sort();
+        //return todos;
+        console.log(JSON.parse(JSON.stringify({ success: true, message: "todos successfully", todolist: todos })));
+        return JSON.parse(JSON.stringify({ success: true, message: "todos successfully", todolist: todos }));
+     }catch(error){
+
+     }
+
+}
+
+export async function completeTodo(id, isCompleted){
+    await connectDB();
+    try{
+        const updateTodo = await Todo.findByIdAndUpdate(id, {isCompleted}, { new: true });
+        //console.log(updateTodo);
+        return JSON.parse(JSON.stringify({ success: true, message: "Todo status updated successfully", todo: updateTodo }));
+        
+    }catch(error){
+        console.log("Error: ", error);
+        //Duplicate title error code 11000
+        if (error.code === 11000) {
+            return {
+                success: false,
+                message: "Todo status updated successfully",
+            };
+        }
+        return {
+            success: false,
+            message: `${error.message} - ${error.code}`,
+        };
+    }
+}

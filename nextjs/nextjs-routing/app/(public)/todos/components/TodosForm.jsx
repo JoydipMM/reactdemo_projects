@@ -1,11 +1,12 @@
 "use client";
 import React, { useState } from 'react'
 import { Button } from "@/components/ui/button";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addTodo } from "@/actions/todoActions";
 import { toast } from "sonner";
 
 const TodosForm = () => {
+    const queryClient = useQueryClient();
     const [title, setTitle] = useState('');
 
     const mutation = useMutation({
@@ -21,6 +22,7 @@ const TodosForm = () => {
                     // onClick: () => console.log("Undo"),
                 },
             });
+                queryClient.invalidateQueries({queryKey: ['get_todos']});
                 setTitle('');
             }else{
                 toast.error(response.message, {
