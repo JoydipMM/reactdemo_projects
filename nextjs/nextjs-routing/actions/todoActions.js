@@ -19,7 +19,7 @@ export  async function addTodo(data){
         const newTodo = await Todo.create(validatedFields.data);
         return JSON.parse(JSON.stringify({ success: true, message: "todo added successfully", todo: newTodo }));
     }catch(err){
-        console.log("Error: ", err);
+        //console.log("Error: ", err);
         //Duplicate title error code 11000
         if (err.code === 11000) {
             return {
@@ -41,7 +41,7 @@ export  async function listTodo(){
      try{
         const todos = await Todo.find({}).sort({ createdAt: -1 }); // syntax: await ModelName.find().sort();
         //return todos;
-        console.log(JSON.parse(JSON.stringify({ success: true, message: "todos successfully", todolist: todos })));
+        //console.log(JSON.parse(JSON.stringify({ success: true, message: "todos successfully", todolist: todos })));
         return JSON.parse(JSON.stringify({ success: true, message: "todos successfully", todolist: todos }));
      }catch(error){
 
@@ -57,7 +57,7 @@ export async function completeTodo(id, isCompleted){
         return JSON.parse(JSON.stringify({ success: true, message: "Todo status updated successfully", todo: updateTodo }));
         
     }catch(error){
-        console.log("Error: ", error);
+        //console.log("Error: ", error);
         //Duplicate title error code 11000
         if (error.code === 11000) {
             return {
@@ -69,5 +69,19 @@ export async function completeTodo(id, isCompleted){
             success: false,
             message: `${error.message} - ${error.code}`,
         };
+    }
+}
+
+export async function deleteTodo(id){
+    await connectDB();
+
+    try{
+        const deleteTodo = await Todo.findByIdAndDelete(id);
+        return JSON.parse(JSON.stringify({ success: true, message: "Todo deleted successfully", todo: deleteTodo }));
+    }catch(error){
+        return {
+            success: false,
+            message: `${error.message} - ${error.code}`,
+        }
     }
 }
