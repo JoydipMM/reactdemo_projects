@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function add(a){
+    return function(b){
+        return function (c){
+            return a + b + c
+        };
+    }
+}
+//console.log(add(2)(3)(4)); // 9
+
+
+function addCurring(a){
+    return function(b){
+        if(b === undefined){
+            return a;
+        }
+        return addCurring(a + b);
+    }
+}
+//console.log(addCurring(2)(3)(5)(10)()); // 20
+
+
+function addArrayCurring(...a){
+    return function(...b){
+        if(b?.length === 0){
+            return a?.[0] || 0; // if the array index 0 is undefined then return 0
+        }
+        return addCurring(a.reduce((acc,curnt)=>(acc+curnt),0) + b.reduce((acc,curnt)=>(acc+curnt),0)); // now a and b are array then we need to get total value of array. So we use reduce
+    }
+}
+//console.log(addArrayCurring(2,3,5)(10,4)()); // 24
+
+
+
+
+// copy value of a primitive datatype
+let a = 10;
+let b = a;
+console.log("a value before change: " + a); // 10
+a = 20;
+console.log("b value: " + b); // 10
+console.log("a value: " + a); // 20
+
+
+// if we follow the above process for non-primitive datatype then we will get different value in b and a
+let obj1 = {};
+let obj2 = obj1;
+console.log("obj1 value before change: " , obj1); // {}
+obj1.title = "My title";
+console.log("obj1 value: " , obj1); // { title: 'My title' }
+console.log("obj2 value: " , obj2); // { title: 'My title' }
+
+
+
+
+</script>   
+</body>
+</html>
