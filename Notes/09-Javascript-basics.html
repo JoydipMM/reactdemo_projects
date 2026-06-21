@@ -88,6 +88,110 @@ console.log(null === undefined); // false
 
 
 <hr />
+<h5><b>Different between var, let and const</b></h5>
+<hr />
+<p><b>var</b> : was the original way to declare variables before ES6. </p>
+<p><b>Characteristics</b></p>
+<ul class="list-group list-group-flush mx-4">
+  <li><b>Function-scoped (not block-scoped)</b></li>
+<textarea class="code-editor">
+function varFnScope() {
+  var title = "JavaScript";
+}
+console.log(title); 
+// result: Uncaught ReferenceError: title is not defined
+</textarea>
+  <li>Can be <b>redeclared</b> and  <b>reassigned</b></li>
+<textarea class="code-editor">
+// Example 01: ----------------------------------------
+function demo() {
+  if (true) {
+    var title = "John";
+    var title = "John Junior"; // redeclared and reassigned in same scope
+  }
+  console.log(title); // John Junior
+}
+demo();
+/*
+Result:
+John Junior
+*/
+
+// Example 02: ----------------------------------------
+function demo2() {
+  if (true) {
+    var title = "John";
+  }
+  console.log(title); // John
+  var title = "Alice"; // redeclared and reassigned
+  console.log(title); // Alice
+}
+demo2();
+/*
+Result:
+John
+Alice
+*/
+</textarea>
+  <li>Gets <b>hoisted</b> and <b>initialized</b> with <code><b>undefined</b></code></li>
+<textarea class="code-editor">
+// Example 01: ----------------------------------------
+console.log(title); // undefined
+var title = "John";
+console.log(title); // John
+
+// Example 02: ----------------------------------------
+var userAge;
+console.log(userAge); // undefined
+userAge = 10;
+</textarea>
+</ul>
+<br/>
+<p><b>let</b> : Introduced in ES6. It is <b>block-scoped</b>.</p>
+<p><b>Characteristics</b></p>
+<ul class="list-group list-group-flush mx-4">
+  <li><b>Block</b>-scoped</li>
+<textarea class="code-editor">
+if (true) {
+  let age = 25;
+}
+// age exists only inside the block.
+console.log(age); // Result: Uncaught ReferenceError: age is not defined
+</textarea>
+
+  <li>Can be <b>reassigned</b></li>
+<textarea class="code-editor">
+let count = 1; // this is inside global scope
+count = 2; // Allowed
+</textarea>
+  <li><b>Cannot be redeclared</b> in the <b>same scope</b></li>
+<textarea class="code-editor">
+let count = 1; // this is inside global scope
+count = 2; // Allowed
+
+if(true) {
+  let count = 3; // Allowed because this let is block scoped
+  count = 4; // Allowed
+}
+
+let count = 5; // Uncaught SyntaxError: Identifier 'count' has already been declared
+// because let count = 1; is already declared in global scope and can't be redeclared let count = 5 in same global scope. We can only reassign it. But we have another let count = 3; in if{} block scope that is allowed.
+</textarea>
+  <li><b>Hoisted</b> but placed in the <b>Temporal Dead Zone</b> <code><b>(TDZ)</b></code>. <b>The variable exists but cannot be accessed before declaration</b>.</li>
+<textarea class="code-editor">
+console.log(count); // Uncaught ReferenceError: Cannot access 'count' before initialization
+let count = 1;
+</textarea>
+</ul>
+<br/>
+<p><b>const</b> : was the original way to declare variables before ES6. </p>
+
+<script>
+</script>
+<br/>
+
+
+<hr />
 <h5><b>Hoisting in JavaScript</b></h5>
 <hr />
 <p></p>
@@ -98,12 +202,300 @@ console.log(null === undefined); // false
 
 
 <hr />
-<h5><b>Different between var, let and const</b></h5>
+<h5><b>Call, Apply, Bind in JavaScript</b></h5>
 <hr />
-<p></p>
+<p><b>call()</b> invokes the function immediately then allows our to pass arguments one by one. It explicitly set the value of this to a specific object. It is often used for function borrowing.</p>
 <textarea class="code-editor">
+// This is a simple object. Inside this object we have a function named "fullname".
+const userObj = {
+  firstname : "Dipak",
+  lastname : "Gupta",
+  age : 10,
+  fullname: function() {
+    console.log("Fullname is : "+ this.firstname+" "+ this.lastname);
+  }
+}
 
+// To use the function "fullname" of the object "userObj" we need to call it like below.
+userObj.fullname(); // Fullname is : Dipak Gupta
 </textarea>
+<br/>
+<p>We have a new object <code><b>userObj2</b></code>. Now if we want to use the function "fullname" of the object "userObj" to this "userObj2", then we need to call it like below. This terms also called <b>function borrowing</b>.</p>
+<p><b>How call() method works</b></p>
+<p><b>01. </b>first we need to call the function <code><b>fullname</b></code> with reference of <code><b>userObj</b></code>, after that we use <code><b>.call()</b></code> method.</p>
+<p><b>02. </b>when we add call() method, behind the scene "fullname" function already invoked, because we already wriiten a reference of "fullname" function with "userObj" object. Now inside the call() method, we can pass arguments one by one with the target object reference first.</p>
+<p><b>03. </b>If the borrowing function is independent, then we directly refer the function name and add call()</p>
+<p><b>04. </b>As per call() syntax [<code><b>fullname.call(targetedObject, arg1, arg2, arg3)</b></code>]. When we use extra argument, then those parameters need to passed inside that <code><b>function()</b></code></p>
+<textarea class="code-editor">
+const userObj = {
+  firstname : "Dipak",
+  lastname : "Gupta",
+  age : 10,
+  // function with parameters
+  fullname: function(city, state) {
+    console.log("Fullname is : "+ this.firstname+" "+ this.lastname+ " "+ city+" "+ state); 
+  }
+}
+
+// New object
+const userObj2 = {
+  firstname : "Rahul",
+  lastname : "Bose",
+  age : 10,
+}
+
+// function borrowing with arguments
+userObj.fullname.call(userObj2, "Nadia", "WB"); // Fullname is : Rahul Bose Nadia WB
+
+// independent function with parameters
+const fullname=function(city, state) {
+  console.log("Fullname is : "+ this.firstname+" "+ this.lastname+ " "+ city+" "+ state);
+}
+
+// borrowing independent function with arguments
+fullname.call(userObj2, "Nadia", "WB");   // Fullname is : Rahul Bose Nadia WB
+</textarea>
+<br/>
+<p><b>apply() method</b> is similar to call() method. The only difference is that instead of passing arguments one by one, we pass an array of arguments.</p>
+<textarea class="code-editor">
+const userObj = {
+  firstname : "Dipak",
+  lastname : "Gupta",
+  age : 10,
+  fullname: function(city, state) {
+    console.log("Fullname is : "+ this.firstname+" "+ this.lastname+ " "+ city+" "+ state);
+  }
+}
+
+// New object
+const userObj2 = {
+  firstname : "Rahul",
+  lastname : "Bose",
+  age : 10,
+}
+
+userObj.fullname.apply(userObj2, ["tala", "WB"]); // Fullname is : Rahul Bose tala WB
+</textarea>
+<br/>
+<p><b>bind() method</b> is similar to call() method. The only difference is that instead of invoking the function, it returns a new function.</p>
+<textarea class="code-editor">
+const userObj = {
+  firstname : "Dipak",
+  lastname : "Gupta",
+  age : 10,
+  fullname: function(city, state) {
+  console.log("Fullname is : "+ this.firstname+" "+ this.lastname+ " "+ city+" "+ state);
+  }
+}
+
+// New object
+const userObj2 = {
+  firstname : "Rahul",
+  lastname : "Bose",
+  age : 10,
+}
+
+userObj.fullname.bind(userObj2, "tala", "WB");
+
+const newFunc = userObj.fullname.bind(userObj2, "tala", "WB");
+console.log(newFunc);
+/*
+Result:
+  fullname: function(city, state) {
+    console.log("Fullname is : "+ this.firstname+" "+ this.lastname+ " "+ city+" "+ state);
+  }
+*/
+newFunc(); // Fullname is : Rahul Bose tala WB
+</textarea>
+<br/>
+<p><b>Why do we need bind()?</b></p>
+<p>bind() is used when you want to create a new function with a fixed this value, but do not want to execute the function immediately. Means when we bind the function, we don't want to invoke it. It returns a new function with fixed this value. Because it is returning a new function so, without calling the new function, we can't invoke the bind function. Sometimes a function loses its original this context when it's passed around because that function is called as a standalone function, so this is no longer person.</p>
+<textarea class="code-editor">
+const userObj = {
+  firstname : "Dipak",
+  lastname : "Gupta",
+  age : 10,
+  fullname: function() {
+  console.log("Fullname is : "+ this.firstname+" "+ this.lastname);
+  }
+}
+
+// This is a standalone function
+const newobjfn = userObj.fullname;
+newobjfn() // Fullname is : undefined undefined
+
+const newobjfn2 = userObj.fullname.bind(userObj);
+newobjfn2() // Fullname is : Dipak Gupta
+</textarea>
+<br/>
+
+
+<hr />
+<h5><b>Event Delegation</b></h5>
+<hr />
+<p><b>Event Delegation</b> is a technique where we attach a single event listener to a parent element instead of attaching event listeners to multiple child elements. It works because of <b>event bubbling.</b> It improves performance, reduces memory usage, and automatically supports dynamically added elements.</p>
+<br/>
+<p><b>Without Event Delegation</b></p>
+<textarea class="code-editor">
+<button class="btn">Button 1</button>
+<button class="btn">Button 2</button>
+<button class="btn">Button 3</button>
+<script>
+const buttons = document.querySelectorAll(".btn");
+  buttons.forEach((btn) =>{
+    btn.addEventListener("click", ()=>{
+      console.log(btn.innerHTML + " is clicked");
+    })
+})
+// Result:
+// Button 1 is clicked
+// Button 2 is clicked
+// Button 3 is clicked
+</script>
+</textarea>
+<p><b>Problem with this code:</b></p>
+<ul class="list-group list-group-flush mx-4">
+  <li>It creates 3 event listeners for 3 buttons.</li>
+  <li>More memory usage.</li>
+  <li>Newly added buttons won't have the listener automatically.</li>
+</ul>
+<br/>
+<p><b>With Event Delegation</b></p>
+<textarea class="code-editor">
+<div class="btn-group">
+  <button class="btn">Button 1</button>
+  <button class="btn">Button 2</button>
+  <button class="btn">Button 3</button>
+</div>
+
+  const btnGroup = document.querySelector(".btn-group");
+  //console.log(btnGroup);
+  btnGroup.addEventListener("click", (btn) => {
+    //console.log(btn.target.innerHTML + " is clicked");
+    // Result:
+    // Button 1 is clicked
+    // Button 2 is clicked
+    if(btn.target.classList.contains("btn")){
+      console.log(btn.target.innerHTML + " is clicked");
+      console.log(btn.target.textContent + " is clicked");
+    }
+  })
+</textarea>
+<br/>
+<p><b>When Button 2 is clicked:</b></p>
+<textarea class="code-editor">
+button → div#container → body → html → document</textarea>
+<p>The click event bubbles up to <b>container</b></p>
+<textarea class="code-editor">
+event.target
+// Return
+<button class="btn">Button 2</button></textarea>
+<p>So the <b>parent knows exactly which button was clicked</b>.</p>
+<br/>
+<h5><b>Real-World Example: Dynamic Todo List</b></h5>
+<hr/>
+<p><b>Without delegation:</b> Every new button requires a new listener.</p>
+<textarea class="code-editor">
+<button class="add-todo-button">Add Todo</button>
+<div class="todo-list-box"></div>
+
+const list = document.querySelector(".todo-list-box");
+const addButton = document.querySelector(".add-todo-button");
+
+addButton.addEventListener("click", () => {
+  const li = document.createElement("li");
+  const deleteBtn = document.createElement("button");
+  const todoText = document.createElement("span");
+  todoText.textContent = "New Todo";
+  li.appendChild(todoText);
+  deleteBtn.classList.add("delete-todo-button");
+  deleteBtn.textContent = "Delete";
+
+  deleteBtn.addEventListener("click", ()=>{
+    li.remove();
+  })
+
+  li.appendChild(deleteBtn);
+  list.appendChild(li);
+})
+</textarea>
+<br/>
+<p><b>With delegation:</b></p>
+<ul class="list-group list-group-flush mx-4">
+  <li>Only one listener exists.</li>
+  <li>Works for existing items.</li>
+  <li>Works for future items added dynamically.</li>
+</ul>
+<textarea class="code-editor">
+<button class="add-todo-button">Add Todo</button>
+<div class="todo-list-box"></div>
+
+const list = document.querySelector(".todo-list-box");
+const addButton = document.querySelector(".add-todo-button");
+
+addButton.addEventListener("click", () => {
+  const li = document.createElement("li");
+  const deleteBtn = document.createElement("button");
+  const todoText = document.createElement("span");
+  todoText.textContent = "New Todo";
+  li.appendChild(todoText);
+  deleteBtn.classList.add("delete-todo-button");
+  deleteBtn.textContent = "Delete";
+
+  li.appendChild(deleteBtn);
+  list.appendChild(li);
+})
+
+list.addEventListener("click", (event) => {
+  //if(event.target.matches(".delete-todo-button")){ // we can match with class
+  if(event.target.classList.contains("delete-todo-button")){
+    event.target.parentElement.remove();
+  }
+})
+</textarea>
+<br/>
+<p><b>Why Is Event Delegation Useful?</b></p>
+<ul class="list-group list-group-flush mx-4">
+  <li><b>1. Better Performance</b> Instead of: <code><b>1000 buttons = 1000 listeners</b></code> use <code><b>1 parent = 1 listener</b></code>. So Less memory consumption.</li>
+  <li><b>2. Handles Dynamic Elements</b> 
+<textarea class="code-editor">
+container.innerHTML += `
+    <button class="btn">New Button</button>
+`;
+</textarea>
+<p>The new button automatically works because the parent listener already exists.</p>
+  </li>
+<li><b>3. Cleaner Code</b> Much easier to maintain.
+<textarea class="code-editor">
+// Instead of:
+button1.addEventListener(...)
+button2.addEventListener(...)
+button3.addEventListener(...)
+
+// Use:
+parent.addEventListener(...)
+</textarea>
+</li>
+</ul>
+<br/>
+
+
+<hr />
+<h5><b>JavaScript event loop: Call Stack, Microtask Queue, Macrotask (Callback) Queue</b></h5>
+<hr />
+<br/>
+
+
+<hr />
+<h5><b>Event Bubbling</b></h5>
+<hr />
+<br/>
+
+
+<hr />
+<h5><b>DeStructuring Rest Spread Operator ES6 JavaScript</b></h5>
+<hr />
+
 <br/>
 
 <!-- 
