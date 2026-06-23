@@ -6,14 +6,8 @@ function App() {
   const [data, setData] = useState([]);
 
   const fetchPopularTV = async () => {
-    const res = await client.axiosClient.get("/tv/popular", {
-      params: {
-        api_key: `${import.meta.env.VITE_TMDB_READ_ACCESS_TOKEN}`,
-      },
-    });
-
+    const res =  await client.axiosClient.get("/tv/popular");
     //console.log(res.data.results);
-
     return setData(res.data.results);
   };
 
