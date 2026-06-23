@@ -134,9 +134,11 @@ function fn04(){
     });
     return promise;
 }
-console.log("last console.log called");
 
 fn01().then(()=>{ return fn02(); }).then(()=>{ return fn03(); }).then(()=>{ return fn04(); });
+
+console.log("last console.log called");
+
 // normal result -----------------------
 /*
 function 01 called
