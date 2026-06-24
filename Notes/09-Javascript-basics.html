@@ -185,9 +185,94 @@ let count = 1;
 </ul>
 <br/>
 <p><b>const</b> : was the original way to declare variables before ES6. </p>
+<p><b>Characteristics</b></p>
+<ul class="list-group list-group-flush mx-4">
+  <li>Block-scoped</li>
+  <li>Cannot be reassigned</li>
+  <li>Cannot be redeclared</li>
+  <li>Must be initialized during declaration</li>
+  <li>Hoisted but in the TDZ</li>
+</ul>
+<textarea class="code-editor">
+const PI = 3.14;
+PI = 3.14159; // ❌ TypeError
 
-<script>
-</script>
+// Must be initialized
+const name; // ❌ SyntaxError
+const name = "Rajdip";
+</textarea>
+<br/>
+<p><b>const with Objects and Arrays</b></p>
+<p>Many developers think const makes data immutable.</p>
+<p>Not exactly.</p>
+<textarea class="code-editor">
+const user = { name: "Raj" };
+user.name = "John"; // ✅ Allowed
+console.log(user);
+/* Result: 
+{
+  name: "John"
+}
+*/
+
+// but we can't reassign the whole object. Because the reference cannot change.
+user = {}; // ❌ Error
+
+// Arrays
+const numbers = [1, 2, 3];
+numbers.push(4); // ✅ Allowed
+console.log(numbers);
+// Result: [1, 2, 3, 4]
+
+// But: 
+numbers = []; // ❌ Error
+</textarea>
+<br/>
+<h5><b>Quick Comparison Table</b></h5>
+<table class="table">
+  <tr>
+    <th>Feature</th>
+    <th>var</th>
+    <th>let</th>
+    <th>const</th>
+  </tr>
+  <tr>
+    <th>Scope</th>
+    <td>Function</td>
+    <td>Block</td>
+    <td>Block</td>
+  </tr>
+  <tr>
+    <th>Reassign</th>
+    <td>✅</td>
+    <td>✅</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <th>Redeclare</th>
+    <td>✅</td>
+    <td>❌</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <th>Hoisted</th>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <th>TDZ</th>
+    <td>❌</td>
+    <td>✅</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <th>Must Initialize</th>
+    <td>❌</td>
+    <td>❌</td>
+    <td>✅</td>
+  </tr>	
+</table>
 <br/>
 
 
@@ -481,7 +566,222 @@ parent.addEventListener(...)
 
 
 <hr />
-<h5><b>JavaScript event loop: Call Stack, Microtask Queue, Macrotask (Callback) Queue</b></h5>
+<h5><b>callback() in javaScript</b></h5>
+<hr />
+<p><b>callback</b> is a function passed as an argument to another function, which is invoked by that function at a later point in its execution.</p>
+<textarea class="code-editor">
+// Example 01 : ----------------------------------------
+function greet(name, callback ) {
+  console.log("Hello " + name);
+  callback();
+}
+
+function sayBye() {
+  console.log("Goodbye!");
+}
+
+greet("John", sayBye);
+/*
+Hello John
+Goodbye!
+*/
+
+// Example 02 : ----------------------------------------
+function fetchData(callback) {
+  setTimeout(() => {
+    callback("Data received");
+  }, 2000);
+}
+
+fetchData((data) => {
+  console.log(data);
+});
+
+console.log("End");
+
+/*
+Result:
+End
+Data received
+*/
+</textarea>
+<br/>
+
+<hr />
+<h5><b>Use callback with setTimeout</b></h5>
+<hr />
+<p><b>Data fetch and create new without callback</b></p><hr/>
+<p>In this example we have one userdata list and two functions <b>getdatas()</b> and <b>createData()</b> for getting and creating data. We set the timeout of 2 seconds for getdatas() and 1 seconds for createData(). As a result, the data is received after 2 seconds and the new data is created after 1 second. So the output will give four data after 2 seconds and render insde the <b>userwrap</b> div.</p>
+<textarea class="code-editor">
+<div class="user-wrap"></div>
+
+const userwrapElement = document.querySelector(".user-wrap");
+const userData=[
+  {name: "John", age: 30},
+  {name: "Jane", age: 25},
+  {name: "Bob", age: 35}
+];
+
+function getdatas(){
+  let output = "";
+  setTimeout(()=>{
+      userData.forEach((item)=>{
+        output += `<li>Name: ${item.name}, Age: ${item.age}</li>`;
+      });
+      userwrapElement.innerHTML = output;
+  }, 2000);
+}
+
+function createData(newdata){
+  setTimeout(()=>{
+    userData.push(newdata);
+  }, 1000)
+}
+
+getdatas();
+createData({name: "Donald", age: 30});
+
+/*
+Result:
+Name: John, Age: 30
+Name: Jane, Age: 25
+Name: Bob, Age: 35
+Name: Donald, Age: 30
+*/
+</textarea>
+<br/>
+<p>But if we interchange the setTimeout time of getdatas() and createData(), the output will be different. like We set the timeout of 1 seconds for getdatas() and 2 seconds for createData(). As a result, we will get only three data from userData object after 1 second and render insde the <b>userwrap</b> div. Because the data is created after 2 seconds meanwhile the data is received after 1 second and render insde the <b>userwrap</b> div.</p>
+<textarea class="code-editor">
+const userwrapElement = document.querySelector(".user-wrap");
+const userData=[
+  {name: "John", age: 30},
+  {name: "Jane", age: 25},
+  {name: "Bob", age: 35}
+];
+
+function getdatas(){
+  let output = "";
+  setTimeout(()=>{
+      userData.forEach((item)=>{
+        output += `<li>Name: ${item.name}, Age: ${item.age}</li>`;
+      });
+      userwrapElement.innerHTML = output;
+  }, 1000);
+}
+
+function createData(newdata){
+  setTimeout(()=>{
+    userData.push(newdata);
+  }, 2000)
+}
+
+getdatas();
+createData({name: "Donald", age: 30});
+
+/*
+Result:
+Name: John, Age: 30
+Name: Jane, Age: 25
+Name: Bob, Age: 35
+*/
+</textarea>
+<br/>
+<p><b>Data fetch and create new with callback</b></p><hr/>
+<p>To use callback to fetch and create new data we modify our code like below.</p>
+<textarea class="code-editor">
+// 01. getdatas() function remain same
+
+// 02. we modify the createData() function
+function createData(newdata, callback){ // here we passed callback as a parameter
+  setTimeout(()=>{
+    userData.push(newdata);
+    callback(); // call the callback function after pushed the new data
+  }, 2000)
+}
+
+// 03. remove the getdatas() function
+
+// 04. modify the createData() function like below
+createData({name: "Donald", age: 30}, getdatas); 
+// we already assigned callback as a second parameter. So here we pass getdatas() function as a callback.
+// So as a result: when the createData() function is invoked, it will first push the new data and then call the getdatas() function.
+/*
+Result: ----------------------
+Name: John, Age: 30
+Name: Jane, Age: 25
+Name: Bob, Age: 35
+Name: Donald, Age: 30
+*/
+</textarea>
+<br/>
+
+<hr />
+<h5><b>callback hell in JavaScript</b></h5>
+<hr />
+<br/>
+
+<div class="user-wrap"></div>
+<script>
+
+const userwrapElement = document.querySelector(".user-wrap");
+const userData=[
+  {name: "John", age: 30},
+  {name: "Jane", age: 25},
+  {name: "Bob", age: 35}
+];
+
+function getdatas(){
+  let output = "";
+  setTimeout(()=>{
+      userData.forEach((item)=>{
+        output += `<li>Name: ${item.name}, Age: ${item.age}</li>`;
+      });
+      userwrapElement.innerHTML = output;
+  }, 2000);
+}
+
+function createData(newdata, callback){
+  setTimeout(()=>{
+    userData.push(newdata);
+    callback();
+  }, 1000)
+}
+
+createData({name: "Donald", age: 30}, getdatas);
+
+/*
+Result:
+Name: John, Age: 30
+Name: Jane, Age: 25
+Name: Bob, Age: 35
+Name: Donald, Age: 30
+*/
+</script>
+
+<hr />
+<h5><b>Promise in javaScript</b></h5>
+<hr />
+<br/>
+0
+
+<hr />
+<h5><b>Async / await in javaScript</b></h5>
+<hr />
+
+<br/>
+<br/>
+
+
+<hr />
+<h5><b>Async / await in javaScript</b></h5>
+<hr />
+
+<br/>
+<br/>
+
+
+<hr />
+<h5><b>JavaScript event loop: Microtask Queue, Macrotask (Callback) Queue</b></h5>
 <hr />
 <br/>
 

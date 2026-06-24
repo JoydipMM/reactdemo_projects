@@ -43,22 +43,119 @@ function addArrayCurring(...a){
 // copy value of a primitive datatype
 let a = 10;
 let b = a;
-console.log("a value before change: " + a); // 10
+//console.log("a value before change: " + a); // 10
 a = 20;
-console.log("b value: " + b); // 10
-console.log("a value: " + a); // 20
+//console.log("b value: " + b); // 10
+//console.log("a value: " + a); // 20
 
 
 // if we follow the above process for non-primitive datatype then we will get different value in b and a
 let obj1 = {};
 let obj2 = obj1;
-console.log("obj1 value before change: " , obj1); // {}
+//console.log("obj1 value before change: " , obj1); // {}
 obj1.title = "My title";
-console.log("obj1 value: " , obj1); // { title: 'My title' }
-console.log("obj2 value: " , obj2); // { title: 'My title' }
+//console.log("obj1 value: " , obj1); // { title: 'My title' }
+//console.log("obj2 value: " , obj2); // { title: 'My title' }
+
+
+// callback, callback hell, promise, async/await
+
+// function fn01(callback){
+//     setTimeout(()=>{
+//         console.log("function 01 called");
+//         callback();
+//     }, 4000);
+// }
+// function fn02(callback){
+//     setTimeout(()=>{
+//         console.log("function 02 called");
+//         callback();
+//     }, 2000);
+// }
+// function fn03(callback){
+//     setTimeout(()=>{
+//         console.log("function 03 called");
+//         callback();
+//     }, 3000);
+// }
+// function fn04(){
+//     setTimeout(()=>{
+//         console.log("function 04 called");
+//     }, 1000);
+// }
+// fn01();
+// fn02();
+// fn03();
+// fn04();
+// callback hell
+// fn01(()=>{
+//     fn02(()=>{
+//         fn03(()=>{
+//             fn04();
+//         });
+//     });
+// });
 
 console.log([] === []); // false
 
+function fn01(){
+    const promise = new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            console.log("function 01 called");
+            resolve();
+        }, 4000);
+    });
+    return promise;
+}
+function fn02(){
+    const promise = new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            console.log("function 02 called");
+            resolve();
+        }, 2000);
+    });
+    return promise;
+}
+function fn03(){
+    const promise = new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            console.log("function 03 called");
+            resolve();
+        }, 3000);
+    });
+    return promise;
+}
+function fn04(){
+    const promise = new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            console.log("function 04 called");
+            resolve();
+        }, 1000);
+    });
+    return promise;
+}
+
+fn01().then(()=>{ return fn02(); }).then(()=>{ return fn03(); }).then(()=>{ return fn04(); });
+
+console.log("last console.log called");
+
+// normal result -----------------------
+/*
+function 01 called
+function 02 called
+function 03 called
+function 04 called
+last console.log called
+*/
+
+// Result with setTimeout
+/*
+last console.log called
+function 04 called
+function 02 called
+function 03 called
+function 01 called
+*/
 
 </script>   
 </body>
