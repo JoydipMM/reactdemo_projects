@@ -96,7 +96,7 @@ obj1.title = "My title";
 //     });
 // });
 
-console.log([] === []); // false
+// console.log([] === []); // false
 
 function fn01(){
     const promise = new Promise((resolve, reject)=>{
@@ -156,6 +156,63 @@ function 02 called
 function 03 called
 function 01 called
 */
+
+
+
+const obj = {
+    pqr:100,
+    abc:200,
+    xyz:{
+        pqr:300, //this pqr value saved in "p" variable at below
+        abc:400
+    }
+}
+
+const { pqr, abc, xyz:{pqr:p} } = obj;
+
+console.log(pqr, abc, p);
+// 100 200 300
+
+let arr = [1,2,3,4,5]
+let newarr = arr.map((p)=> p>3);
+
+let newarr2 = arr.map((p)=>{
+    if(p> 3){
+        return p
+    }
+})
+console.log(newarr);
+// [false, false, false, true, true]
+
+console.log(newarr2);
+// [undefined, undefined, undefined, 4, 5]
+
+
+let arr1 = [100,200,300]
+let arr2 = [100,200,300]
+
+//How to check that the values inside two arrays are same or not?
+console.log(arr1.toString() === arr2.toString());
+
+const checkArrays = arr1.length === arr2.length && arr1.every((value, index)=> value === arr2[index] )
+console.log(checkArrays);
+// true
+
+
+arr3 = [1,2,3,4,5,6,3];
+
+function fn1(arr){
+    let dupliacate = 0;
+    for(let i=0; i < arr.length; i++){
+        if(dupliacate == arr[i]){
+            console.log(dupliacate);
+            return dupliacate = arr[i];
+        }
+    }
+   return dupliacate 
+}
+
+console.log(fn1(arr3));
 
 </script>   
 </body>

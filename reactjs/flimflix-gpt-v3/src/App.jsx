@@ -7,11 +7,15 @@ function App() {
 
   const fetchPopularTV = async () => {
     const res =  await client.axiosClient.get("/tv/popular");
+    
     //console.log(res.data.results);
     return setData(res.data.results);
   };
 
   useEffect(() => {
+    console.log(
+  Object.keys(import.meta.env).filter(key => key.startsWith("VITE"))
+);
     fetchPopularTV();
   }, []);
 
