@@ -13,9 +13,9 @@ function App() {
   };
 
   useEffect(() => {
-    console.log(
-  Object.keys(import.meta.env).filter(key => key.startsWith("VITE"))
-);
+    // console.log(
+    //   Object.keys(import.meta.env).filter(key => key.startsWith("VITE"))
+    // );
     fetchPopularTV();
   }, []);
 
