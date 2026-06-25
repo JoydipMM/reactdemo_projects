@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroSection from '@/features/home/sections/HeroSection';
+import { HeroSection, TrendingToday } from '@/features/home';
 
 const HomePage = () => {
   return (
@@ -7,6 +7,7 @@ const HomePage = () => {
       <h2>Home Page</h2>
       <HeroSection/>
       {/* Trending Today */}
+      <TrendingToday/>
       {/* Popular Movies */}
       {/* Popular TV Shows */}
       {/* Top Rated Movies */}

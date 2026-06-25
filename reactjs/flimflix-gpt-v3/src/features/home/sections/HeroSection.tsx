@@ -1,6 +1,6 @@
 import React from 'react';
-import { useHomeBannerQuery } from "../queries/useBannerQueries";
-import { BannerCardProp } from '../types/home';
+import { useHomeBannerQuery } from "@/features/home/queries/useBannerQueries";
+import { BannerCardProp } from '@/features/home/types/home';
 const HeroSection = () => {
 
     const {
