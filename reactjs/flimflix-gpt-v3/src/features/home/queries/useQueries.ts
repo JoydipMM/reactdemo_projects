@@ -4,7 +4,7 @@ import { fetchHomeBannerData } from "../../../services/tmdb/homBanner.service";
 
 export const useHomeBannerQuery = () => {
   return useQuery({
-    queryKey: queryKeys.homeBanner,
+    queryKey: queryKeys.home.banner,
     queryFn: fetchHomeBannerData,
   });
 };
