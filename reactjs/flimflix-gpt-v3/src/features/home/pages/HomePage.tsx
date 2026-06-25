@@ -15,6 +15,15 @@ const HomePage = () => {
       {/* Upcoming Movies */}
       {/* Airing Today */}
       {/* Popular Actors */}
+
+
+      {/* 
+      
+      /trending/all/week
+      /movie/popular
+      /tv/popular
+      /movie/top_rated
+      */}
     </div>
   )
 }
