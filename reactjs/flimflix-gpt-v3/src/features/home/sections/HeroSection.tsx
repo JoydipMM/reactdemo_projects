@@ -11,7 +11,7 @@ const HeroSection = () => {
 
   return (
     <div>
-      Hero Section
+      <h3>Hero Section</h3>
       {isLoadingMoviesBanner && <div>Loading...</div>}
       {isErrorMoviesBanner && <div>Error</div>}
       {moviesBanners && moviesBanners.map((item : BannerCardProp) => (
