@@ -98,6 +98,8 @@ obj1.title = "My title";
 
 // console.log([] === []); // false
 
+
+/*
 function fn01(){
     const promise = new Promise((resolve, reject)=>{
         setTimeout(()=>{
@@ -139,6 +141,7 @@ fn01().then(()=>{ return fn02(); }).then(()=>{ return fn03(); }).then(()=>{ retu
 
 console.log("last console.log called");
 
+*/
 // normal result -----------------------
 /*
 function 01 called
@@ -158,7 +161,7 @@ function 01 called
 */
 
 
-
+/*
 const obj = {
     pqr:100,
     abc:200,
@@ -213,6 +216,149 @@ function fn1(arr){
 }
 
 console.log(fn1(arr3));
+*/
+
+
+/*
+Promise.resolve(10)
+.then((num) => {
+console.log(num); // 10
+return num * 2;
+})
+.then((num) => {
+console.log(num); // 20
+return num * 3;
+})
+.then((num) => {
+console.log(num); // 60
+});
+*/
+
+const cart = ["mobile", "laptop", "camera"];
+
+// console.log(createOrder(cart))
+// result:
+/*
+Promise {<pending>}
+    [[Prototype]]: Promise
+    [[PromiseState]]: "fulfilled"
+    [[PromiseResult]]: "12345456"
+    12345456
+
+Question:
+----------------------------
+Why Promise is <pending> where Promise State is "fulfilled" and Promise Result is "12345456"?
+
+On execution time Promise take some time to resolve, meanwhile it is in pending state. But javaScript is not blocked. So executed the console.log() line. That's why Promise is in pending state. but when Promise return the resolve value then Promise state is "fulfilled" [PromiseState is the current state of Promise] and Promise Result is "12345456". 
+----------------------------
+*/
+
+
+
+// here we have a promise in pending state
+// after 5 seconds promise will be resolved
+// to show the promise data we have to use .then() to receives the resolved value and executes its callback.
+createOrder(cart)
+.then((data)=>{
+    console.log(data);
+    return "promise then go to next then";
+})
+.catch((error)=>{
+    console.log(error);
+    return new Error("Cart rejected");
+})
+.then((data)=>{
+    console.log(data);
+    return "then method 2 go to next then";
+})
+.then((data)=>{
+    console.log(data);
+})
+
+/*
+Promise chaining: When we call .then() multiple times, return resolved data to next callback throught then(), it creates a promise chain.
+We can use catch() method to handle the rejected value in proper way.
+*/
+
+/* 
+To error handling we use catch() method.
+This catch() method is used to handle the rejected value and show the error message in UI without code error.
+
+*  Here we can use catch() at the end of the promise chain. At this time the code run will stop where we get the rejected value. So we can not see any result aftre that error.
+
+Example:------------------------------------
+
+createOrder(cart)
+.then((data)=>{
+    console.log(data);
+    return "promise then go to next then";
+})
+.then((data)=>{
+    console.log(data);
+    return "then method 2 go to next then";
+})
+.then((data)=>{
+    console.log(data);
+})
+.catch((error)=>{
+    console.log(error);
+    return new Error("Cart rejected");
+})
+
+
+** But if we add the catch() after any specific then() method and after this if there have any other .then() mothod. At that moment catch() will give as the error message and also return value of next then() method.
+
+Example:------------------------------------
+
+createOrder(cart)
+.then((data)=>{
+    console.log(data);
+    return "promise then go to next then";
+})
+.catch((error)=>{
+    console.log(error);
+    return new Error("Cart rejected");
+})
+.then((data)=>{
+    console.log(data);
+    return "then method 2 go to next then";
+})
+.then((data)=>{
+    console.log(data);
+})
+*/
+
+
+function createOrder(cart){
+
+    const promise = new Promise(function(resolve, reject){
+        if(!validateCart(cart)){ // not validate
+            reject("Cart is not vilid")
+        }
+
+        const placeorderNumber = "12345456";
+        if(placeorderNumber){
+            setTimeout(()=>{
+                resolve(placeorderNumber);
+            }, 5000)
+        }
+    })
+
+    return promise;
+
+}
+
+function validateCart(cart){
+    //console.log(cart);
+    return false;
+}
+
+
+
+
+
+
+
 
 </script>   
 </body>
