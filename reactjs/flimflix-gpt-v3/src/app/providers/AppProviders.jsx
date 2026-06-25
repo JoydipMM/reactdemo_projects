@@ -2,16 +2,20 @@
 import ReduxProvider from '@/app/providers/ReduxProvider'
 import QueryProvider from '@/app/providers/QueryProvider'
 import { ThemeContextProvider } from '@/shared/contexts/theme/ThemeContextProvider'
+import { RouterProvider } from 'react-router-dom'
+import { router } from '@/app/router'
 
 // const AppProviders = ({children}: {children: ReactNode}) => { // if we use .tsx extension
 const AppProviders = ({children}) => {
     return (
         <ThemeContextProvider>
+        <RouterProvider router={router}>
             {/* <ReduxProvider> */}
                 <QueryProvider>
                     {children}
                 </QueryProvider>
             {/* </ReduxProvider> */}
+        </RouterProvider>
         </ThemeContextProvider>
     )
 }
