@@ -323,6 +323,35 @@ Home
 </textarea>
 
 <br/>
+tsconfig.json not found<br/>
+Check package.json:
+<textarea class="code-editor">
+{
+  "devDependencies": {
+    "typescript": "^5.x.x"
+  }
+}
+</textarea>
+If not installed:<br/>
+npm install -D typescript<br/>
+npx tsc --init<br/>
+This creates:<br/>
+tsconfig.json<br/>
+<textarea class="code-editor">
+{
+"compilerOptions": {
+  "ignoreDeprecations": "6.0",
+
+  "baseUrl": ".",
+  "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}
+</textarea>
+<br/>
+<br/>
+<br/>
 
 <hr/>
 <h5><b>---------------------------</b></h5>
