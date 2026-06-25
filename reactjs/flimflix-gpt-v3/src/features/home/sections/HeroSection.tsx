@@ -15,7 +15,7 @@ const HeroSection = () => {
       {isLoadingMoviesBanner && <div>Loading...</div>}
       {isErrorMoviesBanner && <div>Error</div>}
       {moviesBanners && moviesBanners.map((item : BannerCardProp) => (
-        <div key={item.id}>{item.name}</div>
+        <div key={item.id}>{item.title}</div>
       ))}
     </div>
   )
