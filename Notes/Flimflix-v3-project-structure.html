@@ -1,0 +1,396 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flimflix v3</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+<hr />
+<h2><b>Flimflix v3</b></h2>
+<hr />
+<p><b>Dependencies:</b></p>
+<!-- <ul class="list-group list-group-flush mx-4">
+  <li><b>For TypeScript support :</b> <code><b>npm install -D typescript @types/react @types/react-dom</b></code> <b>OR</b> <code><b>npm install -D @vitejs/plugin-react-swc</b></code></li>
+  <li><b>React Router DOM:</b> <code><b>npm install react-router-dom</b></code></li>
+  <li><b>Tailwind CSS for vite:</b> <code><b>npm install tailwindcss @tailwindcss/vite</b></code> <a style="text-decoration: none;" href="#tailwindcss"><b>tailwindcss Setup</b></a></li>
+  <li><b>Axios:</b> <code><b>npm install axios</b></code></li>
+  <li><b>Redux Toolkit:</b> <code><b>npm install @reduxjs/toolkit react-redux</b></code></li>
+</ul> -->
+<br/>
+
+<hr />
+<h5><b>Folder and File Structure</b></h5>
+<hr />
+<textarea id="editor">
+src/
+│
+├── app/
+│   │
+│   ├── router/
+│   │   ├── index.tsx
+│   │   ├── PublicRoutes.tsx
+│   │   └── ProtectedRoutes.tsx
+│   │
+│   ├── providers/
+│   │   ├── QueryProvider.tsx
+│   │   ├── ReduxProvider.tsx
+│   │   ├── ThemeProvider.tsx
+│   │   └── AuthProvider.tsx
+│   │
+│   ├── layouts/
+│   │   ├── MainLayout.tsx
+│   │   ├── AuthLayout.tsx
+│   │   └── DashboardLayout.tsx
+│   │
+│   └── store/
+│       │
+│       ├── index.ts
+│       │
+│       └── slices/
+│           ├── themeSlice.ts
+│           ├── sidebarSlice.ts
+│           ├── modalSlice.ts
+│           ├── authSlice.ts
+│           ├── watchlistSlice.ts
+│           └── favoriteSlice.ts
+│
+├── features/
+│   │
+│   ├── home/
+│   │   │
+│   │   ├── pages/
+│   │   │   └── HomePage.tsx
+│   │   │
+│   │   ├── sections/
+│   │   │   ├── HeroSection.tsx
+│   │   │   ├── TrendingSection.tsx
+│   │   │   ├── PopularMoviesSection.tsx
+│   │   │   ├── PopularTvSection.tsx
+│   │   │   ├── TopRatedSection.tsx
+│   │   │   └── UpcomingMoviesSection.tsx
+│   │   │
+│   │   ├── hooks/
+│   │   │   └── useHomeData.ts
+│   │   │
+│   │   └── types/
+│   │       └── home.types.ts
+│   │
+│   ├── movies/
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── MoviesPage.tsx
+│   │   │   └── MovieDetailsPage.tsx
+│   │   │
+│   │   ├── components/
+│   │   │   ├── MovieCard.tsx
+│   │   │   ├── MovieGrid.tsx
+│   │   │   ├── MovieCarousel.tsx
+│   │   │   ├── MovieHero.tsx
+│   │   │   ├── MovieTrailer.tsx
+│   │   │   ├── MovieCast.tsx
+│   │   │   ├── MovieInfo.tsx
+│   │   │   ├── MovieReviews.tsx
+│   │   │   └── SimilarMovies.tsx
+│   │   │
+│   │   ├── hooks/
+│   │   │   ├── useMovie.ts
+│   │   │   ├── usePopularMovies.ts
+│   │   │   ├── useTrendingMovies.ts
+│   │   │   ├── useMovieCredits.ts
+│   │   │   ├── useMovieVideos.ts
+│   │   │   ├── useMovieReviews.ts
+│   │   │   └── useMovieRecommendations.ts
+│   │   │
+│   │   ├── constants/
+│   │   │   └── movie.constants.ts
+│   │   │
+│   │   ├── schemas/
+│   │   │   └── movie.schema.ts
+│   │   │
+│   │   └── types/
+│   │       └── movie.types.ts
+│   │
+│   ├── tv/
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── TvShowsPage.tsx
+│   │   │   └── TvDetailsPage.tsx
+│   │   │
+│   │   ├── components/
+│   │   │   ├── TvCard.tsx
+│   │   │   ├── TvGrid.tsx
+│   │   │   ├── TvTrailer.tsx
+│   │   │   ├── TvCast.tsx
+│   │   │   ├── SeasonList.tsx
+│   │   │   ├── EpisodeList.tsx
+│   │   │   └── SimilarTvShows.tsx
+│   │   │
+│   │   ├── hooks/
+│   │   │   ├── useTvShow.ts
+│   │   │   ├── usePopularTv.ts
+│   │   │   ├── useTvSeasons.ts
+│   │   │   ├── useTvVideos.ts
+│   │   │   └── useTvRecommendations.ts
+│   │   │
+│   │   └── types/
+│   │       └── tv.types.ts
+│   │
+│   ├── search/
+│   │   │
+│   │   ├── pages/
+│   │   │   └── SearchPage.tsx
+│   │   │
+│   │   ├── components/
+│   │   │   ├── SearchBar.tsx
+│   │   │   ├── SearchFilters.tsx
+│   │   │   ├── SearchResults.tsx
+│   │   │   └── SearchSkeleton.tsx
+│   │   │
+│   │   ├── hooks/
+│   │   │   └── useSearch.ts
+│   │   │
+│   │   └── types/
+│   │       └── search.types.ts
+│   │
+│   ├── discover/
+│   │   │
+│   │   ├── pages/
+│   │   │   └── DiscoverPage.tsx
+│   │   │
+│   │   ├── components/
+│   │   │   ├── GenreFilter.tsx
+│   │   │   ├── YearFilter.tsx
+│   │   │   ├── RatingFilter.tsx
+│   │   │   ├── LanguageFilter.tsx
+│   │   │   ├── SortFilter.tsx
+│   │   │   └── DiscoverResults.tsx
+│   │   │
+│   │   ├── hooks/
+│   │   │   └── useDiscover.ts
+│   │   │
+│   │   └── types/
+│   │       └── discover.types.ts
+│   │
+│   ├── person/
+│   │   │
+│   │   ├── pages/
+│   │   │   └── PersonDetailsPage.tsx
+│   │   │
+│   │   ├── components/
+│   │   │   ├── PersonInfo.tsx
+│   │   │   ├── PersonMovies.tsx
+│   │   │   ├── PersonTvShows.tsx
+│   │   │   └── Biography.tsx
+│   │   │
+│   │   ├── hooks/
+│   │   │   └── usePerson.ts
+│   │   │
+│   │   └── types/
+│   │       └── person.types.ts
+│   │
+│   ├── watchlist/
+│   │   ├── pages/
+│   │   │   └── WatchlistPage.tsx
+│   │   └── hooks/
+│   │       └── useWatchlist.ts
+│   │
+│   ├── favorites/
+│   │   ├── pages/
+│   │   │   └── FavoritesPage.tsx
+│   │   └── hooks/
+│   │       └── useFavorites.ts
+│   │
+│   ├── auth/
+│   │   ├── pages/
+│   │   │   ├── LoginPage.tsx
+│   │   │   └── RegisterPage.tsx
+│   │   ├── hooks/
+│   │   │   └── useAuth.ts
+│   │   └── types/
+│   │       └── auth.types.ts
+│   │
+│   ├── reviews/
+│   │   ├── components/
+│   │   │   ├── ReviewCard.tsx
+│   │   │   └── ReviewForm.tsx
+│   │   └── hooks/
+│   │       └── useReviews.ts
+│   │
+│   │
+│   └── ai-recommendation/
+│       ├── pages/
+│       │   └── AIRecommendationPage.tsx
+│       ├── components/
+│       │   ├── PromptInput.tsx
+│       │   └── RecommendationList.tsx
+│       └── hooks/
+│           └── useAIRecommendation.ts
+│
+├── services/
+│   │
+│   └── tmdb/
+│       │
+│       ├── client.ts
+│       ├── endpoints.ts
+│       │
+│       ├── movie.service.ts
+│       ├── tv.service.ts
+│       ├── discover.service.ts
+│       ├── search.service.ts
+│       ├── person.service.ts
+│       └── genre.service.ts
+│
+├── shared/
+│   │
+│   ├── ui/
+│   │   ├── Button/
+│   │   ├── Input/
+│   │   ├── Modal/
+│   │   ├── Drawer/
+│   │   ├── Pagination/
+│   │   ├── Card/
+│   │   ├── Avatar/
+│   │   ├── Tabs/
+│   │   ├── Badge/
+│   │   ├── Skeleton/
+│   │   ├── Spinner/
+│   │   ├── ErrorBoundary/
+│   │   └── EmptyState/
+│   │
+│   ├── hooks/
+│   │   ├── useDebounce.ts
+│   │   ├── useLocalStorage.ts
+│   │   └── useInfiniteScroll.ts
+│   │
+│   ├── lib/
+│   │   ├── axios.ts
+│   │   ├── queryClient.ts
+│   │   └── storage.ts
+│   │
+│   ├── utils/
+│   │   ├── date.ts
+│   │   ├── image.ts
+│   │   ├── rating.ts
+│   │   ├── slug.ts
+│   │   └── formatter.ts
+│   │
+│   ├── constants/
+│   │   ├── routes.ts
+│   │   ├── genres.ts
+│   │   └── app.constants.ts
+│   │
+│   ├── types/
+│   │   ├── api.types.ts
+│   │   ├── common.types.ts
+│   │   └── pagination.types.ts
+│   │
+│   └── assets/
+│       ├── images/
+│       ├── icons/
+│       └── fonts/
+│
+├── configs/
+│   ├── env.ts
+│   ├── queryKeys.ts
+│   └── seo.ts
+│
+├── app/
+│   ├── App.tsx
+│   ├── main.tsx
+│
+├── .env
+└── vite-env.d.ts
+</textarea>
+<br/>
+
+<br/>
+
+<hr/>
+<h5><b>---------------------------</b></h5>
+<hr/>
+<textarea class="code-editor">
+
+</textarea>
+<br/>
+
+
+<hr />
+<h2><b>-------------------------------</b></h2>
+<hr />
+
+
+<!-- 
+<textarea class="code-editor">
+app/
+├── (tabs)/
+│  ├── _layout.tsx
+│  └── index.tsx
+├── (constants)/
+│  └── data.tsx
+├── components/
+│  └── ListHeading.tsx
+└── type.d.ts
+</textarea> -->
+
+
+
+
+
+
+
+<!-- 
+<blockquote class="blockquote">
+<p><code class="mark"><b>Note:</b> For this <b>sdk-54</b> required <b>node version 20</b> </code></p>
+</blockquote> 
+-->
+
+
+
+<!-- <hr />
+<h5><b>Key Benefits (Why People Use It)</b></h5>
+<hr /> -->
+
+<!-- <li class="list-group-item"><b>1. Powerful Data Fetching</b> (Best in Industry)<br />
+  <b><i>Uses TanStack Query internally</i></b>.
+  <ul>
+    <li>Automatic caching</li>
+    <li>Background updates</li>
+    <li>Retry logic</li>
+    <li>Optimistic updates</li>
+  </ul>
+</li> -->
+
+
+
+<!-- <ol class="list-group list-group-flush">
+</ol> -->
+
+<!-- <br/>
+<br/>
+<hr />
+<h2><b>Basic Folder Structure (Recommended)</b></h2>
+<hr /> -->
+
+
+
+<!-- <textarea class="code-editor">
+
+</textarea> -->
+
+
+
+  <!-- <br/>
+<textarea class="code-editor">
+
+</textarea> -->
+
+  <script src="assets/js/codemirror/codemirror.min.js"></script>
+  <script src="assets/js/codemirror/javascript.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common-script.js"></script>
+</body>
+
+</html>
