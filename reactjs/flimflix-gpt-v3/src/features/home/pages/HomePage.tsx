@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeroSection, TrendingToday } from '@/features/home';
-import { useMoviesGenresQuery, useTvGenresQuery, useAllGenresQuery } from '@/shared/queries/useGenreQueries';
+import { useMoviesGenresQuery, useTvGenresQuery, useAllGenresQuery } from '@/features/genres';
 
 const HomePage = () => {
 
