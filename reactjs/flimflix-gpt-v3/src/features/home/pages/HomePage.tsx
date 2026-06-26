@@ -1,7 +1,15 @@
 import React from 'react';
 import { HeroSection, TrendingToday } from '@/features/home';
+import { useMoviesGenresQuery, useTvGenresQuery, useAllGenresQuery } from '@/shared/queries/useGenreQueries';
 
 const HomePage = () => {
+
+  const {
+    data: genres,
+    isLoading: isLoadingGenres,
+    isError: isErrorGenres,
+  } = useAllGenresQuery();
+
   return (
     <div>
       <h2>Home Page</h2>
@@ -16,6 +24,12 @@ const HomePage = () => {
       {/* Airing Today */}
       {/* Popular Actors */}
 
+      <h3>Genres</h3>
+      {isLoadingGenres && <div>Loading...</div>}
+      {isErrorGenres && <div>Error</div>}
+      {genres && genres.map((item : any) => (
+        <div key={item.id}>{item.id} -{item.name}</div>
+      ))}
 
       {/* 
       
