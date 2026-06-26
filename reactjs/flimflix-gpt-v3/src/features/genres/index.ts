@@ -1,4 +1,3 @@
-export type { Geners } from "@/features/genres/types/genre.types";
-export type { MultipleGenres } from "@/features/genres/types/genre.types";
-export  { useMoviesGenresQuery, useTvGenresQuery, useAllGenresQuery } from "@/features/genres/queries/useGenreQueries";
+export type * from "@/features/genres/types/genre.types";
+export  * from "@/features/genres/queries/useGenreQueries";
 export { default as GenreList } from "@/features/genres/sections/GenreList";
