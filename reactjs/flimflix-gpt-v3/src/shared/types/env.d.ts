@@ -5,9 +5,3 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
-
-
-export interface Genre{
-    id: number;
-    name: string;
-}

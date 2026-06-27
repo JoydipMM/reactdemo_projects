@@ -3,6 +3,11 @@ export interface Geners{
     name: string;
 }
 
+export interface Genre{
+    id: number;
+    name: string;
+}
+
 export interface MultipleGenres{
     id: string;
     genres: [];

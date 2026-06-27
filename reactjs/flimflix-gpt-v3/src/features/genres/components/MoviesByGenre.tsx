@@ -1,5 +1,5 @@
 import React from 'react';
-import { Genre } from '@/shared/types/env';
+import { Genre } from '../types/genre.types';
 import { discoverMovieList } from '@/features/movies/queries/useDiscoverQuery';
 
 const MoviesByGenre = ({genre}: {genre: Genre}) => {

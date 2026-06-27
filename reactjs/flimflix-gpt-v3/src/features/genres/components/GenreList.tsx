@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMoviesGenresQuery, useTvGenresQuery, useAllGenresQuery } from '@/features/genres';
-import MoviesByGenre from '@/shared/ui/common/MoviesByGenre';
+import MoviesByGenre from '@/features/genres/components/MoviesByGenre';
 
 const GenreList = () => {
 
