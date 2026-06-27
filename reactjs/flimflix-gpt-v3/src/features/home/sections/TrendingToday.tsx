@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTrandingMoviesQuery } from '@/features/home/queries/useTradingMovieQueries';
+import { useTrandingMoviesQuery } from '@/features/home/queries/useTradingMovieQuery';
 
 const TrendingToday = () => {
 

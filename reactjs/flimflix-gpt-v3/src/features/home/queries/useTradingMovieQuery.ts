@@ -4,7 +4,7 @@ import { fetchTradingMovies } from "@/services/tmdb/trandingmovie.service";
 
 export const useTrandingMoviesQuery = () =>{
     return useQuery({
-        queryKey:queryKeys.home.trandingmovies,
+        queryKey:queryKeys.home.trendingMovies,
         queryFn:fetchTradingMovies
     })
 }

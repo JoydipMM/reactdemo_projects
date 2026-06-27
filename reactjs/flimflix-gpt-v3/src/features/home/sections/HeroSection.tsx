@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHomeBannerQuery } from "@/features/home/queries/useBannerQueries";
+import { useHomeBannerQuery } from "@/features/home/queries/useBannerQuery";
 import { BannerCardProp } from '@/features/home/types/home';
 const HeroSection = () => {
 
