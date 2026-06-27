@@ -1,6 +1,10 @@
 import React from 'react';
-import { Genre } from '../types/genre.types';
 import { discoverMovieList } from '@/features/movies/queries/useDiscoverQuery';
+
+interface Genre{
+    id: number;
+    name: string;
+}
 
 const MoviesByGenre = ({genre}: {genre: Genre}) => {
     const { id, name } = genre;

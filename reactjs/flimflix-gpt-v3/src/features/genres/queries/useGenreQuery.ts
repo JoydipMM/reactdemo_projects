@@ -1,7 +1,11 @@
 import { useQuery, useQueries } from "@tanstack/react-query";
-import { MultipleGenres } from "@/features/genres/types/genre.types";
 import { queryKeys } from "@/shared/constants/querykeys";
 import { fetchMoviesGenres, fetchTvGenres } from "@/services/tmdb/genre.service";
+
+interface MultipleGenres{
+    id: string;
+    genres: [];
+}
 
 export const useMoviesGenresQuery = () => {
     return useQuery({
