@@ -8,5 +8,9 @@ export const ENDPOINTS = {
     },
     tv:{
         genres:'/genre/tv/list',
+    },
+    discover:{
+        movies:'/discover/movie',
+        tv:'/discover/tv',
     }
 };
