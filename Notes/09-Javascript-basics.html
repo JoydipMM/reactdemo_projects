@@ -878,7 +878,208 @@ fetchUser((error, user)=>{
 <hr />
 <h5><b>Promise in javaScript</b></h5>
 <hr />
+<p>A <b>Promise</b> is an object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value.</p>
 <br/>
+<p><b>Creating a Promise</b></p>
+<textarea class="code-editor">
+const myPromise = new Promise((resolve, reject) => {
+  let success = true;
+
+  if (success) {
+    resolve("Operation Successful");
+  } else {
+    reject("Operation Failed");
+  }
+});
+</textarea>
+<ol class="list-group list-group-flush mx-4">
+  <li><code><b>resolve()</b></code> → Marks the promise as successful.</li>
+  <li><code><b>reject()</b></code> → Marks the promise as failed.</li>
+</ol>
+<br/>
+<blockquote class="blockquote">
+  <code class="mark">
+    <h5><b>Important Note:</b></h5>
+    <p><i><code><b>resolve</b></code> and <code><b>reject</b></code> are <b>functions provided automatically by the Promise constructor</b>. <code><b>Calling resolve(value) fulfills the Promise with a value, while calling reject(reason) rejects the Promise with an error or reason</b></code>. <b>They are not objects</b>, and they are passed as arguments to the Promise's executor function.</i></p>
+    <p>When we write <code><b>new Promise</b></code> the JavaScript engine automatically passes two functions to the executor function. We can think of it like this</p>
+<textarea class="code-editor">
+function Promise(executor) {
+    const resolve = function(value) {
+        // Mark promise as fulfilled
+    };
+
+    const reject = function(reason) {
+        // Mark promise as rejected
+    };
+
+    executor(resolve, reject);
+}
+</textarea>
+<br/>
+<p><b>What does <code>resolve()</code> and <code>reject()</code> do?</b></p>
+<p>Calling <code><b>resolve()</b></code> changes the Promise's state from <code><b>Pending</b></code> to <code><b>Fulfilled</b></code>.</p>
+<p>Calling <code><b>reject()</b></code> changes the Promise's state from <code><b>Pending</b></code> to <code><b>Rejected</b></code>.</p>
+<br/>
+<p><b>Can we name them anything else?</b></p>
+<p>Yes. They are just function parameters. If we change the name of them, these work exactly the same, but using <b>resolve</b> and <b>reject</b> is the standard convention because it makes the code easier to understand.</p>
+<textarea class="code-editor">
+const promise = new Promise((success, failure) => {
+    success("Done");
+});
+
+// OR
+
+const promise = new Promise((a, b) => {
+    a("Completed");
+});
+</textarea>
+</code>
+</blockquote>
+<h5><b>Promise States</b></h5>
+<p>A Promise can be in one of three states:</p>
+<ol class="list-group list-group-flush mx-4">
+  <li><code><b>Pending</b></code> → Initial state, operation is still running.</li>
+  <li><code><b>Fulfilled (Resolved)</b></code> → Operation completed successfully.</li>
+  <li><code><b>Rejected</b></code> → Operation failed.</li>
+</ol>
+<textarea class="code-editor">
+Pending
+   |
+   ├── Fulfilled (success)
+   |
+   └── Rejected (failure)
+</textarea>
+<br/>
+<h5><b>Consuming a Promise</b></h5>
+<p>Using <code><b>.then()</b></code> and <code><b>.catch()</b></code> to consume a Promise </p>
+<textarea class="code-editor">
+myPromise
+  .then(result => {
+    console.log(result);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+</textarea>
+<br/>
+<h5><b>Promise chaining</b></h5>
+<p>When we call <code><b>.then()</b></code> multiple times, return resolved data to next callback throught <code><b>then()</b></code>, it creates a <b>promise chain</b>.
+We can use <code><b>catch()</b></code> method to handle the rejected value in proper way.</p>
+<textarea class="code-editor">
+Promise.resolve(5)
+  .then(num => num * 2)
+  .then(num => num + 10)
+  .then(result => console.log(result));
+// 15
+</textarea>
+<br/>
+<h5><b>Promise chaining with Error handling Example</b></h5>
+<textarea class="code-editor">
+const cart = ["mobile", "laptop", "camera"];
+
+console.log(createOrder(cart))
+// result:
+/*
+Promise {<pending>}
+    [[Prototype]]: Promise
+    [[PromiseState]]: "fulfilled"
+    [[PromiseResult]]: "12345456"
+    12345456
+
+Question:
+----------------------------
+Why Promise is <pending> where Promise State is "fulfilled" and Promise Result is "12345456"?
+
+On execution time Promise take some time to resolve, meanwhile it is in pending state. But javaScript is not blocked. So executed the console.log() line. That's why Promise is in pending state. but when Promise return the resolve value then Promise state is "fulfilled" [PromiseState is the current state of Promise] and Promise Result is "12345456". 
+----------------------------
+*/
+
+function createOrder(cart){
+    const promise = new Promise(function(resolve, reject){
+        if(!validateCart(cart)){ // not validate
+            reject("Cart is not vilid")
+        }
+
+        const placeorderNumber = "12345456";
+        if(placeorderNumber){
+            setTimeout(()=>{
+                resolve(placeorderNumber);
+            }, 5000)
+        }
+    })
+
+    return promise;
+}
+
+function validateCart(cart){
+    //console.log(cart);
+    return false;
+}
+
+
+// here we have a promise in pending state
+// after 5 seconds promise will be resolved
+// to show the promise data we have to use .then() to receives the resolved value and executes its callback.
+createOrder(cart)
+.then((data)=>{
+    console.log(data);
+    return "promise then go to next then";
+})
+.then((data)=>{
+    console.log(data);
+    return "then method 2 go to next then";
+})
+.then((data)=>{
+    console.log(data);
+})
+.catch((error)=>{
+    console.log(error);
+    return new Error("Cart rejected");
+})
+</textarea>
+<p>To error handling we use <code><b>catch()</b></code> method.</p>
+<br/>
+<p><b>catch() added at last</b></p>
+<p>This <code><b>catch()</b></code> method is used to handle the rejected value and show the error message in UI without code error. Here we can use <code><b>catch()</b></code> at the <b>end of the promise chain</b>. At this time the <b>code run will stop where we get the rejected value</b>. So we can not see any result after that error.</p>
+<textarea class="code-editor">
+createOrder(cart)
+.then((data)=>{
+    console.log(data);
+    return "promise then go to next then";
+})
+.then((data)=>{
+    console.log(data);
+    return "then method 2 go to next then";
+})
+.then((data)=>{
+    console.log(data);
+})
+.catch((error)=>{
+    console.log(error);
+    return new Error("Cart rejected");
+})
+</textarea>
+<br/>
+<p><b>catch() added after a specific then()</b></p>
+<p>But if we add the <code><b>catch()</b></code> after any specific <code><b>then()</b></code> method and after this if there have any other <code><b>then()</b></code> mothod. At that moment <code><b>catch()</b></code> will give as the error message and also return value of next <code><b>then()</b></code> method.</p>
+<textarea class="code-editor">
+createOrder(cart)
+.then((data)=>{
+    console.log(data);
+    return "promise then go to next then";
+})
+.catch((error)=>{
+    console.log(error);
+    return new Error("Cart rejected");
+})
+.then((data)=>{
+    console.log(data);
+    return "then method 2 go to next then";
+})
+.then((data)=>{
+    console.log(data);
+})
+</textarea>
 
 
 <hr />
