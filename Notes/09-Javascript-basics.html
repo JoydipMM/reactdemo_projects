@@ -718,51 +718,168 @@ Name: Donald, Age: 30
 <hr />
 <h5><b>callback hell in JavaScript</b></h5>
 <hr />
+<p><b>Callback Hell</b> is a situation where multiple asynchronous operations are nested inside one another using callbacks, making the code difficult to read, understand, and maintain. This is also known as the "<b>Pyramid of Doom</b>" because the code keeps shifting to the right.</p>
+<br/>
+<h6><b>Example</b>: Suppose you want to perform these tasks in order:</h6>
+<ol class="list-group list-group-flush mx-4">
+  <li>Login user</li>
+  <li>Fetch user profile</li>
+  <li>Fetch user posts</li>
+  <li>Display posts</li>
+</ol>
+<textarea class="code-editor">
+function login(callback) {
+  setTimeout(() => {
+    console.log("User logged in");
+    callback();
+  }, 1000);
+}
+
+function getProfile(callback) {
+  setTimeout(() => {
+    console.log("Profile fetched");
+    callback();
+  }, 1000);
+}
+
+function getPosts(callback) {
+  setTimeout(() => {
+    console.log("Posts fetched");
+    callback();
+  }, 1000);
+}
+
+function displayPosts() {
+  console.log("Displaying posts");
+}
+
+login(() => {
+  getProfile(() => {
+    getPosts(() => {
+      displayPosts();
+    });
+  });
+});
+
+// Result:
+User logged in
+Profile fetched
+Posts fetched
+Displaying posts
+</textarea>
+<p><b>Why is it called the "Pyramid of Doom"?</b></p>
+<p>As more asynchronous operations are added, the nesting grows the code starts looking like a pyramid.</p>
+<textarea class="code-editor">
+login(() => {
+  getProfile(() => {
+    getPosts(() => {
+      getComments(() => {
+        getLikes(() => {
+          sendNotification(() => {
+            console.log("Done");
+          });
+        });
+      });
+    });
+  });
+});
+</textarea>
+<p><b>Problems with Callback Hell</b></p>
+<ul class="list-group list-group-flush mx-4">
+  <li>Hard to read and maintain</li>
+  <li>Difficult to debug</li>
+  <li>Difficult to maintain</li>
+  <li>Error handling becomes complicated</li>
+  <li>Code becomes deeply nested</li>
+</ul>
 <br/>
 
-<div class="user-wrap"></div>
-<script>
+<hr />
+<h5><b>Error in callback</b></h5>
+<hr />
+<p>In callback-based asynchronous programming, errors are usually handled by following the <b>Error-First Callback pattern</b> (also called the <b><i>Node.js callback pattern</i></b>).</p>
+<p>The callback receives two arguments:</p>
+<ol class="list-group list-group-flush mx-4">
+  <li><b>error →</b> Contains the error if something went wrong; otherwise null.</li>
+  <li><b>result →</b> Contains the successful result if there was no error.</li>
+</ol>
+<textarea class="code-editor">
+// Syntax:
+callback(error, result);
 
-const userwrapElement = document.querySelector(".user-wrap");
-const userData=[
-  {name: "John", age: 30},
-  {name: "Jane", age: 25},
-  {name: "Bob", age: 35}
-];
+// If the operation succeeds:
+callback(null, result);
 
-function getdatas(){
-  let output = "";
-  setTimeout(()=>{
-      userData.forEach((item)=>{
-        output += `<li>Name: ${item.name}, Age: ${item.age}</li>`;
-      });
-      userwrapElement.innerHTML = output;
-  }, 2000);
+// If the operation fails:
+callback(error, null);
+</textarea>
+<h5><b>Example</b></h5>
+<code><b>Example 1: Successful Operation</b></code>
+<br/>
+<textarea class="code-editor">
+function fetchUser(callback){
+  setTimeout(() => {
+    const user = {
+      id: 1,
+      name: "John",
+    };
+
+    callback(null, user); 
+    // error is null and data is user
+    // so here we get user data from the callback
+
+  }, 2000)
 }
 
-function createData(newdata, callback){
-  setTimeout(()=>{
-    userData.push(newdata);
-    callback();
-  }, 1000)
+fetchUser((error, user)=>{
+  if(error){
+    console.log("Error:", error);
+    return;
+  }
+  console.log("User:", JSON.stringify(user));
+})
+
+// Result:
+User: {"id":1,"name":"John"}
+</textarea>
+<br/>
+<code><b>Example 2: Failed Operation</b></code>
+<br/>
+<textarea class="code-editor">
+function fetchUser(callback){
+  setTimeout(() => {
+    const user = {
+      id: 1,
+      name: "John",
+    };
+
+    callback("Error with Data", null); 
+    // first argument is error. We add error intenally
+    // Second argument will be null, because we get error from first argument
+
+  }, 2000)
 }
 
-createData({name: "Donald", age: 30}, getdatas);
+fetchUser((error, user)=>{
+  if(error){
+    console.log("Error:", error);
+    return;
+  }
+  console.log("User:", JSON.stringify(user));
+})
 
-/*
-Result:
-Name: John, Age: 30
-Name: Jane, Age: 25
-Name: Bob, Age: 35
-Name: Donald, Age: 30
-*/
-</script>
+// Result:
+// Error: Error with Data
+</textarea> 
+<br/>
+
+
 
 <hr />
 <h5><b>Promise in javaScript</b></h5>
 <hr />
 <br/>
-0
+
 
 <hr />
 <h5><b>Async / await in javaScript</b></h5>
