@@ -13,6 +13,7 @@ const HomePage = () => {
       <HeroSection/>
       {/* Trending Today */}
       <TrendingToday/>
+      <GenreList/>
       {/* Popular Movies */}
       {/* Popular TV Shows */}
       {/* Top Rated Movies */}
@@ -21,7 +22,6 @@ const HomePage = () => {
       {/* Airing Today */}
       {/* Popular Actors */}
 
-      <GenreList/>
 
       {/* 
       

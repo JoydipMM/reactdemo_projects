@@ -258,6 +258,7 @@ On execution time Promise take some time to resolve, meanwhile it is in pending 
 // here we have a promise in pending state
 // after 5 seconds promise will be resolved
 // to show the promise data we have to use .then() to receives the resolved value and executes its callback.
+
 createOrder(cart)
 .then((data)=>{
     console.log(data);
@@ -350,16 +351,82 @@ function createOrder(cart){
 
 function validateCart(cart){
     //console.log(cart);
-    return false;
+    return true;
 }
 
 
 
 
+// async / await
+// -----------------------------------------------------------------
+/*
+By property of async function it always returns a promise.
+If we return a promise in async function, that is okey. But if we return any string or value then async function automatically wrap that value/string into a promise and then return that promise.
+So we can use await keyword to wait for the promise to be resolved and then get the resolved value. It's mean to get data from promise in async function we use await keyword.
+
+**/
+
+// how to create async function without return a promise
+async function fn1(){
+    return "Hello";
+}
+console.log("async function: ")
+console.log(fn1());
+// here we get a promise in return
+// result:
+/*
+async function: 
+Promise {<pending>}
+    [[Prototype]]: Promise
+    [[PromiseState]]: "fulfilled"
+    [[PromiseResult]]: "Hello"
+    Hello
+*/
+
+// we can use .then() method to get the resolved value of promise
+const getPromiseData = fn1();
+getPromiseData.then(res => {
+    console.log(res);
+})
 
 
+// How to create async function with return a promise
+
+const newPromise = new Promise((resolve, reject)=>{
+    resolve("Hello World !!!!!!");
+})
+async function fn2(){
+    return newPromise;
+    // we can also return like below
+    /*
+    return new Promise((resolve, reject)=>{
+        resolve("Hello World !!!!!!");
+    })
+    */
+}
+console.log("async function with return promise: ")
+console.log(fn2());
+// result:
+/*
+async function with return promise: 
+Promise {<pending>}
+    [[Prototype]]: Promise
+    [[PromiseState]]: "fulfilled"
+    [[PromiseResult]]: "Hello World !!!!!!"
+*/
+const getNewPromiseData = fn2();
+getNewPromiseData.then(res => {
+    console.log(res);
+})
+// result:
+/*
+Hello World !!!!!!
+*/
 
 
+/*
+Async and await combo is use to handle promises. But before async and await
+*/
 </script>   
 </body>
 </html>
