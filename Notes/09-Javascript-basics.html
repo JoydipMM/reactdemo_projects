@@ -1085,16 +1085,129 @@ createOrder(cart)
 <hr />
 <h5><b>Async / await in javaScript</b></h5>
 <hr />
-
+<p>By property of <b>async function it always returns a promise.</b></p>
+<p>If we <b>return a promise in async function</b>, that is okey. <i><b>But if we return any string or value then async function automatically wrap that value/string into a promise and then return that promise.</b></i></p>
+<p>So we can use <b>await</b> keyword to wait for the promise to be resolved and then get the resolved value. It's mean to get data from promise in async function we use await keyword.</p>
+<p><b>Async</b> and <b>await</b> combo is use to handle promises.</p>
+<p><b>await</b> keyword only used inside <b>async function</b> and <b>add before the promise</b>. It is used to wait for the promise to be resolved and then get the resolved value.</p>
 <br/>
+<p><b>Create async function without return a promise</b></p>
+<textarea class="code-editor">
+async function fn1(){
+    return "Hello";
+}
+console.log("async function: ")
+console.log(fn1());
+
+// here we get a promise in return
+// result:
+/*
+async function: 
+Promise {<pending>}
+    [[Prototype]]: Promise
+    [[PromiseState]]: "fulfilled"
+    [[PromiseResult]]: "Hello"
+    Hello
+*/
+
+// Get data from above promise we use .then() method
+const getPromiseData = fn1();
+getPromiseData.then(res => {
+     console.log(res);
+})
+// result: Hello
+</textarea>
+<br/>
+<p><b>Create async function with return a promise</b></p>
+<textarea class="code-editor">
+async function fn2(){
+    return new Promise((resolve, reject)=>{
+        resolve("Hello World !!!!!!");
+    })
+}
+console.log("async function with return promise: ")
+console.log(fn2());
+// result:
+/*
+async function with return promise: 
+Promise {<pending>}
+    [[Prototype]]: Promise
+    [[PromiseState]]: "fulfilled"
+    [[PromiseResult]]: "Hello World !!!!!!"
+*/
+</textarea>
+<br/>
+<p><b>Get promise data with await keyword</b></p>
+<textarea class="code-editor">
+// we create a promise and store it in a variable
+const newPromise = new Promise((resolve, reject)=>{
+    resolve("Hello World !!!!!!");
+})
+async function fnWithAwait(){
+    const data = await newPromise; // here we use await keyword and add above promise variable to get the resolved value of that promise
+    console.log("data get using await: ");
+    console.log(data);
+}
+
+fnWithAwait();
+// result:
+/*
+data get using await: 
+Hello World !!!!!!
+*/
+</textarea>
 <br/>
 
 
 <hr />
-<h5><b>Async / await in javaScript</b></h5>
+<h5><b>Javascript code execution flow difference between <code>async/await</code> and <code>promise chaining</code></b></h5>
 <hr />
+<p><b>When we try to get data from promise using <code><i>promise chaining</i></code></b>, the <i><b>code execution flow is not blocked</b></i>. So the <code><b><i>console.log("promiseChainingFn run completed")</i></b></code> line will be executed first and then after 5 seconds the promise will be resolved and then we get the data from promise.</p>
+<textarea class="code-editor">
+// a common promise function
+const commonPromise = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve("common promise resolved after 5 seconds");
+    }, 5000)
+})
 
+// Promise chaining
+function promiseChainingFn(){
+    commonPromise.then((data)=> console.log(data));
+    console.log("promiseChainingFn run completed");
+}
+promiseChainingFn();
+
+/*
+Result:
+promiseChainingFn run completed
+common promise resolved after 5 seconds
+*/
+</textarea>
 <br/>
+<p><b>But when we try to get data from promise using <code><i>async/await</i></code></b>, the <b><i>code execution flow is blocked until the promise is resolved</i></b>. So the <code><b><i>console.log(data)</i></b></code> line will be executed first and then after 5 seconds the promise will be resolved and then we get the data from promise. After that the console.log("asyncAwaitFn run completed") line will be executed.</p>
+<textarea class="code-editor">
+// a common promise function
+const commonPromise = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve("common promise resolved after 5 seconds");
+    }, 5000)
+})
+
+// async/await
+async function asyncAwaitFn(){
+    const data = await commonPromise;
+    console.log(data);
+    console.log("asyncAwaitFn run completed");
+}
+
+asyncAwaitFn();
+/*
+Result:
+common promise resolved after 5 seconds
+asyncAwaitFn run completed
+*/
+</textarea>
 <br/>
 
 

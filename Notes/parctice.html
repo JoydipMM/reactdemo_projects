@@ -259,22 +259,22 @@ On execution time Promise take some time to resolve, meanwhile it is in pending 
 // after 5 seconds promise will be resolved
 // to show the promise data we have to use .then() to receives the resolved value and executes its callback.
 
-createOrder(cart)
-.then((data)=>{
-    console.log(data);
-    return "promise then go to next then";
-})
-.catch((error)=>{
-    console.log(error);
-    return new Error("Cart rejected");
-})
-.then((data)=>{
-    console.log(data);
-    return "then method 2 go to next then";
-})
-.then((data)=>{
-    console.log(data);
-})
+// createOrder(cart)
+// .then((data)=>{
+//     console.log(data);
+//     return "promise then go to next then";
+// })
+// .catch((error)=>{
+//     console.log(error);
+//     return new Error("Cart rejected");
+// })
+// .then((data)=>{
+//     console.log(data);
+//     return "then method 2 go to next then";
+// })
+// .then((data)=>{
+//     console.log(data);
+// })
 
 /*
 Promise chaining: When we call .then() multiple times, return resolved data to next callback throught then(), it creates a promise chain.
@@ -370,8 +370,8 @@ So we can use await keyword to wait for the promise to be resolved and then get 
 async function fn1(){
     return "Hello";
 }
-console.log("async function: ")
-console.log(fn1());
+//console.log("async function: ")
+//console.log(fn1());
 // here we get a promise in return
 // result:
 /*
@@ -384,10 +384,10 @@ Promise {<pending>}
 */
 
 // we can use .then() method to get the resolved value of promise
-const getPromiseData = fn1();
-getPromiseData.then(res => {
-    console.log(res);
-})
+// const getPromiseData = fn1();
+// getPromiseData.then(res => {
+//     console.log(res);
+// })
 
 
 // How to create async function with return a promise
@@ -404,8 +404,8 @@ async function fn2(){
     })
     */
 }
-console.log("async function with return promise: ")
-console.log(fn2());
+//console.log("async function with return promise: ")
+//console.log(fn2());
 // result:
 /*
 async function with return promise: 
@@ -414,19 +414,87 @@ Promise {<pending>}
     [[PromiseState]]: "fulfilled"
     [[PromiseResult]]: "Hello World !!!!!!"
 */
-const getNewPromiseData = fn2();
-getNewPromiseData.then(res => {
-    console.log(res);
-})
+
+// Get promise data without await keyword
+function fnWithoutAwait(){
+    const promiseData = fn2();
+    promiseData.then(res => {
+        console.log("data get without await: ");
+        console.log(res);
+    })
+}
+
+//fnWithoutAwait();
 // result:
 /*
+data get without await: 
 Hello World !!!!!!
 */
 
+// Get promise data with await keyword
+async function fnWithAwait(){
+    const data = await newPromise; // here we use await to wait for the promise to be resolved and then get the resolved value
+    console.log("data get using await: ");
+    console.log(data);
+}
+
+//fnWithAwait();
+// result:
+/*
+data get using await: 
+Hello World !!!!!!
+*/
 
 /*
-Async and await combo is use to handle promises. But before async and await
+Note:
+1. Async and await combo is use to handle promises.
+2. await keyword only used inside async function and add before the promise. It is used to wait for the promise to be resolved and then get the resolved value. 
 */
+
+
+// Javascript code execution flow difference between async/await and promise chaining
+// -----------------------------------------------------------------
+
+// a common promise function
+const commonPromise = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve("common promise resolved after 5 seconds");
+    }, 5000)
+})
+
+// Promise chaining
+function promiseChainingFn(){
+    commonPromise.then((data)=> console.log(data));
+    console.log("promiseChainingFn run completed");
+}
+//promiseChainingFn();
+/*
+Result:
+promiseChainingFn run completed
+common promise resolved after 5 seconds
+*/
+
+/*
+We we try to get data from promise using promise chaining, the code execution flow is not blocked. So the console.log("promiseChainingFn run completed") line will be executed first and then after 5 seconds the promise will be resolved and then we get the data from promise.
+*/
+
+async function asyncAwaitFn(){
+    const data = await commonPromise;
+    console.log(data);
+    console.log("asyncAwaitFn run completed");
+}
+
+asyncAwaitFn();
+/*
+Result:
+common promise resolved after 5 seconds
+asyncAwaitFn run completed
+*/
+
+/*
+But when we try to get data from promise using async/await, the code execution flow is blocked until the promise is resolved. So the console.log(data) line will be executed first and then after 5 seconds the promise will be resolved and then we get the data from promise. After that the console.log("asyncAwaitFn run completed") line will be executed.
+*/
+
 </script>   
 </body>
 </html>
