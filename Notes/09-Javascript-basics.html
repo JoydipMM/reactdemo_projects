@@ -1185,7 +1185,7 @@ common promise resolved after 5 seconds
 */
 </textarea>
 <br/>
-<p><b>But when we try to get data from promise using <code><i>async/await</i></code></b>, the <b><i>code execution flow is blocked until the promise is resolved</i></b>. So the <code><b><i>console.log(data)</i></b></code> line will be executed first and then after 5 seconds the promise will be resolved and then we get the data from promise. After that the console.log("asyncAwaitFn run completed") line will be executed.</p>
+<p><b>But when we try to get data from promise using <code><i>async/await</i></code></b>, the <b><i>asyncAwaitFn()</i></b> execution is suspended because javaScript found that the promise is not yet resolved. So the call stack is empty until the promise is resolved after 5 seconds. After 5 second when the promise is resolved <code><b>asyncAwaitFn()</b></code> again called and <code><b>asyncAwaitFn()</b></code> again come to call stack and start executing but this time it will start from the first console.log("common promise resolved after 5 seconds") line. Now javaScript log the value and reach to next line where another await is waiting for execution, JavaScript try to find that the promise is resolved or not. If this promise not yet resolved because this promise will resolved after 10 seconds, So it will again suspend the execution and call Stack again empty. once the second promise is resolved after 10 seconds, again <code><b>asyncAwaitFn()</b></code> come to call stack and again executing from the next line of second promise and log the value of second promise. This is how the total execution flow of <code><b>async/await</b></code> work.</p>
 <textarea class="code-editor">
 // a common promise function
 const commonPromise = new Promise((resolve, reject)=>{
@@ -1209,7 +1209,80 @@ asyncAwaitFn run completed
 */
 </textarea>
 <br/>
+<p><b>If we use two promises, the second promise will be executed only after the first promise is resolved</b></p>
+<textarea class="code-editor">
+// two common promises function
+const commonPromise = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve("common promise resolved after 5 seconds");
+    }, 5000)
+});
 
+const commonPromise2 = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve("common promise resolved after 3 seconds");
+    }, 3000)
+});
+
+// async/await
+async function asyncAwaitFn(){
+    const data = await commonPromise;
+    console.log(data);
+    console.log("asyncAwaitFn run completed");
+
+    const data2 = await commonPromise2;
+    console.log(data2);
+    console.log("asyncAwaitFn 2 run completed");
+}
+
+asyncAwaitFn();
+/*Result:
+common promise resolved after 5 seconds
+asyncAwaitFn run completed
+common promise resolved after 3 seconds
+asyncAwaitFn 2 run completed
+*/
+</textarea>
+<br/>
+<p><b>If we change the time of both promises, lets change the time of first promise to 5 seconds and second promise to 10 seconds</b></p>
+<textarea class="code-editor">
+// two common promises function
+const commonPromise = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve("common promise resolved after 5 seconds");
+    }, 5000)
+});
+
+const commonPromise2 = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve("common promise resolved after 10 seconds");
+    }, 10000)
+});
+
+// async/await
+async function asyncAwaitFn(){
+    const data = await commonPromise;
+    console.log(data);
+    console.log("asyncAwaitFn run completed");
+
+    const data2 = await commonPromise2;
+    console.log(data2);
+    console.log("asyncAwaitFn 2 run completed");
+}
+
+asyncAwaitFn();
+/*Result:
+common promise resolved after 5 seconds
+asyncAwaitFn run completed
+common promise resolved after 10 seconds
+asyncAwaitFn 2 run completed
+*/
+/* 
+Note:
+At this condition the first promise will be resolved after 5 seconds and the second promise will be resolved after 10 seconds. So after data show from first promise, the second promise will be executed and it will take 10 seconds to resolve. So the total time taken to execute both promises is 15 seconds.
+*/
+</textarea>
+<br/>
 
 <hr />
 <h5><b>JavaScript event loop: Microtask Queue, Macrotask (Callback) Queue</b></h5>

@@ -461,6 +461,11 @@ const commonPromise = new Promise((resolve, reject)=>{
         resolve("common promise resolved after 5 seconds");
     }, 5000)
 })
+const commonPromise2 = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve("common promise resolved after 3 seconds");
+    }, 10000)
+})
 
 // Promise chaining
 function promiseChainingFn(){
@@ -482,6 +487,10 @@ async function asyncAwaitFn(){
     const data = await commonPromise;
     console.log(data);
     console.log("asyncAwaitFn run completed");
+
+    const data2 = await commonPromise2;
+    console.log(data2);
+    console.log("asyncAwaitFn 2 run completed");
 }
 
 asyncAwaitFn();
