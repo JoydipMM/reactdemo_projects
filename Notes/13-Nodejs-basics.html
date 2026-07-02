@@ -1,0 +1,192 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node.js Basic</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+<hr />
+<h2><b>Node.js Basic</b></h2>
+<hr />
+<br/>
+<br/>
+<hr />
+<h5><b>Write Node.js code in REPL (Read Evaluate Print Loop)</b></h5>
+<hr />
+<p><b>01.</b> First install <code><b>node</b></code></p>
+<p><b>02.</b> Open <b>terminal</b> and run command <code><b>node -v</b></code>. If version show then it is installed successfully</p>
+<p><b>03.</b> Open <b>terminal</b> and run command <code><b>node</b></code> and press <b>enter</b>. It will show like below:
+<textarea id="editor">
+$ node
+Welcome to Node.js v20.19.2.
+Type ".help" for more information.
+></textarea></p>
+<textarea class="code-editor">
+$ node
+Welcome to Node.js v20.19.2.
+Type ".help" for more information.
+> 2+2
+4
+</textarea>
+<p><b>04.</b> Press <code><b>ctrl + c</b></code> or <code><b>.exit</b></code> to exit from <b>REPL</b>
+<br/>
+
+
+<hr />
+<h5><b>Run code from js file</b></h5>
+<hr />
+<p><b>01.</b> Create <code><b>index.js</b></code> file inside <code><b>src</b></code> folder</p>
+<p><b>02.</b> Write your Node.js code in the <code><b>index.js</b></code> file 
+<textarea class="code-editor">
+function sum(a, b) {
+  return a + b;
+}
+console.log(sum(1, 2));
+</textarea>
+</p>
+<p><b>03.</b> Run this file we <b>write the command in terminal</b>: <code><b>node src/index.js</b></code></p>
+<p><b>04.</b> If all things are fine then we will see this message <code><b>3</b></code> in <b><i>terminal</i></b></p>
+<br/>
+
+
+<hr />
+<h5><b>Node Module system</b></h5>
+<hr />
+<p><b>Node Module system</b> allows us to organise our code in multiple pieces of code. Means node js has a module system where we will be able to create different modules and then we use those modules in a single root module. Suppose we have three modules <b>module01.js</b>, <b>module02.js</b> and <b>module03.js</b>. So now we can use those modules in a single root module <b>index.js</b> and at the end the root file(<b>index.js</b>) will be rendered. In node.js each file is treated as a separate module.</p>
+<br/>
+<p><b>How we use node module system</b></p>
+<ul>
+  <li><code><b>module.exports</b></code> to export a module -> similar to <code><b>export</b></code></li>
+  <li><code><b>require()</b></code> function to import a module -> similar to <code><b>import</b></code></li>
+</ul>
+<blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block"><b>Important Note:</b> <p>Node.js commonly use <code><b>CommonJS</b></code> module system. In this module system <code><b>module.exports</b></code> is used to export a module. And <code><b>require()</b></code> is used to import a module</p></code>
+</blockquote>
+<br/>
+<p><b>Example of Node Module system</b></p>
+<p>Suppose we have <b>index.js</b>, and <b>calculate.js</b> file. In <b>calcualate.js</b> file we have functions <b>sum</b> and <b>minus</b> and we export them using <code><b>module.exports</b></code> and in <b>index.js</b> file we import those functions using <code><b>require()</b></code></p>
+<textarea class="code-editor">
+// calcualate.js
+function sum(a, b) {
+  return a + b;
+}
+
+function minus(a, b) {
+  return a - b;
+}
+
+module.exports = {
+  sum,
+  minus
+};
+
+// index.js
+const calculate = require('./calcualate');
+console.log(calculate.sum(1, 2)); // 3
+console.log(calculate.minus(3, 2)); // 1
+</textarea>
+<br/>
+
+
+<hr />
+<h5><b>Module Wrapper Function</b></h5>
+<hr />
+<p>In node.js each module that we creating is wrapped inside a function before it executes. This function we known as <b>Module Wrapper Function</b></p>
+<p>This function has some parameters like <b><i>exports, module, require, filename, dirname </i></b>etc</p>
+<p><b>module wrapper function behind the scene in node.js</b></p>
+<p>What ever code we write in <b>index.js</b> file will be wrapped inside <b>module wrapper function</b> like below:</p>
+<textarea class="code-editor">
+(
+    function (exports, require, module, __filename, __dirname) {
+        const calculate = require('./calcualate');
+        console.log(calculate.sum(1, 2)); // 3
+        console.log(calculate.minus(3, 2)); // 1
+    }
+)
+</textarea>
+<br/>
+<h5><b>Get File path and directory path</b></h5>
+<textarea class="code-editor">
+// src\wrapper-explorer.js
+// ------------------------------
+console.log('__filename in wrapper-explorer.js:', __filename);
+console.log('__dirname in wrapper-explorer.js:', __dirname);
+
+module.exports.greet = function (name) {
+    console.log(`Hello from wrapper-explorer.js ${name}`);
+}
+
+// src\wrapper-demo.js
+// ------------------------------
+const wrapperExplorer = require('./wrapper-explorer');
+
+console.log('__filename in wrapper-demo.js:', __filename);
+console.log('__dirname in wrapper-demo.js:', __dirname);
+console.log(wrapperExplorer.greet('John Doe'));
+
+
+//----------------------------------------------------
+// run command in terminal: node src\wrapper-demo.js
+//----------------------------------------------------
+
+/*
+Result:
+    
+__filename in wrapper-explorer.js: D:\learn\reactdemo_projects\nodejs\nodejs-sangam\src\wrapper-explorer.js
+__dirname in wrapper-explorer.js: D:\learn\reactdemo_projects\nodejs\nodejs-sangam\src
+__filename in wrapper-demo.js: D:\learn\reactdemo_projects\nodejs\nodejs-sangam\src\wrapper-demo.js
+__dirname in wrapper-demo.js: D:\learn\reactdemo_projects\nodejs\nodejs-sangam\src
+Hello from wrapper-explorer.js John Doe
+undefined
+
+*/
+</textarea>
+<br/>
+
+
+
+<hr />
+<h5><b>DeStructuring Rest Spread Operator ES6 JavaScript</b></h5>
+<hr />
+
+<br/>
+
+<!-- 
+<blockquote class="blockquote">
+  <code class="mark">
+    <h5><b>Note:</b></h5>
+    <p><i>For all these <b>Promise APIs</b>, all promises <b>called in parallel</b>.</i></p>
+    <code><b>settled</b></code><p> means get result from <b>promise</b> and it can be either <b class="text-success">resolved / fulfilled / success</b> <b>or</b> <b class="text-danger">rejected / failure / reject</b>.</p>
+  </code>
+</blockquote>
+-->
+
+<!-- 
+<hr />
+<h5><b>Craete a Server</b></h5>
+<hr />
+<p>We create <code><b>index.js</b></code> file inside <code><b>src</b></code> folder</p>
+<textarea class="code-editor">
+
+</textarea>
+<br/>
+<p><b>Run this command:</b> <code><b>npm run dev</b></code></p>
+<p>If all things are fine then we will see this message <code><b>Server running on port 5001</b></code> in <b><i>terminal</i></b></p>
+<br/> -->
+
+
+
+<!-- <blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">npm run dev</code>
+</blockquote> -->
+
+  <script src="assets/js/codemirror/codemirror.min.js"></script>
+  <script src="assets/js/codemirror/javascript.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common-script.js"></script>
+</body>
+
+</html>
