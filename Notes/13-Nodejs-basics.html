@@ -149,6 +149,115 @@ undefined
 
 
 <hr />
+<h5><b>Create package.json file</b></h5>
+<hr />
+<p>Open <b>terminal</b> and run command <code><b>npm init -y</b></code></p>
+<p>After run this command, we will get a <b>package.json</b> file. In <b>package.json</b> file we important metadata like <b>name</b>, <b>version</b>, <b>description</b> etc</p>
+<p>So, in future we can use this <b>package.json</b> file to install <b>npm packages</b> for external dependencies</p>
+<p>This <b>package.json</b> file is also manage <b>dev dependencies</b> and <b>dependencies</b>.</p>
+<p><b>dependencies</b> are all the packages that are required for our application to run in production</p>
+<p><b>dev dependencies</b> are all the packages that are only required for our application to run in development</p>
+<br/>
+
+
+
+<hr />
+<h5><b>Create code run script in package.json</b></h5>
+<hr />
+<p>Open <code><b>package.json</b></code> file and add <b>code start script</b> like below</p>
+<textarea class="code-editor">
+{
+  "name": "nodejs-sangam",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js", // Add this line
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+</textarea>
+<p><code><b>"start": "node src/index.js"</b></code> with this script we can run our node file from terminal:</p>
+<p> run command in terminal: <code><b>npm start</b></code></p>
+<br/>
+
+
+<hr />
+<h5><b>Path Module</b></h5>
+<hr />
+<p>The <b>Path module</b> is a <b>built-in Node.js module</b> that helps you work with file and directory paths. It provides utilities to create, manipulate, normalize, and resolve file paths in a way that works across different operating systems. <i>Since it's a built-in module, you don't need to install it.</i></p>
+<br/>
+<p><b>Importing the Path Module</b></p>
+<p>in <b>CommonJS</b> we use <code><b>const path = require("path");</b></code></p>
+<p>in <b>ES Module</b> we use <code><b>import path from "path";</b></code></p>
+<br/>
+<p><b>Use of Path Module</b></p>
+<textarea class="code-editor">
+const path = require('path');
+
+console.log(path.basename(__filename));
+// path-module.js [ current file name ]
+
+console.log(path.dirname(__filename));
+// D:\learn\reactdemo_projects\nodejs\nodejs-sangam\src
+
+console.log(path.extname(__filename));
+// .js
+
+console.log(path.parse(__filename));
+/*
+{
+  root: 'D:\\',
+  dir: 'D:\\learn\\reactdemo_projects\\nodejs\\nodejs-sangam\\src',
+  base: 'path-module.js',
+  ext: '.js',
+  name: 'path-module'
+}
+*/
+
+const joinpath = path.join(__dirname, '/user', 'path-module', 'doscuments', 'node');
+console.log("Joint path: ", joinpath)
+// Joint path:  D:\learn\reactdemo_projects\nodejs\nodejs-sangam\src\user\path-module\doscuments\node
+</textarea>
+
+<!-- <p><b>path.basename</b> returns the base name of a path</p>
+<p><b>path.dirname</b> returns the directory name of a path</p>
+<p><b>path.extname</b> returns the extension name of a path</p>
+<p><b>path.parse</b> returns the object of parsed path</p>
+<p><b>path.join</b> returns the joined path</p>
+<p><b>path.resolve</b> returns the resolved path</p>
+<p><b>path.normalize</b> returns the normalized path</p>
+<p><b>path.relative</b> returns the relative path</p> -->
+<br/>
+
+
+<hr />
+<h5><b>DeStructuring Rest Spread Operator ES6 JavaScript</b></h5>
+<hr />
+
+<br/>
+<br/>
+
+
+<hr />
+<h5><b>DeStructuring Rest Spread Operator ES6 JavaScript</b></h5>
+<hr />
+
+<br/>
+<br/>
+
+
+<hr />
+<h5><b>DeStructuring Rest Spread Operator ES6 JavaScript</b></h5>
+<hr />
+
+<br/>
+<br/>
+
+
+<hr />
 <h5><b>DeStructuring Rest Spread Operator ES6 JavaScript</b></h5>
 <hr />
 
