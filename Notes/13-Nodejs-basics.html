@@ -469,10 +469,97 @@ console.log(path.resolve("src/../app.js"));
 
 
 <hr />
-<h5><b>DeStructuring Rest Spread Operator ES6 JavaScript</b></h5>
+<h5><b>File System</b></h5>
 <hr />
-
+<p>first import path module:  <code><b>const fs = require("fs");</b></code></p>
+<p>We need path module to create a directory. import path module: <code><b>const path = require("path");</b></code></p>
 <br/>
+<p><b>Create directory</b></p>
+<textarea class="code-editor">
+fs.mkdirSync("datafolder");
+// It will create a directory named "datafolder" inside the main directory
+// folder directory d:\learn\reactdemo_projects\nodejs\ .  So it will create a folder named "datafolder" inside the "nodejs" directory
+// If the directory already exists, it will throw an error "file already exists"
+
+fs.mkdirSync(path.join(__dirname, "datafolder"));
+// folder directory d:\learn\reactdemo_projects\nodejs\src\
+// It will create a directory named "datafolder" inside the current directory in "src" folder
+</textarea>
+<br/>
+<p><b>Create file/Folder in condition</b></p>
+<textarea class="code-editor">
+const dataFolder = path.join(__dirname, "datafolder");
+
+if(!fs.existsSync(dataFolder)){
+    fs.mkdirSync(dataFolder);
+    console.log("Directory created");
+}else{
+    console.log("Directory already exists");
+}
+</textarea>
+<br/>
+<p><b>Create a file in a directory using sync mode</b></p>
+<textarea class="code-editor">
+// define data folder
+const dataFolder = path.join(__dirname, "datafolder");
+
+// check if data folder exists or not
+if(!fs.existsSync(dataFolder)){
+    fs.mkdirSync(dataFolder); // create data folder
+    console.log("Directory created");
+}else{
+    console.log("Directory already exists");
+}
+
+// create path for file
+const filePath = path.join(dataFolder, "note-01.txt");
+
+// create file with content in sync mode ----------
+fs.writeFileSync(filePath, "Hello World");
+console.log("File created");
+
+// read file
+const fileContent = fs.readFileSync(filePath, "utf-8");
+console.log("File content:", fileContent);
+// File content: Hello World
+
+// add a line to the file
+fs.appendFileSync(filePath, "\nThis is a new line");
+console.log("File content after append:", fs.readFileSync(filePath, "utf-8"));
+// File content after append: Hello World This is a new line
+</textarea>
+<br/>
+<p><b>Create a file in a directory using async mode</b></p>
+<textarea class="code-editor">
+// define data folder
+const dataFolder = path.join(__dirname, "datafolder");
+
+const asyncFilePath = path.join(dataFolder, "async-note-01.txt");
+fs.writeFile(asyncFilePath, "Async Hello World", (err) => {
+    if(err) throw err;
+    console.log("File created");
+
+    // read file
+    fs.readFile(asyncFilePath, "utf-8", (err, data)=>{
+        if(err) throw err;
+        console.log("Async File content:", data);
+
+        fs.appendFile(asyncFilePath, "\nThis is a new line", (err)=>{
+            if(err) throw err;
+            console.log("File content after append:", fs.readFileSync(asyncFilePath, "utf-8"));
+            // File content after append: Async Hello World This is a new line
+
+            // get updated file content
+            fs.readFile(asyncFilePath, "utf-8", (err, data)=>{
+                if(err) throw err;
+                console.log("updated File content:", data);
+                // File content after append: Async Hello World This is a new line
+            })
+        })
+    });
+    // File content: Async Hello World
+})
+</textarea>
 <br/>
 
 
