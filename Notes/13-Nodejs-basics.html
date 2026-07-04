@@ -220,6 +220,7 @@ console.log(path.parse(__filename));
 const joinpath = path.join(__dirname, '/user', 'path-module', 'doscuments', 'node');
 console.log("Joint path: ", joinpath)
 // Joint path:  D:\learn\reactdemo_projects\nodejs\nodejs-sangam\src\user\path-module\doscuments\node
+
 </textarea>
 
 <!-- <p><b>path.basename</b> returns the base name of a path</p>
@@ -234,18 +235,236 @@ console.log("Joint path: ", joinpath)
 
 
 <hr />
-<h5><b>DeStructuring Rest Spread Operator ES6 JavaScript</b></h5>
+<h5><b>path.resolve()</b></h5>
 <hr />
+<p><code><b>path.resolve()</b></code> is a method of Node.js's built-in path module. It converts a sequence of path segments into an <b></b>absolute path.</b></p>
+<p><b>Syntax</b></p>
+<textarea class="code-editor">
+path.resolve([...paths])
+</textarea>
+<ul class="list-group list-group-flush mx-4">
+  <li>Accepts zero or more path segments.</li>
+  <li>Processes the paths from right to left.</li>
+  <li>Stops when it encounters an absolute path.</li>
+  <li>If no absolute path is found, it uses the current working directory (<code>process.cwd()</code>).</li>
+</ul>
+<br/>
+<p><b>Importing the Path Module</b></p>
+<textarea class="code-editor">
+// common js
+const path = require("path");
+
+// ES Modules:
+import path from "path";
+
+// Example 1: No arguments
+const resolvedPath = path.resolve();
+console.log("Resolved path: ", resolvedPath);
+// Result: C:\Users\Nodejs\Projects
+
+// Example 2: Relative path
+console.log(path.resolve("images"));
+// Result: C:\Users\Nodejs\Projects\images
+
+// Example 3: Multiple folders
+console.log(path.resolve("src", "components", "Navbar"));;
+// Result: C:\Users\Nodejs\Projects\src\components\Navbar
+
+// Example 4: Using ..
+console.log(path.resolve("src", "..", "public"));;
+// Result: C:\Users\Nodejs\Projects\public
+
+// Example 5: Absolute path
+console.log(path.resolve("src", "/images", "logo.png"));
+// Result: /images/logo.png
+// Note: Since /images is an absolute path, everything before it (src) is ignored.
+
+// Example 6: Right-to-left processing
+console.log(path.resolve("a", "b", "/c", "d"));
+// \c\d
+// Note: Everything before /c is ignored.
+
+// Example 7: Current folder (.)
+console.log(path.resolve(".", "src"));
+/*
+Suppose Current directory:
+C:\Projects\Node
+
+Result:
+C:\Projects\Node\src
+*/
+
+// Example 8: Parent folder (..)
+console.log(path.resolve(".."));
+/*
+Suppose Current directory:
+C:\Projects\Node
+
+Result:
+C:\Projects
+*/
+</textarea>
+<br/>
+<p><b>Real-world example</b></p>
+<textarea class="code-editor">
+const path = require("path");
+
+Project-folder
+│
+├── server.js
+├── config
+│   └── db.js
+├── uploads
+│   └── image.png
+
+const uploadPath = path.resolve("uploads");
+console.log(uploadPath); // D:\learn\Project-folder\uploads
+
+
+const filePath = path.resolve("uploads", "image.png");
+console.log(filePath); // D:\learn\Project-folder\uploads\image.png
+</textarea>
+<br/>
+<p><b>When should you use <code>path.resolve()</code>?</b></p>
+<p>Use <b><i>path.resolve()</i></b> when you need an absolute path, such as when:</p>
+<ul class="list-group list-group-flush mx-4">
+  <li>Reading or writing files with the fs module.</li>
+  <li>Configuring file uploads.</li>
+  <li>Serving static assets in web servers.</li>
+  <li>Building reliable paths that don't depend on where a script is called from.</li>
+</ul>
+<br/>
+<p><b>Summary</b></p>
+<ul class="list-group list-group-flush mx-4">
+<li><b><i>path.resolve()</i></b> always returns an absolute path.</li>
+<li>It resolves <code>.</code> (current directory) and <code>..</code> (parent directory).</li>
+<li>It processes path segments from right to left and stops when it finds an absolute path.</li>
+<li>If no absolute path is provided, it starts from the current working directory (<code><b>process.cwd()</b></code>).</li>
+</ul>
+<p><b>For Node.js applications, a common pattern is:</b></p>
+<textarea class="code-editor">
+const path = require("path");
+
+const filePath = path.resolve(__dirname, "data", "users.json");
+</textarea>
+<blockquote class="blockquote">
+  <code class="mark">
+    <p>Using <code><b>__dirname</b></code> ensures the path is resolved relative to the file's location, making your code more robust than relying solely on the current working directory.</p>
+  </code>
+</blockquote>
 
 <br/>
 <br/>
 
 
 <hr />
-<h5><b>DeStructuring Rest Spread Operator ES6 JavaScript</b></h5>
+<h5><b>path.normalize() in Node.js</b></h5>
 <hr />
-
+<p>The <code>path.normalize()</code> method is used to <i><b>normalize a file path by resolving unnecessary separators and special directory references (. and ..)</b></i>.</p>
+<p><b>Syntax</b></p>
+<textarea class="code-editor">
+path.normalize(path);</textarea>
 <br/>
+<p><b>Why do we use path.normalize()?</b></p>
+<p>Suppose you have a messy path like this:</p>
+<textarea class="code-editor">
+folder//subfolder/../file.txt
+
+/* This path contains:
+Double slashes (//)
+Parent directory (..)
+
+*** path.normalize() cleans it up into a proper path.
+*/
+
+// Example 1: Removing duplicate separators
+const filePath = "users//documents///file.txt";
+console.log(path.normalize(filePath));
+// Result: users/documents/file.txt
+
+// Example 2: Resolving .
+console.log(path.normalize("project/src/./app.js"));
+// Result: project/src/app.js
+
+// Example 3: Resolving ..
+// .. means go back one directory. (..) removes src, so the final path becomes:
+console.log(path.normalize("project/src/../app.js"));
+// Result: project/app.js
+
+// Example 4: Multiple ..
+console.log(path.normalize("project/src/../../app.js"));
+// Result: project/app.js
+
+// Example 5: Mixed separators: Node automatically converts the separators according to the operating system.
+console.log(path.normalize("folder\\\\subfolder//file.txt"));
+// Result: folder/subfolder/file.txt
+
+// Example 6: Absolute path
+console.log(path.normalize("/home/user/../Downloads/file.txt"));
+// Result: /home/Downloads/file.txt
+</textarea>
+<br/>
+<p><b>Difference between <code><b>path.normalize()</b></code> and <code><b>path.resolve()</b></code></b></p>
+<table class="table">
+  <tr>
+    <td><b>path.normalize()</b></td>
+    <td><b>path.resolve()</b></td>
+  </tr>
+  <tr>
+    <td><p><b>Defination:</b></p><code><b>path.normalize()</b></code> only cleans and simplifies a path while preserving whether it is relative or absolute.
+    <br/>
+    <br/>
+    <p><b>Use <code>path.normalize()</code> when you:</b></p>
+      <ul class="list-group list-group-flush mx-4">
+        <li>Clean user-provided or dynamically generated file paths.</li>
+        <li>Remove redundant separators (// or \\).</li>
+        <li>Resolve . and .. segments.</li>
+        <li>Ensure path formatting is consistent before further processing.</li>
+      </ul>
+    </td>
+    <td><p><b>Defination:</b></p><code><b>path.resolve()</b></code> constructs and returns an absolute path, using the current working directory when necessary, and also resolves . and ..
+    <br/>
+    <br/>
+    <p><b>Use <code>path.resolve()</code> when you:</b></p>
+      <ul class="list-group list-group-flush mx-4">
+        <li>Reading or writing files with the fs module.</li>
+        <li>Configuring file uploads.</li>
+        <li>Serving static assets in web servers.</li>
+        <li>Building reliable paths that don't depend on where a script is called from.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>Cleans an existing path</td>
+    <td>Creates an absolute path</td>
+  </tr>
+  <tr>
+    <td>Does not prepend the current working directory</td>
+    <td>Uses the current working directory if needed</td>
+  </tr>
+  <tr>
+    <td>Resolves . and ..</td>
+    <td>Resolves . and .. and returns an absolute path</td>
+  </tr>
+  <tr>
+    <td>Can return a relative path</td>
+    <td>Always returns an absolute path</td>
+  </tr>
+  <tr>
+    <td>
+<textarea class="code-editor">
+console.log(path.normalize("src/../app.js"));
+// Result: app.js
+</textarea>
+</td>
+<td>
+<textarea class="code-editor">
+console.log(path.resolve("src/../app.js"));
+// Result: C:\Users\Nodejs\Projects\app.js
+</textarea>
+</td>
+  </tr>
+</table>
 <br/>
 
 
