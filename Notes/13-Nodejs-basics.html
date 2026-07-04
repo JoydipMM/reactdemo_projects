@@ -305,26 +305,8 @@ C:\Projects
 */
 </textarea>
 <br/>
-<p><b>Real-world example</b></p>
-<textarea class="code-editor">
-const path = require("path");
-
-Project-folder
-│
-├── server.js
-├── config
-│   └── db.js
-├── uploads
-│   └── image.png
-
-const uploadPath = path.resolve("uploads");
-console.log(uploadPath); // D:\learn\Project-folder\uploads
 
 
-const filePath = path.resolve("uploads", "image.png");
-console.log(filePath); // D:\learn\Project-folder\uploads\image.png
-</textarea>
-<br/>
 <p><b>When should you use <code>path.resolve()</code>?</b></p>
 <p>Use <b><i>path.resolve()</i></b> when you need an absolute path, such as when:</p>
 <ul class="list-group list-group-flush mx-4">

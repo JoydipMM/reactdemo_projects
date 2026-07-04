@@ -22,6 +22,12 @@ blockquote code{ font-size: 16px; }
 @media print {
 
 body{ font-size:12px; }
-code{ font-size: 12px; }
-
+code, table{ font-size: 12px; }
+.CodeMirror-code{ font-size: 12px; }
+.blockquote, .blockquote code{ font-family: system-ui, -apple-system; font-size: 12px; }
+.blockquote .mark{ padding: 15px; width: 100%; display: inline-block; font-size: 12px; }
+.blockquote p{ font-size: 12px; }
+.blockquote .normal{ font-size: 12px; }
+hr{ margin: 10px 0px; }
+hr+h1, hr+h2, hr+h3, hr+h4, hr+h5, hr+h6{ margin-bottom: 0px; }
 }
