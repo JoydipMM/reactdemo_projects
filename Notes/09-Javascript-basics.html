@@ -1564,8 +1564,123 @@ AggregateError: All promises were rejected
 <hr />
 <h5><b><code><i>this</i></code> keyword in JavaScript</b></h5>
 <hr />
-<p><b>How "this" behave in global space</b></p>
+<p><b>How "<code>this</code>" keyword behave in global space</b></p>
+<p>The value of "<code>this</code>" keyword in global space is the global object that can be different it can be "<b>window in browser</b>", "<b>global in node.js</b>", it can be somthing else depand upon where we are running the javascript code.</p>
+<p>also "<code>this</code>" keyword is behave differnt in "<b>non-strict mode</b>" and "<b>strict mode</b>".</p>
 <br/>
+<p><b><code>this</code> substitution</b></p>
+<p>"<code>this</code>" in non-strict mode -  this substitution</p>
+<p>according to "<code>this</code>" substitution: if anytime the value of "<code>this</code>" keyword is undefined or null then JavaScript will be replaced "<code>this</code>" with the global object only in "<b>non-strict mode</b>".</p>
+<p>So, the value of "<code>this</code>" keyword inside a function is "undefined" but because JavaScript has something known as "<b>this substitution</b>" so the value becomes equal to gobal object means window object if we not use "use strict" mode at the top of the JavaScript file.</p>
+<br/>
+<p><b>what is the value of this in function?</b></p>
+<p>The value of <code>this</code> in function is the window object but this window object is different from the global space window object. If we use "use strict" then the value of this in function is undefined.</p>
+<p>if we execute function without any reference in <b>"use strict"</b> mode then the "<code>this</code>" keyword value will be "<b></b>undefined</b>". </p>
+<textarea class="code-editor">
+console.log(this); // window object
+
+function abc(){
+    console.log(this); // in non-strict mode this is window object but in strict mode this is undefined
+}
+abc(); // undefined
+</textarea>
+<p>But if we execute this same function with window referance in strict mode then the value of "<code>this</code>" keyword will be "window" object.</p>
+<textarea class="code-editor">
+window.abc(); // window
+</textarea>
+<blockquote class="blockquote">
+  <code class="mark">
+    <code><b>Important Note</b></code>
+    <p>When we write any function inside an object then that function is called <b>method</b>.</p>
+  </code>
+</blockquote>
+<br/>
+<p><b>What is the value of "<code>this</code>" keyword in an object?</b></p>
+<textarea class="code-editor">
+const obj22 = {
+    a:10,
+    x: function(){
+       console.log(this); // {a: 10, x: ƒ}
+       console.log(this.a); // 10
+    },
+    y:{
+        b:20,
+        c: function(){
+        console.log(this); // {b: 20, c: ƒ}
+        console.log(this.a); // undefined in "strict mode" and "non-strict mode" both
+        console.log(this.b); // 20
+        },
+    }
+}
+obj22.x();
+// {a: 10, x: ƒ}
+obj22.y.c();
+// {b: 20, c: ƒ}
+</textarea>
+<blockquote class="blockquote">
+  <code class="mark">
+    <code><b>Important Note</b></code>
+    <p>The value of "<code>this</code>" keyword in an object is the object itself where the method is present.</p>
+  </code>
+</blockquote>
+<br/>
+<p><b><code>this</code> keyword in a call(), apply(), bind() function</b></p>
+<p>call, apply, bind() function is used where we sharing method with another object. <code>this</code> keyword can be modify the value of "<code>this</code>" keyword. </p>
+<p>call(connect the value of "this" keyword with another object) <br/>
+apply(connect the value of "this" keyword with another object) <br/>
+bind(connect the value of "this" keyword with another object)</p>
+<br/>
+<p><b>How "<code>this</code>" keyword behave in arrow function?</b></p>
+<p>arrow function dose not have their own "<code>this</code>". They take their "this" from their parent function / lexical scope.</p>
+<textarea class="code-editor">
+function dyf() {
+    a = 10;
+    console.log(a); // 10
+    const abc = () => {
+        console.log(this); // undefined
+    }
+    abc();
+}
+
+dyf()
+
+const obbj2 = {
+    a:10,
+    b:()=>{
+        console.log(this); // window object. means enclosing lexical context
+        console.log(this.a); // 10
+    }
+}
+</textarea>
+<blockquote class="blockquote">
+  <code class="mark">
+    <code><b>Important Note</b></code>
+    <p><b>enclosing lexical context</b> means where the object is present / how is written in the code. Here this object is present in the global scope. So "this" keyword value will be "window" object.</p>
+    <textarea class="code-editor">
+const obbj3 = {
+    a:10,
+    b:function(){
+        console.log(this); // {a: 10, b: ƒ}
+        const c = ()=>{
+            console.log(this); // {a: 10, b: ƒ} Here the enclosed lexical context is obbj3. Means the arrow function is present in obbj3 object. 
+            console.log(this.a); // 10
+        }
+        c();
+    }
+}
+
+obbj3.b();
+    </textarea>
+  </code>
+</blockquote>
+<br/>
+<p><b>What is value of "<code>this</code>" keyword in an DOM element?</b></p>
+<textarea class="code-editor">
+<button onclick="alert(this)">Click</button>
+
+// Result:
+// [object HTMLButtonElement] => this HTML button element itself. It referance to this HTML button element.
+</textarea>
 <br/>
 
 
