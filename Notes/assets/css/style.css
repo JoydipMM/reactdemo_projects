@@ -18,7 +18,7 @@ blockquote code{ font-size: 16px; }
 .blockquote .mark{ padding: 15px; width: 100%; display: inline-block; }
 .blockquote p{ color: black; }
 .blockquote .normal{ color: black; }
-p code{ font-weight: 600; }
+p code{ font-weight: 700; }
 
 @media print {
 

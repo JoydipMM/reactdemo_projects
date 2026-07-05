@@ -785,6 +785,92 @@ Result:
 [object HTMLButtonElement] => this HTML button element itself. It referance to this HTML button element.
 */
 
+
+const setgetObj = {
+    firstName:"",
+    lastName:"",
+    _userfullName:"",
+    set fullName(value){
+        const getName = value.split(" ");
+        this.firstName = getName[0];
+        this.lastName = getName[1];
+        this._userfullName = getName[0] + " " + getName[1];
+    },
+    get fullName(){
+        return this._userfullName;
+    }
+}
+
+setgetObj.fullName = "Dipak Gupta"; // this
+console.log(setgetObj.firstName); // Dipak
+console.log(setgetObj.lastName); // Gupta
+console.log("ccc ",setgetObj.userfullName); // Dipak Gupta
+console.log(setgetObj.fullName); // Dipak Gupta
+
+setgetObj._userfullName = "sdfsdf fsdf sdfsddfsdf"
+console.log("ccc ",setgetObj._userfullName); // Dipak Gupta
+
+/*
+const obj_01 ={
+  firstName: "Dipak",
+  lastName: "Gupta",
+  get fullName(){
+    console.log("getter method calling....");
+    return `${this.firstName} ${this.lastName}`;
+  },
+
+  NormalfullName(){
+    console.log("normal method calling....");
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+
+// to use fullName property
+console.log(obj_01.fullName); // Dipak Gupta
+console.log(obj_01.NormalfullName()); // Dipak Gupta
+
+obj_01.firstName = "Rahul";
+//console.log(obj_01.fullName); // Rahul Gupta
+
+obj_01.firstName = "Tapas";
+//console.log(obj_01.NormalfullName()); // Tapas Gupta
+
+
+const person = {
+  age: 0,
+
+  setAge(value) {
+    if (value < 0) {
+      console.log("Age cannot be negative");
+      return;
+    }
+
+    this.age = value;
+  },
+
+  getAge() {
+    return this.age;
+  }
+};
+
+person.setAge(-25);
+console.log(person.getAge()); // 25
+*/
+
+
+const normal_metho_obj ={
+  firstName: "Dipak",
+  lastName: "Gupta",
+  get fullName(){
+    return `${this.firstName} ${this.lastName}`;
+  }
+}  
+
+// to use fullName property
+console.log(normal_metho_obj.fullName); // Dipak Gupta
+normal_metho_obj.firstName = "Rahul";
+normal_metho_obj.lastName = "Bose";
+console.log(normal_metho_obj.fullName); // Rahul Bose
 </script>   
 </body>
 </html>

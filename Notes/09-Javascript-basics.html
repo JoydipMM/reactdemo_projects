@@ -9,8 +9,9 @@
 
 <body>
 <hr />
-<h2><b>JavaScript Basic</b></h2>
+<h5><b>Definition of JavaScript?</b></h5>
 <hr />
+<p>JavaScript is a high-level, dynamically typed, prototype-based, multi-paradigm programming language that is single-threaded and synchronous by default. It is primarily used to create interactive and dynamic web applications and can run in web browsers as well as server-side environments like Node.js. Although JavaScript executes one operation at a time, it can handle asynchronous tasks efficiently using the event loop, callbacks, promises, and async/await.</p>
 <br/>
 <br/>
 <hr />
@@ -1682,6 +1683,404 @@ obbj3.b();
 // [object HTMLButtonElement] => this HTML button element itself. It referance to this HTML button element.
 </textarea>
 <br/>
+
+
+<hr />
+<h5><b>Getters and Setters in JavaScript</b></h5>
+<hr />
+<p><b>Getters and Setters</b> are special methods that allow us to control <b>how object properties are read and written</b>.</p>
+<ul class="list-group list-group-flush mx-4 mb-4">
+<li><b>Getter (get)</b> → Executes when a property is read.</li>
+<li><b>Setter (set)</b> → Executes when a property is assigned a value.</li>
+</ul>
+<p><b>Why use Getters and Setters?</b></p>
+<p>Getters and Setters help us:</p>
+<ul class="list-group list-group-flush mx-4">
+<li>Validate data before storing it.</li>
+<li>Compute values dynamically.</li>
+<li>Hide internal implementation details.</li>
+<li>Make code more readable.</li>
+</ul>
+<br/>
+<h5><b>How to use Getter method</b></h5>
+<textarea class="code-editor">
+const obj_01 ={
+  firstName: "Dipak",
+  lastName: "Gupta",
+  get fullName(){
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+
+// to use fullName property
+console.log(obj_01.fullName); // Dipak Gupta
+
+obj_01.firstName = "Rahul";
+console.log(obj_01.fullName); // Rahul Gupta
+</textarea>
+<p>Notice that we access <b>fullName</b> like a property, not a function.</p>
+<br/>
+<h5><b>How to use Setter method</b></h5>
+<textarea class="code-editor">
+const setgetObj = {
+    firstName:"",
+    lastName:"",
+    userfullName:"",
+    set fullName(value){
+        const getName = value.split(" ");
+        this.firstName = getName[0];
+        this.lastName = getName[1];
+        this.userfullName = getName[0] + " " + getName[1];
+    },
+}
+
+setgetObj.fullName = "Dipak Gupta"; // set the value of fullName
+console.log(setgetObj.firstName); // Dipak
+console.log(setgetObj.lastName); // Gupta
+console.log(setgetObj.userfullName); // Dipak Gupta
+</textarea>
+<p><b>But if we want to access fullName to get the value like: <code>console.log(setgetObj.fullName);</code></b> this will return <b><i>undefined</i></b>. </p>
+<p>To get the value we need to use <b>getter method</b> of <b><i>fullName</i></b> property. Like below:</p>
+<textarea class="code-editor">
+const setgetObj = {
+    firstName:"",
+    lastName:"",
+    userfullName:"",
+    set fullName(value){
+        const getName = value.split(" ");
+        this.firstName = getName[0];
+        this.lastName = getName[1];
+        this.userfullName = getName[0] + " " + getName[1];
+    },
+    get fullName(){ // this one
+        return this.userfullName;
+    }
+}
+
+setgetObj.fullName = "Dipak Gupta"; // this
+console.log(setgetObj.firstName); // Dipak
+console.log(setgetObj.lastName); // Gupta
+console.log(setgetObj.userfullName); // Dipak Gupta
+console.log(setgetObj.fullName); // Dipak Gupta
+</textarea>
+<br/>
+<blockquote class="blockquote">
+  <code class="mark">
+    <code class="mb-3"><h5><b>Important Note</b></h5></code>
+    <p><b>Why we use Getters and Setters in JavaScript</b></p>
+    <p>Technically, getters and setters don't add any new functionality. Everything they do can also be implemented using normal methods. <b><i>A getter is used when reading a value</i></b>, and a <b><i>setter is used when assigning a value</i></b>. We use them because they provide cleaner, property-like syntax and allow us to control how properties are accessed and modified without exposing the implementation details. The main difference is in the way we access them—a getter is accessed like a property <code>person.fullName</code>, whereas a normal method is called like a function <code>person.getFullName()</code>.</p>
+  </code>
+</blockquote>
+<br/>
+<table class="table">
+  <tr>
+    <td width="50%"><b>With normal method</b></td>
+    <td width="50%"><b>With Getters and Setters</b></td>
+  </tr>
+  <tr>
+    <td>
+<textarea class="code-editor">
+const normal_metho_obj ={
+  firstName: "Dipak",
+  lastName: "Gupta",
+  fullName(){
+    return `${this.firstName} ${this.lastName}`;
+  }
+}  
+
+// to use fullName property
+console.log(normal_metho_obj.fullName()); // Dipak Gupta
+normal_metho_obj.firstName = "Rahul";
+normal_metho_obj.lastName = "Bose";
+console.log(normal_metho_obj.fullName()); // Rahul Bose
+</textarea>
+<blockquote class="blockquote">
+  <code class="mark">
+    <code class="mb-3"><h5><b>Difference</b></h5></code>
+    <p>Called like a <b><i>function</i></b></p>
+    <p>Requires <b><i>()</i></b></p>
+    <p>Indicates "do some work"</p>
+    <p>Can accept parameters</p>
+  </code>
+</blockquote>
+    </td>
+    <td>
+<textarea class="code-editor">
+const normal_metho_obj ={
+  firstName: "Dipak",
+  lastName: "Gupta",
+  get fullName(){
+    return `${this.firstName} ${this.lastName}`;
+  }
+}  
+
+// to use fullName property
+console.log(normal_metho_obj.fullName); // Dipak Gupta
+normal_metho_obj.firstName = "Rahul";
+normal_metho_obj.lastName = "Bose";
+console.log(normal_metho_obj.fullName); // Rahul Bose 
+
+
+const setgetObj = {
+    firstName:"",
+    lastName:"",
+    userfullName:"",
+    set fullName(value){
+        const getName = value.split(" ");
+        this.firstName = getName[0];
+        this.lastName = getName[1];
+        this.userfullName = getName[0] + " " + getName[1];
+    },
+}
+setgetObj.fullName = "Dipak Gupta"; // set the value of fullName
+console.log(setgetObj.firstName); // Dipak
+console.log(setgetObj.lastName); // Gupta
+console.log(setgetObj.userfullName); // Dipak Gupta
+</textarea>
+<blockquote class="blockquote">
+  <code class="mark">
+    <code class="mb-3"><h5><b>Difference</b></h5></code>
+    <p>Accessed like a <b><i>property</i></b></p>
+    <p>Not requires <b><i>()</i></b></p>
+    <p>Indicates "read a value"</p>
+    <p>Cannot accept parameters</p>
+  </code>
+</blockquote>
+    </td>
+  </tr>
+  <tr>
+    <td><b>condition in method</b></td>
+    <td><b>condition in setter</b></td>
+  </tr>
+  <tr>
+    <td>
+<textarea class="code-editor">
+const user = {
+  firstName: "",
+  lastName: "",
+
+  setFullName(name) {
+    const parts = name.trim().split(" ");
+
+    if (parts.length !== 2) {
+      console.log("Please enter first and last name.");
+      return;
+    }
+
+    this.firstName = parts[0];
+    this.lastName = parts[1];
+  }
+};
+
+user.setFullName("Dipak Gupta");
+
+console.log(user.firstName); // Dipak
+console.log(user.lastName);  // Gupta
+</textarea>
+<blockquote class="blockquote">
+  <code class="mark">
+    <code class="mb-3"><h5><b>Difference</b></h5></code>
+    <p>Calling the <b><i>method</i></b> <code>user.setFullName("Rahul Bose");</code> We explicitly call the function.</p>
+  </code>
+</blockquote>
+    </td>
+    <td>
+<textarea class="code-editor">
+const user = {
+  firstName: "",
+  lastName: "",
+
+  set fullName(name) {
+    const parts = name.trim().split(" ");
+
+    if (parts.length !== 2) {
+      console.log("Please enter first and last name.");
+      return;
+    }
+
+    this.firstName = parts[0];
+    this.lastName = parts[1];
+  }
+};
+
+user.fullName = "Dipak Gupta";
+
+console.log(user.firstName); // Dipak
+console.log(user.lastName);  // Gupta
+</textarea>
+<blockquote class="blockquote">
+  <code class="mark">
+    <code class="mb-3"><h5><b>Difference</b></h5></code>
+    <p>Using the <b><i>setter</i></b> <code>user.fullName = "Rahul Bose";</code> No parentheses are used. JavaScript automatically calls the <b><i>Setter</i></b> when you assign to <b><i>fullName</i></b>.</p>
+  </code>
+</blockquote>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><b>Another Example</b></td>
+  </tr>
+  <tr>
+    <td>
+<textarea class="code-editor">
+const person = {
+  age: 0,
+
+  setAge(value) {
+    if (value < 18) {
+      console.log("Age must be at least 18.");
+      return;
+    }
+
+    this.age = value;
+  }
+};
+
+person.setAge(15); // Age must be at least 18.
+person.setAge(25);
+
+console.log(person.age); // 25
+</textarea>
+    </td>
+    <td>
+<textarea class="code-editor">
+const person = {
+  _age: 0,
+
+  set age(value) {
+    if (value < 18) {
+      console.log("Age must be at least 18.");
+      return;
+    }
+
+    this._age = value;
+  },
+
+  get age() {
+    return this._age;
+  }
+};
+
+person.age = 15; // Age must be at least 18.
+person.age = 25;
+
+console.log(person.age); // 25
+</textarea>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><b>use of ( <code>_</code> ) <i>underscore</i></b></td>
+  </tr>
+  <tr>
+    <td>
+<textarea class="code-editor">
+const person = {
+  _age: 25
+};
+console.log(person._age); // 25
+
+person._age = 30;
+console.log(person._age); // 30
+</textarea>
+    </td>
+    <td>
+<p><b>Why is _age commonly used with getters and setters?</b></p>
+<p><i>Without a separate backing property, you'd create an infinite loop.</i></p>
+<textarea class="code-editor">
+const person = {
+  age: 0,
+
+  set age(value) {
+    this.age = value;   // Error Calls the setter again
+  }
+};
+
+person.age = 20; // Maximum call stack size exceeded
+</textarea>
+<p></p><b>Correct approach</b></p>
+<textarea class="code-editor">
+const person = {
+  _age: 0,
+
+  set age(value) {
+    this._age = value;
+  },
+
+  get age() {
+    return this._age;
+  }
+};
+
+person.age = 20;
+console.log(person.age);  // 20
+console.log(person._age); // 20
+</textarea>
+    </td>
+  </tr>
+</table>
+<br/>
+<h5><b>Why use ( <code>_</code> ) <i>underscore</i> as prefix with variable?</b></h5>
+<p>To avoid <b><i>variable name collision</i></b>. It indicates <i>"This property is intended for internal use. Please don't access or modify it directly."</i></p>
+<textarea class="code-editor">
+const person = {
+  _fullName: "",
+
+  set fullName(value) {
+      this._fullName = value;
+  },
+
+  get fullName() {
+      return this._fullName;
+  }
+};
+person.fullName = "Dipak Gupta";
+console.log(person.fullName);  // Dipak Gupta
+</textarea>
+<ul class="list-group list-group-flush mx-4">
+<li><code>fullName</code> is the <b>public API (used by other code)</b>.</li>
+<li><code>_fullName</code> is the <b>internal storage used by the getter and setter</b>.</li>
+</ul>
+<br/>
+<h5><b>Why not use same <code>object property name</code> and <code>setter or getter name</code>?</b></h5>
+<textarea class="code-editor">
+const person = {
+    set fullName(value) {
+        this.fullName = value;
+    }
+};
+
+person.fullName = "Dipak Gupta"; // RangeError: Maximum call stack size exceeded
+</textarea>
+<p>This is called <b>infinite recursion</b>. When Setter is called, inside the setter, <code>this.fullName = value</code> executes. That assignment calls the setter itself again and again. This repeats forever until we get a <code><i>maximum call stack size exceeded</i></code> error.</p>
+<br/>
+<h5><code><b>Solution</b></code></h5>
+<p>So as a solution we can use ( <code>_</code> ) <b>underscore</b> as prefix.</p>
+<textarea class="code-editor">
+const person = {
+    _fullName: "",
+
+    set fullName(value) {
+        this._fullName = value; 
+    },
+
+    get fullName() {
+        return this._fullName;
+    }
+};
+
+person.fullName = "Dipak Gupta";
+console.log(person.fullName); // Dipak Gupta
+</textarea>
+<br/>
+<h5><b>Is ( <code>_</code> ) <i>underscore</i> actually private?</b></h5>
+<p>No. Anyone can still access it. So ( <code>_</code> ) is only <b><i>a developer convention, not a security feature</i></b>.</p>
+<textarea class="code-editor">
+console.log(person._fullName);
+person._fullName = "Rahul Sharma";
+console.log(person._fullName); // Rahul Sharma
+</textarea>
+<br/>
+
+
 
 
 <hr />
