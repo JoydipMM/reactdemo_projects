@@ -5,7 +5,13 @@
     <title>Document</title>
 </head>
 <body>
+
+
+<button class="ccc" onclick="alert(this.clasName)">Click</button>
+
 <script>
+"use strict";
+
 function add(a){
     return function(b){
         return function (c){
@@ -655,8 +661,129 @@ length:3
 Promise 2 rejected
 */
 
+console.log(this);
+
+function abc(){
+    console.log(this); // in non-strict mode this is window object but in strict mode this is undefined
+}
+abc();
+/*
+what is the value of this in global space?
+The value of this in global space is the global object that can be different it can be "window in browser", "global in node.js", it can be somthing else depand upon where we are running the javascript code.
+
+also "this" is behave differnt in "non-strict mode" and "strict mode".
+
+"this" in non-strict mode -  this substitution
+
+according to "this" substitution:
+if anytime the value of "this" keyword is undefined or null then JavaScript will be replaced "this" with the global object only in "non-strict mode".
 
 
+So, the value of "this" keyword inside a function is "undefined" but because JavaScript has something known as "this substitution" so the value becomes equal to gobal object means window object if we not use "use strict" mode at the top of the JavaScript file.
+
+
+what is the value of this in function?
+The value of this in function is the window object but this window object is different from the global space window object. If we use "use strict" then the value of this in function is undefined.
+
+if we execute function without any reference in ""use strict" mode then the "this" keyword value will be "undefined". 
+*/
+abc(); // undefined
+/*
+But if we execute this same function with window referance in strict mode then the value of "this" keyword will be "window" object.
+*/
+window.abc(); // window
+
+/*
+When we write any function inside an object then that function is called "method".
+*/
+
+/*
+What is the value of "this" keyword in an object?
+*/
+const obj22 = {
+    a:10,
+    x: function(){
+       console.log(this); // {a: 10, x: ƒ}
+       console.log(this.a); // 10
+    },
+    y:{
+        b:20,
+        c: function(){
+        console.log(this); // {b: 20, c: ƒ}
+        console.log(this.a); // undefined in "strict mode" and "non-strict mode" both
+        console.log(this.b); // 20
+        },
+    }
+}
+obj22.x();
+// {a: 10, x: ƒ}
+obj22.y.c();
+// {b: 20, c: ƒ}
+
+/*
+The value of "this" keyword in an object is the object itself where the method is present.
+
+
+"this" keyword in a call(), apply(), bind() function
+call, apply, bind() function is used where we sharing method with another object. this keyword can be modify the value of "this" keyword. 
+call(connect the value of "this" keyword with another object) 
+apply(connect the value of "this" keyword with another object) 
+bind(connect the value of "this" keyword with another object)
+
+
+
+
+How "this" keyword behave in arrow function?
+arrow function dose not have their own "this". They take their "this" from their parent function / lexical scope.
+*/
+function dyf() {
+    a = 10;
+    console.log(a); // 10
+    const abc = () => {
+        console.log(this); // undefined
+    }
+    abc();
+}
+
+dyf()
+
+
+const obbj2 = {
+    a:10,
+    b:()=>{
+        console.log(this); // window object. means enclosing lexical context
+        console.log(this.a); // 10
+    }
+}
+
+//obbj2.b();
+
+/*
+"enclosing lexical context" means where the object is present / how is written in the code. Here this object is present in the global scope. So "this" keyword value will be "window" object.
+*/
+
+
+const obbj3 = {
+    a:10,
+    b:function(){
+        console.log(this); // {a: 10, b: ƒ}
+        const c = ()=>{
+            console.log(this); // {a: 10, b: ƒ} Here the enclosed lexical context is obbj3. Means the arrow function is present in obbj3 object. 
+            console.log(this.a); // 10
+        }
+        c();
+    }
+}
+
+obbj3.b();
+
+/*
+What is value of "this" keyword in an DOM element?
+<button onclick="alert(this)">Click</button>
+
+Result:
+[object HTMLButtonElement] => this HTML button element itself. It referance to this HTML button element.
+*/
 
 </script>   
 </body>

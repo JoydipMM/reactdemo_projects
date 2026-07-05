@@ -1,0 +1,199 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeScript Basic</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+<hr />
+<h2><b>TypeScript Basic</b></h2>
+<hr />
+<br/>
+<hr />
+<h5><b>About TypeScript</b></h5>
+<hr />
+<ul class="list-group list-group-flush mx-4">
+<li>Better version of JavaScript with more features</li>
+<li>TypeScript is superset of JavaScript</li>
+<li>All features of JavaScript, also have extra features and functionality in TypeScript</li>
+</ul>
+<br/>
+<h5><b>Why TypeScript</b></h5>
+<ul class="list-group list-group-flush mx-4">
+<li>Static Typing or Define Data Type</li>
+<li>Imporoved Code Quality and maintainability</li>
+<li>Advance Features</li>
+<li>Code Quality</li>
+</ul>
+<br/>
+<h5><b>Why TypeScript</b></h5>
+<ul class="list-group list-group-flush mx-4">
+<li>Define Datatype</li>
+<li>Intrefaces</li>
+<li>Decorators</li>
+<li>Generics</li>
+<li>Namespaces</li>
+<li>Type Interfaces</li>
+<li>etc</li>
+</ul>
+<textarea id="editor">
+
+</textarea>
+
+
+<hr />
+<h5><b>TypeScript Installation and Setup</b></h5>
+<hr />
+<p><b>First</b> install node.js</p>
+<p><b>Then</b> install <code><b>npm install -g typescript</b></code> / <code><b>npm install typescript --save-dev</b></code></p>
+<p><b>Create</b> <code><b>app.ts</b></code> file</p>
+<textarea class="code-editor">
+// app.ts
+var user: string = "Jhon"
+</textarea>
+<p><b>Run this command:</b> <code><b>npx tsc app.ts</b></code> to convert ts to js. because browser can't read ts file</p>
+<p>After run the above command it will create a <code><b>app.js</b></code> file, where we can see the actual js code</p>
+<p><b>Run this command:</b> <code><b>npx tsc app.ts --watch</b></code> this will automatically convert ts to js. NO need to manually run <code><b>npx tsc app.ts</b></code></p>
+<br/>
+
+
+<hr />
+<h5><b>Restrictions in TS</b></h5>
+<hr />
+<textarea class="code-editor">
+var name = "Jhon"; // error: Cannot redeclare block-scoped variable 'name'.
+// In our window object there is a "name" variable. So we can't declare a variable with same name.
+</textarea>
+
+
+<hr />
+<h5><b>Datatypes in TS</b></h5>
+<hr />
+<textarea class="code-editor">
+TypeScript Data Types
+│
+├── 1. Primitive Data Types
+│   ├── string
+│   ├── number
+│   ├── boolean
+│   ├── bigint
+│   ├── symbol
+│   ├── null
+│   └── undefined
+│
+├── 2. Object Types
+│   ├── object
+│   ├── Array
+│   ├── Tuple
+│   ├── Interface
+│   ├── Type Alias (Object)
+│   ├── Class
+│   └── Enum
+│
+├── 3. Special Types
+│   ├── any
+│   ├── unknown
+│   ├── void
+│   ├── never
+│   └── null & undefined (strict mode)
+│
+├── 4. Function Types
+│   ├── Function Type Annotation
+│   ├── Optional Parameters
+│   ├── Default Parameters
+│   ├── Rest Parameters
+│   ├── Callback Functions
+│   ├── Function Overloading
+│   └── this Parameter
+│
+└── 5. Advanced Types
+    ├── Union Types (|)
+    ├── Intersection Types (&)
+    ├── Literal Types
+    ├── Type Aliases
+    ├── Type Assertions
+    ├── Type Guards
+    ├── keyof
+    ├── typeof
+    ├── indexed access types
+    ├── Conditional Types
+    ├── Mapped Types
+    ├── Utility Types
+    ├── Generics
+    ├── Template Literal Types
+    └── Infer Keyword
+</textarea>
+<ol>
+  <li class="mb-2"><b>Primitive Data Types</b>:
+    <ul class="list-group list-group-flush mx-4">
+      <li><b><code>string</code></b></li>
+      <li><b><code>number</code></b>: This type used for <b>Int</b>, <b>Decimal</b> and <b>Float</b> values</li>
+      <li><b><code>boolean</code></b></li>
+      <li><b><code>undefined</code></b>: value is not assigned yet. But can be assigned later or we can say that uninitialized value
+<textarea class="code-editor">
+var data:undefined = undefined;
+</textarea>
+      </li>
+      <li><b><code>null</code></b>: Means totally absence of value / empty
+<textarea class="code-editor">
+var data = ""; // this is empty string, not null
+var data2 = null; // this is null. In this variable will come only null value.
+</textarea>
+    </li>
+      <li><b><code>bigInt</code></b></li>
+      <li><b><code>symbol</code></b></li>
+    </ul>
+  </li>
+  <li class="mb-2"><b>Object Types</b>
+    <ul class="list-group list-group-flush mx-4">
+      <li class="mb-2"><b>Array</b></li>
+      <li class="mb-2"><b>Tuple</b></li>
+    </ul>
+  </li>
+  <li class="mb-2"><b>Special Types</b></li>
+  <li class="mb-2"><b>Advanced Types</b></li>
+  <li class="mb-2"><b>Function Types</b></li>
+</ol>
+
+
+<br/>
+
+<!-- 
+<blockquote class="blockquote">
+  <code class="mark">
+    <h5><b>Note:</b></h5>
+    <p><i>For all these <b>Promise APIs</b>, all promises <b>called in parallel</b>.</i></p>
+    <code><b>settled</b></code><p> means get result from <b>promise</b> and it can be either <b class="text-success">resolved / fulfilled / success</b> <b>or</b> <b class="text-danger">rejected / failure / reject</b>.</p>
+  </code>
+</blockquote>
+-->
+
+<!-- 
+<hr />
+<h5><b>Craete a Server</b></h5>
+<hr />
+<p>We create <code><b>index.js</b></code> file inside <code><b>src</b></code> folder</p>
+<textarea class="code-editor">
+
+</textarea>
+<br/>
+<p><b>Run this command:</b> <code><b>npm run dev</b></code></p>
+<p>If all things are fine then we will see this message <code><b>Server running on port 5001</b></code> in <b><i>terminal</i></b></p>
+<br/> -->
+
+
+
+<!-- <blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">npm run dev</code>
+</blockquote> -->
+
+  <script src="assets/js/codemirror/codemirror.min.js"></script>
+  <script src="assets/js/codemirror/javascript.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common-script.js"></script>
+</body>
+
+</html>
