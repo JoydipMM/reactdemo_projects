@@ -1,0 +1,12 @@
+create TypeScript config file
+-------------------------------------------
+open terminal
+write command: tsc --init
+above command will create a tsconfig.json file. Inside this file you can specify the options for your project.
+-------------------------------------------
+
+
+How to compiled typescript file to javascript file with tsconfig.json file
+-------------------------------------------
+first remove all compiled js file.
+open termial and run command: tsc
