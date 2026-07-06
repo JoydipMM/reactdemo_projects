@@ -9,4 +9,20 @@ above command will create a tsconfig.json file. Inside this file you can specify
 How to compiled typescript file to javascript file with tsconfig.json file
 -------------------------------------------
 first remove all compiled js file.
-open termial and run command: tsc
+open termial and run command: tsc / tsc --watch
+it will create js files
+-------------------------------------------
+
+
+tsconfig.json file modification for change compilation setting:
+-------------------------------------------
+if we want to store js file in dist folder then we need to add / uncomment "outDir" and assign folder name. here
+{
+"outDir: "./output" 
+} 
+in tsconfig.json file. 
+{
+    "sourceMap": true, // if true then it will create source map file
+    "declaration": true, // if true then it will create declaration file
+    "declarationMap": true, // if true then it will create declaration map file
+}
