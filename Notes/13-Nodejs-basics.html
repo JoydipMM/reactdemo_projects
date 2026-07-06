@@ -546,6 +546,100 @@ fs.writeFile(asyncFilePath, "Async Hello World", (err) => {
 
 
 <hr />
+<h5><b>HTTP server</b></h5>
+<hr />
+<p>To create http server we need to import the <b>http</b> module: <code><b>const http = require("http");</b></code></p>
+<p>Now we create a server with the <b>createServer</b> method:</p>
+<textarea class="code-editor">
+const http = require("http");
+
+// 01 create server
+const server = http.createServer((req, res) => {
+    // request / req >>> will give some properties like: params, url, body, headers, payload etc
+    // response / res >>> will give some response back. 
+    console.log("Request received", req);
+})
+
+// 02 create port
+const port = 4000;
+
+// 03 server listen on port
+server.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+})
+</textarea>
+<p>We created a server which will run on port, that port is <code><b>3000</b></code>, then use <b>listen method</b> to listen on that port</p>
+<p>Now open the terrminal and run command <code><b>node src/index.js</b></code></p>
+<p>In terminal it will show <code><b>Server running on port 3000</b></code></p>
+<p>Also, if we open the browser and go to <code><b>http://localhost:4000/</b></code> the page will reloading continuously and in terminal it will show <b>request data list</b></p>
+<p>So to show some message instead stop browser reloading we update the following codes: </p>
+<textarea class="code-editor">
+const server = http.createServer((req, res) => {
+    // request / req >>> will give some properties like: params, body, headers, payload etc
+    // response / res >>> will give some response back. 
+    console.log("Request received", req);
+
+    /* this are the lines of code to send response and stop the browser reloading */
+    // define the response content type
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    // send the response
+    res.end("server is running");
+})
+</textarea>
+<p>Now <code><b>http://localhost:4000/</b></code> will show <b>server is running</b> message</p>
+<br/>
+<br/>
+
+
+<hr />
+<h5><b>Create simple routes using HTTP module</b></h5>
+<hr />
+<p>To create this first we make a js file named <b>routes.js</b>. In this file we will create routes for home page</p>
+<textarea class="code-editor">
+const http = require("http");
+
+// create server
+const server = http.createServer((req, res) => {
+
+    const url = req.url; // url is a property of request object
+
+    // this is a route for home page
+    if(url === '/'){
+        // '/' >>> http://localhost:4000/
+        res.writeHead(200, { "Content-Type": "text/plain" });
+        res.end("Home page");
+    }
+})
+
+// create port
+const port = 4000;
+
+// server listen on port
+server.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+})
+</textarea>
+<p>Now if we visit <code><b>http://localhost:4000/</b></code> it will show <b>Home page</b></p>
+<p>We create another route for <code><b>http://localhost:4000/about</b></code> and <code>error page</code> if url path not match. For that we update the following code:</p>
+<textarea class="code-editor">
+if(url === '/'){
+    // '/' >>> http://localhost:4000/
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("Home page");
+}else if(url === '/about'){ // this is the new route code for about and error page
+    // '/about' >>> http://localhost:4000/about
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("About page");
+}else{
+    res.writeHead(404, { "Content-Type": "text/plain" });
+    res.end("Page not found");
+}
+</textarea>
+<br/>
+<br/>
+
+
+<hr />
 <h5><b>DeStructuring Rest Spread Operator ES6 JavaScript</b></h5>
 <hr />
 
