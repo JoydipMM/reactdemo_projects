@@ -639,11 +639,233 @@ if(url === '/'){
 
 
 <hr />
-<h5><b>Callback and Callmack ES6 JavaScript</b></h5>
+<h5><b>Callback and Callback Hell ES6 JavaScript</b></h5>
 <hr />
+<p><b>Simple callback example</b></p>
+<textarea class="code-editor">
+const fs = require("fs");
+const path = require("path");
+
+function useraddress(){
+    console.log("user address");
+}
+
+function person(username, callback){
+    console.log(`Hello ${username}`);
+    callback();
+}
+
+// here the first parameter is data and second parameter is a callback function where we call the address function as a callback function
+person("Diplob Sarker", useraddress);
+
+
+// simple callback example to file read
+fs.readFile("callback/input.txt", "utf-8", (err, data)=>{ // here (err,data)=>{} is a callback function
+    if(err) 
+    {
+        console.log("Error reading file ", err);
+        return
+    }
+    console.log("Content from Text file:", data);
+})
+</textarea>
+<br/>
+<p><b>Callback Hell with file read and write example</b></p>
+<p>For this example we first create a file named <code><b>input.txt</b></code> in the folder named <code><b>callback</b></code>. the content of this file is <b>CALLBACK LOGIC</b></p>
+<textarea class="code-editor">
+const fs = require("fs");
+const path = require("path");
+
+// callback hell example. Here we called one callback function inside another callback function. This also known as callback hell
+fs.readFile("callback/input.txt", "utf-8", (err, data)=>{ // this is a callback function (callbakc 01)
+   // if get any error to file read
+    if(err) 
+    {
+        console.log("Error reading file ", err);
+        return
+    } 
+    // if file read successfully then modify the file data. As example: convert the file data to uppercase
+    const modifyFileData = data.toUpperCase();
+
+    // now we update the text file with modified file data. This fs.writeFile is a callback function
+    // syntax 
+    /* 
+    fs.writeFile("filepath", modified Data, (err)=>{ callback function });
+    */
+    fs.writeFile("callback/input.txt", modifyFileData, (err)=>{  // this is another callback function inside another callback function  (callback 02)
+        if(err) 
+        {
+            console.log("Error writing file ", err);
+            return
+        }
+        console.log("File updated");
+
+        // So if we want to load the file content after file update 
+        // then we have to read the file again
+        fs.readFile("callback/input.txt", "utf-8", (err, data)=>{ // this is a callback function (callback 03)
+            if(err) 
+            {
+                console.log("Error writing file ", err);
+                return
+            }
+            console.log(data);
+        })  
+    })  
+});
+</textarea>
+<br/>
+
+
+
+<hr />
+<h5><b>Promise</b></h5>
+<hr />
+<textarea class="code-editor">
+function delayFn(time){
+    return new Promise((resolve, reject)=>{
+        setTimeout(resolve, time);
+    })
+}
+console.log("program started");
+
+delayFn(3000)
+.then(() => 
+    {
+        console.log("Promise resolved after 3000ms");
+        delayFn(2000)
+            .then(() => console.log("Promise resolved after 2000ms"))
+            .catch(() => console.log("Promise rejected"));
+    }
+)
+.catch(() => console.log("Promise rejected"));
+
+console.log("program ended");
+</textarea>
+<br/>
+<p><b>Promise with error handling</b></p>
+<textarea class="code-editor">
+function divideFn(num1, num2){
+    return new Promise((resolve, reject)=>{
+        if(num2 === 0){
+            reject("Divide by zero showing error");
+        }else{
+            resolve(num1 / num2);
+        }
+    })
+}
+
+divideFn(24, 2)
+.then((result) => console.log("Promise resolved", result))
+.catch((error) => console.log(error));
+</textarea>
+<br/>
+
+
+
+<hr />
+<h5><b>Async Await</b></h5>
+<hr />
+<textarea class="code-editor">
+function delayFn(time){
+    return new Promise((resolve, reject)=> setTimeout(resolve, time));
+}
+
+async function delayedAsyncFn(name){
+    await delayFn(2000);
+    console.log(name);
+}
+
+delayedAsyncFn("Sangam"); // Output: Sangam
+</textarea>
+<br/>
+<p><b>Async Await with error handling</b></p>
+<textarea class="code-editor">
+async function division(num1, num2){
+    try{
+        if(num2 === 0) throw "Divide by zero showing error";
+        await delayFn(2000);
+        return num1 / num2;
+    }catch(error){
+        console.log("Error is: ", error);
+        return null;
+    }
+}
+
+async function calculation(){
+    console.log(await division(24, 2));
+    console.log(await division(24, 0));
+}
+
+calculation();
+</textarea>
+<br/>
+
+
+
+<hr />
+<h5><b>Event Emitter</b></h5>
+<hr />
+<p><b>EventEmitter</b> is a <b><i>built-in class in Node.js</i></b> that allows objects to <b>emit</b> (trigger) events and <b>listen</b> for those events. It is the foundation of <b>Node.js's event-driven architecture</b>.</p>
+<ul class="list-group list-group-flush mx-4 mb-2">
+<li><b>Emitter</b> → Announces that something happened.</li>
+<li><b>Listener</b> → Waits for that event and responds to it.</li>
+</ul>
+<p><b>Why do we need EventEmitter?</b></p>
+<p>Without EventEmitter everything is tightly coupled. Take the below taskCompleted() function as an example. Here we have 3 functions that are tightly coupled. So when taskCompleted() is called, all 3 functions are called. There is no way to call indivitual functions separately. So to solve this problem we use <b>EventEmitter</b>, which allows us to call individual functions separately with independent listeners</p>
+<table class="table">
+<tr>
+  <td><b>Without EventEmitter</b></td>
+  <td><b>With EventEmitter</b></td>
+</tr>
+<tr>
+  <td>
+  <textarea class="code-editor">
+  function taskCompleted() {
+      console.log("Task Completed");
+      sendNotification();
+      saveLog();
+      updateDashboard();
+  }
+  </textarea>
+  </td>
+  <td>
+<textarea class="code-editor">
+emitter.on("taskCompleted", sendNotification);
+emitter.on("taskCompleted", saveLog);
+emitter.on("taskCompleted", updateDashboard);
+/*
+This makes code:
+>> More modular
+>> Easier to maintain
+>> Loosely coupled
+*/
+</textarea>
+  </td>
+</tr>
+</table>
+<h5><b>Use of <code><i>EventEmitter</i></code></b></h5>
+<textarea class="code-editor">
+// 01. import the event emitter class 
+const eventEmitter = require("events");
+
+// 02. create a new event emitter instance
+const myFirstEmitter = new eventEmitter();
+
+// 03. Register a listener for the event
+myFirstEmitter.on("firstEmittedEvent", () => {
+    console.log("event emitted");
+});
+
+// 04. Emit the event
+myFirstEmitter.emit("firstEmittedEvent");
+
+// Output: 
+// event emitted
+</textarea>
 
 <br/>
 <br/>
+
 
 
 <hr />
