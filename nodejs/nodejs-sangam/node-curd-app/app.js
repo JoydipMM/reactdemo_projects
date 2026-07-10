@@ -30,7 +30,42 @@ app.get("/products", (req,res)=>{
 });
 app.get("/products/:id", (req,res)=>{
     const filteredProduct = data.find((product) => product.id == req.params.id);
-  res.json({title:"Products", data:filteredProduct});  
+    if(!filteredProduct){
+        return res.status(404).json({message:"Product not found"});
+    }else{
+        return res.json({title:"Products", data:filteredProduct});  
+    }
+});
+app.post("/add", (req,res)=>{
+  const newProduct = {
+    id: data.length + 1,
+    //name: req.body.name // real projct it will be req.body
+    name: `name${data.length + 1}`
+  } 
+  data.push(newProduct);
+  res.json({
+    data:newProduct,
+    message: "New product added successfully"
+  })
+
+});
+app.put("/update/:id", (req,res)=>{
+    const updatedProduct = data.find((product) => product.id == req.params.id);
+    if(!updatedProduct){
+        return res.status(404).json({message:"Product not found"});
+    }else{
+         updatedProduct.name =  `${updatedProduct.name} updated`;
+         return res.json({ status: 202, message:"Products updated", data: updatedProduct});
+    }
+});
+app.delete("/delete/:id", (req,res)=>{
+    const deletedProduct = data.find((product) => product.id == req.params.id);
+    if(!deletedProduct){
+        return res.status(404).json({message:"Product not found"});
+    }else{
+        data.splice(data.indexOf(deletedProduct), 1);
+        return res.json({title:"Products", data});  
+    }
 });
 
 
