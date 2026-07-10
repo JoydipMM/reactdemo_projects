@@ -438,10 +438,40 @@ Command: 'conda install -n condavenv ipykernel --update-deps --force-reinstall'
 
 
 
+https://www.youtube.com/results?search_query=angular+full+tutorial+in+hindi
+https://www.youtube.com/@MohitDecodes/playlists
+
+javascript 
+http://127.0.0.1:5500/09-Javascript-basics.html
+
+typescript
+https://www.youtube.com/watch?v=20IKX4QZGrE&list=PL8p2I9GklV44fWXJGEsBvR_ylJClgdVAN&index=8
+file:///G:/Reactjs/reactdemo_projects/Notes/14-TypeScript-basics.html
+
+nodejs
+https://www.youtube.com/watch?v=MIJt9H69QVc&list=PLcNEcCK9LwMc
+file:///G:/Reactjs/reactdemo_projects/Notes/13-Nodejs-basics.html
 
 
 
+icons required:
+-----------------------------------------------------------------
+https://matrixmedia.betatesting.net/services/ecommerce/
+-----------------------------------------------------------------
+KPI card section -  3 icons
+service tab icons: woo-commerce • Stripe • Razorpay • PayPal • PayU • Shiprocket • Shippo • Shipstation
+We Specialize - Education icon
+Real Business Outcomes Delivered section - doubt
 
 
+Service: dedicated teams - service content missing.
 
+Cloud infra ------
+Trusted by Businesses Across Industries and Continents >> problem: 24/7 counter
+service tab icons: Google Cloud Platform • Docker • Kubernetes • Jenkins • GitHub Actions • Terraform • Ansible • CloudFormation  • Prometheus • Grafana • Datadog • CloudWatch • Linux • NGINX • Apache •
 
+sws-icon-8
+
+Get Free Project Estimate
+
+[contact-form-7 id="26f8817"]
