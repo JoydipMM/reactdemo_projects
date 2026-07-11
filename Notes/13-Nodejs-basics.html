@@ -862,8 +862,161 @@ myFirstEmitter.emit("firstEmittedEvent");
 // Output: 
 // event emitted
 </textarea>
-
 <br/>
+<h5><b>Important Methods</b></h5>
+<ol class="list-group list-group-flush mx-4">
+<li class="mb-3">
+  <code><b>on()</b></code>: <b>Registers an event listener.</b>
+  <textarea class="code-editor">emitter.on(eventName, listener);</textarea>
+  <p><b>Example:</b></p>
+<textarea class="code-editor">
+const EventEmitter = require("events");
+
+const emitter = new EventEmitter();
+
+emitter.on("welcome", () => {
+    console.log("Welcome User!");
+});
+
+emitter.emit("welcome");
+
+// Output: 
+// Welcome User!
+</textarea>
+</li>
+<li class="mb-3">
+  <code><b>emit()</b></code>: <b>Triggers an event.</b>
+  <textarea class="code-editor">emitter.emit(eventName);</textarea>
+  <!-- <p><b>Example:</b></p> -->
+</li>
+<li class="mb-3">
+  <code><b>Passing Data</b></code>: <b>We can pass arguments while emitting.</b>
+<textarea class="code-editor">
+const EventEmitter = require("events");
+
+const emitter = new EventEmitter();
+
+emitter.on("userLogin", (name, age) => {
+    console.log(`${name} logged in.`);
+    console.log(`Age: ${age}`);
+});
+
+emitter.emit("userLogin", "Rahul", 25);
+
+// Output
+Rahul logged in.
+Age: 25
+</textarea>
+</li>
+<li class="mb-3">
+  <code><b>Multiple Listeners</b></code>: <b>Listeners are executed in the order they were registered.</b>
+<textarea class="code-editor">
+const EventEmitter = require("events");
+
+const emitter = new EventEmitter();
+
+emitter.on("userLogin", (name, age) => {
+    console.log(`${name} logged in.`);
+    console.log(`Age: ${age}`);
+});
+
+emitter.emit("userLogin", "Joydip", 25);
+</textarea>
+</li>
+<li class="mb-3">
+  <code><b>Passing Data</b></code>: <b>We can pass arguments while emitting.</b>
+<textarea class="code-editor">
+const EventEmitter = require("events");
+
+const emitter = new EventEmitter();
+
+emitter.on("orderPlaced", () => {
+    console.log("Email Sent");
+});
+
+emitter.on("orderPlaced", () => {
+    console.log("SMS Sent");
+});
+
+emitter.on("orderPlaced", () => {
+    console.log("Invoice Generated");
+});
+
+emitter.emit("orderPlaced");
+
+// Output
+Email Sent
+SMS Sent
+Invoice Generated
+</textarea>
+</li>
+<li class="mb-3">
+  <code><b>once()</b></code>: <b>Runs the listener only once.</b>
+<textarea class="code-editor">
+const EventEmitter = require("events");
+
+const emitter = new EventEmitter();
+
+emitter.once("login", () => {
+    console.log("Welcome!");
+});
+
+emitter.emit("login");
+emitter.emit("login");
+
+// Output:
+Welcome!
+</textarea>
+<p>The second <code>emit()</code> does nothing because the listener is automatically removed after its first execution.</p>
+</li>
+<li class="mb-3">
+  <code><b>off() / removeListener()</b></code>: <b>Removes a listener.</b>
+<textarea class="code-editor">
+const EventEmitter = require("events");
+
+const emitter = new EventEmitter();
+
+function greet() {
+    console.log("Hello");
+}
+
+emitter.on("sayHello", greet);
+
+emitter.off("sayHello", greet);
+
+emitter.emit("sayHello");
+
+// Result:
+no output
+</textarea>
+</li>
+<li class="mb-3">
+  <code><b>removeAllListeners()</b></code>: <b>Removes every listener for a specific event.</b>
+<textarea class="code-editor">
+emitter.removeAllListeners("login");</textarea>
+<p><b>Or all listeners:</b></p>
+<textarea class="code-editor">
+emitter.removeAllListeners();</textarea>
+</li>
+<li class="mb-3">
+  <code><b>listenerCount()</b></code>: <b>Returns the number of listeners attached to an event.</b>
+<textarea class="code-editor">
+const EventEmitter = require("events");
+
+const emitter = new EventEmitter();
+
+emitter.on("test", () => {});
+emitter.on("test", () => {});
+
+console.log(emitter.listenerCount("test"));
+
+// Output:
+2
+</textarea>
+</li>
+</ol>
+<br/>
+<h5><b>Custom Event Listener</b></h5>
 <br/>
 
 
