@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllBooks, getBookById, addNewBook, updateBook, deleteBook } = require("../controllers/book-controller")
+const { getAllBooks, getBookById, addNewBook, updateBook, deleteBook } = require("../controllers/book-controller");
 
 // create express router
 const router = express.Router();

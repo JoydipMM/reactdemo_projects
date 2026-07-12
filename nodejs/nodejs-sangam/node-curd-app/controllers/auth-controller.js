@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
     try{
@@ -37,6 +38,34 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     try{
+        const { email, password } = req.body;
+
+        // find the user email is valid or not
+        const user = await User.findOne({email});
+        if(!user){
+            return res.status(404).json({ success:false, message: "Invalid credential" });
+        }
+
+        // match password
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+        if(!isPasswordMatch){
+            return res.status(404).json({ success:false, message: "Invalid credential" });
+        }
+
+        // create token
+        const userAccessToken = jwt.sign(
+            {
+                userId: user._id,
+                username: user.username,
+                email: user.email,
+                phone: user.phone,
+                role: user.role
+            },
+            process.env.JWT_SECRET_KEY,
+            { expiresIn: "1d" }
+        )
+
+        return res.status(200).json({ success:true, message: "User logged in successfully", userAccessToken });
 
     }catch(error){
         return res.status(500).json({ success:false, message: `Error: ${error.message}` || "Somthing went wrong" });
