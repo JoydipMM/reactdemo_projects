@@ -35,4 +35,17 @@ const uploadImageController = async (req, res) =>{
     }
 }
 
-module.exports = { uploadImageController };
+
+const fetchImagesController = async (req, res) =>{
+    try{
+        const getImages = await Image.find({}).populate("uploaded_by" , "email username");
+        if(getImages.length > 0){
+            return res.status(200).json({ success:true, message: "Images found", images: getImages, total: getImages.length, limit: 5, skip: 0 });
+        }
+    }catch(error){
+        return res.status(500).json({ success:false, message: `Error:: ${error.message}` || "Somthing went wrong" });
+    }
+
+}
+
+module.exports = { uploadImageController, fetchImagesController };
