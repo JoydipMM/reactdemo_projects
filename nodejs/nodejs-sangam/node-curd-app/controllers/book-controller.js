@@ -3,7 +3,7 @@ const Books = require('../models/Book');
 // get all book
 const getAllBooks = async (req, res) => {
     try{
-        const getAllBooks = await Books.find({}).select("-_id");
+        const getAllBooks = await Books.find({isActive: true}).select("-_id");
         const booksCount = getAllBooks?.length;
         if(booksCount > 0){
             return res.status(200).json({ success:true, message: "All books", books: getAllBooks, total: booksCount, limit:5, skip:0 });
@@ -34,6 +34,13 @@ const getBookById = async (req, res) => {
 const addNewBook = async (req, res) => {
     try{
         const newBookFormData = req.body;
+
+        const findBookByTitle = await Books.findOne({title: newBookFormData.title});
+
+        if(findBookByTitle){
+            return res.status(400).json({ success:false, message: "Book already exists with this title" });
+        }
+
         const newBook = await Books.create({
             title: newBookFormData.title,
             author: newBookFormData.author,
@@ -56,23 +63,27 @@ const updateBook = async (req, res) => {
         if(!getBook){
             return res.status(404).json({ success:false, message: "Book not found" });
         }else{
-            const updateBookById = await Books.findByIdAndUpdate(
-                getBook,
-                {
-                    $set:{
-                        title: req.body.title,
-                        author: req.body.author,
-                        year: req.body.year,
-                        price: req.body.price
+            const findBookByTitle = await Books.findOne({title: getBook.title});
+            if(findBookByTitle.title === req.body.title){
+                return res.status(400).json({ success:false, message: "Book already exists with this title" });
+            }else{
+                const updateBookById = await Books.findByIdAndUpdate(
+                    getBook,
+                    {
+                        $set:{
+                            title: req.body.title,
+                            author: req.body.author,
+                            year: req.body.year,
+                            price: req.body.price
+                        }
+                    },
+                    {
+                        returnDocument: "after"
                     }
-                },
-                {
-                    returnDocument: true
+                )
+                if(updateBookById){
+                    return res.status(200).json({ success:true, message: "Book updated successfully", book: updateBookById });
                 }
-            )
-            if(updateBookById){
-                const afterUpdated = await Books.findById({_id: getBookId});
-                return res.status(200).json({ success:true, message: "Book updated successfully", book: afterUpdated });
             }
         }
     }catch(error){
@@ -83,7 +94,26 @@ const updateBook = async (req, res) => {
 // delete book
 const deleteBook = async (req, res) => {
     try{
-
+        const getBookId = req.params.id;
+        const getBook = await Books.findById({_id: getBookId});
+        if(!getBook){
+            return res.status(404).json({ success:false, message: "Book not found" });
+        }else{
+            const softDeleteBook = await Books.findByIdAndUpdate(
+                getBook,
+                {
+                    $set:{
+                        isActive: false
+                    }
+                },
+                {
+                    returnDocument: "after"
+                }
+            ).select("isActive -_id")
+            if(softDeleteBook){
+                return res.status(200).json({ success:true, message: "Book soft delete successfully", book: softDeleteBook });
+            }
+        }
     }catch(error){
         return res.status(500).json({ success:false, message: `Error: ${error.message}` || "Somthing went wrong" });
     }

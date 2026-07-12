@@ -9,7 +9,7 @@ router.get("/get", getAllBooks)
 router.get("/get/:id", getBookById)
 router.post("/add", addNewBook)
 router.put("/update/:id", updateBook)
-router.delete("/delete/:id", deleteBook)
+router.patch("/delete/:id", deleteBook)
 
 
 // export router
