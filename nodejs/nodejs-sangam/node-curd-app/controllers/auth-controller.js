@@ -23,7 +23,7 @@ const registerUser = async (req, res) => {
             username,
             email,
             password,
-            role
+            role : role || "user"
         });
 
         if(addNewUser){
