@@ -1,5 +1,6 @@
 const Image = require("../models/Image");
 const { uploadToCloud } = require("../helpers/cloudenaryHelper");
+const fs = require("fs");
 
 const uploadImageController = async (req, res) =>{
     try{
@@ -21,6 +22,11 @@ const uploadImageController = async (req, res) =>{
         });
 
         if(newlyUploadedImage){
+
+            // remove the file from uploads folder after successfully uploaded to cloudinary and database
+            fs.unlinkSync(req.file.path);
+
+
             return res.status(201).json({ success:true, message: "Image uploaded successfully", image: newlyUploadedImage });
         }
 
