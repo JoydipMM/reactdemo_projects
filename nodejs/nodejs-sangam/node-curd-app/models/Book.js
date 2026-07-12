@@ -15,6 +15,7 @@ const bookSchema = new mongoose.Schema({
     },
     year:{
         type: Number,
+        default: new Date().getFullYear(),
         required:[true, "Publish year required."],
         min: [1000, "Year must be bove 1000 year"],
         max: [new Date().getFullYear(), "Year cannot be in future"]
@@ -25,7 +26,7 @@ const bookSchema = new mongoose.Schema({
     },
     isActive:{
         type: Boolean,
-        default: false,
+        default: true,
     }
 }, {timestamps: true});
 
