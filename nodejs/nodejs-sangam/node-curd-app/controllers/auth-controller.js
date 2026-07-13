@@ -72,7 +72,37 @@ const loginUser = async (req, res) => {
     }
 }
 
+
+const changePasswordUser = async(req, res) => {
+    try{
+        const loggedUser = await User.findById(req.userInfo.userId);
+        const { oldPassword, newPassword } = req.body;
+        // check user is valid or not
+        if(!loggedUser){
+            return res.status(404).json({ success:false, message: "User not found" });
+        }
+
+        // check old password is valid or not
+        const isOldPasswordMatch = await bcrypt.compare(oldPassword, loggedUser.password);
+        if(!isOldPasswordMatch){
+            return res.status(404).json({ success:false, message: "Invalid credential" });
+        }
+
+        // validate new password
+        if(newPassword.length < 5 || newPassword.length > 20){
+            return res.status(400).json({ success:false, message: "Password must be at least 5 characters long and at most 20 characters long" });
+        }
+
+
+        return res.status(200).json({ success:true, message: "Password changing work in progress", user:loggedUser });
+
+    }catch(error){
+        return res.status(500).json({ success:false, message: `Error --: ${error.message}` || "Something went wrong" })
+    }
+}
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    changePasswordUser,
 }
