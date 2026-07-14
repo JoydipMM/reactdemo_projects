@@ -96,11 +96,11 @@ const changePasswordUser = async(req, res) => {
             return res.status(400).json({ success:false, message: "Password must be at least 5 characters long and at most 20 characters long" });
         }
 
+        // check the old and new password is same or not
         const checkOldAndNewPassword = await bcrypt.compare(newPassword, loggedUser.password);
         if(checkOldAndNewPassword){
-            return res.status(500).json({ success:false, message: "Both password are same" })
+            return res.status(500).json({ success:false, message: "Both password are same !!!" })
         }else{
-
             loggedUser.password = newPassword;
             await loggedUser.save();
             return res.status(200).json({ success:true, message: "New Password Updated" });
