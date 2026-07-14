@@ -82,10 +82,13 @@ const changePasswordUser = async(req, res) => {
             return res.status(404).json({ success:false, message: "User not found" });
         }
 
+        //console.log(await bcrypt.compare("1990_Biplob", loggedUser.password));
+        //console.log(await bcrypt.compare("1990_Biplob_new", loggedUser.password));
+
         // check old password is valid or not
         const isOldPasswordMatch = await bcrypt.compare(oldPassword, loggedUser.password);
         if(!isOldPasswordMatch){
-            return res.status(404).json({ success:false, message: "Invalid credential" });
+            return res.status(404).json({ success:false, message: "Invalid credencial" });
         }
 
         // validate new password
@@ -93,8 +96,15 @@ const changePasswordUser = async(req, res) => {
             return res.status(400).json({ success:false, message: "Password must be at least 5 characters long and at most 20 characters long" });
         }
 
+        const checkOldAndNewPassword = await bcrypt.compare(newPassword, loggedUser.password);
+        if(checkOldAndNewPassword){
+            return res.status(500).json({ success:false, message: "Both password are same" })
+        }else{
 
-        return res.status(200).json({ success:true, message: "Password changing work in progress", user:loggedUser });
+            loggedUser.password = newPassword;
+            await loggedUser.save();
+            return res.status(200).json({ success:true, message: "New Password Updated" });
+        }
 
     }catch(error){
         return res.status(500).json({ success:false, message: `Error --: ${error.message}` || "Something went wrong" })
