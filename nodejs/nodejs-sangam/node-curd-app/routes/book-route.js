@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllBooks, getBookById, addNewBook, updateBook, deleteBook } = require("../controllers/book-controller");
+const { getAllBooks, getBookById, addNewBook, updateBook, deleteBook, getBookStatus } = require("../controllers/book-controller");
 
 // create express router
 const router = express.Router();
@@ -10,6 +10,7 @@ router.get("/get/:id", getBookById)
 router.post("/add", addNewBook)
 router.put("/update/:id", updateBook)
 router.patch("/delete/:id", deleteBook)
+router.get("/aggregate-filter", getBookStatus)
 
 
 // export router

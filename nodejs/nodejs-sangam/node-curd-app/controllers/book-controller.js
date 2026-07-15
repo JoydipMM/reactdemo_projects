@@ -3,7 +3,7 @@ const Books = require('../models/Book');
 // get all book
 const getAllBooks = async (req, res) => {
     try{
-        const getAllBooks = await Books.find({isActive: true}).select("-_id");
+        const getAllBooks = await Books.find().select("-_id");
         const booksCount = getAllBooks?.length;
         if(booksCount > 0){
             return res.status(200).json({ success:true, message: "All books", books: getAllBooks, total: booksCount, limit:5, skip:0 });
@@ -119,7 +119,97 @@ const deleteBook = async (req, res) => {
     }
 }
 
+// aggregatio pipeline route
+const getBookStatus = async (req, res) => {
+    try{
+        // filter condition >> price is greater than 350 and isActive is true
+        /*
+        Syntax: 
+        const getBookStatus = await Books.aggregate([
+            {
+                $match: {
+                    $and: [
+                        {price: {$gt: 350}},
+                        {isActive: true}
+                    ]
+                }
+            }
+        ])
+        */
+
+        
+        const getBookStatus =await Books.aggregate([
+            // stage 01 ----------------
+            /*{
+                $match:{
+                    price: {$gt: 350}, // $gt = greater than
+                    isActive: true
+                }
+            }*/
+            // stage 02 ----------------
+            // group by category 
+            // get the avarage price 
+            // count the number of each category
+            /*{
+                $group:{
+                    _id: "$isActive",
+                    avgPrice: {$avg: "$price"},
+                    count: {$sum: 1}
+                }
+            }*/
+           {
+            $match:{
+                isActive: true
+            }
+           },
+           {
+                $group:{
+                    _id: null,
+                    avgPrice: {$avg: "$price"},
+                    totalPrice: {$sum: "$price"},
+                    minPrice: {$min: "$price"},
+                    maxPrice: {$max: "$price"},
+                    count: {$sum: 1}
+                }
+            },
+            {
+                $project: {
+                    _id: 0, // 0 = this field will not show and 1 = this field will show
+                    avgPrice: 1,
+                    totalPrice: 1,
+                    minPrice: 1,
+                    maxPrice: 1,
+                    count: 1,
+                    priceRange: {
+                        $subtract: ["$maxPrice", "$minPrice"]
+                    }
+                    /*
+                    ---------------------------
+                    priceRange example:
+                    ---------------------------
+                    const maxPrice = 600;
+                    const minPrice = 300;
+                    const priceRange = maxPrice - minPrice;
+                    console.log(priceRange); // 300
+                    */
+                }
+            }
+            // above is example of chaining of filter
+            /*
+            1. match > isActive is true
+            2. group > group with null. means no group name. inside group we have avgPrice, count, totalPrice, minPrice, maxPrice
+            3. project > show only avgPrice, count, totalPrice, minPrice, maxPrice by assigning 1 and 0 to _id field to hide
+            */
+
+        ])
+        return res.status(200).json({ success:true, message: "Book filter Done", books: getBookStatus });
+
+    }catch(error){
+        return res.status(500).json({ success:false, message: `Error: ${error.message}` || "Somthing went wrong" });
+    }
+}
+
 
 module.exports = {
-    getAllBooks, getBookById, addNewBook, updateBook, deleteBook
+    getAllBooks, getBookById, addNewBook, updateBook, deleteBook, getBookStatus
 }
