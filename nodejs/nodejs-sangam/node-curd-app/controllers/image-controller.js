@@ -39,9 +39,49 @@ const uploadImageController = async (req, res) =>{
 
 const fetchImagesController = async (req, res) =>{
     try{
-        const getImages = await Image.find({}).populate("uploaded_by" , "email username");
+
+        // pagination codes
+        const page = parseInt(req.query.page) || 1; // page number, like: 1,2,3,4,5. when user click on 2 then page will be page 2
+        const limit = parseInt(req.query.limit) || 2; // limit number, like: 5,10,15,20. how many item will be shown in one page
+        const skip = (page - 1) * limit; 
+        /* skip number of item will skip for each page 
+        Ex: 
+        for page 1 = [(1 - 1) * 5] = 0, 
+        for page 2 = [(2 - 1) * 5] = 5, 
+        for page 3 = [(3 - 1) * 5] = 10 
+        */
+        const sortBy = req.query.sortBy || "createdAt"; // sort by createdAt or updatedAt
+        const sortOrder = req.query.sortOrder === "asc" ? 1 : -1; // sort order asc or desc
+        const totalCount = await Image.countDocuments({}); // total count of all images in database
+        const totalPages = Math.ceil(totalCount / limit); // total pages -> 1,2,3,4 > pagination ( 20 / 5 ) = 4 
+
+        const sortObj = {};
+        sortObj[sortBy] = sortOrder;
+        /* sortObj = { createdAt: 1 } */
+        const getImages = await Image.find().sort(sortObj).skip(skip).limit(limit).populate("uploaded_by" , "email username");
+        // Note: -----------------------
+        // .sort().skip().limit() all are mongoose inbuilt methods
+        // -----------------------------
+
+        // without pagination
+        //const getImages = await Image.find({}).populate("uploaded_by" , "email username");
         if(getImages.length > 0){
-            return res.status(200).json({ success:true, message: "Images found", images: getImages, total: getImages.length, limit: 5, skip: 0 });
+            // without pagination
+            // return res.status(200).json({ success:true, message: "Images found", images: getImages, total: getImages.length });
+
+            // with pagination
+            if(getImages.length > 0){
+            return res.status(200).json({ 
+                success:true, 
+                message: "Images found", 
+                images: getImages, 
+                totalImages: totalCount, 
+                limit: limit, 
+                skip: skip, 
+                currentPage: page, 
+                totalPages: totalPages 
+            });
+        }
         }
     }catch(error){
         return res.status(500).json({ success:false, message: `Error:: ${error.message}` || "Somthing went wrong" });
