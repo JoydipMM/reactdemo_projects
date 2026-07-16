@@ -1,0 +1,391 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GraphQL Basic with Node.js</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+<hr />
+<h2><b>GraphQL</b></h2>
+<hr />
+<p><b>GraphQL</b> is a query language for APIs that allows the client to request exactly the data it needs from the server. Unlike REST, where we usually have multiple endpoints and may receive unnecessary data, GraphQL typically uses a single endpoint and lets the client specify the required fields. It uses a strongly typed schema and supports queries for fetching data and mutations for modifying data.</p>
+<br/>
+<hr />
+<h5><b>Type of GraphQL Oparetions</b></h5>
+<hr />
+<ul class="list-group list-group-flush mx-4">
+  <li><b>Query</b>: use for fetching data</li>
+  <li><b>Mutation</b>: use for updating / modifying data</li>
+  <li><b>Subscription</b>: use for subscribing to events /  realtime updates</li>
+</ul>
+<br/>
+<hr />
+<h5><b>Dependencies</b></h5>
+<hr />
+<p><b>@apollo/server</b> is a GraphQL server library for Node.js. <b>Install command:</b> <code><b>npm i @apollo/server</b></code></p>
+<p><b>GraphQL.js</b> is a JavaScript implementation of GraphQL. <b>Install command:</b> <code><b>npm i graphql</b></code></p>
+<p><b>graphql-tag</b> is a library for writing GraphQL queries using tagged template literals. <b>Install command:</b> <code><b>npm i graphql-tag</b></code></p>
+<p><b>Combine all these into one command:</b> <code><b>npm i @apollo/server graphql graphql-tag</b></code></b></p>
+<br/>
+
+<hr/>
+<h5><b>Data Types in GraphQL</b></h5>
+<hr/>
+<textarea id="editor">
+String // "This is a string type"
+Int // 123
+Float // 1.23
+Boolean // true or false
+ID // *** this is a unique identifier
+</textarea>
+<br/>
+
+
+<hr/>
+<h5><b>What is Schema in GraphQL</b></h5>
+<hr/>
+<p><b>GraphQL schema</b> defines the rules for what data the client can request and what structure and data types the server will return.</p>
+<p><i><b>For example</b>, suppose we have a <b>User</b> type in GraphQL. The <b>schema defines that a user has an id, name, and email</b>. The <b>client can request these fields, but it cannot request a field that is not defined in the schema</b>. Also, <code>each field has a specific type, such as id being an ID and name being a String</code>. <b>That's why the schema acts as a <code>strongly typed contract</code> between the client and server</b>.</i></p>
+<p><b>Schema example</b></p>
+<p>We take <b>User</b> data as an example</b></p>
+<textarea class="code-editor">
+type User {
+  id: ID! // here ! means this field is required, it cannot be null
+  name: String!
+  email: String!
+}
+</textarea>
+<p><b>Query example</b></p>
+<p><code><b>Query</b></code> is a way to fetch data from the server, like <b>Rest API controller</b></p>
+<textarea class="code-editor">
+type Query {
+  users: [User!]
+  user(id: ID!): User!
+}
+</textarea>
+<br/>
+
+<hr />
+<h5><b>Create a Small GraphQL Project with Node.js</b></h5>
+<hr />
+<p><b>Folder structure</b></p>
+<textarea class="code-editor">
+project-root/
+├── .env
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── src/
+│   ├── dummy-data/
+│   │   ├── demo-products.js
+|   ├── graphql/
+|   │   ├── schema.js
+|   │   └── resolvers.js
+|   └── server.js
+</textarea>
+<p><b>Dependencies</b></p>
+<p><i>Install command:</i> <code><b><i>npm i @apollo/server graphql graphql-tag</i></b></code></b></p>
+<p><i>extra dependencies <b>nodemon</b> for development <code><b>npm i nodemon --save-dev</b></code></i></p>
+<p><b>Demo Products</b> in <code><b>src/dummy-data/demo-products.js</b></code></p>
+<textarea class="code-editor">
+const products = [
+    {
+        id: "1",
+        title: "Red Scarf",
+        description: "A pretty red scarf.",
+        category: "scarf",
+        price: 19.99,
+        inStock: true,
+    },
+    {
+        id: "2",
+        title: "Blue Scarf",
+        description: "A pretty blue scarf.",
+        category: "scarf",
+        price: 29.99,
+        inStock: true,
+    },
+    {
+        id: "3",
+        title: "Laptop",
+        description: "A pretty laptop.",
+        category: "electronics",
+        price: 1239.99,
+        inStock: true,
+    },
+    {
+        id: "4",
+        title: "Mobile",
+        description: "A pretty mobile.",
+        category: "electronics",
+        price: 49.99,
+        inStock: true,
+    },
+    {
+        id: "5",
+        title: "Table",
+        description: "A pretty table.",
+        category: "furniture",
+        price: 82.99,
+        inStock: true,
+    },
+    {
+        id: "6",
+        title: "Chair",
+        description: "A pretty chair.",
+        category: "furniture",
+        price: 69.99,
+        inStock: true,
+    },
+];
+
+module.exports = products;</textarea>
+<br/>
+
+<p><b>01.</b> Modified <code><b>package.json</b></code></p>
+<textarea class="code-editor">
+{
+  "name": "graphql-nodejs",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.5.1",
+    "graphql": "^16.14.2",
+    "graphql-tag": "^2.12.7"
+  }
+}</textarea>
+<br/>
+
+<p><b>02.</b> Create <code><b>src/graphql/schema.js</b></code></p>
+<textarea class="code-editor">
+// first import graphql-tag
+const { gql } = require("graphql-tag");
+
+// then create schema with gql template literal
+// inside this template literal we can write our schema, query and mutation
+const typeDefs = gql`
+
+type Product {
+    id: ID!
+    title: String!
+    description: String!
+    category: String!
+    price: Float!
+    inStock: Boolean!
+}
+
+type Query {
+    products: [Product!]!
+}
+`;
+
+module.exports = typeDefs;</textarea>
+<br/>
+<blockquote class="blockquote">
+  <code class="mark">
+    <h6><b>Note:</b></h6>
+    <p><b>products: [Product!]!</b> -- <i>Product</i> is the name of the type defined in the schema</p>
+<textarea class="code-editor">
+products: [Product!]!
+          │       │ |
+          │       │ └── List cannot be null, items can be null
+          │       └── items cannot be null</textarea>
+    <p><b>product(id: ID!): Product</b> -- <i>Product</i> is the name of the type defined in the schema</p>
+    <p>There is a product query that requires an id argument, and it returns a Product object.</p>
+<textarea class="code-editor">
+product(id: ID!): Product
+   │     │    │     │
+   │     │    │     └── Return type: Product
+   │     │    └──────── ID must be provided
+   │     └───────────── Argument name: id
+   └─────────────────── Field/query name</textarea>
+
+<p><b>Type	Meaning</b></p>
+<textarea class="code-editor">
+[Product]	List can be null, items can be null
+[Product!]	List can be null, items cannot be null
+[Product]!	List cannot be null, items can be null
+[Product!]!	List cannot be null, items cannot be null    
+</textarea>
+  </code>
+</blockquote>
+<br/>
+
+<p><b>03.</b> To get all products or single product we use query by using method, which known as <b>Resolver</b></p>
+<p>for that we create <code><b>src/graphql/resolvers.js</b></code></p>
+<textarea class="code-editor">
+const products = require("../dummy-data/demo-products");
+
+const resolvers = {
+    // here we pass queries
+    Query: {
+        products: () => {
+            return products; // this products is from dummy-data
+        },
+    }
+}
+
+module.exports = resolvers;</textarea>
+<br/>
+
+<p><b>04.</b> Create <code><b>src/server.js</b></code></p>
+<p>Here we do the following things:</p>
+<p>First, I import ApolloServer and the standalone server function. Then I import my GraphQL schema and resolvers. I create an ApolloServer instance by passing the type definitions and resolvers. Finally, I start the standalone server on port 4000 and get the server URL.</p>
+<textarea class="code-editor">
+// 01 import Apollo Server
+const { ApolloServer } = require("@apollo/server");
+
+// 02 "startStandaloneServer" provides a simple way to run Apollo Server without manually setting up an Express application
+const { startStandaloneServer } = require("@apollo/server/standalone");
+
+// 03 import typeDefs and resolvers
+const typeDefs = require("./graphql/schema");
+const resolvers = require("./graphql/resolver");
+
+// 04 create a Apollo Server function
+async function startServer() {
+    // first step: create an instance of Apollo Server. Inside this instance we pass schema and resolvers
+    const server = new ApolloServer({
+        typeDefs,
+        resolvers
+    });
+
+    // second step: configure the server
+    // start a server using Appolo standalone server. It has url which gives us the server url
+    // this standalone server take instance of Apollo Server as a first argument and second argument is configuration where we can set "port key and value" pair in "listen key"
+    const { url } = await startStandaloneServer(server, {
+        listen: { port: 4000 }
+    })
+
+    // log the url
+    console.log(`Server ready at: ${url}`);
+
+}
+
+// 05. start / invoke the server
+startServer();</textarea>
+<p style="margin:15px 0px"><b>05. Run this command:</b> <code><b>npm run dev</b></code></p>
+<p><b>06. Open this url:</b> <code><b>http://localhost:4000</b></code></p>
+<p>We write this query in the <b>GraphQL</b> and get the result by pressing the <b>Run</b> button</p>
+<textarea class="code-editor">
+query{
+  products {
+    title
+    category
+  }
+}
+</textarea>
+<p><img src="assets/images/graphQL-query-in-server-01.png" width="100%" alt="" /></p>
+<br/>
+<p><b>07.</b> Now we create a <b>query and resolver</b> to get a <b>single product</b></p>
+<p>We write a <b>query</b> in the <code><b>src/graphql/schema.js</b></code></p>
+<textarea class="code-editor">
+const { gql } = require("graphql-tag");
+
+const typeDefs = gql`
+type Product {
+    id: ID!
+    title: String!
+    description: String!
+    category: String!
+    price: Float!
+    inStock: Boolean!
+}
+
+type Query {
+    products: [Product!]!
+    product(id: ID!): Product
+}
+`;
+
+module.exports = typeDefs; 
+
+// Note: product(id: ID!): Product << --- this is the new query to get a single product</textarea>
+<br/>
+<p><b>08.</b> Then write a <b>Query</b> in the <code><b>src/graphql/resolver.js</b></code> for resolve the product query</p>
+<textarea class="code-editor">
+product: (_, {id}) => {
+    return products.find((item) => item.id === id);
+}</textarea>
+<br/>
+<p>So updated code of <code><b>src/graphql/resolver.js</b></code></p>
+<textarea class="code-editor">
+const products = require("../dummy-data/demo-products");
+
+const resolvers = {
+    // here we pass queries
+    Query: {
+        products: () => {
+            return products; // this products is from dummy-data
+        },
+        product: (_, {id}) => {
+            return products.find((item) => item.id === id);
+        }
+    }
+}
+
+module.exports = resolvers;</textarea>
+<br/>
+<p><b>09. Run this command:</b> <code><b>npm run dev</b></code></p>
+<p><b>10. Open this url:</b> <code><b>http://localhost:4000</b></code></p>
+<textarea class="code-editor">
+query{
+  product(id: "4") {
+    title
+    category
+  }
+}
+</textarea>
+<p><img src="assets/images/graphQL-query-in-server-02.png" width="100%" alt="" /></p>
+<br/>
+
+
+<!-- 
+<blockquote class="blockquote">
+  <code class="mark">
+    <h5><b>Note:</b></h5>
+    <p><i>For all these <b>Promise APIs</b>, all promises <b>called in parallel</b>.</i></p>
+    <code><b>settled</b></code><p> means get result from <b>promise</b> and it can be either <b class="text-success">resolved / fulfilled / success</b> <b>or</b> <b class="text-danger">rejected / failure / reject</b>.</p>
+  </code>
+</blockquote>
+-->
+
+<!-- 
+<hr />
+<h5><b>Craete a Server</b></h5>
+<hr />
+<p>We create <code><b>index.js</b></code> file inside <code><b>src</b></code> folder</p>
+<textarea class="code-editor">
+
+</textarea>
+<br/>
+<p><b>Run this command:</b> <code><b>npm run dev</b></code></p>
+<p>If all things are fine then we will see this message <code><b>Server running on port 5001</b></code> in <b><i>terminal</i></b></p>
+<br/> -->
+
+
+
+<!-- <blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">npm run dev</code>
+</blockquote> -->
+
+  <script src="assets/js/codemirror/codemirror.min.js"></script>
+  <script src="assets/js/codemirror/javascript.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common-script.js"></script>
+</body>
+
+</html>
