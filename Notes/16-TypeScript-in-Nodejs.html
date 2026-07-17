@@ -1,0 +1,265 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeScript Basic with Node.js</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+<hr />
+<h2><b>TypeScript</b></h2>
+<hr />
+<p><b>TypeScript</b> is a <b>superset</b> of <b>JavaScript</b></p>
+<p><b>Create npm package</b> <code><b>npm init -y</b></code>. After run this command, we will get a <b>package.json</b> file</p>
+<p><b>Dependencies</b></p>
+<p>For TypeScript support: <code><b>npm install typescript@5.9.3 @types/node ts-node@10.9.2 --save-dev</b></code></p>
+<p><i><code>ts-node</code>: is a TypeScript execution engine and REPL for Node.js. It JIT transforms TypeScript into JavaScript, enabling you to directly execute TypeScript on Node.js without precompiling.</i></p>
+<br/>
+
+<hr/>
+<h5><b>TypeScript Configuration in Node.js</b></h5>
+<hr/>
+<p><b>01. </b> run command in terminal: <code><b>npx tsc --init</b></code>. It will create <code><b>tsconfig.json</b></code> file</p>
+<p><b>02. </b> Open <code><b>tsconfig.json</b></code> file and edit the properties as below</p>
+<textarea id="editor">
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "es2016",
+    "lib": ["ES6"],
+    "types": ["node"],
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}</textarea>
+<br/>
+<p><b>03. </b> Open <code><b>package.json</b></code> file and update the <code><b>scripts</b></code> property as below</p>
+<textarea class="code-editor">
+"scripts": {
+  "build" : "tsc",
+  "start" : "node dist/app.js",
+  "dev" : "ts-node src/app.ts"
+},</textarea>
+<br/>
+
+
+<hr/>
+<h5><b>Install Express in Node.js</b></h5>
+<hr/>
+<p><b>command: </b> run command in terminal: <code><b>npm install nodemon express @types/express</b></code></p>
+<p>Open <code><b>package.json</b></code> file and update the <code><b>scripts</b></code> property as below</p>
+<textarea class="code-editor">
+"scripts": {
+  "dev" : "nodemon src/app.ts"
+},</textarea>
+<p>Open <code><b>src/app.ts</b></code> and import <code><b>express</b></code></p>
+<textarea class="code-editor">
+import express, { Express, Response, Request } from 'express'; // express ->  is a function and Express -> is a type of express
+const app: Express = express(); // app: Express -> here we assign type of express to app
+
+app.get('/', (req: Request, res: Response) => {
+    res.send('Hello World!');
+});
+
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+});</textarea>
+<br/>
+
+<p><b>The TypeScript type for the Express of the <b>req</b> and <b>res</b> object</b></p>
+<textarea class="code-editor">
+req: Request<{}, any, any, QueryString.ParsedQs, Record<string, any>>
+res: Response<any, Record<string, any>, number></textarea>
+<br/>
+<p>The <code><b>Request</b></code> type <b><i>accepts 5 generic type parameters</i></b>:</p>
+<textarea class="code-editor">
+req: Request<
+  {},                    // Params -> Route parameters
+  any,                   // ResBody -> Response body
+  any,                   // ReqBody -> Request body
+  QueryString.ParsedQs,  // ReqQuery -> Query string
+  Record<string, any>    // Locals
+></textarea>
+<br/>
+<p>The <code><b>Response</b></code> type <b><i>accepts 3 generic type parameters</i></b>:</p>
+<textarea class="code-editor">
+res: Response<
+  any,                  // ResBody -> Response body
+  Record<string, any>,  // res.locals
+  number                // HTTP status code
+></textarea>
+<br/>
+<h5><b>How to define type of request body</b></h5>
+<p>Suppose we have a request body where we get name and email from the client through request body. Then we can define the type of request body as below</p>
+<textarea class="code-editor">
+
+/* Request type referance
+req: Request<
+  {},                    // Params -> Route parameters
+  any,                   // ResBody -> Response body
+  any,                   // ReqBody -> Request body ---> we are using this for set data type
+  QueryString.ParsedQs,  // ReqQuery -> Query string
+  Record<string, any>    // Locals
+>
+*/
+
+interface UserInterface{
+    name: string,
+    email: string,
+}
+
+app.post('/user', (req: Request<{},{}, UserInterface>, res: Response) => {
+    const { name, email} = req.body;
+    res.send(`Hello, ${name} ${email}`);
+});
+
+// So, when we pass the name and email from the client through request body from postman:
+/*
+postman url: http://localhost:3000/user
+method: post
+body -> raw -> json:
+{
+    "name": "dipen",
+    "email": "dipen@123"
+}
+get response:
+{
+    "message": "Hello, dipen dipen@123"
+}
+*/
+</textarea>
+<br/>
+<h5><b>Define type of request params and request body</b></h5>
+<p>Suppose we have a request params where we get id from the client through request params. Then we can define the type of request params as below</p>
+<textarea class="code-editor">
+interface UserInterface{
+    name: string,
+    email: string,
+}
+
+app.post("/user/:id", (req:Request<{id: string},{}, UserInterface>, res:Response)=>{
+    const { id } = req.params
+    const { name, email} = req.body
+    res.json({
+        userid: id,
+        userinfo:{
+            name: name,
+            email: email
+        }
+    })
+})
+
+/*
+postman url: http://localhost:3000/user/1
+method: post
+body -> raw -> json:
+{
+    "name": "dipen",
+    "email": "dipen@123"
+}
+get response:
+{
+    "userid": "1",
+    "userinfo": {
+        "name": "dipen",
+        "email": "dipen@123"
+    }
+}
+*/
+</textarea>
+<br/>
+<h5><b>How to define types for Model</b></h5>
+<p>first we need to install <b>mongoose</b> and <b>@types/mongoose</b></p>
+<p>Command to install mongoose: <code><b>npm install mongoose</b></code></p>
+<p>Command to install @types/mongoose: <code><b>npm install @types/mongoose --save-dev</b></code></p>
+<p>Create <code><b>User.ts</b></code> file inside <code><b>src/models</b></code> folder</p>
+<textarea class="code-editor">
+import mongoose, { Document } from "mongoose";
+
+export interface IUser extends Document{
+    name: string,
+    email: string
+}
+
+const userSchema = new mongoose.Schema({
+    name:{
+        type: String,
+        required: true
+    },
+    email:{
+        type: String,
+        required: true
+    }
+}, { timestamps: true });
+
+export default mongoose.models.User || mongoose.model<IUser>("User", userSchema);
+</textarea>
+<br/>
+<p>In the <code><b>app.ts</b></code> file, we need to import <code><b>User</b></code> model and add it in any route</p>
+<textarea class="code-editor">
+import express, { Express, Response, Request } from 'express';
+import User, { IUser } from './models/User';
+const app: Express = express();
+const port = 3000;
+
+app.use(express.json());
+
+app.get('/', (req :Request, res: Response) => {
+    res.send('Hello World!');
+});
+
+app.get('/newusers', async (req: Request, res: Response) => {
+    try {
+        const users: IUser[] = await User.find();
+        res.json(users);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+});
+</textarea>
+
+
+<!-- 
+<blockquote class="blockquote">
+  <code class="mark">
+    <h5><b>Note:</b></h5>
+    <p><i>For all these <b>Promise APIs</b>, all promises <b>called in parallel</b>.</i></p>
+    <code><b>settled</b></code><p> means get result from <b>promise</b> and it can be either <b class="text-success">resolved / fulfilled / success</b> <b>or</b> <b class="text-danger">rejected / failure / reject</b>.</p>
+  </code>
+</blockquote>
+-->
+
+<!-- 
+<hr />
+<h5><b>Craete a Server</b></h5>
+<hr />
+<p>We create <code><b>index.js</b></code> file inside <code><b>src</b></code> folder</p>
+<textarea class="code-editor">
+
+</textarea>
+<br/>
+<p><b>Run this command:</b> <code><b>npm run dev</b></code></p>
+<p>If all things are fine then we will see this message <code><b>Server running on port 5001</b></code> in <b><i>terminal</i></b></p>
+<br/> -->
+
+
+
+<!-- <blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">npm run dev</code>
+</blockquote> -->
+
+  <script src="assets/js/codemirror/codemirror.min.js"></script>
+  <script src="assets/js/codemirror/javascript.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common-script.js"></script>
+</body>
+
+</html>

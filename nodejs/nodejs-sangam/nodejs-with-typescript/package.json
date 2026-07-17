@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-with-typescript",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "dev": "nodemon src/app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@types/mongoose": "^5.11.96",
+    "express": "^5.2.1",
+    "mongoose": "^9.7.4",
+    "nodemon": "^3.1.14"
+  }
+}
