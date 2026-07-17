@@ -622,9 +622,203 @@ deleteProduct:(_, {id}) => {
 <img style="width: 100%; max-width: 1200px; margin-bottom:15px" src="assets/images/graphQL-query-in-server-05.png" alt="" />
 <br/>
 
+<hr />
+<h5><b>GraphQL connect to MongoDB with apollo standalone server</b></h5>
+<hr />
+<p><b>Dependencies</b></p>
+<p><i>Install command:</i> <code><b><i>npm i @apollo/server graphql graphql-tag dotenv mongoose</i></b></code></p>
+<br/>
+<p><b>Folder structure</b></p>
+<textarea class="code-editor">
+root/
+├── .env
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── src/
+│   ├── database/
+│   │   ├── db.js
+│   ├── models
+│   │   ├── Product.js
+|   ├── graphql/
+|   │   ├── schema.js
+|   │   └── resolvers.js
+|   └── server.js
+</textarea>
+<br/>
+<p><b>01.</b> Create <code><b>.env</b></code></p>
+<textarea class="code-editor">
+PORT = 4000
+MONGODB_URI = https://mongodburlwithpassword</textarea>
+<br/>
+<p><b>02.</b> Create <code><b>src/database/db.js</b></code></p>
+<textarea class="code-editor">
+const mongoose = require("mongoose");
+
+const connectDB = async () => {
+    try{
+        const connection = await mongoose.connect(process.env.MONGODB_URL);
+        if(connection){
+            console.log("Database connected successfully");
+        }
+    }catch(error){
+        console.error(error);
+        process.exit(1);
+    }
+}
+
+module.exports = connectDB;</textarea>
+<br/>
+<p><b>03.</b> Create <code><b>src/models/Product.js</b></code></p>
+<textarea class="code-editor">
+const mongoose = require("mongoose");
+
+const productSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    inStock: {
+        type: Boolean,
+        required: true
+    }
+})
+
+module.exports =  mongoose.models.Products || mongoose.model("Products", productSchema);</textarea>
+<br/>
+<p><b>04.</b> Create <code><b>src/server.js</b></code></p>
+<textarea class="code-editor">
+// import dotenv and connectDB
+require('dotenv').config();
+const connectDB = require("./database/db");
+
+// 01 import Apollo Server
+const { ApolloServer } = require("@apollo/server");
+
+// 02 "startStandaloneServer" provides a simple way to run Apollo Server without manually setting up an Express application
+const { startStandaloneServer } = require("@apollo/server/standalone");
+
+// 03 import typeDefs and resolvers
+const typeDefs = require("./graphql/schema");
+const resolvers = require("./graphql/resolver");
+
+// 04 create a Apollo Server function
+async function startServer() {
+
+    // invoke connectDB function
+    await connectDB();
+
+    // first step: create an instance of Apollo Server. Inside this instance we pass schema and resolvers
+    const server = new ApolloServer({
+        typeDefs,
+        resolvers
+    });
+
+    // second step: configure the server
+    // start a server using Appolo standalone server. It has url which gives us the server url
+    // this standalone server take instance of Apollo Server as a first argument and second argument is configuration where we can set "port key and value" pair in "listen key"
+    const { url } = await startStandaloneServer(server, {
+        listen: { port: process.env.PORT }
+    })
+
+    // log the url
+    console.log(`Server ready at: ${url}`);
+
+}
 
 
+// 05. start / invoke the server
+startServer();</textarea>
+<br/>
+<p><b>05. </b> Create <code><b>src/graphql/schema.js</b></code> or we can use the same schema  from above</p>
+<textarea class="code-editor">
+const { gql } = require("graphql-tag");
 
+const typeDefs = gql`
+type Product {
+    id: ID!
+    title: String!
+    description: String!
+    category: String!
+    price: Float!
+    inStock: Boolean!
+}
+
+type Query {
+    products: [Product!]!
+    product(id: ID!): Product
+}
+
+type Mutation {
+
+    createProduct(
+        title: String!, 
+        description: String!, 
+        category: String!, 
+        price: Float!, 
+        inStock: Boolean!
+    ): Product
+
+    deleteProduct(id: ID!): Boolean
+
+    updateProduct(
+        id:ID!
+        title: String, 
+        description: String, 
+        category: String, 
+        price: Float, 
+        inStock: Boolean
+    ): Product
+}
+`;
+
+module.exports = typeDefs;</textarea>
+<br/>
+<p><b>06. </b> Create <code><b>src/graphql/resolver.js</b></code></p>
+<textarea class="code-editor">
+const Product = require("../models/product");
+
+const resolvers = {
+    // here we pass queries
+    Query: {
+        products: async () =>  await Product.find({}), // this products is from Product model
+        product: async (_, {id}) => {
+            return await Product.findById(id);
+        }
+    },
+    Mutation: {
+        createProduct: async(_, arg) =>{
+            const newlyProduct = new Product(arg);
+            return await newlyProduct.save();
+        },
+
+        deleteProduct: async (_, {id}) => {
+            const deletedProduct = await Product.findByIdAndDelete(id);
+            return !!deletedProduct;
+        },
+
+        updateProduct: async (_,{id, ...updates}) => {
+            const updateProduct = await Product.findByIdAndUpdate(id, updates, {returnDocument: "after"});
+            return updateProduct;
+        }
+    },
+            
+}
+
+module.exports = resolvers;</textarea>
+<br/>
 
 <!-- 
 <blockquote class="blockquote">
