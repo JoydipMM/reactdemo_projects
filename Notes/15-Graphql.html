@@ -288,8 +288,8 @@ query{
   }
 }
 </textarea>
-<p><img src="assets/images/graphQL-query-in-server-01.png" width="100%" alt="" /></p>
-<br/>
+<p><img style="width: 100%; max-width: 1200px; margin-bottom:15px" src="assets/images/graphQL-query-in-server-01.png" alt="" /></p>
+
 <p><b>07.</b> Now we create a <b>query and resolver</b> to get a <b>single product</b></p>
 <p>We write a <b>query</b> in the <code><b>src/graphql/schema.js</b></code></p>
 <textarea class="code-editor">
@@ -349,10 +349,267 @@ query{
   }
 }
 </textarea>
-<p><img src="assets/images/graphQL-query-in-server-02.png" width="100%" alt="" /></p>
+<p><img style="width: 100%; max-width: 1200px; margin-bottom:15px" src="assets/images/graphQL-query-in-server-02.png" width="100%" alt="" /></p>
 <br/>
+<p><b>11.</b> At this moment we have fetched all <b>products</b> and get <b>single product</b> by using <code><b>query</b></code> which is a <b>GraphQL Operation</b>. Now we will learn about <b>GraphQL Mutations</b></p>
+<h5 style="margin-top:15px;"><code><b>GraphQL Mutations</b></code></h5>
+<p><b>Mutation</b> is a <b>GraphQL Operation</b> which is used to <b>update / modify</b> the data</p>
+<p><b>First</b> we create a <b>mutation</b> by define a <b>type</b> for create a <b>product</b> in the <code><b>src/graphql/schema.js</b></code></b></p>
+<textarea class="code-editor">
+const { gql } = require("graphql-tag");
 
+const typeDefs = gql`
+type Product {
+    ...
+}
 
+type Query {
+    ...
+}
+
+type Mutation {
+    
+    createProduct(
+        title: String!, 
+        description: String!, 
+        category: String!, 
+        price: Float!, 
+        inStock: Boolean!
+    ): Product
+
+}
+`;
+
+module.exports = typeDefs;</textarea>
+<br/>
+<blockquote class="blockquote">
+  <code class="mark">
+    <h6><b>Note:</b></h6>
+    <p>We use ( <code><b>!</b></code> ) to make the field <b>required</b>. Because to create a <b>product</b> we need <b>title</b>, <b>description</b>, <b>category</b>, <b>price</b> and <b>inStock</b>.</p>
+  </code>
+</blockquote>
+<br/>
+<p><b>Then</b> we write a <b>resolver</b> to execute the <b>mutation</b> in the <code><b>src/graphql/resolver.js</b></code></b></p>
+<textarea class="code-editor">
+const products = require("../dummy-data/demo-products");
+
+const resolvers = {
+    Query: {
+      ....
+    },
+    Mutation: {
+      createProduct: (_, {title, description, category, price, inStock}) =>{
+          const newlyProduct = {
+              id: String(products.length + 1),
+              title,
+              description,
+              category,
+              price,
+              inStock
+          }
+          products.push(newlyProduct);
+          return newlyProduct;
+        },
+        
+    },
+            
+}
+
+module.exports = resolvers;</textarea>
+<br/>
+<blockquote class="blockquote">
+  <code class="mark">
+    <h6><b>Note:</b></h6>
+    <p>We use a dummy static data so we use ( <code><b>products.push(newlyProduct);</b></code> ) to update new data.</p>
+  </code>
+</blockquote>
+<img style="width: 100%; max-width: 1200px; margin-bottom:15px" src="assets/images/graphQL-query-in-server-03.png" alt="" />
+<br/>
+<p>In this way we make another <b>mutation</b> and <b>resolver</b> to update a <b>product</b> by provide <b>id</b></p>
+<p>So, goto the <code><b>src/graphql/schema.js</b></code> we write a <b>mutation</b></p>
+<textarea class="code-editor">
+type Mutation {
+    
+    createProduct(
+        ...
+    ): Product
+
+    updateProduct(
+        id:ID!
+        title: String, 
+        description: String, 
+        category: String, 
+        price: Float, 
+        inStock: Boolean
+    ): Product
+
+}</textarea>
+<br/>
+<blockquote class="blockquote">
+  <code class="mark">
+    <h6><b>Note:</b></h6>
+    <p>In this updateProduct mutation we use ( <code>id:ID!</code> ) to make the field <b>required</b>. Because to update a <b>product</b> we need <b>id</b>. And we use ( <code>title: String, description: String, category: String, price: Float, inStock: Boolean</code> ) to make the field <b>optional</b>. </p>
+  </code>
+</blockquote>
+<br/>
+<p>Then we write a <b>resolver</b> to execute the <b>mutation</b> in the <code><b>src/graphql/resolver.js</b></code></b></p>
+<textarea class="code-editor">
+updateProduct:(_,{id, ...updates}) => {
+    const index = products.findIndex((item) => item.id === id); // find the index of the product by id from products array
+    if(index === -1){
+        return null; // if not found return null. (-1) means not found
+    }
+    const updateProduct = {
+        ...products[index], ...updates
+    }
+    products[index] = updateProduct;
+    return updateProduct;
+}</textarea>
+<br/>
+<img style="width: 100%; max-width: 1200px; margin-bottom:15px" src="assets/images/graphQL-query-in-server-04.png" alt="" />
+<blockquote class="blockquote">
+  <code class="mark">
+    <h6><b>Explanation:</b></h6>
+    <p><b>{id, ...updates}</b> -> This is <b><i>object destructuring</i></b> with the <b><i>rest operator</i></b>.</p>
+<textarea class="code-editor">
+const {
+    id,
+    ...updates
+} = {
+    id: "2",
+    title: "Updated Blue Scarf",
+    price: 39.99
+};
+</textarea>
+<p>JavaScript separates the object into: <b><i>id</i></b> and <b><i>updates</i></b>.</p>
+<p><i><b>Important: </b><code>...updates</code> "Collect all remaining properties into a new object called updates.</i></p>
+<textarea class="code-editor">
+id = "2";
+updates = {
+    title: "Updated Blue Scarf",
+    price: 39.99
+};
+
+// In JavaScript
+(_, { id, ...updates })
+</textarea>
+<p><i>Conceptually similar to:</i></p>
+<textarea class="code-editor">
+(_, args) => {
+    const id = args.id;
+
+    const updates = {
+        title: args.title,
+        price: args.price
+    };
+}
+</textarea>
+<p><b>Important breakdown:</b></p>
+<textarea class="code-editor">
+const updateProduct = {
+    ...products[index],
+    ...updates
+};
+
+// Suppose the existing product is:
+products[index] = {
+    id: "2",
+    title: "Blue Scarf",
+    description: "A pretty blue scarf.",
+    category: "scarf",
+    price: 29.99,
+    inStock: true
+};
+
+// And the update arguments are:
+const updates = {
+    title: "Updated Blue Scarf",
+    price: 39.99
+};
+
+// So, First: JavaScript copies the existing product by using 
+...products[index]
+
+// then updates the new title and new price
+...updates</textarea>
+<br/>
+<h5><b>Why did "title" and "price" change?</b></h5>
+<p>Because the later spread wins when properties have the same name:</p>
+<textarea class="code-editor">
+// First Object
+const oldData = {
+    name: "Old Name",
+    price: 100
+};
+
+// Second Object
+const newData = {
+    name: "New Name"
+};
+
+const result = {
+    ...oldData,
+    ...newData // this is the later spread wins
+};
+
+// result
+{
+    name: "New Name",
+    price: 100
+}
+
+// So, Replace the old product with the new one by using same property name:
+First object  → existing product
+Second object → new updates
+Later value   → wins</textarea>
+<br/>
+<p><b>products[index] = updateProduct</b> will update the <b>existing product</b></p>
+<textarea class="code-editor">
+// Suppose the existing product is:
+products[1] = {
+    id: "2",
+    title: "Blue Scarf",
+    description: "A pretty blue scarf.",
+    category: "scarf",
+    price: 29.99,
+    inStock: true
+}
+
+const updateProduct = {
+    id: "2",
+    title: "Updated Blue Scarf"
+};
+
+// From the above example, we can see that the title has changed. So if we assign the updated product object to the products[1] index, the title will be updated only and the rest of the properties will not be updated. Because we already saw that the later value wins when properties have the same name.
+products[1] = {
+    id: "2",
+    title: "Updated Blue Scarf",
+    description: "A pretty blue scarf.",
+    category: "scarf",
+    price: 29.99,
+    inStock: true
+}</textarea>
+  </code>
+</blockquote>
+<br/>
+<p>Now let's write a <b>mutation</b> and <b>resolver</b> to <b>delete a product</b></p>
+<p>Open <code><b>src/graphql/schema.js</b></code></p>
+<textarea class="code-editor">
+deleteProduct(id: ID!): Boolean</textarea>
+<br/>
+<p>Open <code><b>src/graphql/resolver.js</b></code></p>
+<textarea class="code-editor">
+deleteProduct:(_, {id}) => {
+    const index = products.findIndex((item) => item.id === id);
+    if(index === -1){
+        return false;
+    }
+    products.splice(index, 1);
+    return true;
+},</textarea>
+<br/>
+<img style="width: 100%; max-width: 1200px; margin-bottom:15px" src="assets/images/graphQL-query-in-server-05.png" alt="" />
+<br/>
 <!-- 
 <blockquote class="blockquote">
   <code class="mark">

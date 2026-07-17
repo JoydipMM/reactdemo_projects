@@ -16,6 +16,7 @@ type Query {
 }
 
 type Mutation {
+
     createProduct(
         title: String!, 
         description: String!, 
@@ -25,13 +26,14 @@ type Mutation {
     ): Product
 
     deleteProduct(id: ID!): Boolean
+
     updateProduct(
-    id:ID!
-    title: String, 
-    description: String, 
-    category: String, 
-    price: Float, 
-    inStock: Boolean
+        id:ID!
+        title: String, 
+        description: String, 
+        category: String, 
+        price: Float, 
+        inStock: Boolean
     ): Product
 }
 `;
