@@ -1,50 +1,29 @@
-const products = require("../dummy-data/demo-products");
+const Product = require("../models/product");
 
 const resolvers = {
     // here we pass queries
     Query: {
-        products: () => {
-            return products; // this products is from dummy-data
-        },
-        product: (_, {id}) => {
-            return products.find((item) => item.id === id);
+        products: async () =>  await Product.find({}), // this products is from Product model
+        product: async (_, {id}) => {
+            return await Product.findById(id);
         }
     },
     Mutation: {
-            createProduct: (_, {title, description, category, price, inStock}) =>{
-                const newlyProduct = {
-                    id: String(products.length + 1),
-                    title,
-                    description,
-                    category,
-                    price,
-                    inStock
-                }
-                products.push(newlyProduct);
-                return newlyProduct;
-                },
+        createProduct: async(_, arg) =>{
+            const newlyProduct = new Product(arg);
+            return await newlyProduct.save();
+        },
 
-                deleteProduct:(_, {id}) => {
-                    const index = products.findIndex((item) => item.id === id);
-                    if(index === -1){
-                        return false;
-                    }
-                    products.splice(index, 1);
-                    return true;
-                },
+        deleteProduct: async (_, {id}) => {
+            const deletedProduct = await Product.findByIdAndDelete(id);
+            return !!deletedProduct;
+        },
 
-                updateProduct:(_,{id, ...updates}) => {
-                    const index = products.findIndex((item) => item.id === id);
-                    if(index === -1){
-                        return null;
-                    }
-                    const updateProduct = {
-                        ...products[index], ...updates
-                    }
-                    products[index] = updateProduct;
-                    return updateProduct;
-                }
-            },
+        updateProduct: async (_,{id, ...updates}) => {
+            const updateProduct = await Product.findByIdAndUpdate(id, updates, {returnDocument: "after"});
+            return updateProduct;
+        }
+    },
             
 }
 

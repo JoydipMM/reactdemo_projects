@@ -1,7 +1,3 @@
-require('dotenv').config();
-const connectDB = require("./database/db");
-
-
 // 01 import Apollo Server
 const { ApolloServer } = require("@apollo/server");
 
@@ -14,9 +10,6 @@ const resolvers = require("./graphql/resolver");
 
 // 04 create a Apollo Server function
 async function startServer() {
-
-    await connectDB();
-
     // first step: create an instance of Apollo Server. Inside this instance we pass schema and resolvers
     const server = new ApolloServer({
         typeDefs,
@@ -27,7 +20,7 @@ async function startServer() {
     // start a server using Appolo standalone server. It has url which gives us the server url
     // this standalone server take instance of Apollo Server as a first argument and second argument is configuration where we can set "port key and value" pair in "listen key"
     const { url } = await startStandaloneServer(server, {
-        listen: { port: process.env.PORT }
+        listen: { port: 4000 }
     })
 
     // log the url
