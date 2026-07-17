@@ -453,6 +453,7 @@ type Mutation {
 </blockquote>
 <br/>
 <p>Then we write a <b>resolver</b> to execute the <b>mutation</b> in the <code><b>src/graphql/resolver.js</b></code></b></p>
+<br/>
 <textarea class="code-editor">
 updateProduct:(_,{id, ...updates}) => {
     const index = products.findIndex((item) => item.id === id); // find the index of the product by id from products array
@@ -479,8 +480,7 @@ const {
     id: "2",
     title: "Updated Blue Scarf",
     price: 39.99
-};
-</textarea>
+};</textarea>
 <p>JavaScript separates the object into: <b><i>id</i></b> and <b><i>updates</i></b>.</p>
 <p><i><b>Important: </b><code>...updates</code> "Collect all remaining properties into a new object called updates.</i></p>
 <textarea class="code-editor">
@@ -491,8 +491,7 @@ updates = {
 };
 
 // In JavaScript
-(_, { id, ...updates })
-</textarea>
+(_, { id, ...updates })</textarea>
 <p><i>Conceptually similar to:</i></p>
 <textarea class="code-editor">
 (_, args) => {
@@ -502,8 +501,12 @@ updates = {
         title: args.title,
         price: args.price
     };
-}
-</textarea>
+}</textarea>
+</code>
+</blockquote>
+
+<blockquote class="blockquote">
+  <code class="mark">
 <p><b>Important breakdown:</b></p>
 <textarea class="code-editor">
 const updateProduct = {
@@ -532,7 +535,11 @@ const updates = {
 
 // then updates the new title and new price
 ...updates</textarea>
-<br/>
+</code>
+</blockquote>
+
+<blockquote class="blockquote">
+  <code class="mark">
 <h5><b>Why did "title" and "price" change?</b></h5>
 <p>Because the later spread wins when properties have the same name:</p>
 <textarea class="code-editor">
@@ -562,7 +569,11 @@ const result = {
 First object  → existing product
 Second object → new updates
 Later value   → wins</textarea>
-<br/>
+</code>
+</blockquote>
+
+<blockquote class="blockquote">
+  <code class="mark">
 <p><b>products[index] = updateProduct</b> will update the <b>existing product</b></p>
 <textarea class="code-editor">
 // Suppose the existing product is:
@@ -610,6 +621,11 @@ deleteProduct:(_, {id}) => {
 <br/>
 <img style="width: 100%; max-width: 1200px; margin-bottom:15px" src="assets/images/graphQL-query-in-server-05.png" alt="" />
 <br/>
+
+
+
+
+
 <!-- 
 <blockquote class="blockquote">
   <code class="mark">
