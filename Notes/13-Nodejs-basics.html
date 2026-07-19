@@ -1015,8 +1015,129 @@ console.log(emitter.listenerCount("test"));
 </textarea>
 </li>
 </ol>
-<br/>
+<hr/>
 <h5><b>Custom Event Listener</b></h5>
+<hr/>
+<textarea class="code-editor">
+class customEmitter extends eventEmitter{
+    constructor(){
+        super();
+        this.greeting = "Hello";
+    }
+
+    // create a method will emit the event
+    greet(name){
+        this.emit('greeting', `${this.greeting} ${name}`);
+    }
+}
+
+const myCustomEmitter = new customEmitter();
+
+myCustomEmitter.on('greeting', (data) => {
+    console.log(data);
+});
+
+//myCustomEmitter.greet("Rahul");</textarea>
+<br/>
+<h5><b>Another Custom Event Listener Example</b></h5>
+<textarea class="code-editor">
+class Auth extends eventEmitter {
+    login(username) {
+        console.log(`${username} logged in`);
+
+        this.emit("login", username);
+    }
+
+    logout(username) {
+        console.log(`${username} logged out`);
+
+        this.emit("logout", username);
+    }
+}
+
+const auth = new Auth();
+
+auth.on("login", (user) => {
+    console.log(`Welcome ${user}`);
+});
+
+auth.on("logout", (user) => {
+    console.log(`Goodbye ${user}`);
+});
+
+auth.login("Rahul");
+/*
+Rahul logged in
+Welcome Rahul
+*/
+auth.logout("Rahul");
+/*
+Rahul logged out
+Goodbye Rahul
+*/
+</textarea>
+
+
+
+<hr />
+<h5><b>Cors Setup for Node.js</b></h5>
+<hr />
+<p><b>01.</b> Install <b>cors</b></p>
+<p>Install command: <code><b>npm install cors</b></code></p>
+<p>Create <code><b>corsConfig.js</b></code> in <code><b>src/config</b></code> folder</p>
+<p>In <code><b>src/config/corsConfig.js</b></code></p>
+<textarea class="code-editor">
+// import cors
+const cors = require("cors");
+
+// create a function to configure cors
+const configureCors = () => {
+    return cors({
+        // origin tell which origin we want to user can access this api
+        origin: (origin, callback) => {
+            const allowedOrigins = [
+                "http://localhost:3000",
+            ]
+
+            if(!origin || allowedOrigins.indexOf(origin) !== -1) {
+                callback(null, true) // permission is allowed
+            } else {
+                callback(new Error("Not allowed by CORS"))
+            }
+        },
+
+        methods: ["GET", "POST", "PUT", "DELETE"],
+
+        allowedHeaders: ["Content-Type", "Authorization", "Accept-Version"],
+
+        exposedHeaders: ["X-Total-Count", "Content-Range"], // this header will expose the headers to client in the response
+
+        credentials: true, // this will allow client to send cookie
+
+        preflightContinue: false, // false in default. false will not allow any preflight request
+
+        maxAge: 600, // in seconds means 10 minutes. this will cache the preflight responses for 10 mins. sending avoid options request multiple times
+
+        optionSuccessStatus: 204,  // this will return status code 204 for successfull options request 
+    })
+}
+
+// export the function
+module.exports = configureCors
+</textarea>
+<br/>
+<p>Open <code><b>src/server.js</b></code></p>
+<textarea class="code-editor">
+...
+// import cors config function
+const configureCors = require("./config/corsConfig");
+const port = process.env.PORT || 4000;
+
+...
+app.use(configureCors()); // use customize cors middleware
+...
+</textarea>
+
 <br/>
 
 
