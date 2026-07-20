@@ -1,10 +1,12 @@
+import RegisterForm from "../../features/auth/components/RegisterForm"
 
-const index = () => {
+const RegisterPage = () => {
   return (
     <div>
-      Register page
+      <h4>Register page</h4>
+      <RegisterForm />  
     </div>
   )
 }
 
-export default index
+export default RegisterPage;
