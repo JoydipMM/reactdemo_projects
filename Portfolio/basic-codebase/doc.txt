@@ -1,0 +1,1 @@
+npm install tailwindcss @tailwindcss/vite react-router-dom @tanstack/react-query @reduxjs/toolkit react-redux react-hook-form zod @hookform/resolvers
