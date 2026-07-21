@@ -1,5 +1,5 @@
 import DefaultLayout from "./layout/DefaultLayout";
-import { Homepage, AboutPage } from "../pages";
+import { Homepage, AboutPage, LoginPage, RegisterPage } from "../pages";
 
 export const routes = [
     {
@@ -13,6 +13,14 @@ export const routes = [
             {
                 path:'/about',
                 element:<AboutPage/>
+            },
+            {
+                path:'/login',
+                element:<LoginPage/>
+            },
+            {
+                path:'/register',
+                element:<RegisterPage/>
             },
         ]
     },
