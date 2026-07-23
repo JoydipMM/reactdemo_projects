@@ -70,9 +70,8 @@ console.log(newNumbers_2); // Result: [20, 30, 40, 50, 60]
 const names = ["joy", "rahul", "amit"];
 const upperNames = names.map((name) => name.toUpperCase());
 console.log(upperNames);
-</textarea>
 
-<script>
+// Example 03: add index number to each object
 const stuData = [
   { name: "Joy", age: 25, isAdult: true },
   { name: "Rahul", age: 30, isAdult: true },
@@ -80,9 +79,12 @@ const stuData = [
   { name: "Raj", age: 35, isAdult: true },
 ]   
 
-// add index number to each object
 const stuMappedData = stuData.map((stu, index) => `${index} >> ${stu.name} is ${stu.age} years old.`);
 console.log(stuMappedData);
+</textarea>
+
+<script>
+
 </script>
 
 
