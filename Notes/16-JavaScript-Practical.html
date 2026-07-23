@@ -1,0 +1,124 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Practical</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+<hr />
+<h5><b>Filter Method</b></h5>
+<hr />
+<p>The <code><b>filter() method</b></code> is used to create a new array containing only the elements that satisfy a given condition.</p>
+<ul class="list-group list-group-flush mx-4 mb-2">
+<li>It does not modify the original array.</li>
+<li>It returns a new array.</li>
+<li>If no element matches the condition, <b><i>it returns an empty array ([])</i></b>.</li>
+</ul>
+<h6><b>Syntax</b></h6>
+<textarea id="editor">
+array.filter((element, index, array) => {
+    return condition;
+});  
+
+--------------------------------------------------
+Parameter	        Description
+-----------------|--------------------------------
+element	            Current element being processed
+-----------------|--------------------------------
+index (optional)	Current index
+-----------------|--------------------------------
+array (optional)	The original array
+--------------------------------------------------</textarea>
+<h6><b>Example of Filter Method</b></h6>
+<textarea class="code-editor">
+// Example 1:
+const numbers = [10, 15, 20, 25, 30];
+const result = numbers.filter((num) => num > 20);
+console.log(result);
+// Result: [25, 30]
+
+// Example 2: Even Numbers
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const evenNumbers = numbers.filter((num) => num % 2 === 0);
+console.log(evenNumbers);
+// Result: [2, 4, 6, 8, 10]
+
+// Example 3: 
+const data = [12,23,34,56,78,90,11,22,33,44,55,66,77,88,99];
+const filterData = data.filter((number)=> number > 50 && number < 70);
+console.log(filterData); // New Array: [56, 66, 77]
+console.log(data); // Old Array: [12, 23, 34, 56, 78, 90, 11, 22, 33, 44, 55, 66, 77, 88, 99]
+</textarea>
+
+
+<hr />
+<h5><b>Map Method</b></h5>
+<hr />
+<p>The map() method is creates a new array returns with a new array containing the transformed elements.</p>
+<textarea class="code-editor">
+// Example 01:
+const numbers = [10, 15, 20, 25, 30];
+const newNumbers = numbers.map((num) => num>16);
+console.log(newNumbers); // Result: [false, false, true, true, true]
+const newNumbers_2 = numbers.map((num) => num*2);
+console.log(newNumbers_2); // Result: [20, 30, 40, 50, 60]
+
+// Example 02:
+const names = ["joy", "rahul", "amit"];
+const upperNames = names.map((name) => name.toUpperCase());
+console.log(upperNames);
+</textarea>
+
+<script>
+const stuData = [
+  { name: "Joy", age: 25, isAdult: true },
+  { name: "Rahul", age: 30, isAdult: true },
+  { name: "Amit", age: 20, isAdult: false },
+  { name: "Raj", age: 35, isAdult: true },
+]   
+
+// add index number to each object
+const stuMappedData = stuData.map((stu, index) => `${index} >> ${stu.name} is ${stu.age} years old.`);
+console.log(stuMappedData);
+</script>
+
+
+<!-- 
+<blockquote class="blockquote">
+  <code class="mark">
+    <h5><b>Note:</b></h5>
+    <p><i>For all these <b>Promise APIs</b>, all promises <b>called in parallel</b>.</i></p>
+    <code><b>settled</b></code><p> means get result from <b>promise</b> and it can be either <b class="text-success">resolved / fulfilled / success</b> <b>or</b> <b class="text-danger">rejected / failure / reject</b>.</p>
+  </code>
+</blockquote>
+-->
+
+<!-- 
+<hr />
+<h5><b>Craete a Server</b></h5>
+<hr />
+<p>We create <code><b>index.js</b></code> file inside <code><b>src</b></code> folder</p>
+<textarea class="code-editor">
+
+</textarea>
+<br/>
+<p><b>Run this command:</b> <code><b>npm run dev</b></code></p>
+<p>If all things are fine then we will see this message <code><b>Server running on port 5001</b></code> in <b><i>terminal</i></b></p>
+<br/> -->
+
+
+
+<!-- <blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">npm run dev</code>
+</blockquote> -->
+
+  <script src="assets/js/codemirror/codemirror.min.js"></script>
+  <script src="assets/js/codemirror/javascript.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common-script.js"></script>
+</body>
+
+</html>

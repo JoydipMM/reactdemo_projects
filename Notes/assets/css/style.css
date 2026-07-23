@@ -9,6 +9,7 @@
 *{ padding: 0px; margin: 0px; }
 body{ /*background-color: #000000; color: #fff; font-family: "arial";*/ font-size:16px; padding: 0px 15px; }
 p{ margin-bottom: 5px; }
+.CodeMirror{ margin-bottom: 10px; }
 .CodeMirror, .CodeMirror-scroll{ height: auto !important; font-size: 14px; }
 code{ font-size: 1.05em; }
 blockquote code{ font-size: 16px; }
@@ -19,6 +20,7 @@ blockquote code{ font-size: 16px; }
 .blockquote p{ color: black; }
 .blockquote .normal{ color: black; }
 p code{ font-weight: 700; }
+hr{ margin: 10px 0px; }
 
 @media print {
 
