@@ -1283,6 +1283,50 @@ C:\Users\joydi></textarea>
 <p><b>Node Redis version check in <i>terminal command</i>:</b> <code><b>npm list redis</b></code></b></p>
 <p><b>Redis server version check in <i>terminal command</i>:</b> <code><b>redis-server --version</b></code></b></p>
 <p><b>Redis client version check command for <i>redis-cli</i>:</b> <code><b>INFO server</b></code></b></p>
+
+<h5 class="mt-3"><b>set, get, del, exists, incr, decr in Redis</b></h5>
+<textarea class="code-editor">
+async function testConnectionRedis (){
+    try{
+        await redisClient.connect(); // connect to redis
+        console.log("Redis Client connected");
+
+        await redisClient.set("key", "redis"); // set key and value in redis server. This key help to store data in redis server
+        const extractKeyValue = await redisClient.get("key"); // get key value from redis server
+        console.log( extractKeyValue ); // Result: "redis"
+
+        const deleteCount = await redisClient.del("key"); // delete key from redis server
+        console.log( deleteCount ); // Result: 1 (One key deleted)
+
+        const updatedKey = await redisClient.get("key"); // get key value from redis server
+        console.log( updatedKey ); // Result: null
+
+        const keyExists = await redisClient.exists("key"); // check if key exists in redis server
+        console.log( keyExists ); // Result: false
+
+        await redisClient.set("count", "100"); // count key value in redis server
+        const increamentCount = await redisClient.incr("count"); // count key value in redis server
+        console.log( increamentCount ); // Result: 101
+
+        const decrementCount = await redisClient.decr("count"); // decrement key value in redis server
+        console.log( decrementCount ); // Result: 100
+
+        await redisClient.decr("count");
+        await redisClient.decr("count");
+        await redisClient.decr("count");
+        await redisClient.decr("count");
+        await redisClient.decr("count");
+        console.log(await redisClient.get("count")); // Result: 95
+
+
+
+    }catch(err){
+        console.error(err); // log the error
+    }finally{
+        await redisClient.quit(); // close the connection. This will make sure that there will be not open redis connection
+    }
+}
+</textarea>
 <br/>
 <br/>
 

@@ -22,6 +22,25 @@ async function testConnectionRedis (){
     try{
         await redisClient.connect(); // connect to redis
         console.log("Redis Client connected");
+
+        // SET and GET
+        await redisClient.set("user:name", "Dipen");
+        await redisClient.set("user:age", "30");
+        console.log(await redisClient.get("user:name")); // Result: "Dipen"
+        console.log(await redisClient.get("user:age")); // Result: "30"
+
+        // MSET and MGET
+        await redisClient.mSet([
+            "muser:email", "dipen@gmail.com",
+            "muser:phone", "1234567890",
+            "muser:age", "26"
+        ]);
+        
+        const [email, phone, age] = await redisClient.mGet(["muser:email", "muser:phone", "muser:age"]);
+        console.log(email, phone, age); // Result: "dipen@gmail.com" "1234567890" "26"
+
+
+
     }catch(err){
         console.error(err); // log the error
     }finally{
@@ -31,8 +50,3 @@ async function testConnectionRedis (){
 
 // 05. Invoke the function
 testConnectionRedis();
-
-
-// redisClient.connect().then(() => {
-//     console.log("Redis Client connected");
-// });
