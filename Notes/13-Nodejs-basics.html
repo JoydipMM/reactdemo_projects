@@ -1148,8 +1148,10 @@ if(!origin || allowedOrigins.indexOf(origin) !== -1) {
 }</textarea>
     <p><b>What is <code>origin</code>?</b></p>
     <p><b>origin</b> is automatically sent by the browser in the HTTP request. Suppose our API is <b><i>http://localhost:5000</i></b>. If your React app runs on <b><i>http://localhost:3000</i></b>, then <code><i>origin</i></code> will be <code><i>http://localhost:3000</i></code>.</p>
-    <p class="mt-3"><b>Why <code>!origin</code></b></p>
-    <p>Some requests don't have an Origin header.</p>
+    
+    <p class="mt-3"><b>Why <code>!origin</code>?</b></p>
+    <p>Some requests don't have an Origin header. like <b><i>Postman, curl, server-to-server requests, some mobile apps, same-origin requests in certain situations</i></b>. In those cases, <code>origin</code> will be <code><i>undefined</i></code>, then <code>!origin</code> will return <code><i>true</i></code>. So we can say that "<b><i>If no Origin header exists, allow the request.</i></b>"</p>
+
     <p class="mt-3"><b>What is <code>allowedOrigins</code>?</b></p>
     <p>This is simply a whitelist. Only these websites can access your API.</p>
     <textarea class="code-editor">
@@ -1171,17 +1173,67 @@ allowedOrigins = [
         </li>
         <li>
         <p><b>Senario 2</b></p>
-        <p><i>Suppost our <code>origin</code> is <code>"https://google.com"</code></i></p>
+        <p><i>Suppose our <code>origin</code> is <code>"https://google.com"</code></i></p>
         <p><i>But our <code>allowedOrigins</code> is <code>["http://localhost:3000"]</code></i>. So it will return <b>-1</b></i>, because it doesn't exist.</p>
-<textarea class="code-editor">
-</textarea>
         </li>
     </ul>
+    <p class="mt-3"><b>Why use OR (<code>||</code>)?</b></p>
+    <p>The condition is <b>!origin || allowedOrigins.indexOf(origin) !== -1</b> It means allow the request if either:</p>
+    <ul class="list-group list-group-flush mx-4">
+        <li><p>there is <b>no Origin header, OR</b></p></li>
+        <li><p>the Origin is <b>present in the whitelist</b>.</p></li>
+    </ul>
+    <p class="mt-3"><b><code>!== -1</code> means <i>The value is not equal to -1</i></b></p>
 
+
+    <h5 class="mt-3"><b>Some Senarios:</b></h5>
+
+
+     <ul class="list-group list-group-flush mx-4">
+        <li class="mb-2">
+            <p><b>Scenario 1 (React App): origin is <code>http://localhost:3000</code></b></p>
+            <p><code>!origin</code> means <b><i>No Origin header exists</i> then it return <code>true</code></b></p>
+            <p>But here we get origin from React App <b><i>http://localhost:3000</i></b>.</p>
+            <p><u><i>That means origin exists. Then <b>***</b><code>!origin</code> will return <code><i>false</i></code></u></p>
+            <p><code>allowedOrigins = ["http://localhost:3000"]</code> means that in allowedOrigins array list at <i><b>index of 0</b></i> <b><i>http://localhost:3000</i></b> url found and React app can access our API</p>
+            <p><code>allowedOrigins.indexOf(origin)</code> will return <code><i>0</i></code></p>
+            <p><u><i>So,</i> <code>0 !== -1</code> will return <code><i>true</i></code> because <code>0</code> is not equal to <code>-1</code></i></u></p>
+<textarea class="code-editor">
+if(!origin || allowedOrigins.indexOf(origin) !== -1) {
+//  false   || true
+// this will return true
+    callback(null, true)
+}else {
+    callback(new Error("Not allowed by CORS"))
+}</textarea>
+        </li>
+        <li>
+            <p><b>Scenario 2 (Postman): Origin: <code>undefined</code></b></p>
+            <p>Then <code>!origin</code> will return <code>true</code></p>
+
+            <p>So, when it get <b>true</b> from <code>!origin</code>, it will return <code>callback(null, true)</code>. That means <b><i>Allow the request</i></b> and it will not check <code>allowedOrigins.indexOf(origin)</code></p>
+        </li>
+
+        <li>
+            <p><b>Scenario 3 (Unknown Website): Origin: <code>http://unknownwebsite.com</code></b></p>
+            <p>Here <code>!origin</code> will return <code>false</code></p>
+            <p>So, when it get <b>false</b> from <code>!origin</code>, it will check <code>allowedOrigins.indexOf(origin)</code>. Here also <code>allowedOrigins.indexOf(origin)</code> will return <code>-1</code>. So <code>-1 !== -1</code> will return <code>false</code>. That means <b><i>Deny the request</i></b></p>
+            <p><code>0 !== -1</code> means <b><i>0 is not equal to -1</i></b> so this is <code>true</code></p>
+            <p><code>-1 !== -1</code> means <b><i>-1 is not equal to -1</i></b> so this is <code>false</code></p>
+        </li>
+    </ul>
+    <h5 class="mt-3"><b>A modern way to check allowedOrigins</b></h5>
+    <p>Instead of <code>indexOf</code>, many developers now use <code>includes()</code>, which is easier to read:</p>
+<textarea class="code-editor">
+if (!origin || allowedOrigins.includes(origin)) {
+    callback(null, true);
+} else {
+    callback(new Error("Not allowed by CORS"));
+}</textarea>
+<p><b>includes()</b> directly returns true or false, so it's more expressive than checking <b>indexOf(...) !== -1</b>.</p>
   </code>
 </blockquote>
 <br/>
-
 
 
 <hr />
