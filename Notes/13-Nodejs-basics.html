@@ -1137,7 +1137,49 @@ const port = process.env.PORT || 4000;
 app.use(configureCors()); // use customize cors middleware
 ...
 </textarea>
+<blockquote class="blockquote">
+  <code class="mark">
+    <h5><b>Code explanation:</b></h5>
+<textarea class="code-editor">
+if(!origin || allowedOrigins.indexOf(origin) !== -1) {
+    callback(null, true) // permission is allowed
+} else {
+    callback(new Error("Not allowed by CORS"))
+}</textarea>
+    <p><b>What is <code>origin</code>?</b></p>
+    <p><b>origin</b> is automatically sent by the browser in the HTTP request. Suppose our API is <b><i>http://localhost:5000</i></b>. If your React app runs on <b><i>http://localhost:3000</i></b>, then <code><i>origin</i></code> will be <code><i>http://localhost:3000</i></code>.</p>
+    <p class="mt-3"><b>Why <code>!origin</code></b></p>
+    <p>Some requests don't have an Origin header.</p>
+    <p class="mt-3"><b>What is <code>allowedOrigins</code>?</b></p>
+    <p>This is simply a whitelist. Only these websites can access your API.</p>
+    <textarea class="code-editor">
+const allowedOrigins = [
+    "http://localhost:3000", "https://mywebsite.com", "https://admin.mywebsite.com"
+];</textarea>
+    <p>At present only these websites can access our API and only these three origins are allowed.</p>
+    <p class="mt-3"><b>What does <code>allowedOrigins.indexOf(origin)</code> do?</b></p>
+    <p><code>allowedOrigins</code> is an array of whitelisted URLs (origins) that are permitted to access the API through CORS.</p>
+    <p><code>indexOf(origin)</code> searches the allowedOrigins whitelist array for the origin received from the browser and <b><i>returns its index if found</i></b>; otherwise, it <b><i>returns -1</i></b></p>
+    <ul class="list-group list-group-flush mx-4">
+        <li class="mb-3">
+            <p><b>Senario 1</b></p>
+<textarea class="code-editor">
+allowedOrigins = [
+    "http://localhost:3000" // index of this origin is 0
+];</textarea>
+            <p>Here <code>allowedOrigins.indexOf(origin)</code> will <b>return</b> <code>0</code>. because it is found at index 0.</p>
+        </li>
+        <li>
+        <p><b>Senario 2</b></p>
+        <p><i>Suppost our <code>origin</code> is <code>"https://google.com"</code></i></p>
+        <p><i>But our <code>allowedOrigins</code> is <code>["http://localhost:3000"]</code></i>. So it will return <b>-1</b></i>, because it doesn't exist.</p>
+<textarea class="code-editor">
+</textarea>
+        </li>
+    </ul>
 
+  </code>
+</blockquote>
 <br/>
 
 

@@ -82,12 +82,32 @@ const stuData = [
 const stuMappedData = stuData.map((stu, index) => `${index} >> ${stu.name} is ${stu.age} years old.`);
 console.log(stuMappedData);
 </textarea>
-
+<hr/>
+<h5><b>[]+{} = ?</b></h5>
+<hr/>
 <script>
-
+//console.log([]+{}) // [object Object]
 </script>
+<hr/>
+<h5><b>Example of Rest parameter</b></h5>
+<hr/>
+<textarea class="code-editor">
+  need to add examples
+</textarea>
+<textarea class="code-editor">
+function sum(...args, x){
+  return args[1]+args[2]+args[3]
+}
 
-
+console.log(sum(1,2,3) )
+// Uncaught SyntaxError: Rest parameter must be last formal parameter
+</textarea>
+<script>
+let a = [1,2,3,4];
+a[11] = 100;
+console.log(a.length);
+console.log(a);
+</script>
 <!-- 
 <blockquote class="blockquote">
   <code class="mark">

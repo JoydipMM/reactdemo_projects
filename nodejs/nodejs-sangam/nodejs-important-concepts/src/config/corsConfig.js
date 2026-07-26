@@ -8,7 +8,8 @@ const configureCors = () => {
                 "http://localhost:3000",
             ]
 
-            if(!origin || allowedOrigins.indexOf(origin) !== -1) {
+            //if(!origin || allowedOrigins.indexOf(origin) !== -1) {
+            if(!origin || allowedOrigins.includes(origin)) { // recent developers use includes. it's more expressive.
                 callback(null, true) // permission is allowed
             } else {
                 callback(new Error("Not allowed by CORS"))
