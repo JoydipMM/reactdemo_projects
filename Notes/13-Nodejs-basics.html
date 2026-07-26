@@ -1237,6 +1237,57 @@ if (!origin || allowedOrigins.includes(origin)) {
 
 
 <hr />
+<h5><b>Redis in Node.js</b></h5>
+<hr />
+<p><b>Radis</b> is a <b>key-value store</b> that is used to store data in memory.</p>
+<p><code>Full form of Redis is</code>: <b><i>Remote Dictionary Server</i></b>.</p>
+<p><code>Redis</code> is an <b><i>in-memory data store</i></b> that is most <b><i>commonly used as a cache</i></b>, but it can also work as a database, message broker, and session store.</p>
+<p><b>Think of it this way:</b></p>
+<ul class="list-group list-group-flush mx-4">
+    <li><b><i>MySQL / PostgreSQL / MongoDB</i></b> → Store data <b><i>permanently on disk</i></b>.</li>
+    <li><b><i>Redis</i></b> → Stores data <b><i>primarily in RAM (memory)</i></b>, making it<b><i> extremely fast</i></b>.</li>
+</ul>
+
+<h5 class="mt-3"><b>Install Redis</b></h5>
+<p>Find with "redis windows git install" or visit the site and download Radis exe file from <a href="https://github.com/tporadowski/redis/releases" target="_blank">Releases · tporadowski/redis</a></p>
+<p><code><b><i>Note: copy the install folder path of radis and add it in "Environment Variable" path</i></b></code></p>
+<p>After install go to radis folder. I my case radis installed in <code>C:\Program Files\Redis</code></p>
+<p>Find the <code>redis-cli.exe</code> and run this exe. One Command prompt window open. <code>127.0.0.1:6379></code> this line will show.</p>
+<p>Now write the below code:</p>
+<textarea class="code-editor">
+127.0.0.1:6379> set dummyname apple // press enter
+OK // Result
+127.0.0.1:6379> get dummyname // get the value
+"apple" // Result
+127.0.0.1:6379></textarea>
+
+<h5 class="mt-3"><b>Run Redis in Command Prompt</b></h5>
+<p>Run command in terminal: <code><b>redis-server</b></code> and Press enter</p>
+<textarea class="code-editor">
+C:\Users\joydi>redis-server
+[12004] 26 Jul 21:49:09.316 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[12004] 26 Jul 21:49:09.316 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=12004, just started
+[12004] 26 Jul 21:49:09.316 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+[12004] 26 Jul 21:49:09.320 # Could not create server TCP listening socket *:6379: bind: An operation was attempted on something that is not a socket.</textarea>
+<p>Now to start redis server run command in terminal: <code><b>redis-cli</b></code> and press enter</p>
+<textarea class="code-editor">
+C:\Users\joydi>redis-cli
+127.0.0.1:6379></textarea>
+<p>For exit run command in terminal: <code><b>exit</b></code></p>
+<textarea class="code-editor">
+127.0.0.1:6379> exit
+C:\Users\joydi></textarea>
+
+<h5 class="mt-3"><b>Use Redis in Node.js</b></h5>
+<p>Install command: <code><b>npm install redis@5</b></code></p>
+<p><b>Node Redis version check in <i>terminal command</i>:</b> <code><b>npm list redis</b></code></b></p>
+<p><b>Redis server version check in <i>terminal command</i>:</b> <code><b>redis-server --version</b></code></b></p>
+<p><b>Redis client version check command for <i>redis-cli</i>:</b> <code><b>INFO server</b></code></b></p>
+<br/>
+<br/>
+
+
+<hr />
 <h5><b>DeStructuring Rest Spread Operator ES6 JavaScript</b></h5>
 <hr />
 

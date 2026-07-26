@@ -1,25 +1,38 @@
-require("dotenv").config();
-const express = require("express");
-const app = express();
-const configureCors = require("./config/corsConfig");
-const { requestLogger, timeStamp } = require("./middleware/customMiddleware");
-const { asyncHandler } = require("./middleware/errorHandler");
-const customRateLimitMiddleware = require("./middleware/ratelimitMiddleware");
-const rateLimitRoute = require("./routes/demo-list-route");
+// 01. Import redis modules
+const redis = require("redis");
+// const express = require("express");
+// const cors = require("cors");
+// const app = express();
+// const port = 3000;
 
-const port = process.env.PORT || 4000;
-
-app.use(customRateLimitMiddleware(4, 1 * 60 * 1000)); // in 15 minutes, 100 requests accepted only
-
-
-app.use(requestLogger); // customize request logger middleware
-app.use(timeStamp); // customize timestamp middleware
-
-app.use(express.json());
-app.use(configureCors()); // customize cors middleware
-
-app.use("/api", rateLimitRoute);
-
-app.listen(port, () => {
-    console.log(`server is running on port ${port}`);
+// 02. Create redis client help to interact with redis server
+const redisClient = redis.createClient({
+    // this host and port required for redis 5 or older version
+    host: "localhost", // for now redis server hosted on localhost
+    port: 6379, // redis server default port
 });
+
+// 03. create error handler for redis
+redisClient.on("error", (err) => 
+    console.log("Redis Client Error", err)
+);
+
+// 04. establish connection
+async function testConnectionRedis (){
+    try{
+        await redisClient.connect(); // connect to redis
+        console.log("Redis Client connected");
+    }catch(err){
+        console.error(err); // log the error
+    }finally{
+        await redisClient.quit(); // close the connection. This will make sure that there will be not open redis connection
+    }
+}
+
+// 05. Invoke the function
+testConnectionRedis();
+
+
+// redisClient.connect().then(() => {
+//     console.log("Redis Client connected");
+// });
