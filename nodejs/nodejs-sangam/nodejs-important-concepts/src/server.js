@@ -24,21 +24,42 @@ async function testConnectionRedis (){
         console.log("Redis Client connected");
 
         // SET and GET
-        await redisClient.set("user:name", "Dipen");
-        await redisClient.set("user:age", "30");
-        console.log(await redisClient.get("user:name")); // Result: "Dipen"
-        console.log(await redisClient.get("user:age")); // Result: "30"
+        // await redisClient.set("user:name", "Dipen");
+        // await redisClient.set("user:age", "30");
+        // console.log(await redisClient.get("user:name")); // Result: "Dipen"
+        // console.log(await redisClient.get("user:age")); // Result: "30"
 
         // MSET and MGET
-        await redisClient.mSet([
-            "muser:email", "dipen@gmail.com",
-            "muser:phone", "1234567890",
-            "muser:age", "26"
-        ]);
+        // await redisClient.mSet([
+        //     "muser:email", "dipen@gmail.com",
+        //     "muser:phone", "1234567890",
+        //     "muser:age", "26"
+        // ]);
         
-        const [email, phone, age] = await redisClient.mGet(["muser:email", "muser:phone", "muser:age"]);
-        console.log(email, phone, age); // Result: "dipen@gmail.com" "1234567890" "26"
+        // const [email, phone, age] = await redisClient.mGet(["muser:email", "muser:phone", "muser:age"]);
+        // console.log(email, phone, age); // Result: "dipen@gmail.com" "1234567890" "26"
 
+        // lPush used to add data in list
+        await redisClient.lPush("users", ["Raja", "Dipen", "Sanjoy"])
+        // syntax -> redisClient.lPush(key, [array of data])
+
+        // lRange used to get data from list
+        const getAllUser = await redisClient.lRange("users", 0, -1);
+        // syntax -> redisClient.lRange(key, start, end) start -> 0 means first index, end -> -1 means last index
+        console.log(getAllUser);
+
+        // lPop used to remove data from left side of list 
+        const RemoveFirstUser = await redisClient.lPop("users");
+        // syntax -> redisClient.lPop(key) // this will remove form first index
+        console.log(RemoveFirstUser);
+
+        // rPop used to remove data from right side of list
+        const RemoveLastUser = await redisClient.rPop("users");
+        // syntax -> redisClient.rPop(key) // this will remove form last index
+        console.log(RemoveLastUser);
+
+        // get latest data list
+        console.log(await redisClient.lRange("users", 0, -1));
 
 
     }catch(err){
