@@ -15,6 +15,8 @@ console.log(readonlyArray);
 // each element in a tuple has a specific type
 let tuppleArray : [number,string] = [1,"Jhon Deo"]
 console.log(tuppleArray);
+tuppleArray.push("jiten");
+console.log(tuppleArray);
 
 /*
 Array vs Tuple
