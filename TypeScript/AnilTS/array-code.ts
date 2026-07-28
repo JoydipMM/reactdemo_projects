@@ -20,5 +20,5 @@ console.log(tuppleArray);
 Array vs Tuple
 1. Array is a "Homogeneous" collection of values of same type. But Tuple is a "Heterogeneous" collection of values of different types.
 2. Array length can grow/shrink. But Tuple length fixed. Means predefined number of elements.
-3. In array order not enforced. But in tuple order is enforced ( specific type at each index ).
+3. In array order not enforced ( same data type in all index ). But in tuple order is enforced ( specific type at each index ).
 */
