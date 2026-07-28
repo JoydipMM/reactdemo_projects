@@ -33,7 +33,7 @@ let obj03:{
     age:number, 
     city:string,
     company:string | undefined,
-    items:Array<{name   : number, price: number}>
+    items:Array<{name : number, price: number}>
 } = {
     name: "Raja",
     age: 20, 
@@ -41,8 +41,11 @@ let obj03:{
     company: undefined, // assign undefined for default
     items:[
         {name: 10, price: 20},
+        {name: 10, price: 20},
     ]
 }
+
+console.log(obj03);
 
 // second option
 let obj04:{
@@ -51,6 +54,6 @@ let obj04:{
     name: "Raja",
     age: 20
 }
-console.log(obj04);
+console.log(obj04); // { name: 'Raja', age: 20 }
 obj04.city = "Gurgaon";
-console.log(obj04);
+console.log(obj04); // { name: 'Raja', age: 20, city: 'Gurgaon' }
