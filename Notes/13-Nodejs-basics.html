@@ -1347,6 +1347,28 @@ async function testConnectionRedis (){
             "muser:phone", "1234567890",
             "muser:age", "26"
         ]);
+
+        // lPush used to add data in list
+        await redisClient.lPush("users", ["Raja", "Dipen", "Sanjoy"])
+        // syntax -> redisClient.lPush(key, [array of data])
+
+        // lRange used to get data from list
+        const getAllUser = await redisClient.lRange("users", 0, -1);
+        // syntax -> redisClient.lRange(key, start, end) start -> 0 means first index, end -> -1 means last index
+        console.log(getAllUser);
+
+        // lPop used to remove data from left side of list 
+        const RemoveFirstUser = await redisClient.lPop("users");
+        // syntax -> redisClient.lPop(key) // this will remove form first index
+        console.log(RemoveFirstUser);
+
+        // rPop used to remove data from right side of list
+        const RemoveLastUser = await redisClient.rPop("users");
+        // syntax -> redisClient.rPop(key) // this will remove form last index
+        console.log(RemoveLastUser);
+
+        // get latest data list
+        console.log(await redisClient.lRange("users", 0, -1));
         
         
 
@@ -1358,6 +1380,46 @@ async function testConnectionRedis (){
         await redisClient.quit(); // close the connection. This will make sure that there will be not open redis connection
     }
 }</textarea>
+
+
+<h5 class="mt-3"><b>sAdd, sMembers, sIsMember, sRem in Redis</b></h5>
+<textarea class="code-editor">
+await redisClient.sAdd("users:nickname", ["Raja", "Dipen", "Sanjoy", "barun", "Sanjoy"]);
+const getAllUser = await redisClient.sMembers("users:nickname");
+console.log(getAllUser); // Result: ["Raja", "Dipen", "Sanjoy"]
+
+const isHaveUser = await redisClient.sIsMember("users:nickname", "barun");
+console.log(isHaveUser);
+
+await redisClient.sRem("users:nickname", ["barun", "Dipen"]);
+const updatedUser = await redisClient.sMembers("users:nickname");
+console.log(updatedUser);</textarea>
+
+
+
+<h5 class="mt-3"><b>zAdd, zRange, zRank, zRem in Redis</b></h5>
+<textarea class="code-editor">
+await redisClient.zAdd("cart", [
+    { score: 2, value: "Dipen" },
+    { score: 1, value: "Sanjoy" },
+    { score: 3, value: "Raja" }
+]);
+
+const sortedCardList = await redisClient.zRange("cart", 0, -1);
+console.log(sortedCardList); // [ 'Sanjoy', 'Dipen', 'Raja' ]
+
+const getAllCartWithScore = await redisClient.zRangeWithScores("cart", 0, -1);
+console.log(getAllCartWithScore); 
+/* [
+    { value: 'Sanjoy', score: 1 },
+    { value: 'Dipen', score: 2 },
+    { value: 'Raja', score: 3 }
+]*/
+
+const getCartOfScore = await redisClient.zRank("cart", "Sanjoy");
+console.log(getCartOfScore); // 0
+const getCartOfScore2 = await redisClient.zRank("cart", "Raja");
+console.log(getCartOfScore2); // 2</textarea>
 
 <br/>
 <br/>
