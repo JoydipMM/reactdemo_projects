@@ -57,3 +57,14 @@ let obj04:{
 console.log(obj04); // { name: 'Raja', age: 20 }
 obj04.city = "Gurgaon";
 console.log(obj04); // { name: 'Raja', age: 20, city: 'Gurgaon' }
+
+
+let value1:unknown = "Raja";
+value1 = 10;
+
+//value1.toUpperCase(); // error 'value1' is of type 'unknown'. to slove this we need to check the type first.
+if(typeof value1 === "string"){
+    value1.toUpperCase();
+}
+
+
