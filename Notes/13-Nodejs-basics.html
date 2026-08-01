@@ -1286,6 +1286,21 @@ C:\Users\joydi></textarea>
 
 <h5 class="mt-3"><b>set, get, del, exists, incr, decr in Redis</b></h5>
 <textarea class="code-editor">
+// 01. Import redis modules
+const redis = require("redis");
+
+// 02. Create redis client help to interact with redis server
+const redisClient = redis.createClient({
+    // this host and port required for redis 5 or older version
+    host: "localhost", // for now redis server hosted on localhost
+    port: 6379, // redis server default port
+});
+
+// 03. create error handler for redis
+redisClient.on("error", (err) => 
+    console.log("Redis Client Error", err)
+);
+
 async function testConnectionRedis (){
     try{
         await redisClient.connect(); // connect to redis
@@ -1457,9 +1472,123 @@ console.log(updatedProductDetails);</textarea>
     <li>YouTube channel → Channel</li>
 </ul>
 <p>We don't send notifications individually. You just upload. Everyone subscribed receives it. <b>Redis Pub/Sub</b> works exactly like this.</p>
+<textarea class="code-editor">
+async function testConnectionRedis (){
+    try{
+        await redisClient.connect(); // connect to redis
+        console.log("Redis Client connected");
+
+        // pub/sub -----------------------
+
+        // 01. we create a duplicate client for subscriber
+        const subscriber = redisClient.duplicate();
+
+        // 02. connect redis server for subscriber
+        await subscriber.connect();
+
+        // 03.create subscriber to subscribe to a channel, we can use the subscribe method of the subscriber client. The subscribe method takes two arguments: the name of the channel and a callback function that will be called whenever a message is published to that channel. The callback function takes two arguments: the name of the channel and the message that was published.
+        // syntax: await subscriber.subscribe("channel-name", (channel, message) => {});
+        await subscriber.subscribe("news-channel", (message, channel) =>{
+            console.log(`Received message from ${channel}: ${message}`);
+        })
+
+
+        // 04. Create a publisher to publish a message to the channel using the publish method of the redis client. The publish method takes two arguments: the name of the channel and the message to be published.
+        // syntax: await redisClient.publish("channel-name", "message");
+        await redisClient.publish("news-channel", "Hello, this is a test message from the publisher!"); 
+        await redisClient.publish("news-channel", "This is another test message from the publisher!"); 
+
+
+        // 05. we need to wait for a few seconds to make sure that the subscriber has received the messages before we close the connection. We can use setTimeout to wait for a few seconds.
+        setTimeout(async () => {
+            await subscriber.unsubscribe("news-channel"); // unsubscribe from the channel
+            await subscriber.quit(); // close the connection for subscriber
+            console.log("Subscriber disconnected");
+        }, 5000);
+
+        // Result:
+        /*
+        Redis Client connected
+        Received message from news-channel: Hello, this is a test message from the publisher!
+        Received message from news-channel: This is another test message from the publisher!
+        Subscriber disconnected
+        */
+
+
+    }catch(err){
+        console.error(err); // log the error
+    }finally{
+        await redisClient.quit(); // close the connection. This will make sure that there will be not open redis connection
+    }
+}</textarea>
 
 
 
+
+
+<h5 class="mt-3"><b>Pipelining & Transactions in Redis</b></h5>
+<textarea class="code-editor">
+async function testConnectionRedis (){
+    try{
+        await redisClient.connect(); // connect to redis
+        console.log("Redis Client connected");
+
+        // Pipelining & Transactions -----------------------
+
+        // 01. create a pipeline
+        const multiPipeline = redisClient.multi();
+        
+        // 02. add commands to the pipeline
+        multiPipeline.set("name", "John Doe");
+        multiPipeline.set("age", "30");
+        multiPipeline.set("city", "New York");
+        multiPipeline.get("name");
+
+        // 03. execute the pipeline
+        const multiPipeLineExecuteResult = await multiPipeline.exec();
+        console.log("Pipeline executed successfully:", multiPipeLineExecuteResult);
+        // result: Pipeline executed successfully: [ 'OK', 'OK', 'OK', 'John Doe' ]
+
+
+    }catch(err){
+        console.error(err); // log the error
+    }finally{
+        await redisClient.quit(); // close the connection. This will make sure that there will be not open redis connection
+    }
+}</textarea>
+
+
+<hr/>
+<h5><b>Use RedisIO in Node.js</b></h5>
+<hr/>
+<p><b>RedisIO</b> is a library that provides a simple and easy-to-use interface for working with Redis in Node.js.</p>
+<p><b>Install command:</b> <code><b>npm install redisio</b></code></b></p>
+<p><b>code setup:</b> in <code><b>src/server.js</b></code></p>
+<textarea class="code-editor">
+// 01. Import ioredis modules
+const RedisIO = require("ioredis");
+
+// 02. Create redis client help to interact with redis server
+const redisClient = new RedisIO();
+
+// 03. create error handler for redis
+redisClient.on("error", (err) => 
+    console.log("Redis Client Error", err)
+);
+
+async function ioRedisExample (){
+    try{
+        await redisClient.set("r-key-1", "r-value-1");
+        const value = await redisClient.get("r-key-1");
+        console.log("Value from Redis:", value); // Output: Value from Redis: r-value-1
+    }catch(err){
+        console.error(err); // log the error
+    }finally{
+        await redisClient.quit(); // close the connection. This will make sure that there will be not open redis connection
+    }
+}
+
+ioRedisExample();</textarea>
 <br/>
 <br/>
 
