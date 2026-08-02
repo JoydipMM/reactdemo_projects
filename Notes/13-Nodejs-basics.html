@@ -1593,6 +1593,88 @@ ioRedisExample();</textarea>
 <br/>
 
 
+
+
+<hr />
+<h2><b>Microservices in Node.js</b></h2>
+<hr />
+<p><b>Microservices</b> are a collection of related services that work together to provide a unified experience for users.</p>
+<h5><b>Folder Structure</b></h5>
+<textarea class="code-editor">
+microservice-app
+├── api-gateway
+│   ├── src
+│   │   ├── server.js
+│   │   └── routes
+│   │       └── index.js
+|   ├── .env
+│   └── package.json
+|
+├── auth-service
+│   ├── src
+│   │   ├── server.js
+│   │   └── routes
+│   │       └── index.js
+|   ├── .env
+│   └── package.json
+</textarea>
+<p>In this example, we have two microservices: <b>api-gateway</b> and <b>auth-service</b>.</p>
+<p><b>api-gateway</b> is a proxy service that routes requests to the correct microservices based on the request path.</p>
+<p><b>auth-service</b> is a microservice that handles authentication and authorization for the microservices.</p>
+<p><b>api-gateway</b> and <b>auth-service</b> communicate with each other using HTTP requests and responses.</p>
+<br/>
+<p><b>01.</b> In <b>api-gateway</b> first we insall <code><b>nodemon</b></code>. command: <code><b>npm install nodemon --save-dev</b></code></p>
+<p>Other dependencies:<br/> 
+<code><b>cors</b></code>: use this middleware to configure cors <br/> 
+<code><b>dotenv</b></code>: use this middleware to configure dotenv <br/> 
+<code><b>express</b></code>: use this middleware to create the Express.js server <br/> 
+<code><b>express-http-proxy</b></code>: use this middleware to proxy HTTP requests <br/> 
+<code><b>helmet</b></code>: use this middleware to secure the Express.js server <br/> 
+<code><b>mongoose</b></code>: use this library to interact with MongoDB <br/> 
+<code><b>ioredis</b></code>: use this library to interact with Redis for cache <br/> 
+<code><b>jsonwebtoken</b></code>: use this library to handle JSON Web Tokens <br/> 
+<code><b>winston</b></code>: use this library for logging
+</p>
+<p><b>Install command:</b> <code><b>npm install cors dotenv express express-http-proxy helmet mongoose ioredis jsonwebtoken winston</b></code></p>
+<p><b>02.</b> Create <code><b>src/server.js</b></code> file</p>
+<p><b>03.</b> Open <b>package.json</b> and add <b>scripts</b> like below</p>
+<textarea class="code-editor">
+"main": "src/server.js",
+"scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+},</textarea>
+<br/>
+<p>Now we go to <b>auth-service</b>. Run <code><b>npm init -y</b></code> and create <code><b>src/server.js</b></code></p>
+<p>Open <b>package.json</b> and add <b>scripts</b> like below</p>
+<textarea class="code-editor">
+"main": "src/server.js",
+"scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+},</textarea>
+<p>Install <code><b>nodemon</b></code>. command: <code><b>npm install nodemon --save-dev</b></code></p>
+<p>Other dependencies:<br/> 
+<code><b>argon2</b></code>: use this for password hashing <br/>
+<code><b>cors</b></code>: use this middleware to configure cors <br/> 
+<code><b>dotenv</b></code>: use this middleware to configure dotenv <br/>
+<code><b>express</b></code>: use this middleware to create the Express.js server <br/>    
+<code><b>express-rate-limit</b></code>: use this for rate limiting of requests from the same IP <br/>  
+<code><b>helmet</b></code>: use this for security of the Express.js server <br/>
+<code><b>ioredis</b></code>: use this library to interact with Redis for cache <br/>  
+<code><b>joi</b></code>: use this for schema validation <br/>  
+<code><b>jsonwebtoken</b></code>: use this library to handle JSON Web Tokens <br/>  
+<code><b>mongoose</b></code>: use this library to interact with MongoDB <br/>
+<code><b>rate-limit-redis</b></code>: use this for rate limiting with Redis <br/>
+<code><b>winston</b></code>: use this library for logging
+<p><b>Install command:</b> <code><b>npm install argon2 cors dotenv express express-rate-limit helmet ioredis joi jsonwebtoken mongoose rate-limit-redis winston</b></code></p>
+
+
+
+<br/>
+<br/>
+
+
 <hr />
 <h5><b>DeStructuring Rest Spread Operator ES6 JavaScript</b></h5>
 <hr />
