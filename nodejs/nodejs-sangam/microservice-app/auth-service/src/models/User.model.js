@@ -36,15 +36,20 @@ const userSchema = new mongoose.Schema({
 // Pre-save middleware to hash the password before saving the user document
 userSchema.pre("save", async function (next){
     // Pre-save middleware logic here - for example, hashing the password before saving
+
+    if (!this.isModified("password")) {
+        return next();
+    }
+
     if(this.isModified("password")){
         try {
             this.password = await argon2.hash(this.password);
+            next();
         }catch (error) {
             next(error);
         }
            
     }
-    next();
 });
 
 
