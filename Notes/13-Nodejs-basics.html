@@ -1623,7 +1623,10 @@ microservice-app
 <p><b>auth-service</b> is a microservice that handles authentication and authorization for the microservices.</p>
 <p><b>api-gateway</b> and <b>auth-service</b> communicate with each other using HTTP requests and responses.</p>
 <br/>
-<p><b>01.</b> In <b>api-gateway</b> first we insall <code><b>nodemon</b></code>. command: <code><b>npm install nodemon --save-dev</b></code></p>
+<hr/>
+<h5><b>Setup <code>api-gateway</code></b></h5>
+<hr/>
+<p>In <b>api-gateway</b> first we insall <code><b>nodemon</b></code>. command: <code><b>npm install nodemon --save-dev</b></code></p>
 <p>Other dependencies:<br/> 
 <code><b>cors</b></code>: use this middleware to configure cors <br/> 
 <code><b>dotenv</b></code>: use this middleware to configure dotenv <br/> 
@@ -1636,8 +1639,8 @@ microservice-app
 <code><b>winston</b></code>: use this library for logging
 </p>
 <p><b>Install command:</b> <code><b>npm install cors dotenv express express-http-proxy helmet mongoose ioredis jsonwebtoken winston</b></code></p>
-<p><b>02.</b> Create <code><b>src/server.js</b></code> file</p>
-<p><b>03.</b> Open <b>package.json</b> and add <b>scripts</b> like below</p>
+<p>Create <code><b>src/server.js</b></code> file</p>
+<p>Open <b>package.json</b> and add <b>scripts</b> like below</p>
 <textarea class="code-editor">
 "main": "src/server.js",
 "scripts": {
@@ -1645,6 +1648,9 @@ microservice-app
     "dev": "nodemon src/server.js"
 },</textarea>
 <br/>
+<hr/>
+<h5><b>Setup <code>auth-service</code></b></h5>
+<hr/>
 <p>Now we go to <b>auth-service</b>. Run <code><b>npm init -y</b></code> and create <code><b>src/server.js</b></code></p>
 <p>Open <b>package.json</b> and add <b>scripts</b> like below</p>
 <textarea class="code-editor">
