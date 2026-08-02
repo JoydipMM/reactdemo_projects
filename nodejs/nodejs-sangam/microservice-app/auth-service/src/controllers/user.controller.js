@@ -53,6 +53,10 @@ const userRegistrationController = async (req, res) => {
 
     }catch(err){
         logger.error("Error occurred while registering user"); // Log any errors that occur
+        return res.status(500).json({
+            success: false,
+            message: "Error occurred while registering user"
+        });
     }
 }
 
