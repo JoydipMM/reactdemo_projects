@@ -1682,14 +1682,22 @@ microservice-app
 <code><b>rate-limit-redis</b></code>: use this for rate limiting with Redis <br/>
 <code><b>winston</b></code>: use this library for logging
 <p><b>Install command:</b> <code><b>npm install argon2 cors dotenv express express-rate-limit helmet ioredis joi jsonwebtoken mongoose rate-limit-redis winston</b></code></p>
+
+
+<h5 class="mt-3"><code><u><b><i>Environment setup</i></b></u></code></h5>
 <p>Create <code>.env</code> file. Inside <code>.env</code> file add below environment variables</p>
 <textarea class="code-editor">
 PORT=3001
 MONGODB_URI=mongodb+srv://url_text/db-name
 JWT_SECRET=jwt_secret_key_goes_here</textarea>
 
+
+<h5 class="mt-3"><code><u><b><i>Essential folders</i></b></u></code></h5>
 <p>after that we create some folders inside <b>src</b> folder like: <b>models</b>, <b>routes</b>, <b>controllers</b>, <b>middlewares</b>, <b>utils</b></p>
-<p>Now we create <code>src/models/USer.model.js</code> for write <b><i>user schema</i></b> and <b><i>user model</i></b></p>
+
+
+<h5 class="mt-3"><code><u><b><i>Create User Schema and Model</i></b></u></code></h5>
+<p>Now we create <code>src/models/User.model.js</code> for write <b><i>user schema</i></b> and <b><i>user model</i></b></p>
 <ul class="list-group list-group-flush mx-4 mb-2">
     <li><b>Schema</b> = Defines the structure of the data.</li>
     <li><b>Model</b> = Provides methods to create, read, update, and delete (CRUD) data based on that schema.</li>
@@ -1765,6 +1773,147 @@ userSchema.index({username: "text", email: "text"});
 // we create a model named User using the userSchema and export it for use in other parts of the application
 const User =  mongoose.models.User || mongoose.model('User', userSchema);
 module.exports = User;</textarea>
+
+
+
+<h5 class="mt-3"><code><u><b><i>Logger Setup</i></b></u></code></h5>
+<p>For logger we use <code>winston</code> library. So we create <code>src/utils/logger.js</code></p>
+<p><b>Winston</b> is one of the most popular logging libraries for Node.js. <i>It helps you record information about your application's execution, such as errors, warnings, HTTP requests, and debugging information.</i></p>
+<p>Instead of using <i><code>console.log()</code>, <b>production applications use Winston because it provides structured logging, log levels, multiple outputs (transports), and log rotation.</b></i></p>
+
+<h6 class="mt-3"><b>Logger Setup for this Auth Service</b></h6>
+<textarea class="code-editor">
+// src/utils/logger.js
+
+// 01. import winston library
+const winston = require('winston');
+
+// 02. create a logger instance with desired configuration
+const logger = winston.createLogger({
+    // 03. set the logging level based on the environment
+    level: process.env.NODE_ENV === 'production' ? 'info' : 'debug', // Set the level to the current environment
+    format: winston.format.combine(
+        winston.format.timestamp(), // Add timestamp to log messages
+        winston.format.errors({ stack: true }), // Include stack trace for errors
+        winston.format.splat(), // Support string interpolation
+        winston.format.json() // Log in JSON format
+    ),
+    defaultMeta: { service: 'auth-service' }, // Add default metadata to log messages
+    transports: [
+        // 04. add console transport for logging to the console
+        new winston.transports.Console({
+            format: winston.format.combine(
+                winston.format.colorize(), // Colorize log messages for better readability
+                winston.format.simple() // Use simple format for console output
+            )
+        }),
+        new winston.transports.File({ filename: 'logs/error.log', level: 'error' }), // Log errors to a file
+        new winston.transports.File({ filename: 'logs/combined.log' }) // Log all messages to a combined log file
+    ]
+});
+
+module.exports = logger; // Export the logger instance for use in other modules</textarea>
+<br/>
+<blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">
+    <h5><b>Explanation:</b></h5>
+    <h6 class="mt-3"><b>Log Levels</b></h6>
+    <hr/>
+    <p><code>error</code> = Serious errors.</p>
+    <p><code>warn</code> = Warning messages</p>
+    <p><code>info</code> = General information</p>
+    <p><code>http</code> = HTTP requests</p>
+    <p><code>verbose</code> = Detailed logs</p>
+    <p><code>debug</code> = Debugging</p>
+    <p><code>silly</code> = Everything</p>
+
+    <h6 class="mt-3"><b>Basic Logger Example</b></h6>
+    <hr/>
+<textarea class="code-editor">
+const winston = require("winston");
+
+const logger = winston.createLogger({
+    level: "info",
+    format: winston.format.simple(),
+    transports: [
+        new winston.transports.Console()
+    ]
+});
+
+logger.info("Server started");
+logger.error("Something went wrong");
+logger.warn("Memory usage is high");
+
+// Output
+info: Server started
+error: Something went wrong
+warn: Memory usage is high
+</textarea>
+</code>
+</blockquote>
+
+
+<h5 class="mt-3"><code><u><b><i>Common Error Handler</i></b></u></code></h5>
+<textarea class="code-editor">
+// src/middlewares/errorHandler.js
+
+// if we use logger in our project
+// import logger instance from utils/logger.js to log errors
+const logger = require('../utils/logger');
+
+const errorHandler = (err, req, res, next) => {
+    // Log the error using the logger instance
+    logger.error({
+        method: req.method,
+        url: req.originalUrl,
+        ip: req.ip,
+        message: err.message,
+        stack: err.stack,
+    }); // Log the error stack trace
+
+    const statusCode = err.statusCode || 500;
+    const isProduction = process.env.NODE_ENV === "production";
+
+    res.status(statusCode).json({
+        success: false,
+        message: isProduction ? "Internal Server Error" : err.message,
+    })
+
+}
+
+module.exports = errorHandler; // Export the errorHandler middleware for use in other modules</textarea>
+
+
+<h5 class="mt-3"><code><u><b><i>Refresh Token Model</i></b></u></code></h5>
+<p>In this step, we will create a refresh token model. For that we create <code><b>src/models/RefreshToken.model.js</b></code></p>
+<textarea class="code-editor">
+const mongoose = require('mongoose');
+
+const refreshTokenSchema = new mongoose.Schema({
+    token:{
+        type: String,
+        required: true,
+        unique: true
+    },
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    expiresAt:{
+        type: Date,
+        required: true
+    }
+}, { timestamps: true });
+
+refreshTokenSchema.index({expiresAt: 1}, {expireAfterSeconds: 0});
+
+const RefreshToken = mongoose.models.RefreshToken || mongoose.model('RefreshToken', refreshTokenSchema);
+
+module.exports = RefreshToken;</textarea>
+
+<h5 class="mt-3"><code><u><b><i>Create User Controller</i></b></u></code></h5>
+
 <br/>
 <br/>
 
