@@ -341,6 +341,91 @@ const laptop2: ProductDetails2 = {
   warehouse: "Delhi",
 };
 </textarea>
+
+
+
+<hr />
+<h5><b>Enum Data Type in TypeScript</b></h5>
+<hr />
+<p>In TypeScript, an <b>enum (short for enumeration)</b> is a special data type that lets you define a set of named constant values. It makes your code more readable and reduces the chance of using invalid values.</p>
+<textarea class="code-editor">
+enum UserRole {
+    Admin,
+    User,
+    Guest
+}
+
+let role = UserRole.Admin;
+
+if (role === UserRole.Admin) {
+    console.log("Full Access");
+}</textarea>
+
+
+<p class="mt-3"><b>Benefits:</b></p>
+<ul class="list-group list-group-flush mx-4">
+  <li>Type safety</li>
+  <li>Autocomplete</li>
+  <li>Readable code</li>
+  <li>Easier maintenance</li>
+</ul>
+
+<p class="mt-3"><b>Numeric Enum (Default):</b></p>
+<p>By default, TypeScript assigns numbers starting from 0.</p>
+<textarea class="code-editor">
+enum Direction {
+    Up,
+    Down,
+    Left,
+    Right
+}
+
+console.log(Direction.Up);      // 0
+console.log(Direction.Down);    // 1
+console.log(Direction.Left);    // 2
+console.log(Direction.Right);   // 3
+
+
+// Internally it becomes something similar to:
+{
+  0: "Up",
+  1: "Down",
+  2: "Left",
+  3: "Right",
+  Up: 0,
+  Down: 1,
+  Left: 2,
+  Right: 3
+}</textarea>
+
+
+<p class="mt-3"><b>Custom Numeric Enum and String Enum:</b></p>
+<p>You can specify where numbering starts. Also instead of numbers, each value can be a string.</p>
+<textarea class="code-editor">
+// Numeric Enum
+enum Status {
+    Pending = 100,
+    Approved,
+    Rejected
+}
+
+console.log(Status.Pending);   // 100
+console.log(Status.Approved);  // 101
+console.log(Status.Rejected);  // 102
+
+// String Enum
+enum UserRole {
+    Admin = "ADMIN",
+    User = "USER",
+    Guest = "GUEST"
+}
+
+console.log(UserRole.Admin); // "ADMIN"</textarea>
+
+
+
+
+
 <!-- 
 <blockquote class="blockquote">
   <code class="mark">
