@@ -36,7 +36,4 @@ function add(a:number,b:number):number{ // here the return type is number
 }
 
 
-// union type
-/*
-A union type in TypeScript allows a variable, parameter, or return type to hold one of multiple types. It is represented using the pipe (|) operator.
-*/
+

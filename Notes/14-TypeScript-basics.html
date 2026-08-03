@@ -180,8 +180,167 @@ console.log(sym02 == sym03); // false</textarea>
 </ol>
 
 
-<br/>
+<hr />
+<h5><b>Interface in TypeScript</b></h5>
+<hr />
+<p><b>Interface</b> is a contract that defines the structure of an object. It is a type that can be used to describe the shape of an object.</p>
+<p>We can not use <b>union (|)</b> or <b>intersection (&)</b> with interface</p>
+<textarea class="code-editor">
+// we can write interface with variable name
+var studentObj:{
+    name: string,
+    age: number,
+    city: string
+} = {
+    name:'Dipen',
+    age: 25,
+    city: 'Ahmedabad'
+}
 
+// Also write with "interface" keyword
+interface student {
+    name: string,
+    age: number,
+    city: string
+}
+
+var student2Obj:student = {
+    name:'Rajesh',
+    age: 25,
+    city: 'Delhi' 
+}</textarea>
+
+<hr />
+<h5><b>Combine Interface in TypeScript</b></h5>
+<hr />
+<textarea class="code-editor">
+interface student {
+    name: string,
+    age: number,
+    city: string
+}
+
+interface studentSubject extends student {
+    subjects?: string[] // optional but if use then data type must be array
+}
+
+var student4Obj:studentSubject = {
+    name:'Dinesh',
+    age: 40,
+    city: 'Kolkata',
+    subjects: ['English', 'Hindi', 'Maths']
+}</textarea>
+
+
+<hr />
+<h5><b>Intersection Types in TypeScript</b></h5>
+<hr />
+<p>An <b><i>Intersection Type (&)</i></b> in TypeScript combines multiple types into a single type. The resulting type must satisfy all of the combined types.
+<p>Think of it as:</p>
+<ul class="list-group list-group-flush mx-4">
+  <li><b>Union (|) = OR →</b> A value can be one type or another.</li>
+  <li><b>Intersection (&) = AND →</b> A value must have everything from all types.</li>
+</ul>
+<h5 class="mt-3"><b>Basic Syntax</b></h5>
+<textarea class="code-editor">
+type A = {
+  name: string;
+};
+
+type B = {
+  age: number;
+};
+
+type Person = A & B;</textarea>
+<p>Now <b><i>Person</i></b> contains properties from both <b><i>A and B</i></b>.</p>
+<textarea class="code-editor">
+const user: Person = {
+  name: "Joy",
+  age: 36,
+};
+
+// Real Example: =================
+
+// Product Information
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+};
+
+// Inventory Information
+type Inventory = {
+  quantity: number;
+  warehouse: string;
+};
+
+// Combine Both
+type ProductDetails = Product & Inventory;
+
+const laptop: ProductDetails = {
+  id: 1,
+  name: "MacBook Pro",
+  price: 1800,
+  quantity: 12,
+  warehouse: "Delhi",
+};
+</textarea>
+
+
+<hr />
+<h5><b>Type in TypeScript</b></h5>
+<hr />
+<p><b><i>Type</i></b> is a way to define a custom type for object, function in TypeScript.</p>
+<p>In <b>Type</b> can can use <b>Union</b> or <b>Intersection</b></p>
+<textarea class="code-editor">
+// Product Information
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+};
+
+const laptop: Product = {
+  id: 1,
+  name: "MacBook Pro",
+  price: 1800,
+};</textarea>
+
+<hr />
+<h5><b>Intersection or Union with Type</b></h5>
+<hr />
+<textarea class="code-editor">
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+};
+
+type Inventory = {
+  quantity: number;
+  warehouse: string;
+};
+
+type ProductDetails = Product & Inventory;
+
+const laptop: ProductDetails = {
+  id: 1,
+  name: "MacBook Pro",
+  price: 1800,
+  quantity: 12,
+  warehouse: "Delhi",
+};
+
+type ProductDetails2 = Product | Inventory;
+
+const laptop2: ProductDetails2 = {
+  id: 1,
+  name: "MacBook Pro",
+  price: 1800,
+  quantity: 12,
+  warehouse: "Delhi",
+};
+</textarea>
 <!-- 
 <blockquote class="blockquote">
   <code class="mark">
