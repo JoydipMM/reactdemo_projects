@@ -11,6 +11,69 @@
 <hr />
 <h2><b>Node.js Basic</b></h2>
 <hr />
+<p><b>Node.js</b> is a <b>JavaScript</b> runtime environment that allows you to run <b>JavaScript</b> code outside of a web browser, most commonly on servers. <b>Node.js</b> provides an environment where JavaScript can run directly on your computer or a server. It is built on the Chrome V8 JavaScript engine and is widely used for building web servers, APIs, real-time applications, and command-line tools.</p>
+<br/>
+
+<hr/>
+<h5><b>Why is Node.js single-threaded?</b></h5>
+<hr/>
+<!-- <b>Node.js</b> is single-threaded by design because it uses an event-driven, non-blocking I/O architecture. This allows it to handle thousands of concurrent requests efficiently without creating a new thread for each request.
+
+JavaScript code in Node.js runs on a single main thread, but Node.js itself is not limited to one thread. It uses background threads (through libuv) for certain operations like file I/O, DNS lookups, and cryptographic tasks. -->
+
+
+<p><b>Node.js</b> is called <b><i><u>single-threaded</u></i></b> because JavaScript executes on a single main thread managed by the <b><i><u>event loop</u></i></b>. Instead of creating a new thread for every request, it uses <b><i><u>asynchronous</u>, <u>non-blocking I/O</u></i></b> to handle many concurrent operations efficiently. <i><u>Slow tasks like file access and cryptography</u></i> are <b><i><u>offloaded to libuv's worker thread pool</u></i></b> or the operating system. This design minimizes thread overhead and makes Node.js highly scalable for I/O-bound applications, while CPU-intensive tasks can be handled using worker threads or separate processes.</p>
+<br/>
+
+<hr/>
+<h5><b>What is Non-Blocking I/O?</b></h5>
+<hr/>
+<p><b>Non-blocking I/O</b> means that Node.js does not wait for an input/output operation <i>(file, database, network, API, etc.)</i> to finish before executing the next line of code.</p>
+<p class="mt-3"><b>Blocking Example</b></p>
+<textarea class="code-editor">
+const fs = require("fs");
+const data = fs.readFileSync("file.txt", "utf8");
+console.log(data);
+console.log("Program Finished");
+
+// Execution
+Read file
+⬇
+Wait until file is completely read
+⬇
+Print file
+⬇
+Print "Program Finished"</textarea>
+    <p>The application stops until the file is completely read.</p>
+    <p>This is Blocking I/O.</p>
+    
+<p class="mt-3"><b>Non-Blocking Example</b></p>
+<textarea class="code-editor">
+const fs = require("fs");
+fs.readFile("file.txt", "utf8", (err, data) => {
+    console.log(data);
+});
+console.log("Program Finished");
+
+// Execution:
+Start reading file
+⬇
+Immediately execute next line
+⬇
+Print "Program Finished"
+⬇
+File reading completes
+⬇
+Callback executes
+⬇
+Print file contents
+
+// Output
+Program Finished
+Hello World
+</textarea>
+<p>Node never waits.</p>
+
 <br/>
 <br/>
 <hr />
