@@ -4,6 +4,7 @@ const User = require("../models/User.model");
 const {validateRegistration} = require("../utils/validation"); // Import the validation function for user registration
 
 
+
 // user registration controller
 const userRegistrationController = async (req, res) => {
     logger.info("User registration endpoint called"); // Log that the user registration controller has been called
@@ -45,11 +46,22 @@ const userRegistrationController = async (req, res) => {
         await newUser.save(); // Save the new user to the database
 
         // return a response with status code 201 (Created) and a success message and add logger.info to log the successful registration
-        logger.info("User registered successfully: " + newUser.username); // Log the successful registration
+        logger.info("User registered successfully: " + newUser._id); // Log the successful registration
         return res.status(201).json({
             success: true,
             message: "User registered successfully"
         });
+
+        // after save the user we now create token for the user
+        const { accessToken, refreshToken } = await generateToken(newUser);
+
+        // send the response
+        res.status(201).json({
+            success: true,
+            message: "User registered successfully",
+            accessToken,
+            refreshToken
+        })
 
     }catch(err){
         logger.error("Error occurred while registering user"); // Log any errors that occur
@@ -67,3 +79,9 @@ const userRegistrationController = async (req, res) => {
 
 
 // user logout controller
+
+
+
+module.exports = {
+    userRegistrationController
+}

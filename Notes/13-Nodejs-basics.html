@@ -2000,8 +2000,232 @@ const RefreshToken = mongoose.models.RefreshToken || mongoose.model('RefreshToke
 
 module.exports = RefreshToken;</textarea>
 
+<h5 class="mt-3"><code><u><b><i>Generate access and refresh token utils function</i></b></u></code></h5>
+<p>First we update the <b>.env</b> file for <b><i>JWT_SECRET, JWT_ACCESS_EXPIRE and REFRESH_TOKEN_EXPIRE_DAYS</i></b>. Because we make this to easy access to change the token expiration time in the future. This will be used in <b><i>generateToken function</i></b></p>
+<textarea class="code-editor">
+JWT_ACCESS_EXPIRE=15m
+REFRESH_TOKEN_EXPIRE_DAYS=7</textarea>
+<p>In this step, we will create a generate access and refresh token utils function. For that we create <code><b>src/utils/generateToken.js</b></code></p>
+<textarea class="code-editor">
+const jwt = require("jsonwebtoken");
+const logger = require("./logger");
+const crypto , { randomUUID } = require("crypto");
+const RefreshToken = require("../models/RefreshToken.model");
+
+const generateToken = async (user) => {
+
+    // create access token
+    const accessToken = jwt.sign(
+        { jti: randomUUID(), userId: user._id, username: user.username }, // get user id and username from user document from mongodb
+        process.env.JWT_SECRET, // add secret key
+        { expiresIn: process.env.JWT_ACCESS_EXPIRE } // set token expiration time
+    );
+    logger.info("Access token created"); // Log that the access token has been created
+
+    // create a refresh token and store it in the database for future use
+    const refreshToken = crypto.randomBytes(40).toString("hex"); // Generate a random refresh token
+
+    // Hash the refresh token for security. Because, If our database is compromised, every refresh token can immediately be used by an attacker.
+    const hashedRefreshToken = crypto.createHash("sha256").update(refreshToken).digest("hex");
+
+    // Set the expiration date to 7 days from now will expire the refresh token in 7 days
+    const expiresAt = new Date();
+    const refreshTokenExpireDay = Number(process.env.REFRESH_TOKEN_EXPIRE_DAYS);
+    expiresAt.setDate(expiresAt.getDate() + refreshTokenExpireDay); // refresh token will expire in 7 days
+    /*
+    why not ---------------------------------------------
+    expiresAt.getDate() + Number(process.env.REFRESH_TOKEN_EXPIRE_DAYS) -> 25 + "7"
+    day will be -> "257"
+    why this ---------------------------------------------
+    expiresAt.getDate() + Number(process.env.REFRESH_TOKEN_EXPIRE_DAYS) -> 25 + 7
+    day will be -> 32
+    */
+
+    // before create a new refresh token, we need to handle database errors. If database is down, then we will get an error message. So we wrap the code in a try-catch block
+    try{
+        // Create a new RefreshToken document and save it to the database
+        await RefreshToken.create({
+            token: hashedRefreshToken, // here we store the hashed refresh token
+            user: user._id,
+            expiresAt: expiresAt
+        });
+        logger.info("Refresh token created");
+    }catch(err){
+        logger.error("Error creating refresh token: ", {
+            error: err.message,
+            stack: err.stack
+        });
+        throw new Error("Failed to generate refresh token");
+    }
+
+    return { accessToken, refreshToken };
+}
+
+module.exports = generateToken;</textarea>
+
+
+
 <h5 class="mt-3"><code><u><b><i>Create User Controller for User Registration</i></b></u></code></h5>
 <p>In this step, we will create a user controller for user registration in <code><b>src/controllers/user.controller.js</b></code></p>
+<textarea class="code-editor">
+const logger = require("../utils/logger"); // Import the logger instance for logging errors and other information
+const mongoose = require("mongoose");
+const User = require("../models/User.model");
+const {validateRegistration} = require("../utils/validation"); // Import the validation function for user registration
+
+// user registration controller
+// ----------------------------------------------------------------------------------------------
+const userRegistrationController = async (req, res) => {
+    logger.info("User registration endpoint called"); // Log that the user registration controller has been called
+    try{
+
+        // validate the data getting from request body to check if it is valid or not with the help of joi schema
+        const {error} = validateRegistration(req.body);
+
+        // if there is an error in validation
+        if(error){
+            logger.warn("Validation error during user registration: " + error.details[0].message); // Log the validation error
+            return res.status(400).json({
+                success: false,
+                message: error.details[0].message
+            });
+        }
+
+        // if validation is successful then we will check if user already exists or not with the help of email and username
+        const {firstName, lastName, username, email, password} = req.body;
+        const userExists = await User.findOne({$or: [{email: email}, {username: username}]}); // if email or username already exists
+
+        // if user already exists then we will return a response with status code 409 (Conflict) and a message indicating that the user already exists
+        if(userExists){
+            logger.warn("User already exists with the provided email or username"); // Log that the user already exists
+            return res.status(400).json({
+                success: false,
+                message: "User already exists with the provided email or username"
+            });
+        }
+
+        // if the user is new then we will create a new user instance and save it to the database
+        const newUser = new User({
+            firstName,
+            lastName,
+            username,
+            email,
+            password
+        });
+        await newUser.save(); // Save the new user to the database
+
+        // return a response with status code 201 (Created) and a success message and add logger.info to log the successful registration
+        logger.info("User registered successfully: " + newUser._id); // Log the successful registration
+        return res.status(201).json({
+            success: true,
+            message: "User registered successfully"
+        });
+
+        // after save the user we now create token for the user
+        const { accessToken, refreshToken } = await generateToken(newUser);
+
+        // send the response
+        res.status(201).json({
+            success: true,
+            message: "User registered successfully",
+            accessToken,
+            refreshToken
+        })
+
+    }catch(err){
+        logger.error("Error occurred while registering user"); // Log any errors that occur
+        return res.status(500).json({
+            success: false,
+            message: "Error occurred while registering user"
+        });
+    }
+}
+
+module.exports = {
+    userRegistrationController
+}</textarea>
+
+
+<h5 class="mt-3"><code><u><b><i>Create Route for User Registration</i></b></u></code></h5>
+<p>In this step, we will create a route for user registration in <code><b>src/routes/auth.route.js</b></code></p>
+<textarea class="code-editor">
+const express = require('express'); // import express for create a router
+const router = express.Router(); // create a router
+const { userRegistrationController } = require('../controllers/auth.controller'); // import user registration controller
+
+router.post('/register', userRegistrationController ); // create auth registration route and call user registration controller
+
+module.exports = router; // export this router</textarea>
+
+
+<h5 class="mt-3"><code><u><b><i>Create App with Express</i></b></u></code></h5>
+<p>In this step, we will create an Express.js app in <code><b>src/app.js</b></code></p>
+<textarea class="code-editor">
+const express = require("express");
+const app = express();
+
+app.use(express.json());
+
+module.exports = app; // export this app for use in other files and connect it to the server</textarea>
+
+
+<h5 class="mt-3"><code><u><b><i>Make Mongodb Database Connection</i></b></u></code></h5>
+<p>In this step, we will make a mongodb database connection in <code><b>src/database/mongodb.js</b></code></p>
+<p>Here we use <code><b>mongoose</b></code> for mongodb database connection</p>
+<p>Import <code><b>Logger</b></code> from <code><b>utils/logger.js</b></code> for logging error and info message</p>
+<textarea class="code-editor">
+const mongoose = require("mongoose");
+const { logger } = require("../utils/logger");
+const MONGODB_URI = process.env.MONGODB_URI;
+
+const connectDB = async () => {
+    const connection = await mongoose.connect(process.env.MONGODB_URI);
+    logger.info(`MongoDB Connected: ${connection.connection.host}`);
+    return connection;
+}
+
+module.exports = connectDB;</textarea>
+
+
+<h5 class="mt-3"><code><u><b><i>Create StartServer Function</i></b></u></code></h5>
+<p>In this file, we will create a start server function in <code><b>src/utils/startServer.js</b></code>. Which connect our mongodb database and start our server</p>
+<textarea class="code-editor">
+const app = require("../app");
+const { logger } = require("../utils/logger");
+const connectDB = require("../database/mongodb");
+
+const PORT = process.env.PORT || 3000;
+
+const startServer = async () => {
+    try{
+        await connectDB();
+
+        const server = app.listen(PORT, () => {
+            logger.info(`Server started on port ${PORT}`);
+        });
+
+        server.on("error", (err) => {
+            logger.error(err);
+        });
+
+    }catch(err){
+        logger.error(err.message);
+        process.exit(1);
+    }
+}
+
+module.exports = startServer;</textarea>
+
+
+<h5 class="mt-3"><code><u><b><i>Connect server and database in server.js</i></b></u></code></h5>
+<textarea class="code-editor">
+require("dotenv").config();
+
+// import the startServer function
+const startServer = require('./utils/startServer');
+
+// initialize the startServer function
+startServer();</textarea>
 
 <br/>
 <br/>
