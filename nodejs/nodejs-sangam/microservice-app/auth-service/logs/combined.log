@@ -121,3 +121,10 @@
 {"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:44:30.901Z"}
 {"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:44:37.465Z"}
 {"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:44:37.473Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:46:53.282Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:46:53.283Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:46:53.289Z"}
+{"level":"info","message":"new user data {\n  username: 'admin_username2',\n  email: 'adminnew@gmail2.com',\n  password: '$argon2id$v=19$m=65536,p=4,t=3$YzNHw/s6/9zkmkjIuw3gcg$xaaTqzR2+glGCnGwNRL0pUOFqMSuPbgfACYTTGM8Wug',\n  _id: new ObjectId('6a733ecd46169ee70b82b70e'),\n  createdAt: 2026-08-05T13:46:53.341Z,\n  updatedAt: 2026-08-05T13:46:53.341Z,\n  __v: 0\n}","service":"auth-service","timestamp":"2026-08-05T13:46:53.453Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-05T13:46:53.457Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-05T13:46:53.495Z"}
+{"level":"info","message":"User registered successfully: 6a733ecd46169ee70b82b70e","service":"auth-service","timestamp":"2026-08-05T13:46:53.495Z"}
