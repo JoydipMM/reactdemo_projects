@@ -3,3 +3,68 @@
 {"level":"error","message":"Unhandled Rejection at: [object Promise], reason: TypeError: Cannot read properties of undefined (reading 'error')","service":"auth-service","timestamp":"2026-08-05T13:11:29.656Z"}
 {"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:15:56.909Z"}
 {"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:15:56.918Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:21:57.012Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:21:57.012Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:21:57.028Z"}
+{"level":"warn","message":"Validation error during user registration: \"email\" is required","service":"auth-service","timestamp":"2026-08-05T13:21:57.034Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:22:08.227Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:22:08.227Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:22:08.229Z"}
+{"level":"warn","message":"Validation error during user registration: \"firstname\" is not allowed","service":"auth-service","timestamp":"2026-08-05T13:22:08.231Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:22:15.912Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:22:15.912Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:22:15.914Z"}
+{"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:22:16.052Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:22:46.152Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:22:46.159Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:22:50.458Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:22:50.459Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:22:50.465Z"}
+{"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:22:50.607Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:24:06.824Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:24:06.831Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:24:16.685Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:24:16.686Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:24:16.694Z"}
+{"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:24:16.831Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:26:18.718Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:26:18.718Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:26:18.720Z"}
+{"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:26:18.816Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:28:01.385Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:28:01.393Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:28:03.027Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:28:03.027Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:28:03.035Z"}
+{"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:28:03.300Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:28:51.722Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:28:51.731Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:28:53.551Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:28:53.560Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:28:54.367Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:28:54.368Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:28:54.376Z"}
+{"level":"info","message":"user checked","service":"auth-service","timestamp":"2026-08-05T13:28:54.420Z"}
+{"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:28:54.510Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:29:22.989Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:29:22.997Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:29:42.597Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:29:42.604Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:29:50.356Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:29:50.356Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:29:50.364Z"}
+{"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:29:50.515Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:33:23.473Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:33:23.480Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:33:27.533Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:33:27.534Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:33:27.543Z"}
+{"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:33:27.700Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:33:31.431Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:33:31.438Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:33:43.638Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:33:43.645Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:33:53.772Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:33:53.772Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:33:53.780Z"}
+{"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:33:53.893Z"}

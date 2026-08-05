@@ -10,6 +10,7 @@ const userRegistrationController = async (req, res) => {
     logger.info("User registration endpoint called"); // Log that the user registration controller has been called
     try{
 
+
         // validate the data getting from request body to check if it is valid or not with the help of joi schema
         const {error} = validateRegistration(req.body);
 
@@ -23,8 +24,8 @@ const userRegistrationController = async (req, res) => {
         }
 
         // if validation is successful then we will check if user already exists or not with the help of email and username
-        const {firstName, lastName, username, email, password} = req.body;
-        const userExists = await User.findOne({$or: [{email: email}, {username: username}]}); // if email or username already exists
+        const {username, email, password} = req.body;
+        const userExists = await User.findOne({$or: [{email}, {username}]}); // if email or username already exists
 
         // if user already exists then we will return a response with status code 409 (Conflict) and a message indicating that the user already exists
         if(userExists){
@@ -35,15 +36,16 @@ const userRegistrationController = async (req, res) => {
             });
         }
 
+
         // if the user is new then we will create a new user instance and save it to the database
         const newUser = new User({
-            firstName,
-            lastName,
             username,
             email,
             password
         });
         await newUser.save(); // Save the new user to the database
+
+        logger.info(`new user data ${newUser}`);
 
         // return a response with status code 201 (Created) and a success message and add logger.info to log the successful registration
         logger.info("User registered successfully: " + newUser._id); // Log the successful registration

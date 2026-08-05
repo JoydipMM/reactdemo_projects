@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const argon2 = require('argon2'); // Import argon2 for password hashing
 
 const userSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: false
-    },
-    lastName: {
-        type: String,
-        required: false
-    },
+    // firstName: {
+    //     type: String,
+    //     required: false
+    // },
+    // lastName: {
+    //     type: String,
+    //     required: false
+    // },
     username: {
         type: String,
         required: true,
