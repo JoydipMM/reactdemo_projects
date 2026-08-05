@@ -1767,19 +1767,18 @@ JWT_SECRET=jwt_secret_key_goes_here</textarea>
     <li><b>Model</b> = Provides methods to create, read, update, and delete (CRUD) data based on that schema.</li>
 </ul>
 <textarea class="code-editor">
-// src/models/USer.model.js
 const mongoose = require('mongoose');
 const argon2 = require('argon2'); // Import argon2 for password hashing
 
 const userSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: false
-    },
-    lastName: {
-        type: String,
-        required: false
-    },
+    // firstName: {
+    //     type: String,
+    //     required: false
+    // },
+    // lastName: {
+    //     type: String,
+    //     required: false
+    // },
     username: {
         type: String,
         required: true,
@@ -1802,24 +1801,20 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 });
 
-// Pre-save middleware to hash the password before saving the user document
-userSchema.pre("save", async function (next){
-    // Pre-save middleware logic here - for example, hashing the password before saving
 
+// Pre-save middleware to hash the password before saving the user document
+userSchema.pre("save", async function () {
     if (!this.isModified("password")) {
-        return next();
+        return;
     }
 
-    if(this.isModified("password")){
-        try {
-            this.password = await argon2.hash(this.password);
-            next();
-        }catch (error) {
-            next(error);
-        }
-           
+    try {
+        this.password = await argon2.hash(this.password);
+    } catch (error) {
+        throw error;
     }
 });
+
 
 // we create a method to comapre password async function to compare the hashed password with the provided password
 userSchema.methods.comparePassword = async function (candidatePassword) {
@@ -1831,8 +1826,10 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
     }
 }
 
+
 // we create a text index on the username and email fields to enable text search on these fields
 userSchema.index({username: "text", email: "text"});
+
 
 // we create a model named User using the userSchema and export it for use in other parts of the application
 const User =  mongoose.models.User || mongoose.model('User', userSchema);
@@ -2010,18 +2007,17 @@ REFRESH_TOKEN_EXPIRE_DAYS=7</textarea>
 <textarea class="code-editor">
 const jwt = require("jsonwebtoken");
 const logger = require("./logger");
-const crypto , { randomUUID } = require("crypto");
+const crypto = require("crypto");
+const { randomUUID } = require("crypto");
 const RefreshToken = require("../models/RefreshToken.model");
 
 const generateToken = async (user) => {
-
-    // create access token
     const accessToken = jwt.sign(
         { jti: randomUUID(), userId: user._id, username: user.username }, // get user id and username from user document from mongodb
         process.env.JWT_SECRET, // add secret key
         { expiresIn: process.env.JWT_ACCESS_EXPIRE } // set token expiration time
     );
-    logger.info("Access token created"); // Log that the access token has been created
+    logger.info("Access token created");
 
     // create a refresh token and store it in the database for future use
     const refreshToken = crypto.randomBytes(40).toString("hex"); // Generate a random refresh token
@@ -2072,6 +2068,7 @@ module.exports = generateToken;</textarea>
 const logger = require("../utils/logger"); // Import the logger instance for logging errors and other information
 const mongoose = require("mongoose");
 const User = require("../models/User.model");
+const generateToken = require("../utils/generateToken");
 const {validateRegistration} = require("../utils/validation"); // Import the validation function for user registration
 
 // user registration controller
@@ -2079,6 +2076,7 @@ const {validateRegistration} = require("../utils/validation"); // Import the val
 const userRegistrationController = async (req, res) => {
     logger.info("User registration endpoint called"); // Log that the user registration controller has been called
     try{
+
 
         // validate the data getting from request body to check if it is valid or not with the help of joi schema
         const {error} = validateRegistration(req.body);
@@ -2093,8 +2091,8 @@ const userRegistrationController = async (req, res) => {
         }
 
         // if validation is successful then we will check if user already exists or not with the help of email and username
-        const {firstName, lastName, username, email, password} = req.body;
-        const userExists = await User.findOne({$or: [{email: email}, {username: username}]}); // if email or username already exists
+        const { username, email, password} = req.body;
+        const userExists = await User.findOne({$or: [{email}, {username}]}); // if email or username already exists
 
         // if user already exists then we will return a response with status code 409 (Conflict) and a message indicating that the user already exists
         if(userExists){
@@ -2105,39 +2103,36 @@ const userRegistrationController = async (req, res) => {
             });
         }
 
+
         // if the user is new then we will create a new user instance and save it to the database
         const newUser = new User({
-            firstName,
-            lastName,
             username,
             email,
             password
         });
         await newUser.save(); // Save the new user to the database
 
-        // return a response with status code 201 (Created) and a success message and add logger.info to log the successful registration
-        logger.info("User registered successfully: " + newUser._id); // Log the successful registration
-        return res.status(201).json({
-            success: true,
-            message: "User registered successfully"
-        });
+        logger.info(`new user data ${newUser}`);
 
-        // after save the user we now create token for the user
         const { accessToken, refreshToken } = await generateToken(newUser);
 
-        // send the response
-        res.status(201).json({
+        logger.info("User registered successfully: " + newUser._id); // Log the successful registration
+        return res.status(201).json({
             success: true,
             message: "User registered successfully",
             accessToken,
             refreshToken
-        })
+        });
 
     }catch(err){
-        logger.error("Error occurred while registering user"); // Log any errors that occur
+        logger.error("Error occurred while registering user", {
+            error: err?.message,
+            stack: err?.stack
+        }); // Log any errors that occur
         return res.status(500).json({
             success: false,
-            message: "Error occurred while registering user"
+            message: "Error occurred while registering user",
+            error: process.env.NODE_ENV !== "production" ? err?.message : undefined
         });
     }
 }

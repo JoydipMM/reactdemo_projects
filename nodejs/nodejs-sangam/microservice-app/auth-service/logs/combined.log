@@ -68,3 +68,56 @@
 {"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:33:53.772Z"}
 {"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:33:53.780Z"}
 {"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:33:53.893Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:34:26.308Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:34:26.308Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:34:26.311Z"}
+{"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:34:26.412Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:35:20.054Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:35:20.061Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:35:45.525Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:35:45.526Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:35:45.533Z"}
+{"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:35:45.653Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:35:50.342Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:35:50.351Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:35:56.801Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:35:56.802Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:35:56.808Z"}
+{"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:35:56.929Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:37:00.082Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:37:00.082Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:37:00.085Z"}
+{"level":"error","message":"Error occurred while registering user","service":"auth-service","timestamp":"2026-08-05T13:37:00.212Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:39:30.392Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:39:30.400Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:39:34.257Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:39:34.265Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:39:50.569Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:39:50.570Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:39:50.576Z"}
+{"error":"next is not a function","level":"error","message":"Error occurred while registering user","service":"auth-service","stack":"TypeError: next is not a function\n    at model.<anonymous> (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\models\\User.model.js:49:13)\n    at async Kareem.execPre (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\kareem\\index.js:61:24)\n    at async model.$__save (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\mongoose\\lib\\model.js:403:5)\n    at async maybeTracedSave (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\mongoose\\lib\\model.js:676:7)\n    at async userRegistrationController (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\controllers\\user.controller.js:47:9)","timestamp":"2026-08-05T13:39:50.688Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:40:03.337Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:40:03.345Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:40:08.979Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:40:08.980Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:40:08.986Z"}
+{"error":"next is not a function","level":"error","message":"Error occurred while registering user","service":"auth-service","stack":"TypeError: next is not a function\n    at model.<anonymous> (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\models\\User.model.js:49:13)\n    at async Kareem.execPre (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\kareem\\index.js:61:24)\n    at async model.$__save (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\mongoose\\lib\\model.js:403:5)\n    at async maybeTracedSave (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\mongoose\\lib\\model.js:676:7)\n    at async userRegistrationController (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\controllers\\user.controller.js:47:9)","timestamp":"2026-08-05T13:40:09.112Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:40:29.856Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:40:29.864Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:40:32.790Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:40:32.797Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:40:43.925Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:40:43.926Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:40:43.931Z"}
+{"level":"info","message":"new user data {\n  username: 'admin_username',\n  email: 'adminnew@gmail.com',\n  password: '$argon2id$v=19$m=65536,p=4,t=3$4W5j/0RRMiSW/xKV3r+2DA$yykYJh0N4DKzCDA9xF2EObKqvWGnpgDRpTCNfPK/W9Q',\n  _id: new ObjectId('6a733d5b62de5472793c9917'),\n  createdAt: 2026-08-05T13:40:43.992Z,\n  updatedAt: 2026-08-05T13:40:43.992Z,\n  __v: 0\n}","service":"auth-service","timestamp":"2026-08-05T13:40:44.106Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-05T13:40:44.110Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-05T13:40:44.155Z"}
+{"level":"info","message":"User registered successfully: 6a733d5b62de5472793c9917","service":"auth-service","timestamp":"2026-08-05T13:40:44.156Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:43:55.177Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:43:55.185Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:44:23.846Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:44:23.864Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:44:30.893Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:44:30.901Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-05T13:44:37.465Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-05T13:44:37.473Z"}

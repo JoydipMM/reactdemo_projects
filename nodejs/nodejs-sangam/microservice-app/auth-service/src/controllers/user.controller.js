@@ -1,6 +1,7 @@
 const logger = require("../utils/logger"); // Import the logger instance for logging errors and other information
 const mongoose = require("mongoose");
 const User = require("../models/User.model");
+const generateToken = require("../utils/generateToken");
 const {validateRegistration} = require("../utils/validation"); // Import the validation function for user registration
 
 
@@ -24,7 +25,7 @@ const userRegistrationController = async (req, res) => {
         }
 
         // if validation is successful then we will check if user already exists or not with the help of email and username
-        const {username, email, password} = req.body;
+        const { username, email, password} = req.body;
         const userExists = await User.findOne({$or: [{email}, {username}]}); // if email or username already exists
 
         // if user already exists then we will return a response with status code 409 (Conflict) and a message indicating that the user already exists
@@ -47,29 +48,25 @@ const userRegistrationController = async (req, res) => {
 
         logger.info(`new user data ${newUser}`);
 
-        // return a response with status code 201 (Created) and a success message and add logger.info to log the successful registration
-        logger.info("User registered successfully: " + newUser._id); // Log the successful registration
-        return res.status(201).json({
-            success: true,
-            message: "User registered successfully"
-        });
-
-        // after save the user we now create token for the user
         const { accessToken, refreshToken } = await generateToken(newUser);
 
-        // send the response
-        res.status(201).json({
+        logger.info("User registered successfully: " + newUser._id); // Log the successful registration
+        return res.status(201).json({
             success: true,
             message: "User registered successfully",
             accessToken,
             refreshToken
-        })
+        });
 
     }catch(err){
-        logger.error("Error occurred while registering user"); // Log any errors that occur
+        logger.error("Error occurred while registering user", {
+            error: err?.message,
+            stack: err?.stack
+        }); // Log any errors that occur
         return res.status(500).json({
             success: false,
-            message: "Error occurred while registering user"
+            message: "Error occurred while registering user",
+            error: process.env.NODE_ENV !== "production" ? err?.message : undefined
         });
     }
 }

@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const logger = require("./logger");
-const crypto , { randomUUID } = require("crypto");
+const crypto = require("crypto");
+const { randomUUID } = require("crypto");
 const RefreshToken = require("../models/RefreshToken.model");
 
 const generateToken = async (user) => {
