@@ -1838,6 +1838,31 @@ const User =  mongoose.models.User || mongoose.model('User', userSchema);
 module.exports = User;</textarea>
 
 
+<h5 class="mt-3"><code><u><b><i>Create Auth Validation Schema with Joi</i></b></u></code></h5>
+<p>We create <code>src/utils/validation.js</code> for write <b><i>auth validation schema</i></b></p>
+<textarea class="code-editor">
+// 01. import joi library
+const joi = require("joi");
+
+// 02. Define a validation schema for user registration
+const validateRegistration = (data) => {
+    const schema = joi.object({
+        firstName:joi.string().min(2).max(30),
+        lastName:joi.string().min(2).max(30),
+        username:joi.string().min(3).max(30).required(),
+        email:joi.string().email().required(),
+        password:joi.string().min(6).required(),
+    });
+
+    // 03. Validate the data against the schema
+    return schema.validate(data);
+}
+
+// 04. export the validation function for use in other modules
+module.exports = {
+    validateRegistration
+}</textarea>
+
 
 <h5 class="mt-3"><code><u><b><i>Logger Setup</i></b></u></code></h5>
 <p>For logger we use <code>winston</code> library. So we create <code>src/utils/logger.js</code></p>
