@@ -1743,8 +1743,9 @@ microservice-app
 <code><b>jsonwebtoken</b></code>: use this library to handle JSON Web Tokens <br/>  
 <code><b>mongoose</b></code>: use this library to interact with MongoDB <br/>
 <code><b>rate-limit-redis</b></code>: use this for rate limiting with Redis <br/>
-<code><b>winston</b></code>: use this library for logging
-<p><b>Install command:</b> <code><b>npm install argon2 cors dotenv express express-rate-limit helmet ioredis joi jsonwebtoken mongoose rate-limit-redis winston</b></code></p>
+<code><b>winston</b></code>: use this library for logging<br/>
+<code><b>rate-limiter-flexible</b></code>: use this for rate limiting
+<p><b>Install command:</b> <code><b>npm install argon2 cors dotenv express express-rate-limit helmet ioredis joi jsonwebtoken mongoose rate-limit-redis winston rate-limiter-flexible</b></code></p>
 
 
 <h5 class="mt-3"><code><u><b><i>Environment setup</i></b></u></code></h5>
@@ -2175,7 +2176,7 @@ module.exports = app; // export this app for use in other files and connect it t
 <p>Import <code><b>Logger</b></code> from <code><b>utils/logger.js</b></code> for logging error and info message</p>
 <textarea class="code-editor">
 const mongoose = require("mongoose");
-const { logger } = require("../utils/logger");
+const logger = require("../utils/logger");
 const MONGODB_URI = process.env.MONGODB_URI;
 
 const connectDB = async () => {
@@ -2191,7 +2192,7 @@ module.exports = connectDB;</textarea>
 <p>In this file, we will create a start server function in <code><b>src/config/serverConfig.js</b></code>. Which connect our mongodb database and start our server</p>
 <textarea class="code-editor">
 const app = require("../app");
-const { logger } = require("../utils/logger");
+const logger = require("../utils/logger");
 const connectDB = require("../database/mongodb");
 
 const PORT = process.env.PORT || 3000;
@@ -2227,6 +2228,43 @@ const startServer = require('./config/serverConfig');
 // initialize the startServer function
 startServer();</textarea>
 
+
+<h5 class="mt-3"><code><u><b><i>Custom Cors Middleware</i></b></u></code></h5>
+<p>In this step, we will create a custom cors middleware in <code><b>src/config/corsConfig.js</b></code></p>
+<textarea class="code-editor">
+// import cors
+const cors = require("cors");
+
+// create a function to configure cors
+const configureCors = () => {
+    return cors({
+        // origin tell which origin we want to user can access this api
+        origin: (origin, callback) => {
+            const allowedOrigins = [
+                "http://localhost:3000",
+            ]
+
+            if(!origin || allowedOrigins.indexOf(origin) !== -1) {
+                callback(null, true) // permission is allowed
+            } else {
+                callback(new Error("Not allowed by CORS"))
+            }
+        },
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization", "Accept-Version"],
+        exposedHeaders: ["X-Total-Count", "Content-Range"], // this header will expose the headers to client in the response
+        //credentials: true, // this will allow client to send cookie
+        //preflightContinue: false, // false in default. false will not allow any preflight request
+        //maxAge: 600, // in seconds means 10 minutes. this will cache the preflight responses for 10 mins. sending avoid options request multiple times
+        //optionSuccessStatus: 204,  // this will return status code 204 for successfull options request 
+    })
+}
+
+// export the function
+module.exports = configureCors</textarea>
+
+
+<h5 class="mt-3"><code><u><b><i>Update app.js with some middlewares</i></b></u></code></h5>
 <br/>
 <br/>
 

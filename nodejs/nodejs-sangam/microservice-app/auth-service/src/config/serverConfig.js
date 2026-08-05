@@ -1,5 +1,5 @@
 const app = require("../app");
-const { logger } = require("../utils/logger");
+const logger = require("../utils/logger");
 const connectDB = require("../database/mongodb");
 
 const PORT = process.env.PORT || 3000;

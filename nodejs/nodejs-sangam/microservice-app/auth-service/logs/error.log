@@ -1,0 +1,3 @@
+{"level":"error","message":"Unhandled Rejection at: [object Promise], reason: TypeError: Cannot read properties of undefined (reading 'error')","service":"auth-service","timestamp":"2026-08-05T13:10:59.432Z"}
+{"level":"error","message":"Unhandled Rejection at: [object Promise], reason: TypeError: Cannot read properties of undefined (reading 'error')","service":"auth-service","timestamp":"2026-08-05T13:11:10.486Z"}
+{"level":"error","message":"Unhandled Rejection at: [object Promise], reason: TypeError: Cannot read properties of undefined (reading 'error')","service":"auth-service","timestamp":"2026-08-05T13:11:29.656Z"}
