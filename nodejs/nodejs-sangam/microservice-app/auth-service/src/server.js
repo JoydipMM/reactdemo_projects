@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 // import the startServer function
-const startServer = require('./utils/startServer');
+const startServer = require('./config/serverConfig');
 
 // initialize the startServer function
 startServer();

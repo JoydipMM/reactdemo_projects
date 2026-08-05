@@ -2188,7 +2188,7 @@ module.exports = connectDB;</textarea>
 
 
 <h5 class="mt-3"><code><u><b><i>Create StartServer Function</i></b></u></code></h5>
-<p>In this file, we will create a start server function in <code><b>src/utils/startServer.js</b></code>. Which connect our mongodb database and start our server</p>
+<p>In this file, we will create a start server function in <code><b>src/config/serverConfig.js</b></code>. Which connect our mongodb database and start our server</p>
 <textarea class="code-editor">
 const app = require("../app");
 const { logger } = require("../utils/logger");
@@ -2222,7 +2222,7 @@ module.exports = startServer;</textarea>
 require("dotenv").config();
 
 // import the startServer function
-const startServer = require('./utils/startServer');
+const startServer = require('./config/serverConfig');
 
 // initialize the startServer function
 startServer();</textarea>
