@@ -128,3 +128,18 @@
 {"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-05T13:46:53.457Z"}
 {"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-05T13:46:53.495Z"}
 {"level":"info","message":"User registered successfully: 6a733ecd46169ee70b82b70e","service":"auth-service","timestamp":"2026-08-05T13:46:53.495Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:51:15.275Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:51:15.275Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:51:15.277Z"}
+{"level":"warn","message":"User already exists with the provided email or username","service":"auth-service","timestamp":"2026-08-05T13:51:15.315Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:57:11.076Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:57:11.076Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:57:11.079Z"}
+{"level":"warn","message":"User already exists with the provided email or username","service":"auth-service","timestamp":"2026-08-05T13:57:11.116Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-05T13:57:15.567Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-05T13:57:15.568Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-05T13:57:15.569Z"}
+{"level":"info","message":"new user data {\n  username: 'admin_username3',\n  email: 'adminnew@gmail3.com',\n  password: '$argon2id$v=19$m=65536,p=4,t=3$Pgxr2AdWDZdngV1kRYHaPA$o4oRS2PdXdIaMGuPROXA1BhRoA7dj3o0rFTluM7OMVs',\n  _id: new ObjectId('6a73413b46169ee70b82b710'),\n  createdAt: 2026-08-05T13:57:15.604Z,\n  updatedAt: 2026-08-05T13:57:15.604Z,\n  __v: 0\n}","service":"auth-service","timestamp":"2026-08-05T13:57:15.729Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-05T13:57:15.731Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-05T13:57:15.770Z"}
+{"level":"info","message":"User registered successfully: 6a73413b46169ee70b82b710","service":"auth-service","timestamp":"2026-08-05T13:57:15.770Z"}
