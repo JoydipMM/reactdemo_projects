@@ -1935,6 +1935,77 @@ info: Server started
 error: Something went wrong
 warn: Memory usage is high
 </textarea>
+    <h6 class="mt-3"><b>Code Breakdown</b></h6>
+    <hr/>
+<textarea class="code-editor">const logger = winston.createLogger();</textarea>
+<ul class="list-group list-group-flush mx-4">
+    <li><p><code>const logger = winston.createLogger();</code> - creates a new logger instance<br/>
+    This logger object provides methods like:</p>
+<textarea class="code-editor">
+logger.info();
+logger.error();
+logger.warn();
+logger.debug();</textarea>
+    </li>
+    <li><b>1. Logging Level</b> 
+<textarea class="code-editor">process.env.NODE_ENV === 'production' ? 'info' : 'debug',</textarea>
+        <p>This determines which log levels should actually be written.</p>
+        <p>if <b>NODE_ENV=production</b> then level = "info", then Winston logs only "error", "warn", and "info" messages. and <br/>
+        if <b>NODE_ENV=development</b> then level = "debug", then Winston logs all messages ( "error", "warn", and "info" ).</p>
+    </li>
+    <li><b>2. Format</b>
+<textarea class="code-editor">
+format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.errors({ stack: true }),
+    winston.format.splat(),
+    winston.format.json(),
+),</textarea>
+    <p><b class="text-success">winston.format.timestamp()</b> Automatically adds the current time.<br/>
+    <i>Without timestamp: { "level":"info", "message":"User logged in" }<br/>
+    With timestamp: { "level":"info", "message":"User logged in", "timestamp":"2023-05-15T07:42:08.000Z" }</i><br/>
+    This helps to identify when an event happened.</p>
+    <p><b class="text-success">winston.format.errors({ stack: true })</b> adds the stack trace to the log message if there is an error.<br/>
+    <i>Normally, we use logger.error(new Error("Database Error")); might produce without stack trace. : { "message":"Database Error"}<br/>
+    with stack: true it becomes { "message":"Database Error", "stack":"Error: Database Error\n at ..." }</i><br/>
+    The stack trace shows where the error occurred, making debugging much easier.</p>
+    <p><b class="text-success">winston.format.splat()</b> This enables printf-style placeholders.<br/>
+    <i>Example: logger.info("User %s logged in", "John");<br/>
+    Without splat: User %s logged in<br/>
+    With splat: User John logged in</i></p>
+    <p><b class="text-success">winston.format.json()</b> Converts the log into JSON.<br/>
+        Instead of info: User logged in<br/>
+        we got: <i>{ "timestamp":"2026-08-06T10:22:00Z", "level":"info", "message":"User logged in" }</i></p>
+    </li>
+    <li><b>3. Default Metadata:</b> <p>Adds the same metadata to every log.</p>
+<textarea class="code-editor">defaultMeta: { service: "auth-service" }</textarea>
+<p>Adds the same metadata to every log.<br/>
+    <i>Example: logger.info("User created");<br/>
+    output: { "service":"auth-service", "message":"User created" }<br/>
+    <b style="display: inline-block;" class="mt-3">Why need default metadata?</b><br/>
+    Imagine we have multiple services: auth-service, user-service, and product-service.</i><br/>
+    When all logs are collected in one place, we can quickly filter logs from the auth-service.</p>
+    </li>
+    <li><b>4. Transports</b>
+        <p>A transport defines where the logs are written. One log message can be sent to multiple destinations.</p>
+    </li>
+    <li><b>9. Console Transport</b>
+    <p>Logs are printed to the terminal.</p>
+<textarea class="code-editor">
+new winston.transports.Console({
+    format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.simple()
+    )
+}),</textarea>
+<p><b>winston.format.colorize()</b> Makes log levels easier to distinguish. Example: <i>INFO (green) WARN (yellow) ERROR (red)</i><br/>
+    <b>winston.format.simple()</b> Outputs concise, human-readable logs. Example: <i>info: User logged in</i><br/>
+    <b>new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),</b> save all errr Log errors to a file<br/>
+    <b>new winston.transports.File({ filename: 'logs/combined.log' })</b> Log all messages to a combined log file.
+</p>
+    </li>
+</ul>
+
 </code>
 </blockquote>
 
