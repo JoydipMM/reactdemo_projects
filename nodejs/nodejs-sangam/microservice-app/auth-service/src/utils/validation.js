@@ -9,7 +9,7 @@ const validateRegistration = (data) => {
         firstName:joi.string().min(2).max(30),
         lastName:joi.string().min(2).max(30),
         username:joi.string().min(3).max(30).trim().required(),
-        email:joi.string().email().required(),
+        email:joi.string().email().lowercase().required(),
         password:joi.string().min(6).max(30).required(),
     }).unknown(false);
 
