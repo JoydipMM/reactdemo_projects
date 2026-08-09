@@ -72,6 +72,45 @@ const userRegistrationController = async (req, res) => {
 }
 
 // user login controller
+const userLoginController = async (req, res) =>{
+    logger.info("User login endpoint called");
+
+    // get the username, email and password from the request body
+    const { username, email, password } = req.body;
+
+    // find and validate the username or email for the user in the database
+    const user = await User.findOne({$or: [{username}, {email}]});
+    // if user not found
+    if(!user){
+        logger.error(`User not found with username`);
+        return res.status(404).json({
+            success: false,
+            message: "Invalid username, email or password"
+        });
+    }
+
+    // if user found then check password
+    const isCorrectPassword = await user.comparePassword(password);
+    // if password is not correct
+    if(!isCorrectPassword){
+        logger.error(`User not found with password`);
+        return res.status(404).json({
+            success: false,
+            message: "Invalid username, email or password"
+        });
+    }
+
+    // if password correct then generate tokens
+    const { accessToken, refreshToken } = await generateToken(user);
+
+    logger.info("User logged in successfully");
+    return res.status(200).json({
+        success: true,
+        message: "User logged in successfully",
+        accessToken,
+        refreshToken
+    });
+}
 
 
 // refresh token controller
@@ -82,5 +121,6 @@ const userRegistrationController = async (req, res) => {
 
 
 module.exports = {
-    userRegistrationController
+    userRegistrationController,
+    userLoginController
 }

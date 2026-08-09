@@ -17,7 +17,20 @@ const validateRegistration = (data) => {
     return schema.validate(data);
 }
 
+
+// Define a validation schema for user login
+const validateLogin = (data) => {
+    const schema = joi.object({
+        username:joi.string().min(3).max(30).trim().required(),
+        password:joi.string().min(6).max(30).required(),
+    }).unknown(false);
+
+    // Validate the data against the schema
+    return schema.validate(data);
+}
+
 // 04. export the validation function for use in other modules
 module.exports = {
-    validateRegistration
+    validateRegistration,
+    validateLogin
 }
