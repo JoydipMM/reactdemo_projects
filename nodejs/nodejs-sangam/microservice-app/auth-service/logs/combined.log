@@ -348,3 +348,260 @@
 {"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:31:01.700Z"}
 {"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:31:06.395Z"}
 {"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:31:06.402Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:32:01.554Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:32:01.561Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:33:51.825Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:33:51.833Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:33:54.604Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:33:54.612Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:34:09.475Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:34:09.483Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:36:27.069Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:36:27.076Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:40:52.929Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:40:52.937Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:41:17.037Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:41:17.044Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:41:19.938Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:41:19.946Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:42:31.244Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:42:31.251Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:42:41.366Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:42:41.374Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:43:55.961Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:43:55.968Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:45:27.067Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:45:27.074Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:45:59.128Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:45:59.136Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:46:25.735Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:46:25.743Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:46:44.238Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:46:44.247Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:47:51.025Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:47:51.032Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:48:09.723Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:48:09.731Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:48:28.161Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:48:28.169Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:48:29.963Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:48:29.971Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:48:44.143Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:48:44.150Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:48:53.759Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:48:53.766Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:49:13.254Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:49:13.262Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:49:16.720Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:49:16.727Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:49:18.553Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:49:18.560Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:49:33.997Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:49:34.005Z"}
+{"level":"info","message":"Received POST request to /api/auth/login","service":"auth-service","timestamp":"2026-08-09T10:49:52.403Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T10:49:52.404Z"}
+{"level":"info","message":"User login endpoint called","service":"auth-service","timestamp":"2026-08-09T10:49:52.442Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T10:49:52.556Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-09T10:49:52.600Z"}
+{"level":"info","message":"User logged in successfully","service":"auth-service","timestamp":"2026-08-09T10:49:52.601Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:52:09.600Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:52:09.608Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:52:31.795Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:52:31.802Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:52:45.365Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:52:45.375Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T10:54:52.186Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T10:54:52.187Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T10:54:52.191Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T10:54:52.231Z"}
+{"level":"info","message":"Received POST request to /api/auth/login","service":"auth-service","timestamp":"2026-08-09T10:55:13.559Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T10:55:13.559Z"}
+{"level":"info","message":"User login endpoint called","service":"auth-service","timestamp":"2026-08-09T10:55:13.563Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T10:55:13.755Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-09T10:55:13.815Z"}
+{"level":"info","message":"User logged in successfully","service":"auth-service","timestamp":"2026-08-09T10:55:13.815Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T10:55:21.553Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T10:55:21.553Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T10:55:21.554Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T10:55:21.589Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T10:55:45.930Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T10:55:45.930Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T10:55:45.932Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T10:55:45.968Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T10:56:22.312Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T10:56:22.312Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T10:56:22.313Z"}
+{"level":"error","message":"Refresh token missing","service":"auth-service","timestamp":"2026-08-09T10:56:22.313Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T10:56:45.798Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T10:56:45.805Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T10:56:47.058Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T10:56:47.058Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T10:56:47.062Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T10:56:47.102Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T10:57:50.001Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T10:57:50.001Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T10:57:50.003Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T10:57:50.038Z"}
+{"level":"info","message":"Received POST request to /api/auth/login","service":"auth-service","timestamp":"2026-08-09T10:58:36.637Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T10:58:36.637Z"}
+{"level":"info","message":"User login endpoint called","service":"auth-service","timestamp":"2026-08-09T10:58:36.640Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T10:58:36.738Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-09T10:58:36.782Z"}
+{"level":"info","message":"User logged in successfully","service":"auth-service","timestamp":"2026-08-09T10:58:36.783Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T10:58:55.436Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T10:58:55.437Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T10:58:55.438Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T10:58:55.474Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T10:59:08.931Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T10:59:08.932Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T10:59:08.932Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T10:59:08.966Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T11:02:46.438Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T11:02:46.448Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T11:02:57.428Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:02:57.429Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T11:02:57.433Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T11:02:57.473Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T11:05:25.010Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:05:25.011Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T11:05:25.013Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T11:05:25.063Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T11:05:37.504Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:05:37.504Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T11:05:37.505Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T11:05:37.539Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T11:06:49.135Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T11:06:49.143Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T11:06:51.104Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:06:51.105Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T11:06:51.134Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T11:06:51.174Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T11:09:28.480Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T11:09:28.488Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T11:09:29.283Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:09:29.284Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T11:09:29.289Z"}
+{"level":"warn","message":"Refresh token not found","service":"auth-service","timestamp":"2026-08-09T11:09:29.330Z"}
+{"level":"info","message":"Received POST request to /api/auth/login","service":"auth-service","timestamp":"2026-08-09T11:09:34.882Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:09:34.882Z"}
+{"level":"info","message":"User login endpoint called","service":"auth-service","timestamp":"2026-08-09T11:09:34.886Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T11:09:34.987Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-09T11:09:35.034Z"}
+{"level":"info","message":"User logged in successfully","service":"auth-service","timestamp":"2026-08-09T11:09:35.034Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T11:09:45.935Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:09:45.935Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T11:09:45.937Z"}
+{"level":"warn","message":"Refresh token not found","service":"auth-service","timestamp":"2026-08-09T11:09:45.973Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T11:10:26.414Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T11:10:26.422Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T11:11:29.039Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T11:11:29.047Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T11:11:35.140Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:11:35.141Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T11:11:35.147Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T11:11:35.197Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-09T11:12:49.915Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:12:49.915Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-09T11:12:49.920Z"}
+{"level":"info","message":"new user data admin_username5","service":"auth-service","timestamp":"2026-08-09T11:12:50.121Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T11:12:50.125Z"}
+{"error":"RefreshToken validation failed: user: Path `user` is required.","level":"error","message":"Error creating refresh token: ","service":"auth-service","stack":"ValidationError: RefreshToken validation failed: user: Path `user` is required.\n    at model.validate (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\mongoose\\lib\\document.js:2910:36)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async model.$__save (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\mongoose\\lib\\model.js:399:7)\n    at async maybeTracedSave (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\mongoose\\lib\\model.js:676:7)\n    at async Function.create (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\mongoose\\lib\\model.js:2764:5)\n    at async generateToken (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\utils\\generateToken.js:37:9)\n    at async userRegistrationController (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\controllers\\user.controller.js:52:47)","timestamp":"2026-08-09T11:12:50.129Z"}
+{"error":"Failed to generate refresh token","level":"error","message":"Error occurred while registering user","service":"auth-service","stack":"Error: Failed to generate refresh token\n    at generateToken (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\utils\\generateToken.js:48:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async userRegistrationController (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\controllers\\user.controller.js:52:47)","timestamp":"2026-08-09T11:12:50.130Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-09T11:12:59.393Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:12:59.394Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-09T11:12:59.396Z"}
+{"level":"warn","message":"User already exists with the provided email or username","service":"auth-service","timestamp":"2026-08-09T11:12:59.433Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-09T11:13:27.088Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:13:27.088Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-09T11:13:27.090Z"}
+{"level":"info","message":"new user data admin_username5","service":"auth-service","timestamp":"2026-08-09T11:13:27.217Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T11:13:27.218Z"}
+{"error":"RefreshToken validation failed: user: Path `user` is required.","level":"error","message":"Error creating refresh token: ","service":"auth-service","stack":"ValidationError: RefreshToken validation failed: user: Path `user` is required.\n    at model.validate (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\mongoose\\lib\\document.js:2910:36)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async model.$__save (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\mongoose\\lib\\model.js:399:7)\n    at async maybeTracedSave (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\mongoose\\lib\\model.js:676:7)\n    at async Function.create (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\mongoose\\lib\\model.js:2764:5)\n    at async generateToken (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\utils\\generateToken.js:37:9)\n    at async userRegistrationController (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\controllers\\user.controller.js:52:47)","timestamp":"2026-08-09T11:13:27.219Z"}
+{"error":"Failed to generate refresh token","level":"error","message":"Error occurred while registering user","service":"auth-service","stack":"Error: Failed to generate refresh token\n    at generateToken (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\utils\\generateToken.js:48:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async userRegistrationController (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\controllers\\user.controller.js:52:47)","timestamp":"2026-08-09T11:13:27.219Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T11:15:05.084Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T11:15:05.092Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-09T11:15:21.951Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:15:21.951Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-09T11:15:21.961Z"}
+{"level":"info","message":"new user data admin_username5","service":"auth-service","timestamp":"2026-08-09T11:15:22.142Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T11:15:22.145Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-09T11:15:22.182Z"}
+{"level":"info","message":"User registered successfully: 6a78614ae531022e66b4cbbd","service":"auth-service","timestamp":"2026-08-09T11:15:22.183Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T11:15:36.932Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:15:36.932Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T11:15:36.934Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T11:15:36.971Z"}
+{"level":"info","message":"Received POST request to /api/auth/login","service":"auth-service","timestamp":"2026-08-09T11:16:48.262Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:16:48.262Z"}
+{"level":"info","message":"User login endpoint called","service":"auth-service","timestamp":"2026-08-09T11:16:48.264Z"}
+{"level":"error","message":"User not found with username","service":"auth-service","timestamp":"2026-08-09T11:16:48.297Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-09T11:17:32.847Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:17:32.864Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-09T11:17:32.866Z"}
+{"level":"info","message":"new user data admin_username1","service":"auth-service","timestamp":"2026-08-09T11:17:33.096Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T11:17:33.097Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-09T11:17:33.135Z"}
+{"level":"info","message":"User registered successfully: 6a7861cce531022e66b4cbbf","service":"auth-service","timestamp":"2026-08-09T11:17:33.135Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-09T11:19:37.756Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:19:37.756Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-09T11:19:37.759Z"}
+{"level":"info","message":"new user data admin_username1","service":"auth-service","timestamp":"2026-08-09T11:19:37.922Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T11:19:37.923Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-09T11:19:37.960Z"}
+{"level":"info","message":"User registered successfully: 6a786249e531022e66b4cbc1","service":"auth-service","timestamp":"2026-08-09T11:19:37.960Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T11:24:25.260Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T11:24:25.267Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T11:25:04.146Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:25:04.147Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T11:25:04.151Z"}
+{"error":"crypto.createHash is not a function","level":"error","message":"Error occurred while refreshing token","service":"auth-service","stack":"TypeError: crypto.createHash is not a function\n    at userTokenController (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\controllers\\user.controller.js:136:6)\n    at Layer.handleRequest (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\lib\\layer.js:152:17)\n    at G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\index.js:295:15\n    at processParams (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\index.js:582:12)\n    at next (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\index.js:291:5)\n    at Function.handle (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\index.js:186:3)","timestamp":"2026-08-09T11:25:04.154Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T11:25:38.848Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T11:25:38.856Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T11:25:52.796Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:25:52.796Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T11:25:52.802Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T11:25:52.889Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-09T11:25:52.934Z"}
+{"level":"info","message":"Token refreshed successfully","service":"auth-service","timestamp":"2026-08-09T11:25:52.935Z"}
+{"error":"accessToken is not defined","level":"error","message":"Error occurred while refreshing token","service":"auth-service","stack":"ReferenceError: accessToken is not defined\n    at userTokenController (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\controllers\\user.controller.js:166:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2026-08-09T11:25:52.935Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T11:26:05.170Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:26:05.170Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T11:26:05.172Z"}
+{"level":"error","message":"Invalid or expired refresh token","service":"auth-service","timestamp":"2026-08-09T11:26:05.205Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T11:26:16.139Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T11:26:16.147Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T11:26:18.322Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:26:18.323Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T11:26:18.328Z"}
+{"error":"crypto.createHash is not a function","level":"error","message":"Error occurred while refreshing token","service":"auth-service","stack":"TypeError: crypto.createHash is not a function\n    at userTokenController (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\src\\controllers\\user.controller.js:136:6)\n    at Layer.handleRequest (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\lib\\layer.js:152:17)\n    at G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\index.js:295:15\n    at processParams (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\index.js:582:12)\n    at next (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\index.js:291:5)\n    at Function.handle (G:\\Reactjs\\reactdemo_projects\\nodejs\\nodejs-sangam\\microservice-app\\auth-service\\node_modules\\router\\index.js:186:3)","timestamp":"2026-08-09T11:26:18.331Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T11:26:25.378Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T11:26:25.389Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-09T11:26:36.716Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:26:36.716Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-09T11:26:36.721Z"}
+{"level":"warn","message":"User already exists with the provided email or username","service":"auth-service","timestamp":"2026-08-09T11:26:36.770Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T11:42:48.320Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T11:42:48.330Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T11:42:54.420Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T11:42:54.428Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T11:45:36.199Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T11:45:36.206Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-09T11:45:50.222Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:45:50.222Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-09T11:45:50.229Z"}
+{"level":"info","message":"new user data admin_username1","service":"auth-service","timestamp":"2026-08-09T11:45:50.412Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T11:45:50.415Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-09T11:45:50.463Z"}
+{"level":"info","message":"User registered successfully: 6a78686ed1c621c1adaba5d8","service":"auth-service","timestamp":"2026-08-09T11:45:50.464Z"}
+{"level":"info","message":"Received POST request to /api/auth/login","service":"auth-service","timestamp":"2026-08-09T11:46:05.397Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:46:05.398Z"}
+{"level":"info","message":"User login endpoint called","service":"auth-service","timestamp":"2026-08-09T11:46:05.400Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T11:46:05.517Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-09T11:46:05.561Z"}
+{"level":"info","message":"User logged in successfully","service":"auth-service","timestamp":"2026-08-09T11:46:05.561Z"}
+{"level":"info","message":"Received POST request to /api/auth/token","service":"auth-service","timestamp":"2026-08-09T11:46:16.114Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T11:46:16.115Z"}
+{"level":"info","message":"User token endpoint called","service":"auth-service","timestamp":"2026-08-09T11:46:16.116Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T11:46:16.219Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-09T11:46:16.256Z"}
+{"level":"info","message":"Token refreshed successfully","service":"auth-service","timestamp":"2026-08-09T11:46:16.256Z"}
