@@ -1,3 +1,33 @@
+
+Generative AI with Node js in Hindi - code step by step
+------------------------------------------------------------------
+https://www.youtube.com/watch?v=CH_bZM20PQo&list=PL8p2I9GklV46H-5TWACKJiQ6YR2qHFvSu&index=3
+
+Node JS - Sangam
+------------------------------------------------------------------
+https://www.youtube.com/watch?v=_f7h6xQXiLA&list=PLcNEcCK9LwMc&index=3
+
+Nginx - Piyush Garg
+------------------------------------------------------------------
+https://www.youtube.com/watch?v=b_B1BEShfBc&list=PLinedj3B30sCbKdDspcuD3T6zFWPXzsNt
+
+OpenAI Agent SDK Series - Piyush Garg
+------------------------------------------------------------------
+https://www.youtube.com/watch?v=9Hj55Ycg2fA&list=PLinedj3B30sA-XUqy01s8yrZ0r0QZMpQT
+
+System Design - Piyush Garg
+------------------------------------------------------------------
+https://www.youtube.com/watch?v=lFeYU31TnQ8&list=PLinedj3B30sBlBWRox2V2tg9QJ2zr4M3o
+
+Building AI Agent from Scratch - Piyush Garg
+------------------------------------------------------------------
+https://www.youtube.com/watch?v=vUYnRGotTbo&list=PLinedj3B30sCzJnjhtEZBpKGtC1Xk7z5Z
+
+Claude Agent SDK Series - Piyush Garg
+------------------------------------------------------------------
+https://www.youtube.com/watch?v=1obzUD4aKok&list=PLinedj3B30sCZ3oyfEYh8pLRdHdsISNfG
+
+
 typescript react rest apis
 build tools & development ( webpack, babel, vite, storybook )
 javascript es6+
@@ -38,4 +68,7 @@ Validate outputs,
 
 https://hub.docker.com/r/ollama/ollama
 https://docs.openwebui.com/getting-started/quick-start/
+
+
+
 

@@ -143,3 +143,19 @@
 {"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-05T13:57:15.731Z"}
 {"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-05T13:57:15.770Z"}
 {"level":"info","message":"User registered successfully: 6a73413b46169ee70b82b710","service":"auth-service","timestamp":"2026-08-05T13:57:15.770Z"}
+{"level":"error","message":"Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/","service":"auth-service","timestamp":"2026-08-09T06:34:23.487Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-00.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T06:35:32.828Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T06:35:32.837Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-02.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T06:52:25.150Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T06:52:25.157Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-09T06:52:28.211Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T06:52:28.211Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-09T06:52:28.247Z"}
+{"level":"warn","message":"User already exists with the provided email or username","service":"auth-service","timestamp":"2026-08-09T06:52:28.298Z"}
+{"level":"info","message":"Received POST request to /api/auth/register","service":"auth-service","timestamp":"2026-08-09T06:52:35.061Z"}
+{"level":"info","message":"Request body, [object Object]","service":"auth-service","timestamp":"2026-08-09T06:52:35.061Z"}
+{"level":"info","message":"User registration endpoint called","service":"auth-service","timestamp":"2026-08-09T06:52:35.064Z"}
+{"level":"info","message":"new user data {\n  username: 'admin_username4',\n  email: 'adminnew@gmail4.com',\n  password: '$argon2id$v=19$m=65536,p=4,t=3$4FO2xmLbKUIRDCggVDgjNQ$dq0wJ8Gk1eBuuph3wTKEKbkJRGyyJEyFhbJsI2kh6ak',\n  _id: new ObjectId('6a7823b3e96e907d7957929a'),\n  createdAt: 2026-08-09T06:52:35.112Z,\n  updatedAt: 2026-08-09T06:52:35.112Z,\n  __v: 0\n}","service":"auth-service","timestamp":"2026-08-09T06:52:35.230Z"}
+{"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T06:52:35.234Z"}
+{"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-09T06:52:35.277Z"}
+{"level":"info","message":"User registered successfully: 6a7823b3e96e907d7957929a","service":"auth-service","timestamp":"2026-08-09T06:52:35.278Z"}
