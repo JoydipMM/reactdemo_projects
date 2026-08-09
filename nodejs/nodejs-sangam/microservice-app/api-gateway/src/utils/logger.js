@@ -9,7 +9,7 @@ const logger = winston.createLogger({
         winston.format.json()
     ),
     defaultMeta: { service: 'api-getway' },
-    transporters: [
+    transports: [
         new winston.transports.Console({
             format:winston.format.combine(
                 winston.format.colorize(),

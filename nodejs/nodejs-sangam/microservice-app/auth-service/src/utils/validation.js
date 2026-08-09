@@ -8,10 +8,10 @@ const validateRegistration = (data) => {
     const schema = joi.object({
         firstName:joi.string().min(2).max(30),
         lastName:joi.string().min(2).max(30),
-        username:joi.string().min(3).max(30).required(),
+        username:joi.string().min(3).max(30).trim().required(),
         email:joi.string().email().required(),
-        password:joi.string().min(6).required(),
-    });
+        password:joi.string().min(6).max(30).required(),
+    }).unknown(false);
 
     // 03. Validate the data against the schema
     return schema.validate(data);

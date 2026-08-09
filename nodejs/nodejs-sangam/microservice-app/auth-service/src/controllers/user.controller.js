@@ -31,7 +31,7 @@ const userRegistrationController = async (req, res) => {
         // if user already exists then we will return a response with status code 409 (Conflict) and a message indicating that the user already exists
         if(userExists){
             logger.warn("User already exists with the provided email or username"); // Log that the user already exists
-            return res.status(400).json({
+            return res.status(409).json({ // 409 >> use for conflict. because the request is syntactically valid; the resource conflicts with existing data.
                 success: false,
                 message: "User already exists with the provided email or username"
             });

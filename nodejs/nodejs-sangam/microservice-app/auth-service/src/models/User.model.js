@@ -51,7 +51,7 @@ userSchema.pre("save", async function () {
 userSchema.methods.comparePassword = async function (candidatePassword) {
     try{ // if there is no error then this scope help to compare password provided by user with hashed password
         // to verify the password, we use argon2.verify method which takes two arguments: the hashed password and the candidate password
-        await argon2.verify(this.password, candidatePassword);
+        return argon2.verify(this.password, candidatePassword);
     }catch (error) { // if there is any error
         throw new Error(error);
     }

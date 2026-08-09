@@ -13,7 +13,7 @@ const errorHandlerMiddleware = require('./middleware/errorHandler');
 const PORT = process.env.PORT || 3000;
 
 const app = express();
-const redisClient = new Redis();
+const redisClient = new Redis(process.env.REDIS_URL);
 
 
 app.use(cors());
@@ -105,6 +105,6 @@ app.use(errorHandlerMiddleware);
 
 app.listen(PORT, () => {
     logger.info(`API Gateway started on port ${PORT}`);
-    logger.info(`Auth Service started on port ${process.env.AUTH_SERVICE_URL}`);
-    logger.info(`Redis URL ${process.env.REDIS_URL}`);
+    //logger.info(`Auth Service started on port ${process.env.AUTH_SERVICE_URL}`);
+    //logger.info(`Redis URL ${process.env.REDIS_URL}`);
 });
