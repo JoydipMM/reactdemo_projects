@@ -159,3 +159,5 @@
 {"level":"info","message":"Access token created","service":"auth-service","timestamp":"2026-08-09T06:52:35.234Z"}
 {"level":"info","message":"Refresh token created","service":"auth-service","timestamp":"2026-08-09T06:52:35.277Z"}
 {"level":"info","message":"User registered successfully: 6a7823b3e96e907d7957929a","service":"auth-service","timestamp":"2026-08-09T06:52:35.278Z"}
+{"level":"info","message":"MongoDB Connected: ac-quji3pp-shard-00-01.uytcoeb.mongodb.net","service":"auth-service","timestamp":"2026-08-09T07:12:56.424Z"}
+{"level":"info","message":"Server started on port 3001","service":"auth-service","timestamp":"2026-08-09T07:12:56.432Z"}

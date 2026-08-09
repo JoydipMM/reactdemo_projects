@@ -46,9 +46,9 @@ const userRegistrationController = async (req, res) => {
         });
         await newUser.save(); // Save the new user to the database
 
-        logger.info(`new user data ${newUser}`);
+        logger.info(`new user data ${newUser.username}`);
 
-        const { accessToken, refreshToken } = await generateToken(newUser);
+        const { accessToken, refreshToken } = await generateToken(newUser.username);
 
         logger.info("User registered successfully: " + newUser._id); // Log the successful registration
         return res.status(201).json({
