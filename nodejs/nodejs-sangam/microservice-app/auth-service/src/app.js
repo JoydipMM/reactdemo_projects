@@ -66,6 +66,7 @@ const endPointRateLimiter = rateLimit({
 
 // apply endPointRateLimiter middleware to routes
 app.use('/api/auth/register', endPointRateLimiter);
+app.use('/api/auth/login', endPointRateLimiter);
 
 // add min routes
 app.use("/api/auth", authRoute);

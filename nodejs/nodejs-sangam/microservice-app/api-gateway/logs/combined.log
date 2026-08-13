@@ -1,0 +1,200 @@
+{"level":"info","message":"API Gateway started on port 3000","service":"api-getway","timestamp":"2026-08-09T10:13:50.546Z"}
+{"level":"info","message":"Received POST request to /v1/auth/register","service":"api-getway","timestamp":"2026-08-09T10:15:08.740Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:15:08.741Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"User already exists with the provided email or username\"}","service":"api-getway","timestamp":"2026-08-09T10:15:09.047Z"}
+{"level":"info","message":"Received POST request to /v1/auth/register","service":"api-getway","timestamp":"2026-08-09T10:15:20.559Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:15:20.564Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"\\\"username\\\" is required\"}","service":"api-getway","timestamp":"2026-08-09T10:15:20.602Z"}
+{"level":"info","message":"Received POST request to /v1/auth/register","service":"api-getway","timestamp":"2026-08-09T10:15:34.998Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:15:34.998Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"User already exists with the provided email or username\"}","service":"api-getway","timestamp":"2026-08-09T10:15:35.043Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:15:48.015Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:15:48.016Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid username or password\"}","service":"api-getway","timestamp":"2026-08-09T10:15:48.057Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:16:55.468Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:16:55.468Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:16:55.536Z"}
+{"level":"info","message":"Received POST request to /v1/auth/register","service":"api-getway","timestamp":"2026-08-09T10:17:17.742Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:17:17.742Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"User already exists with the provided email or username\"}","service":"api-getway","timestamp":"2026-08-09T10:17:17.792Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:17:48.336Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:17:48.337Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:17:48.408Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:18:33.785Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:18:33.785Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:18:33.855Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:19:13.656Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:19:13.656Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:19:13.700Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:19:47.675Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:19:47.676Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:19:47.741Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:20:16.079Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:20:16.079Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:20:16.148Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:22:45.878Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:22:45.879Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:22:45.922Z"}
+{"level":"info","message":"Received POST request to /v1/auth/register","service":"api-getway","timestamp":"2026-08-09T10:23:15.269Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:23:15.269Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"User already exists with the provided email or username\"}","service":"api-getway","timestamp":"2026-08-09T10:23:15.333Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:23:39.277Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:23:39.277Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:23:39.317Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:23:56.337Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:23:56.337Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:23:56.411Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:24:55.851Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:24:55.851Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:24:55.921Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:25:12.183Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:25:12.183Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:25:12.254Z"}
+{"level":"info","message":"API Gateway started on port 3000","service":"api-getway","timestamp":"2026-08-09T10:25:21.133Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:25:38.036Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:25:38.037Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:25:38.126Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:26:11.641Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:26:11.642Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:26:11.714Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:27:07.012Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:27:07.012Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlZmRkNTBhYi00OTEyLTQ2YjgtYmJmNS1lNmZhOTA5ODRkYmQiLCJ1c2VySWQiOiI2YTc4MjNiM2U5NmU5MDdkNzk1NzkyOWEiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lNCIsImlhdCI6MTc4NjI3MTIyNywiZXhwIjoxNzg2MjcyMTI3fQ.r-4wRFVAaDCAHkzIu4OlRMI4NgvS8a8PJhXUoUc_9kM\",\"refreshToken\":\"378a3bbb83dd291c7fcd34fdbccdf439e91154a6125b4b4d6500e34ef2ebd346ad36056455a103c2\"}","service":"api-getway","timestamp":"2026-08-09T10:27:07.197Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:27:38.458Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:27:38.459Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MTdmZjljMy00MzE5LTQwYmQtYWJiMC1iYjU5OTEzMWNjZGIiLCJ1c2VySWQiOiI2YTc4MjNiM2U5NmU5MDdkNzk1NzkyOWEiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lNCIsImlhdCI6MTc4NjI3MTI1OCwiZXhwIjoxNzg2MjcyMTU4fQ.TO3B-C2IH0yi8jktOVYT0QF6VMM5Cgi33Frypp8-RrE\",\"refreshToken\":\"e858be378c8fac02625820b6d2a681db55d61f1c559735fc94cae913c6228ce5731b837b3268e56e\"}","service":"api-getway","timestamp":"2026-08-09T10:27:38.637Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:27:46.528Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:27:46.528Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYjFmOGVmNi1mZTFjLTRlMDItOWJlNy1lYmMyMDgyZWI5MzciLCJ1c2VySWQiOiI2YTc4MjNiM2U5NmU5MDdkNzk1NzkyOWEiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lNCIsImlhdCI6MTc4NjI3MTI2NiwiZXhwIjoxNzg2MjcyMTY2fQ.Rsua5FH-p0zGOB-G-Cb7n9jhpRAurIqHgD6wNk8ukoo\",\"refreshToken\":\"f0b809afee8becb3d0b917a1b00fc10563df624db2da03048cc019182665ad33b323cd34c57efd0d\"}","service":"api-getway","timestamp":"2026-08-09T10:27:46.669Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:27:52.590Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:27:52.591Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid username or password\"}","service":"api-getway","timestamp":"2026-08-09T10:27:52.631Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:27:59.645Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:27:59.645Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZjJiN2JmNS1jZWM0LTQ2YzctYjhlZi1kNTI1YmM0YWYwMmEiLCJ1c2VySWQiOiI2YTc4MjNiM2U5NmU5MDdkNzk1NzkyOWEiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lNCIsImlhdCI6MTc4NjI3MTI3OSwiZXhwIjoxNzg2MjcyMTc5fQ.2Rd4xl9FKrR6EnUcwBQxkjkuO9jGUcVrOIWGTk2lwoY\",\"refreshToken\":\"a0e83b276ceac5dfbd06c789d9c577e8adb5456a1515ad09920ad1dd05f6ebc04421eace38440ddb\"}","service":"api-getway","timestamp":"2026-08-09T10:27:59.795Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:28:04.716Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:28:04.716Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0MmMyM2RlNC0wN2ZhLTQ1NDYtOTg4Ni05ZWE1Yjk3ZjQ0ZWUiLCJ1c2VySWQiOiI2YTc4MjNiM2U5NmU5MDdkNzk1NzkyOWEiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lNCIsImlhdCI6MTc4NjI3MTI4NCwiZXhwIjoxNzg2MjcyMTg0fQ.oNfC9Nw2cdoSojWwGmAmPO4S92R7SeJbK5NuMa3zOCQ\",\"refreshToken\":\"1b44f42ea6985abe93d4cb56ca3f7496ec4a8ea72f7863a4d05dc073b9e61bbfe92a1e1aecbb36c2\"}","service":"api-getway","timestamp":"2026-08-09T10:28:04.861Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:28:57.934Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:28:57.934Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-09T10:28:57.963Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:29:37.499Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:29:37.499Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlMWQzY2NkOS05MWMwLTQyNDMtYjA3YS0wZWM4MzYyNjIzNjEiLCJ1c2VySWQiOiI2YTc4MjNiM2U5NmU5MDdkNzk1NzkyOWEiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lNCIsImlhdCI6MTc4NjI3MTM3NywiZXhwIjoxNzg2MjcyMjc3fQ.ZlZw2VigDjTNcLb7MFrF1r-bjccYc2kMm0hLgnY6TTg\",\"refreshToken\":\"911ca1fd72de465447209e33b440f33b4660592f82ed945a1909f12a42dcb03b96b97b1ad84c9959\"}","service":"api-getway","timestamp":"2026-08-09T10:29:37.678Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:29:47.257Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:29:47.257Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid username or password\"}","service":"api-getway","timestamp":"2026-08-09T10:29:47.300Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:29:54.190Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:29:54.190Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid username or password\"}","service":"api-getway","timestamp":"2026-08-09T10:29:54.230Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:30:03.805Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:30:03.805Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZTVjZmI3ZC00MTg1LTRlZmEtODc1Mi04MDExOWI4YjhiMDAiLCJ1c2VySWQiOiI2YTc4MjNiM2U5NmU5MDdkNzk1NzkyOWEiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lNCIsImlhdCI6MTc4NjI3MTQwMywiZXhwIjoxNzg2MjcyMzAzfQ.XJV1YYqNon_zYFuJMT0ansDbdXf3bov1IeL5QOqjAAo\",\"refreshToken\":\"1a68e88e1c3bf282e0c49745a6d02536c184db6014519e7a3ea843341973e08a251adec811c2fb77\"}","service":"api-getway","timestamp":"2026-08-09T10:30:03.949Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:30:09.194Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:30:09.195Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid username or password\"}","service":"api-getway","timestamp":"2026-08-09T10:30:09.236Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:49:52.389Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:49:52.390Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4M2UxZGJjMC0wZjBiLTRmYTQtOGJlNS01MTcyMjk3ODAwMjYiLCJ1c2VySWQiOiI2YTc4MjNiM2U5NmU5MDdkNzk1NzkyOWEiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lNCIsImlhdCI6MTc4NjI3MjU5MiwiZXhwIjoxNzg2MjczNDkyfQ.Hcuz9f8dCa9lSjG-ShG1wHLAbDu878RZuB-7HJQTpJE\",\"refreshToken\":\"2a597602e713059234e31638d1b9098a652290367b11c8da4f2f103089191d3f11a1d364dae767da\"}","service":"api-getway","timestamp":"2026-08-09T10:49:52.609Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T10:54:52.169Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:54:52.170Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T10:54:52.236Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:55:13.557Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:55:13.557Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkMWZhNmNmMy1iOWJkLTQyNmEtOTY2MS0yZmViMWUxMzdmMmYiLCJ1c2VySWQiOiI2YTc4MjNiM2U5NmU5MDdkNzk1NzkyOWEiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lNCIsImlhdCI6MTc4NjI3MjkxMywiZXhwIjoxNzg2MjczODEzfQ.zQV38GPENhRWPlBeA48E9iR4v_oWtojyMJLM5npiI0Y\",\"refreshToken\":\"90b7f90fdd96eaa6a328fd82c2d3fe72a22356a450a031e484bab12d6bc328cbcf29df072e329f1b\"}","service":"api-getway","timestamp":"2026-08-09T10:55:13.818Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T10:55:21.550Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:55:21.551Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T10:55:21.591Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T10:55:45.923Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:55:45.923Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T10:55:45.966Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T10:56:22.304Z"}
+{"level":"info","message":"Request body, undefined","service":"api-getway","timestamp":"2026-08-09T10:56:22.304Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Refresh token missing\"}","service":"api-getway","timestamp":"2026-08-09T10:56:22.310Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T10:56:47.036Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:56:47.036Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T10:56:47.101Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T10:57:50.007Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:57:50.008Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T10:57:50.050Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T10:58:36.644Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:58:36.644Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhZTM3YjgxNC1mMjhiLTRmNWYtODVkNS1kMDBjYTg3ZjczYjUiLCJ1c2VySWQiOiI2YTc4MjNiM2U5NmU5MDdkNzk1NzkyOWEiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lNCIsImlhdCI6MTc4NjI3MzExNiwiZXhwIjoxNzg2Mjc0MDE2fQ.JyyWnGf7xYTd6TXwrtsVTBkf7O-xwhjzR2sc2vChPPw\",\"refreshToken\":\"057af167eeef9e23db213fc150860a13eaf7e57ed4a206b9ddc6329d607e44b4ea61f535356771f3\"}","service":"api-getway","timestamp":"2026-08-09T10:58:36.795Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T10:58:55.434Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:58:55.434Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T10:58:55.476Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T10:59:08.928Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T10:59:08.929Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T10:59:08.967Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T11:02:57.404Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:02:57.404Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T11:02:57.471Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T11:05:25.006Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:05:25.006Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T11:05:25.065Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T11:05:37.501Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:05:37.501Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T11:05:37.540Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T11:06:51.083Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:06:51.083Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T11:06:51.174Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T11:09:29.257Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:09:29.257Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid refresh token\"}","service":"api-getway","timestamp":"2026-08-09T11:09:29.329Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T11:09:34.875Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:09:34.875Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmZDIwN2YzNS1iMGEyLTQ0YjEtYTAxOC0zNzA0YjM0YjFlODMiLCJ1c2VySWQiOiI2YTc4MjNiM2U5NmU5MDdkNzk1NzkyOWEiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lNCIsImlhdCI6MTc4NjI3Mzc3NCwiZXhwIjoxNzg2Mjc0Njc0fQ.H_CfSt1qXX9V-tINGF1luFbln2SRyxjvkBigvrivRrI\",\"refreshToken\":\"39ebccedda2fe6d4efdf156a74d17920f83787f84cb475a31ba6976dde399a90c576eab88410c1aa\"}","service":"api-getway","timestamp":"2026-08-09T11:09:35.031Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T11:09:45.927Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:09:45.927Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid refresh token\"}","service":"api-getway","timestamp":"2026-08-09T11:09:45.970Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T11:11:35.121Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:11:35.122Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T11:11:35.206Z"}
+{"level":"info","message":"Received POST request to /v1/auth/register","service":"api-getway","timestamp":"2026-08-09T11:12:49.908Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:12:49.909Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Error occurred while registering user\"}","service":"api-getway","timestamp":"2026-08-09T11:12:50.129Z"}
+{"level":"info","message":"Received POST request to /v1/auth/register","service":"api-getway","timestamp":"2026-08-09T11:12:59.387Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:12:59.387Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"User already exists with the provided email or username\"}","service":"api-getway","timestamp":"2026-08-09T11:12:59.431Z"}
+{"level":"info","message":"Received POST request to /v1/auth/register","service":"api-getway","timestamp":"2026-08-09T11:13:27.082Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:13:27.082Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Error occurred while registering user\"}","service":"api-getway","timestamp":"2026-08-09T11:13:27.218Z"}
+{"level":"info","message":"Received POST request to /v1/auth/register","service":"api-getway","timestamp":"2026-08-09T11:15:21.932Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:15:21.932Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User registered successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5NDQ1MjhmNC1lMzdmLTQ0MzMtYWJjYS05ZjRkMWQzZGE0NTQiLCJ1c2VySWQiOiI2YTc4NjE0YWU1MzEwMjJlNjZiNGNiYmQiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lNSIsImlhdCI6MTc4NjI3NDEyMiwiZXhwIjoxNzg2Mjc1MDIyfQ.e7uxPIzVYW4xQ1PEDvdydX3JYlZzTlpkm6ogIiDxOY4\",\"refreshToken\":\"ca3fa8185f66dd0e8dcce2ee1cdc456f89fd9091ec96fd8561feeab67915246927a5e95b9da2517b\"}","service":"api-getway","timestamp":"2026-08-09T11:15:22.186Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T11:15:36.929Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:15:36.929Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T11:15:36.973Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T11:16:48.259Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:16:48.259Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid username, email or password\"}","service":"api-getway","timestamp":"2026-08-09T11:16:48.299Z"}
+{"level":"info","message":"Received POST request to /v1/auth/register","service":"api-getway","timestamp":"2026-08-09T11:17:32.808Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:17:32.817Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User registered successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjOTljOTc4MC1mNTdmLTQ0NGMtYjZhYS04M2VkMTc0NjNmYzEiLCJ1c2VySWQiOiI2YTc4NjFjY2U1MzEwMjJlNjZiNGNiYmYiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lMSIsImlhdCI6MTc4NjI3NDI1MywiZXhwIjoxNzg2Mjc1MTUzfQ.lAfvvWbUcYncp6VOQ801utFEZkvheDg7jZZTHTdmABs\",\"refreshToken\":\"542c89cedcd5d59c71a3e6c2299d7f422e518153da3303fca5d4514709c4d2884390bf4be9c1ce0c\"}","service":"api-getway","timestamp":"2026-08-09T11:17:33.131Z"}
+{"level":"info","message":"Received POST request to /v1/auth/register","service":"api-getway","timestamp":"2026-08-09T11:19:37.752Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:19:37.752Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User registered successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ODM0NWY2MS1mOGExLTQyYzUtOTA2MS05NTk1MGJiMWVmMjYiLCJ1c2VySWQiOiI2YTc4NjI0OWU1MzEwMjJlNjZiNGNiYzEiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lMSIsImlhdCI6MTc4NjI3NDM3NywiZXhwIjoxNzg2Mjc1Mjc3fQ.gkYxnk9nYOIl5n5M52VgENmDDxxFs8XoqeYcCYZgrcs\",\"refreshToken\":\"1870d05e2a6cfad1e4997d4a206edc31f4b916927f1efba86cf7d8cabfbd395dac6c650e521c1a9c\"}","service":"api-getway","timestamp":"2026-08-09T11:19:37.960Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T11:25:04.124Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:25:04.124Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Error occurred while refreshing token\",\"error\":\"Token API failed\"}","service":"api-getway","timestamp":"2026-08-09T11:25:04.152Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T11:25:52.770Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:25:52.770Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Error occurred while refreshing token\",\"error\":\"Token API failed\"}","service":"api-getway","timestamp":"2026-08-09T11:25:52.934Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T11:26:05.163Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:26:05.163Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Invalid or expired refresh token\"}","service":"api-getway","timestamp":"2026-08-09T11:26:05.202Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T11:26:18.300Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:26:18.300Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Error occurred while refreshing token\",\"error\":\"Token API failed\"}","service":"api-getway","timestamp":"2026-08-09T11:26:18.333Z"}
+{"level":"info","message":"Received POST request to /v1/auth/register","service":"api-getway","timestamp":"2026-08-09T11:26:36.688Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:26:36.688Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"User already exists with the provided email or username\"}","service":"api-getway","timestamp":"2026-08-09T11:26:36.773Z"}
+{"level":"info","message":"Received POST request to /v1/auth/register","service":"api-getway","timestamp":"2026-08-09T11:45:50.197Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:45:50.198Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User registered successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4OTU5NTU4Mi00ZTBmLTQ5NmUtOGJlOC1hM2U4ODI1MmRkMDkiLCJ1c2VySWQiOiI2YTc4Njg2ZWQxYzYyMWMxYWRhYmE1ZDgiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lMSIsImlhdCI6MTc4NjI3NTk1MCwiZXhwIjoxNzg2Mjc2ODUwfQ.LIweNDEhxWRk0gU8mgfMjN6PjSOkCq72bBk8QbzGJ_g\",\"refreshToken\":\"daa1ee19d99e4edbfb4de1b890f3b877605d0097807d9089c9c57d94d08e10b31dba64df372aa17b\"}","service":"api-getway","timestamp":"2026-08-09T11:45:50.464Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-09T11:46:05.391Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:46:05.391Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0NzhiMmYxMC03Nzk2LTRkOTAtOTQ3NC1iMjA4ZjdkYjhiYmUiLCJ1c2VySWQiOiI2YTc4Njg2ZWQxYzYyMWMxYWRhYmE1ZDgiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lMSIsImlhdCI6MTc4NjI3NTk2NSwiZXhwIjoxNzg2Mjc2ODY1fQ.TucFMnbeV7eM-NXmNjJ4EhxoMPQhmobWuHS_2V_6X9Q\",\"refreshToken\":\"3647279737ee88e57024386b3f6bafd03592e2bd5abfeacc8633d5c3fb836d709b52c0f799e702a1\"}","service":"api-getway","timestamp":"2026-08-09T11:46:05.559Z"}
+{"level":"info","message":"Received POST request to /v1/auth/token","service":"api-getway","timestamp":"2026-08-09T11:46:16.108Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-09T11:46:16.108Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"Token refreshed successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0OWQxOTdhNC0wZmZlLTRjZWUtYWMxYy0wZjE3NjZlZTAxMzgiLCJ1c2VySWQiOiI2YTc4Njg2ZWQxYzYyMWMxYWRhYmE1ZDgiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lMSIsImlhdCI6MTc4NjI3NTk3NiwiZXhwIjoxNzg2Mjc2ODc2fQ.MiuWSXmuwCg5wU8ZgHlp4bZQvaEQWxxVAid21rybFBU\",\"refreshToken\":\"87afacf6d2b3ab63805aed0ccb0f9de662953632c2bee599c65809f905f424e672d3e633b18e1f42\"}","service":"api-getway","timestamp":"2026-08-09T11:46:16.254Z"}
