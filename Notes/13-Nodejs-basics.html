@@ -1949,6 +1949,22 @@ logger.error();
 logger.warn();
 logger.debug();</textarea>
     </li>
+    <li><b>Code Structure</b>
+<textarea class="code-editor">
+const logger = winston.createLogger({
+    level: ...., // 01
+    format: winston.format.combine( // 02
+        ....
+    ),
+    defaultMeta: { ... }, // 03
+    transports: [    // 04
+        new winston.transports.Console({ ... }), // 05
+        new winston.transports.File({ filename: 'logs/error.log', level: 'error' }), // 06
+        new winston.transports.File({ filename: 'logs/combined.log' }) // 07
+    ]
+});
+</textarea>
+    </li>
     <li><b>1. Logging Level</b> 
 <textarea class="code-editor">process.env.NODE_ENV === 'production' ? 'info' : 'debug',</textarea>
         <p>This determines which log levels should actually be written.</p>
@@ -2001,11 +2017,11 @@ new winston.transports.Console({
     )
 }),</textarea>
 <p><b>winston.format.colorize()</b> Makes log levels easier to distinguish. Example: <i>INFO (green) WARN (yellow) ERROR (red)</i><br/>
-    <b>winston.format.simple()</b> Outputs concise, human-readable logs. Example: <i>info: User logged in</i><br/>
-    <b>new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),</b> file<br/>
-    <b>new winston.transports.File({ filename: 'logs/combined.log' })</b> Log all messages to a combined log file.
+    <b>winston.format.simple()</b> Outputs concise, human-readable logs. Example: <i>info: User logged in</i>
 </p>
     </li>
+    <li><b>6. new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),</b> <p>Log errors to a file.</p></li>
+    <li><b>7. new winston.transports.File({ filename: 'logs/combined.log' })</b> <p>Log all messages to a combined log file.</p></li>
 </ul>
 
 </code>
