@@ -213,11 +213,64 @@ const userTokenController = async (req, res) => {
 
 
 // user logout controller
+const userLogoutController = async (req, res) => {
+    try{
+        logger.info("User logout endpoint called");
+
+        // get the refresh token from the request body
+        const { refreshToken } = req.body;
+
+        // if refresh token not found
+        if(!refreshToken){
+            logger.warn("Refresh token missing");
+            return res.status(400).json({
+                success: false,
+                message: "Refresh token missing"
+            });
+        }
+
+        // if found then delete the refresh token from the database
+        await Token.deleteOne({
+            token: refreshToken
+        });
+        logger.info("User refresh token deleted successfully");
+
+        // check if refresh token deleted or not
+        const deletedRefreshToken = await Token.findOne({
+            token: refreshToken
+        });
+        if(deletedRefreshToken){
+            logger.warn("Refresh token not deleted");
+            return res.status(400).json({
+                success: false,
+                message: "Refresh token not deleted"
+            });
+        }
+
+        // return success response
+        return res.status(200).json({
+            success: true,
+            message: "User logged out successfully"
+        });
+
+    }catch(err){
+        logger.error("Error occurred while logging out user", {
+            error: err?.message,
+            stack: err?.stack
+        }); // Log any errors that occur
+        return res.status(500).json({
+            success: false,
+            message: "Error occurred while logging out user",
+            error: process.env.NODE_ENV === "production"? "Logout API failed" : err?.message
+        });
+    }
+}
 
 
 
 module.exports = {
     userRegistrationController,
     userLoginController,
-    userTokenController
+    userTokenController,
+    userLogoutController
 }
