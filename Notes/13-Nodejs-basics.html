@@ -1666,28 +1666,47 @@ ioRedisExample();</textarea>
 <textarea class="code-editor">
 microservice-app
 ├── api-gateway
-│   ├── src
-│   │   ├── server.js
-│   │   └── routes
-│   │       └── index.js
-|   ├── .env
-│   └── package.json
+|    ├── .env
+|    ├── .gitignore
+|    ├── package.json
+|    ├── package-lock.json
+|    ├── logs/
+|    ├── node_modules/
+|    └── src/
+|        ├── server.js
+|        ├── middleware/
+|        │   └── errorHandler.js
+|        └── utils/
+|           └── logger.js
 |
-├── auth-service
-│   ├── src
-│   │   ├── server.js
-│   │   ├── models
-│   │   │   └── user.js
-│   │   ├── controllers
-│   │   │   └── user.js
-│   │   ├── middlewares
-│   │   │   └── auth.js
-│   │   ├── utils
-│   │   │   └── fdfdfdf
-│   │   └── routes
-│   │       └── user.js
-|   ├── .env
-│   └── package.json
+├── auth-service/
+|    ├── .env
+|    ├── .gitignore
+|    ├── package.json
+|    ├── package-lock.json
+|    ├── logs/
+|    ├── node_modules/
+|    └── src/
+|        ├── app.js
+|        ├── server.js
+|        ├── config/
+|        │   ├── corsConfig.js
+|        │   └── serverConfig.js
+|        ├── controllers/
+|        │   └── user.controller.js
+|        ├── database/
+|        │   └── mongodb.js
+|        ├── middleware/
+|        │   └── errorHandler.js
+|        ├── models/
+|        │   ├── RefreshToken.model.js
+|        │   └── User.model.js
+|        ├── routes/
+|        │   └── auth.route.js
+|        └── utils/
+|            ├── generateToken.js
+|            ├── logger.js
+|            └── validation.js
 </textarea>
 <p>In this example, we have two microservices: <b>api-gateway</b> and <b>auth-service</b>.</p>
 <p><b>api-gateway</b> is a proxy service that routes requests to the correct microservices based on the request path.</p>
