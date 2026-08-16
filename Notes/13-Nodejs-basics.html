@@ -1739,6 +1739,313 @@ microservice-app
     "start": "node src/server.js",
     "dev": "nodemon src/server.js"
 },</textarea>
+
+<h5><b><code><u>Constant in .env</u></code></b></h5>
+<textarea class="code-editor">
+PORT=3000
+NODE_ENV=production
+AUTH_SERVICE_URL=http://localhost:3001
+REDIS_URL=redis://127.0.0.1:6379</textarea>
+
+<h5><b><code><u>Create Logger</u></code></b></h5>
+<p>Create <code><b>src/utils/logger.js</b></code> file</p>
+<textarea class="code-editor">
+const winston = require("winston");
+
+const logger = winston.createLogger({
+    level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.errors({ stack: true }),
+        winston.format.splat(),
+        winston.format.json()
+    ),
+    defaultMeta: { service: 'api-getway' },
+    transports: [
+        new winston.transports.Console({
+            format:winston.format.combine(
+                winston.format.colorize(),
+                winston.format.simple()
+            )
+        }),
+        new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
+        new winston.transports.File({ filename: 'logs/combined.log'})
+    ]
+});
+
+module.exports = logger;</textarea>
+
+<h5><b><code><u>Create Error Handler Middleware</u></code></b></h5>
+<p>Create <code><b>src/middleware/errorHandler.js</b></code> file</p>
+<textarea class="code-editor">
+const logger = require('../utils/logger');
+
+const errorHandlerMiddleware = (err, req, res, next) => {
+
+    // Check if headers have already been sent
+    if(res.headersSent){
+        return next(err);
+    }
+
+    // logger error
+    logger.error({
+        method: req.method,
+        url: req.originalUrl,
+        ip: req.ip,
+        message: err.message,
+        stack: err.stack
+    });
+
+    const statusCode = err.statusCode || 500;
+    const isProduction = process.env.NODE_ENV === "production";
+
+    // send error response
+    res.status(statusCode).json({
+        success: false,
+        message: isProduction ? "Internal Server Error" : err.message
+    })
+
+}
+
+module.exports = errorHandlerMiddleware;</textarea>
+
+<h5><b><code><u>Import Express, dotenv and add Cors, Helmet, Custom Logger and Error Handler Middleware in Server File</u></code></b></h5>
+<textarea class="code-editor">
+// import dependencies and middlewares
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const logger = require('./utils/logger');
+
+// import custom middlewares
+const errorHandlerMiddleware = require('./middleware/errorHandler');
+
+// configure port
+const PORT = process.env.PORT || 3000;
+
+// create express app instance
+const app = express();
+
+// use middlewares
+app.use(cors());
+app.use(helmet());
+app.use(express.json());
+
+// use logger middleware for all requests
+// That code is a custom middleware. Its purpose is to log every incoming HTTP request before it reaches your routes.
+app.use((req, res, next)=>{
+    logger.info(`Received ${req.method} request to ${req.url}`);
+    logger.info(`Request body, ${req.body}`);
+    next();
+})
+
+/*
+
+HERE WE ADD REDIS CLIENT, RATE LIMITER AND RATE LIMITER MIDDLEWARE
+
+*/
+
+// use error handler middleware
+app.use(errorHandlerMiddleware);
+
+
+// start server
+app.listen(PORT, () => {
+    logger.info(`API Gateway started on port ${PORT}`);
+    //logger.info(`Auth Service started on port ${process.env.AUTH_SERVICE_URL}`); // use for testing
+    //logger.info(`Redis URL ${process.env.REDIS_URL}`); // use for testing
+});
+</textarea>
+
+<h5><b><code><u>Use Redis, Redis Store and Redis client for rate limiting and store it in Redis</u></code></b></h5>
+<textarea class="code-editor">
+const Redis = require('ioredis');
+const { rateLimit } = require('express-rate-limit');
+const { RedisStore } = require('rate-limit-redis');
+
+// create redis client instance from ioredis 
+const redisClient = new Redis(process.env.REDIS_URL);
+
+// create express route endpoint rate limiter middleware
+// For create this first import express-rate-limit
+const endPointRateLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+    message: "Too many requests from this IP, please try again after 15 minutes",
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    handler: (req, res, next) => {
+        logger.warn(`endpoint rate limit exceeded for IP: ${req.ip}`);
+        res.status(429).json({ success: false, message: "Too many requests" });
+    },
+    // Redis store configuration
+    // for this config we need to import rate-limit-redis
+    store: new RedisStore({
+        sendCommand: (...args) => redisClient.call(...args),
+    }), // we are using redis so we need to store the rate limit data in redis
+});
+app.use(endPointRateLimiter);
+</textarea>
+
+
+<h5><b><code><u>Add url proxy middleware</u></code></b></h5>
+<textarea class="code-editor">/*
+Our auth register service is runing on http://localhost:3001/api/auth/register
+Our api gateway is running on http://localhost:3000
+with proxy endpoint we can proxy the requests to the auth service form http://localhost:3000/v1/auth/register to http://localhost:3001/api/auth/register
+*/
+
+const proxyOptions = {
+    proxyReqPathResolver: (req) => {
+        return req.originalUrl.replace(/^\/v1/, '/api');
+    },
+
+    proxyErrorHandler: (err, res, next) => {
+        // logger.error(`Proxy error: ${err.message}`);
+        logger.error('Proxy error', {
+            message: err.message,
+            code: err.code,
+            stack: err.stack
+        });
+
+        res.status(500).json({
+            success: false,
+            message:
+                process.env.NODE_ENV !== "production"
+                    ? err.message
+                    : "Internal Server Error"
+        });
+    }
+};
+
+app.use(
+    '/v1/auth',
+    proxy(process.env.AUTH_SERVICE_URL, {
+        ...proxyOptions,
+
+        proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
+            proxyReqOpts.headers['content-type'] = 'application/json';
+            return proxyReqOpts;
+        },
+
+        userResDecorator: (proxyRes, proxyResData, userReq, userRes) => {
+            logger.info(
+                `Proxy response received from auth service: ${proxyResData.toString()}`
+            );
+            return proxyResData;
+        }
+    })
+);</textarea>
+
+<h5><b><code><u>Updated server.js</u></code></b></h5>
+<textarea class="code-editor">
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const proxy = require('express-http-proxy');
+const logger = require('./utils/logger');
+const Redis = require('ioredis');
+const { rateLimit } = require('express-rate-limit');
+const { RedisStore } = require('rate-limit-redis');
+
+const errorHandlerMiddleware = require('./middleware/errorHandler');
+
+const PORT = process.env.PORT || 3000;
+
+const app = express();
+const redisClient = new Redis(process.env.REDIS_URL);
+
+app.use(cors());
+app.use(helmet());
+app.use(express.json());
+
+// That code is a custom middleware. Its purpose is to log every incoming HTTP request before it reaches your routes.
+app.use((req, res, next)=>{
+    logger.info(`Received ${req.method} request to ${req.url}`);
+    logger.info(`Request body, ${req.body}`);
+    next();
+})
+
+// create express route endpoint rate limiter middleware
+// For create this first import express-rate-limit
+const endPointRateLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+    message: "Too many requests from this IP, please try again after 15 minutes",
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    handler: (req, res, next) => {
+        logger.warn(`endpoint rate limit exceeded for IP: ${req.ip}`);
+        res.status(429).json({ success: false, message: "Too many requests" });
+    },
+    // Redis store configuration
+    // for this config we need to import rate-limit-redis
+    store: new RedisStore({
+        sendCommand: (...args) => redisClient.call(...args),
+    }), // we are using redis so we need to store the rate limit data in redis
+});
+app.use(endPointRateLimiter);
+
+/*
+Our auth register service is runing on http://localhost:3001/api/auth/register
+Our api gateway is running on http://localhost:3000
+with proxy endpoint we can proxy the requests to the auth service form http://localhost:3000/v1/auth/register to http://localhost:3001/api/auth/register
+*/
+
+const proxyOptions = {
+    proxyReqPathResolver: (req) => {
+        return req.originalUrl.replace(/^\/v1/, '/api');
+    },
+
+    proxyErrorHandler: (err, res, next) => {
+        // logger.error(`Proxy error: ${err.message}`);
+        logger.error('Proxy error', {
+            message: err.message,
+            code: err.code,
+            stack: err.stack
+        });
+
+        res.status(500).json({
+            success: false,
+            message:
+                process.env.NODE_ENV !== "production"
+                    ? err.message
+                    : "Internal Server Error"
+        });
+    }
+};
+
+app.use(
+    '/v1/auth',
+    proxy(process.env.AUTH_SERVICE_URL, {
+        ...proxyOptions,
+
+        proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
+            proxyReqOpts.headers['content-type'] = 'application/json';
+            return proxyReqOpts;
+        },
+
+        userResDecorator: (proxyRes, proxyResData, userReq, userRes) => {
+            logger.info(
+                `Proxy response received from auth service: ${proxyResData.toString()}`
+            );
+
+            return proxyResData;
+        }
+    })
+);
+
+app.use(errorHandlerMiddleware);
+
+app.listen(PORT, () => {
+    logger.info(`API Gateway started on port ${PORT}`);
+    //logger.info(`Auth Service started on port ${process.env.AUTH_SERVICE_URL}`);
+    //logger.info(`Redis URL ${process.env.REDIS_URL}`);
+});</textarea>
+
+
 <br/>
 <hr/>
 <h5><b>Setup <code>auth-service</code></b></h5>

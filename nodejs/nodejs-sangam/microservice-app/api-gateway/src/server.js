@@ -54,7 +54,7 @@ app.use(endPointRateLimiter);
 /*
 Our auth register service is runing on http://localhost:3001/api/auth/register
 Our api gateway is running on http://localhost:3000
-with proxy endpoint we can proxy the requests to the auth service form http://localhost:3001/api/auth/register to http://localhost:3000/api/auth/register
+with proxy endpoint we can proxy the requests to the auth service form http://localhost:3000/v1/auth/register to http://localhost:3001/api/auth/register
 */
 
 const proxyOptions = {
