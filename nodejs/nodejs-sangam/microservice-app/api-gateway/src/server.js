@@ -9,6 +9,7 @@ const { rateLimit } = require('express-rate-limit');
 const { RedisStore } = require('rate-limit-redis');
 
 const errorHandlerMiddleware = require('./middleware/errorHandler');
+const { validateUserToken } = require('./middleware/authMiddleware');
 
 const PORT = process.env.PORT || 3000;
 
@@ -19,6 +20,7 @@ const redisClient = new Redis(process.env.REDIS_URL);
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
+//app.use(express.urlencoded({ extended: true }));
 
 
 // That code is a custom middleware. Its purpose is to log every incoming HTTP request before it reaches your routes.
@@ -100,11 +102,34 @@ app.use(
     })
 );
 
+app.use(
+    '/v1/post',
+    validateUserToken,
+    proxy(process.env.POST_SERVICE_URL, {
+        ...proxyOptions,
+
+        proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
+            proxyReqOpts.headers['content-type'] = 'application/json';
+            proxyReqOpts.headers['x-user-id'] = srcReq.user.userId;
+            return proxyReqOpts;
+        },
+
+        userResDecorator: (proxyRes, proxyResData, userReq, userRes) => {
+            logger.info(
+                `Proxy response received from post service: ${proxyResData.toString()}`
+            );
+
+            return proxyResData;
+        }
+    })
+);
+
 app.use(errorHandlerMiddleware);
 
 
 app.listen(PORT, () => {
     logger.info(`API Gateway started on port ${PORT}`);
-    //logger.info(`Auth Service started on port ${process.env.AUTH_SERVICE_URL}`);
+    logger.info(`Auth Service started on port ${process.env.AUTH_SERVICE_URL}`);
+    logger.info(`Post Service started on port ${process.env.POST_SERVICE_URL}`);
     //logger.info(`Redis URL ${process.env.REDIS_URL}`);
 });

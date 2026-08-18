@@ -12,6 +12,7 @@ const authenticateRequest = (req, res, next) => {
 
     // add the user id to the request
     req.user = { userId };
+    console.log(req.user);
     next();
 };
 
