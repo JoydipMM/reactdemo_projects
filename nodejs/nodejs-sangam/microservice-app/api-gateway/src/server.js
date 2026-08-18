@@ -110,7 +110,7 @@ app.use(
 
         proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
             proxyReqOpts.headers['content-type'] = 'application/json';
-            proxyReqOpts.headers['x-user-id'] = srcReq.user.userId;
+            proxyReqOpts.headers['x-user-id'] = srcReq.user?.userId || srcReq.userId || '';
             return proxyReqOpts;
         },
 
