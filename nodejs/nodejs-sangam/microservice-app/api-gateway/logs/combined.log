@@ -356,3 +356,77 @@
 {"level":"info","message":"Authenticating middleware request for post","service":"api-getway","timestamp":"2026-08-18T13:14:39.859Z"}
 {"level":"info","message":"Token received for validation","service":"api-getway","timestamp":"2026-08-18T13:14:39.871Z"}
 {"level":"info","message":"Proxy response received from post service: {\"success\":true,\"message\":\"Post created successfully\",\"post\":{\"user\":\"6a78686ed1c621c1adaba5d8\",\"title\":\"Psot 0003\",\"content\":\"Post 003 content !!!!!!!\",\"mediaIds\":[],\"_id\":\"6a845abfc4db3f8ccc9ff59b\",\"createdAt\":\"2026-08-18T13:14:39.962Z\",\"updatedAt\":\"2026-08-18T13:14:39.962Z\",\"__v\":0}}","service":"api-getway","timestamp":"2026-08-18T13:14:40.013Z"}
+{"level":"info","message":"Received POST request to /v1/post/create-post","service":"api-getway","timestamp":"2026-08-18T13:18:17.728Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-18T13:18:17.728Z"}
+{"level":"info","message":"Authenticating middleware request for post","service":"api-getway","timestamp":"2026-08-18T13:18:17.729Z"}
+{"level":"info","message":"Token received for validation","service":"api-getway","timestamp":"2026-08-18T13:18:17.730Z"}
+{"level":"warn","message":"jwt expired","name":"TokenExpiredError","service":"api-getway","timestamp":"2026-08-18T13:18:17.731Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-18T13:18:24.053Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-18T13:18:24.073Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxZmQ5Nzk0MC0wODk3LTQxYmQtYWEzZC0xMmQ5MWUxMWIwZDAiLCJ1c2VySWQiOiI2YTc4Njg2ZWQxYzYyMWMxYWRhYmE1ZDgiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lMSIsImlhdCI6MTc4NzA1OTEwNCwiZXhwIjoxNzg3MDYwMDA0fQ.i1GvCb3Qn2T7CGeVgwq45wjspbbI5zpZFgF-dNmOo7M\",\"refreshToken\":\"716afc361b74542caf35ab2d84e8aa54ff5fe9dd0c967b1cfb040cc7ed85411ef34d766bfffcff69\"}","service":"api-getway","timestamp":"2026-08-18T13:18:24.408Z"}
+{"level":"info","message":"Received POST request to /v1/post/create-post","service":"api-getway","timestamp":"2026-08-18T13:18:35.064Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-18T13:18:35.064Z"}
+{"level":"info","message":"Authenticating middleware request for post","service":"api-getway","timestamp":"2026-08-18T13:18:35.065Z"}
+{"level":"info","message":"Token received for validation","service":"api-getway","timestamp":"2026-08-18T13:18:35.065Z"}
+{"level":"info","message":"Proxy response received from post service: {\"success\":true,\"message\":\"Post created successfully\",\"post\":{\"user\":\"6a78686ed1c621c1adaba5d8\",\"title\":\"Psot 0004\",\"content\":\"Post 004 content !!!!!!!\",\"mediaIds\":[],\"_id\":\"6a845babc4db3f8ccc9ff59c\",\"createdAt\":\"2026-08-18T13:18:35.065Z\",\"updatedAt\":\"2026-08-18T13:18:35.065Z\",\"__v\":0}}","service":"api-getway","timestamp":"2026-08-18T13:18:35.123Z"}
+{"level":"info","message":"Received GET request to /v1/post/all-posts","service":"api-getway","timestamp":"2026-08-18T13:35:35.941Z"}
+{"level":"info","message":"Request body, undefined","service":"api-getway","timestamp":"2026-08-18T13:35:35.942Z"}
+{"level":"info","message":"Authenticating middleware request for post","service":"api-getway","timestamp":"2026-08-18T13:35:35.943Z"}
+{"level":"warn","message":"Token not present for post","service":"api-getway","timestamp":"2026-08-18T13:35:35.944Z"}
+{"level":"info","message":"API Gateway started on port 3000","service":"api-getway","timestamp":"2026-08-18T13:36:16.457Z"}
+{"level":"info","message":"Auth Service started on port http://localhost:3001","service":"api-getway","timestamp":"2026-08-18T13:36:16.461Z"}
+{"level":"info","message":"Post Service started on port http://localhost:3002","service":"api-getway","timestamp":"2026-08-18T13:36:16.461Z"}
+{"level":"info","message":"Received GET request to /v1/post/all-posts","service":"api-getway","timestamp":"2026-08-18T13:36:19.298Z"}
+{"level":"info","message":"Request body, undefined","service":"api-getway","timestamp":"2026-08-18T13:36:19.299Z"}
+{"code":"ECONNREFUSED","level":"error","message":"","service":"api-getway","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1122:18)\n    at afterConnectMultiple (node:net:1689:7)","timestamp":"2026-08-18T13:36:19.323Z"}
+{"level":"info","message":"API Gateway started on port 3000","service":"api-getway","timestamp":"2026-08-18T13:37:23.489Z"}
+{"level":"info","message":"Auth Service started on port http://localhost:3001","service":"api-getway","timestamp":"2026-08-18T13:37:23.496Z"}
+{"level":"info","message":"Post Service started on port http://localhost:3002","service":"api-getway","timestamp":"2026-08-18T13:37:23.496Z"}
+{"level":"info","message":"Received GET request to /v1/post/all-posts","service":"api-getway","timestamp":"2026-08-18T13:37:26.132Z"}
+{"level":"info","message":"Request body, undefined","service":"api-getway","timestamp":"2026-08-18T13:37:26.132Z"}
+{"level":"info","message":"Authenticating middleware request for post","service":"api-getway","timestamp":"2026-08-18T13:37:26.141Z"}
+{"level":"warn","message":"Token not present for post","service":"api-getway","timestamp":"2026-08-18T13:37:26.141Z"}
+{"level":"info","message":"Received GET request to /v1/post/all-posts","service":"api-getway","timestamp":"2026-08-18T13:37:44.188Z"}
+{"level":"info","message":"Request body, undefined","service":"api-getway","timestamp":"2026-08-18T13:37:44.189Z"}
+{"level":"info","message":"Authenticating middleware request for post","service":"api-getway","timestamp":"2026-08-18T13:37:44.190Z"}
+{"level":"info","message":"Token received for validation","service":"api-getway","timestamp":"2026-08-18T13:37:44.190Z"}
+{"level":"warn","message":"jwt expired","name":"TokenExpiredError","service":"api-getway","timestamp":"2026-08-18T13:37:44.194Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-18T13:38:24.287Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-18T13:38:24.287Z"}
+{"level":"info","message":"API Gateway started on port 3000","service":"api-getway","timestamp":"2026-08-18T13:38:55.966Z"}
+{"level":"info","message":"Auth Service started on port http://localhost:3001","service":"api-getway","timestamp":"2026-08-18T13:38:55.969Z"}
+{"level":"info","message":"Post Service started on port http://localhost:3002","service":"api-getway","timestamp":"2026-08-18T13:38:55.969Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-18T13:39:00.815Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-18T13:39:00.838Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-18T13:39:30.878Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-18T13:40:57.134Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-18T13:40:57.135Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-18T13:41:27.153Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-18T13:41:59.524Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-18T13:41:59.524Z"}
+{"code":"ECONNRESET","level":"error","message":"socket hang up","service":"api-getway","stack":"Error: socket hang up\n    at Socket.socketCloseListener (node:_http_client:477:27)\n    at Socket.emit (node:events:536:35)\n    at TCP.<anonymous> (node:net:343:12)","timestamp":"2026-08-18T13:42:24.861Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-18T13:42:25.861Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-18T13:42:25.861Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-18T13:42:55.892Z"}
+{"level":"info","message":"API Gateway started on port 3000","service":"api-getway","timestamp":"2026-08-18T13:43:06.566Z"}
+{"level":"info","message":"Auth Service started on port http://localhost:3001","service":"api-getway","timestamp":"2026-08-18T13:43:06.569Z"}
+{"level":"info","message":"Post Service started on port http://localhost:3002","service":"api-getway","timestamp":"2026-08-18T13:43:06.569Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-18T13:43:10.240Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-18T13:43:10.241Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-18T13:43:40.268Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-18T13:44:01.506Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-18T13:44:01.506Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":false,\"message\":\"Internal Server Error\"}","service":"api-getway","timestamp":"2026-08-18T13:44:31.525Z"}
+{"level":"info","message":"Received POST request to /v1/auth/login","service":"api-getway","timestamp":"2026-08-18T13:44:41.026Z"}
+{"level":"info","message":"Request body, [object Object]","service":"api-getway","timestamp":"2026-08-18T13:44:41.027Z"}
+{"level":"info","message":"Proxy response received from auth service: {\"success\":true,\"message\":\"User logged in successfully\",\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZTM4MjZhOC1jNWI4LTRkZTctYjYyYi1lZDM1N2I1NWUwMGQiLCJ1c2VySWQiOiI2YTc4Njg2ZWQxYzYyMWMxYWRhYmE1ZDgiLCJ1c2VybmFtZSI6ImFkbWluX3VzZXJuYW1lMSIsImlhdCI6MTc4NzA2MDY4MSwiZXhwIjoxNzg3MDYxNTgxfQ.gtDc34WsxXqtYUItsoRZ8wfGEKAGPgujfcMZMMsl8gU\",\"refreshToken\":\"4c07090b96cd78bdfa67318a3af35dc2067c510cd3897d76ec587aabde42599a9815695a5a502b87\"}","service":"api-getway","timestamp":"2026-08-18T13:44:41.738Z"}
+{"level":"info","message":"Received GET request to /v1/post/all-posts","service":"api-getway","timestamp":"2026-08-18T13:44:58.303Z"}
+{"level":"info","message":"Request body, undefined","service":"api-getway","timestamp":"2026-08-18T13:44:58.305Z"}
+{"level":"info","message":"Authenticating middleware request for post","service":"api-getway","timestamp":"2026-08-18T13:44:58.307Z"}
+{"level":"info","message":"Token received for validation","service":"api-getway","timestamp":"2026-08-18T13:44:58.307Z"}
+{"level":"warn","message":"jwt expired","name":"TokenExpiredError","service":"api-getway","timestamp":"2026-08-18T13:44:58.311Z"}
+{"level":"info","message":"Received GET request to /v1/post/all-posts","service":"api-getway","timestamp":"2026-08-18T13:45:08.891Z"}
+{"level":"info","message":"Request body, undefined","service":"api-getway","timestamp":"2026-08-18T13:45:08.891Z"}
+{"level":"info","message":"Authenticating middleware request for post","service":"api-getway","timestamp":"2026-08-18T13:45:08.893Z"}
+{"level":"info","message":"Token received for validation","service":"api-getway","timestamp":"2026-08-18T13:45:08.893Z"}
+{"level":"info","message":"Proxy response received from post service: {\"success\":true,\"message\":\"Post found\",\"images\":[{\"_id\":\"6a845babc4db3f8ccc9ff59c\",\"user\":\"6a78686ed1c621c1adaba5d8\",\"title\":\"Psot 0004\",\"content\":\"Post 004 content !!!!!!!\",\"mediaIds\":[],\"createdAt\":\"2026-08-18T13:18:35.065Z\",\"updatedAt\":\"2026-08-18T13:18:35.065Z\",\"__v\":0},{\"_id\":\"6a845abfc4db3f8ccc9ff59b\",\"user\":\"6a78686ed1c621c1adaba5d8\",\"title\":\"Psot 0003\",\"content\":\"Post 003 content !!!!!!!\",\"mediaIds\":[],\"createdAt\":\"2026-08-18T13:14:39.962Z\",\"updatedAt\":\"2026-08-18T13:14:39.962Z\",\"__v\":0}],\"totalImages\":5,\"limit\":2,\"skip\":0,\"currentPage\":1,\"totalPages\":3}","service":"api-getway","timestamp":"2026-08-18T13:45:09.004Z"}
