@@ -87,6 +87,134 @@ print(name)
 
 
 
+<hr />
+<h5><b>PEP 8 in Python</b></h5>
+<hr />
+<p>PEP 8 is Python's official style guide. It provides conventions for writing Python code that is readable, consistent, and easier for teams to maintain.</p>
+<h6 class="mt-2"><b>Important PEP 8 rules:</b></h6>
+<ol class="list-group list-group-flush mx-4">
+  <li><b><code>Indentation</code> : <i>Use 4 spaces for indentation.</i></b> Avoid mixing tabs and spaces.</li>
+  <li><b><code>Variable and function names</code> : <i>Use snake_case.</i></b>
+<textarea class="code-editor">
+// Use snake_case for variable and function names
+user_name = "Jhon"
+total_price = 500
+
+def calculate_total():
+    pass
+
+// Avoid:
+userName = "Jhon"
+TotalPrice = 500</textarea>
+  </li>
+  <li><b><code>Classes</code> : <i>Use PascalCase.</code></b>
+<textarea class="code-editor">
+class UserService:
+    pass
+
+class PaymentProcessor:
+    pass</textarea>  
+  </li>
+  <li><b><code>Constants</code> : Use UPPER_CASE.</b>
+<textarea class="code-editor">
+MAX_RETRIES = 3
+DATABASE_URL = "mongodb://localhost"
+API_TIMEOUT = 30</textarea>
+  </li>
+  <li><b><code>Spaces around operators</code> : <i>Use a single space around operators.</i></b>
+<textarea class="code-editor">
+total = price + tax
+age = 36
+result = a * b</textarea>  
+  </li>
+  <li><b><code>Function arguments</code> : <i>Use spaces after commas.</i></b>
+<textarea class="code-editor">
+def create_user(name, email, age):
+    pass</textarea> 
+  </li>
+  <li><b><code>Imports</code> : Put imports at the top of the file.</b>
+<textarea class="code-editor">
+import os
+import json
+
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+// Generally organize them as:
+Standard library
+        ↓
+Third-party packages
+        ↓
+Your own application</textarea> 
+  </li>
+  <li><b><code>Line length</code> : <i>Traditionally, PEP 8 recommends keeping lines around 79 characters for code.</i></b> The format will be like below
+<textarea class="code-editor">
+user = User(
+    name="Joy",
+    email="joy@example.com",
+    age=36,
+    is_active=True,
+)
+
+// *** Not this way ***
+user = User(name="Joy", email="joy@example.com", age=36, is_active=True)</textarea>
+<p>Modern Python projects often use automated formatters such as <b>Black</b> or <b>Ruff</b>, so we don't need to manually count characters.</p>
+  </li>
+  <li><b><code>Blank lines</code> : <i>Use blank lines to separate logical sections.</i></b>
+<textarea class="code-editor">
+import os
+
+
+class UserService:
+    def create_user(self):
+        pass
+
+    def delete_user(self):
+        pass</textarea>  
+  </li>
+  <li><b><code>Boolean comparisons</code></b>
+<textarea class="code-editor">
+// Prefer:
+if user.is_active:
+    pass
+
+// Instead of:
+if user.is_active == True:
+    pass
+
+
+// For None:
+if user is None:
+    pass
+
+// Instead of:
+if user == None:
+    pass
+</textarea>  
+  </li>
+  <li><b><code>Don't use unnecessary semicolons</code></b>
+<textarea class="code-editor">
+// prefer:
+name = "Joy"
+age = 36
+
+// not use:
+name = "Joy"; age = 36;
+</textarea>
+  </li>
+  <li><b><code>Comments</code></b>
+<textarea class="code-editor">
+// Prefer:
+# Increment retry count before attempting the request again.
+retry_count += 1
+
+// Not this:
+# Add 1 to count
+count += 1
+</textarea>  
+  </li>
+  <!-- <li><b></b></li> -->
+</ol>
 
 <!-- 
 <hr />
