@@ -9,9 +9,11 @@ interface SettingsPanelProps {
   viewport: Viewport;
   onChange: (target: "props" | "styles", path: string, value: unknown) => void;
   onRename: (name: string) => void;
+  onClassesChange: (cssClasses: string[]) => void;
+  onCustomCssChange: (customCss: string) => void;
 }
 
-export function SettingsPanel({ selectedNode, widget, viewport, onChange, onRename }: SettingsPanelProps) {
+export function SettingsPanel({ selectedNode, widget, viewport, onChange, onRename, onClassesChange, onCustomCssChange }: SettingsPanelProps) {
   if (!selectedNode || !widget) {
     return (
       <aside className="pb-sidebar pb-settings" aria-label="Settings">
@@ -47,6 +49,25 @@ export function SettingsPanel({ selectedNode, widget, viewport, onChange, onRena
             value={selectedNode.name ?? ""}
             placeholder={widget.label}
             onChange={(event) => onRename(event.target.value)}
+          />
+        </label>
+        <label className="pb-control" htmlFor="pb-element-classes">
+          <span>CSS classes</span>
+          <input
+            id="pb-element-classes"
+            value={(selectedNode.cssClasses ?? []).join(" ")}
+            placeholder="section-card custom-class"
+            onChange={(event) => onClassesChange(event.target.value.split(/\s+/).map((item) => item.trim()).filter(Boolean))}
+          />
+        </label>
+        <label className="pb-control" htmlFor="pb-element-custom-css">
+          <span>Custom CSS</span>
+          <textarea
+            id="pb-element-custom-css"
+            rows={4}
+            value={selectedNode.customCss ?? ""}
+            placeholder="transform: translateY(-4px);"
+            onChange={(event) => onCustomCssChange(event.target.value)}
           />
         </label>
       </section>

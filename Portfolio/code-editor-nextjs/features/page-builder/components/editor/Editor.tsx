@@ -13,6 +13,11 @@ import { ElementsPanel } from "./ElementsPanel";
 import { Navigator } from "./Navigator";
 import { SettingsPanel } from "./SettingsPanel";
 import { JsonExportDialog } from "./JsonExportDialog";
+import { DesignSystemPanel } from "./DesignSystemPanel";
+import { defaultDesignSystem } from "../../data/defaultDesignSystem";
+import { TemplateLibraryPanel } from "./TemplateLibraryPanel";
+import { defaultTemplates } from "../../data/defaultTemplates";
+import { CmsPanel } from "./CmsPanel";
 
 export function PageBuilder({ initialPage, widgets, storage, onChange, onSave }: PageBuilderProps) {
   useMemo(() => widgets?.forEach((widget) => widgetRegistry.register(widget)), [widgets]);
@@ -22,6 +27,7 @@ export function PageBuilder({ initialPage, widgets, storage, onChange, onSave }:
   const allWidgets = [...defaultWidgets, ...(widgets ?? [])];
   const [exportedJson, setExportedJson] = useState<string | null>(null);
   const [jsonCopied, setJsonCopied] = useState(false);
+  const [inspectorMode, setInspectorMode] = useState<"element" | "design" | "templates" | "cms">("element");
 
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
@@ -52,6 +58,11 @@ export function PageBuilder({ initialPage, widgets, storage, onChange, onSave }:
     setExportedJson(JSON.stringify(state.page, null, 2));
   };
 
+  const selectNode = (nodeId: string | null) => {
+    actions.dispatch({ type: "select", nodeId });
+    if (nodeId) setInspectorMode("element");
+  };
+
   const handleCopyJson = async () => {
     if (!exportedJson) return;
     await navigator.clipboard.writeText(exportedJson);
@@ -66,6 +77,12 @@ export function PageBuilder({ initialPage, widgets, storage, onChange, onSave }:
         onRedo={() => actions.dispatch({ type: "redo" })}
         onSave={handleSave}
         onReset={actions.reset}
+        onDesign={() => setInspectorMode((mode) => mode === "design" ? "element" : "design")}
+        onTemplates={() => setInspectorMode((mode) => mode === "templates" ? "element" : "templates")}
+        onCms={() => setInspectorMode((mode) => mode === "cms" ? "element" : "cms")}
+        designActive={inspectorMode === "design"}
+        templatesActive={inspectorMode === "templates"}
+        cmsActive={inspectorMode === "cms"}
         onViewport={(viewport) => actions.dispatch({ type: "viewport", viewport })}
         onMode={(mode) => actions.dispatch({ type: "mode", mode })}
       />
@@ -76,7 +93,7 @@ export function PageBuilder({ initialPage, widgets, storage, onChange, onSave }:
             <Navigator
               root={state.page.root}
               selectedNodeId={state.selection.selectedNodeId}
-              onSelect={(nodeId) => actions.dispatch({ type: "select", nodeId })}
+              onSelect={selectNode}
               onMove={actions.moveNode}
             />
           </div>
@@ -97,19 +114,56 @@ export function PageBuilder({ initialPage, widgets, storage, onChange, onSave }:
           )}
           <EditorCanvas
             state={state}
-            onSelect={(nodeId) => actions.dispatch({ type: "select", nodeId })}
+            onSelect={selectNode}
             onHover={(nodeId) => actions.dispatch({ type: "hover", nodeId })}
             onAdd={actions.addNode}
             onMove={actions.moveNode}
           />
         </div>
-        {state.mode === "edit" && (
+        {state.mode === "edit" && inspectorMode === "design" && (
+          <DesignSystemPanel
+            designSystem={state.page.designSystem ?? defaultDesignSystem()}
+            onChange={actions.updateDesignSystem}
+          />
+        )}
+        {state.mode === "edit" && inspectorMode === "templates" && (
+          <TemplateLibraryPanel
+            templates={state.page.templates ?? defaultTemplates()}
+            selectedNode={selectedNode}
+            onSavePageTemplate={actions.savePageTemplate}
+            onSaveSectionTemplate={(name) => actions.saveSelectedTemplate(name, "section")}
+            onSaveGlobalComponent={(name) => actions.saveSelectedTemplate(name, "globalComponent")}
+            onInsertTemplate={actions.insertTemplate}
+            onApplyPageTemplate={actions.applyPageTemplate}
+            onDeleteTemplate={actions.deleteTemplate}
+          />
+        )}
+        {state.mode === "edit" && inspectorMode === "cms" && (
+          <CmsPanel
+            page={state.page}
+            selectedNode={selectedNode}
+            onCreatePage={actions.createCmsPage}
+            onSwitchPage={actions.switchCmsPage}
+            onSetStatus={actions.setPageStatus}
+            onSeoChange={actions.updateSeo}
+            onSaveRevision={actions.saveRevision}
+            onRestoreRevision={actions.restoreRevision}
+            onAddMedia={actions.addMedia}
+            onUpsertDynamicContent={actions.upsertDynamicContent}
+            onCreateDynamicContent={actions.createDynamicContent}
+            onBindDynamicContent={actions.bindSelectedDynamicContent}
+            onUnbindDynamicContent={actions.unbindSelectedDynamicContent}
+          />
+        )}
+        {state.mode === "edit" && inspectorMode === "element" && (
           <SettingsPanel
             selectedNode={selectedNode}
             widget={selectedWidget}
             viewport={state.viewport}
             onChange={actions.updateSelected}
             onRename={actions.renameSelected}
+            onClassesChange={actions.updateSelectedClasses}
+            onCustomCssChange={actions.updateSelectedCustomCss}
           />
         )}
       </div>

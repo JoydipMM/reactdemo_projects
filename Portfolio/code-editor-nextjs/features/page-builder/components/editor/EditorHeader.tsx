@@ -8,11 +8,17 @@ interface EditorHeaderProps {
   onRedo: () => void;
   onSave: () => void;
   onReset: () => void;
+  onDesign: () => void;
+  onTemplates: () => void;
+  onCms: () => void;
   onViewport: (viewport: EditorState["viewport"]) => void;
   onMode: (mode: EditorState["mode"]) => void;
+  designActive: boolean;
+  templatesActive: boolean;
+  cmsActive: boolean;
 }
 
-export function EditorHeader({ state, onUndo, onRedo, onSave, onReset, onViewport, onMode }: EditorHeaderProps) {
+export function EditorHeader({ state, onUndo, onRedo, onSave, onReset, onDesign, onTemplates, onCms, onViewport, onMode, designActive, templatesActive, cmsActive }: EditorHeaderProps) {
   return (
     <header className="pb-header">
       <div className="pb-brand">
@@ -23,6 +29,9 @@ export function EditorHeader({ state, onUndo, onRedo, onSave, onReset, onViewpor
         <button type="button" onClick={onUndo} disabled={state.history.past.length === 0} title="Undo">Undo</button>
         <button type="button" onClick={onRedo} disabled={state.history.future.length === 0} title="Redo">Redo</button>
         <button type="button" onClick={onReset}>Reset</button>
+        <button type="button" className={designActive ? "is-active" : ""} onClick={onDesign}>Design</button>
+        <button type="button" className={templatesActive ? "is-active" : ""} onClick={onTemplates}>Templates</button>
+        <button type="button" className={cmsActive ? "is-active" : ""} onClick={onCms}>CMS</button>
       </nav>
       <div className="pb-segment" role="group" aria-label="Viewport">
         {(["desktop", "tablet", "mobile"] as const).map((viewport) => (

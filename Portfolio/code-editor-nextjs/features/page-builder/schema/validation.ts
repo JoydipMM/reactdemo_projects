@@ -1,5 +1,8 @@
 import type { Page } from "../types";
 import { defaultPage } from "../data/defaultPage";
+import { defaultDesignSystem } from "../data/defaultDesignSystem";
+import { defaultTemplates } from "../data/defaultTemplates";
+import { ensureCms } from "../utils/cmsUtils";
 import { isPage } from "./page.schema";
 import { collectIds } from "../utils/treeUtils";
 
@@ -20,5 +23,12 @@ export function validatePage(value: unknown): ValidationResult {
 
 export function parsePage(value: unknown): Page {
   const validation = validatePage(value);
-  return validation.valid ? (value as Page) : defaultPage();
+  if (!validation.valid) return defaultPage();
+  const page = value as Page;
+  return {
+    ...page,
+    designSystem: page.designSystem ?? defaultDesignSystem(),
+    templates: page.templates ?? defaultTemplates(),
+    cms: ensureCms(page),
+  };
 }

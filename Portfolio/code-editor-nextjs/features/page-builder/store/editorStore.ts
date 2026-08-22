@@ -1,8 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useReducer } from "react";
-import type { EditorState, Page, PageNode, PageStorage, Viewport } from "../types";
+import type { CmsPageStatus, DesignSystem, DynamicContentItem, EditorState, Page, PageNode, PageStorage, SeoSettings, Viewport } from "../types";
 import { defaultPage } from "../data/defaultPage";
+import { defaultDesignSystem } from "../data/defaultDesignSystem";
 import { widgetRegistry } from "../core/registry/defaultRegistry";
 import { LocalStoragePageStorage } from "../core/storage/localStoragePageStorage";
 import { arrangeNode, cloneNode, duplicateNode, findNode, findParent, insertNode, moveNode, removeNode, updateNode } from "../utils/treeUtils";
@@ -10,6 +11,8 @@ import type { ArrangeDirection } from "../utils/treeUtils";
 import { createNodeId } from "../utils/idUtils";
 import { setAtPath } from "../utils/styleUtils";
 import { parsePage } from "../schema/validation";
+import { applyPageTemplate, createTemplateFromNodes, instantiateTemplate } from "../utils/templateUtils";
+import { addMediaItem, addRevision, createCmsPage, createDynamicContent, ensureCms, restoreRevision, setCmsPageStatus, switchCmsPage, syncActivePageRecord, updateSeo, upsertDynamicContent } from "../utils/cmsUtils";
 
 type Action =
   | { type: "load"; page: Page }
@@ -142,15 +145,16 @@ export function useEditorStore({
   useEffect(() => {
     onChange?.(state.page);
     const timeout = window.setTimeout(() => {
-      resolvedStorage.save(state.page).catch(() => undefined);
+      resolvedStorage.save(syncActivePageRecord(state.page)).catch(() => undefined);
     }, 650);
     return () => window.clearTimeout(timeout);
   }, [onChange, state.page, resolvedStorage]);
 
   const save = useCallback(async () => {
     dispatch({ type: "save-start" });
-    await resolvedStorage.save(state.page);
-    await onSave?.(state.page);
+    const syncedPage = syncActivePageRecord(state.page);
+    await resolvedStorage.save(syncedPage);
+    await onSave?.(syncedPage);
     dispatch({ type: "save-done", savedAt: new Date().toLocaleTimeString() });
   }, [onSave, state.page, resolvedStorage]);
 
@@ -179,6 +183,101 @@ export function useEditorStore({
         name: trimmedName.length > 0 ? trimmedName : undefined,
       }));
       dispatch({ type: "mutate", page });
+    },
+    updateSelectedClasses(cssClasses: string[]) {
+      const selectedId = state.selection.selectedNodeId;
+      if (!selectedId) return;
+      const page = updateNode(state.page, selectedId, (node) => ({
+        ...node,
+        cssClasses: cssClasses.length > 0 ? cssClasses : undefined,
+      }));
+      dispatch({ type: "mutate", page });
+    },
+    updateSelectedCustomCss(customCss: string) {
+      const selectedId = state.selection.selectedNodeId;
+      if (!selectedId) return;
+      const page = updateNode(state.page, selectedId, (node) => ({
+        ...node,
+        customCss: customCss.trim().length > 0 ? customCss : undefined,
+      }));
+      dispatch({ type: "mutate", page });
+    },
+    updateDesignSystem(updater: (designSystem: DesignSystem) => DesignSystem) {
+      const designSystem = updater(state.page.designSystem ?? defaultDesignSystem());
+      dispatch({ type: "mutate", page: { ...state.page, designSystem } });
+    },
+    createCmsPage(title: string) {
+      dispatch({ type: "mutate", page: createCmsPage(state.page, title), selectedNodeId: null });
+    },
+    switchCmsPage(pageId: string) {
+      dispatch({ type: "mutate", page: switchCmsPage(state.page, pageId), selectedNodeId: null });
+    },
+    setPageStatus(status: CmsPageStatus) {
+      dispatch({ type: "mutate", page: setCmsPageStatus(state.page, status), history: false });
+    },
+    updateSeo(seo: SeoSettings) {
+      dispatch({ type: "mutate", page: updateSeo(state.page, seo), history: false });
+    },
+    saveRevision(name: string) {
+      dispatch({ type: "mutate", page: addRevision(syncActivePageRecord(state.page), name), history: false });
+    },
+    restoreRevision(revisionId: string) {
+      dispatch({ type: "mutate", page: restoreRevision(state.page, revisionId), selectedNodeId: null });
+    },
+    addMedia(name: string, url: string, alt: string) {
+      dispatch({ type: "mutate", page: addMediaItem(state.page, { name, url, alt }), history: false });
+    },
+    upsertDynamicContent(item: DynamicContentItem) {
+      dispatch({ type: "mutate", page: upsertDynamicContent(state.page, item), history: false });
+    },
+    createDynamicContent(label: string, value: string) {
+      dispatch({ type: "mutate", page: upsertDynamicContent(state.page, createDynamicContent(label, value)), history: false });
+    },
+    bindSelectedDynamicContent(sourceId: string) {
+      const selectedId = state.selection.selectedNodeId;
+      if (!selectedId) return;
+      const page = updateNode(state.page, selectedId, (node) => ({
+        ...node,
+        dynamicBindings: [{ prop: getPrimaryDynamicProp(node.type), sourceId }],
+      }));
+      dispatch({ type: "mutate", page });
+    },
+    unbindSelectedDynamicContent() {
+      const selectedId = state.selection.selectedNodeId;
+      if (!selectedId) return;
+      const page = updateNode(state.page, selectedId, (node) => ({ ...node, dynamicBindings: undefined }));
+      dispatch({ type: "mutate", page });
+    },
+    ensureCms() {
+      dispatch({ type: "mutate", page: { ...state.page, cms: ensureCms(state.page) }, history: false });
+    },
+    savePageTemplate(name: string) {
+      const template = createTemplateFromNodes(name, "page", state.page.root.children ?? [], state.page.designSystem);
+      dispatch({ type: "mutate", page: { ...state.page, templates: [...(state.page.templates ?? []), template] }, history: false });
+    },
+    saveSelectedTemplate(name: string, kind: "section" | "globalComponent") {
+      const selectedId = state.selection.selectedNodeId;
+      if (!selectedId) return;
+      const selected = findNode(state.page.root, selectedId);
+      if (!selected || selected.id === state.page.root.id) return;
+      const template = createTemplateFromNodes(name, kind, [selected]);
+      dispatch({ type: "mutate", page: { ...state.page, templates: [...(state.page.templates ?? []), template] }, history: false });
+    },
+    insertTemplate(templateId: string) {
+      const template = state.page.templates?.find((item) => item.id === templateId);
+      if (!template) return;
+      const nodes = instantiateTemplate(template);
+      const target = resolveInsertTarget(state.page, state.selection.selectedNodeId);
+      const nextPage = nodes.reduce((page, node, offset) => insertNode(page, target.parentId, node, (target.index ?? Number.MAX_SAFE_INTEGER) + offset), state.page);
+      dispatch({ type: "mutate", page: nextPage, selectedNodeId: nodes[0]?.id ?? state.selection.selectedNodeId });
+    },
+    applyPageTemplate(templateId: string) {
+      const template = state.page.templates?.find((item) => item.id === templateId);
+      if (!template) return;
+      dispatch({ type: "mutate", page: applyPageTemplate(state.page, template), selectedNodeId: null });
+    },
+    deleteTemplate(templateId: string) {
+      dispatch({ type: "mutate", page: { ...state.page, templates: (state.page.templates ?? []).filter((template) => template.id !== templateId) }, history: false });
     },
     deleteSelected() {
       const selectedId = state.selection.selectedNodeId;
@@ -238,4 +337,9 @@ function resolveInsertTarget(page: Page, requestedNodeId?: string | null, reques
 
 function canAcceptChildren(node: PageNode): boolean {
   return node.type === "root" || Boolean(widgetRegistry.get(node.type)?.acceptsChildren);
+}
+
+function getPrimaryDynamicProp(type: string): string {
+  if (type === "image") return "src";
+  return "text";
 }

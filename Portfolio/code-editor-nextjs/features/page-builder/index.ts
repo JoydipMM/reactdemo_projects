@@ -1,6 +1,9 @@
 export { PageBuilder } from "./components/editor/Editor";
 export { PageRenderer } from "./components/renderer/PageRenderer";
 export { defaultPage as createDefaultPage } from "./data/defaultPage";
+export { defaultDesignSystem } from "./data/defaultDesignSystem";
+export { defaultTemplates } from "./data/defaultTemplates";
+export { createDefaultCms, defaultSeo } from "./data/defaultCms";
 export { defaultWidgets } from "./data/defaultWidgets";
 export { widgetRegistry } from "./core/registry/defaultRegistry";
 export { WidgetRegistry } from "./core/registry/widgetRegistry";

@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import type { StyleSettings, Viewport } from "../types";
+import type { DesignSystem, StyleSettings, Viewport } from "../types";
 import { resolveResponsiveValue } from "./responsiveUtils";
 
 function boxToCss(box?: { top?: string; right?: string; bottom?: string; left?: string }): string | undefined {
@@ -48,6 +48,68 @@ export function stylesToCss(styles: StyleSettings, viewport: Viewport): CSSPrope
   };
 }
 
+export function designSystemToCssVariables(designSystem: DesignSystem | undefined): CSSProperties {
+  if (!designSystem) return {};
+
+  const variables: Record<string, string> = {
+    "--pb-global-background": designSystem.globalStyles.backgroundColor ?? "#ffffff",
+    "--pb-global-text": designSystem.globalStyles.textColor ?? "#111827",
+    "--pb-global-font": designSystem.globalStyles.fontFamily ?? "Arial, Helvetica, sans-serif",
+    "--pb-global-content-width": designSystem.globalStyles.contentWidth ?? "1140px",
+  };
+
+  designSystem.colors.forEach((color) => {
+    variables[`--pb-color-${sanitizeCssIdent(color.id)}`] = color.value;
+  });
+  designSystem.spacing.forEach((spacing) => {
+    variables[`--pb-space-${sanitizeCssIdent(spacing.id)}`] = spacing.value;
+  });
+  designSystem.typography.forEach((typography) => {
+    const id = sanitizeCssIdent(typography.id);
+    variables[`--pb-font-${id}`] = typography.fontFamily;
+    variables[`--pb-font-size-${id}`] = typography.fontSize;
+    variables[`--pb-font-weight-${id}`] = typography.fontWeight;
+    variables[`--pb-line-height-${id}`] = typography.lineHeight;
+  });
+
+  return variables as CSSProperties;
+}
+
+export function designSystemToCss(designSystem: DesignSystem | undefined, viewport: Viewport): string {
+  if (!designSystem) return "";
+  const globalCss = `
+.pb-page-renderer {
+  background: var(--pb-global-background);
+  color: var(--pb-global-text);
+  font-family: var(--pb-global-font);
+}
+.pb-page-renderer .pb-content-width {
+  max-width: var(--pb-global-content-width);
+}
+`;
+  const classCss = designSystem.cssClasses
+    .map((cssClass) => `.pb-class-${sanitizeCssIdent(cssClass.name)} { ${styleSettingsToCssText(cssClass.styles, viewport)} }`)
+    .join("\n");
+  return [globalCss, classCss, designSystem.customCss].filter(Boolean).join("\n");
+}
+
+export function styleSettingsToCssText(styles: StyleSettings, viewport: Viewport): string {
+  const css = stylesToCss(styles, viewport);
+  return Object.entries(css)
+    .filter(([, value]) => value !== undefined && value !== null && value !== "")
+    .map(([property, value]) => `${camelToKebab(property)}: ${String(value)};`)
+    .join(" ");
+}
+
+export function sanitizeCssIdent(value: string): string {
+  return value.trim().toLowerCase().replace(/[^a-z0-9_-]+/g, "-").replace(/^-+|-+$/g, "") || "class";
+}
+
+export function nodeCustomCss(nodeId: string, customCss: string | undefined): string {
+  if (!customCss?.trim()) return "";
+  return `[data-pb-node-id="${nodeId}"] { ${customCss} }`;
+}
+
 export function getAtPath(source: Record<string, unknown>, path: string): unknown {
   return path.split(".").reduce<unknown>((value, key) => {
     if (value && typeof value === "object" && key in value) {
@@ -68,4 +130,8 @@ export function setAtPath<T extends Record<string, unknown>>(source: T, path: st
   });
   cursor[keys[keys.length - 1]] = value;
   return clone as T;
+}
+
+function camelToKebab(value: string): string {
+  return value.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
 }

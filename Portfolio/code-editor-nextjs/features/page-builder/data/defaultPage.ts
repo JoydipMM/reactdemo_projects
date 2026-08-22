@@ -1,12 +1,20 @@
 import type { Page } from "../types";
 import { createNodeId } from "../utils/idUtils";
+import { defaultDesignSystem } from "./defaultDesignSystem";
+import { defaultTemplates } from "./defaultTemplates";
+import { createDefaultCms, defaultSeo } from "./defaultCms";
 
 export function defaultPage(): Page {
   const now = new Date().toISOString();
-  return {
+  const page: Page = {
     id: "demo-page",
     version: 1,
     title: "Visual Builder Demo",
+    slug: "home",
+    status: "draft",
+    seo: defaultSeo("Visual Builder Demo"),
+    designSystem: defaultDesignSystem(),
+    templates: defaultTemplates(),
     metadata: { createdAt: now, updatedAt: now },
     root: {
       id: "page-root",
@@ -91,5 +99,9 @@ export function defaultPage(): Page {
         },
       ],
     },
+  };
+  return {
+    ...page,
+    cms: createDefaultCms(page),
   };
 }

@@ -35,6 +35,7 @@ export interface WidgetRenderProps<TProps extends Record<string, unknown> = Reco
   children?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  dataNodeId?: string;
 }
 
 export interface WidgetDefinition {

@@ -33,6 +33,21 @@ const {
   updateNode,
 } = require(path.join(root, "features/page-builder/utils/treeUtils.ts"));
 const { resolveResponsiveValue } = require(path.join(root, "features/page-builder/utils/responsiveUtils.ts"));
+const {
+  applyPageTemplate,
+  createTemplateFromNodes,
+  instantiateTemplate,
+} = require(path.join(root, "features/page-builder/utils/templateUtils.ts"));
+const {
+  addRevision,
+  createCmsPage,
+  createDynamicContent,
+  ensureCms,
+  restoreRevision,
+  setCmsPageStatus,
+  switchCmsPage,
+  upsertDynamicContent,
+} = require(path.join(root, "features/page-builder/utils/cmsUtils.ts"));
 
 function test(name, fn) {
   try {
@@ -196,4 +211,65 @@ test("copy/paste-style clone keeps content but regenerates subtree IDs", () => {
   const next = insertNode(page, page.root.id, pasted);
   assert.equal(findNode(next.root, pasted.id).type, source.type);
   assert.equal(new Set(collectIds(next.root)).size, collectIds(next.root).length);
+});
+
+test("templates instantiate fresh node IDs and global component markers", () => {
+  const page = defaultPage();
+  const source = page.root.children[0];
+  const sectionTemplate = createTemplateFromNodes("Saved section", "section", [source]);
+  const [sectionInstance] = instantiateTemplate(sectionTemplate);
+  assert.notEqual(sectionInstance.id, source.id);
+  assert.equal(sectionInstance.globalComponentId, undefined);
+
+  const globalTemplate = createTemplateFromNodes("Saved global", "globalComponent", [source]);
+  const [globalInstance] = instantiateTemplate(globalTemplate);
+  assert.notEqual(globalInstance.id, source.id);
+  assert.equal(globalInstance.globalComponentId, globalTemplate.id);
+});
+
+test("page templates can replace the current page structure", () => {
+  const page = defaultPage();
+  const replacement = makeNode("container");
+  const template = createTemplateFromNodes("Replacement page", "page", [replacement], page.designSystem);
+  const next = applyPageTemplate(page, template);
+  assert.equal(next.root.children.length, 1);
+  assert.equal(next.root.children[0].type, "container");
+  assert.notEqual(next.root.children[0].id, replacement.id);
+});
+
+test("cms creates pages and switches between page records", () => {
+  const page = defaultPage();
+  const created = createCmsPage(page, "About Us");
+  assert.equal(created.title, "About Us");
+  assert.equal(created.cms.pages.length, page.cms.pages.length + 1);
+  const switched = switchCmsPage(created, page.id);
+  assert.equal(switched.id, page.id);
+  assert.equal(switched.title, page.title);
+});
+
+test("cms draft publish updates page status", () => {
+  const page = defaultPage();
+  const published = setCmsPageStatus(page, "published");
+  assert.equal(published.status, "published");
+  assert.equal(ensureCms(published).pages.find((record) => record.id === published.id).status, "published");
+});
+
+test("cms revisions restore prior page structure", () => {
+  const page = defaultPage();
+  const revised = addRevision(page, "Before edits");
+  const revision = revised.cms.revisions[0];
+  const text = makeNode("text");
+  const changed = insertNode(revised, revised.root.id, text);
+  assert.equal(findNode(changed.root, text.id).id, text.id);
+  const restored = restoreRevision(changed, revision.id);
+  assert.equal(findNode(restored.root, text.id), null);
+});
+
+test("cms dynamic content can be created and updated", () => {
+  const page = defaultPage();
+  const item = createDynamicContent("Hero Title", "Hello CMS");
+  const withContent = upsertDynamicContent(page, item);
+  assert.equal(withContent.cms.dynamicContent[0].value, "Hello CMS");
+  const updated = upsertDynamicContent(withContent, { ...item, value: "Updated CMS" });
+  assert.equal(updated.cms.dynamicContent.find((content) => content.id === item.id).value, "Updated CMS");
 });

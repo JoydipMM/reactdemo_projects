@@ -26,6 +26,8 @@ interface Page {
   version: number;
   title: string;
   root: PageNode;
+  designSystem?: DesignSystem;
+  templates?: PageTemplate[];
   metadata?: {
     createdAt?: string;
     updatedAt?: string;
@@ -133,6 +135,27 @@ type ResponsiveValue<T> = Partial<Record<Breakpoint, T>>;
 
 Use `resolveResponsiveValue(value, viewport)` to resolve fallbacks. The editor stores one JSON document; switching viewport only changes which breakpoint is edited and previewed.
 
+## Design System
+
+Phase 2 stores global design data on `page.designSystem`:
+
+- `colors`: global color tokens emitted as `--pb-color-*`
+- `typography`: font family, size, weight, and line-height tokens
+- `spacing`: spacing scale emitted as `--pb-space-*`
+- `breakpoints`: desktop, tablet, and mobile widths
+- `globalStyles`: page background, text color, font family, and content width
+- `cssClasses`: structured class definitions emitted as `.pb-class-*`
+- `customCss`: raw page-level custom CSS
+
+Each node can also store:
+
+```ts
+cssClasses?: string[];
+customCss?: string;
+```
+
+The renderer applies classes to the rendered widget and scopes node custom CSS through `data-pb-node-id`.
+
 ## Undo / Redo
 
 The editor stores page snapshots in `history.past` and `history.future`. Mutating actions go through `mutate`, which pushes the previous page into history. Undo and redo swap page snapshots without mutating the document.
@@ -154,6 +177,53 @@ interface PageStorage {
 ```
 
 Phase 1 ships `LocalStoragePageStorage`, saving to `page-builder-document`. API/database storage can replace it without changing editor UI.
+
+## Templates
+
+Phase 3 stores reusable templates in `page.templates`.
+
+```ts
+interface PageTemplate {
+  id: string;
+  name: string;
+  kind: "page" | "section" | "globalComponent";
+  nodes: PageNode[];
+  designSystem?: DesignSystem;
+  createdAt: string;
+  updatedAt: string;
+}
+```
+
+- Page templates can be applied to replace the current page structure or inserted as sections.
+- Section templates insert cloned nodes into the selected container or after the selected widget.
+- Global components insert cloned nodes marked with `globalComponentId`, which gives Phase 4+ a stable hook for synced components.
+- All inserted template nodes receive new IDs through `cloneNode()`.
+
+## CMS
+
+Phase 4 stores local CMS data in `page.cms`:
+
+```ts
+interface CmsWorkspace {
+  activePageId: string;
+  pages: CmsPageRecord[];
+  media: MediaItem[];
+  dynamicContent: DynamicContentItem[];
+  revisions: Revision[];
+}
+```
+
+The editor supports:
+
+- Pages with slugs and independent page structures
+- Draft/publish status
+- SEO metadata on the active page
+- URL-based media library records
+- Dynamic content fields
+- Binding a selected widget's primary prop to dynamic content
+- Manual revisions and restore
+
+This is intentionally local-first for Phase 4. A backend CMS can later replace the storage layer while keeping the Page JSON and renderer contracts.
 
 ## Integrating
 
