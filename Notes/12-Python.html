@@ -215,6 +215,126 @@ count += 1
   </li>
   <!-- <li><b></b></li> -->
 </ol>
+<br/>
+
+
+
+
+<hr />
+<h5><b>Object and Mutability</b></h5>
+<hr />
+<p><b>What is Object in Python</b></p>
+<p>In Python, an object is a value/data that exists in memory and has a type, identity, and value.</p>
+<p>The most populer definition of an object is <i></i><b>Everything in Python is an object.</b> That <b>includes numbers, strings, lists, functions, classes, and even classes</b> themselves.</i></p>
+<p>In Python, each object has a type, identity, and value. also object can be mutable or immutable</p>
+<br/>
+
+<hr />
+<h5><b>Mutable & Immutable</b></h5>
+<hr />
+<p>In Python, mutable and immutable describe whether an object's value can be changed after the object is created.</p>
+<textarea class="code-editor">
+| Type        | Mutable?     | Example             |
+| ----------- | -----------  | ------------------- |
+| `int`       | ❌ Immutable | `10`                |
+| `float`     | ❌ Immutable | `10.5`              |
+| `bool`      | ❌ Immutable | `True`              |
+| `str`       | ❌ Immutable | `"Hello"`           |
+| `tuple`     | ❌ Immutable | `(1, 2, 3)`         |
+| `frozenset` | ❌ Immutable | `frozenset({1, 2})` |
+| `list`      | ✅ Mutable   | `[1, 2, 3]`         |
+| `dict`      | ✅ Mutable   | `{"name": "Alex"}`  |
+| `set`       | ✅ Mutable   | `{1, 2, 3}`         |</textarea>
+
+
+<p><b>Immutable</b></p>
+<p>An immutable object cannot be changed after creation.</p>
+
+<p class="mt-3"><b>Common immutable types:</b></p>
+<ul class="list-group list-group-flush mx-4">
+  <li><b><code>int</code></b></li>
+  <li><b><code>float</code></b></li>
+  <li><b><code>bool</code></b></li>
+  <li><b><code>str</code></b></li>
+  <li><b><code>tuple</code></b></li>
+  <li><b><code>frozenset</code></b></li>
+  <li><b><code>bytes</code></b></li>
+</ul>
+
+<p class="mt-3"><b>Example of Immutable:</b></p>
+<textarea class="code-editor">
+suger_amount = 10
+print(f"the suger amount is {suger_amount}")
+
+suger_amount = 20
+print(f"the Second suger amount is {suger_amount}")
+
+print(f"ID(memory location) of 10 is {id(10)}")
+print(f"ID(memory location) of 20 is {id(20)}")
+
+# the suger amount is 10
+# the Second suger amount is 20
+# ID(memory location) of 10 is 140727957056216
+# ID(memory location) of 20 is 140727957056536
+</textarea>
+<p><b>suger_amount</b> is a variable that references an <b>integer object</b>. Initially, it references the integer object <b>10</b>. When we execute <b>suger_amount = 20</b>, <b>Python</b> does not modify the existing integer object <b>10</b>. Instead, <b>suger_amount</b> is reassigned to reference the integer object <b>20</b>. Since <b>an integer object cannot be modified after it is created</b>, so integers are <b>immutable</b> in <b>Python</b>. The important concept is not that 10 and 20 have different memory locations. The important concept is that the integer objects themselves cannot be changed; the variable can only be reassigned to another object.</p>
+
+<p class="mt-3"><b>Mutable</b></p>
+<p>A <b>mutable object</b> can be changed after creation without creating a new object.</p>
+
+<p class="mt-3"><b>Common immutable types:</b></p>
+<ul class="list-group list-group-flush mx-4">
+  <li><b><code>list</code></b>
+<textarea class="code-editor">
+numbers = [10, 20, 30]
+print(f"data of numbers is {numbers}") # Result: data of numbers is [10, 20, 30]
+print(f"Memory location of numbers is {id(numbers)}") # Result: Memory location of numbers is 2508911876416
+
+numbers_2 = numbers
+print(f"Memory location of numbers_2 is {id(numbers_2)}") # Result: Memory location of numbers_2 is 2508911876416
+
+numbers_2[1] = 250 # we change the value of index 1 from 20 to 250 in numbers_2
+print(f"data of numbers_2 is {numbers_2}") # Result: data of numbers_2 is [10, 250, 30]
+print(f"data of numbers is {numbers}") # result: data of numbers is [10, 250, 30]</textarea>
+<p>Form the above example we can see that <b>list</b> is <b>mutable. Because we can change the value of index 1 from 20 to 250 in numbers_2 and when we checked the referce id of <b>numbers</b> and <b>numbers_2</b> it is same.</p>
+  </li>
+  <li><b><code>dict</code></b>
+<textarea class="code-editor">
+</textarea>
+  </li>
+  <li><b><code>set</code></b>
+<textarea class="code-editor">
+mix = set()  # empty set where we can store multiple values
+print(f"Type of mix is {type(mix)}") # Type of mix is <class 'set'>
+print(f"ID of mix is {id(mix)}") # ID of mix is 2154865775488
+mix.add("potato")
+mix.add("tomato")
+mix.add("onion")
+mix.add("potato")
+print(mix)  # {'potato', 'tomato', 'onion'}
+print(f"ID of mix is {id(mix)}") # ID of mix is 2154865775488</textarea>  
+  </li>
+  <li><b><code>bytearray</code></b>
+<textarea class="code-editor">
+</textarea> 
+  </li>
+</ul>
+
+<br/>
+
+
+
+<hr />
+<h5><b>Data Types</b></h5>
+<hr />
+
+
+
+
+
+
+
+
 
 <!-- 
 <hr />
