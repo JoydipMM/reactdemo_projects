@@ -96,18 +96,18 @@ print(name)
   <li><b><code>Indentation</code> : <i>Use 4 spaces for indentation.</i></b> Avoid mixing tabs and spaces.</li>
   <li><b><code>Variable and function names</code> : <i>Use snake_case.</i></b>
 <textarea class="code-editor">
-// Use snake_case for variable and function names
+# Use snake_case for variable and function names
 user_name = "Jhon"
 total_price = 500
 
 def calculate_total():
     pass
 
-// Avoid:
+# Avoid:
 userName = "Jhon"
 TotalPrice = 500</textarea>
   </li>
-  <li><b><code>Classes</code> : <i>Use PascalCase.</code></b>
+  <li><b><code>Classes</code> : <i>Use PascalCase.</i></code></b>
 <textarea class="code-editor">
 class UserService:
     pass
@@ -140,7 +140,7 @@ import json
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-// Generally organize them as:
+# Generally organize them as:
 Standard library
         ↓
 Third-party packages
@@ -156,7 +156,7 @@ user = User(
     is_active=True,
 )
 
-// *** Not this way ***
+# *** Not this way ***
 user = User(name="Joy", email="joy@example.com", age=36, is_active=True)</textarea>
 <p>Modern Python projects often use automated formatters such as <b>Black</b> or <b>Ruff</b>, so we don't need to manually count characters.</p>
   </li>
@@ -174,41 +174,41 @@ class UserService:
   </li>
   <li><b><code>Boolean comparisons</code></b>
 <textarea class="code-editor">
-// Prefer:
+# Prefer:
 if user.is_active:
     pass
 
-// Instead of:
+# Instead of:
 if user.is_active == True:
     pass
 
 
-// For None:
+# For None:
 if user is None:
     pass
 
-// Instead of:
+# Instead of:
 if user == None:
     pass
 </textarea>  
   </li>
   <li><b><code>Don't use unnecessary semicolons</code></b>
 <textarea class="code-editor">
-// prefer:
+# prefer:
 name = "Joy"
 age = 36
 
-// not use:
+# not use:
 name = "Joy"; age = 36;
 </textarea>
   </li>
   <li><b><code>Comments</code></b>
 <textarea class="code-editor">
-// Prefer:
+# Prefer:
 # Increment retry count before attempting the request again.
 retry_count += 1
 
-// Not this:
+# Not this:
 # Add 1 to count
 count += 1
 </textarea>  
@@ -218,8 +218,67 @@ count += 1
 <br/>
 
 
+<hr />
+<h5><b>Data Types in Python</b></h5>
+<hr />
+<p>In Python, a data type tells Python what kind of value an object holds and what operations can be performed on it.</p>
+<textarea class="code-editor">
+| Data Type  | Example                       | Description                           |
+| ---------- | ----------------------------- | ------------------------------------- |
+| `int`      | `10`                          | Whole numbers                         |
+| `float`    | `10.5`                        | Decimal numbers                       |
+| `complex`  | `2 + 3j`                      | Complex numbers                       |
+| `bool`     | `True`, `False`               | Boolean values                        |
+| `str`      | `"Hello"`                     | Text                                  |
+| `list`     | `[10, 20, 30]`                | Ordered, mutable collection           |
+| `tuple`    | `(10, 20, 30)`                | Ordered, immutable collection         |
+| `set`      | `{10, 20, 30}`                | Unordered collection of unique values |
+| `dict`     | `{"name": "Alex", "age": 25}` | Key-value pairs                       |
+| `NoneType` | `None`                        | Represents no value                   |</textarea>
+<br/>
+
+<hr />
+<h5><b>01. <code>Integers Datatypes</code></b></h5>
+<hr />
+<p>An <b>integer</b> is a <b><i>whole number without a decimal point</i></b>. We can represent integers in Python using the <code><b></b>int</b></code> data type.</p>
+<p><b>Example</b></p>
+<textarea class="code-editor">
+age = 25
+temperature = -10
+score = 0
+population = 1000000</textarea>
+<p><b>1. Checking the data type :</b> Use <code><b>type()</b></code> to check the data type of a variable</p>
+<textarea class="code-editor">
+number = 100
+print(type(number))
+# Output:
+<class 'int'></textarea>
+<p><b>2. Positive, negative, and zero integers</b></p>
+<p>Python integers can be positive, negative, or zero. not decimals</p>
+<textarea class="code-editor">
+positive = 10
+negative = -10
+zero = 0</textarea>
+<p><b>3. Python integers have arbitrary size</b></p>
+<p>Unlike some languages, <b><i>Python's int does not have a fixed maximum value</i></b>. Python can handle very large integers as long as our computer has enough memory.</p>
+<textarea class="code-editor">
+number = 999999999999999999999999999999999999999
+print(number)</textarea>
+<p><b>4. Arithmetic with integers</b></p>
+<textarea class="code-editor">
+a = 10
+b = 3
+
+print(a + b)   # 13
+print(a - b)   # 7
+print(a * b)   # 30
+print(a / b)   # 3.333...
+print(a // b)  # 3
+print(a % b)   # 1
+print(a ** b)  # 1000</textarea>
 
 
+<br/>
 <hr />
 <h5><b>Object and Mutability</b></h5>
 <hr />
@@ -247,7 +306,7 @@ count += 1
 | `set`       | ✅ Mutable   | `{1, 2, 3}`         |</textarea>
 
 
-<p><b>Immutable</b></p>
+<h5><code><b>Immutable</b></code></h5>
 <p>An immutable object cannot be changed after creation.</p>
 
 <p class="mt-3"><b>Common immutable types:</b></p>
@@ -279,12 +338,12 @@ print(f"ID(memory location) of 20 is {id(20)}")
 </textarea>
 <p><b>suger_amount</b> is a variable that references an <b>integer object</b>. Initially, it references the integer object <b>10</b>. When we execute <b>suger_amount = 20</b>, <b>Python</b> does not modify the existing integer object <b>10</b>. Instead, <b>suger_amount</b> is reassigned to reference the integer object <b>20</b>. Since <b>an integer object cannot be modified after it is created</b>, so integers are <b>immutable</b> in <b>Python</b>. The important concept is not that 10 and 20 have different memory locations. The important concept is that the integer objects themselves cannot be changed; the variable can only be reassigned to another object.</p>
 
-<p class="mt-3"><b>Mutable</b></p>
+<h5 class="mt-3"><code><b>Mutable</b></code></h5>
 <p>A <b>mutable object</b> can be changed after creation without creating a new object.</p>
 
 <p class="mt-3"><b>Common immutable types:</b></p>
 <ul class="list-group list-group-flush mx-4">
-  <li><b><code>list</code></b>
+  <li><b><code>list</code></b></b>
 <textarea class="code-editor">
 numbers = [10, 20, 30]
 print(f"data of numbers is {numbers}") # Result: data of numbers is [10, 20, 30]
@@ -298,7 +357,7 @@ print(f"data of numbers_2 is {numbers_2}") # Result: data of numbers_2 is [10, 2
 print(f"data of numbers is {numbers}") # result: data of numbers is [10, 250, 30]</textarea>
 <p>Form the above example we can see that <b>list</b> is <b>mutable. Because we can change the value of index 1 from 20 to 250 in numbers_2 and when we checked the referce id of <b>numbers</b> and <b>numbers_2</b> it is same.</p>
   </li>
-  <li><b><code>dict</code></b>
+  <li><b><code>dict</code></b></b>
 <textarea class="code-editor">
 </textarea>
   </li>
@@ -314,7 +373,7 @@ mix.add("potato")
 print(mix)  # {'potato', 'tomato', 'onion'}
 print(f"ID of mix is {id(mix)}") # ID of mix is 2154865775488</textarea>  
   </li>
-  <li><b><code>bytearray</code></b>
+  <li><b><code>bytearray</code></b></b>
 <textarea class="code-editor">
 </textarea> 
   </li>
@@ -356,9 +415,19 @@ print(f"ID of mix is {id(mix)}") # ID of mix is 2154865775488</textarea>
 </blockquote> -->
 
   <script src="assets/js/codemirror/codemirror.min.js"></script>
-  <script src="assets/js/codemirror/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/common-script.js"></script>
+  <script>
+    document.querySelectorAll(".code-editor").forEach(function (textarea) {
+      CodeMirror.fromTextArea(textarea, {
+        mode: "python",
+        theme: "neo",
+        lineWrapping: true,
+        lineNumbers: true,
+        readOnly: true,
+      });
+    });
+  </script>
 </body>
 
 </html>
