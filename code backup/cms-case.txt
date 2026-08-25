@@ -1,0 +1,59 @@
+case "featured card":
+layoutClassName = "cms-featured-card";
+
+case "images group tile":
+layoutClassName = "cms-images-group-tile";
+
+case "":
+layoutClassName = "cms-images-group-tile";
+
+
+
+New css:
+.cmsopen-page-full-sections .img_effect{
+    overflow: hidden; border-radius: 20px;
+}
+.cmsopen-page-full-sections .img_effect >img,
+.cms-thumb-info-card .img_effect >img{
+    border-radius: 0; width:100%; height: 100%; object-fit: cover;
+}
+
+
+
+
+/* infrastructure / computer page css start */
+.page-computer-center .cmsopen-page-full-sections h2.mb-3{
+    margin-bottom: 30px !important;
+}
+.page-computer-center .cmsopen-page-full-sections > .gradient-box.title + .py-120 > div:not(:first-child){
+    padding-top: 70px;
+}
+.page-computer-center .cmsopen-page-full-sections table{
+    margin-bottom: 20px !important;
+}
+.page-computer-center .cmsopen-page-full-sections table td .elementor-table-heading,
+.page-computer-center .cmsopen-page-full-sections table td label,
+.page-computer-center .cmsopen-page-full-sections table th h4.elementor-table-heading {
+    font-size: max(16px, min(1vw, 18px)); margin-bottom: 0px !important; 
+}
+.page-computer-center .cmsopen-page-full-sections table td h4.elementor-table-heading {
+    font-size: max(14px, min(.9375vw, 16px)); font-family: var(--poppins-font);
+}
+/* infrastructure / computer page css ended */
+
+
+/* featured card section css start */
+.page-computer-center .cmsopen-page-full-sections > .gradient-box.title + .py-120 > div.cms-featured-card-section{
+    padding-top: 20px;
+}
+.cms-featured-card-section-inner{}
+.cms-featured-card-row{}
+.cms-featured-card{
+    margin:0px !important;
+}
+/* featured card section css ended */
+
+
+
+
+            
