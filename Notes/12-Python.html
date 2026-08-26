@@ -276,6 +276,27 @@ print(a / b)   # 3.333...
 print(a // b)  # 3
 print(a % b)   # 1
 print(a ** b)  # 1000</textarea>
+<p><b>5. Integer vs float</b></p>
+<textarea class="code-editor">
+a = 10      # int
+b = 10.0    # float
+
+print(type(a))
+print(type(b))
+
+# Output:
+# <class 'int'>
+# <class 'float'></textarea>
+<p><b>6. Converting to integer</b></p>
+<p>We can use <code>int()</code> to convert to integer</p>
+<textarea class="code-editor">
+number = int(10.8)
+print(number)
+# Output: 10
+
+print(type(number))
+# output: <class 'int'>
+</textarea>
 
 
 <br/>
@@ -418,6 +439,18 @@ print(f"ID of mix is {id(mix)}") # ID of mix is 2154865775488</textarea>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script>
+    var editor = CodeMirror.fromTextArea(
+        document.getElementById("editor"),
+        {
+            mode: "javascript",
+            theme: "neo",
+            lineWrapping: true,
+            lineNumbers: false,
+            readOnly: true,
+        }
+    );
+
+
     document.querySelectorAll(".code-editor").forEach(function (textarea) {
       CodeMirror.fromTextArea(textarea, {
         mode: "python",
