@@ -16,7 +16,7 @@ type ProductCardProps = {
 export function ProductCard({ product, showWishlist = true, showBadge = true, variant = "default" }: ProductCardProps) {
   return (
     <article className="group">
-      <div className="relative aspect-[3/4] overflow-hidden bg-stone-100">
+      <div className="relative aspect-3/4 overflow-hidden bg-stone-100">
         <Link href="/products/product-name" aria-label={`View ${product.name}`}>
           <Image
             alt={product.name}
