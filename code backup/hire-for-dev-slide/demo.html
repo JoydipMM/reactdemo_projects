@@ -10,23 +10,26 @@
 </head>
 
 <body>
-
+  <br/>
+  <br/>
+  <br/>
+  
   <!-- start -->
-  <div class="solution_card_boxes_main_wrap">
+  <div class="slide_cardes_main_wrap">
 
-    <div class="solution_card_boxes_wrap desktop-view">
-      <div class="solution_card_box active">
+    <div class="slide_cardes_wrap desktop-view">
+      <div class="slide_card active">
         <img src="assets/cards/card-1.png" alt="" />
       </div>
-      <div class="solution_card_box">
+      <div class="slide_card">
         <img src="assets/cards/card-3.png" alt="" />
       </div>
-      <div class="solution_card_box">
+      <div class="slide_card">
         <img src="assets/cards/card-2.png" alt="" />
       </div>
     </div>
 
-    <div class="solution_card_boxes_nav_row">
+    <div class="slide_cardes_nav_row">
       <button id="prevBtn" class="solutiondesk-slider-arrow-btn prev">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
           <path d="M14.333 2L1.33301 14.5L14.333 27" stroke="black" stroke-width="2.66667" stroke-linecap="round"
@@ -53,20 +56,30 @@
   </div>
   <!-- closed -->
 
-
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
 
   <!-- Script Open -->
   <script src="assets/js/jquery-3.6.4.min.js"></script>
   <script>
 
     function suffleCards() {
-      const cards = document.querySelectorAll('.desktop-view .solution_card_box');
+      const cards = document.querySelectorAll('.desktop-view .slide_card');
       const dots = document.querySelectorAll('.solution_card_nav_dot_list li');
+      const navRow = document.querySelector('.slide_cardes_nav_row');
       if (cards.length > 0) {
         let activeIndex = 0;
+        let autoSlideTimer = null;
 
         function updateClasses() {
-          cards.forEach(card => card.className = 'solution_card_box'); // reset all
+          cards.forEach(card => card.className = 'slide_card'); // reset all
           dots.forEach(dot => dot.classList.remove('active'));
 
           const prevIndex = (activeIndex - 1 + cards.length) % cards.length;
@@ -78,6 +91,19 @@
           if (dots[activeIndex]) {
             dots[activeIndex].classList.add('active');
           }
+        }
+
+        function stopAutoSlideAnimation() {
+          clearInterval(autoSlideTimer);
+          autoSlideTimer = null;
+        }
+
+        function autoSlideAnimation() {
+          stopAutoSlideAnimation();
+          autoSlideTimer = setInterval(() => {
+            activeIndex = (activeIndex + 1) % cards.length;
+            updateClasses();
+          }, 2000);
         }
 
         document.getElementById('nextBtn').addEventListener('click', () => {
@@ -104,8 +130,14 @@
           });
         });
 
+        if (navRow) {
+          navRow.addEventListener('mouseenter', stopAutoSlideAnimation);
+          navRow.addEventListener('mouseleave', autoSlideAnimation);
+        }
+
         // init
         updateClasses();
+        autoSlideAnimation();
       }
     }
 
