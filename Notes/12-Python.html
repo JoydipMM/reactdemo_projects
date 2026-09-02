@@ -301,6 +301,153 @@ print(type(number))
 
 <br/>
 <hr />
+<h5><b>02. <code>String Datatypes</code></b></h5>
+<hr />
+<p>A <b>string</b> in Python is a sequence of characters used to represent text.</p>
+<textarea class="code-editor">
+name = "Alex"
+message = 'Hello World'
+country = "India"</textarea>
+<p>Here, <b>"Alex"</b>, <b>'Hello World'</b>, and <b>"India"</b> are <b><i>string</i></b> objects.</p>
+
+<p class="mt-3"><b>1. Creating a String</b></p>
+<p>Python allows you to use <b>single quotes</b> or <b>double quotes</b>:</p>
+<textarea class="code-editor">
+name = "Alex"
+city = 'Kolkata'</textarea>
+<p>Both are valid and create a <code><b>str</b></code> object.</p>
+
+<p class="mt-3"><b>2. Check Type</b></p>
+<p>You can check the datatype using <code><b>type()</b></code>:</p>
+<textarea class="code-editor">
+name = "Alex"
+print(type(name))
+# Output: <class 'str'></textarea>
+
+<p class="mt-3"><b>3. Empty String</b></p>
+<p>A string can contain <b>zero</b> characters:</p>
+<textarea class="code-editor">
+name = ""
+print(type(name))  
+# Output: <class 'str'></textarea>
+<p><code><b>""</b></code> is an <b>empty string</b>, not <code><b>None</b></code>.</p>
+
+<p class="mt-3"><b>4. Strings Are Sequences</b></p>
+<p>A string is a <b><i>sequence of characters</i></b>.</p>
+<textarea class="code-editor">
+word = "Python"
+
+# We can think of it as:
+P  y  t  h  o  n
+0  1  2  3  4  5</textarea>
+<p>You can access <b><i>individual characters using indexing</i></b>:</p>
+<textarea class="code-editor">
+word = "Python"
+
+print(word[0])
+print(word[1])
+print(word[5])
+# Output:
+P
+y
+n</textarea>
+<p>Python uses <b>zero-based indexing</b>, meaning the <b><i>first character is at index 0</i></b>.</p>
+
+<p class="mt-3"><b>5. Negative Indexing</b></p>
+<p>Python also supports negative indexes and it start from <b>-1</b>:</p>
+<textarea class="code-editor">
+word = "Python"
+
+print(word[-1])
+print(word[-2])
+
+# Output:
+n
+o
+
+ P   y   t   h   o   n
+-6  -5  -4  -3  -2  -1</textarea>
+
+<p class="mt-3"><b>6. String Slicing</b></p>
+<p>We can extract part of a string using slicing.</p>
+<p><b>Syntax:</b> <b><i>string[start:end:step]</i></b></p>
+<textarea class="code-editor">
+text = "Python"
+print(text[0:3])
+#Pyt
+Index:      0   1   2   3   4   5
+Character:  P   y   t   h   o   n
+            ↑-----------↑ [index 3 (not included)]
+
+print(text[2:]) # syntax: string[start:stop] - start from index 2 to stop is empty → continue to the end.
+# thon
+Index:      0   1   2   3   4   5
+Character:  P   y   t   h   o   n
+                    ↑-----------↑
+
+print(text[:2]) # syntax: string[start:stop] - start is empty → start from the beginning to index 2 (not included)
+# Py
+Index:      0   1   2   3   4   5
+Character:  P   y   t   h   o   n
+            ↑-------↑ [index 2 (not included)]
+
+print(text[1:2:2]) # syntax: string[start:stop:step] - start from index 1, stop before index 2, move 2 positions each time
+# y
+# start = 1 → start from index 1
+# stop = 2 → stop before index 2
+# step = 2 → move 2 positions each time
+
+Index:      0  1  2  3  4  5
+Character:  P  y  t  h  o  n
+               ↑
+
+print(text[1:5:2])  
+# yh
+# start = 1 → start from index 1
+# stop = 5 → stop before index 2
+# step = 2 → move 2 positions each time
+
+Index:      0  1  2  3  4  5
+Character:  P  y  t  h  o  n
+               ↑-----------↑ [start from index 1 and stop at index 5] -> ython -> So it take index 1 -> y
+               ↑-----↑[ move 2 step from index 1 -> index 3 ] -> h
+               So result is "yh"
+
+print(text[::2]) # syntax: string[start:stop:step] - start is empty → start from the beginning to the end with step 2
+# Pto
+# start empty → start from index 0
+# stop empty → go until the end
+# step = 2 → take every 2nd character
+
+Index:      0  1  2  3  4  5
+Character:  P  y  t  h  o  n
+            ↑                [start from index 0] -> P
+            ↑--------------↑ [go until the end]
+            ↑     ↑     ↑    [take every 2nd character] -> t, o
+            So result is "Pto"</textarea>
+
+
+<p class="mt-3"><b>7. Strings Are Immutable</b></p>
+<p>This is one of the most important concepts about Python strings. <b><i>We cannot directly change an individual character of an existing string</i></b>.</p>
+<textarea class="code-editor">
+word = "Python"
+word[0] = "J"   # Error
+# Python will raise:
+# Error: TypeError: 'str' object does not support item assignment
+</textarea>
+<p>Instead, we create a new string:</p>
+<textarea class="code-editor">
+word = "Python"
+word = "J" + word[1:]
+print(word)
+# Jython</textarea>
+<p><b><i>Python strings are immutable.</i></b></p>
+
+
+
+
+<br/>
+<hr />
 <h5><b>Object and Mutability</b></h5>
 <hr />
 <p><b>What is Object in Python</b></p>

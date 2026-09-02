@@ -1,46 +1,28 @@
 @import "tailwindcss";
 
-::view-transition-old(page),
-::view-transition-new(page) {
-  animation-duration: 0.35s;
-  animation-timing-function: ease-in-out;
-  mix-blend-mode: normal;
-  transform-origin: center center;
-}
-
-::view-transition-old(page) {
-  animation-name: page-zoom-out;
-}
-
-::view-transition-new(page) {
-  animation-name: page-zoom-in;
-}
-
 .page-transition-wrapper {
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
 }
 
-@keyframes page-zoom-out {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  to {
-    opacity: 0;
-    transform: scale(0.985);
-  }
+.loading-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.3s ease-in-out infinite;
+  border-radius: 0.5rem;
 }
 
-@keyframes page-zoom-in {
-  from {
-    opacity: 0;
-    transform: scale(1.015);
-  }
+.loading-card {
+  animation: fade-in-up 0.5s ease-out both;
+}
 
-  to {
-    opacity: 1;
-    transform: scale(1);
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }

@@ -7,7 +7,6 @@ export default function DefaultLayout({children}: {children:React.ReactNode}) {
   return (
     <>
     <Header />
-    {/* <ViewTransition name="page"> */}
     <ViewTransition default="page">
         <main className="page-transition-wrapper">
             {children}
