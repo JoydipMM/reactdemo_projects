@@ -441,9 +441,118 @@ word = "Python"
 word = "J" + word[1:]
 print(word)
 # Jython</textarea>
-<p><b><i>Python strings are immutable.</i></b></p>
+<p><i>Python strings are immutable.</i></p>
 
+<p class="mt-3"><b>8. String Concatenation</b></p>
+<p>You can join strings using <b>+</b>.</p>
+<textarea class="code-editor">
+first_name = "Alex"
+last_name = "Smith"
+full_name = first_name + " " + last_name
+print(full_name)
+# Alex Smith
+</textarea>
+<p>This is called <b><i>string concatenation</i></b>.</p>
 
+<p class="mt-3"><b>9. String Repetition</b></p>
+<p>We can repeat a string using <b>*</b>.</p>
+<textarea class="code-editor">
+word = "Hi "
+print(word * 3)
+# Output: Hi Hi Hi</textarea>
+
+<p class="mt-3"><b>10. <code>len()</code> with Strings</b></p>
+<p><code>len()</code> returns the number of characters.</p>
+<textarea class="code-editor">
+word = "Python"
+print(len(word))
+# Output: 6
+
+message = "Hello World" # The space between Hello and World is also counted.
+print(len(message))
+# Output: 11</textarea>
+
+<p class="mt-3"><b>11. Escape Characters</b></p>
+<p>Python provides special characters using <b>\</b> we can create <b></b>New line</b>.</p>
+<textarea class="code-editor">
+message = "Hello\nWorld"
+print(message)
+#output
+Hello
+World
+</textarea>
+<div class="mx-3">
+  <p><b>Tab</b></p>
+  <textarea class="code-editor">
+  message = "Hello\tWorld"
+  print(message)
+  #output: Hello    World</textarea>
+  <p><b>Quote inside a string</b></p>
+  <textarea class="code-editor">
+  message = "He said \"Hello\""
+  print(message)
+  # output: He said "Hello"</textarea>
+</div>
+
+<p><b>12. Multiline Strings</b></p>
+<p>Triple quotes can be used for multiline strings: We can use either: <code>""" """</code> or <code>''' '''</code></p>
+<textarea class="code-editor">
+message = """Hello
+This is
+Python"""
+print(message)  
+#output
+Hello
+This is
+Python</textarea>
+
+<p class="mt-3"><b>13. Useful String Methods</b></p>
+<p>Python provides many built-in string methods. </p>
+<textarea class="code-editor">
+text = "python programming"
+
+# upper()
+print(text.upper()) # PYTHON PROGRAMMING
+
+# lower()
+print(text.lower()) # python programming
+
+# capitalize()
+print(text.capitalize()) # Python programming
+
+# title()
+print(text.title()) # Python Programming
+
+# replace()
+# syntax -> string.replace(old, new)
+text = "I like Java"
+print(text.replace("Java", "Python")) # I like Python
+
+# strip()
+# Removes whitespace from the beginning and end:
+text = "   Python   "
+print(text.strip()) # Python</textarea>
+
+<p><b>14. Checking Content</b></p>
+<textarea class="code-editor">
+text = "Python Programming"
+print(text.startswith("Python"))
+print(text.endswith("Programming"))
+print("Python" in text)
+#output
+True
+True
+True
+</textarea>
+
+<p class="mt-3"><b>15. f-Strings</b></p>
+<p>f-strings are commonly used to insert variables into strings.</p>
+<textarea class="code-editor">
+name = "Alex"
+age = 25
+message = f"My name is {name} and I am {age} years old."
+print(message)
+# output: My name is Alex and I am 25 years old.</textarea>
 
 
 <br/>
