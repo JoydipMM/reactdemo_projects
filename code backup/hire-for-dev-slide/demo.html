@@ -10,32 +10,30 @@
 </head>
 
 <body>
-  <br/>
-  <br/>
-  <br/>
-  
+  <br />
+  <br />
+  <br />
+
   <!-- start -->
   <div class="slide_cardes_main_wrap">
 
     <div class="slide_cardes_wrap desktop-view">
       <div class="slide_card active">
-        <img src="assets/cards/card-1.png" alt="" />
+        <img src="assets/images/cards/card-1.png" alt="" />
       </div>
       <div class="slide_card">
-        <img src="assets/cards/card-3.png" alt="" />
+        <img src="assets/images/cards/card-3.png" alt="" />
       </div>
       <div class="slide_card">
-        <img src="assets/cards/card-2.png" alt="" />
+        <img src="assets/images/cards/card-2.png" alt="" />
       </div>
     </div>
 
     <div class="slide_cardes_nav_row">
       <button id="prevBtn" class="solutiondesk-slider-arrow-btn prev">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
-          <path d="M14.333 2L1.33301 14.5L14.333 27" stroke="black" stroke-width="2.66667" stroke-linecap="round"
-            stroke-linejoin="round" />
-          <path d="M26.333 14H1.33301" stroke="black" stroke-width="2.66667" stroke-linecap="round"
-            stroke-linejoin="round" />
+          <path d="M14.333 2L1.33301 14.5L14.333 27" stroke="black" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M26.333 14H1.33301" stroke="black" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </button>
       <ul class="solution_card_nav_dot_list">
@@ -45,10 +43,8 @@
       </ul>
       <button id="nextBtn" class="solutiondesk-slider-arrow-btn next">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29" fill="none">
-          <path d="M13.6663 27L26.6663 14.5L13.6663 2" stroke="#1A2024" stroke-width="2.66667" stroke-linecap="round"
-            stroke-linejoin="round" />
-          <path d="M1.66632 15H26.6663" stroke="#1A2024" stroke-width="2.66667" stroke-linecap="round"
-            stroke-linejoin="round" />
+          <path d="M13.6663 27L26.6663 14.5L13.6663 2" stroke="#1A2024" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M1.66632 15H26.6663" stroke="#1A2024" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </button>
     </div>
@@ -56,20 +52,20 @@
   </div>
   <!-- closed -->
 
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
 
   <!-- Script Open -->
   <script src="assets/js/jquery-3.6.4.min.js"></script>
   <script>
-
+    /* suffle card script start */
     function suffleCards() {
       const cards = document.querySelectorAll('.desktop-view .slide_card');
       const dots = document.querySelectorAll('.solution_card_nav_dot_list li');
@@ -103,7 +99,7 @@
           autoSlideTimer = setInterval(() => {
             activeIndex = (activeIndex + 1) % cards.length;
             updateClasses();
-          }, 2000);
+          }, 4000);
         }
 
         document.getElementById('nextBtn').addEventListener('click', () => {
@@ -143,6 +139,7 @@
 
 
     suffleCards();
+    /* suffle card script ended */
   </script>
   <!-- Script Close -->
 </body>
