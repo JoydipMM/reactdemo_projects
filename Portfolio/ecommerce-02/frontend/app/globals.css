@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+
+@theme{
+  --color-muted-foreground: #6B7280
+}
+
 .page-transition-wrapper {
   width: 100%;
   min-height: calc(100vh - 100px);
