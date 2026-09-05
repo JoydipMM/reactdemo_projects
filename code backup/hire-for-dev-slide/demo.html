@@ -73,6 +73,8 @@
       if (cards.length > 0) {
         let activeIndex = 0;
         let autoSlideTimer = null;
+        let jumpTimer = null;
+        const slideAnimationDuration = 1550;
 
         function updateClasses(direction = 'next', animate = true) {
           cards.forEach(card => card.className = 'slide_card'); // reset all
@@ -94,6 +96,40 @@
           }
         }
 
+        function stepSlide(direction = 'next') {
+          activeIndex = direction === 'prev'
+            ? (activeIndex - 1 + cards.length) % cards.length
+            : (activeIndex + 1) % cards.length;
+          updateClasses(direction);
+        }
+
+        function stopDotJumpAnimation() {
+          clearTimeout(jumpTimer);
+          jumpTimer = null;
+        }
+
+        function goToSlide(targetIndex) {
+          stopDotJumpAnimation();
+          if (targetIndex === activeIndex) {
+            updateClasses('next', false);
+            return;
+          }
+
+          const direction = targetIndex > activeIndex ? 'next' : 'prev';
+
+          function animateNextStep() {
+            if (activeIndex === targetIndex) {
+              jumpTimer = null;
+              return;
+            }
+
+            stepSlide(direction);
+            jumpTimer = setTimeout(animateNextStep, slideAnimationDuration);
+          }
+
+          animateNextStep();
+        }
+
         function stopAutoSlideAnimation() {
           clearInterval(autoSlideTimer);
           autoSlideTimer = null;
@@ -102,41 +138,29 @@
         function autoSlideAnimation() {
           stopAutoSlideAnimation();
           autoSlideTimer = setInterval(() => {
-            activeIndex = (activeIndex + 1) % cards.length;
-            updateClasses('next');
+            stepSlide('next');
           }, 4000);
         }
 
-        function getSlideDirection(targetIndex) {
-          const prevIndex = (activeIndex - 1 + cards.length) % cards.length;
-          return targetIndex === prevIndex ? 'prev' : 'next';
-        }
-
         document.getElementById('nextBtn').addEventListener('click', () => {
-          activeIndex = (activeIndex + 1) % cards.length;
-          updateClasses('next');
+          stopDotJumpAnimation();
+          stepSlide('next');
         });
 
         document.getElementById('prevBtn').addEventListener('click', () => {
-          activeIndex = (activeIndex - 1 + cards.length) % cards.length;
-          updateClasses('prev');
+          stopDotJumpAnimation();
+          stepSlide('prev');
         });
 
         cards.forEach((card, i) => {
           card.addEventListener('click', () => {
-            const direction = getSlideDirection(i);
-            const shouldAnimate = i !== activeIndex;
-            activeIndex = i;
-            updateClasses(direction, shouldAnimate);
+            goToSlide(i);
           });
         });
 
         dots.forEach((dot, i) => {
           dot.addEventListener('click', () => {
-            const direction = getSlideDirection(i);
-            const shouldAnimate = i !== activeIndex;
-            activeIndex = i;
-            updateClasses(direction, shouldAnimate);
+            goToSlide(i);
           });
         });
 
