@@ -1,15 +1,24 @@
 "use client";
+import { Button, BreadCrumbs } from "@/app/components";
 import Image from "next/image";
 import { useState } from "react";
 
-interface productDetails {
+import { IoBagOutline } from "react-icons/io5";
+
+interface ProductDetails {
   pid: string;
 }
 
 interface ProductDetailsProps {
-  productDetails: productDetails;
+  productDetails: ProductDetails;
 }
 
+
+const breadCrumps = [
+  { label: "Home", href: "/" },
+  { label: "Shop", href: "/shop" },
+  { label: "Product" },
+]
 const dummyImageGallery = [
   { id: 1, src: "piim-01.webp" },
   { id: 2, src: "piim-02.webp" },
@@ -41,6 +50,10 @@ export default function ProductDetails({
 
   return (
     <div className="mx-auto w-full">
+
+        <div className="w-full mb-8">
+            <BreadCrumbs items={breadCrumps}/>
+        </div>
       <div className="mt-8 flex flex-col gap-8 md:flex-row">
         {/* Product Image Gallery column start */}
         <div className="flex flex-col-reverse gap-4 md:flex-row w-4/4 md:w-1/2 lg:w-2/4 lg:sticky lg:top-24 lg:h-fit">
@@ -62,7 +75,7 @@ export default function ProductDetails({
               </button>
             ))}
           </div>
-          <div className="relative w-full overflow-hidden rounded-xl border-2 border-gray-700">
+          <div className="relative w-full overflow-hidden rounded-xl border-2 border-gray-200">
             <Image
               loading="eager"
               src={`/demo/products/${productImageGallery.src}`}
@@ -112,20 +125,37 @@ export default function ProductDetails({
           <div className="mt-8">
             <p className="mb-3 font-semibold">Select Color</p>
             <div className="flex gap-3">
-                {colors.map((color) => (
-                  <button
-                    title={color.color}
-                    className={`flex h-8 w-8 items-center justify-center rounded-full border transition ring-2 ${ color.id === productColor.id ? "ring-gray-500 border-gray-100" : "ring-gray-100 border-gray-100 hover:border-gray-100 hover:ring-gray-500 cursor-pointer" }`}
-                    onClick={() => setProductColor(color)}
-                  >
-                    <span
-                      className="h-6 w-6 rounded-full"
-                      style={{ backgroundColor: color.color }}
-                    ></span>
-                  </button>
-                ))}
+              {colors.map((color) => (
+                <button
+                  key={color.id}
+                  title={color.color}
+                  className={`flex h-8 w-8 items-center justify-center rounded-full border transition ring-2 ${color.id === productColor.id ? "ring-gray-500 border-gray-100" : "ring-gray-100 border-gray-100 hover:border-gray-100 hover:ring-gray-500 cursor-pointer"}`}
+                  onClick={() => setProductColor(color)}
+                >
+                  <span
+                    className="h-6 w-6 rounded-full"
+                    style={{ backgroundColor: color.color }}
+                  ></span>
+                </button>
+              ))}
             </div>
           </div>
+
+          <div className="mt-6 rounded-xl bg-surface p-4">
+            <p className="text-sm">
+              <span className="font-semibold">Selected Size:</span> {productSize.size}
+            </p>
+            <p className="mt-2 text-sm">
+              <span className="font-semibold">Selected Color:</span> {productColor.color}
+            </p>
+          </div>
+
+          <div className="mt-8">
+            <Button className="w-full sm:w-fit" leftIcon={<IoBagOutline size={20} />} paddingX="px-20">Add To Cart</Button>
+          </div>
+
+
+
         </div>
         {/* Product Details column ended */}
       </div>
