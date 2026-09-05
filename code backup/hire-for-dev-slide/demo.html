@@ -74,7 +74,7 @@
         let activeIndex = 0;
         let autoSlideTimer = null;
 
-        function updateClasses() {
+        function updateClasses(direction = 'next', animate = true) {
           cards.forEach(card => card.className = 'slide_card'); // reset all
           dots.forEach(dot => dot.classList.remove('active'));
 
@@ -82,6 +82,9 @@
           const nextIndex = (activeIndex + 1) % cards.length;
 
           cards[activeIndex].classList.add('active');
+          if (animate && direction === 'next') {
+            cards[activeIndex].classList.add('slide-in-left');
+          }
           cards[nextIndex].classList.add('right-bottom');
           cards[prevIndex].classList.add('right-top');
           if (dots[activeIndex]) {
@@ -98,31 +101,33 @@
           stopAutoSlideAnimation();
           autoSlideTimer = setInterval(() => {
             activeIndex = (activeIndex + 1) % cards.length;
-            updateClasses();
+            updateClasses('next');
           }, 4000);
         }
 
         document.getElementById('nextBtn').addEventListener('click', () => {
           activeIndex = (activeIndex + 1) % cards.length;
-          updateClasses();
+          updateClasses('next');
         });
 
         document.getElementById('prevBtn').addEventListener('click', () => {
           activeIndex = (activeIndex - 1 + cards.length) % cards.length;
-          updateClasses();
+          updateClasses('prev');
         });
 
         cards.forEach((card, i) => {
           card.addEventListener('click', () => {
+            const direction = i > activeIndex ? 'next' : 'prev';
             activeIndex = i;
-            updateClasses();
+            updateClasses(direction);
           });
         });
 
         dots.forEach((dot, i) => {
           dot.addEventListener('click', () => {
+            const direction = i > activeIndex ? 'next' : 'prev';
             activeIndex = i;
-            updateClasses();
+            updateClasses(direction);
           });
         });
 
@@ -132,7 +137,7 @@
         }
 
         // init
-        updateClasses();
+        updateClasses('next', false);
         autoSlideAnimation();
       }
     }

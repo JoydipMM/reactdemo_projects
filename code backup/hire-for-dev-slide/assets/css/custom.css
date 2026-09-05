@@ -269,6 +269,25 @@ p{
     transform: translateX(0px) scale(1);
 }
 
+.slide_cardes_main_wrap .slide_card.active.slide-in-left {
+    animation: slideCardInFromLeft 1.35s ease-in-out;
+}
+
+@keyframes slideCardInFromLeft {
+    0% {
+        transform: translateX(-36%) translateY(15%) rotate(0deg) scale(1.1);
+    }
+    38% {
+        transform: translateX(-100%) translateY(10%) rotate(-8deg) scale(0.96);
+    }
+    72% {
+        transform: translateX(8%) translateY(-2%) rotate(2deg) scale(1.02);
+    }
+    100% {
+        transform: translateX(0px) translateY(0) rotate(0deg) scale(1);
+    }
+}
+
 .slide_cardes_main_wrap .slide_card.right-top {
     transform: translateX(0px) translateY(25%) scale(1);
 }
