@@ -4,12 +4,14 @@ import { SingleCard } from "@/app/features/product";
 export default function ShopPage() {
   return (
     <div>
-      <section className="bg-gray-50 py-16">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full">
+          
           <div className="flex flex-col sm:flex-row gap-5 items-start mb-10">
             <FilterOption/>
 
             <div className="flex-1">
+
+
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-2xl font-semibold text-primary">Shop</h2>
                 <select className="rounded-lg border border-border bg-background p-3 text-sm outline-none focus:border-primary">
@@ -19,6 +21,19 @@ export default function ShopPage() {
                   <option value="oldest">Sort By: Oldest</option>
                 </select>
               </div>
+
+              <p className="mb-6 text-sm text-gray-500">Showing 11 products</p>
+
+              <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-3">
+                <SingleCard />
+                <SingleCard />
+                <SingleCard />
+                <SingleCard />
+                <SingleCard />
+                <SingleCard />
+              </div>
+
+
             </div>
 
 
@@ -31,7 +46,6 @@ export default function ShopPage() {
 
           
         </div>
-      </section>
     </div>
   );
 }

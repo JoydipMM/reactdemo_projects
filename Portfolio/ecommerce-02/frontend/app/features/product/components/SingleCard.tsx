@@ -12,14 +12,14 @@ export default function SingleCard() {
         />
 
         {/* Badge */}
-        <span className="absolute left-4 top-4 rounded-full bg-black px-3 py-1 text-xs font-medium text-white">
+        {/* <span className="absolute left-4 top-4 rounded-full bg-black px-3 py-1 text-xs font-medium text-white">
           New
-        </span>
+        </span> */}
       </div>
 
       {/* Product Content */}
       <div className="p-5">
-        <p className="mb-1 text-sm font-medium text-gray-500">Nike</p>
+        {/* <p className="mb-1 text-sm font-medium text-gray-500">Nike</p> */}
 
         <h3 className="mb-2 text-xl font-semibold text-gray-900">
           Nike Air Max Sneakers
@@ -33,17 +33,17 @@ export default function SingleCard() {
         <div className="mb-5 flex items-center gap-3">
           <span className="text-2xl font-bold text-gray-900">$129</span>
 
-          <span className="text-sm text-gray-400 line-through">$159</span>
+          {/* <span className="text-sm text-gray-400 line-through">$159</span>
 
           <span className="rounded-md bg-green-100 px-2 py-1 text-xs font-semibold text-green-700">
             20% OFF
-          </span>
+          </span> */}
         </div>
 
         {/* Button */}
         <button
           type="button"
-          className="w-full rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white transition hover:bg-gray-800"
+          className="w-full rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white transition hover:bg-gray-800 cursor-pointer"
         >
           Add to Cart
         </button>
