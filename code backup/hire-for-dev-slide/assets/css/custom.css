@@ -273,6 +273,10 @@ p{
     animation: slideCardInFromLeft 1.35s ease-in-out;
 }
 
+.slide_cardes_main_wrap .slide_card.active.slide-in-right {
+    animation: slideCardInFromRight 1.35s ease-in-out;
+}
+
 @keyframes slideCardInFromLeft {
     0% {
         transform: translateX(-36%) translateY(15%) rotate(0deg) scale(1.1);
@@ -282,6 +286,21 @@ p{
     }
     72% {
         transform: translateX(8%) translateY(-2%) rotate(2deg) scale(1.02);
+    }
+    100% {
+        transform: translateX(0px) translateY(0) rotate(0deg) scale(1);
+    }
+}
+
+@keyframes slideCardInFromRight {
+    0% {
+        transform: translateX(0px) translateY(25%) rotate(0deg) scale(1);
+    }
+    38% {
+        transform: translateX(100%) translateY(10%) rotate(8deg) scale(0.96);
+    }
+    72% {
+        transform: translateX(-8%) translateY(-2%) rotate(-2deg) scale(1.02);
     }
     100% {
         transform: translateX(0px) translateY(0) rotate(0deg) scale(1);
@@ -302,7 +321,6 @@ p{
 }
 
 .slide_cardes_wrap .slide_card:nth-child(1).right-bottom {
-    /* transform: translateX(-60px) translateY(10%) scale(1);  */
     transform: translateX(-40%) translateY(10%) scale(1);
 }
 
