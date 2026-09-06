@@ -17,7 +17,7 @@ interface ProductDetailsProps {
 const breadCrumps = [
   { label: "Home", href: "/" },
   { label: "Shop", href: "/shop" },
-  { label: "Product" },
+  { label: "Product name" },
 ]
 const dummyImageGallery = [
   { id: 1, src: "piim-01.webp" },
