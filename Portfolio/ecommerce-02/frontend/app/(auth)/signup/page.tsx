@@ -1,3 +1,4 @@
+"use client";
 import { Button, Input } from '@/app/components'
 import { FcGoogle } from "react-icons/fc";
 import React from 'react'
