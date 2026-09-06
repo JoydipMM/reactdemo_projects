@@ -1,4 +1,7 @@
+import { Button, Input } from '@/app/components'
+import { FcGoogle } from "react-icons/fc";
 import React from 'react'
+import Link from 'next/link';
 
 export default function SignUpPage() {
   return (
@@ -13,8 +16,16 @@ export default function SignUpPage() {
       </div>
 
       <form className="mt-8 space-y-5">
-
+        <Input label="Full Name" type="text" placeholder="Full Name" />
+        <Input type="email" placeholder="Email" />
+        <Input type="password" placeholder="Password" />
+        <Button variant="primary" fullWidth>Create Account</Button>
+        <Button variant="outline" fullWidth leftIcon={<FcGoogle size={20} />}>Continue with Google</Button>
       </form>
+
+      <p className='mt-8 text-center text-sm text-muted-foreground'>
+        Already have an account? <Link href="/signin" className='font-semibold text-primary hover:underline'>Sign In</Link>
+      </p>
 
 
     </div>
