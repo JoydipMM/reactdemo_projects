@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { LuEye } from "react-icons/lu";
 
 const dummyOrders = [
@@ -94,14 +95,14 @@ export default function OrderPage() {
                 </p>
               </div>
             </div>
-
-            <button
-              type="button"
-              aria-label={`View order #${order.id}`}
-              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-surface text-foreground transition cursor-pointer hover:bg-primary hover:text-primary-foreground sm:ml-4"
-            >
-              <LuEye size={20} />
-            </button>
+            <Link href={`/account/orders/${order.id}`} className="ml-auto">
+              <button
+                type="button" aria-label={`View order #${order.id}`}
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-surface text-foreground transition cursor-pointer hover:bg-primary hover:text-primary-foreground sm:ml-4"
+              >
+                <LuEye size={20} />
+              </button>
+            </Link>
           </div>
         ))}
       </div>
