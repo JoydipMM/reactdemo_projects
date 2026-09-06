@@ -25,7 +25,7 @@ export default function AccountPage() {
             </div>
             <div className='mt-8 flex  justify-center gap-4 '>
                 <Link href="/account/edit"><Button variant="primary">Edit Profile</Button></Link>
-                <Button variant="outline">My Order</Button>
+                <Link href="/account/orders"><Button variant="outline">My Orders</Button></Link>
             </div>
         </div>
 
