@@ -12,7 +12,7 @@ interface BreadCrumbsProps {
 
 export default function BreadCrumbs({items}: BreadCrumbsProps) {
   return (
-    <nav className='mb-6 flex flex-wrap items-center gap-2 text-sm'>
+    <nav className='flex flex-wrap items-center gap-2 text-sm'>
       {items?.map((item, index) => {
         const isLastItem = index === items.length - 1;
         return(
