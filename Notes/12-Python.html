@@ -558,7 +558,59 @@ print(message)
 <hr />
 <h5><b>03. <code>Float Datatypes</code></b></h5>
 <hr />
+<p>A <code><b>float</b></code> in Python is a data type used to store numbers containing <b>decimal points</b>.</p>
+<textarea class="code-editor">
+price = 99.99
+temperature = 36.5
+percentage = 75.25</textarea>
 
+<p class="mt-3"><b>1. Check Type</b></p>
+<p>Check the type using <code>type()</code>:</p>
+<textarea class="code-editor">
+x = 10.5
+print(type(x)) # Output: <class 'float'></textarea>
+
+<p class="mt-3"><b>2. Boolean Values</b></p>
+<p>We can convert other numeric values to a float using <code><b>float()</b></code>.</p>
+<div class="px-4">
+  <p><b><i>Integer → Float</i></b></p>
+  <textarea class="code-editor">
+  x = 10
+  y = float(x)
+  print(y) # Output: 10.0</textarea>
+
+  <p><b><i>String → Float</i></b></p>
+  <textarea class="code-editor">
+  x = "25.50"
+  y = float(x)
+  print(y) # 25.5
+  print(type(y)) # <class 'float'></textarea>
+    <p><code><b>Note: </b></code><i>The string must contain a valid numeric representation:</i></p>
+<textarea class="code-editor">
+float("10.5")     # 10.5
+float("-20.25")   # -20.25
+float("100")      # 100.0</textarea>
+<p>But:</p>
+<textarea class="code-editor">float("hello")</textarea>
+<p>causes:</p>
+<textarea class="code-editor">ValueError: could not convert string to float: 'hello'</textarea>
+</div>
+
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block"><h6><b>3. Integers to Float</b></h6>
+  <p>The <b>/</b> operator always produces a <b>float</b>:</p>
+<textarea class="code-editor">
+result = 10 / 2
+print(result) # Output: 5.0
+print(type(result)) # Output: <class 'float'></textarea>
+</code>
+</blockquote>
+
+<p class="mt-3"><b>4. Floating-Point Precision</b></p>
+<p>One important thing to understand about floats is that they can have precision limitations.</p>
+<p>If we add <code>0.1 + 0.2</code> we might expect: <b>0.3</b></p>
+<p>But in python we get: <code><b>0.30000000000000004</b></code></p>
+<p>This happens because most decimal fractions cannot be represented exactly using the binary floating-point system. So, don't assume that every decimal calculation will have perfect precision.</p>
 
 
 <br/>
@@ -568,10 +620,10 @@ print(message)
 <p>Booleans are commonly used when making decisions, comparisons, and conditions in a program.</p>
 
 <p class="mt-3"><b>1. Boolean Values</b></p>
-<p>In Python, <b>Boolean (<code>bool</code>)</b> is a data type used to represent one of two possible values: <code><b><i>True</i></b></code> <b>and</b> <code><b><i>Flase</i></b></code></p>
+<p class="mb-3">In Python, <b>Boolean (<code>bool</code>)</b> is a data type used to represent one of two possible values: <code><b><i>True</i></b></code> <b>and</b> <code><b><i>Flase</i></b></code></p>
 <blockquote class="blockquote">
   <code class="mark" style="width:100%; display:inline-block">
-    <h5>Important Note</h5>
+    <h5><b>Important Note</b></h5>
     <p>In Python <b>True</b> and <b>False</b> start with a <b><i>capital letter</i></b>.</p>
   </code>
 </blockquote>
