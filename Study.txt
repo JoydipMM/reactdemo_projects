@@ -1,0 +1,11 @@
+System Design - Event Sourcing - Piyush Garg
+-----------------------------------------------------------------
+https://www.youtube.com/watch?v=vNplj9LwQSw&list=PLinedj3B30sBlBWRox2V2tg9QJ2zr4M3o&index=4
+
+System Design Course – APIs, Databases, Caching, CDNs, Load Balancing & Production Infra
+-----------------------------------------------------------------
+https://www.youtube.com/watch?v=C842vFY5kRo&t=1304s
+
+Build & Deploy a Production-Ready Full stack E-commerce Website | Next.js, Stripe, PostgreSQL
+-----------------------------------------------------------------
+https://www.youtube.com/watch?v=lZPyX0RvKrc&list=PLrML5OBijCU6gSMN3ILMfaVJWPpHhLD5f&index=11
