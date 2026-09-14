@@ -731,6 +731,296 @@ Oparetion precedence <br/>
 </code>
 
 
+
+
+
+
+<br/>
+<hr />
+<h5><b>Tokens in Python</b></h5>
+<hr />
+<p>A token is a small piece of Python code that has a specific meaning to Python program that the Python interpreter can recognize and understand. such as a keyword, name, value, operator, or symbol.</p>
+<p><b><i>For example:</i></b></p>
+<textarea class="code-editor">
+age = 25</textarea>
+<p><i>Python breaks this code into tokens:</i></p>
+<textarea class="code-editor">
+age     → Identifier
+=       → Operator
+25      → Literal</textarea>
+
+
+
+
+<br/>
+<hr />
+<h5><b>Types of Tokens in Python</b></h5>
+<hr />
+<p>There are <b><i>5 major types of tokens</i></b> in Python:</p>
+<ol class="list-group list-group-flush mx-4">
+  <li><b><code>Keywords</code></b>
+    <p><b>Keywords</b> are reserved words that have a special meaning in Python. We cannot use keywords as variable names.</p>
+    <table class="table table-bordered">
+      <tr>
+        <td>
+<textarea class="code-editor">
+if, else, for, while, def, class, return, import, True, False, None, and, or, not</textarea>
+        </td>
+        <td>
+          <p>We can see Python's keywords using:</p>
+<textarea class="code-editor">
+import keyword
+print(keyword.kwlist) # ['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']</textarea>
+        </td>
+      </tr>
+    </table>
+  </li>
+  <li><b><code>Identifiers</code></b>
+  <table class="table table-bordered mt-2">
+    <tr>
+      <td>
+        <p><b>Identifiers</b> are names used to identify variables, <br>functions, classes, objects, etc.</p>
+<textarea class="code-editor">
+age = 25
+user_name = "Alex"
+def calculate_total():
+    pass
+# ---------------------------    
+# Here   
+# ---------------------------  
+age             → Identifier
+user_name       → Identifier
+calculate_total → Identifier</textarea>
+  <p><b>Identifiers are case-sensitive:</b></p>
+<textarea class="code-editor">
+age = 20
+Age = 30</textarea>
+  <p><i><code>age</code> and <code>Age</code> are <b>different identifiers</b>.</i></p>
+      </td>
+      <td>
+        <p><b>Identifier rules</b></p>
+<textarea class="code-editor">
+# ---------------------------  
+# valid
+# ---------------------------  
+user_name = "Alex"   # valid
+_age = 25            # valid
+age2 = 30            # valid
+
+# ---------------------------  
+# invalid
+# --------------------------- 
+2age = 30            # invalid
+user-name = "Alex"   # invalid
+class = 10           # invalid</textarea>
+      </td>
+    </tr>
+  </table>
+  </li>
+  <li><b><code>Literals</code></b>
+    <table class="table table-bordered">
+      <tr>
+        <td>
+          <p><b>Literals</b> are fixed values directly written in Python code.</p>
+<textarea class="code-editor">
+age = 25
+price = 99.50
+name = "Alex"
+is_active = True
+
+25       → Integer literal
+99.50    → Float literal
+"Alex"   → String literal
+True     → Boolean literal</textarea>
+        </td>
+        <td>
+          <p><b>Common literal types include:</b></p>
+<textarea class="code-editor">
+| Literal    | Example            |
+| ---------- | ------------------ |
+| Integer    | `25`               |
+| Float      | `10.5`             |
+| Complex    | `3 + 4j`           |
+| String     | `"Hello"`          |
+| Boolean    | `True`             |
+| Boolean    | `False`            |
+| None       | `None`             |
+| List       | `[1, 2, 3]`        |
+| Tuple      | `(1, 2, 3)`        |
+| Dictionary | `{"name": "Alex"}` |
+| Set        | `{1, 2, 3}`        |
+</textarea>
+        </td>
+      </tr>
+    </table>
+  </li>
+  <li><b><code>Operators</code></b>
+  <p><b>Operators</b> are symbols or keywords used to perform operations.</p>
+<textarea class="code-editor">
+a + b
+
+# Here
+a → Identifier
++ → Operator
+b → Identifier
+</textarea>
+<p><b>Python has several types of operators.</b></p>
+<table class="table table-bordered">
+  <tr>
+    <th>Arithmetic operators</th>
+    <th>Comparison operators</th>
+    <th>Logical operators</th>
+    <th>Assignment operators</th>
+  </tr>
+  <tr>
+    <td>
+<textarea class="code-editor">+   -   *   /   //   %   **
+# Example:
+10 + 5
+10 * 5
+10 ** 2  </textarea>
+    </td>
+    <td>
+<textarea class="code-editor">==   !=   >   <   >=   <=
+# Example:
+age >= 18</textarea>
+    </td>
+    <td>
+<textarea class="code-editor">and or not
+# Example:
+age >= 18 and country == "India"</textarea>
+    </td>
+    <td>
+<textarea class="code-editor">=  +=  -=  *=  /=
+# Example:
+age = 25
+age += 1</textarea>
+    </td>
+  </tr>
+</table>
+  </li>
+  <li><b><code>Delimiters / Punctuators</code></b>
+  <p><b>Delimiters / Punctuators</b> are symbols that separate or organize different parts of Python code.</p></li>
+  <p><code><b>( ) [ ] { } , : . ;</b></code></p>
+</ol>
+
+
+
+<br/>
+<hr />
+<h5><b>Augmented Assignment Operators in Python</b></h5>
+<hr />
+<p>An augmented assignment operator combines an arithmetic operation with assignment in a single statement.</p>
+<textarea class="code-editor">
+# Normal assignment:
+age = age + 5
+
+# Using augmented assignment:
+age += 5
+
+# **** Both mean the same thing. ****</textarea>
+<p class="mt-2"><b>Common Augmented Assignment Operators</b></p>
+<textarea class="code-editor">
+| Operator | Example   | Equivalent to |
+| -------- | --------- | ------------- |
+| +=       | x += 5    | x = x + 5     |
+| -=       | x -= 5    | x = x - 5     |
+| *=       | x *= 5    | x = x * 5     |
+| /=       | x /= 5    | x = x / 5     |
+| //=      | x //= 5   | x = x // 5    |
+| %=       | x %= 5    | x = x % 5     |
+| **=      | x **= 5   | x = x ** 5    |</textarea>
+
+
+
+<br/>
+<hr />
+<h5><b>Python is a dynamically typed, strongly typed programming language</b></h5>
+<hr />
+
+
+
+<br/>
+<hr />
+<h5><b>What does "typed language" mean?</b></h5>
+<hr />
+<p>A programming language is <b>typed</b> when values have types such as:</p>
+<ul class="list-group list-group-flush mx-4 mt-3">
+  <li><code><b>int</b></code> → integer</li>
+  <li><code><b>float</b></code> → decimal number</li>
+  <li><code><b>str</b></code> → string</li>
+  <li><code><b>bool</b></code> → Boolean</li>
+  <li><code><b>list</b></code> → list</li>
+</ul>
+
+
+<br/>
+<hr />
+<h5><b>Types of "typed language"</b></h5>
+<hr />
+<p>There are two types of typed languages:</p>
+<ul class="list-group list-group-flush mx-4 mt-3">
+  <li><code><b>Dynamically Typed</b></code><p><i>We don't need to declare the variable's type explicitly. The language determines it automatically. More importantly, the same variable can later refer to a different type. So the type belongs to the object/value, not permanently to the variable name.</i></p>
+<textarea class="code-editor">
+# Example:
+age = 25
+# Language automatically determines that age refers to an int.
+# Also, the same variable can later refer to a different type
+value = 10        # int
+value = "Hello"   # str
+value = 10.5      # float
+</textarea>
+<p>In <b>Python</b>, we don't need to declare the variable's type explicitly. Python automatically determines that <b>age</b> refers to an <code>int</code>. In <b>Python</b> the same variable can later refer to a different type</p>
+<blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">
+    <h6><b>Python is a dynamically typed language</b></h6>
+    <p><i>Python is a dynamically typed language where variables do not have fixed types; the type is associated with the object/value at runtime. So the same variable can later refer to a different type</i></p>
+<textarea class="code-editor">
+x = 10        # x refers to an int object
+x = "Python"  # x now refers to a str object</textarea>
+<p><i>Python allows us to write type with variable name:</i></p>
+<textarea class="code-editor">
+age: int = 25
+name: str = "Alex"</textarea>
+<p><i>This is called a <b>type annotation/type hint</b>. However, it doesn't make Python statically typed like Java. Python can still do</i></p>
+<textarea class="code-editor">
+age: int = 25
+age = "Hello"</textarea>
+  </code>
+</blockquote>
+  </li>
+  <li><code><b>Statically Typed</b></code><p><b>Java</b> is a <b><i>statically typed language</i></b>. We need to declare the variable's type explicitly.</p>
+<textarea class="code-editor">
+int age = 25;
+age = "Hello";  # Error</textarea>  
+  </li>
+</ul>
+
+
+<br/>
+<hr />
+<h5><b>What does "strongly typed" mean in Python?</b></h5>
+<hr />
+<p><b>A strongly typed language generally means:</b> The language does not automatically mix or convert incompatible data types in ways that would make an operation meaningless or unsafe.</p>
+
+<br/>
+<hr />
+<h5><b>Implicit and explicit typing language</b></h5>
+<hr />
+<p>The terms <code><b>implicit typing</b></code> and <code><b>explicit typing</b></code> describe how we specify the <b>type of a variable</b>.</p>
+<ul class="list-group list-group-flush mx-4 mt-3">
+  <li><code><b>Implicit Typing</b></code><p><b>Implicit</b> means the <b><i>programmer does not explicitly specify the type</i></b>. The language determines it automatically. Like <b>Python</b></p></li>
+  <li><code><b>Explicit Typing</b></code><p><b>Explicit</b> means the <b><i>programmer specifies the type directly</i></b>. Like <b>Java</b></p></li>
+</ul>
+
+
+<br/>
+<hr />
+<h5><b>Python is a dynamically typed language</b></h5>
+<hr />
+
+
+
 <br/>
 <hr />
 <h5><b>Object and Mutability</b></h5>
