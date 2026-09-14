@@ -1002,6 +1002,29 @@ age = "Hello";  # Error</textarea>
 <h5><b>What does "strongly typed" mean in Python?</b></h5>
 <hr />
 <p><b>A strongly typed language generally means:</b> The language does not automatically mix or convert incompatible data types in ways that would make an operation meaningless or unsafe.</p>
+<textarea class="code-editor">
+num1 = 25
+name = "Alex"
+print(age + name)</textarea>
+<p>This produces an error: <code>TypeError: unsupported operand type(s) for +: 'int' and 'str'</code></p>
+<textarea class="code-editor">
+  result = 10 + "20"</textarea>
+<p>This also produces an error: <code>TypeError: unsupported operand type(s) for +: 'int' and 'str'</code></p>
+<p><b><i>Python doesn't automatically convert <code>"Alex"</code> or <code>"20"</code> into a number or <code>25</code> into a string just to make the operation work.</i></b></p>
+<p>We must explicitly convert <code>"20"</code> into a number.</p>
+<textarea class="code-editor">
+result = 10 + int("20")
+print(result) # 30</textarea>
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <h6><b>Compare with JavaScript</b></h6>
+    <p><i>JavaScript often performs implicit type coercion (জোরজবরদস্তি):</i></p>
+<textarea class="code-editor-js">
+let result = 10 + "20";
+console.log(result); // "1020"</textarea>
+    <p>JavaScript converts <code>10</code> to a string automatically.</p>
+  </code>
+</blockquote>
 
 <br/>
 <hr />
@@ -1012,13 +1035,6 @@ age = "Hello";  # Error</textarea>
   <li><code><b>Implicit Typing</b></code><p><b>Implicit</b> means the <b><i>programmer does not explicitly specify the type</i></b>. The language determines it automatically. Like <b>Python</b></p></li>
   <li><code><b>Explicit Typing</b></code><p><b>Explicit</b> means the <b><i>programmer specifies the type directly</i></b>. Like <b>Java</b></p></li>
 </ul>
-
-
-<br/>
-<hr />
-<h5><b>Python is a dynamically typed language</b></h5>
-<hr />
-
 
 
 <br/>
@@ -1122,16 +1138,21 @@ print(f"ID of mix is {id(mix)}") # ID of mix is 2154865775488</textarea>
   </li>
 </ul>
 
+
+
+
 <br/>
-
-
-
 <hr />
 <h5><b>Data Types</b></h5>
 <hr />
 
 
 
+
+<br/>
+<hr />
+<h5><b>Expression Execution</b></h5>
+<hr />
 
 
 
@@ -1159,6 +1180,7 @@ print(f"ID of mix is {id(mix)}") # ID of mix is 2154865775488</textarea>
 
   <script src="assets/js/codemirror/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script>
     var editor = CodeMirror.fromTextArea(
@@ -1176,6 +1198,16 @@ print(f"ID of mix is {id(mix)}") # ID of mix is 2154865775488</textarea>
     document.querySelectorAll(".code-editor").forEach(function (textarea) {
       CodeMirror.fromTextArea(textarea, {
         mode: "python",
+        theme: "neo",
+        lineWrapping: true,
+        lineNumbers: true,
+        readOnly: true,
+      });
+    });
+
+    document.querySelectorAll(".code-editor-js").forEach(function (textarea) {
+      CodeMirror.fromTextArea(textarea, {
+        mode: "javascript",
         theme: "neo",
         lineWrapping: true,
         lineNumbers: true,
