@@ -33,12 +33,12 @@ export default function Header() {
               About
             </Link>
 
-            <Link
+            {/* <Link
               href="/contact"
               className="text-sm font-medium text-gray-700 transition hover:text-black"
             >
               Contact
-            </Link>
+            </Link> */}
           </nav>
 
           {/* Right Icons */}

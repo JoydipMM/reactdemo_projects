@@ -13,3 +13,29 @@ https://www.youtube.com/watch?v=C842vFY5kRo&t=1304s
 Build & Deploy a Production-Ready Full stack E-commerce Website | Next.js, Stripe, PostgreSQL
 -----------------------------------------------------------------
 https://www.youtube.com/watch?v=lZPyX0RvKrc&list=PLrML5OBijCU6gSMN3ILMfaVJWPpHhLD5f&index=11
+
+
+
+LLM Fine-tuning, 
+Prompt Engineering, 
+AI Security, 
+Red Teaming Distributed Compute Systems, 
+MLOps Cloud Infrastructure architecture,
+AWS, GCP, Azure
+AI System Manage,
+ALML, Data Analytics
+
+
+
+
+
+remove city from logo
+Remove "link" from vision mission
+partner page logo design need to change
+"Programme"
+Alumni Testimonials --> redirect to Alumni section
+Quick links remove
+
+
+    /* home page new adjustment css start */
+    /* home page new adjustment css ended */

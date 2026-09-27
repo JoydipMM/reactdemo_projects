@@ -4,7 +4,7 @@ import { SingleCard } from "@/app/features/product";
 export default function ShopPage() {
   return (
     <div>
-        <div className="mx-auto w-full">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col sm:flex-row gap-5 items-start mb-10">
             <FilterOption/>
