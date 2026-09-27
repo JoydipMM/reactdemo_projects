@@ -9,7 +9,9 @@ export default function DefaultLayout({children}: {children:React.ReactNode}) {
     <Header />
     <ViewTransition default="page">
         <main className="page-transition-wrapper">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             {children}
+          </div>
         </main>
     </ViewTransition>
     <Footer />
