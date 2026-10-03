@@ -6,6 +6,9 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { authClient } from '@/lib/auth-client';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const signInSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -15,6 +18,8 @@ const signInSchema = z.object({
 type SigninFormValues = z.infer<typeof signInSchema>;
 
 export default function SignInPage() {
+
+  const router = useRouter();
 
   const {register, handleSubmit, formState:{errors, isSubmitting}} = useForm<SigninFormValues>({
       resolver: zodResolver(signInSchema),
@@ -26,6 +31,18 @@ export default function SignInPage() {
 
   const onSubmitHandler = async (data: SigninFormValues) => {
       console.log(data);
+      const {error} = await authClient.signIn.email({
+          email: data.email,
+          password: data.password
+        })
+
+        if(error){
+          toast.error(error.message as string);
+          return
+        }
+
+        toast.success("Login Successful!!");
+        router.replace("/account")
   }
   
   return (
