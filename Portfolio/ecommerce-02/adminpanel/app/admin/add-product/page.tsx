@@ -160,8 +160,6 @@ export default function AddProductPage() {
             <Button>Save</Button>
     </div>
 
-            test
-
     </>
   )
 }
