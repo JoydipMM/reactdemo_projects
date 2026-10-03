@@ -6,6 +6,9 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { authClient } from '@/lib/auth-client';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const signUpSchema = z.object({
     fullname: z.string().min(5, { message: "Name must be at least 5 characters" }),
@@ -16,6 +19,8 @@ const signUpSchema = z.object({
 type SignupFormValues = z.infer<typeof signUpSchema>;
 
 export default function SignUpPage() {
+
+  const router = useRouter()
 
     const {register, handleSubmit, formState:{errors, isSubmitting}} = useForm<SignupFormValues>({
         resolver: zodResolver(signUpSchema),
@@ -28,6 +33,19 @@ export default function SignUpPage() {
 
     const onSubmitHandler = async (data: SignupFormValues) => {
         console.log(data);
+        const {error} = await authClient.signUp.email({
+          name: data.fullname,
+          email: data.email,
+          password: data.password
+        })
+
+        if(error){
+          toast.error(error.message as string);
+          return
+        }
+
+        toast.success("Registration Successful!!");
+        router.replace("/account")
     }
 
 
