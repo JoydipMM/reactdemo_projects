@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { authClient } from '@/lib/auth-client';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { signInWithGoogle } from '@/services/signInWithGoogle';
 
 const signUpSchema = z.object({
     fullname: z.string().min(5, { message: "Name must be at least 5 characters" }),
@@ -67,7 +68,7 @@ export default function SignUpPage() {
         <Input label="Password" type="password" placeholder="Password" {...register("password")} error={errors.password?.message} />
         <Button variant="primary" fullWidth disabled={isSubmitting}>{isSubmitting ? "Creating Account..." : "Create Account"}</Button>
       </form>
-        <Button variant="outline" fullWidth leftIcon={<FcGoogle size={20} />}>Continue with Google</Button>
+        <Button variant="outline" fullWidth leftIcon={<FcGoogle size={20} />} onClick={signInWithGoogle}>Continue with Google</Button>
 
       <p className='mt-8 text-center text-sm text-muted-foreground'>
         Already have an account? <Link href="/signin" className='font-semibold text-primary hover:underline'>Sign In</Link>

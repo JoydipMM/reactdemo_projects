@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { authClient } from '@/lib/auth-client';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { signInWithGoogle } from '@/services/signInWithGoogle';
 
 const signInSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -61,7 +62,7 @@ export default function SignInPage() {
         <Input label="Password" type="password" placeholder="Password" {...register("password")} error={errors.password?.message} />
         <Button variant="primary" fullWidth disabled={isSubmitting}>{isSubmitting ? "Signing in..." : "Sign In"}</Button>
       </form>
-        <Button variant="outline" fullWidth leftIcon={<FcGoogle size={20} />}>Continue with Google</Button>
+        <Button variant="outline" fullWidth leftIcon={<FcGoogle size={20} />} onClick={signInWithGoogle}>Continue with Google</Button>
 
       <p className='mt-8 text-center text-sm text-muted-foreground'>
         Don&apos;t have an account? <Link href="/signup" className='font-semibold text-primary hover:underline'>Create Account</Link>
