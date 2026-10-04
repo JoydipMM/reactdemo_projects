@@ -1,9 +1,21 @@
 import { Button } from '@/app/components';
+import { getProfile } from '@/server-actions/user/getProfile';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React from 'react'
 import { LuUser } from "react-icons/lu";
 
-export default function AccountPage() {
+export default async function AccountPage() {
+
+  const userProfile = await getProfile();
+
+  if(!userProfile){
+    redirect("/signin")
+  }
+
+  const address = userProfile.address[0]
+  //console.log(address);
+
   return (
     <>
       <p className="mt-2 text-muted-foreground">
@@ -18,10 +30,13 @@ export default function AccountPage() {
                 <h2 className="text-xl font-semibold">Profile Information</h2>
             </div>
             <div className="grid gap-5 md:grid-cols-2">
-                <div><p className="text-sm text-muted-foreground">Full Name</p><p className="font-medium">Mohit Roy</p></div>
-                <div><p className="text-sm text-muted-foreground">Email</p><p className="font-medium">mohit@test.com</p></div>
-                <div><p className="text-sm text-muted-foreground">Phone</p><p className="font-medium">+91 1234567890</p></div>
-                <div><p className="text-sm text-muted-foreground">Member Since</p><p className="font-medium">September 2026</p></div>
+                <div><p className="text-sm text-muted-foreground">Full Name</p><p className="font-medium">{userProfile?.name}</p></div>
+                <div><p className="text-sm text-muted-foreground">Email</p><p className="font-medium">{userProfile?.email ?? "-"}</p></div>
+                <div><p className="text-sm text-muted-foreground">Phone</p><p className="font-medium">{userProfile?.phone ?? "-"}</p></div>
+                <div><p className="text-sm text-muted-foreground">Member Since</p><p className="font-medium">{userProfile.createdAt.toLocaleDateString("en-US",{
+                  month:"long",
+                  year: "numeric"
+                })}</p></div>
             </div>
             <div className='mt-8 flex  justify-center gap-4 '>
                 <Link href="/account/edit"><Button variant="primary">Edit Profile</Button></Link>
@@ -36,9 +51,20 @@ export default function AccountPage() {
                 <h2 className="text-xl font-semibold">Shipping Address</h2>
             </div>
             <div className="grid gap-5 md:grid-cols-2">
-                <div><p className="text-sm text-muted-foreground">
-                 Dummy Address   
+                {address ? (
+                  <div><p className="text-sm text-muted-foreground">
+                    {address.firstName} {address.lastName},<br/>
+                    <b>Street:</b> {address.street}<br/>
+                    <b>City:</b> {address.city}<br/>
+                    <b>State:</b> {address.state}<br/>
+                    {/* <b>Country:</b> {address.country}<br/> */}
+                    <b>postCode:</b> {address.postCode ?? "Not provided"}<br/>
                     </p></div>
+                ) : (
+                  <div><p className="text-sm text-muted-foreground">
+                 No shipping address added yet.   
+                    </p></div>
+                )}
             </div>
             <div className='mt-8 flex  justify-center gap-4 '>
                 {/* <Link href="/account/edit"><Button variant="primary">Edit Profile</Button></Link> */}

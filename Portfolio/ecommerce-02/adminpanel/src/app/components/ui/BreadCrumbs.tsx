@@ -30,7 +30,7 @@ export default function BreadCrumbs({items}: BreadCrumbsProps) {
     }),
   ];
 
-  console.log(breadcrumbs);
+  //console.log(breadcrumbs);
 
   return (
     <nav className='flex flex-wrap items-center gap-2 text-sm'>

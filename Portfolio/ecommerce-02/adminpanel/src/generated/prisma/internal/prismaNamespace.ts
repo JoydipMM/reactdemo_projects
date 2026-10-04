@@ -1349,6 +1349,7 @@ export const AddressScalarFieldEnum = {
   city: 'city',
   state: 'state',
   postCode: 'postCode',
+  country: 'country',
   isDefault: 'isDefault',
   userId: 'userId',
   createdAt: 'createdAt',
