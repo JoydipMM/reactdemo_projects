@@ -4,7 +4,7 @@ import AdminSidebar from "../admin/_components/AdminSidebar";
 
 export default function AdminLayout({ children }: { children : React.ReactNode}) {
   return (
-    <ViewTransition default="page">
+    // <ViewTransition default="page">
       <main className="page-transition-wrapper">
         <div className="flex min-h-screen bg-background">
           <AdminSidebar />
@@ -15,6 +15,6 @@ export default function AdminLayout({ children }: { children : React.ReactNode})
           </div>
         </div>
       </main>
-    </ViewTransition>
+    // </ViewTransition>
   )
 }
