@@ -1,3 +1,4 @@
+import { userLogout } from '@/server-actions/auth/userLogout'
 import Link from 'next/link'
 
 interface SidebarContentProps {
@@ -72,7 +73,7 @@ export default function SidebarContent({ pathname, closeSidebar}: SidebarContent
         {/* bottom */}
         <div className="border-t border-border p-4">
           <Link href="/shop" className="mb-2 flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition hover:bg-surface">View Shop</Link>
-          <Link href="/logout" className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-destructive transition hover:bg-red-100">Log out</Link>
+          <button onClick={userLogout} className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-destructive transition hover:bg-red-100">Log out</button>
         </div>
 
 
