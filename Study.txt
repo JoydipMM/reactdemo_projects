@@ -14,6 +14,13 @@ Build & Deploy a Production-Ready Full stack E-commerce Website | Next.js, Strip
 -----------------------------------------------------------------
 https://www.youtube.com/watch?v=lZPyX0RvKrc&list=PLrML5OBijCU6gSMN3ILMfaVJWPpHhLD5f&index=11
 
+GCP Zero to Hero Series by Abhishek Veeramalla | Free Course
+-----------------------------------------------------------------
+https://www.youtube.com/watch?v=N5rXROueKhw&list=PLdpzxOOAlwvL4VhhpTiIUr-i_djrXGB22
+
+Google Cloud Platform Full Course | Google Cloud Platform Tutorial | Cloud Computing | Simplilearn
+-----------------------------------------------------------------
+https://www.youtube.com/watch?v=dn9cSRImmVA&list=PLEiEAq2VkUUI0xT8VNpjBuWvmnLHxPcsE
 
 
 LLM Fine-tuning, 
