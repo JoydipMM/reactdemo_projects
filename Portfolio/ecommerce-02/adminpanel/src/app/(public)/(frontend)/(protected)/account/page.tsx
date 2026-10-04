@@ -52,18 +52,22 @@ export default async function AccountPage() {
             </div>
             <div className="grid gap-5 md:grid-cols-2">
                 {address ? (
-                  <div><p className="text-sm text-muted-foreground">
-                    {address.firstName} {address.lastName},<br/>
-                    <b>Street:</b> {address.street}<br/>
-                    <b>City:</b> {address.city}<br/>
-                    <b>State:</b> {address.state}<br/>
-                    {/* <b>Country:</b> {address.country}<br/> */}
-                    <b>postCode:</b> {address.postCode ?? "Not provided"}<br/>
-                    </p></div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">
+                      {address.firstName} {address.lastName},<br/>
+                      <b>Street:</b> {address.street}<br/>
+                      <b>City:</b> {address.city}<br/>
+                      <b>State:</b> {address.state}<br/>
+                      <b>Country:</b> {address.country}<br/>
+                      {address.postCode && <><b>postCode:</b> {address.postCode ?? "Not provided"}</> }<br/>
+                    </p>
+                  </div>
                 ) : (
-                  <div><p className="text-sm text-muted-foreground">
-                 No shipping address added yet.   
-                    </p></div>
+                  <div>
+                    <p className="text-muted-foreground">
+                      No shipping address added yet.   
+                    </p>
+                  </div>
                 )}
             </div>
             <div className='mt-8 flex  justify-center gap-4 '>
@@ -71,10 +75,6 @@ export default async function AccountPage() {
                 {/* <Button variant="outline">My Order</Button> */}
             </div>
         </div>
-
-        <p className="text-muted-foreground">No shipping address added yet.</p>
-
-
 
 
 
