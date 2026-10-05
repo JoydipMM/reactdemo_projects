@@ -1,0 +1,1 @@
+function initAccordions(){$('[data-accordion-trigger]').on('click',function(){const $button=$(this),open=$button.attr('aria-expanded')==='true';$button.attr('aria-expanded',String(!open)).closest('[data-accordion]').toggleClass('is-open',!open)})}
