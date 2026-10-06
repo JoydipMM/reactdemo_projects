@@ -8,20 +8,21 @@ function initCarousels() {
       const isProducts = $rail.hasClass('rd-product-grid--carousel');
       const isSeasonal = $rail.hasClass('rd-seasonal-cards');
       const isReviews = $rail.hasClass('rd-review-cards');
+      const isHero = $rail.hasClass('rd-banner-right-hero-slider');
       $rail.owlCarousel({
-        items: isReviews ? 1 : (isCollections ? 5 : (isProducts ? 6 : (isSeasonal ? 4 : 8.6))),
-        margin: isSeasonal ? 0 : 20,
+        items: (isReviews || isHero) ? 1 : (isCollections ? 5 : (isProducts ? 6 : (isSeasonal ? 4 : 8.6))),
+        margin: (isSeasonal || isHero) ? 0 : 20,
         loop: false,
         nav: false,
-        dots: isReviews,
-        autoplay: isReviews,
+        dots: isReviews || isHero,
+        autoplay: isReviews || isHero,
         autoplayTimeout: 4500,
         autoplayHoverPause: true,
         responsive: {
-          0: { items: isReviews ? 1 : (isCollections ? 1 : (isProducts ? 2 : (isSeasonal ? 1 : 4))), margin: isSeasonal ? 0 : 12 },
-          576: { items: isReviews ? 1 : (isCollections ? 2 : (isProducts ? 3 : (isSeasonal ? 2 : 5))), margin: isSeasonal ? 0 : 16 },
-          768: { items: isReviews ? 1 : (isCollections ? 3 : (isProducts ? 4 : (isSeasonal ? 3 : 6))), margin: isSeasonal ? 0 : 20 },
-          1100: { items: isReviews ? 1 : (isCollections ? 5 : (isProducts ? 6 : (isSeasonal ? 4 : 8.6))), margin: isSeasonal ? 0 : 20 }
+          0: { items: (isReviews || isHero) ? 1 : (isCollections ? 1 : (isProducts ? 2 : (isSeasonal ? 1 : 4))), margin: (isSeasonal || isHero) ? 0 : 12 },
+          576: { items: (isReviews || isHero) ? 1 : (isCollections ? 2 : (isProducts ? 3 : (isSeasonal ? 2 : 5))), margin: (isSeasonal || isHero) ? 0 : 16 },
+          768: { items: (isReviews || isHero) ? 1 : (isCollections ? 3 : (isProducts ? 4 : (isSeasonal ? 3 : 6))), margin: (isSeasonal || isHero) ? 0 : 20 },
+          1100: { items: (isReviews || isHero) ? 1 : (isCollections ? 5 : (isProducts ? 6 : (isSeasonal ? 4 : 8.6))), margin: (isSeasonal || isHero) ? 0 : 20 }
         }
       });
 

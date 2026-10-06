@@ -12,35 +12,21 @@ function initNavigation() {
   const $mobileMegaBack = $('[data-mobile-mega-back]');
   if (!$drawer.length || !$menuTrigger.length) return;
 
-  const megaContent = {
-    chilli: '<h2>Chilli Seeds</h2><a href="#">Annuum</a><a href="#">Baccatum</a><a href="#">Chinense</a><a href="#">Mild to Super Hot</a><a href="#">Variety Packs</a>',
-    vegetable: '<h2>Vegetable Seeds</h2><a href="#">Tomato Seeds</a><a href="#">Root Vegetables</a><a href="#">Leafy Greens</a><a href="#">Beans &amp; Peas</a><a href="#">Cucumber Seeds</a>',
-    herb: '<h2>Herb Seeds</h2><a href="#">Basil</a><a href="#">Coriander</a><a href="#">Mint</a><a href="#">Parsley</a><a href="#">Thyme</a>',
-    flower: '<h2>Flower Seeds</h2><a href="#">Annual Flowers</a><a href="#">Perennials</a><a href="#">Wildflower Seeds</a><a href="#">Pollinator Friendly</a>',
-    collections: '<h2>Collections &amp; Tins</h2><a href="#">Chilli Collections</a><a href="#">Vegetable Collections</a><a href="#">Grow in a Tin</a><a href="#">Gift Sets</a>',
-    new: '<h2>New Arrivals</h2><a href="#">Latest Seeds</a><a href="#">New Chilli Varieties</a><a href="#">New Collections</a>',
-    guides: '<h2>Growing Guides</h2><a href="#">Sowing Calendar</a><a href="#">Seed Starting</a><a href="#">Growing Tips</a><a href="#">Harvesting Guides</a>'
-  };
+  function getMegaPanel(key) {
+    return $megaMenu.find('[data-mega-panel]').filter(function () {
+      return $(this).data('mega-panel') === key;
+    }).first();
+  }
 
-  function setMegaContent(key) {
-    if (!megaContent[key]) return;
-    $mobileMegaContent.html(megaContent[key]);
-    const $source = $('<div>').html(megaContent[key]);
-    const title = $source.find('h2').prop('outerHTML') || '';
-    const links = $source.find('a').toArray();
-    const columns = [[], [], []];
-    links.forEach(function (link, index) { columns[index % 3].push(link.outerHTML); });
-    $megaMenu.find('.rd-mega-menu__columns').html(
-      '<div>' + title + columns[0].join('') + '</div>' +
-      '<div>' + columns[1].join('') + '</div>' +
-      '<div>' + columns[2].join('') + '</div>' +
-      '<img src="assets/reference/red-dragon-mega-menu.jpg" alt="Fresh red chillies in a basket" width="320" height="320">'
-    );
+  function showMobileMegaPanel(key) {
+    const $panel = getMegaPanel(key);
+    if (!$panel.length) return;
+    $mobileMegaContent.empty().append($panel.clone().removeAttr('hidden'));
   }
 
   if ($mobileMega.length) {
     $mobileMegaToggle.on('click', function () {
-      setMegaContent($(this).data('mobile-mega-key'));
+      showMobileMegaPanel($(this).data('mobile-mega-key'));
       $mobileMega.removeAttr('hidden').addClass('is-open');
     });
     $mobileMegaBack.on('click', function () {
@@ -67,6 +53,9 @@ function initNavigation() {
 
   function openMegaMenu($item) {
     clearTimeout(megaCloseTimer);
+    const key = $item.data('mega-key');
+    $megaMenu.find('[data-mega-panel]').attr('hidden', true);
+    getMegaPanel(key).removeAttr('hidden');
     $megaMenu.removeAttr('hidden').removeClass('is-closing');
     $megaBackdrop.removeAttr('hidden').removeClass('is-closing');
     $('[data-mega-trigger]').removeClass('is-active');
@@ -114,7 +103,6 @@ function initNavigation() {
 
   if ($primaryNav.length && $megaMenu.length) {
     $('[data-mega-trigger]').on('mouseenter focusin', function () {
-      setMegaContent($(this).data('mega-key'));
       openMegaMenu($(this));
     }).on('mouseleave', scheduleMegaClose).on('focusout', function (event) {
       if (!$primaryNav[0].contains(event.relatedTarget)) scheduleMegaClose();

@@ -14,3 +14,17 @@ https://in.pinterest.com/pin/898890406869929496/
 https://in.pinterest.com/pin/1004443523126491718/
 
 
+
+
+font size:
+normal body font size: 12px
+mid body font size: 11px
+small body font size: 10px
+large heading font size: 32px
+mid heading font size: 28px
+small heading font size: 18px
+button font size: 11px
+section heading font size: 20px
+VIEW ALL BEST SELLERS → 11px
+card heading : 14px
+card description font size: 12px

@@ -10,7 +10,8 @@
   <title>Red Dragon Seeds | Premium Seed &amp; Gardening Theme</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/theme.css?v=mega-menu-3">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/base.css">
@@ -28,32 +29,55 @@
   <!-- Header: utility bar, main header, navigation and mega menu -->
   <header class="rd-site-header">
     <div class="rd-utility-bar">
-      <div class="rd-container rd-utility-bar__inner">
-        <span>450+ varieties</span>
-        <span>Non-GMO seeds</span>
-        <span>Family owned &amp; run</span>
-        <span>Fast UK dispatch</span>
-        <span class="rd-utility-bar__rating" aria-label="Rated 4.9 out of 5 from over 1,200 reviews">★★★★★ <span>4.9/5
-            from 1,200+ reviews</span></span>
+      <div class="rd-container">
+        <div class="rd-utility-bar__inner">
+          <ul class="rd-utility-bar-list with-dot">
+            <li><span>450+ varieties</span></li>
+            <li><span>Non-GMO seeds</span></li>
+            <li><span>Family owned &amp; run</span></li>
+            <li><span>Fast UK dispatch</span></li>
+          </ul>
+          <ul class="rd-utility-bar-list">
+            <li><span class="rd-utility-bar__rating" aria-label="Rated 4.9 out of 5 from over 1,200 reviews">★★★★★
+                <span>4.9/5
+                  from 1,200+ reviews</span></li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="rd-header-main">
-      <div class="rd-container rd-header-main__inner">
-        <a class="rd-logo" href="index.html" aria-label="Red Dragon home"><span
-            aria-hidden="true">✿</span><strong>Red<br>Dragon</strong></a>
-        <form class="rd-search" role="search" action="/search" method="get">
-          <label class="rd-sr-only" for="site-search">Search products</label>
-          <input id="site-search" name="q" type="search" autocomplete="off"
-            placeholder="Search chilli seeds, vegetables, herbs, flowers &amp; more…">
-          <button type="submit" aria-label="Search"><span aria-hidden="true">⌕</span></button>
-        </form>
-        <div class="rd-header-actions" aria-label="Customer actions">
-          <a href="#account"><span aria-hidden="true">♙</span><span>My Account</span></a>
-          <a href="#wishlist"><span aria-hidden="true">♡</span><span>Wishlist</span></a>
-          <a href="#basket"><span aria-hidden="true">▣</span><span>Basket<br><b>£0.00</b></span></a>
+      <div class="rd-container">
+        <div class="rd-header-main__inner">
+
+          <div class="rd-header-left-sections">
+            <a class="rd-logo" href="index.html" aria-label="Red Dragon home">
+              <img src="assets/images/branding/red-dragon-logo.svg" alt="Red Dragon Seeds logo" width="129" height="60"
+                loading="lazy">
+            </a>
+
+            <form class="rd-search" role="search" action="/" method="get">
+              <label class="rd-sr-only" for="site-search">Search products</label>
+              <input id="site-search" name="q" type="search" autocomplete="off"
+                placeholder="Search chilli seeds, vegetables, herbs, flowers &amp; more…">
+              <button type="submit" aria-label="Search"><span aria-hidden="true"><img
+                    src="assets/images/icons/search-white-icon.svg" alt="Search"></span></button>
+            </form>
+          </div>
+
+          <div class="rd-header-right-sections">
+            <ul class="rd-header-actions" aria-label="Customer actions">
+              <li><a href="#account"><span aria-hidden="true"><img src="assets/images/icons/user-white-icon.svg" alt="My Account"></span><span>My Account</span></a></li>
+              <li><a href="#wishlist"><span aria-hidden="true"><img src="assets/images/icons/wishlist-white-icon.svg" alt="Wishlist"></span><span>Wishlist</span></a></li>
+              <li><button type="button"><span aria-hidden="true"><img src="assets/images/icons/cart-white-icon.svg" alt="Basket"></span><span>Basket<br><b>£0.00</b></span></button>
+              </li>
+            </ul>
+
+            <button class="rd-menu-toggle" type="button" data-menu-toggle aria-expanded="false"
+              aria-controls="rd-mobile-nav"><span aria-hidden="true">☰</span><span>Menu</span>
+            </button>
+          </div>
+
         </div>
-        <button class="rd-menu-toggle" type="button" data-menu-toggle aria-expanded="false"
-          aria-controls="rd-mobile-nav"><span aria-hidden="true">☰</span><span>Menu</span></button>
       </div>
     </div>
     <nav class="rd-primary-nav" aria-label="Primary navigation">
@@ -64,38 +88,175 @@
               Seeds</a></li>
           <li class="rd-nav-item" data-mega-trigger data-mega-key="herb"><a href="#herb-seeds">Herb Seeds</a></li>
           <li class="rd-nav-item" data-mega-trigger data-mega-key="flower"><a href="#flower-seeds">Flower Seeds</a></li>
-          <li class="rd-nav-item" data-mega-trigger data-mega-key="collections"><a href="#collections">Collections &amp;
+          <li class="rd-nav-item"><a href="#collections">Collections &amp;
               Tins</a></li>
-          <li class="rd-nav-item" data-mega-trigger data-mega-key="new"><a href="#new-arrivals">New Arrivals</a></li>
-          <li class="rd-nav-item" data-mega-trigger data-mega-key="guides"><a href="#growing-guides">Growing Guides</a>
+          <li class="rd-nav-item"><a href="#new-arrivals">New Arrivals</a></li>
+          <li class="rd-nav-item"><a href="#growing-guides">Growing Guides</a>
           </li>
         </ul>
         <div class="rd-mega-menu" data-mega-menu hidden>
-          <div class="rd-mega-menu__columns">
-            <div>
-              <h2>Annoum <small>(243)</small></h2><a href="#">Baccatum Chilli Seeds <small>(34)</small></a><a
-                href="#">Chinense <small>(314)</small></a><a href="#">Frutescens <small>(4)</small></a><a
-                href="#">Pubescens – Rocoto <small>(11)</small></a><a href="#">Wild Chilli Seeds
-                <small>(1)</small></a><a href="#">Variegated Chilli Seeds <small>(44)</small></a><a href="#">White Pods
-                <small>(1)</small></a><a href="#">World Record Holders <small>(4)</small></a>
+          <div class="rd-mega-menu__columns" data-mega-panel="chilli">
+            <div class="rd-submenu-list-wrap">
+              <!-- <h2 class="rd-mega-menu__mobile-title">Chilli Seeds</h2> -->
+              <ul>
+                <li><a href="#">Annuum <small>(243)</small></a></li>
+                <li><a href="#">Baccatum Chilli Seeds <small>(34)</small></a></li>
+                <li><a href="#">Chinense <small>(314)</small></a></li>
+                <li><a href="#">Frutescens <small>(4)</small></a></li>
+                <li><a href="#">Pubescens – Rocoto <small>(11)</small></a></li>
+                <li><a href="#">Wild Chilli Seeds <small>(1)</small></a></li>
+                <li><a href="#">Variegated Chilli Seeds <small>(44)</small></a></li>
+                <li><a href="#">White Pods <small>(1)</small></a></li>
+                <li><a href="#">World Record Holders <small>(4)</small></a></li>
+                <li><a href="#">Mild <small>(79)</small></a></li>
+                <li><a href="#">Medium Hot Chilli Seeds <small>(134)</small></a></li>
+                <li><a href="#">Hot Chilli Seeds <small>(85)</small></a></li>
+                <li><a href="#">Very Hot Chilli Seeds <small>(84)</small></a></li>
+                <li><a href="#">Super Hot Chilli Seeds <small>(177)</small></a></li>
+                <li><a href="#">Variety Pack <small>(13)</small></a></li>
+                <li><a href="#">Mutant Chilli Seeds <small>(6)</small></a></li>
+                <li><a href="#">Ornamental <small>(39)</small></a></li>
+                <li><a href="#">Mexican <small>(1)</small></a></li>
+                <li><a href="#">Super Hot Chilli Seeds <small>(177)</small></a></li>
+                <li><a href="#">Jalapeno Chilli Seeds <small>(31)</small></a></li>
+                <li><a href="#">Habanero Chilli Seeds <small>(36)</small></a></li>
+                <li><a href="#">Hangjiao Space Chilli Seeds <small>(11)</small></a></li>
+                <li><a href="#">BBG Bleeding Chilli Seeds <small>(8)</small></a></li>
+                <li><a href="#">Dark Foliage Chilli Seeds <small>(65)</small></a></li>
+                <li><a href="#">Dwarf <small>(4)</small></a></li>
+                <li><a href="#">Great For Cooking <small>(12)</small></a></li>
+                <li><a href="#">Grow a Pepper in a Tin <small>(0)</small></a></li>
+              </ul>
             </div>
-            <div>
-              <h2>Mild <small>(79)</small></h2><a href="#">Medium Hot Chilli Seeds <small>(134)</small></a><a
-                href="#">Hot Chilli Seeds <small>(85)</small></a><a href="#">Very Hot Chilli Seeds
-                <small>(84)</small></a><a href="#">Super Hot Chilli Seeds <small>(177)</small></a><a href="#">Variety
-                Pack <small>(13)</small></a><a href="#">Mutant Chilli Seeds <small>(6)</small></a><a href="#">Ornamental
-                <small>(39)</small></a><a href="#">Mexican <small>(1)</small></a>
+            <div class="menu-rgt-img-wrap">
+              <img src="assets/images/menu-side-image.png" alt="Fresh red chillies in a basket" width="248" height="340" loading="lazy">
             </div>
-            <div>
-              <h2>Super Hot Chilli Seeds <small>(177)</small></h2><a href="#">Jalapeno Chilli Seeds
-                <small>(31)</small></a><a href="#">Habanero Chilli Seeds <small>(36)</small></a><a href="#">Hangjiao
-                Space Chilli Seeds <small>(11)</small></a><a href="#">BBG Bleeding Chilli Seeds <small>(8)</small></a><a
-                href="#">Dark Foliage Chilli Seeds <small>(65)</small></a><a href="#">Dwarf <small>(4)</small></a><a
-                href="#">Great For Cooking <small>(12)</small></a><a href="#">Grow a Pepper in a Tin
-                <small>(0)</small></a>
+          </div>
+          <div class="rd-mega-menu__columns rd-mega-menu__columns--compact" data-mega-panel="vegetable" hidden>
+            <div class="rd-submenu-list-wrap">
+              <!-- <h2 class="rd-mega-menu__mobile-title">Chilli Seeds</h2> -->
+              <ul>
+                <li><a href="#">Annuum <small>(243)</small></a></li>
+                <li><a href="#">Baccatum Chilli Seeds <small>(34)</small></a></li>
+                <li><a href="#">Chinense <small>(314)</small></a></li>
+                <li><a href="#">Frutescens <small>(4)</small></a></li>
+                <li><a href="#">Pubescens – Rocoto <small>(11)</small></a></li>
+                <li><a href="#">Wild Chilli Seeds <small>(1)</small></a></li>
+                <li><a href="#">Variegated Chilli Seeds <small>(44)</small></a></li>
+                <li><a href="#">White Pods <small>(1)</small></a></li>
+                <li><a href="#">World Record Holders <small>(4)</small></a></li>
+                <li><a href="#">Mild <small>(79)</small></a></li>
+                <li><a href="#">Medium Hot Chilli Seeds <small>(134)</small></a></li>
+                <li><a href="#">Hot Chilli Seeds <small>(85)</small></a></li>
+                <li><a href="#">Very Hot Chilli Seeds <small>(84)</small></a></li>
+                <li><a href="#">Super Hot Chilli Seeds <small>(177)</small></a></li>
+                <li><a href="#">Variety Pack <small>(13)</small></a></li>
+                <li><a href="#">Mutant Chilli Seeds <small>(6)</small></a></li>
+              </ul>
             </div>
-            <img src="assets/reference/red-dragon-mega-menu.jpg" alt="Fresh red chillies in a basket" width="320"
-              height="320" loading="lazy">
+            <div class="menu-rgt-img-wrap">
+              <img src="assets/images/menu-side-image.png" alt="Fresh red chillies in a basket" width="248" height="340" loading="lazy">
+            </div>
+          </div>
+          <div class="rd-mega-menu__columns rd-mega-menu__columns--compact" data-mega-panel="herb" hidden>
+            <div class="rd-submenu-list-wrap">
+              <!-- <h2 class="rd-mega-menu__mobile-title">Chilli Seeds</h2> -->
+              <ul>
+                <li><a href="#">Hot Chilli Seeds <small>(85)</small></a></li>
+                <li><a href="#">Very Hot Chilli Seeds <small>(84)</small></a></li>
+                <li><a href="#">Super Hot Chilli Seeds <small>(177)</small></a></li>
+                <li><a href="#">Variety Pack <small>(13)</small></a></li>
+                <li><a href="#">Mutant Chilli Seeds <small>(6)</small></a></li>
+                <li><a href="#">Ornamental <small>(39)</small></a></li>
+                <li><a href="#">Mexican <small>(1)</small></a></li>
+                <li><a href="#">Super Hot Chilli Seeds <small>(177)</small></a></li>
+                <li><a href="#">Jalapeno Chilli Seeds <small>(31)</small></a></li>
+                <li><a href="#">Habanero Chilli Seeds <small>(36)</small></a></li>
+                <li><a href="#">Hangjiao Space Chilli Seeds <small>(11)</small></a></li>
+                <li><a href="#">BBG Bleeding Chilli Seeds <small>(8)</small></a></li>
+                <li><a href="#">Dark Foliage Chilli Seeds <small>(65)</small></a></li>
+                <li><a href="#">Dwarf <small>(4)</small></a></li>
+                <li><a href="#">Great For Cooking <small>(12)</small></a></li>
+                <li><a href="#">Grow a Pepper in a Tin <small>(0)</small></a></li>
+              </ul>
+            </div>
+            <div class="menu-rgt-img-wrap">
+              <img src="assets/images/menu-side-image.png" alt="Fresh red chillies in a basket" width="248" height="340" loading="lazy">
+            </div>
+          </div>
+          <div class="rd-mega-menu__columns rd-mega-menu__columns--compact" data-mega-panel="flower" hidden>
+            <div class="rd-submenu-list-wrap">
+              <!-- <h2 class="rd-mega-menu__mobile-title">Chilli Seeds</h2> -->
+              <ul>
+                <li><a href="#">Annuum <small>(243)</small></a></li>
+                <li><a href="#">Baccatum Chilli Seeds <small>(34)</small></a></li>
+                <li><a href="#">Chinense <small>(314)</small></a></li>
+                <li><a href="#">Frutescens <small>(4)</small></a></li>
+                <li><a href="#">Pubescens – Rocoto <small>(11)</small></a></li>
+                <li><a href="#">Wild Chilli Seeds <small>(1)</small></a></li>
+                <li><a href="#">Variegated Chilli Seeds <small>(44)</small></a></li>
+                <li><a href="#">White Pods <small>(1)</small></a></li>
+                <li><a href="#">World Record Holders <small>(4)</small></a></li>
+                <li><a href="#">Mild <small>(79)</small></a></li>
+                <li><a href="#">Medium Hot Chilli Seeds <small>(134)</small></a></li>
+                <li><a href="#">Hot Chilli Seeds <small>(85)</small></a></li>
+                <li><a href="#">Very Hot Chilli Seeds <small>(84)</small></a></li>
+                <li><a href="#">Super Hot Chilli Seeds <small>(177)</small></a></li>
+                <li><a href="#">Variety Pack <small>(13)</small></a></li>
+                <li><a href="#">Mutant Chilli Seeds <small>(6)</small></a></li>
+                <li><a href="#">Ornamental <small>(39)</small></a></li>
+                <li><a href="#">Mexican <small>(1)</small></a></li>
+                <li><a href="#">Super Hot Chilli Seeds <small>(177)</small></a></li>
+                <li><a href="#">Jalapeno Chilli Seeds <small>(31)</small></a></li>
+                <li><a href="#">Habanero Chilli Seeds <small>(36)</small></a></li>
+                <li><a href="#">Hangjiao Space Chilli Seeds <small>(11)</small></a></li>
+                <li><a href="#">BBG Bleeding Chilli Seeds <small>(8)</small></a></li>
+                <li><a href="#">Dark Foliage Chilli Seeds <small>(65)</small></a></li>
+                <li><a href="#">Dwarf <small>(4)</small></a></li>
+                <li><a href="#">Great For Cooking <small>(12)</small></a></li>
+                <li><a href="#">Grow a Pepper in a Tin <small>(0)</small></a></li>
+              </ul>
+            </div>
+            <div class="menu-rgt-img-wrap">
+              <img src="assets/images/menu-side-image.png" alt="Fresh red chillies in a basket" width="248" height="340" loading="lazy">
+            </div>
+          </div>
+          <div class="rd-mega-menu__columns rd-mega-menu__columns--compact" data-mega-panel="collections" hidden>
+            <<div class="rd-submenu-list-wrap">
+              <!-- <h2 class="rd-mega-menu__mobile-title">Chilli Seeds</h2> -->
+              <ul>
+                <li><a href="#">Annuum <small>(243)</small></a></li>
+                <li><a href="#">Baccatum Chilli Seeds <small>(34)</small></a></li>
+                <li><a href="#">Chinense <small>(314)</small></a></li>
+                <li><a href="#">Frutescens <small>(4)</small></a></li>
+                <li><a href="#">Pubescens – Rocoto <small>(11)</small></a></li>
+                <li><a href="#">Wild Chilli Seeds <small>(1)</small></a></li>
+                <li><a href="#">Variegated Chilli Seeds <small>(44)</small></a></li>
+                <li><a href="#">White Pods <small>(1)</small></a></li>
+                <li><a href="#">World Record Holders <small>(4)</small></a></li>
+                <li><a href="#">Mild <small>(79)</small></a></li>
+                <li><a href="#">Medium Hot Chilli Seeds <small>(134)</small></a></li>
+                <li><a href="#">Hot Chilli Seeds <small>(85)</small></a></li>
+                <li><a href="#">Very Hot Chilli Seeds <small>(84)</small></a></li>
+                <li><a href="#">Super Hot Chilli Seeds <small>(177)</small></a></li>
+                <li><a href="#">Variety Pack <small>(13)</small></a></li>
+                <li><a href="#">Mutant Chilli Seeds <small>(6)</small></a></li>
+                <li><a href="#">Ornamental <small>(39)</small></a></li>
+                <li><a href="#">Mexican <small>(1)</small></a></li>
+                <li><a href="#">Super Hot Chilli Seeds <small>(177)</small></a></li>
+                <li><a href="#">Jalapeno Chilli Seeds <small>(31)</small></a></li>
+                <li><a href="#">Habanero Chilli Seeds <small>(36)</small></a></li>
+                <li><a href="#">Hangjiao Space Chilli Seeds <small>(11)</small></a></li>
+                <li><a href="#">BBG Bleeding Chilli Seeds <small>(8)</small></a></li>
+                <li><a href="#">Dark Foliage Chilli Seeds <small>(65)</small></a></li>
+                <li><a href="#">Dwarf <small>(4)</small></a></li>
+                <li><a href="#">Great For Cooking <small>(12)</small></a></li>
+                <li><a href="#">Grow a Pepper in a Tin <small>(0)</small></a></li>
+              </ul>
+            </div>
+            <div class="menu-rgt-img-wrap">
+              <img src="assets/images/menu-side-image.png" alt="Fresh red chillies in a basket" width="248" height="340" loading="lazy">
+            </div>
           </div>
         </div>
       </div>
@@ -134,22 +295,58 @@
   <main id="main-content">
     <!-- Hero Section -->
     <section class="rd-hero" aria-labelledby="rd-hero-title">
-      <div class="rd-container rd-hero__inner">
-        <div class="rd-hero__content">
-          <h1 id="rd-hero-title">Grow something<br><span>extraordinary</span></h1>
-          <p class="rd-hero__intro">From first sowing to full harvest, discover seeds chosen to help your garden thrive.
-          </p>
-          <div class="rd-hero__actions">
-            <a class="rd-button rd-button--primary" href="#vegetable-seeds">Shop vegetable seeds <span
-                aria-hidden="true">→</span></a>
-            <a class="rd-button rd-button--outline rd-button--on-dark" href="#chilli-seeds">Explore chilli seeds <span
-                aria-hidden="true">→</span></a>
+      <div class="rd-container">
+        <div class="rd-hero__inner">
+          <div class="rd-hero-banner-wrap">
+            <div class="rd-hero-card">
+              <div class="rd-hero__content">
+                <h1 id="rd-hero-title">Grow something<br><span>extraordinary</span></h1>
+                <p class="rd-hero__intro">Premium quality, non-GMO seeds.</p>
+                <p class="rd-hero__intro light">From our family to your garden.</p>
+                <div class="rd-hero__actions">
+                  <a class="rd-button rd-button--primary" href="#vegetable-seeds">Shop vegetable seeds <span
+                      aria-hidden="true">→</span></a>
+                  <a class="rd-button rd-button--outline rd-button--on-dark" href="#chilli-seeds">Explore chilli seeds
+                    <span aria-hidden="true">→</span></a>
+                </div>
+              </div>
+              <div class="rd-hero__media" aria-hidden="true">
+                <img src="assets/images/hero/red-dragon-hero-banner.png" alt="" width="1183" height="640"
+                  fetchpriority="high">
+                <!-- <div class="rd-hero__feature">
+                    <span>Discover</span><strong>450+</strong><small>chilli varieties</small>
+                  </div> -->
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="rd-hero__media" aria-hidden="true">
-          <img src="assets/images/hero/red-dragon-hero.jpg" alt="" width="1183" height="640" fetchpriority="high">
-          <div class="rd-hero__feature">
-            <span>Discover</span><strong>450+</strong><small>chilli varieties</small>
+          <div class="rd-hero-slider-wrap">
+            <div class="rd-banner-right-hero-slider owl-carousel" data-carousel role="region" aria-roledescription="carousel"
+              tabindex="0" aria-label="Featured seed collections">
+              <div class="rd-seasonal-card rd-slider-sm-card rd-seasonal-card--leafy">
+                <img src="assets/images/cards/card-image-01.jpg" alt="VEGETABLE SEEDS" width="360" height="300"
+                  loading="lazy" />
+                <span><strong>VEGETABLE SEEDS</strong><small>Easy to grow, great to eat.</small><a
+                    href="#best-sellers-all" class="rd-text-red-link">BROWSE NOW →</a></span>
+              </div>
+              <div class="rd-seasonal-card rd-slider-sm-card rd-seasonal-card--herbs">
+                <img src="assets/images/cards/card-image-02.jpg" alt="HERB SEEDS" width="360" height="300"
+                  loading="lazy" />
+                <span><strong>HERB SEEDS</strong><small>Fresh flavours for your garden.</small><a
+                    href="#herb-seeds" class="rd-text-red-link">BROWSE NOW →</a></span>
+              </div>
+              <div class="rd-seasonal-card rd-slider-sm-card rd-seasonal-card--flowers">
+                <img src="assets/images/cards/card-image-03.jpg" alt="FLOWER SEEDS" width="360" height="300"
+                  loading="lazy" />
+                <span><strong>FLOWER SEEDS</strong><small>Bring colour to every corner.</small><a
+                    href="#flower-seeds" class="rd-text-red-link">BROWSE NOW →</a></span>
+              </div>
+              <div class="rd-seasonal-card rd-slider-sm-card rd-seasonal-card--chillies">
+                <img src="assets/images/cards/card-image-04.jpg" alt="CHILLI SEEDS" width="360" height="300"
+                  loading="lazy" />
+                <span><strong>CHILLI SEEDS</strong><small>Find your perfect heat level.</small><a
+                    href="#chilli-seeds" class="rd-text-red-link">BROWSE NOW →</a></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -160,22 +357,22 @@
       <div class="rd-container">
         <ul class="rd-feature-strip__list">
           <li class="rd-feature-strip__item"><span class="rd-feature-strip__icon"
-              aria-hidden="true">♧</span><span><strong>Non-GMO</strong><small>All our seeds are non-GMO</small></span>
+              aria-hidden="true"><img src="assets/images/icons/seeding-green-icon.svg" alt="Non-GMO" /></span><span><strong>Non-GMO</strong><small>All our seeds are non-GMO</small></span>
           </li>
           <li class="rd-feature-strip__item"><span class="rd-feature-strip__icon"
-              aria-hidden="true">♧</span><span><strong>Family owned &amp; operated</strong><small>Passion in every
+              aria-hidden="true"><img src="assets/images/icons/family-green-icon.svg" alt="Family owned & operated" /></span><span><strong>Family owned &amp; operated</strong><small>Passion in every
                 packet</small></span></li>
           <li class="rd-feature-strip__item"><span class="rd-feature-strip__icon"
-              aria-hidden="true">◉</span><span><strong>Fresh stock</strong><small>Packed in the UK for
+              aria-hidden="true"><img src="assets/images/icons/leaf-green-icon.svg" alt="Fresh stock" /></span><span><strong>Fresh stock</strong><small>Packed in the UK for
                 freshness</small></span></li>
           <li class="rd-feature-strip__item"><span class="rd-feature-strip__icon"
-              aria-hidden="true">▣</span><span><strong>Fast UK dispatch</strong><small>Orders dispatched every
+              aria-hidden="true"><img src="assets/images/icons/truck-green-icon.svg" alt="Fast UK dispatch" /></span><span><strong>Fast UK dispatch</strong><small>Orders dispatched every
                 day</small></span></li>
           <li class="rd-feature-strip__item"><span class="rd-feature-strip__icon"
-              aria-hidden="true">⌕</span><span><strong>Germination tested</strong><small>Quality you can
+              aria-hidden="true"><img src="assets/images/icons/magnify-green-icon.svg" alt="Germination tested" /></span><span><strong>Germination tested</strong><small>Quality you can
                 trust</small></span></li>
           <li class="rd-feature-strip__item"><span class="rd-feature-strip__icon"
-              aria-hidden="true">♡</span><span><strong>Gardeners' choice</strong><small>Loved by growers
+              aria-hidden="true"><img src="assets/images/icons/heart-green-icon.svg" alt="Gardeners' choice" /></span><span><strong>Gardeners' choice</strong><small>Loved by growers
                 everywhere</small></span></li>
         </ul>
       </div>
@@ -192,30 +389,56 @@
               aria-label="Next categories">›</button></div>
         </div>
         <div class="rd-category-rail owl-carousel" data-carousel tabindex="0" aria-label="Seed categories">
-          <a class="rd-category-card rd-category-card--tomatoes" href="#tomato-seeds"><span
-              class="rd-category-card__media"><img src="assets/reference/red-dragon-home.jpg" alt="Tomato seeds"
-                width="120" height="120" loading="lazy"></span><span>Tomatoes</span></a>
-          <a class="rd-category-card rd-category-card--beans" href="#bean-seeds"><span
-              class="rd-category-card__media"><img src="assets/reference/red-dragon-home.jpg" alt="Bean and pea seeds"
-                width="120" height="120" loading="lazy"></span><span>Beans &amp; Peas</span></a>
-          <a class="rd-category-card rd-category-card--carrots" href="#carrot-seeds"><span
-              class="rd-category-card__media"><img src="assets/reference/red-dragon-home.jpg" alt="Carrot seeds"
-                width="120" height="120" loading="lazy"></span><span>Carrots</span></a>
-          <a class="rd-category-card rd-category-card--lettuce" href="#lettuce-seeds"><span
-              class="rd-category-card__media"><img src="assets/reference/red-dragon-home.jpg" alt="Lettuce seeds"
-                width="120" height="120" loading="lazy"></span><span>Lettuce</span></a>
-          <a class="rd-category-card rd-category-card--cucumbers" href="#cucumber-seeds"><span
-              class="rd-category-card__media"><img src="assets/reference/red-dragon-home.jpg" alt="Cucumber seeds"
-                width="120" height="120" loading="lazy"></span><span>Cucumbers</span></a>
-          <a class="rd-category-card rd-category-card--peppers" href="#pepper-seeds"><span
-              class="rd-category-card__media"><img src="assets/reference/red-dragon-home.jpg" alt="Pepper seeds"
-                width="120" height="120" loading="lazy"></span><span>Peppers</span></a>
-          <a class="rd-category-card rd-category-card--herbs" href="#herb-seeds"><span
-              class="rd-category-card__media"><img src="assets/reference/red-dragon-home.jpg" alt="Herb seeds"
-                width="120" height="120" loading="lazy"></span><span>Herb Seeds</span></a>
-          <a class="rd-category-card rd-category-card--flowers" href="#flower-seeds"><span
-              class="rd-category-card__media"><img src="assets/reference/red-dragon-home.jpg" alt="Flower seeds"
-                width="120" height="120" loading="lazy"></span><span>Flower Seeds</span></a>
+
+          <a class="rd-category-card" href="#tomato-seeds">
+            <div class="rd-category-card__media"><img src="assets/images/cards/card-image-01.jpg" alt="Tomato seeds"
+                width="120" height="120" loading="lazy">
+            </div>
+            <span>Tomatoes</span>
+          </a>
+
+          <a class="rd-category-card" href="#bean-seeds">
+            <div class="rd-category-card__media"><img src="assets/images/cards/card-image-02.jpg"
+                alt="Bean and pea seeds" width="120" height="120" loading="lazy"></div>
+            <span>Beans &amp; Peas</span>
+          </a>
+
+          <a class="rd-category-card" href="#carrot-seeds">
+            <div class="rd-category-card__media"><img src="assets/images/cards/card-image-03.jpg" alt="Carrot seeds"
+                width="120" height="120" loading="lazy"></div>
+            <span>Carrots</span>
+          </a>
+
+          <a class="rd-category-card" href="#lettuce-seeds">
+            <div class="rd-category-card__media"><img src="assets/images/cards/card-image-04.jpg" alt="Lettuce seeds"
+                width="120" height="120" loading="lazy"></div>
+            <span>Lettuce</span>
+          </a>
+
+          <a class="rd-category-card" href="#cucumber-seeds">
+            <div class="rd-category-card__media"><img src="assets/images/cards/card-image-05.jpg" alt="Cucumber seeds"
+                width="120" height="120" loading="lazy"></div>
+            <span>Cucumbers</span>
+          </a>
+
+          <a class="rd-category-card" href="#pepper-seeds">
+            <div class="rd-category-card__media"><img src="assets/images/cards/card-image-06.jpg" alt="Pepper seeds"
+                width="120" height="120" loading="lazy"></div>
+            <span>Peppers</span>
+          </a>
+
+          <a class="rd-category-card" href="#herb-seeds">
+            <div class="rd-category-card__media"><img src="assets/images/cards/card-image-07.jpg" alt="Herb seeds"
+                width="120" height="120" loading="lazy"></div>
+            <span>Herb Seeds</span>
+          </a>
+
+          <a class="rd-category-card" href="#flower-seeds">
+            <div class="rd-category-card__media"><img src="assets/images/cards/card-image-08.jpg" alt="Flower seeds"
+                width="120" height="120" loading="lazy"></div>
+            <span>Flower Seeds</span>
+          </a>
+
         </div>
       </div>
     </section>
@@ -231,31 +454,40 @@
               aria-label="Next collections">›</button></div>
         </header>
         <div class="rd-collection-grid owl-carousel" data-carousel tabindex="0" aria-label="Our collections">
-          <a class="rd-collection-card rd-collection-card--vegetables" href="#vegetable-seeds"><img
-              src="assets/reference/red-dragon-home.jpg" alt="Fresh vegetables from the vegetable seed collection"
+          <div class="rd-collection-card rd-collection-card--vegetables"><img
+              src="assets/images/cards/card-image-01.jpg" alt="Fresh vegetables from the vegetable seed collection"
               width="420" height="300" loading="lazy"><span class="rd-collection-card__content"><strong>Vegetable
-                seeds</strong><small>All your garden favourites.</small><em>Browse now <span
-                  aria-hidden="true">→</span></em></span></a>
-          <a class="rd-collection-card rd-collection-card--herbs" href="#herb-seeds"><img
-              src="assets/reference/red-dragon-home.jpg" alt="Fresh herbs from the herb seed collection" width="420"
-              height="300" loading="lazy"><span class="rd-collection-card__content"><strong>Herb
-                seeds</strong><small>Fresh flavours for your garden.</small><em>Browse now <span
-                  aria-hidden="true">→</span></em></span></a>
-          <a class="rd-collection-card rd-collection-card--flowers" href="#flower-seeds"><img
-              src="assets/reference/red-dragon-home.jpg" alt="Flowers from the flower seed collection" width="420"
-              height="300" loading="lazy"><span class="rd-collection-card__content"><strong>Flower
-                seeds</strong><small>Beautiful blooms for every season.</small><em>Browse now <span
-                  aria-hidden="true">→</span></em></span></a>
-          <a class="rd-collection-card rd-collection-card--chillies" href="#chilli-seeds"><img
-              src="assets/reference/red-dragon-home.jpg" alt="Chillies from the chilli seed collection" width="420"
-              height="300" loading="lazy"><span class="rd-collection-card__content"><strong>Chilli
-                seeds</strong><small>450+ varieties, mild to superhot.</small><em>Browse now <span
-                  aria-hidden="true">→</span></em></span></a>
-          <a class="rd-collection-card rd-collection-card--guides" href="#growing-guides"><img
-              src="assets/reference/red-dragon-home.jpg" alt="A garden from the growing guides collection" width="420"
-              height="300" loading="lazy"><span class="rd-collection-card__content"><strong>Growing
-                guides</strong><small>Tips &amp; advice to help you grow more.</small><em>Browse now <span
-                  aria-hidden="true">→</span></em></span></a>
+                seeds</strong><small>All your garden favourites.</small><a href="#vegetable-seeds"
+                class="rd-button rd-button--outline">Browse now <span
+                  aria-hidden="true">→</span></a></span></div>
+
+          <div class="rd-collection-card rd-collection-card--herbs"><img src="assets/images/cards/card-image-02.jpg"
+              alt="Fresh herbs from the herb seed collection" width="420" height="300" loading="lazy"><span
+              class="rd-collection-card__content"><strong>Herb
+                seeds</strong><small>Fresh flavours for your garden.</small><a href="#herb-seeds"
+                class="rd-button rd-button--outline">Browse now <span
+                  aria-hidden="true">→</span></a></span></div>
+
+          <div class="rd-collection-card rd-collection-card--flowers"><img src="assets/images/cards/card-image-03.jpg"
+              alt="Flowers from the flower seed collection" width="420" height="300" loading="lazy"><span
+              class="rd-collection-card__content"><strong>Flower
+                seeds</strong><small>Beautiful blooms for every season.</small><a href="#flower-seeds"
+                class="rd-button rd-button--outline">Browse now <span
+                  aria-hidden="true">→</span></a></span></div>
+
+          <div class="rd-collection-card rd-collection-card--chillies"><img src="assets/images/cards/card-image-04.jpg"
+              alt="Chillies from the chilli seed collection" width="420" height="300" loading="lazy"><span
+              class="rd-collection-card__content"><strong>Chilli
+                seeds</strong><small>450+ varieties, mild to superhot.</small><a href="#chilli-seeds"
+                class="rd-button rd-button--outline">Browse now <span
+                  aria-hidden="true">→</span></a></span></div>
+
+          <div class="rd-collection-card rd-collection-card--guides"><img src="assets/images/cards/card-image-05.jpg"
+              alt="A garden from the growing guides collection" width="420" height="300" loading="lazy"><span
+              class="rd-collection-card__content"><strong>Growing
+                guides</strong><small>Tips &amp; advice to help you grow more.</small><a href="#growing-guides"
+                class="rd-button rd-button--outline">Browse now <span
+                  aria-hidden="true">→</span></a></span></div>
         </div>
       </div>
     </section>
@@ -268,17 +500,97 @@
           <h2 id="rd-best-sellers-title">Best sellers</h2><span aria-hidden="true"></span>
           <a href="#best-sellers-all">View all best sellers <span aria-hidden="true">→</span></a>
         </header>
-        <div class="rd-product-carousel"><button class="rd-product-carousel__arrow rd-product-carousel__arrow--prev"
+        <div class="rd-product-carousel">
+          <button class="rd-product-carousel__arrow rd-product-carousel__arrow--prev"
             type="button" data-carousel-prev aria-label="Previous best sellers">‹</button>
           <div class="rd-product-grid rd-product-grid--carousel owl-carousel" data-carousel aria-live="polite">
-            <article class="rd-product-card"><a class="rd-product-card__media" href="#"><span class="rd-badge">BEST SELLER</span><img src="assets/reference/red-dragon-home.jpg" alt="Lettuce Seeds" width="220" height="220" loading="lazy"></a><div class="rd-product-card__body"><h3 class="rd-product-card__title"><a href="#">Lettuce Seeds</a></h3><p class="rd-product-card__meta">Buttercrunch</p><div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div><p class="rd-product-card__price">£1.99</p></div></article>
-            <article class="rd-product-card"><a class="rd-product-card__media" href="#"><span class="rd-badge">BEST SELLER</span><img src="assets/reference/red-dragon-home.jpg" alt="Carrot Seeds" width="220" height="220" loading="lazy"></a><div class="rd-product-card__body"><h3 class="rd-product-card__title"><a href="#">Carrot Seeds</a></h3><p class="rd-product-card__meta">Rainbow Blend</p><div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div><p class="rd-product-card__price">£2.49</p></div></article>
-            <article class="rd-product-card"><a class="rd-product-card__media" href="#"><span class="rd-badge">BEST SELLER</span><img src="assets/reference/red-dragon-home.jpg" alt="Tomato Seeds" width="220" height="220" loading="lazy"></a><div class="rd-product-card__body"><h3 class="rd-product-card__title"><a href="#">Tomato Seeds</a></h3><p class="rd-product-card__meta">Tumbling Tom</p><div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div><p class="rd-product-card__price">£2.49</p></div></article>
-            <article class="rd-product-card"><a class="rd-product-card__media" href="#"><span class="rd-badge">BEST SELLER</span><img src="assets/reference/red-dragon-home.jpg" alt="Cucumber Seeds" width="220" height="220" loading="lazy"></a><div class="rd-product-card__body"><h3 class="rd-product-card__title"><a href="#">Cucumber Seeds</a></h3><p class="rd-product-card__meta">Marketmore</p><div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div><p class="rd-product-card__price">£2.29</p></div></article>
-            <article class="rd-product-card"><a class="rd-product-card__media" href="#"><span class="rd-badge">BEST SELLER</span><img src="assets/reference/red-dragon-home.jpg" alt="Basil Seeds" width="220" height="220" loading="lazy"></a><div class="rd-product-card__body"><h3 class="rd-product-card__title"><a href="#">Basil Seeds</a></h3><p class="rd-product-card__meta">Genovese</p><div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div><p class="rd-product-card__price">£1.79</p></div></article>
-            <article class="rd-product-card"><a class="rd-product-card__media" href="#"><span class="rd-badge">BEST SELLER</span><img src="assets/reference/red-dragon-home.jpg" alt="Carolina Reaper" width="220" height="220" loading="lazy"></a><div class="rd-product-card__body"><h3 class="rd-product-card__title"><a href="#">Carolina Reaper</a></h3><p class="rd-product-card__meta">Chilli seeds</p><div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div><p class="rd-product-card__price">£3.49</p></div></article>
-          </div><button class="rd-product-carousel__arrow rd-product-carousel__arrow--next"
-            type="button" data-carousel-next aria-label="Next best sellers">›</button>
+            <article class="rd-product-card"><div class="rd-product-card__media" href="#"><span class="rd-badge">BEST
+                  SELLER</span><img src="assets/images/cards/card-image-06.jpg" alt="Lettuce Seeds" width="220"
+                  height="220" loading="lazy"></div>
+              <div class="rd-product-card__actions" role="group" aria-label="Lettuce Seeds actions">
+                <a href="#" class="rd-product-card__action rd-product-card__action--primary">View Details</a>
+                <button type="button" class="rd-product-card__action rd-product-card__action--secondary" aria-label="Quick view Lettuce Seeds">Quick View</button>
+              </div>
+              <div class="rd-product-card__body">
+                <h3 class="rd-product-card__title"><a href="#">Lettuce Seeds</a></h3>
+                <p class="rd-product-card__meta">Buttercrunch</p>
+                <div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div>
+                <p class="rd-product-card__price">£1.99</p>
+              </div>
+            </article>
+            <article class="rd-product-card"><div class="rd-product-card__media" href="#"><span class="rd-badge">BEST
+                  SELLER</span><img src="assets/images/cards/card-image-07.jpg" alt="Carrot Seeds" width="220"
+                  height="220" loading="lazy"></div>
+              <div class="rd-product-card__actions" role="group" aria-label="Carrot Seeds actions">
+                <a href="#" class="rd-product-card__action rd-product-card__action--primary">View Details</a>
+                <button type="button" class="rd-product-card__action rd-product-card__action--secondary" aria-label="Quick view Carrot Seeds">Quick View</button>
+              </div>
+              <div class="rd-product-card__body">
+                <h3 class="rd-product-card__title"><a href="#">Carrot Seeds</a></h3>
+                <p class="rd-product-card__meta">Rainbow Blend</p>
+                <div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div>
+                <p class="rd-product-card__price">£2.49</p>
+              </div>
+            </article>
+            <article class="rd-product-card"><div class="rd-product-card__media" href="#"><span class="rd-badge">BEST
+                  SELLER</span><img src="assets/images/cards/card-image-08.jpg" alt="Tomato Seeds" width="220"
+                  height="220" loading="lazy"></div>
+              <div class="rd-product-card__actions" role="group" aria-label="Tomato Seeds actions">
+                <a href="#" class="rd-product-card__action rd-product-card__action--primary">View Details</a>
+                <button type="button" class="rd-product-card__action rd-product-card__action--secondary" aria-label="Quick view Tomato Seeds">Quick View</button>
+              </div>
+              <div class="rd-product-card__body">
+                <h3 class="rd-product-card__title"><a href="#">Tomato Seeds</a></h3>
+                <p class="rd-product-card__meta">Tumbling Tom</p>
+                <div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div>
+                <p class="rd-product-card__price">£2.49</p>
+              </div>
+            </article>
+            <article class="rd-product-card"><div class="rd-product-card__media" href="#"><span class="rd-badge">BEST
+                  SELLER</span><img src="assets/images/cards/card-image-09.jpg" alt="Cucumber Seeds" width="220"
+                  height="220" loading="lazy"></div>
+              <div class="rd-product-card__actions" role="group" aria-label="Cucumber Seeds actions">
+                <a href="#" class="rd-product-card__action rd-product-card__action--primary">View Details</a>
+                <button type="button" class="rd-product-card__action rd-product-card__action--secondary" aria-label="Quick view Cucumber Seeds">Quick View</button>
+              </div>
+              <div class="rd-product-card__body">
+                <h3 class="rd-product-card__title"><a href="#">Cucumber Seeds</a></h3>
+                <p class="rd-product-card__meta">Marketmore</p>
+                <div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div>
+                <p class="rd-product-card__price">£2.29</p>
+              </div>
+            </article>
+            <article class="rd-product-card"><div class="rd-product-card__media" href="#"><span class="rd-badge">BEST
+                  SELLER</span><img src="assets/images/cards/card-image-10.jpg" alt="Basil Seeds" width="220"
+                  height="220" loading="lazy"></div>
+              <div class="rd-product-card__actions" role="group" aria-label="Basil Seeds actions">
+                <a href="#" class="rd-product-card__action rd-product-card__action--primary">View Details</a>
+                <button type="button" class="rd-product-card__action rd-product-card__action--secondary" aria-label="Quick view Basil Seeds">Quick View</button>
+              </div>
+              <div class="rd-product-card__body">
+                <h3 class="rd-product-card__title"><a href="#">Basil Seeds</a></h3>
+                <p class="rd-product-card__meta">Genovese</p>
+                <div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div>
+                <p class="rd-product-card__price">£1.79</p>
+              </div>
+            </article>
+            <article class="rd-product-card"><div class="rd-product-card__media" href="#"><span class="rd-badge">BEST
+                  SELLER</span><img src="assets/images/cards/card-image-11.jpg" alt="Carolina Reaper" width="220"
+                  height="220" loading="lazy"></div>
+              <div class="rd-product-card__actions" role="group" aria-label="Carolina Reaper actions">
+                <a href="#" class="rd-product-card__action rd-product-card__action--primary">View Details</a>
+                <button type="button" class="rd-product-card__action rd-product-card__action--secondary" aria-label="Quick view Carolina Reaper">Quick View</button>
+              </div>
+              <div class="rd-product-card__body">
+                <h3 class="rd-product-card__title"><a href="#">Carolina Reaper</a></h3>
+                <p class="rd-product-card__meta">Chilli seeds</p>
+                <div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div>
+                <p class="rd-product-card__price">£3.49</p>
+              </div>
+            </article>
+          </div>
+          <button class="rd-product-carousel__arrow rd-product-carousel__arrow--next" type="button"
+            data-carousel-next aria-label="Next best sellers">›</button>
         </div>
       </div>
     </section>
@@ -288,8 +600,8 @@
       <div class="rd-container rd-seasonal-section__grid">
         <article class="rd-seasonal-intro">
           <p class="rd-eyebrow">What to sow now</p>
-          <h2 id="rd-seasonal-title">Sow in <span>September</span></h2>
-          <p>Make the most of the season with our handpicked selection for a thriving autumn garden.</p>
+          <h2 id="rd-seasonal-title">Sow in <br/><span><i>September</i></span></h2>
+          <p>Make the most of the season with our handpicked selection.</p>
           <a class="rd-button rd-button--primary" href="#growing-guides">View sowing guide <span
               aria-hidden="true">→</span></a>
         </article>
@@ -297,18 +609,18 @@
             type="button" data-carousel-prev aria-label="Previous seasonal picks">‹</button>
           <div class="rd-seasonal-cards owl-carousel" data-carousel tabindex="0" aria-label="Seasonal sowing picks">
             <a class="rd-seasonal-card rd-seasonal-card--leafy" href="#leafy-greens"><img
-                src="assets/reference/red-dragon-home.jpg" alt="Leafy greens growing in a garden" width="360"
+                src="assets/images/cards/card-image-10.jpg" alt="Leafy greens growing in a garden" width="360"
                 height="300" loading="lazy"><span><strong>Leafy greens</strong><small>Quick crops for continuous
                   harvest</small></span></a>
             <a class="rd-seasonal-card rd-seasonal-card--radishes" href="#radish-seeds"><img
-                src="assets/reference/red-dragon-home.jpg" alt="Fresh radishes ready for harvest" width="360"
+                src="assets/images/cards/card-image-11.jpg" alt="Fresh radishes ready for harvest" width="360"
                 height="300" loading="lazy"><span><strong>Radishes</strong><small>Fast, fresh and full of
                   flavour</small></span></a>
             <a class="rd-seasonal-card rd-seasonal-card--salad" href="#salad-seeds"><img
-                src="assets/reference/red-dragon-home.jpg" alt="Fresh salad leaves in a garden" width="360" height="300"
+                src="assets/images/cards/card-image-06.jpg" alt="Fresh salad leaves in a garden" width="360" height="300"
                 loading="lazy"><span><strong>Salad leaves</strong><small>Cut, come again and enjoy</small></span></a>
             <a class="rd-seasonal-card rd-seasonal-card--winter" href="#winter-vegetables"><img
-                src="assets/reference/red-dragon-home.jpg" alt="Winter vegetables growing in a garden" width="360"
+                src="assets/images/cards/card-image-07.jpg" alt="Winter vegetables growing in a garden" width="360"
                 height="300" loading="lazy"><span><strong>Winter veg</strong><small>Sow now for winter
                   harvest</small></span></a>
           </div><button class="rd-product-carousel__arrow rd-product-carousel__arrow--next" type="button"
@@ -319,23 +631,41 @@
     <!-- Sow in September section ends above -->
     <!-- Chilli promotion section -->
     <section id="chilli-promo" class="rd-chilli-promo" aria-labelledby="rd-chilli-promo-title">
-      <div class="rd-container rd-chilli-promo__inner">
-        <div class="rd-chilli-promo__copy">
-          <p class="rd-eyebrow">The UK's largest collection of chilli seeds</p>
-          <h2 id="rd-chilli-promo-title">Home of 450+<br><span>chilli varieties 🌶</span></h2>
-          <p>From mild to superhot, discover something to get your taste buds tingling. Find your perfect heat level
-            from our expertly sourced collection.</p>
-          <a class="rd-button rd-button--primary" href="#chilli-seeds">Explore chilli seeds <span
-              aria-hidden="true">→</span></a>
+      <div class="rd-container">
+        <div class="rd-chilli-promo__inner">
+          <div class="rd-chilli-promo-lft-col">
+              <div class="rd-chilli-promo__copy">
+                <p class="rd-eyebrow">The UK's largest collection of chilli seeds</p>
+                <h2 id="rd-chilli-promo-title">Home of 450+<br><span>chilli varieties <img src="assets/images/icons/chilli-icon.svg" alt="Chilli variety"></span></h2>
+                <p>From mild to superhot, discover something to get your taste buds tingling. Find your perfect heat level
+                  from our expertly sourced collection.</p>
+                <a class="rd-button rd-button--primary" href="#chilli-seeds">Explore chilli seeds <span
+                    aria-hidden="true">→</span></a>
+              </div>
+              <div class="rd-chilli-promo__badge" aria-label="Over 450 chilli varieties">
+                <small>Over</small><strong>450+</strong><span>chilli varieties</span>
+              </div>
+          </div>
+
+          <ul class="rd-chilli-promo__proofs">
+            <li>
+              <div class="icon" aria-hidden="true"><img src="assets/images/icons/chilli-icon.svg" alt="Chilli variety" /></div>
+              <div class="content"><strong>Mild to superhot</strong><small>Something for everyone</small></div>
+            </li>
+            <li>
+              <div class="icon" aria-hidden="true"><img src="assets/images/icons/search-icon.svg" alt="search variety" /></div>
+              <div class="content"><strong>Expertly sourced</strong><small>Quality you can trust</small></div>
+            </li>
+            <li>
+              <div class="icon" aria-hidden="true"><img src="assets/images/icons/board-icon.svg" alt="Heat levels" /></div>
+              <div class="content"><strong>Heat levels explained</strong><small>Find the right kick</small></div>
+            </li>
+            <li>
+              <div class="icon" aria-hidden="true"><img src="assets/images/icons/box-icon.svg" alt="Fresh UK stock" /></div>
+              <div class="content"><strong>Fresh UK stock</strong><small>Packed with care</small></div>
+            </li>
+          </ul>
         </div>
-        <div class="rd-chilli-promo__badge" aria-label="Over 450 chilli varieties">
-          <small>Over</small><strong>450+</strong><span>chilli varieties</span></div>
-        <ul class="rd-chilli-promo__proofs">
-          <li><strong>Mild to superhot</strong><small>Something for everyone</small></li>
-          <li><strong>Expertly sourced</strong><small>Quality you can trust</small></li>
-          <li><strong>Heat levels explained</strong><small>Find the right kick</small></li>
-          <li><strong>Fresh UK stock</strong><small>Packed with care</small></li>
-        </ul>
       </div>
     </section>
     <!-- Chilli promotion section ends above -->
@@ -348,10 +678,113 @@
           <h2 id="rd-new-arrivals-title">New arrivals</h2><span aria-hidden="true"></span>
           <a href="#new-arrivals-all">View all new arrivals <span aria-hidden="true">→</span></a>
         </header>
-        <div class="rd-product-carousel"><button class="rd-product-carousel__arrow rd-product-carousel__arrow--prev"
+        <div class="rd-product-carousel">
+          <button class="rd-product-carousel__arrow rd-product-carousel__arrow--prev"
             type="button" data-carousel-prev aria-label="Previous new arrivals">‹</button>
-          <div class="rd-product-grid rd-product-grid--carousel owl-carousel" data-product-grid data-products="new"
-            data-carousel aria-live="polite"></div><button
+          <div class="rd-product-grid rd-product-grid--carousel owl-carousel" data-carousel aria-live="polite">
+            <article class="rd-product-card">
+              <div class="rd-product-card__media">
+                <span class="rd-badge new-badge">NEW</span>
+                <img src="assets/images/cards/card-image-06.jpg" alt="Lettuce Seeds" width="220" height="220" loading="lazy">
+              </div>
+              <div class="rd-product-card__actions" role="group" aria-label="Lettuce Seeds actions">
+                <a href="#" class="rd-product-card__action rd-product-card__action--primary">View Details</a>
+                <button type="button" class="rd-product-card__action rd-product-card__action--secondary" aria-label="Quick view Lettuce Seeds">Quick View</button>
+              </div>
+              <div class="rd-product-card__body">
+                <h3 class="rd-product-card__title"><a href="#">Lettuce Seeds</a></h3>
+                <p class="rd-product-card__meta">Buttercrunch</p>
+                <div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div>
+                <p class="rd-product-card__price">£1.99</p>
+              </div>
+            </article>
+            <article class="rd-product-card">
+              <div class="rd-product-card__media">
+                <span class="rd-badge">BEST SELLER</span>
+                <img src="assets/images/cards/card-image-07.jpg" alt="Carrot Seeds" width="220" height="220" loading="lazy">
+              </div>
+              <div class="rd-product-card__actions" role="group" aria-label="Carrot Seeds actions">
+                <a href="#" class="rd-product-card__action rd-product-card__action--primary">View Details</a>
+                <button type="button" class="rd-product-card__action rd-product-card__action--secondary"
+                  aria-label="Quick view Carrot Seeds">Quick View</button>
+              </div>
+              <div class="rd-product-card__body">
+                <h3 class="rd-product-card__title"><a href="#">Carrot Seeds</a></h3>
+                <p class="rd-product-card__meta">Rainbow Blend</p>
+                <div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div>
+                <p class="rd-product-card__price">£2.49</p>
+              </div>
+            </article>
+            <article class="rd-product-card">
+              <div class="rd-product-card__media">
+                <span class="rd-badge new-badge">NEW</span>
+                <img src="assets/images/cards/card-image-08.jpg" alt="Tomato Seeds" width="220" height="220" loading="lazy">
+              </div>
+              <div class="rd-product-card__actions" role="group" aria-label="Tomato Seeds actions">
+                <a href="#" class="rd-product-card__action rd-product-card__action--primary">View Details</a>
+                <button type="button" class="rd-product-card__action rd-product-card__action--secondary"
+                  aria-label="Quick view Tomato Seeds">Quick View</button>
+              </div>
+              <div class="rd-product-card__body">
+                <h3 class="rd-product-card__title"><a href="#">Tomato Seeds</a></h3>
+                <p class="rd-product-card__meta">Tumbling Tom</p>
+                <div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div>
+                <p class="rd-product-card__price">£2.49</p>
+              </div>
+            </article>
+            <article class="rd-product-card">
+              <div class="rd-product-card__media">
+                <span class="rd-badge">BEST SELLER</span>
+                <img src="assets/images/cards/card-image-09.jpg" alt="Cucumber Seeds" width="220" height="220" loading="lazy">
+              </div>
+              <div class="rd-product-card__actions" role="group" aria-label="Cucumber Seeds actions">
+                <a href="#" class="rd-product-card__action rd-product-card__action--primary">View Details</a>
+                <button type="button" class="rd-product-card__action rd-product-card__action--secondary"
+                  aria-label="Quick view Cucumber Seeds">Quick View</button>
+              </div>
+              <div class="rd-product-card__body">
+                <h3 class="rd-product-card__title"><a href="#">Cucumber Seeds</a></h3>
+                <p class="rd-product-card__meta">Marketmore</p>
+                <div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div>
+                <p class="rd-product-card__price">£2.29</p>
+              </div>
+            </article>
+            <article class="rd-product-card">
+              <div class="rd-product-card__media">
+                <span class="rd-badge">BEST SELLER</span>
+                <img src="assets/images/cards/card-image-10.jpg" alt="Basil Seeds" width="220" height="220" loading="lazy">
+              </div>
+              <div class="rd-product-card__actions" role="group" aria-label="Basil Seeds actions">
+                <a href="#" class="rd-product-card__action rd-product-card__action--primary">View Details</a>
+                <button type="button" class="rd-product-card__action rd-product-card__action--secondary"
+                  aria-label="Quick view Basil Seeds">Quick View</button>
+              </div>
+              <div class="rd-product-card__body">
+                <h3 class="rd-product-card__title"><a href="#">Basil Seeds</a></h3>
+                <p class="rd-product-card__meta">Genovese</p>
+                <div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div>
+                <p class="rd-product-card__price">£1.79</p>
+              </div>
+            </article>
+            <article class="rd-product-card">
+              <div class="rd-product-card__media">
+                <span class="rd-badge">BEST SELLER</span>
+                <img src="assets/images/cards/card-image-11.jpg" alt="Carolina Reaper" width="220" height="220" loading="lazy">
+              </div>
+              <div class="rd-product-card__actions" role="group" aria-label="Carolina Reaper actions">
+                <a href="#" class="rd-product-card__action rd-product-card__action--primary">View Details</a>
+                <button type="button" class="rd-product-card__action rd-product-card__action--secondary"
+                  aria-label="Quick view Carolina Reaper">Quick View</button>
+              </div>
+              <div class="rd-product-card__body">
+                <h3 class="rd-product-card__title"><a href="#">Carolina Reaper</a></h3>
+                <p class="rd-product-card__meta">Chilli seeds</p>
+                <div class="rd-rating" aria-label="Rated 4.8 out of 5">★★★★★ <span>(124)</span></div>
+                <p class="rd-product-card__price">£3.49</p>
+              </div>
+            </article>
+          </div>
+            <button
             class="rd-product-carousel__arrow rd-product-carousel__arrow--next" type="button" data-carousel-next
             aria-label="Next new arrivals">›</button>
         </div>
@@ -362,8 +795,7 @@
     <section class="rd-section rd-social-proof" aria-label="Why choose Red Dragon Seeds">
       <div class="rd-container rd-social-proof__grid">
         <article class="rd-choice-card">
-          <p class="rd-eyebrow">Why choose</p>
-          <h2>Why Red Dragon Seeds?</h2>
+          <h3 class="rd-section-small-heading">WHY CHOOSE <br/>RED DRAGON SEEDS?</h3>
           <ul class="rd-choice-card__list">
             <li>Premium quality, non-GMO seeds</li>
             <li>Tested for high germination rates</li>
@@ -373,6 +805,7 @@
           </ul>
         </article>
         <div class="rd-review-carousel">
+          <h2 class="rd-section-small-heading">What our customers say</h2>
           <div class="rd-review-cards owl-carousel" data-carousel tabindex="0" aria-label="Customer reviews">
             <article class="rd-review-card">
               <p class="rd-eyebrow">What our customers say</p>

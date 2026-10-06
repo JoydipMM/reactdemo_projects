@@ -1,1 +1,26 @@
-.rd-eyebrow{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}.rd-image--veg{--pos:50% 35%}.rd-image--herb{--pos:20% 20%}.rd-image--flower{--pos:50% 60%}.rd-image--chilli{--pos:80% 68%}.rd-image--guide{--pos:70% 80%}
+.rd-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase
+}
+
+.rd-image--veg {
+    --pos: 50% 35%
+}
+
+.rd-image--herb {
+    --pos: 20% 20%
+}
+
+.rd-image--flower {
+    --pos: 50% 60%
+}
+
+.rd-image--chilli {
+    --pos: 80% 68%
+}
+
+.rd-image--guide {
+    --pos: 70% 80%
+}
