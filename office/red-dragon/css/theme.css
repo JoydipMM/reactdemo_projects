@@ -2,7 +2,7 @@
     --font-family-base: "Poppins", sans-serif;
     --font-size-body: 12px;
     --font-size-menu: 12px;
-    --font-size-body-medium: 11px;
+    --font-size-body-medium: 11px;    
     --font-size-small: 10px;
     --font-size-label: var(--font-size-body-medium);
     --font-size-heading-large: 32px;
@@ -15,12 +15,14 @@
     --font-size-card-description: 12px;
     --color-brand-red: #D51532;
     --color-brand-red-dark: #b91827;
+    --color-brand-light-green: #6A8564;
     --color-brand-green: #00AC39;
-    --color-green-dark: #173a1d;
+    --color-green-dark: #1E2D1A;
     --color-gray: #C0BFB8;
     --color-gray-light: #666666;
     --color-gray-dark: #333333;
     --color-black: #111110;
+    --color-light-black: #1A1A17;
     --color-ink: #151815;
     --color-body-text: #C8C8C0;
     --color-white: #fff;

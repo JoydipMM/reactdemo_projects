@@ -55,20 +55,32 @@
                 loading="lazy">
             </a>
 
-            <form class="rd-search" role="search" action="/" method="get">
-              <label class="rd-sr-only" for="site-search">Search products</label>
-              <input id="site-search" name="q" type="search" autocomplete="off"
-                placeholder="Search chilli seeds, vegetables, herbs, flowers &amp; more…">
-              <button type="submit" aria-label="Search"><span aria-hidden="true"><img
-                    src="assets/images/icons/search-white-icon.svg" alt="Search"></span></button>
-            </form>
+            <div class="rd-search-modal" id="rd-search-modal" data-search-modal>
+              <form class="rd-search" role="search" action="/" method="get">
+                <label class="rd-sr-only" for="site-search">Search products</label>
+                <input id="site-search" name="q" type="search" autocomplete="off"
+                  placeholder="Search chilli seeds, vegetables, herbs, flowers &amp; more…">
+                <button type="submit" aria-label="Search"><span aria-hidden="true"><img
+                      src="assets/images/icons/search-white-icon.svg" alt=""></span></button>
+              </form>
+              <button class="rd-search-modal__close" type="button" data-search-close aria-label="Close search">×</button>
+            </div>
           </div>
 
           <div class="rd-header-right-sections">
+            <!-- <button class="rd-search-toggle" type="button" data-search-toggle aria-expanded="false"
+              aria-controls="rd-search-modal" aria-label="Open search"><img
+                src="assets/images/icons/search-white-icon.svg" alt=""></button> -->
             <ul class="rd-header-actions" aria-label="Customer actions">
+              <li class="rd-search-toggle" data-search-toggle aria-expanded="false" aria-controls="rd-search-modal" aria-label="Open search">
+                <button type="button"><span aria-hidden="true">
+                  <img src="assets/images/icons/search-white-icon.svg" alt="search" /></span>
+                  <span>Search</span>
+                </button>
+              </li>
               <li><a href="#account"><span aria-hidden="true"><img src="assets/images/icons/user-white-icon.svg" alt="My Account"></span><span>My Account</span></a></li>
               <li><a href="#wishlist"><span aria-hidden="true"><img src="assets/images/icons/wishlist-white-icon.svg" alt="Wishlist"></span><span>Wishlist</span></a></li>
-              <li><button type="button"><span aria-hidden="true"><img src="assets/images/icons/cart-white-icon.svg" alt="Basket"></span><span>Basket<br><b>£0.00</b></span></button>
+              <li><button type="button"><span aria-hidden="true"><span class="rd-header-notify-box">2</span><img src="assets/images/icons/cart-white-icon.svg" alt="Basket"></span><span>Basket<br><b>£0.00</b></span></button>
               </li>
             </ul>
 
@@ -80,7 +92,7 @@
         </div>
       </div>
     </div>
-    <nav class="rd-primary-nav" aria-label="Primary navigation">
+    <nav class="rd-primary-nav rd-header-main" aria-label="Primary navigation">
       <div class="rd-container">
         <ul class="rd-nav-list">
           <li class="rd-nav-item" data-mega-trigger data-mega-key="chilli"><a href="#chilli-seeds">Chilli Seeds</a></li>
@@ -222,7 +234,7 @@
             </div>
           </div>
           <div class="rd-mega-menu__columns rd-mega-menu__columns--compact" data-mega-panel="collections" hidden>
-            <<div class="rd-submenu-list-wrap">
+            <div class="rd-submenu-list-wrap">
               <!-- <h2 class="rd-mega-menu__mobile-title">Chilli Seeds</h2> -->
               <ul>
                 <li><a href="#">Annuum <small>(243)</small></a></li>
@@ -635,10 +647,8 @@
         <div class="rd-chilli-promo__inner">
           <div class="rd-chilli-promo-lft-col">
               <div class="rd-chilli-promo__copy">
-                <p class="rd-eyebrow">The UK's largest collection of chilli seeds</p>
                 <h2 id="rd-chilli-promo-title">Home of 450+<br><span>chilli varieties <img src="assets/images/icons/chilli-icon.svg" alt="Chilli variety"></span></h2>
-                <p>From mild to superhot, discover something to get your taste buds tingling. Find your perfect heat level
-                  from our expertly sourced collection.</p>
+                <p>The UK's largest collection of chilli seeds — over 450 varieties from mild to superhot. Something for every grower.</p>
                 <a class="rd-button rd-button--primary" href="#chilli-seeds">Explore chilli seeds <span
                     aria-hidden="true">→</span></a>
               </div>
@@ -795,7 +805,7 @@
     <section class="rd-section rd-social-proof" aria-label="Why choose Red Dragon Seeds">
       <div class="rd-container rd-social-proof__grid">
         <article class="rd-choice-card">
-          <h3 class="rd-section-small-heading">WHY CHOOSE <br/>RED DRAGON SEEDS?</h3>
+          <h3 class="rd-section-small-heading rd-uppercase">WHY CHOOSE <br/>RED DRAGON SEEDS?</h3>
           <ul class="rd-choice-card__list">
             <li>Premium quality, non-GMO seeds</li>
             <li>Tested for high germination rates</li>
@@ -805,24 +815,21 @@
           </ul>
         </article>
         <div class="rd-review-carousel">
-          <h2 class="rd-section-small-heading">What our customers say</h2>
+          <h2 class="rd-section-small-heading rd-uppercase">What our customers say</h2>
           <div class="rd-review-cards owl-carousel" data-carousel tabindex="0" aria-label="Customer reviews">
             <article class="rd-review-card">
-              <p class="rd-eyebrow">What our customers say</p>
               <h2>Excellent</h2>
               <div class="rd-review-card__stars" aria-label="Rated 4.9 out of 5">★★★★★</div>
               <p><strong>4.9</strong> out of 5 based on 1,200+ reviews.</p><strong class="rd-review-card__source">★
                 Trustpilot</strong>
             </article>
             <article class="rd-review-card">
-              <p class="rd-eyebrow">What our customers say</p>
               <h2>Always amazing quality</h2>
               <div class="rd-review-card__stars" aria-label="Rated 5 out of 5">★★★★★</div>
               <p>Seeds arrived fresh, well packed and germinated beautifully.</p><strong
                 class="rd-review-card__source">★ Trustpilot</strong>
             </article>
             <article class="rd-review-card">
-              <p class="rd-eyebrow">What our customers say</p>
               <h2>Great selection</h2>
               <div class="rd-review-card__stars" aria-label="Rated 5 out of 5">★★★★★</div>
               <p>Fantastic variety and helpful growing advice for every garden.</p><strong
@@ -831,13 +838,13 @@
           </div>
         </div>
         <article class="rd-newsletter-card">
-          <p class="rd-eyebrow">Join our growing community</p>
-          <h2>Grow more. Grow better.</h2>
-          <p>Get growing tips, exclusive offers and new variety news.</p>
+          <img src="assets/images/icons/leaf-green-icon.svg" class="rd-newsletter-rgt-floting-icon" />
+          <h2>JOIN OUR GROWING <br/>COMMUNITY</h2>
+          <p class="rd-newsletter-card__description">Get growing tips, exclusive offers and new variety news.</p>
           <form class="rd-newsletter-form" data-newsletter-form action="#" method="post"><label class="rd-sr-only"
               for="newsletter-email">Email address</label><input id="newsletter-email" name="email" type="email"
               autocomplete="email" required placeholder="Enter your email address"><button
-              class="rd-button rd-button--primary" type="submit">Sign me up</button><small data-form-message
+              class="rd-button rd-button--primary" type="submit">SIGN UP</button><small data-form-message
               role="status">No spam, unsubscribe anytime.</small></form>
         </article>
       </div>
@@ -858,8 +865,9 @@
   <!-- Footer -->
   <footer class="rd-site-footer">
     <div class="rd-container rd-footer-grid">
-      <div class="rd-footer-brand"><a class="rd-logo" href="index.html" aria-label="Red Dragon home"><span
-            aria-hidden="true">✿</span><strong>Red<br>Dragon</strong></a>
+      <div class="rd-footer-brand"><a class="rd-logo" href="index.html" aria-label="Red Dragon home">
+        <img src="assets/images/branding/red-dragon-logo.svg" />
+      </a>
         <p>Supplying premium quality, non-GMO seeds to gardeners from the UK and beyond.</p>
         <div class="rd-footer-social"><a href="#facebook" aria-label="Facebook">f</a><a href="#instagram"
             aria-label="Instagram">◎</a><a href="#pinterest" aria-label="Pinterest">p</a></div>

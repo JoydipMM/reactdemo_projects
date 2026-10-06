@@ -19,7 +19,8 @@
     display: flex;
     align-items: center;
     gap: 18px;
-    margin-bottom: 32px
+    margin-bottom: 32px;
+    position: relative;
 }
 
 .rd-section-heading>span {
@@ -39,6 +40,11 @@
     text-transform: uppercase;
     margin-left: auto;
     white-space: nowrap
+}
+
+.rd-section-heading a,
+.rd-section-heading .rd-category-section__controls{
+    position: absolute; right:0px; top:50%; transform: translateY(-50%);
 }
 
 .rd-text-red-link{
@@ -91,5 +97,15 @@
     font-weight:var(--font-weight-extrabold);
     letter-spacing: .08em;
     margin-bottom: var(--space-6);
+    margin-top: 0px;
     color:var(--color-black);
+}
+
+.rd-uppercase{
+    text-transform:uppercase;
+}
+
+button{
+    appearance:none;
+    border:none;
 }

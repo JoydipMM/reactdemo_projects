@@ -1,4 +1,36 @@
 function initNavigation() {
+  const $searchToggle = $('[data-search-toggle]');
+  const $searchModal = $('[data-search-modal]');
+  const $searchClose = $('[data-search-close]');
+  let searchReturnFocus = null;
+
+  function closeSearchModal(restoreFocus) {
+    if (!$searchModal.hasClass('is-open')) return;
+    $searchModal.removeClass('is-open').removeAttr('role aria-modal aria-label');
+    $('body').removeClass('rd-search-open');
+    $searchToggle.attr('aria-expanded', 'false');
+    if (restoreFocus !== false && searchReturnFocus) searchReturnFocus.focus();
+  }
+
+  if ($searchToggle.length && $searchModal.length) {
+    $searchToggle.on('click', function () {
+      searchReturnFocus = this;
+      $searchModal.addClass('is-open').attr({ role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Search' });
+      $('body').addClass('rd-search-open');
+      $searchToggle.attr('aria-expanded', 'true');
+      $searchModal.find('input[type="search"]').trigger('focus');
+    });
+
+    $searchClose.on('click', function () { closeSearchModal(); });
+    $searchModal.on('click', function (event) {
+      if (event.target === this) closeSearchModal();
+    });
+
+    $(window).on('resize.searchModal', function () {
+      if (window.innerWidth > 991) closeSearchModal(false);
+    });
+  }
+
   const $drawer = $('#rd-mobile-nav');
   const $menuTrigger = $('[data-menu-toggle]');
   const $submenuTrigger = $('[data-submenu-toggle]');
@@ -113,6 +145,22 @@ function initNavigation() {
   }
 
   $(document).on('keydown', function (event) {
+    if (event.key === 'Escape' && $searchModal.hasClass('is-open')) {
+      closeSearchModal();
+      return;
+    }
+    if (event.key === 'Tab' && $searchModal.hasClass('is-open')) {
+      const $focusable = $searchModal.find('input, button').filter(':visible:not(:disabled)');
+      const first = $focusable[0];
+      const last = $focusable[$focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
     if (event.key === 'Escape' && !$drawer.is('[hidden]')) closeMenu();
     if (event.key === 'Escape' && !$megaMenu.is('[hidden]')) closeMegaMenu();
   });
