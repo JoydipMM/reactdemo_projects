@@ -5,7 +5,38 @@ import { useRef, useState } from "react";
 import { FiX } from "react-icons/fi";
 import { LuPlus } from "react-icons/lu";
 
-const availableSizes = ['S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL'];
+import { useForm } from "react-hook-form";
+import { Category, ProductType, Size } from "@/generated/prisma/enums";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+
+//const availableSizes = ['S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL'];
+const availableSizes: Size[] = [
+    Size.XS, 
+    Size.S, 
+    Size.M, 
+    Size.L, 
+    Size.XL, 
+    Size.XXL
+];
+
+const categories: Category[] = [
+    Category.MEN, 
+    Category.WOMEN, 
+    Category.CHILDREN
+];
+
+const productTypes: ProductType[] = [
+    ProductType.JEANS, 
+    ProductType.HOODIES, 
+    ProductType.JACKETS, 
+    ProductType.SHIRT, 
+    ProductType.SHOES, 
+    ProductType.SHORTS, 
+    ProductType.TROUSERS, 
+    ProductType.T_SHIRT
+]
+
 const availableColors = [
     { id: 1, name: "Black", value: "#000000" },
     { id: 2, name: "White", value: "#FFFFFF" },
@@ -14,11 +45,36 @@ const availableColors = [
     { id: 5, name: "Blue", value: "#0000FF" },
 ];
 
+type ProductFormValues = {
+    name: String;
+    description: String;
+    price: Number;
+    stock: number;
+    category: Category,
+    productType: ProductType;
+    bestSeller: boolean;
+    colors: []
+}
+
 export default function AddProductPage() {
+
+    const router = useRouter();
+
     const [images, setImages] = useState<File[]>([]);
     const [sizes, setSizes] = useState<string[]>([]);
     const [selectedColor, setSelectedColor] = useState<string[]>([]);
     const [bestSeller, setBestSeller] = useState<boolean>(false);
+
+    const {register, handleSubmit, reset, formState:{ isLoading, isSubmitting, isSubmitted }} = useForm<ProductFormValues>({
+        defaultValues:{
+            name:"",
+            description: "",
+            price: 0,
+            stock: 0,
+            category: Category.MEN,
+            productType: ProductType.SHIRT  
+        }
+    });
 
     const inputRef = useRef<HTMLInputElement>(null);
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +98,65 @@ export default function AddProductPage() {
     }
 
 
+    const submitEvent = async (data:ProductFormValues) => {
+        console.log(data);
+        if(images.length === 0){
+            return toast("Please upload atleast one image");
+        }
+        if(sizes.length === 0){
+            return toast("Please select atleast one size");
+        }        
+        if(selectedColor.length === 0){
+            return toast("Please select atleast one color");
+        }
+
+        const selectedColors = availableColors.filter((color) => selectedColor.includes(color.name));
+
+        const formData = new FormData();
+        formData.append("name", data.name.toString());
+        formData.append("description", data.description.toString());
+        formData.append("price", data.price.toString());
+        formData.append("stock", data.stock.toString());
+        formData.append("category", data.category.toString());
+        formData.append("productType", data.productType.toString());
+        formData.append("bestSeller", String(data.bestSeller));
+        formData.append("productType", data.productType.toString());
+
+        // images, colors, sizes are array
+        sizes.forEach((size) =>{
+            formData.append("sizes", size)
+        });
+        selectedColors.forEach((color) =>{
+            formData.append("colors", JSON.stringify(color))
+        });
+        images.forEach((image) =>{
+            formData.append("images", image)
+        });
+
+        try{
+            const response = await fetch("/api/products", {
+                method:"POST",
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if(!response.ok){
+                return toast.error(result.message)
+            }
+
+            toast.success(result.message);
+            reset();
+            router.push("/admin/products");
+
+        }catch(error){
+            console.error(error)
+            toast.error("Something worng while sending product information")
+        }
+
+    }
+
+
   return (
     <>
 
@@ -51,9 +166,10 @@ export default function AddProductPage() {
         <p className='mt-2 text-muted-foreground'>Add a new product to your store</p>
       </div>
 
+    <form onSubmit={handleSubmit(submitEvent)}>
 
-      {/* images */}
-      <section className="rounded-2xl border border-border bg-background p-6">
+        {/* images */}
+        <section className="rounded-2xl border border-border bg-background p-6 mb-6">
         <h2 className="text-lg font-semibold mb-5">Images</h2>
         <div className='grid grid-cols-2 gap-5 md:grid-cols-4'>
             {Array.from({length:4}).map((_,index) => (
@@ -73,92 +189,93 @@ export default function AddProductPage() {
             ))}
         </div>
         <input type="file" multiple accept="image/*" onChange={handleImageChange} ref={inputRef} hidden />
-      </section>
+        </section>
 
-    {/* product information */}
-      <section className="rounded-2xl border border-border bg-background p-6">
-        <h2 className="text-lg font-semibold mb-5">Product Information</h2>
-         <div>
-            <Input label="Product Name" placeholder="Enter product name" />
-            <Input label="Product Description" placeholder="Enter product description" />
-            <div className="grid gap-5 md:grid-cols-3">
-                <Input label="Product Price" placeholder="price" />
-                <Input label="Quantity" placeholder="quantity" />
-            </div>
-            <div className="grid gap-5 md:grid-cols-3">
-                <div>
-                    <label className="mb-2 block text-sm font-medium">Category</label>
-                    <select className="h-12 w-full rounded-lg border border-border bg-background px-4 outline-none transition focus:border-primary">
-                        <option value="">Select Category</option>
-                        <option>Men</option>
-                        <option>Women</option>
-                        <option>Children</option>
-
-                    </select>
+        {/* product information */}
+        <section className="rounded-2xl border border-border bg-background p-6  mb-6">
+            <h2 className="text-lg font-semibold mb-5">Product Information</h2>
+            <div>
+                <Input label="Product Name" placeholder="Enter product name" {...register("name")} />
+                <Input label="Product Description" placeholder="Enter product description" {...register("description")} />
+                <div className="grid gap-5 md:grid-cols-3">
+                    <Input label="Product Price" placeholder="price" {...register("price")} />
+                    <Input label="Stock" placeholder="Stock" {...register("stock")} />
                 </div>
-                <div>
-                    <label className="mb-2 block text-sm font-medium">Product Type</label>
-                    <select className="h-12 w-full rounded-lg border border-border bg-background px-4 outline-none transition focus:border-primary">
-                        <option value="">Select Product Type</option>
-                        <option>Hoodies</option>
-                        <option>T-Shirts</option>
-                        <option>Pants</option>
-                        <option>Jackets</option>
-                    </select>
+                <div className="grid gap-5 md:grid-cols-3">
+                    <div>
+                        <label className="mb-2 block text-sm font-medium">Category</label>
+                        <select className="h-12 w-full rounded-lg border border-border bg-background px-4 outline-none transition focus:border-primary" {...register("category")}>
+                            
+                            {categories.map((category) => {
+                                return(
+                                    <option key={category} value={category}>{category}</option>
+                                )
+                            })}
+
+                        </select>
+                    </div>
+                    <div>
+                        <label className="mb-2 block text-sm font-medium">Product Type</label>
+                        <select className="h-12 w-full rounded-lg border border-border bg-background px-4 outline-none transition focus:border-primary">
+                            {productTypes.map((product) => { return (
+                                <option key={product} value={product}>{product}</option>
+                            ) })}
+                        </select>
+                    </div>
                 </div>
             </div>
-         </div>
-    </section>
+        </section>
 
-    {/* Product Sizes */}
-    <section className="rounded-2xl border border-border bg-background p-6">
-        <h2 className="text-lg font-semibold mb-5">Product Sizes</h2>
+        {/* Product Sizes */}
+        <section className="rounded-2xl border border-border bg-background p-6  mb-6">
+            <h2 className="text-lg font-semibold mb-5">Product Sizes</h2>
 
-        <div className="flex flex-wrap gap-3">
-            {availableSizes.map((size) => {
-                const selected = sizes.includes(size);
-                return(
-                <button type="button" key={size} onClick={() => toggleSizes(size)} className={`h-11 w-16 rounded-lg border border-border font-medium transition ${selected ? 'bg-primary text-white' : 'bg-background text-foreground'}`}>
-                    {size}
-                </button>
-            )
-            })} 
-        </div>
-    </section>
-
-
-    {/* Product colors */}
-    <section className="rounded-2xl border border-border bg-background p-6">
-        <h2 className="text-lg font-semibold mb-5">Product Colors</h2>
-        <div className="flex flex-wrap gap-3">
-            {availableColors.map((color)=>{
-                const selected = selectedColor.includes(color.name);
-                return(
-                    <button key={color.name} type="button" className={`flex items-center gap-3 rounded-xl border px-4 py-3 transition ${selected ? " border-primary bg-primary/20" : "border-border hover:border-primary"}`} onClick={()=> toggleColor(color.name)}>
-                        <span className="h-6 w-6 rounded-full border border-border" style={{ backgroundColor: color.value }}/>
-                        <span className="font-medium">{color.name}</span>
+            <div className="flex flex-wrap gap-3">
+                {availableSizes.map((size) => {
+                    const selected = sizes.includes(size);
+                    return(
+                    <button type="button" key={size} onClick={() => toggleSizes(size)} className={`h-11 w-16 rounded-lg border border-border font-medium transition ${selected ? 'bg-primary text-white' : 'bg-background text-foreground'}`}>
+                        {size}
                     </button>
                 )
-            })}
-        </div>
-    </section>
+                })} 
+            </div>
+        </section>
 
 
-    {/* Product options */}
-    <section className="rounded-2xl border border-border bg-background p-6">
-        <h2 className="text-lg font-semibold mb-5">Product options</h2>
-        <div className="space-y-4">
-            <label className="flex cursor-pointer items-center gap-3">
-                <input type="checkbox" checked={bestSeller} className="w-5 h-5 accent-primary" onChange={(e) => setBestSeller(e.target.checked)} />
-                <span className="font-medium">Mark as Best Seller</span>
-            </label>
-        </div>
-    </section>
+        {/* Product colors */}
+        <section className="rounded-2xl border border-border bg-background p-6  mb-6">
+            <h2 className="text-lg font-semibold mb-5">Product Colors</h2>
+            <div className="flex flex-wrap gap-3">
+                {availableColors.map((color)=>{
+                    const selected = selectedColor.includes(color.name);
+                    return(
+                        <button key={color.name} type="button" className={`flex items-center gap-3 rounded-xl border px-4 py-3 transition ${selected ? " border-primary bg-primary/20" : "border-border hover:border-primary"}`} onClick={()=> toggleColor(color.name)}>
+                            <span className="h-6 w-6 rounded-full border border-border" style={{ backgroundColor: color.value }}/>
+                            <span className="font-medium">{color.name}</span>
+                        </button>
+                    )
+                })}
+            </div>
+        </section>
 
 
-    <div>
-            <Button>Save</Button>
-    </div>
+        {/* Product options */}
+        <section className="rounded-2xl border border-border bg-background p-6  mb-6">
+            <h2 className="text-lg font-semibold mb-5">Product options</h2>
+            <div className="space-y-4">
+                <label className="flex cursor-pointer items-center gap-3">
+                    <input type="checkbox" checked={bestSeller} className="w-5 h-5 accent-primary" onChange={(e) => setBestSeller(e.target.checked)} />
+                    <span className="font-medium">Mark as Best Seller</span>
+                </label>
+            </div>
+        </section>
+
+
+        <div><Button disabled={isSubmitting}>{ isSubmitting ? "Saving Product...." : "Create Product" }</Button></div>
+
+    </form>
+
 
     </>
   )
