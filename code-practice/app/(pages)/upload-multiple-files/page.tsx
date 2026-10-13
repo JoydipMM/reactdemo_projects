@@ -36,7 +36,7 @@ export default function UploadMultipleFilePage() {
                         </div>
                         ) : 
                         (
-                        <div className="flex flex-col items-center justify-center relative aspect-square overflow-hidden rounded-xl border-2 border-border border-dashed transition cursor-pointer hover:border-primary hover:bg-surface" onClick={()=> inputRef.current.click()}>
+                        <div className="flex flex-col items-center justify-center relative aspect-square overflow-hidden rounded-xl border-2 border-border border-dashed transition cursor-pointer hover:border-primary hover:bg-surface" onClick={()=> inputRef.current?.click()}>
                             <LuPlus size={30} className="text-muted-foreground" />
                             <span className="mt-3 text-sm text-muted-foreground font-semibold">Upload Image</span>
                         </div>
