@@ -1,0 +1,631 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Interview Questions</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    h5 code {
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+<hr />
+<h2><b>JavaScript Interview Questions</b></h2>
+<hr />
+
+<br/>
+<br/>
+
+
+<hr />
+<h5><b>What is JavaScript?</b></h5>
+<hr />
+<p>JavaScript (JS) is a <b>high-level, dynamic, interpreted programming language</b> primarily used to make web pages interactive and dynamic.</p>
+<p><b><i>Examples:</i></b></p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>Display dynamic content.</li>
+  <li>Handle button clicks.</li>
+  <li>Validate forms.</li>
+  <li>Fetch data from APIs.</li>
+  <li>Create animations.</li>
+  <li>Update webpage content without reloading.</li>
+  <li>Build complete web applications.</li>
+</ul>
+<h6><b>High-level programming language</b></h6>
+<p>A high-level programming language is a language that is easy for humans to read, write and understand compared to low-level languages such as Assembly. It hides many hardware-level complexities, so developers can focus on writing application logic rather than managing hardware directly.</p>
+<textarea id="editor">
+let a = 10;
+let b = 20;
+console.log(a + b); // Result: 30
+// Here, we don't need to manually manage CPU registers or memory addresses to perform this calculation.</textarea>
+<h6><b>Dynamic programming language (Dynamic Typing)</b></h6>
+<p>JavaScript is dynamically typed, which means you don't need to explicitly declare the data type of a variable. JavaScript determines the type based on the value assigned to it at runtime. means a variable can hold different types of values during program execution without explicitly declaring its type.</p>
+<textarea class="code-editor">
+let value = 100;
+console.log(typeof value); // number
+
+value = "Hello";
+console.log(typeof value); // string
+
+value = true;
+console.log(typeof value); // boolean</textarea>
+<p>Here, the same variable value holds three different data types.</p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>First, it stores a number.</li>
+  <li>Then, it stores a string.</li>
+  <li>Finally, it stores a boolean.</li>
+</ul>
+<h6><b>Interpreted programming language</b></h6>
+<p>JavaScript code is executed by a JavaScript engine, which processes the source code and executes the instructions. <b><i>Modern JavaScript engines use a combination of interpretation and <code>Just-In-Time (JIT) compilation</code> to optimize execution</i></b>.</p>
+<h6 class="mt-3"><b>Popular JavaScript engines:</b></h6>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>V8 — Chrome and Node.js.</li>
+  <li>SpiderMonkey — Firefox.</li>
+  <li>JavaScriptCore — Safari.</li>
+</ul>
+
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b><code>Just-In-Time (JIT) Compilation</code> in JavaScript</b></h5>
+<hr />
+<p><b>JIT compilation</b> means converting JavaScript code into machine code while the program is running, so it can execute faster.</p>
+<br/> 
+
+
+
+
+<hr />
+<h5><b>Explain the difference between <code>var</code>, <code>let</code>, and <code>const</code> in JavaScript</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>Difference between <code>undefined</code>, <code>null</code>, and <code>not defined</code>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+<hr />
+<h5><b>Explain how <code>closures</code> work in JavaScript. Can you give a real-world example of where you’d use one?</b></h5>
+<hr />
+<p>text</p>
+<br/>
+
+
+
+
+<hr />
+<h5><b>difference between <code>call</code>, <code>apply</code>, and <code>bind</code> methods?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+<hr />
+<h5><b>What is <code>Event Delegation</code>, and why is it useful in JavaScript?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+<hr />
+<h5><b>How does the <code>JavaScript event loop</code> work?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+<hr />
+<h5><b>Explain the difference between the <code>call stack</code>, <code>microtasks</code>, and <code>macrotasks</code>.</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+<hr />
+<h5><b>Explain what <code>Debouncing</code> and <code>Throttling</code>, and when to use them?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+<hr />
+<h5><b>How does <code>this</code> keyword behave in different contexts <i>(regular function, arrow function, event handler, class)</i>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+<hr />
+<h5><b>What is a <code>Promise</code>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>What is a <code>callbacks</code>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>How does <code>async/await</code> work under the hood?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>What are <code>JavaScript execution contexts</code>? Explain the <code>creation</code> and <code>execution phases</code>.</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>How does <code>scope chaining</code> work in JavaScript?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>What are <code>higher-order functions</code>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>Explain <code>prototypal inheritance</code>. How is it different from <code>classical inheritance</code> in other languages?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>What happens behind the scenes when you use the <code>new</code> keyword?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+
+<hr />
+<h5><b>How does <code>garbage collection</code> work in JavaScript?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>What are <code>pure functions</code> and <code>side effects</code>? Why are <code>pure functions preferred in functional programming</code>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>What is the difference between <code>shallow copy</code> and <code>deep copy</code> in JavaScript? How would you create a deep copy of an object?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>What are <code>generators</code> and <code>iterators</code> in JavaScript?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>What is <code>hoisting</code>, and how does it work with variables and functions?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>What is the <code>Temporal Dead Zone (TDZ)</code> in JavaScript?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>What is <code>memoization</code> and how can it improve performance?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>How does <code>optional chaining (?.)</code> and <code>nullish coalescing (??)</code> differ from each other?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>What are <code>modules</code> in JavaScript? Explain the <code></code>difference between CommonJS and ES Modules</code>.</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>What is <code>tree shaking</code>, and how does it relate to JavaScript bundlers like Webpack or Rollup?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>What is <code>currying</code> in JavaScript, and what problem does it solve?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>What are <code>WeakMap</code> and <code>WeakSet</code>, and how do they differ from <code>Map</code> and <code>Set</code>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>What are <code>symbols</code> in JavaScript, and where might you use them?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+<hr />
+<h5><b>How does <code>optional parameter destructuring</code> work in function arguments?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>What is a <code>memory leak</code> in JavaScript?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>How does <code>garbage collection</code> work in JavaScript?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+
+<hr />
+<h5><b>Browser Rendering: <code></code>Reflow & Repaint</code></b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>What is <code>Layout Thrashing</code>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>What is <code>Lazy Loading</code>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>How do you <code>implement image lazy loading</code>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>What is <code></code>Code Splitting</code>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>What is the difference between <code>Lazy Loading</code> and <code></code>Code Splitting</code>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>What is a <code></code>Web Worker</code>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b>How do you optimize a website's <code>initial loading performance</code>?</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+
+
+<hr />
+<h5><b><code>Chrome DevTools</code>: Practical Performance Debugging</b></h5>
+<hr />
+<p>text</p>
+<br/> 
+
+
+
+
+<!-- <ul class="list-group list-group-flush mx-4">
+  <li><b>Server-side rendering</b> : <code><b>SSR</b></code></li>
+  <li><b>Static site generation</b> : <code><b>SSG</b></code></li>
+  <li><b>Incremental Static Regeneration</b> : <code><b>ISR</b></code></li>
+  <li><b>Static export</b> : <code><b>SSR</b></code></li>
+  <li><b>Server Component</b></li>
+  <li><b>Server Actions</b></li>
+  <li><b>Built-in Routing</b></li>
+  <li><b>API routes</b></li>
+  <li><b>caching</b></li>
+  <li><b>Full-Stack Capabilities</b></li>
+  <li><b>Performance Optimizations: 
+    <code><b>Image optimization</b></code>, 
+    <code><b>Streaming</b></code>, 
+    <code><b>Lazy Loading</b></code>, 
+    <code><b>Route-level caching</b></code>, 
+    <code><b>Partial Prerendering</b></code>
+  </b></li>
+</ul>
+<br/> -->
+
+
+<!-- <hr />
+<h5><b>What is Routing?</b></h5>
+<hr />
+<p>Routing is the mechanism that maps a URL to a specific page, component, or resource in an application. When a user visits a URL, the routing system determines which page should be rendered.</p>
+<br/> -->
+
+
+<!-- <textarea id="editor">
+
+</textarea>
+<br/> -->
+
+
+
+
+<!-- <hr />
+<h5><b>2. Dynamic Routing</b></h5>
+<hr />
+<p>Routes with dynamic parameters.</p>
+<textarea class="code-editor">
+
+</textarea>
+<br/> -->
+
+
+<!-- <blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Important Note:</b> <p>If we don't have any segments then it will show <code><b>404 page</b></code></p>
+    <p>Example: If the URL is <code><b>http://localhost:3000/docs</b></code> then it will show <code><b>404 page</b></code></p>
+<textarea class="code-editor">
+  app/
+  └── docs/
+    └── [...slug]/
+        └── page.tsx
+</textarea>
+<p><i>Example URL: http://localhost:3000/docs</i>: Show the <code><b>404 page</b></code></p><br/>
+<p>Or if we have a <code><b>page.jsx/tsx</b></code> inside <code><b>docs</b></code> folder then it will show the <code><b>Doc page</b></code></p>
+<textarea class="code-editor">
+app/
+└── docs/
+    └── page.tsx // this page
+    └── [...slug]/
+        └── page.tsx
+
+// app/docs/page.tsx
+const page = () => {
+  return (
+    <div>Docs Page</div>
+  )
+}
+export default page;
+</textarea>
+<p><i>Example URL: http://localhost:3000/docs</i>: Show the <code><b>Docs page</b></code></p>
+<br/>
+<p><b>Solution</b></p>
+<p><b>1.</b> We can create <code><b>page.tsx</b></code> inside <code><b>docs</b></code> folder to avoid this issue</p>
+<p><b>2.</b> We can use <code><b>Optional Catch-All Route</b></code> to fixed this issue</p>
+  </code>
+</blockquote>
+<br/> -->
+
+
+<!-- 
+<hr />
+<h5><b>Craete a Server</b></h5>
+<hr />
+<p>We create <code><b>index.js</b></code> file inside <code><b>src</b></code> folder</p>
+<textarea class="code-editor">
+
+</textarea>
+<br/>
+<p><b>Run this command:</b> <code><b>npm run dev</b></code></p>
+<p>If all things are fine then we will see this message <code><b>Server running on port 5001</b></code> in <b><i>terminal</i></b></p>
+<br/> -->
+
+
+
+<!-- <blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">npm run dev</code>
+</blockquote> -->
+
+  <script src="assets/js/codemirror/codemirror.min.js"></script>
+  <script src="assets/js/codemirror/javascript.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common-script.js"></script>
+</body>
+
+</html>

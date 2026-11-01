@@ -314,8 +314,9 @@ country = "India"</textarea>
 <p>Python allows you to use <b>single quotes</b> or <b>double quotes</b>:</p>
 <textarea class="code-editor">
 name = "Alex"
-city = 'Kolkata'</textarea>
-<p>Both are valid and create a <code><b>str</b></code> object.</p>
+city = 'Kolkata'
+name = '''Rahul'''</textarea>
+<p>All are valid and create a <code><b>str</b></code> object.</p>
 
 <p class="mt-3"><b>2. Check Type</b></p>
 <p>You can check the datatype using <code><b>type()</b></code>:</p>
@@ -404,7 +405,7 @@ Character:  P  y  t  h  o  n
 print(text[1:5:2])  
 # yh
 # start = 1 → start from index 1
-# stop = 5 → stop before index 2
+# stop = 5 → stop before index 5
 # step = 2 → move 2 positions each time
 
 Index:      0  1  2  3  4  5
@@ -551,7 +552,17 @@ name = "Alex"
 age = 25
 message = f"My name is {name} and I am {age} years old."
 print(message)
-# output: My name is Alex and I am 25 years old.</textarea>
+# output: My name is Alex and I am 25 years old.
+
+# Without f-strings:
+# output: My name is {name} and I am {age} years old.
+
+# Other ways to format strings:
+# Using str.format()
+message = "My name is {name} and I am {age} years old."
+print(message.format(name=name, age=age)) # My name is Alex and I am 25 years old.
+
+</textarea>
 
 
 <br/>
