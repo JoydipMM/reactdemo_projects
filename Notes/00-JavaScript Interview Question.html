@@ -24,7 +24,7 @@
 <hr />
 <h5><b>What is JavaScript?</b></h5>
 <hr />
-<p>JavaScript (JS) is a <b>high-level, dynamic, interpreted programming language</b> primarily used to make web pages interactive and dynamic.</p>
+<p>JavaScript (JS) is a <b>Single-Threaded</b>, <b>synchronous</b>, <b>high-level, dynamic, interpreted programming language</b> primarily used to make web pages interactive and dynamic.</p>
 <p><b><i>Examples:</i></b></p>
 <ul class="list-group list-group-flush mx-4 mb-3">
   <li>Display dynamic content.</li>
@@ -35,7 +35,40 @@
   <li>Update webpage content without reloading.</li>
   <li>Build complete web applications.</li>
 </ul>
-<h6><b>High-level programming language</b></h6>
+<h6><b>Single-Threaded</b></h6>
+<p>Single-<code><b>Threaded</b></code> means JavaScript executes one piece of synchronous JavaScript code at a time using a single call stack.</p>
+
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>What is a Thread?</b> <p>A thread is the smallest unit of execution within a process. A thread is responsible for executing instructions or tasks in a program.</p>
+  </code>
+</blockquote>
+
+<h6 class="mt-3"><b><i>Consider this example:</i></b></h6>
+<textarea class="code-editor">console.log("First");
+console.log("Second");
+console.log("Third");
+
+/* Result:
+First
+Second
+Third
+*/</textarea>
+
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Explaination</b> <p>1. Executes console.log("First").<br/>
+2. Executes console.log("Second").<br/>
+3. Executes console.log("Third").</p>
+  </code>
+</blockquote>
+
+<h6 class="mt-3"><b>Synchronous Programming</b></h6>
+Synchronous programming is an execution model in which statements are executed one after another. The next statement waits until the current statement finishes executing. In simple words, JavaScript executes one task at a time on its main <code><b>call stack</b></code>. <br/>
+<i style="color:rgb(73, 73, 73)"><b>However, JavaScript also supports asynchronous programming using mechanisms such as <code>callbacks</code>, <code>Promises</code>, <code>async/await</code> and the <code>Event Loop</code>.</b></i></p>
+
+
+<h6 class="mt-3"><b>High-level programming language</b></h6>
 <p>A high-level programming language is a language that is easy for humans to read, write and understand compared to low-level languages such as Assembly. It hides many hardware-level complexities, so developers can focus on writing application logic rather than managing hardware directly.</p>
 <textarea id="editor">
 let a = 10;
