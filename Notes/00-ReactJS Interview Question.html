@@ -1,0 +1,302 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React.js Interview Questions</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    h5 code {
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+<hr />
+<h2><b>React.js Interview Questions</b></h2>
+<hr />
+
+<br/>
+<br/>
+
+
+<hr />
+<h5><b>What is React.js?</b></h5>
+<hr />
+<p>React is a JavaScript <a class="text-primary" href="#library"><i>library</i></a> for building interactive user interfaces using reusable components. It follows a declarative programming approach, where developers describe the desired UI, and React manages the necessary DOM updates when application data changes.</p>
+<p>It was originally developed by Facebook (now Meta) and is maintained by Meta and the React community. React allows developers to build applications using reusable, independent components.</p> 
+<br/>
+
+
+<hr />
+<h5><b>Traditional JavaScript approach</b></h5>
+<hr />
+<p>Suppose you want to display a user profile:</p>
+<textarea id="editor">// HTML
+  <div id="user">
+    <h2>John</h2>
+    <p>Frontend Developer</p>
+</div>
+
+// JS
+document.getElementById("user").innerHTML = `
+    <h2>David</h2>
+    <p>Frontend Developer</p>
+`;</textarea>
+<p>Here, we manually manipulate the DOM.</p>
+<br/>
+
+<hr />
+<h5><b>React approach</b></h5>
+<hr />
+<textarea class="code-editor">// Component.jsx
+function UserProfile() {
+    const name = "David";
+    const designation = "Frontend Developer";
+    return (
+        <div>
+            <h2>{name}</h2>
+            <p>{designation}</p>
+        </div>
+    );
+}
+
+export default UserProfile;</textarea>
+<p>React handles updating the UI when the relevant state or props change.</p> 
+<br/>
+
+
+<hr />
+<h5><b>Library vs Framework</b></h5>
+<hr />
+<p>Both libraries and frameworks provide reusable functionality, but they differ in how application execution is controlled.</p>
+
+<h5 class="mt-3"><b>Library</b></h5>
+<p>A library is a collection of reusable functions and tools that developers call when needed.</p>
+<p>We control the application flow. <i><b>Example</b>: React is a UI library.</i></p>
+<p class="mt-3"><b>Example:</b></p>
+<textarea class="code-editor">function App() {
+    return <h1>Hello World</h1>;
+}</textarea>
+<p><b>Here we decide:</b></p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>How to structure your application.</li>
+  <li>Which routing library to use.</li>
+  <li>Which state management library to use.</li>
+  <li>How to organize your code.</li>
+</ul>
+
+<h5 class="mt-3"><b>Framework</b></h5>
+<p>A framework provides a predefined structure and controls significant parts of the application lifecycle. It calls your code at appropriate points.</p>
+<p><b>Examples:</b></p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>Angular</li>
+  <li>Next.js</li>
+  <li>Vue.js</li>
+</ul>
+<br/>
+
+
+
+<hr />
+<h5><b>Virtual DOM</b></h5>
+<hr />
+<p>The <b>Virtual DOM</b> is an in-memory representation of the UI that React uses to determine which changes need to be applied to the actual DOM. <br/>It represents the structure of the UI using JavaScript objects.</p>
+
+<p class="mt-3"><b>Example</b></p>
+<p>We have a React component:</p>
+<textarea class="code-editor">function App() {
+    return (
+        <div>
+            <h1>Hello World</h1>
+            <p>Welcome to React</p>
+        </div>
+    );
+}</textarea>
+<p>Conceptually, React represents this UI using a tree structure.</p>
+<textarea class="code-editor">App
+ |
+ div
+ |
+ |---- h1
+ |      |
+ |      Hello World
+ |
+ |---- p
+        |
+        Welcome to React</textarea>
+<p>A simplified representation of the element tree could look like:</p>
+<textarea class="code-editor">{
+    type: "div",
+    props: {
+        children: [
+            {
+                type: "h1",
+                props: {
+                    children: "Hello World"
+                }
+            },
+            {
+                type: "p",
+                props: {
+                    children: "Welcome to React"
+                }
+            }
+        ]
+    }
+}</textarea>
+<p><i>This is an illustrative representation, not the exact internal structure React uses.</i></p>
+<br/>
+
+
+
+
+<hr />
+<h5><b>Real DOM vs Virtual DOM</b></h5>
+<hr />
+<p></p>
+<br/>
+
+
+
+
+<hr />
+<h5><b>Why Use React?</b></h5>
+<hr />
+<p></p>
+<br/>
+
+
+
+<!-- <ul class="list-group list-group-flush mx-4 mb-3">
+  <li></li>
+</ul> -->
+
+<!-- <blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>What is a Thread?</b> <p>A thread is the smallest unit of execution within a process. A thread is responsible for executing instructions or tasks in a program.</p>
+  </code>
+</blockquote> -->
+
+
+
+<!-- <hr />
+<h5><b><code>Chrome DevTools</code>: Practical Performance Debugging</b></h5>
+<hr />
+<p>text</p>
+<br/>  -->
+
+
+
+
+<!-- <ul class="list-group list-group-flush mx-4">
+  <li><b>Server-side rendering</b> : <code><b>SSR</b></code></li>
+  <li><b>Static site generation</b> : <code><b>SSG</b></code></li>
+  <li><b>Incremental Static Regeneration</b> : <code><b>ISR</b></code></li>
+  <li><b>Static export</b> : <code><b>SSR</b></code></li>
+  <li><b>Server Component</b></li>
+  <li><b>Server Actions</b></li>
+  <li><b>Built-in Routing</b></li>
+  <li><b>API routes</b></li>
+  <li><b>caching</b></li>
+  <li><b>Full-Stack Capabilities</b></li>
+  <li><b>Performance Optimizations: 
+    <code><b>Image optimization</b></code>, 
+    <code><b>Streaming</b></code>, 
+    <code><b>Lazy Loading</b></code>, 
+    <code><b>Route-level caching</b></code>, 
+    <code><b>Partial Prerendering</b></code>
+  </b></li>
+</ul>
+<br/> -->
+
+
+<!-- <hr />
+<h5><b>What is Routing?</b></h5>
+<hr />
+<p>Routing is the mechanism that maps a URL to a specific page, component, or resource in an application. When a user visits a URL, the routing system determines which page should be rendered.</p>
+<br/> -->
+
+
+<!-- <textarea id="editor">
+
+</textarea>
+<br/> -->
+
+
+
+
+<!-- <hr />
+<h5><b>2. Dynamic Routing</b></h5>
+<hr />
+<p>Routes with dynamic parameters.</p>
+<textarea class="code-editor">
+
+</textarea>
+<br/> -->
+
+
+<!-- <blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Important Note:</b> <p>If we don't have any segments then it will show <code><b>404 page</b></code></p>
+    <p>Example: If the URL is <code><b>http://localhost:3000/docs</b></code> then it will show <code><b>404 page</b></code></p>
+<textarea class="code-editor">
+  app/
+  └── docs/
+    └── [...slug]/
+        └── page.tsx
+</textarea>
+<p><i>Example URL: http://localhost:3000/docs</i>: Show the <code><b>404 page</b></code></p><br/>
+<p>Or if we have a <code><b>page.jsx/tsx</b></code> inside <code><b>docs</b></code> folder then it will show the <code><b>Doc page</b></code></p>
+<textarea class="code-editor">
+app/
+└── docs/
+    └── page.tsx // this page
+    └── [...slug]/
+        └── page.tsx
+
+// app/docs/page.tsx
+const page = () => {
+  return (
+    <div>Docs Page</div>
+  )
+}
+export default page;
+</textarea>
+<p><i>Example URL: http://localhost:3000/docs</i>: Show the <code><b>Docs page</b></code></p>
+<br/>
+<p><b>Solution</b></p>
+<p><b>1.</b> We can create <code><b>page.tsx</b></code> inside <code><b>docs</b></code> folder to avoid this issue</p>
+<p><b>2.</b> We can use <code><b>Optional Catch-All Route</b></code> to fixed this issue</p>
+  </code>
+</blockquote>
+<br/> -->
+
+
+<!-- 
+<hr />
+<h5><b>Craete a Server</b></h5>
+<hr />
+<p>We create <code><b>index.js</b></code> file inside <code><b>src</b></code> folder</p>
+<textarea class="code-editor">
+
+</textarea>
+<br/>
+<p><b>Run this command:</b> <code><b>npm run dev</b></code></p>
+<p>If all things are fine then we will see this message <code><b>Server running on port 5001</b></code> in <b><i>terminal</i></b></p>
+<br/> -->
+
+
+
+<!-- <blockquote class="blockquote">
+  <code class="mark" style="width:100%; display:inline-block">npm run dev</code>
+</blockquote> -->
+
+  <script src="assets/js/codemirror/codemirror.min.js"></script>
+  <script src="assets/js/codemirror/javascript.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common-script.js"></script>
+</body>
+
+</html>
