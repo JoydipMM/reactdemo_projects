@@ -169,6 +169,111 @@ export default UserProfile;</textarea>
 
 
 
+<hr />
+<h5><b>List, add, edit and delete exiting static array with <code>useState</code></b></h5>
+<hr />
+<p><b>Code explain</b></p>
+<textarea class="code-editor">import React, { useState } from 'react'
+
+export default function SimpleArrayModify() {
+
+    const [friends, setFriends] = useState(["Alex", "John"]);
+
+    // add new static name
+    const addNewEvent = () => {
+
+        // Long Way -----------------------------------------------------
+        // 1. Create a new array using the spread operator "...friends".
+        // 2. Copy all existing elements from the friends array.
+        // 3. Append the new names at the end of the copied elements.
+        // 4. Update the React state with the newly created array.
+        const newNames = [...friends, "Dipen", "Arjun"] 
+        // assign the new array to "setFriends"
+        setFriends(newNames);
+
+        // short way ----------------------------------------------------
+        // setFriends([...friends, "Dipen", "Arjun"])
+    }
+
+
+    // update array item
+    const updateEvent = () => {
+
+        // Long Way -----------------------------------------------------
+        // 1. Use map() to iterate over every element in the array.
+        // 2. Check each element against the condition.
+        // 3. If the condition matches, return the updated value.
+        // 4. Otherwise, return the original value.
+        // 5. map() creates a new array without modifying the original array.
+        // 6. Update the React state with the newly created array.
+        // ** Important: map() always returns a new array with the same number of elements as the original array.
+        const updateName = friends.map((f) => {
+            if(f === "John"){
+                return "Dinesh";
+            }else{
+                return f;
+            }
+        })
+        // update the new array in state variable
+        setFriends(updateName); 
+
+        // short way ----------------------------------------------------
+        // setFriends(friends.map(f => f === "John" ? "Dinesh" : f))
+    }
+
+
+    // delete any array item
+    const deleteEvent = () => {
+        // 1. Use filter() to iterate over the array elements.
+        // 2. Check each element against the deletion condition.
+        // 3. Return true for elements that should be retained.
+        // 4. Return false for elements that should be removed.
+        // 5. filter() creates a new array containing only the retained elements.
+        // 6. Update the React state with the newly created array.
+        // ** Important: filter() returns a new array containing only the elements that satisfy the condition.
+        const updatedNames = friends.filter(f => f !== "Alex");
+        setFriends(updatedNames)
+    }
+
+    const updateEvent2 = () => {
+      //setFriends(prev => [...prev, "Raja"])
+      const data = friends.push("Tuhin");
+      setFriends(data);
+    }
+
+
+  return (
+    <div>
+      <h3>List Items</h3>
+      <ul>
+        {friends.map((f) => (<li key={crypto.randomUUID()}>{f}</li>))}
+      </ul>
+      <button onClick={addNewEvent}>Add New</button>&nbsp;
+      <button onClick={updateEvent}>Update</button>&nbsp;
+      <button onClick={deleteEvent}>Delete</button>&nbsp;
+      <button onClick={updateEvent2}>Update with push Method</button>&nbsp;
+    </div>
+  )
+}</textarea>
+<br/>
+
+
+
+<hr />
+<h5><b>Why do we create a new array?</b></h5>
+<hr />
+<p>React recommends treating state arrays as <i>immutable.</i></p>
+<p><b>For example, avoid:</b></p>
+<textarea class="code-editor">friends.push("Dipen");
+setFriends(friends);</textarea>
+<p><code>this will give error:</code></p>
+<textarea class="code-editor">SimpleArrayModify.jsx:74 Uncaught TypeError: friends.map is not a function at SimpleArrayModify (SimpleArrayModify.jsx:74:18)</textarea>
+<p><b>Why</b></p>
+<p>Because <code>push()</code> modifies the existing array instead of creating a new one. <i>React uses state identity comparisons to determine whether an update requires rendering. Mutating the existing array can prevent React from detecting the change as expected. Instead we creates a new array reference like below.</i></p>
+<textarea class="code-editor">setFriends(prevFriends => [...prevFriends, "Dipen"]);</textarea>
+<br/>
+
+
 
 
 
