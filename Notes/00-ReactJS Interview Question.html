@@ -276,6 +276,277 @@ setFriends(friends);</textarea>
 
 
 
+<hr />
+<h5><b>Add, Edit and Delete array item by User input with useState</b></h5>
+<hr />
+<textarea class="code-editor">
+import React, { useState } from 'react'
+
+export default function UserGivenNameArray() {
+
+    // Store the friends array in React state.
+    const [friends, setFriends] = useState(["Alex", "John"]);
+
+    // Store the value entered by the user in the input field.
+    const [addName, setAddName] = useState("");
+
+    // Store the original name of the item being edited.
+    // This helps us identify which array item needs to be updated.
+    const [editedName, setEditedName] = useState("");
+
+    // Store input validation information.
+    // msg: Error message to display.
+    // visible: Controls whether the error message is displayed.
+    const [textError, setTextError] = useState({
+        msg: "Required",
+        visible: false
+    });
+
+    // Track whether the application is in Add mode or Edit mode.
+    // false = Add mode
+    // true = Edit mode
+    const [isEditable, setIsEditable] = useState(false);
+
+
+    // ---------------------------------------------------------
+    // GET USER INPUT
+    // ---------------------------------------------------------
+    const userInputEvent = (e) => {
+
+        // Get the current value entered by the user.
+        const inputText = e.target.value;
+
+        // Always update the input state.
+        // This keeps the input field synchronized with React state.
+        setAddName(inputText);
+
+        // Check whether the input contains a non-whitespace character.
+        if (inputText.trim()) {
+
+            // Input is valid, so hide the error message.
+            setTextError({ ...textError, visible: false });
+
+        } else {
+
+            // Input is empty or contains only spaces.
+            // Show the required validation message.
+            setTextError({ ...textError, visible: true });
+        }
+    };
+
+
+    // ---------------------------------------------------------
+    // ADD NEW USER INPUT NAME
+    // ---------------------------------------------------------
+    const addNewInputEvent = () => {
+
+        // Validate the input before adding a new name.
+        // trim() removes leading and trailing whitespace.
+        if (addName.trim() === "") {
+
+            // If input is empty, display the validation message.
+            setTextError({ ...textError, visible: true });
+
+        } else {
+
+            // Create a new array using the spread operator.
+            // Copy all existing friends into the new array.
+            // Append the user's new name at the end.
+            const newNames = [...friends, addName.trim()];
+
+            // Hide the validation message after successful validation.
+            setTextError({ ...textError, visible: false });
+
+            // Update the friends state with the newly created array.
+            setFriends(newNames);
+
+            // Clear the input field after successfully adding the name.
+            setAddName("");
+        }
+    };
+
+
+    // ---------------------------------------------------------
+    // EDIT EXISTING ARRAY ITEM
+    // ---------------------------------------------------------
+    const editItemEvent = (name) => {
+
+        // Populate the input field with the selected friend's name.
+        setAddName(name);
+
+        // Store the original name.
+        // We will use this value to identify the item during updating.
+        setEditedName(name);
+
+        // Enable edit mode.
+        // The Add New button will be replaced by Update and Cancel buttons.
+        setIsEditable(true);
+    };
+
+
+    // ---------------------------------------------------------
+    // UPDATE EXISTING ARRAY ITEM
+    // ---------------------------------------------------------
+    const updateEvent = () => {
+
+        // Validate the input before updating the existing name.
+        if (addName.trim() === "") {
+
+            // Display the required validation message.
+            setTextError({ ...textError, visible: true });
+            return;
+        }
+
+        // Use map() to iterate over every element in the friends array.
+        const updateName = friends.map((f) => {
+
+            // Compare each friend name with the originally selected name.
+            if (f === editedName) {
+
+                // If the condition matches, return the updated name.
+                return addName.trim();
+
+            } else {
+
+                // If the condition does not match,
+                // return the original name without modification.
+                return f;
+            }
+        });
+
+        // Update the friends state with the newly created array.
+        setFriends(updateName);
+
+        // Disable edit mode after successfully updating the name.
+        setIsEditable(false);
+
+        // Clear the input field.
+        setAddName("");
+
+        // Reset the original edited name.
+        setEditedName("");
+
+        // Hide any existing validation message.
+        setTextError({ ...textError, visible: false });
+    };
+
+
+    // ---------------------------------------------------------
+    // CANCEL EDIT OPERATION
+    // ---------------------------------------------------------
+    const cancelEvent = () => {
+
+        // Clear the input field and discard the unsaved changes.
+        setAddName("");
+
+        // Disable edit mode and return to Add mode.
+        setIsEditable(false);
+
+        // Clear the stored original name.
+        setEditedName("");
+
+        // Hide any existing validation message.
+        setTextError({ ...textError, visible: false });
+    };
+
+
+    // ---------------------------------------------------------
+    // DELETE EXISTING ARRAY ITEM
+    // ---------------------------------------------------------
+    const deleteEvent = (name) => {
+
+        // Use filter() to iterate over all friends.
+        // Keep only the elements whose names do not match the given name.
+        // This creates a new array without the selected name.
+        const updatedNames = friends.filter(f => f !== name);
+
+        // Update the friends state with the filtered array.
+        setFriends(updatedNames);
+    };
+
+
+    // ---------------------------------------------------------
+    // COMPONENT UI
+    // ---------------------------------------------------------
+    return (
+        <div>
+
+            <h3>List Items</h3>
+
+            {/* Display all friends from the friends array. */}
+            <ul>
+                {friends.map((f) => (
+
+                    <li key={crypto.randomUUID()}>
+
+                        {/* Display the friend's name. */}
+                        {f} &nbsp;
+
+                        {/* Populate the input field with the selected name. */}
+                        <button onClick={ () => editItemEvent(f)}>
+                            Edit
+                        </button>
+
+                        &nbsp;
+
+                        {/* Remove the selected name from the friends array. */}
+                        <button onClick={ () => deleteEvent(f)}>
+                            Delete
+                        </button>
+
+                    </li>
+                ))}
+            </ul>
+
+            {/* Controlled input: React state controls the input value. */}
+            <div>
+                <input
+                    type="text"
+                    value={addName}
+                    onChange={userInputEvent}
+                    placeholder="Enter name"
+                />
+            </div>
+
+            {/* Display the validation message when visible is true. */}
+            <div style={{ color: "red" }}>
+                {textError.visible ? textError.msg : ""}
+            </div>
+
+            <br />
+
+            {/* Conditional rendering:
+                Add mode  = Show Add New button.
+                Edit mode = Show Update and Cancel buttons.
+            */}
+            {!isEditable ? (
+
+                <button onClick={addNewInputEvent}>
+                    Add New
+                </button>
+
+            ) : (
+
+                <>
+                    <button onClick={updateEvent}>
+                        Update
+                    </button>
+
+                    &nbsp;
+
+                    <button onClick={cancelEvent}>
+                        Cancel
+                    </button>
+                </>
+
+            )}
+
+        </div>
+    );
+}</textarea>
+<br/>
+
+
 
 
 <hr />
