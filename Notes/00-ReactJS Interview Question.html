@@ -865,7 +865,87 @@ ReRenderHookChildOne.jsx:4 Re-Render hook child one</textarea>
 <br/>
 
 
+<hr />
+<h5><b><code>useMemo</code> Hook</b></h5>
+<hr />
+<p><code>useMemo</code> is a React Hook that memoizes the result of a calculation and returns the cached value between renders as long as its dependencies remain unchanged. When any dependency changes, React recalculates the value and stores the updated result.</p>
 
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Memoizes (Verb)</b> <p> Memoizes means stores or caches a result so that it can be reused later instead of calculating it again. </p>
+    <b>Memoization (Noun)</b> <p> Memoization is a programming optimization technique in which the result of a calculation or function is cached and reused when the same inputs are provided.</p>
+
+    <b>Easy way to remember</b>
+    <ul class="list-group list-group-flush mx-4 mb-1" style="color:black">
+      <li><b>Memoization</b> = The technique.</li>
+      <li><b>Memoizes</b> = The action.</li>
+      <li><b>Memoized</b> = The cached result.</li>
+    </ul>
+    <p><b>"useMemo()</b> uses memoization to cache the result of a calculation and reuse the memoized value between renders when its dependencies haven't changed."</p>
+  </code>
+</blockquote>
+<p class="mt-3"><b>Example without useMemo()</b></p>
+<textarea class="code-editor">// UseMemoHook.jsx
+import React, { useState, useMemo } from 'react'
+
+export default function UseMemoHook() {
+    const [count, setCount] = useState(0)
+    const [number, setNumber] = useState(2)
+
+    const expensiveCalculation = (num) => {
+        console.log("expensive Calculation called");
+        return num * 100;
+    };
+
+    const result = expensiveCalculation(number);
+
+  return (
+    <div>
+        <h2>UseMemoHook</h2>
+        <h2>Result: {result}</h2>
+        <div><p><b>Count:</b> {count} &nbsp; &nbsp; <button onClick={ () => setCount(count + 1)}>Increase Count</button></p> </div>
+        <div><p><b>Number:</b> {number} &nbsp; &nbsp; <button onClick={ () => setNumber(number + 1)}>Increase Number</button></p></div>
+    </div>
+  )
+}</textarea>
+<p class="mt-3"><b>Console Output:</b></p>
+<textarea class="code-editor">expensive Calculation called
+expensive Calculation called
+expensive Calculation called</textarea>
+<p>When the app load first time console will print "expensive Calculation called" after that whenever we click on any button, every time "expensive Calculation called" will print in console. Because without <b>useMemo()</b>, <b>expensiveCalculation(number)</b> executes on every component render, even when only count changes.</p>
+
+<p class="mt-3"><b>Example with useMemo()</b></p>
+<textarea class="code-editor">import React, { useState, useMemo } from 'react'
+
+export default function UseMemoHook() {
+    const [count, setCount] = useState(0)
+    const [number, setNumber] = useState(2)
+
+    const expensiveCalculation = (num) => {
+        console.log("expensive Calculation called");
+        return num * 100;
+    };
+
+    //const result = expensiveCalculation(number);
+
+    const result = useMemo(() => {
+        return expensiveCalculation(number);
+    }, [number]);
+
+  return (
+    <div>
+        <h2>UseMemoHook</h2>
+        <h2>Result: {result}</h2>
+        <div><p><b>Count:</b> {count} &nbsp; &nbsp; <button onClick={() => setCount(count + 1)}>Increase Count</button></p> </div>
+        <div><p><b>Number:</b> {number} &nbsp; &nbsp; <button onClick={() => setNumber(number + 1)}>Increase Number</button></p></div>
+    </div>
+  )
+}</textarea>
+<p class="mt-3"><b>Console Output:</b></p>
+<textarea class="code-editor">expensive Calculation called
+expensive Calculation called</textarea>
+<p>When the app bload first time console will print "expensive Calculation called" after that when we clicking Increase Count: Component re-renders, but expensiveCalculation() does not execute again. But clicking Increase Number: Component re-renders, and expensiveCalculation() executes because its dependency changed.</p>
+<br/>
 
 
 
