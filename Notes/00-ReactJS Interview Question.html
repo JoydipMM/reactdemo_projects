@@ -201,6 +201,108 @@ export default function UseStateWithObject() {
     <b>Result:</b> <p>Result: When we click on the <b>Edit</b> button then it will update the <b>ratings</b> value to <b>100</b> but the <b>title</b> value will remain same as <b>Equalizer 3</b></p>
   </code>
 </blockquote>
+<hr />
+<h5><b>List, add, edit and delete exiting static array with <code>useState</code></b></h5>
+<hr />
+<p><b>Code explain</b></p>
+<textarea class="code-editor">import React, { useState } from 'react'
+
+export default function SimpleArrayModify() {
+
+    const [friends, setFriends] = useState(["Alex", "John"]);
+
+    // add new static name
+    const addNewEvent = () => {
+
+        // Long Way -----------------------------------------------------
+        // 1. Create a new array using the spread operator "...friends".
+        // 2. Copy all existing elements from the friends array.
+        // 3. Append the new names at the end of the copied elements.
+        // 4. Update the React state with the newly created array.
+        const newNames = [...friends, "Dipen", "Arjun"] 
+        // assign the new array to "setFriends"
+        setFriends(newNames);
+
+        // short way ----------------------------------------------------
+        // setFriends([...friends, "Dipen", "Arjun"])
+    }
+
+
+    // update array item
+    const updateEvent = () => {
+
+        // Long Way -----------------------------------------------------
+        // 1. Use map() to iterate over every element in the array.
+        // 2. Check each element against the condition.
+        // 3. If the condition matches, return the updated value.
+        // 4. Otherwise, return the original value.
+        // 5. map() creates a new array without modifying the original array.
+        // 6. Update the React state with the newly created array.
+        // ** Important: map() always returns a new array with the same number of elements as the original array.
+        const updateName = friends.map((f) => {
+            if(f === "John"){
+                return "Dinesh";
+            }else{
+                return f;
+            }
+        })
+        // update the new array in state variable
+        setFriends(updateName); 
+
+        // short way ----------------------------------------------------
+        // setFriends(friends.map(f => f === "John" ? "Dinesh" : f))
+    }
+
+
+    // delete any array item
+    const deleteEvent = () => {
+        // 1. Use filter() to iterate over the array elements.
+        // 2. Check each element against the deletion condition.
+        // 3. Return true for elements that should be retained.
+        // 4. Return false for elements that should be removed.
+        // 5. filter() creates a new array containing only the retained elements.
+        // 6. Update the React state with the newly created array.
+        // ** Important: filter() returns a new array containing only the elements that satisfy the condition.
+        const updatedNames = friends.filter(f => f !== "Alex");
+        setFriends(updatedNames)
+    }
+
+    const updateEvent2 = () => {
+      //setFriends(prev => [...prev, "Raja"])
+      const data = friends.push("Tuhin");
+      setFriends(data);
+    }
+
+
+  return (
+    <div>
+      <h3>List Items</h3>
+      <ul>
+        {friends.map((f) => (<li key={crypto.randomUUID()}>{f}</li>))}
+      </ul>
+      <button onClick={addNewEvent}>Add New</button>&nbsp;
+      <button onClick={updateEvent}>Update</button>&nbsp;
+      <button onClick={deleteEvent}>Delete</button>&nbsp;
+      <button onClick={updateEvent2}>Update with push Method</button>&nbsp;
+    </div>
+  )
+}</textarea>
+<br/>
+
+
+
+<hr />
+<h5><b>Why do we create a new array?</b></h5>
+<hr />
+<p>React recommends treating state arrays as <i>immutable.</i></p>
+<p><b>For example, avoid:</b></p>
+<textarea class="code-editor">friends.push("Dipen");
+setFriends(friends);</textarea>
+<p><code>this will give error:</code></p>
+<textarea class="code-editor">SimpleArrayModify.jsx:74 Uncaught TypeError: friends.map is not a function at SimpleArrayModify (SimpleArrayModify.jsx:74:18)</textarea>
+<p><b>Why</b></p>
+<p>Because <code>push()</code> modifies the existing array instead of creating a new one. <i>React uses state identity comparisons to determine whether an update requires rendering. Mutating the existing array can prevent React from detecting the change as expected. Instead we creates a new array reference like below.</i></p>
+<textarea class="code-editor">setFriends(prevFriends => [...prevFriends, "Dipen"]);</textarea>
 <br/>
 
 
@@ -282,11 +384,336 @@ function ComponentOne() {
     <>
       <h2>Count: {count}</h2>
       <button onClick={updateCount}>Update Count</button>
+<h5><b>Add, Edit and Delete array item by User input with useState</b></h5>
+<hr />
+<textarea class="code-editor">
+import React, { useState } from 'react'
+
+export default function UserGivenNameArray() {
+
+    // Store the friends array in React state.
+    const [friends, setFriends] = useState(["Alex", "John"]);
+
+    // Store the value entered by the user in the input field.
+    const [addName, setAddName] = useState("");
+
+    // Store the original name of the item being edited.
+    // This helps us identify which array item needs to be updated.
+    const [editedName, setEditedName] = useState("");
+
+    // Store input validation information.
+    // msg: Error message to display.
+    // visible: Controls whether the error message is displayed.
+    const [textError, setTextError] = useState({
+        msg: "Required",
+        visible: false
+    });
+
+    // Track whether the application is in Add mode or Edit mode.
+    // false = Add mode
+    // true = Edit mode
+    const [isEditable, setIsEditable] = useState(false);
+
+
+    // ---------------------------------------------------------
+    // GET USER INPUT
+    // ---------------------------------------------------------
+    const userInputEvent = (e) => {
+
+        // Get the current value entered by the user.
+        const inputText = e.target.value;
+
+        // Always update the input state.
+        // This keeps the input field synchronized with React state.
+        setAddName(inputText);
+
+        // Check whether the input contains a non-whitespace character.
+        if (inputText.trim()) {
+
+            // Input is valid, so hide the error message.
+            setTextError({ ...textError, visible: false });
+
+        } else {
+
+            // Input is empty or contains only spaces.
+            // Show the required validation message.
+            setTextError({ ...textError, visible: true });
+        }
+    };
+
+
+    // ---------------------------------------------------------
+    // ADD NEW USER INPUT NAME
+    // ---------------------------------------------------------
+    const addNewInputEvent = () => {
+
+        // Validate the input before adding a new name.
+        // trim() removes leading and trailing whitespace.
+        if (addName.trim() === "") {
+
+            // If input is empty, display the validation message.
+            setTextError({ ...textError, visible: true });
+
+        } else {
+
+            // Create a new array using the spread operator.
+            // Copy all existing friends into the new array.
+            // Append the user's new name at the end.
+            const newNames = [...friends, addName.trim()];
+
+            // Hide the validation message after successful validation.
+            setTextError({ ...textError, visible: false });
+
+            // Update the friends state with the newly created array.
+            setFriends(newNames);
+
+            // Clear the input field after successfully adding the name.
+            setAddName("");
+        }
+    };
+
+
+    // ---------------------------------------------------------
+    // EDIT EXISTING ARRAY ITEM
+    // ---------------------------------------------------------
+    const editItemEvent = (name) => {
+
+        // Populate the input field with the selected friend's name.
+        setAddName(name);
+
+        // Store the original name.
+        // We will use this value to identify the item during updating.
+        setEditedName(name);
+
+        // Enable edit mode.
+        // The Add New button will be replaced by Update and Cancel buttons.
+        setIsEditable(true);
+    };
+
+
+    // ---------------------------------------------------------
+    // UPDATE EXISTING ARRAY ITEM
+    // ---------------------------------------------------------
+    const updateEvent = () => {
+
+        // Validate the input before updating the existing name.
+        if (addName.trim() === "") {
+
+            // Display the required validation message.
+            setTextError({ ...textError, visible: true });
+            return;
+        }
+
+        // Use map() to iterate over every element in the friends array.
+        const updateName = friends.map((f) => {
+
+            // Compare each friend name with the originally selected name.
+            if (f === editedName) {
+
+                // If the condition matches, return the updated name.
+                return addName.trim();
+
+            } else {
+
+                // If the condition does not match,
+                // return the original name without modification.
+                return f;
+            }
+        });
+
+        // Update the friends state with the newly created array.
+        setFriends(updateName);
+
+        // Disable edit mode after successfully updating the name.
+        setIsEditable(false);
+
+        // Clear the input field.
+        setAddName("");
+
+        // Reset the original edited name.
+        setEditedName("");
+
+        // Hide any existing validation message.
+        setTextError({ ...textError, visible: false });
+    };
+
+
+    // ---------------------------------------------------------
+    // CANCEL EDIT OPERATION
+    // ---------------------------------------------------------
+    const cancelEvent = () => {
+
+        // Clear the input field and discard the unsaved changes.
+        setAddName("");
+
+        // Disable edit mode and return to Add mode.
+        setIsEditable(false);
+
+        // Clear the stored original name.
+        setEditedName("");
+
+        // Hide any existing validation message.
+        setTextError({ ...textError, visible: false });
+    };
+
+
+    // ---------------------------------------------------------
+    // DELETE EXISTING ARRAY ITEM
+    // ---------------------------------------------------------
+    const deleteEvent = (name) => {
+
+        // Use filter() to iterate over all friends.
+        // Keep only the elements whose names do not match the given name.
+        // This creates a new array without the selected name.
+        const updatedNames = friends.filter(f => f !== name);
+
+        // Update the friends state with the filtered array.
+        setFriends(updatedNames);
+    };
+
+
+    // ---------------------------------------------------------
+    // COMPONENT UI
+    // ---------------------------------------------------------
+    return (
+        <div>
+
+            <h3>List Items</h3>
+
+            {/* Display all friends from the friends array. */}
+            <ul>
+                {friends.map((f) => (
+
+                    <li key={crypto.randomUUID()}>
+
+                        {/* Display the friend's name. */}
+                        {f} &nbsp;
+
+                        {/* Populate the input field with the selected name. */}
+                        <button onClick={ () => editItemEvent(f)}>
+                            Edit
+                        </button>
+
+                        &nbsp;
+
+                        {/* Remove the selected name from the friends array. */}
+                        <button onClick={ () => deleteEvent(f)}>
+                            Delete
+                        </button>
+
+                    </li>
+                ))}
+            </ul>
+
+            {/* Controlled input: React state controls the input value. */}
+            <div>
+                <input
+                    type="text"
+                    value={addName}
+                    onChange={userInputEvent}
+                    placeholder="Enter name"
+                />
+            </div>
+
+            {/* Display the validation message when visible is true. */}
+            <div style={{ color: "red" }}>
+                {textError.visible ? textError.msg : ""}
+            </div>
+
+            <br />
+
+            {/* Conditional rendering:
+                Add mode  = Show Add New button.
+                Edit mode = Show Update and Cancel buttons.
+            */}
+            {!isEditable ? (
+
+                <button onClick={addNewInputEvent}>
+                    Add New
+                </button>
+
+            ) : (
+
+                <>
+                    <button onClick={updateEvent}>
+                        Update
+                    </button>
+
+                    &nbsp;
+
+                    <button onClick={cancelEvent}>
+                        Cancel
+                    </button>
+                </>
+
+            )}
+
+        </div>
+    );
+}</textarea>
+<br/>
+
+
+
+
+<hr />
+<h5><b>Portal in React?</b></h5>
+<hr />
+<p>In React, a <b>Portal (createPortal)</b> allows you to render a component's UI outside its parent DOM hierarchy while keeping it inside the same React application. It is useful when you want to render UI elements outside the normal component DOM structure.</p>
+<h6 class="mt-3">Example</h6>
+<p>First we make <code>PortalUI.jsx</code> component</p>
+<textarea class="code-editor">// PortalUI.jsx
+import { createPortal } from "react-dom" // 1. import createPortal.
+
+export default function PortalUI() {
+  return createPortal( // 2. Add "createPortal" with return
+    <div>
+      <h5>This is a portal UI</h5>
+    </div>, document.querySelector("#portal_element") // 3. Add comma (,) where our jsx code ended then add the element id in javascript query selector
+  )
+}</textarea>
+<p>Second, import the PortalUI component in App.js</p>
+<textarea class="code-editor">// App.jsx
+import PortalUI from './PortalUI'
+
+function App() {
+  return (
+    <>
+    <PortalUI />
     </>
   )
 }
 
 export default ComponentOne</textarea>
+export default App</textarea>
+<p>Third, open <b>index.html</b> and add the portal element before or after <b><div id="root"></div></b>, Like below:</p>
+<textarea class="code-editor">// index.html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react-basics</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="portal_element"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html></textarea>
+<h6 class="nt-3">Result:</h6>
+<textarea class="code-editor"><div id="root">
+  <div>
+    <h2>Copy text</h2><input type="text" value=""><button>Copy Text</button>
+  </div>
+</div>
+<div id="portal_element">
+  <div>
+    <h5>This is a portal UI</h5>
+  </div>
+</div></textarea>
+<br/>
 
 
 
