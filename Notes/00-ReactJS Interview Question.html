@@ -717,6 +717,158 @@ export default App</textarea>
 
 
 
+<hr />
+<h5><b><code>React.memo()</code> Hook</b></h5>
+<hr />
+<p><code>React.memo()</code> is a higher-order component (HOC) in React that optimizes performance by memoizing a functional component. It prevents the component from re-rendering due to its parent's re-render when its props have not changed. React compares the previous and new props using shallow comparison and skips the parent-driven render if they are equal.</p>
+<p class="mt-3"><b>Example without React.memo</b></p>
+<p>First We create Three components. <i>1.<b>ReRenderHook.jsx</b> ( Parent Component ) 2.<b>ReRenderHookChildOne.jsx</b> ( Child Component ) 3.<b>ReRenderHookChildTwo.jsx</b>  ( Child Component ) </i></p>
+<textarea class="code-editor">// ReRenderHook.jsx
+import React, { useState } from 'react'
+import ReRenderHookChildOne from './ReRenderHookChildOne'
+import ReRenderHookChildTwo from './ReRenderHookChildTwo'
+
+export default function ReRenderHook() {
+    const [count, setCount] = useState(0);
+    const countHandler = () => {
+        setCount(prev => prev + 1);
+    }
+    console.log("Re-Render hook main");
+  return (
+    <div>
+        <h3>ReRenderHook</h3>
+        <p style={{margin:"0px"}}><b>{ count }</b></p>
+        <button onClick={countHandler}>Click</button>
+        <br/>
+        <br/>
+        <ReRenderHookChildOne/>
+        <br/>
+        <ReRenderHookChildTwo/>
+    </div>
+  )
+}
+
+
+// ReRenderHookChildOne.jsx
+import React from 'react'
+
+export default function ReRenderHookChildOne() {
+    console.log("Re-Render hook child one");
+    return (
+        <div>ReRenderHookChildOne</div>
+    )
+}
+
+
+// ReRenderHookChildTwo.jsx
+import React from 'react'
+
+export default function ReRenderHookChildTwo() {
+    console.log("Re-Render hook child two");
+    return (
+        <div>ReRenderHookChildTwo</div>
+    )
+}</textarea>
+<p class="mt-3"><b>Console Output:</b></p>
+<textarea class="code-editor">Re-Render hook main
+ReRenderHookChildOne.jsx:4 Re-Render hook child one
+ReRenderHookChildTwo.jsx:4 Re-Render hook child two</textarea>
+<p>When the user clicks the <b>Click</b> button:</p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>The <b>count</b> state in the parent component (<b>ReRenderHook</b>) is updated using <b>setCount()</b>.</li>
+  <li>Updating the state triggers a re-render of the parent component.</li>
+  <li>During the parent's re-render, React also re-renders both child components (<b>ReRenderHookChildOne</b> and <b>ReRenderHookChildTwo</b>), even though they do not receive any props and their own state has not changed.</li>
+  <li>This happens because the child components are not memoized using <code>React.memo()</code>.</li>
+</ul>
+<p><b><i>Simple way:</i></b> Whenever the user clicks the button, the parent component's state (count) is updated, triggering a re-render of the parent component. Since React.memo() is not used, both child components also re-render, even though they do not receive any props and their internal state has not changed.</p>
+<p><i>Re-rendering a component does not necessarily mean React updates the actual DOM. React may re-render components, compare the resulting elements through reconciliation, and update only the DOM elements that require changes. This behavior occurs on every click of the button.</i></p>
+<p class="mt-3"><b>React follows a default rendering behavior:</b></p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>When a component's state changes, React schedules that component for re-rendering.</li>
+  <li>When the parent component re-renders, React normally re-renders its child components as well.</li>
+  <li>React does not automatically skip rendering a child component just because its props have not changed.</li>
+  <li>React.memo() can help prevent unnecessary child component re-renders when their props remain unchanged.</li>
+</ul>
+<p class="mt-3"><b>Example with React.memo</b></p>
+<textarea class="code-editor">// ReRenderHook.jsx
+Code will be same
+
+
+// ReRenderHookChildOne.jsx
+import React, { memo } from 'react'
+
+function ReRenderHookChildOne() {
+    console.log("Re-Render hook child one");
+    return (
+        <div>ReRenderHookChildOne</div>
+    )
+}
+
+export default memo(ReRenderHookChildOne);
+
+
+// ReRenderHookChildTwo.jsx
+import React, { memo } from 'react'
+
+function ReRenderHookChildTwo() {
+    console.log("Re-Render hook child two");
+    return (
+        <div>ReRenderHookChildTwo</div>
+    )
+}
+
+export default memo(ReRenderHookChildTwo);</textarea>
+<p class="mt-3"><b>Console Output:</b></p>
+<textarea class="code-editor">Re-Render hook main</textarea>
+<p>Whenever the user clicks the button, the parent component will re-render</p>
+<p class="mt-3"><b>Now if we pass the "count" state value to "ReRenderHookChildOne" component, then:</b></p>
+<textarea class="code-editor">// ReRenderHook.jsx
+import React, { useState } from 'react'
+import ReRenderHookChildOne from './ReRenderHookChildOne'
+import ReRenderHookChildTwo from './ReRenderHookChildTwo'
+
+export default function ReRenderHook() {
+    const [count, setCount] = useState(0);
+    const countHandler = () => {
+        setCount(prev => prev + 1);
+    }
+    console.log("Re-Render hook main");
+  return (
+    <div>
+        <h3>ReRenderHook</h3>
+        <p style={{margin:"0px"}}><b>{ count }</b></p>
+        <button onClick={countHandler}>Click</button>
+        <br/>
+        <br/>
+        <ReRenderHookChildOne count={ count }/>
+        <br/>
+        <ReRenderHookChildTwo/>
+    </div>
+  )
+}
+
+// ReRenderHookChildOne.jsx
+import React, { memo } from 'react'
+
+function ReRenderHookChildOne({count}) {
+    console.log("Re-Render hook child one");
+    return (
+        <div>ReRenderHookChildOne { count }</div>
+    )
+}
+
+export default memo(ReRenderHookChildOne);</textarea>
+<p class="mt-3"><b>Console Output:</b></p>
+<textarea class="code-editor">Re-Render hook main
+ReRenderHookChildOne.jsx:4 Re-Render hook child one</textarea>
+<p>Now, whenever we click on button, the child component will re-render with parent component, because the props state change</p>
+<br/>
+
+
+
+
+
+
 <!-- <ul class="list-group list-group-flush mx-4 mb-3">
   <li></li>
 </ul> -->
