@@ -169,6 +169,127 @@ export default UserProfile;</textarea>
 
 
 
+
+<hr />
+<h5><b><code>useState</code> Hook - Updating Object</b></h5>
+<hr />
+<p></p>
+<textarea class="code-editor">// Component.jsx
+import React, {useState} from 'react'
+
+export default function UseStateWithObject() {
+
+  const [movie, setMovie] = useState({
+    title: "Equalizer 3",
+    ratings: 7,
+  });
+
+  const modifyDataEvent = () => {
+    setMovie({ ...movie, ratings: 100 })
+  }
+
+  return (
+    <>
+    <h1>{movie.title}</h1>
+    <h2>{movie.ratings}</h2>
+    <button onClick={modifyDataEvent}>Edit</button>
+    </>
+  )
+}</textarea>
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Result:</b> <p>Result: When we click on the <b>Edit</b> button then it will update the <b>ratings</b> value to <b>100</b> but the <b>title</b> value will remain same as <b>Equalizer 3</b></p>
+  </code>
+</blockquote>
+<br/>
+
+
+
+
+<hr />
+<h5><b><code>useState</code> Hook - Updating Simple Array</b></h5>
+<hr />
+<p></p>
+<textarea class="code-editor">// Component.jsx
+import React, {useState} from 'react'
+
+export default function UseStateWithObject() {
+
+  // initial state
+  const [friends, setFriends] = useState(["Alex", "John"]);
+
+  // add event
+  const addFriendEvent = () => {
+    setFriends([...friends, "Raju", "Rana"])
+  }
+
+  // edit event
+  const editFriendEvent = () => {
+    setFriends(friends.map(f => f === "Rana" ? "Rajib" : f))
+  }
+
+  // delete event
+  const deleteFriendEvent = () => {
+    setFriends(friends.filter(f => f !== "Raju"))
+  }
+
+  return (
+    <>
+    <button onClick={modifyDataEvent}>Edit</button> */}
+
+      <ul>
+        {friends.map(item => (<li key={Math.random()}>{item}</li>))}
+      </ul>
+      <button onClick={addFriendEvent}>Add New Friend</button>
+      <button onClick={deleteFriendEvent}>Delete Friend</button>
+      <button onClick={editFriendEvent}>Edit Friend</button>
+    </>
+  )
+}
+</textarea>
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Result:</b> <p> </p>
+  </code>
+</blockquote>
+<br/>
+
+
+
+
+<hr />
+<h5><b><code>useState</code> Hook - Updating Data and Store in Local Storage</b></h5>
+<hr />
+<textarea class="code-editor">// ComponentOne.jsx
+import { useState, useEffect } from "react";
+
+function ComponentOne() {
+
+  const [ count, setCount] = useState(() =>{
+    const randomNumber = localStorage.getItem("myCount")
+    return randomNumber ? JSON.parse(randomNumber) : "0";
+  });
+
+  const updateCount = () => {
+    setCount(prev => {
+      const newCount = prev + 1;
+      localStorage.setItem("myCount", newCount)
+      return newCount;
+    });
+  }
+
+  return (
+    <>
+      <h2>Count: {count}</h2>
+      <button onClick={updateCount}>Update Count</button>
+    </>
+  )
+}
+
+export default ComponentOne</textarea>
+
+
+
 <!-- <ul class="list-group list-group-flush mx-4 mb-3">
   <li></li>
 </ul> -->

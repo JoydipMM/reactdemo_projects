@@ -24,7 +24,7 @@
 <hr />
 <h5><b>What is JavaScript?</b></h5>
 <hr />
-<p>JavaScript (JS) is a <b>Single-Threaded</b>, <b>synchronous</b>, <b>high-level, dynamic, interpreted programming language</b> primarily used to make web pages interactive and dynamic.</p>
+<p>JavaScript (JS) is a <b>synchronous</b>, <b>Single-Threaded</b>, <b>high-level, dynamic typed, interpreted programming language</b> primarily used to make web pages interactive and dynamic.</p>
 <p><b><i>Examples:</i></b></p>
 <ul class="list-group list-group-flush mx-4 mb-3">
   <li>Display dynamic content.</li>
@@ -35,8 +35,13 @@
   <li>Update webpage content without reloading.</li>
   <li>Build complete web applications.</li>
 </ul>
-<h6><b>Single-Threaded</b></h6>
-<p>Single-<code><b>Threaded</b></code> means JavaScript executes one piece of synchronous JavaScript code at a time using a single call stack.</p>
+
+<h6 class="mt-3"><b>Synchronous Programming</b></h6>
+Synchronous programming is an execution model in which statements are executed one after another. The next statement waits until the current statement finishes executing. In simple words, JavaScript executes one task at a time on its main <b><a href="#call-stack">call stack</a></b>. <br/>
+<i style="color:rgb(73, 73, 73)"><b>However, JavaScript also supports asynchronous programming using mechanisms such as <code>callbacks</code>, <code>Promises</code>, <code>async/await</code> and the <code>Event Loop</code>.</b></i></p>
+
+<h6 class="mt-3"><b>Single-Threaded</b></h6>
+<p>Single-<code><b>Threaded</b></code> means JavaScript executes one piece of synchronous JavaScript code at a time using a single <a href="#call-stack"><b>call stack</b></a>. <i>For example, when we run a JavaScript program, the JavaScript engine executes our code using its main thread.</i></p>
 
 <blockquote class="blockquote mt-3">
   <code class="mark" style="width:100%; display:inline-block">
@@ -63,10 +68,6 @@ Third
   </code>
 </blockquote>
 
-<h6 class="mt-3"><b>Synchronous Programming</b></h6>
-Synchronous programming is an execution model in which statements are executed one after another. The next statement waits until the current statement finishes executing. In simple words, JavaScript executes one task at a time on its main <code><b>call stack</b></code>. <br/>
-<i style="color:rgb(73, 73, 73)"><b>However, JavaScript also supports asynchronous programming using mechanisms such as <code>callbacks</code>, <code>Promises</code>, <code>async/await</code> and the <code>Event Loop</code>.</b></i></p>
-
 
 <h6 class="mt-3"><b>High-level programming language</b></h6>
 <p>A high-level programming language is a language that is easy for humans to read, write and understand compared to low-level languages such as Assembly. It hides many hardware-level complexities, so developers can focus on writing application logic rather than managing hardware directly.</p>
@@ -76,7 +77,7 @@ let b = 20;
 console.log(a + b); // Result: 30
 // Here, we don't need to manually manage CPU registers or memory addresses to perform this calculation.</textarea>
 <h6><b>Dynamic programming language (Dynamic Typing)</b></h6>
-<p>JavaScript is dynamically typed, which means you don't need to explicitly declare the data type of a variable. JavaScript determines the type based on the value assigned to it at runtime. means a variable can hold different types of values during program execution without explicitly declaring its type.</p>
+<p>JavaScript is dynamically typed, which means we don't need to explicitly <small><i>(স্পষ্টভাবে)</i></small> declare the data type of a variable. JavaScript determines <small><i>(নির্ধারণ করে)</i></small> the type based on the value assigned to it at runtime. means a variable can hold different types of values during program execution without explicitly declaring its type.</p>
 <textarea class="code-editor">
 let value = 100;
 console.log(typeof value); // number
@@ -93,26 +94,96 @@ console.log(typeof value); // boolean</textarea>
   <li>Finally, it stores a boolean.</li>
 </ul>
 <h6><b>Interpreted programming language</b></h6>
-<p>JavaScript code is executed by a JavaScript engine, which processes the source code and executes the instructions. <b><i>Modern JavaScript engines use a combination of interpretation and <code>Just-In-Time (JIT) compilation</code> to optimize execution</i></b>.</p>
+<p>An interpreted language is a programming language whose source code is processed by an interpreter or runtime environment to execute the instructions. JavaScript is traditionally called an interpreted language because developers can write JavaScript code and execute it directly using a JavaScript engine without manually compiling it into machine code beforehand <small><i>(আগে থেকে)</i></small>. <i>In simple words: we write JavaScript code, and the JavaScript engine processes that code and executes it</i>. <i><b>But in Modern <u>JavaScript engines use both interpretation and Just-In-Time (JIT) compilation</u>.</b></i></p>
+
+<h6 class="mt-3"><b>Example:</b></h6>
+<textarea class="code-editor">let a = 10;
+let b = 20;
+let result = a + b;
+console.log(result);
+// Output: 30</textarea>
+<p>In this example, we don't need to manually convert this JavaScript code into machine code before running it. the JavaScript engine processes the code and executes it directly.</p>
+
+
 <h6 class="mt-3"><b>Popular JavaScript engines:</b></h6>
 <ul class="list-group list-group-flush mx-4 mb-3">
   <li>V8 — Chrome and Node.js.</li>
   <li>SpiderMonkey — Firefox.</li>
   <li>JavaScriptCore — Safari.</li>
 </ul>
-
 <br/> 
-
-
-
 
 
 
 <hr />
 <h5><b><code>Just-In-Time (JIT) Compilation</code> in JavaScript</b></h5>
 <hr />
+<p><b>JIT compilation</b> is an execution technique used by modern JavaScript engines to improve the performance of JavaScript code.</p>
+<p><b><i>Instead of</i></b> executing every line of JavaScript directly through interpretation or compiling the entire program before execution, the JavaScript engine combines interpretation and compilation.</p>
+<p><b><i>The main objective of JIT compilation is to make frequently executed JavaScript code run faster.</i></b></p>
+<br/> 
+
+
+
+<hr />
+<h5><b>Difference Between Interpretation and Just-In-Time (JIT) Compilation</b></h5>
+<hr />
+<p>Both <b>Interpretation</b> and <b>Just-In-Time (JIT) Compilation</b> are techniques used by programming language runtimes to execute code.</p>
+<p class="border border-warning p-1">The main difference is <i>when and how the code is translated</i> into instructions that can be executed.</p>
+
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <h6><b>1. Definition of Interpretation</b></h6>
+  <p>Interpretation is an execution technique in which an interpreter processes program instructions and executes them at runtime without requiring a separate ahead-of-time compilation step.</p>
+  <p><b>Example</b></p>
+<textarea class="code-editor">function calculate(a, b) {
+    return a + b;
+}
+
+for (let i = 0; i < 100000; i++) {
+    calculate(i, 10);
+}</textarea>
+  <p>First, V8 converts calculate() function might produce bytecode instructions similar to:</p>
+<textarea class="code-editor">Load parameter a
+Load parameter b
+Add a and b
+Return result</textarea>
+  <p>The interpreter executes these instructions.</p>
+  <p><b>First iteration:</b></p>
+  <textarea class="code-editor">calculate(0, 20);</textarea>
+  <p>Interpreter executes:</p>
+  <textarea class="code-editor">Load a = 0
+    Load b = 20
+    Add 0 + 20
+    Return 20</textarea>
+    <p><b>Second iteration:</b></p>
+<textarea class="code-editor">calculate(1, 20);</textarea>
+<p>Interpreter executes:</p>
+<textarea class="code-editor">Load a = 1
+Load b = 20
+Add 1 + 20
+Return 21</textarea>
+<p>This continues as the loop runs.</p>
+
+
+
+
+
+
+  <h6 class="mt-3"><b>2. Definition of Just-In-Time (JIT) Compilation</b></h6>
+  <p>JIT (Just-In-Time) Compilation is an execution technique used by modern JavaScript engines to improve the performance of JavaScript code. Instead of executing every line of JavaScript directly through interpretation or compiling the entire program before execution, the JavaScript engine combines interpretation and compilation. The main objective of JIT compilation is to make frequently executed JavaScript code run faster.</p>
+  </code>
+</blockquote>
+<br/> 
+
+
+<hr />
+<h5><b>How Does JavaScript Execute Code?</b></h5>
+<hr />
 <p><b>JIT compilation</b> means converting JavaScript code into machine code while the program is running, so it can execute faster.</p>
 <br/> 
+
+
 
 
 
