@@ -1179,6 +1179,83 @@ Parent Rendered</textarea>
   console.log("Child Rendered");
   return <h2>{name}</h2>;
 });</textarea>
+
+<p class="mt-3"><b>Does useCallback prevent component re-rendering?</b></p>
+<p>No. useCallback does not prevent component re-rendering. It maintains a stable function reference, "<u>which can help prevent unnecessary child component re-renders when combined with React.memo</u>".</p>
+
+<p class="mt-3"><b>Can useCallback work without React.memo?</b></p>
+<p>Yes. It can also be useful when a function is used as a dependency of another Hook, such as <b>useEffect</b>. However, simply using useCallback does not prevent child component re-renders.</p>
+<textarea class="code-editor">useEffect(() => { getUsers(); }, [getUsers]);</textarea>
+<textarea class="code-editor">import React, {useCallback, useState, useEffect } from 'react'
+
+export default function UseCallbackHook() {
+
+    const [ count, setCount ] = useState(0);
+    const [users, setUsers] = useState([]);
+
+    // Without useCallback()
+    /*
+    const getUsers = () => {
+        console.log("getUsers function executed");
+
+        return fetch('https://jsonplaceholder.typicode.com/users')
+            .then(res => res.json())
+            .then(data => setUsers(data));
+    };
+    */
+
+    // With useCallback()
+    const getUsers = useCallback(() => {
+        console.log("getUsers function executed");
+        return fetch('https://jsonplaceholder.typicode.com/users')
+            .then(res => res.json())
+            .then(data => setUsers(data));
+    },[]);
+
+    const countEvent = () => {
+        setCount(prev => prev+1)
+    }
+
+    useEffect(() => {
+        getUsers();
+    }, [getUsers]);
+
+  return (
+    <>
+    <h2>UseCallbackHook</h2>
+    <h3>Count { count }</h3>
+    <button onClick={countEvent}>Click</button>
+
+    <h3>User List</h3>
+    {users.map(user => (
+        <p key={user.id}>{user.name}</p>
+    ))}
+    </>
+  )
+}</textarea>
+<p><b>Without useCallback()</b> every time the component re-renders, JavaScript creates a new function reference. So for the dependency array React compares the previous and current getUsers references. Since the reference changes on every render, React considers the dependency changed.</p>
+<p class="mt-3"><b>Execution flow:</b></p>
+<textarea class="code-editor">/*
+Initial Render
+          ⇓
+getUsers() function created
+          ⇓
+useEffect executes and fetches users
+          ⇓
+setUsers() updates state
+          ⇓
+Component re-renders
+          ⇓
+New getUsers reference created
+          ⇓
+useEffect executes again
+
+This can create an infinite fetching loop. 
+*/</textarea>
+<p><b>With useCallback()</b> React compares the previous and current getUsers references. Since the reference hasn't changed, useEffect doesn't execute again.</p>
+<b class="mt-3">Note:</b>
+<p><b>Do we always need useCallback here?</b></p>
+<p>Not necessarily. If getUsers is only used inside useEffect, we can simply define the function inside the effect. This is often the simpler and preferred approach.</p>
   </code>
 </blockquote>
 
