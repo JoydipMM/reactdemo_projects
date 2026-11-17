@@ -949,6 +949,156 @@ expensive Calculation called</textarea>
 
 
 
+<hr />
+<h5><b><code>useCallback</code> Hook</b></h5>
+<hr />
+<p><b>useCallback</b> is a React Hook that memoizes a function definition between re-renders. It returns the same function reference between renders as long as its dependencies have not changed.</p>
+<p class="mt-3"><b>Syntax:</b></p>
+<textarea class="code-editor">const memoizedFunction = useCallback(() => {
+    // Function logic
+}, [dependencies]);</textarea>
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Note</b> <p>It accepts two arguments:</p>
+    <ul class="list-group list-group-flush mx-4 _mb-3">
+      <li><b>Callback function:</b> The function you want to memoize.</li>
+      <li><b>Dependency array:</b> Values that determine when React should return a new function reference.</li>
+    </ul>
+  </code>
+</blockquote>
+
+<p class="mt-3"><b>Why do we need useCallback?</b></p>
+<p>Let's understand with an example. Suppose we have two components: <i>1. Parent Component 2. Child Component</i></p>
+
+<p class="mt-3"><b>Example Without useCallback</b></p>
+<textarea class="code-editor">// Parent Component
+import React, {useState} from 'react'
+import UseCallbackHookChild from './UseCallbackHookChild'
+
+export default function UseCallbackHook() {
+
+    const [ count, setCount ] = useState(0)
+
+    const countEvent = () => {
+        setCount(prev => prev+1)
+    }
+
+    const showMessage = () => {
+        console.log("Hello React!");
+    };
+
+    console.log("Parent Rendered");
+
+  return (
+    <>
+    <h2>UseCallbackHook</h2>
+    <h3>Count { count }</h3>
+    <button onClick={countEvent}>Click</button>
+    <UseCallbackHookChild showMessage={showMessage}/>
+    </>
+  )
+}
+
+
+// Child Component
+import React, { memo } from 'react'
+
+function UseCallbackHookChild({showMessage}) {
+
+    console.log("use Callback hook child component re-rendered")
+
+  return (
+    <div>
+        <h2>UseCallbackHookChild</h2>
+        <button onClick={showMessage}>Child Button</button>
+
+    </div>
+  )
+}
+
+export default memo(UseCallbackHookChild)</textarea>
+<p>Initially, when the application renders we will get the result:</p>
+<textarea class="code-editor">Parent Rendered
+use Callback hook child component re-rendered</textarea>
+<p>Now click the Increment button. The parent component re-renders because its state changes. During the parent re-render:</p>
+<textarea class="code-editor">const showMessage = () => {
+  console.log("Hello React!");
+};</textarea>
+<p>A new function is created. Even though the function's logic is identical, its reference is different. React.memo performs a shallow comparison of props. Therefore: <b><i>Previous showMessage !== New showMessage</i></b>. As a result, the child component also re-renders.</p>
+<textarea class="code-editor">Parent Rendered
+use Callback hook child component re-rendered</textarea>
+<p><i><b>Important:</b> <code>React.memo</code> cannot prevent this re-render because the function prop has a new reference.</i></p>
+
+<p class="mt-3"><b>Example With useCallback</b></p>
+<p>We will use <b><i>useCallback() hook</i></b> in parent component where the function is call automatically when component re-render.</p>
+<textarea class="code-editor">// Parent Component
+import React, {useCallback, useState} from 'react'
+import UseCallbackHookChild from './UseCallbackHookChild'
+
+export default function UseCallbackHook() {
+
+    const [ count, setCount ] = useState(0)
+
+    
+    const countEvent = () => {
+        setCount(prev => prev+1)
+    }
+    
+    // Normal function
+    // const showMessage = () => {
+    //     console.log("Hello React!");
+    // };
+
+    // normal function inside useCallback hook
+    const showMessage = useCallback(() => {
+        console.log("Hello React!");
+    },[]);
+
+    console.log("Parent Rendered");
+
+
+  return (
+    <>
+    <h2>UseCallbackHook</h2>
+    <h3>Count { count }</h3>
+    <button onClick={countEvent}>Click</button>
+    <UseCallbackHookChild showMessage={showMessage}/>
+    </>
+  )
+}</textarea>
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+<p>In this updated code we wrap <code>showMessage()</code> function with <b><i>useCallback hook</i></b></p>
+<textarea class="code-editor">// Normal function
+const showMessage = () => {
+    console.log("Hello React!");
+};
+
+// normal function inside useCallback hook
+const showMessage = useCallback(() => {
+    console.log("Hello React!");
+},[]);</textarea>
+<p>Here, the empty dependency array means that the function reference remains the same across subsequent renders of this component instance.</p>
+<p>Now click the Increment button. <b>Parent component ( UseCallbackHook.jsx )</b> Re-renders because its state changes. but <b>Child component ( UseCallbackHookChild.jsx )</b> does not re-render because:</p>
+<ul class="list-group list-group-flush mx-4 mb-3" style="color:black">
+  <li><b>React.memo</b> compares the previous and new props.</li>
+  <li>The <b>showMessage function</b> reference remains the same.</li>
+  <li>No props have changed.</li>
+</ul>
+<b>Result:</b>
+<textarea class="code-editor">// Initial Render:
+Parent Rendered
+Child Rendered
+
+// After Clicking Increment:
+Parent Rendered
+
+// After Clicking Increment Again:
+Parent Rendered</textarea>
+</code>
+</blockquote>
+
+<br/>
 <!-- <ul class="list-group list-group-flush mx-4 mb-3">
   <li></li>
 </ul> -->
