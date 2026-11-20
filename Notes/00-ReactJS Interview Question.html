@@ -1309,7 +1309,7 @@ This can create an infinite fetching loop.
 </blockquote>
 
 
-<p class="mt-3"><b>reducer function simple example:</b></p>
+<p class="mt-3"><b>useReducer simple example:</b></p>
 <textarea class="code-editor">
 import React, { useReducer } from 'react'
 
@@ -1534,8 +1534,64 @@ function reducer(state, action) {
   </code>
 </blockquote>
 
+<p><b>useReducer example 02:</b></p>
+<textarea class="code-editor">import React, { useReducer } from 'react'
+
+export default function UseReducerSimpleExample() {
+    
+    const initialState = {
+        count:0
+    }
+
+    function reducer(state, action){
+        switch(action.type){
+            case "COUNT_INCREMENT":
+                return {
+                    ...state,
+                    count: state.count + 1
+                }
+            case "COUNT_DECREMENT":
+                return {
+                    ...state,
+                    count: state.count - 1
+                }
+            case "COUNT_DECREMENT_WITH_CONDITION":{
+                if(state.count > 0){
+                    return {
+                        ...state,
+                        count: state.count - 1
+                    }
+                }
+                return state
+            }
+            case "COUNT_RESET":
+                return{
+                    ...state,
+                    count: 0
+                }
+        }
+    }
+
+    const [ countState, dispatch ] = useReducer(reducer, initialState);
+
+    return (
+        <div>
+            <h2>useReducer Simple Example 01</h2>
+            <p>Count: {countState.count}</p>
+            <p>
+                <button onClick={()=> dispatch({ type:"COUNT_DECREMENT"}) } >Decrement</button>
+                <button onClick={()=> dispatch({ type:"COUNT_DECREMENT_WITH_CONDITION"}) } >Decrement with condition</button>
+                <button onClick={()=> dispatch({ type:"COUNT_INCREMENT"}) } >Increment</button>
+                <button onClick={()=> dispatch({ type:"COUNT_RESET"}) } >Reset</button>
+            </p>
+        </div>
+    )
+}</textarea>
 
 <br/>
+
+
+
 
 
 
