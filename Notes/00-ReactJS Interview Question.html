@@ -1286,6 +1286,8 @@ This can create an infinite fetching loop.
       <li><b>reducer</b>:	Function that determines how the state should be updated.</li>
       <li><b>initialState</b>:	Initial value of the state.</li>
     </ul>
+    <b>*</b> we can use custom name in the place of "state", "dispatch", "reducer", "initialState"<br/>
+    <b>Example: const [ countState, countDispatch ] = useReducer( countReducer, countInitialState )  </b>
   </code>
 </blockquote>
 
@@ -1394,7 +1396,7 @@ export default function UseReducerSimpleExampleOne() {
                     When clicked, dispatch sends an action object
                     to the reducer to decrease the counter by 1.
                 */}
-                <button onClick={() => dispatch({ type: "DECREMENT" })}>
+                <button onClick={ () => dispatch({ type: "DECREMENT" })}>
                     Decrement
                 </button>
 
@@ -1403,7 +1405,7 @@ export default function UseReducerSimpleExampleOne() {
                     When clicked, dispatch sends an action object
                     to the reducer to increase the counter by 1.
                 */}
-                <button onClick={() => dispatch({ type: "INCREMENT" })}>
+                <button onClick={ () => dispatch({ type: "INCREMENT" })}>
                     Increment
                 </button>
 
@@ -1412,7 +1414,7 @@ export default function UseReducerSimpleExampleOne() {
                     When clicked, dispatch sends an action object
                     to the reducer to reset the counter to 0.
                 */}
-                <button onClick={() => dispatch({ type: "RESET" })}>
+                <button onClick={ () => dispatch({ type: "RESET" })}>
                     Reset
                 </button>
 
@@ -1438,13 +1440,24 @@ export default function UseReducerSimpleExampleOne() {
   </code>
 </blockquote>
 
-<p class="mt-3"><b>Different dispatch examples:</b></p>
+<p class="mt-3"><b>Different dispatch and reducer examples:</b></p>
 <blockquote class="blockquote mt-3">
   <code class="mark" style="width:100%; display:inline-block">
     <b>Example 1: Without payload</b> 
-<textarea class="code-editor">dispatch({
+<textarea class="code-editor">// Dispatch 
+dispatch({
   type: "INCREMENT"
-});</textarea>
+});
+
+// Reducer
+function reducer(state, action) {
+  switch (action.type) {
+    case "INCREMENT":
+      return state + 1;
+    default:
+      return state;
+  }
+}</textarea>
   </code>
 </blockquote>
 
@@ -1452,10 +1465,22 @@ export default function UseReducerSimpleExampleOne() {
 <blockquote class="blockquote mt-3">
   <code class="mark" style="width:100%; display:inline-block">
     <b>Example 2: With payload</b> 
-<textarea class="code-editor">dispatch({
+<textarea class="code-editor">
+// Dispatch
+dispatch({
   type: "INCREMENT_BY",
   payload: 5
-});</textarea>
+});
+
+// Reducer
+function reducer(state, action) {
+  switch (action.type) {
+    case "INCREMENT_BY":
+      return state + action.payload;
+    default:
+      return state;
+  }
+}</textarea>
   </code>
 </blockquote>
 
@@ -1463,23 +1488,49 @@ export default function UseReducerSimpleExampleOne() {
 <blockquote class="blockquote mt-3">
   <code class="mark" style="width:100%; display:inline-block">
     <b>Example 3: Passing a string in payload</b> 
-<textarea class="code-editor">dispatch({
+<textarea class="code-editor">// Dispatch
+dispatch({
   type: "UPDATE_NAME",
   payload: "Alex"
-});</textarea>
+});
+
+// Reducer
+function reducer(state, action) {
+  switch (action.type) {
+    case "UPDATE_NAME":
+      return action.payload;
+    default:
+      return state;
+  }
+}</textarea>
   </code>
 </blockquote>
 
 <blockquote class="blockquote mt-3">
   <code class="mark" style="width:100%; display:inline-block">
     <b>Example 4: Passing an object in payload</b> 
-<textarea class="code-editor">dispatch({
+<textarea class="code-editor">// Dispatch
+dispatch({
   type: "UPDATE_USER",
   payload: {
-      name: "Alex",
-      age: 25
+    name: "Alex",
+    age: 25
   }
-});</textarea>
+});
+
+// Reducer
+function reducer(state, action) {
+  switch (action.type) {
+    case "UPDATE_USER":
+      return {
+        ...state,
+        name: action.payload.name,
+        age: action.payload.age
+      };
+    default:
+      return state;
+  }
+}</textarea>
   </code>
 </blockquote>
 
