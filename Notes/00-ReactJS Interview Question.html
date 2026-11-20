@@ -1306,6 +1306,123 @@ This can create an infinite fetching loop.
   </code>
 </blockquote>
 
+
+<p class="mt-3"><b>reducer function simple example:</b></p>
+<textarea class="code-editor">
+import React, { useReducer } from 'react'
+
+export default function UseReducerSimpleExampleOne() {
+
+    // 1. Initial State
+    // Defines the initial value of our counter.
+    // When the component renders for the first time, the count will be 0.
+    const initialState = 0;
+
+
+    // 2. Reducer Function
+    // A reducer is a function that decides how the state should change.
+    //
+    // It receives two arguments:
+    // state  = Current state value.
+    // action = An object describing what action should be performed.
+    //
+    // The reducer returns the new state based on the received action.
+    function reducer(state, action) {
+
+        // switch checks the action.type to determine
+        // which state update operation should be performed.
+        switch(action.type) {
+
+            // 3. INCREMENT Action
+            // When action.type is "INCREMENT",
+            // increase the current state by 1.
+            case "INCREMENT":
+                return state + 1;
+
+
+            // 4. DECREMENT Action
+            // When action.type is "DECREMENT",
+            // decrease the current state by 1.
+            case "DECREMENT":
+                return state - 1;
+
+
+            // 5. RESET Action
+            // When action.type is "RESET",
+            // reset the state to its initial value (0).
+            case "RESET":
+                return 0;
+
+
+            // 6. Default Case
+            // If an unknown action is received,
+            // return the existing state without changing it.
+            //
+            // This ensures the reducer always returns a valid state.
+            default:
+                return state;
+        }
+    }
+
+
+    // 7. useReducer Hook
+    // useReducer accepts two main arguments:
+    //
+    // First argument: reducer function.
+    // Second argument: initial state.
+    //
+    // It returns an array containing:
+    // state    = Current state value.
+    // dispatch = Function used to send actions to the reducer.
+    //
+    // Initially, state = 0.
+    const [ state, dispatch ] = useReducer(reducer, initialState);
+
+
+    // 8. JSX / UI
+    return (
+        <div>
+
+            <h2>useReducer Simple Example One</h2>
+
+            {/* Display the current state (counter value) */}
+            <p>Count : {state}</p>
+
+            <p>
+
+                {/* 9. Dispatch DECREMENT Action
+                    When clicked, dispatch sends an action object
+                    to the reducer to decrease the counter by 1.
+                */}
+                <button onClick={() => dispatch({ type: "DECREMENT" })}>
+                    Decrement
+                </button>
+
+
+                {/* Dispatch INCREMENT Action
+                    When clicked, dispatch sends an action object
+                    to the reducer to increase the counter by 1.
+                */}
+                <button onClick={() => dispatch({ type: "INCREMENT" })}>
+                    Increment
+                </button>
+
+
+                {/* Dispatch RESET Action
+                    When clicked, dispatch sends an action object
+                    to the reducer to reset the counter to 0.
+                */}
+                <button onClick={() => dispatch({ type: "RESET" })}>
+                    Reset
+                </button>
+
+            </p>
+        </div>
+    )
+}</textarea>
+
+
+
 <p class="mt-3"><b>Syntax of dispatch:</b></p>
 <textarea class="code-editor">dispatch({
   type: "ACTION_TYPE",
@@ -1352,9 +1469,7 @@ This can create an infinite fetching loop.
 });</textarea>
   </code>
 </blockquote>
-<a href="mailto:https://admission.imi.edu/bhubaneswar/" target="_blank">https://admission.imi.edu/bhubaneswar/</a>
-https://admission.imi.edu/bhubaneswar/
-https://admission.imi.edu/bhubaneswar/
+
 <blockquote class="blockquote mt-3">
   <code class="mark" style="width:100%; display:inline-block">
     <b>Example 4: Passing an object in payload</b> 
