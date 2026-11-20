@@ -1258,6 +1258,119 @@ This can create an infinite fetching loop.
 <p>Not necessarily. If getUsers is only used inside useEffect, we can simply define the function inside the effect. This is often the simpler and preferred approach.</p>
   </code>
 </blockquote>
+<br/>
+
+
+
+<hr />
+<h5><b><code>useReducer Hook</code> in React</b></h5>
+<hr />
+<p>The <b>useReducer</b> Hook is a React Hook used to manage complex state logic in functional components.</p>
+<p>It is an alternative to useState. Instead of updating state directly using a setter function, useReducer updates state through a reducer function and dispatched actions.</p>
+<p class="mt-3"><b>It is particularly useful when:</b></p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>A component has multiple related state values.</li>
+  <li>State updates involve complex conditions.</li>
+  <li>Multiple actions modify the same state.</li>
+  <li>You want to keep state update logic in one centralized place.</li>
+</ul>
+
+<p class="mt-3"><b>Syntax of useReducer:</b></p>
+<textarea class="code-editor">const [state, dispatch] = useReducer(reducer, initialState);</textarea>
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>parameter description</b>
+    <ul>
+      <li><b>state</b>:	Current state value.</li>
+      <li><b>dispatch</b>:	Function used to send an action to the reducer.</li>
+      <li><b>reducer</b>:	Function that determines how the state should be updated.</li>
+      <li><b>initialState</b>:	Initial value of the state.</li>
+    </ul>
+  </code>
+</blockquote>
+
+
+<p class="mt-3"><b>Syntax of reducer function:</b></p>
+<textarea class="code-editor">function reducer(state, action) {
+  // Determine the next state
+  return newState;
+}</textarea>
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>parameter description</b>
+    <ul>
+      <li><b>state</b>:	Current state.</li>
+      <li><b>action</b>:	An object describing what should happen.</li>
+      <li><b>return</b>:	The updated state.</li>
+    </ul>
+  </code>
+</blockquote>
+
+<p class="mt-3"><b>Syntax of dispatch:</b></p>
+<textarea class="code-editor">dispatch({
+  type: "ACTION_TYPE",
+  payload: data
+});</textarea>
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>parameter description</b>
+    <ul>
+      <li><b>type</b>:	Specifies which action should execute.</li>
+      <li><b>payload</b>:	Optional data passed to the reducer.</li>
+    </ul>
+  </code>
+</blockquote>
+
+<p class="mt-3"><b>Different dispatch examples:</b></p>
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Example 1: Without payload</b> 
+<textarea class="code-editor">dispatch({
+  type: "INCREMENT"
+});</textarea>
+  </code>
+</blockquote>
+
+
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Example 2: With payload</b> 
+<textarea class="code-editor">dispatch({
+  type: "INCREMENT_BY",
+  payload: 5
+});</textarea>
+  </code>
+</blockquote>
+
+
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Example 3: Passing a string in payload</b> 
+<textarea class="code-editor">dispatch({
+  type: "UPDATE_NAME",
+  payload: "Alex"
+});</textarea>
+  </code>
+</blockquote>
+<a href="mailto:https://admission.imi.edu/bhubaneswar/" target="_blank">https://admission.imi.edu/bhubaneswar/</a>
+https://admission.imi.edu/bhubaneswar/
+https://admission.imi.edu/bhubaneswar/
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Example 4: Passing an object in payload</b> 
+<textarea class="code-editor">dispatch({
+  type: "UPDATE_USER",
+  payload: {
+      name: "Alex",
+      age: 25
+  }
+});</textarea>
+  </code>
+</blockquote>
+
+
+<br/>
+
 
 
 <!-- <ul class="list-group list-group-flush mx-4 mb-3">
