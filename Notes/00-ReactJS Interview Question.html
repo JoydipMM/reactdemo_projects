@@ -1598,7 +1598,7 @@ export default function UseReducerSimpleExample() {
 <hr />
 <h5><b><code>useRef Hook</code> in React</b></h5>
 <hr />
-<p>The <code>useRef</code> Hook is a React Hook that allows you to <b>create a mutable reference that persists between component renders without causing the component to re-render when its value changes</b>.</p>
+<p>The <code>useRef</code> is a React Hook used to store a value or access a DOM element. Its value persists <i><small>[ স্থায়ী অবস্থায় থাকা ]</small></i> between renders, and changing it does not cause the component to re-render.</b> <br/><i><small>[ useRef হলো একটি React Hook, যা কোনো মান সংরক্ষণ করতে অথবা DOM এলিমেন্ট অ্যাক্সেস করতে ব্যবহৃত হয়। এর মান রেন্ডারগুলোর মাঝেও বজায় থাকে এবং এটি পরিবর্তন করলে কম্পোনেন্টটি পুনরায় রেন্ডার (re-render) হয় না। ]</small></i></p>
 
 <p class="mt-3"><b>Syntax of useRef:</b></p>
 <textarea class="code-editor">import React, { useRef } from 'react';
@@ -1609,6 +1609,289 @@ const ref = useRef(initialValue);</textarea>
   <li><code>initialValue</code> is the initial value of the reference.</li>
   <li><code>ref.current</code> is used to access or update the stored value.</li>
 </ul>
+
+<p class="mt-3"><b>Simple useRef example 01:</b></p>
+<textarea class="code-editor">import React, {useRef, useState} from 'react'
+
+export default function UseRefHookComp() {
+
+    const nameRef = useRef(null)
+
+    const nameEvent = () => {
+        console.log("Name Event Called !!!!")
+        console.log(nameRef.current)
+        console.log(nameRef.current.value)
+        document.getElementById("name_div").innerHTML = nameRef.current.value;
+    }
+
+    console.log("component re-render!!!!")
+  return (
+    <>
+    <h2>UseRef Hook</h2>
+    <div id="name_div"></div>
+    <input type='text' ref={nameRef} onChange={nameEvent} />
+    </>
+  )
+}</textarea>
+<p class="mt-3"><b>First Render:</b></p>
+<p>Result in console</p>
+<ul>
+  <li>component re-render!!!!</li>
+</ul>
+<p clpss="mt-3"><b>when ever type in text field:</b> <i>For example: we press "r"</i></p>
+<ul>
+  <li>Name Event Called !!!!</li>
+  <li>< input type="text" wfd-id="id0" ></li>
+  <li>r</li>
+  <li>r is print in <b>id="name_div"</b></li>
+</ul>
+<p clpss="mt-3"><b>when ever type in text field:</b> <i>For example: we press "a"</i></p>
+<ul>
+  <li>Name Event Called !!!!</li>
+  <li>< input type="text" wfd-id="id0" ></li>
+  <li>ra</li>
+  <li>ra is print in <b>id="name_div"</b></li>
+</ul>
+
+<p clpss="mt-3"><b>Full Console result</b></p>
+<textarea class="code-editor">component re-render!!!!
+Name Event Called !!!!
+<input type="text" wfd-id="id0">
+r
+Name Event Called !!!!
+<input type="text" wfd-id="id0">
+ra
+Name Event Called !!!!
+<input type="text" wfd-id="id0">
+raj
+Name Event Called !!!!
+<input type="text" wfd-id="id0">
+raja</textarea>
+<p>Here we see that, when we type anything in text field, the letters are printed in <b>div</b> element without component re-render.</p>
+
+
+<p class="mt-3"><b>Simple useRef example 02:</b></p>
+<p>Add text in text field with useRef</p>
+<textarea class="code-editor">import React, {useRef} from 'react'
+
+export default function UseRefHookComp() {
+
+    const nameRef = useRef(null)
+
+    const nameEvent = () => {
+        console.log("Name Event Called !!!!")
+        nameRef.current.value = "text added"
+    }
+
+    console.log("component re-render!!!!")
+  return (
+    <>
+    <h2>UseRef Hook</h2>
+    <input type='text' ref={nameRef} />
+    <button onClick={nameEvent}>Name Event</button>
+    </>
+  )
+}
+</textarea>
+<p clpss="mt-3"><b>result</b></p>
+<p>Whe we click on <b>Name Event</b> Button then static "text added" content added in Text Field</p>
+<p>"Name Event Called !!!!" this message will print in console</p>
+
+
+
+<p class="mt-3"><b>Simple useRef example 03:</b></p>
+<p>In this example we use <b>useState</b> and <b>useRef</b> both</p>
+<textarea class="code-editor">import React, {useRef, useState} from 'react'
+
+export default function UseRefHookComp() {
+
+    const [ count, setCount ] = useState(0)
+
+    const countEvent = () => {
+        console.log("Count Event called!!!!")
+        setCount(prev => prev + 1)
+    }
+    const nameRef = useRef(null)
+
+    const nameEvent = () => {
+        console.log("Name Event Called !!!!")
+        document.getElementById("name_div").innerHTML = nameRef.current.value;
+    }
+
+    console.log("component re-render!!!!")
+  return (
+    <>
+    <h2>UseRef Hook</h2>
+    { count }<br/>
+    <div id="name_div"></div>
+    <button onClick={countEvent}>count Button</button>
+    <input type='text' ref={nameRef} onChange={nameEvent} />
+    </>
+  )
+}</textarea>
+<p>When we click on count button twise and after write "raja" in Text field and then click on count button twis again. Then</p>
+<p><b>Result [ in console ]:</b></p>
+<textarea class="code-editor">component re-render!!!!
+Count Event called!!!!
+component re-render!!!!
+Count Event called!!!!
+component re-render!!!!
+4 Name Event Called !!!!
+Count Event called!!!!
+component re-render!!!!
+Count Event called!!!!
+component re-render!!!!</textarea>
+<p><b>Result [ in browser ]:</b></p>
+<textarea class="code-editor">4
+raja</textarea>
+
+
+<p class="mt-3"><b>Timer Example with <code>useRef Hook</code>:</b></p>
+<textarea class="code-editor">import React, { useEffect, useState, useRef } from 'react'
+
+export default function Timer() {
+    const [timer, setTimer] = useState(0)
+    const intervalRef = useRef(0)
+    
+    useEffect(()=>{
+        let second = 0;
+        intervalRef.current = setInterval(()=>{
+            document.getElementById("timer_holder").innerHTML = second++;
+            console.log(intervalRef.current)
+        }, 1000)
+
+       return ()=>{
+        clearInterval(intervalRef.current)
+       }
+    },[])
+
+    console.log(`Component render - ${timer}`)
+  return (
+    <>
+    <h2>Timer</h2>
+    <div><span id="timer_holder">{timer}</span> Second</div>
+    <button onClick={ () => { clearInterval(intervalRef.current) } }>Stop</button>
+    </>
+  )
+}</textarea>
+<p class="mt-3"><b>Result in Browser:</b></p>
+<p>Every second the number will increase and when we click on <b>Stop</b> button then timer will stop</p>
+<p class="mt-3"><b>Result in console:</b></p>
+<p>Every second we get the below result in console</p>
+<textarea class="code-editor">Component render - 0
+2 8</textarea>
+<p>this <b>8</b> is <b>Interval ID</b> when the setInterval executed and <b>2</b> is the total number of console print</p>
+
+<blockquote class="blockquote mt-3">
+  <code class="mark" style="width:100%; display:inline-block">
+    <b>Note :</b> <b>This approach is not recommended in React.</b>
+    <p>React follows a <b>declarative</b> approach. That means we should tell React what we want to display, and React will update the DOM. So we are updating the DOM using <code>document.getElementById()</code> </p>
+    <p><b>What happens</b></p>
+    <ul class="list-group list-group-flush mx-4 _mb-3">
+      <li><b>useEffect</b> runs after the component mounts.</li>
+      <li><b>setInterval()</b> executes every 1000 milliseconds.</li>
+      <li><b>second++</b> increases the counter by one.</li>
+      <li><b>innerHTML</b> directly updates the HTML element.</li>
+      <li>React does not know that you changed the DOM.</li>
+    </ul>
+    <p>So, always updating the DOM we use <b>useState()</b> Instead of <b>useRef()</b>. Here <b>useRef()</b> is storing the <b>seInterval ID</b> only</p>
+    <b class="d-block mt-3">When should you use each approach?</b>
+    <p class="mb-0"><b>Approach:</b> <i>document.getElementById()</i></p>
+    <p class="mb-0"><b>useState</b> <i>Update UI when data changes.</i></p>
+    <p class="mb-0"><b>useRef</b> <i>Store values without triggering re-renders, or access DOM elements.</i></p>
+
+    <b class="d-block mt-3">Can we use setInterval inside useEffect without useRef?</b>
+    <p>Yes! But if you want to stop or resume the interval from different event handlers, useRef is useful for storing the interval ID.</p>
+    <p class="mb-0"><b>useState → </b>Store and display timer seconds.</p>
+    <p class="mb-0"><b>useRef → </b>Store the interval ID.</p>
+    <p class="mb-0"><b>useEffect → </b>Clean up the interval when the component unmounts.</p>
+  </code>
+</blockquote>
+
+<p class="mt-3"><b>Timer Example with <code>useRef, useState and useEffect Hook</code>:</b></p>
+<textarea class="code-editor">import React, { useEffect, useState, useRef } from 'react'
+
+export default function Timer() {
+
+    // useState: Stores the timer value and updates the UI whenever it changes.
+    const [timer, setTimer] = useState(0)
+
+    // useRef: Stores the setInterval ID.
+    // Updating a ref does not trigger a component re-render.
+    const intervalRef = useRef(null)
+
+    // START TIMER
+    const startTimer = () => {
+
+        // Prevent multiple intervals from running simultaneously.
+        // If an interval already exists, do not create another one.
+        if (intervalRef.current !== null) return
+
+        // setInterval: Executes the callback function every 1000 milliseconds (1 second).
+        // useRef stores the interval ID so we can stop it later.
+        intervalRef.current = setInterval(() => {
+
+            // Functional state update: Increases the previous timer value by 1.
+            // React automatically updates the UI when the state changes.
+            setTimer(prev => prev + 1)
+
+        }, 1000)
+    }
+
+    // STOP TIMER
+    const stopTimer = () => {
+
+        // clearInterval: Stops the currently running interval using its ID.
+        clearInterval(intervalRef.current)
+
+        // Reset the interval ID to null.
+        // This allows us to start or resume the timer again.
+        intervalRef.current = null
+    }
+
+    // RESUME TIMER
+    const resumeTimer = () => {
+
+        // Calls startTimer() to create a new interval.
+        // The timer continues from its previous value because we do not reset the state.
+        startTimer()
+    }
+
+    // CLEANUP FUNCTION
+    useEffect(() => {
+
+        // Cleanup: Runs when the component unmounts.
+        // Stops the interval to prevent unnecessary background execution.
+        return () => {
+            clearInterval(intervalRef.current)
+        }
+
+    }, []) // Empty dependency array: Effect setup runs after the initial mount.
+
+    // Runs whenever the component renders.
+    // Useful for understanding when React re-renders the component.
+    console.log(`Component render - ${timer}`)
+
+    return (
+        <>
+            <h2>Timer</h2>
+
+            {/* Displays the current timer value from useState. */}
+            <div>
+                {timer} Seconds
+            </div>
+
+            {/* Starts the timer. */}
+            <button onClick={startTimer}>Start</button>
+
+            {/* Stops the timer without resetting its value. */}
+            <button onClick={stopTimer}>Stop</button>
+
+            {/* Resumes the timer from its previous value. */}
+            <button onClick={resumeTimer}>Resume</button>
+        </>
+    )
+}</textarea>
 <br/>
 
 
