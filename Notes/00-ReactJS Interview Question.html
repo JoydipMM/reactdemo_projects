@@ -1787,7 +1787,7 @@ export default function Timer() {
     <b>Note :</b> <b>This approach is not recommended in React.</b>
     <p>React follows a <b>declarative</b> approach. That means we should tell React what we want to display, and React will update the DOM. So we are updating the DOM using <code>document.getElementById()</code> </p>
     <p><b>What happens</b></p>
-    <ul class="list-group list-group-flush mx-4 _mb-3">
+    <ul class="list-group list-group-flush mx-4 _mb-3" style="color:#000">
       <li><b>useEffect</b> runs after the component mounts.</li>
       <li><b>setInterval()</b> executes every 1000 milliseconds.</li>
       <li><b>second++</b> increases the counter by one.</li>
@@ -1896,7 +1896,94 @@ export default function Timer() {
 
 
 
+<hr />
+<h5><b><code>Custom Hook</code>in React</b></h5>
+<hr />
+<p>A <b></b>Custom Hook</b> helps us write React logic once and reuse it in multiple components instead of writing the same logic again and again.</p>
+<p><b>OR</b></p>
+<p>A Custom Hook in React is a reusable function that starts with the word use. It helps us extract and reuse stateful logic between multiple components. For example, we can create a custom hook for API fetching, form handling, or counter functionality. It helps us avoid code duplication and keeps our components clean and maintainable.</p>
 
+<p class="d-block mt-3"><b>For example:</b></p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>Reusing API fetching logic.</li>
+  <li>Reusing form validation logic.</li>
+  <li>Reusing window resize logic.</li>
+  <li>Reusing localStorage logic.</li>
+  <li>Reusing timer logic.</li>
+</ul>
+
+
+<p class="d-block mt-3"><b>Why do we need Custom Hooks?</b></p>
+<p>Suppose we have two components that need the same counter functionality. Without Custom Hooks, we need to write the same <code>useState</code> and <code>counter functions</code> in both components. This creates duplicate code. With Custom Hooks, we can write the counter logic once and reuse it wherever needed.</p>
+
+<p class="d-block mt-3"><b>How to create a Custom Hook?</b></p>
+<p>There are two important rules:</p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>A Custom Hook name <i><u>must start with use</u></i>.</li>
+  <li>A Custom Hook <i><u>can use other React Hooks, such as useState, useEffect, useRef</u></i>, etc.</li>
+</ul>
+
+<p class="d-block mt-3"><b>Example without Custom Hook</b></p>
+<textarea class="code-editor">import React, {useState} from 'react'
+
+export default function CustomHook() {
+  const [ count, setCount ] = useState(0)
+  const incrementEvent = () => {
+    setCount(prev => prev + 1);
+  }
+  const decrementEvent = () => {
+    setCount(prev => prev - 1);
+  }
+
+  return (
+    <div>
+      <h2>Custom Hook</h2>
+      <div>{count}</div>
+      <button onClick={decrementEvent}>-</button>
+      <button onClick={incrementEvent}>+</button>
+    </div>
+  )
+}</textarea>
+
+
+<p class="d-block mt-3"><b>Example with Custom Hook</b></p>
+<p></p>
+<textarea class="code-editor">// UseCustomHook.jsx
+import React, {useState} from 'react'
+
+const useCustomHook = () => {
+  const [ count, setCount ] = useState(0)
+  const incrementEvent = () => {
+      setCount(prev => prev + 1);
+  }
+  const decrementEvent = () => {
+      setCount(prev => prev - 1);
+  }
+
+  return [ count, incrementEvent, decrementEvent ]
+
+}
+
+export default useCustomHook;
+
+
+// CustomHook.jsx
+import useCustomHook from './UseCustomHook'
+
+export default function CustomHook() {
+
+  const [count, incrementEvent, decrementEvent  ] = useCustomHook()
+
+  return (
+    <div>
+        <h2>Custom Hook</h2>
+        <div>{count}</div>
+        <button onClick={decrementEvent}>-</button>
+        <button onClick={incrementEvent}>+</button>
+    </div>
+  )
+}</textarea>
+<br/> 
 
 
 <!-- <ul class="list-group list-group-flush mx-4 mb-3">
