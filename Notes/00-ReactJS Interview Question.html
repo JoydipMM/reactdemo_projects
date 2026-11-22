@@ -2037,6 +2037,14 @@ add(10, 20);</textarea>
   return price * quantity;
 }</textarea>
   </li>
+
+
+  <li>
+    <b>Array Type Annotation</b>
+    <p>We can define the type of elements an array can contain.</p>
+<textarea class="code-editor">const numbers: number[] = [10, 20, 30];
+const names: string[] = ["John", "Alex", "Alice"];</textarea>
+  </li>
 </ul>
 <br/> 
 
@@ -2130,6 +2138,195 @@ export default function User({
   <li>Makes code cleaner and easier to maintain.</li>
   <li>Recommended when components have multiple props or reusable types.</li>
 </ul>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>useState Type Annotation in React</b></h5>
+<hr />
+<p>We can define the type of state using TypeScript.</p>
+<textarea class="code-editor">import { useState } from "react";
+function App() {
+  const [count, setCount] = useState<number>(0);
+  return (
+      <div>
+          <h2>{count}</h2>
+          <button onClick={() => setCount(count + 1)}>
+              Increment
+          </button>
+      </div>
+  );
+}
+export default App;</textarea>
+<p>Here <code>useState<number>(0)</code> Means the state should contain a number.</p>
+<p class="mt-3"><b>More examples:</b></p>
+<textarea class="code-editor">const [username, setUsername] = useState<string>("John");
+const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+const [users, setUsers] = useState<string[]>([]);</textarea>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>Array Type Annotation in React</b></h5>
+<hr />
+<p>Here, <code>User[]</code> means an array of User objects.</p>
+<textarea class="code-editor">type User = {
+    id: number;
+    name: string;
+};
+
+const [users, setUsers] = useState<User[]>([
+    { id: 1, name: "John" },
+    { id: 2, name: "Alex" }
+]);</textarea>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>Example of Array Type Annotation in React</b></h5>
+<hr />
+<p>In this example we have a array of object list in <b>App.tsx</b> and that data will send to <b>User.tsx</b>.</p>
+<p><b>beginner label</b></p>
+<textarea class="code-editor">// App.tsx
+import { useState } from "react";
+import User from "./components/User"
+
+    function App() {
+
+      type UserProps = {
+        id: number,
+        name:string, 
+        age:number, 
+        isStudent: boolean,
+      }
+
+      const [users, setUsers] = useState([
+          { id: 1, name: "John", age:20, isStudent: true },
+          { id: 2, name: "Alex", age:30, isStudent: false }
+      ]);
+
+      const userEvent = (e:number): void =>{
+        console.log(`clicked ${e}`)
+      }
+
+  return (
+    <>
+      <h2>App</h2>
+      {users.map(({id, name, age, isStudent }: UserProps) => <User key={id} id={id} name={name} age={age} isStudent={isStudent} userEvent={userEvent}/>)}
+    </>
+  )
+}
+
+// User.tsx
+type UserProps = {
+  id: number,
+  name:string, 
+  age:number, 
+  isStudent: boolean,
+  userEvent: (id:number)=> void
+}
+
+export default function User({ id, name, age, isStudent, userEvent }: UserProps) {
+  return (
+    <div>
+        <h4>ID: { id }</h4>
+        <h4>Name: { name }</h4>
+        <h4>Age: { age }</h4>
+        <h4>Is: { isStudent ? "Student" : "Not Student" }</h4>
+        <button onClick={()=>userEvent(id)}>Click</button>
+    </div>
+  )
+}
+</textarea>
+<p>In this example we create same <b>UserProps type</b> in both components. We can use separate type file, where i put the defined type and import this type file in both components like below:</p>
+<p><b>1. Create a shared type file <code>types/user.ts</code></b></p>
+<textarea class="code-editor">export type UserType = {
+  id: number,
+  name:string, 
+  age:number, 
+  isStudent: boolean,
+}</textarea>
+<p class="d-block mt-3"><b>2. Use it in <code>App.tsx</code></b></p>
+<textarea class="code-editor">import { useState } from "react";
+import type { UserType } from "./types/user";
+import UserComponent from "./components/User";
+
+function App() {
+  const [users, setUsers] = useState<User[]>([
+    { id: 1, name: "John", age: 20, isStudent: true },
+    { id: 2, name: "Alex", age: 30, isStudent: false }
+  ]);
+
+  const userEvent = (id: number): void => {
+    console.log(`Clicked ${id}`);
+  };
+
+  return (
+    <>
+      {users.map(user => (
+        <UserComponent
+          key={user.id}
+          {...user}
+          userEvent={userEvent}
+        />
+      ))}
+    </>
+  );
+}
+
+export default App;</textarea>
+<p class="d-block mt-3"><b>3. Use it in <code>User.tsx</code></b></p>
+<p>Here we use an important TypeScript concept called <b>Intersection Types (&).</b></p>
+<textarea class="code-editor">import type { UserType } from "../types/user";
+
+type UserProps = UserType & {
+  userEvent: (id: number) => void;
+};
+
+export default function UserComponent({
+  id,
+  name,
+  age,
+  isStudent,
+  userEvent
+}: UserProps) {
+  return (
+    <div>
+      <h4>ID: {id}</h4>
+      <h4>Name: {name}</h4>
+      <h4>Age: {age}</h4>
+      <h4>{isStudent ? "Student" : "Not Student"}</h4>
+
+      <button onClick={() => userEvent(id)}>Click</button>
+    </div>
+  );
+}</textarea>
+<p><b>This means:</b></p>
+<ul>
+  <li><b>User</b> provides <code>id, name, age, and isStudent</code>.</li>
+  <li><b>userEvent</b> adds another property.</li>
+  <li><b>UserProps</b> combines both types with <b>Intersection Types (&)</b>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
