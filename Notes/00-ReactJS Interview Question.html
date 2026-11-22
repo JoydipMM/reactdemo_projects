@@ -1984,6 +1984,153 @@ export default function CustomHook() {
   )
 }</textarea>
 <br/> 
+<br/> 
+<br/> 
+<br/> 
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>TypeScript Annotations in React.js</b></h5>
+<hr />
+<p><b>TypeScript annotations</b> in React are used to define the data types of variables, function parameters, return values, props, state, and events. They help us identify type-related errors during development and make our React applications more reliable and maintainable.</p>
+
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>
+    <b>Variable Type Annotation</b>
+    <p>We can specify what type of value a variable can store.</p>
+<textarea class="code-editor">let username: string = "John";
+let age: number = 25;
+let isActive: boolean = true;</textarea>
+    <ul class="list-group list-group-flush mx-4 mb-3">
+      <li><b>username</b>: string means username can store only a string.</li>
+      <li><b>age</b>: number means age can store only a number.</li>
+      <li><b>isActive</b>: boolean means isActive can store only true or false.</li>
+    </ul>
+  </li>
+
+  <li>
+    <b>Function Parameter Annotation</b>
+    <p>We can define the type of parameters accepted by a function.</p>
+<textarea class="code-editor">function add(a: number, b: number) {
+  return a + b;
+}
+add(10, 20);</textarea>
+<p class="mb-0">Here, <b>a</b> and <b>b</b> must be numbers.</p>
+<p>Passing strings will produce a TypeScript error.</p>
+  </li>
+
+
+  <li>
+    <b>Function Return Type Annotation</b>
+    <p>We can also define what type of value a function should return.</p>
+    <textarea class="code-editor">function getUsername(): string {
+    return "John";
+}</textarea>
+    <p>Here, : <b>string</b> specifies that the function must return a string.</p>
+
+    <p class="d-block mt-3"><b>Another example:</b></p>
+<textarea class="code-editor">function calculateTotal(price: number, quantity: number): number {
+  return price * quantity;
+}</textarea>
+  </li>
+</ul>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>Props Type Annotation in React</b></h5>
+<hr />
+<p>This is one of the most important uses of TypeScript in React.</p>
+<p>We use <b>type</b> or <b>interface</b> to define the <b></b>structure of component props</b>.</p>
+<p class="d-block mt-3"><b>Different Ways to Define Props Types in React TypeScript</b></p>
+<p>There are three common ways to define and use props types.</p>
+
+<p class="d-block mt-3"><b>1. Inline Props Type</b></p>
+<p>Define the prop types directly inside the function parameter.</p>
+<textarea class="code-editor">export default function User(props: {
+  name: string;
+  age: number;
+  isStudent: boolean;
+}) {
+  return (
+    <div>
+      <h4>Name: {props.name}</h4>
+      <h4>Age: {props.age}</h4>
+      <h4>Student: {props.isStudent}</h4>
+    </div>
+  );
+}</textarea>
+<p class="d-block _mt-3"><b>Notes:</b></p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>Props types are defined directly inside the function parameter.</li>
+  <li>Access props using props.propertyName.</li>
+  <li>Suitable for small components with fewer props.</li>
+</ul>
+
+<p class="d-block mt-3"><b>2. Inline Props Type with Destructuring</b></p>
+<p>Define the prop types directly in the function parameter and destructure the props.</p>
+<textarea class="code-editor">export default function User({
+  name,
+  age,
+  isStudent
+}: {
+  name: string;
+  age: number;
+  isStudent: boolean;
+}) {
+  return (
+    <div>
+      <h4>Name: {name}</h4>
+      <h4>Age: {age}</h4>
+      <h4>Student: {isStudent}</h4>
+    </div>
+  );
+}</textarea>
+<p class="d-block _mt-3"><b>Notes:</b></p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>Props types are defined directly inside the function parameter.</li>
+  <li>Props are destructured directly in the function parameter.</li>
+  <li>No need to use <code>props.propertyName</code>.</li>
+  <li>Suitable for small components.</li>
+</ul>
+
+
+<p class="d-block mt-3"><b>3. Using Type Alias (Recommended)</b></p>
+<p>First, define a separate type using type, then use it in the component.</p>
+<textarea class="code-editor">type UserProps = {
+  name: string;
+  age: number;
+  isStudent: boolean;
+};
+
+export default function User({
+  name,
+  age,
+  isStudent
+}: UserProps) {
+  return (
+    <div>
+      <h4>Name: {name}</h4>
+      <h4>Age: {age}</h4>
+      <h4>Student: {isStudent}</h4>
+    </div>
+  );
+}</textarea>
+<p class="d-block _mt-3"><b>Notes:</b></p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>Define prop types separately using type.</li>
+  <li>Pass the type name (UserProps) to the component parameter.</li>
+  <li>Makes code cleaner and easier to maintain.</li>
+  <li>Recommended when components have multiple props or reusable types.</li>
+</ul>
+
 
 
 <!-- <ul class="list-group list-group-flush mx-4 mb-3">
