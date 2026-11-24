@@ -2038,12 +2038,19 @@ add(10, 20);</textarea>
 }</textarea>
   </li>
 
-
   <li>
     <b>Array Type Annotation</b>
     <p>We can define the type of elements an array can contain.</p>
 <textarea class="code-editor">const numbers: number[] = [10, 20, 30];
 const names: string[] = ["John", "Alex", "Alice"];</textarea>
+  </li>
+
+  <li>
+    <b>Union Type Annotation</b>
+    <p>Union types allow a variable to accept more than one type.</p>
+<textarea class="code-editor">let userId: number | string;
+userId = 101;
+userId = "USER101";</textarea>
   </li>
 </ul>
 <br/> 
@@ -2261,7 +2268,7 @@ import type { UserType } from "./types/user";
 import UserComponent from "./components/User";
 
 function App() {
-  const [users, setUsers] = useState<User[]>([
+  const [users, setUsers] = useState<UserType[]>([
     { id: 1, name: "John", age: 20, isStudent: true },
     { id: 2, name: "Alex", age: 30, isStudent: false }
   ]);
@@ -2316,18 +2323,407 @@ export default function UserComponent({
   <li><b>userEvent</b> adds another property.</li>
   <li><b>UserProps</b> combines both types with <b>Intersection Types (&)</b>.</li>
 </ul>
+<br/> 
 
 
 
 
 
+<hr />
+<h5><b>Event Type Annotation in React</b></h5>
+<hr />
+<p>In React, we can specify the types of events.</p>
+<textarea class="code-editor">import { useState } from "react";
+
+function App() {
+
+    const [name, setName] = useState<string>("");
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value);
+    };
+
+    return (
+        <div>
+            <input
+                type="text"
+                value={name}
+                onChange={handleChange}
+            />
+
+            <h2>{name}</h2>
+        </div>
+    );
+}
+
+export default App;</textarea>
+<p>Here </p>
+<textarea class="code-editor">React.ChangeEvent<HTMLInputElement></textarea>
+<p>Specifies that the event comes from an HTML input element.</p>
+
+<p class="d-block mt-3"><b>Other commonly used event types:</b></p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li>
+    <p><b>Event :</b> <code>Input change</code></p>
+    <p><b>TypeScript annotation :</b>
+<textarea class="code-editor">React.ChangeEvent<HTMLInputElement></textarea>
+    </p>
+  </li>  
+  
+  <li>
+    <p><b>Event :</b> <code>Form submit</code></p>
+    <p><b>TypeScript annotation :</b>
+<textarea class="code-editor">React.FormEvent<HTMLFormElement></textarea>
+    </p>
+  </li>
+
+  <li>
+    <p><b>Event :</b> <code>Button click</code></p>
+    <p><b>TypeScript annotation :</b>
+<textarea class="code-editor">React.MouseEvent<HTMLButtonElement></textarea>
+    </p>
+  </li>
+
+  <li>
+    <p><b>Event :</b> <code>Select change</code></p>
+    <p><b>TypeScript annotation :</b>
+<textarea class="code-editor">React.ChangeEvent<HTMLSelectElement></textarea>
+    </p>
+  </li>
+
+  <li>
+    <p><b>Event :</b> <code>Textarea change</code></p>
+    <p><b>TypeScript annotation :</b>
+<textarea class="code-editor">React.ChangeEvent<HTMLTextAreaElement></textarea>
+    </p>
+  </li>
+
+
+
+</ul>
+<br/> 
 
 
 
 
 
+<hr />
+<h5><b>Optional Props Annotation</b></h5>
+<hr />
+<p>Sometimes a component doesn't require all props.</p>
+<p>We can use <code>?</code> to <i>make a property optional</i>.</p>
+<textarea class="code-editor">type UserProps = {
+    name: string;
+    age?: number;
+};
+
+function User({ name, age }: UserProps) {
+    return (
+        <div>
+            <h2>{name}</h2>
+            <p>{age}</p>
+        </div>
+    );
+}
+
+// valid usage
+<User name="John" age={25} />
+<User name="Alex" />
+</textarea>
+<br/> 
 
 
+
+
+
+<hr />
+<h5><b>Union Type Annotation in React</b></h5>
+<hr />
+<p>Union types allow a variable to accept more than one type.</p>
+<textarea class="code-editor">const [userId, setUserId] = useState<number | string>(101);</textarea>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b>useRef Type Annotation</b></h5>
+<hr />
+<p>We can specify the type of value stored in a ref.</p>
+<textarea class="code-editor">import { useRef } from "react";
+
+function App() {
+
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const focusInput = () => {
+        inputRef.current?.focus();
+    };
+
+    return (
+        <div>
+            <input ref={inputRef} />
+
+            <button onClick={focusInput}>
+                Focus Input
+            </button>
+        </div>
+    );
+}</textarea>
+<p>Here</p>
+<ul class="list-group list-group-flush mx-4 mb-3">
+  <li><code>HTMLInputElement</code> specifies the input element type.</li>
+  <li><code>null</code> is the initial value.</li>
+  <li><code>?.</code> safely accesses the input when it exists.</li>
+</ul>
+<br/> 
+
+
+
+
+
+<hr />
+<h5><b><code>Children Props</code> Type in React TypeScript</b></h5>
+<hr />
+<p>In React, the <b>children prop</b> is used to pass content (components, JSX, or text) between the opening and closing tags of a component.</p>
+<p>In TypeScript, we use <code>React.ReactNode</code> to define the type of <code>children</code> props in most cases.</p>
+
+<p class="d-block mt-3"><b>Basic Example</b></p>
+<textarea class="code-editor">function User({ children }) {
+  return (
+    <div>
+      {children}
+    </div>
+    );
+  }
+  
+  function Parent() {
+    return (
+      <div>
+        <User>
+          <h2>Hello John</h2>
+          <p>Welcome to React</p>
+        </User>
+      </div>
+      );
+    }</textarea>
+    <p>Here, <code>h2 tag</code> and <code>p tag</code> are <code><i>passed as children to the User component</i></code>.</p>
+    
+<p class="d-block mt-3"><b>Children Props with TypeScript</b></p>
+<p>We need to define the type of <code>children</code> using <code>React.ReactNode</code>.</p>
+<textarea class="code-editor">import React from "react";
+  
+  type UserProps = {
+    children: React.ReactNode;
+  };
+  
+  function User({ children }: UserProps) {
+    return (
+      <div>
+        {children}
+      </div>
+      );
+    }
+    
+    export default User;</textarea>
+    <p>Now we can use the component:</p>
+    <textarea class="code-editor">function App() {
+      return (
+        <User>
+          <h2>Hello John</h2>
+          <p>Welcome to React</p>
+          <button>Click Me</button>
+        </User>
+        );
+      }</textarea>
+      
+<p class="d-block mt-3"><b>Using ReactNode Without Importing React</b></p>
+<p>We can also import <code>ReactNode</code> directly.</p>
+<textarea class="code-editor">import type { ReactNode } from "react";
+  
+  type UserProps = {
+    children: ReactNode;
+  };
+  
+  function User({ children }: UserProps) {
+    return <div>{children}</div>;
+  }</textarea>
+  <p>This is a clean and commonly used approach.</p>
+  
+<p class="d-block mt-3"><b>Optional Children Props</b></p>
+<p>Sometimes children are not required. We can use <code>?</code> to make the children prop optional.</p>
+<textarea class="code-editor">import type { ReactNode } from "react";
+
+type UserProps = {
+    children?: ReactNode;
+};
+
+function User({ children }: UserProps) {
+    return (
+        <div>
+            {children}
+        </div>
+    );
+}</textarea>
+<p>Now both usages are valid:</p>
+<textarea class="code-editor"><User>
+    <h2>Hello</h2>
+</User>
+
+<User /></textarea>
+<br/> 
+
+
+
+
+<hr />
+<h5><b>Mouse Events in React with TypeScript</b></h5>
+<hr />
+<p>Code Example</p>
+<textarea class="code-editor">
+import React from 'react'
+
+export default function EventHandling() {
+
+    // Mouse Enter Event
+    // React.MouseEvent<HTMLDivElement> means:
+    // This event belongs to a mouse event on a <div> element.
+    const mouseEnterEvent = (e: React.MouseEvent<HTMLDivElement>) => {
+
+        // e.currentTarget refers to the element where the event handler is attached.
+        // Here, it refers to the <div> element.
+        console.log("Mouse Entered! ", e.currentTarget)
+    }
+
+
+    // Button Click Event
+    // React.MouseEvent<HTMLButtonElement> means:
+    // This event belongs to a mouse event on a <button> element.
+    const buttonClickEvent = (e: React.MouseEvent<HTMLButtonElement>) => {
+
+        // e.currentTarget refers to the element where the event handler is attached.
+        // Here, it refers to the <button> element.
+        console.log("Mouse Clicked! ", e.currentTarget)
+    }
+
+
+    return (
+        <>
+            <h2>Event Handling</h2>
+
+            {/* 
+                onMouseEnter:
+                Calls mouseEnterEvent when the mouse enters this div.
+
+                We pass the function reference without calling it.
+                React automatically passes the event object (e).
+            */}
+            <div onMouseEnter={mouseEnterEvent}>
+
+                <h3>Heading</h3>
+
+                {/*
+                    onClick:
+                    Calls buttonClickEvent when the button is clicked.
+
+                    React automatically passes the mouse event object.
+                */}
+                <button onClick={buttonClickEvent}>
+                    Click
+                </button>
+
+            </div>
+        </>
+    )
+}</textarea>
+<p>When handling mouse events in React with TypeScript, first I create an event handler function. Then I define the event type using React.MouseEvent and specify the HTML element on which the event is attached.</p>
+<p>After that, I pass the handler function to the appropriate JSX event attribute, such as onClick or onMouseEnter, without calling the function directly.</p>
+<p>When the user performs the action, React automatically invokes the handler and passes an event object. Using this event object, I can access properties like currentTarget, target, and type to get information about the event.</p>
+
+<p class="d-block mt-3"><b>Expected result</b></p>
+<p>Our original component contains two event handlers:</p>
+
+<ul>
+  <li>
+    <b>1. Mouse Enter Event</b>
+    <p>When the mouse pointer enters the parent <b>div</b>:</p>
+<textarea class="code-editor">Mouse Entered!</textarea>
+  </li>
+  <li>
+    <b>2. Button Click Event</b>
+    <p>When the user clicks the <b>button</b>:</p>
+<textarea class="code-editor">Mouse Clicked!</textarea>
+  </li>
+</ul>
+<b>Note: The <code>e.currentTarget</code> property returns the DOM element on which the respective event handler is attached.</b>
+<br/> 
+<br/> 
+ 
+
+
+
+
+<hr />
+<h5><b>Form Events in React with TypeScript</b></h5>
+<hr />
+<p><b>Code Example:</b></p>
+<textarea class="code-editor">import React, { useState, type ChangeEvent, type FormEvent } from 'react'
+
+export default function ContactForm() {
+
+
+    type FormDataType = {
+        name: string,
+        email: string
+    }
+
+    const [ formData, setFormData ] = useState<FormDataType>({
+        name:"",
+        email:""
+    })
+
+    const getFieldEvent = (e: ChangeEvent<HTMLInputElement>) => {
+        //console.log(e)
+        const { name, value } = e.target;
+        //console.log(name, value)
+        setFormData(prev => ({ ...prev, [name]:value }))
+    }
+
+    const submitFormEvent = (e:FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        console.log(formData)
+    }
+
+
+  return (
+    <>
+    <h2>Contact Form : <i>TypeScript Annotation</i></h2>
+
+    <form onSubmit = { submitFormEvent }>
+
+        <div>
+            <label>Name</label>
+            <input type="text" name='name' value={formData.name} onChange={getFieldEvent} />
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="text" name='email' value={formData.email} onChange={getFieldEvent} />
+        </div>
+        <div>
+            <button type='submit'>Submit</button>
+        </div>
+
+    </form>
+    </>
+  )
+}</textarea>
+<p class="d-block mt-3"><b>Result in Console</b></p>
+<textarea class="code-editor">{
+    "name": "test",
+    "email": "test@gamil.com"
+}</textarea>
+<br/>
 
 
 <!-- <ul class="list-group list-group-flush mx-4 mb-3">
